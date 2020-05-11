@@ -1,0 +1,17 @@
+# Random Variables {#rv}
+
+## Motivating Example {-}
+
+## Theory {-}
+
+```{definition, name="Probability Mass Function"}
+\[ f[x] = P(X = x) \]
+```
+
+```{definition, name="Cumulative Distribution Function"}
+\[ F(x) = P(X \leq x) \]
+```
+
+## Worked Examples {-}
+
+## Exercises {-}

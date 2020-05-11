@@ -1,0 +1,11 @@
+# Calculating Sums by Pattern Matching {#sums}
+
+## Motivating Example {-}
+
+What is the value of $\sum_{k=0}^n \binom{n}{k}$?
+
+## Theory {-}
+
+## Worked Examples {-}
+
+## Exercises {-}

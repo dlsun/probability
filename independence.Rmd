@@ -1,0 +1,11 @@
+# Independence {#independence}
+
+## Motivating Example {-}
+
+Gambler's fallacy
+
+## Theory {-}
+
+## Worked Examples {-}
+
+## Exercises {-}

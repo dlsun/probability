@@ -1,0 +1,11 @@
+# Negative Binomial (and Geometric) Distributions {#negative-binomial}
+
+## Motivating Example {-}
+
+4 heads in 8 tosses vs. 8 tosses for 4 heads?
+
+## Theory {-}
+
+## Worked Examples {-}
+
+## Exercises {-}

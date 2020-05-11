@@ -1,0 +1,11 @@
+# Binomial Distribution {#binomial}
+
+## Motivating Example {-}
+
+Newton-Pepys problem
+
+## Theory {-}
+
+## Worked Examples {-}
+
+## Exercises {-}

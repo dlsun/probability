@@ -1,0 +1,11 @@
+# Combinatorics {#combinatorics}
+
+## Motivating Example {-}
+
+Galileo's dice
+
+## Theory {-}
+
+## Worked Examples {-}
+
+## Exercises {-}

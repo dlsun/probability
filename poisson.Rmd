@@ -1,0 +1,11 @@
+# Poisson Distribution {#poisson}
+
+## Motivating Example {-}
+
+Poisson process
+
+## Theory {-}
+
+## Worked Examples {-}
+
+## Exercises {-}

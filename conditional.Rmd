@@ -1,0 +1,11 @@
+# Conditional Probability {#conditional}
+
+## Motivating Example {-}
+
+Boy or Girl Paradox
+
+## Theory {-}
+
+## Worked Examples {-}
+
+## Exercises {-}

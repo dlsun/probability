@@ -1,0 +1,9 @@
+# Hypergeometric Distribution {#hypergeometric}
+
+## Motivating Example {-}
+
+## Theory {-}
+
+## Worked Examples {-}
+
+## Exercises {-}
