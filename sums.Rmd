@@ -1,11 +1,87 @@
-# Calculating Sums by Pattern Matching {#sums}
+# Calculating Sums by Distribution Matching {#sums}
 
 ## Motivating Example {-}
 
-What is the value of $\sum_{k=0}^n \binom{n}{k}$?
+What is the value of the sum 
+\begin{equation}
+\sum_{k=0}^5 \binom{5}{k}?
+(\#eq:sum-subsets)
+\end{equation}
+
+One way to calculate this is to use the fact that the probabilities in a binomial distribution have to add up to 
+$1$. First, to make the summation \@ref(eq:sum-subsets) match a binomial distribution, we add factors of 
+$(1/2)^k$ and $(1/2)^{5-k}$ inside the sum:
+$$\sum_{k=0}^5 \binom{5}{k} = \sum_{k=0}^5 \binom{5}{k} \left(\frac{1}{2}\right)^k \left(\frac{1}{2}\right)^{5-k} 2^5. $$
+Of course, we have to be sure to cancel out any terms that we add. The $2^5$ term precisely cancels out the 
+$(1/2)^k \cdot (1/2)^{5-k} = (1/2)^5$ term that we added. 
+
+Next, noting that $2^5$ does not depend on $k$ (the index of the 
+summation), we can bring the $2^5$ outside the sum, leaving us with the p.m.f. of the 
+$\text{Binomial}(n=5, p=1/2)$ distribution inside the summation. This sum must equal 1, since 
+probabilities have to add up to 1.
+$$\sum_{k=0}^5 \binom{5}{k} = 2^5 \underbrace{\sum_{k=0}^5 \overbrace{\binom{5}{k} \left(\frac{1}{2}\right)^k \left(\frac{1}{2}\right)^{5-k}}^{\text{$f[k]$ for $\text{Binomial}(n=5, p=1/2)$}}}_{=1} = 2^5. $$
+So we see that the sum equals $2^5$. This technique of calculating sums is called "distribution matching" 
+because we manipulate the summation until we recognize one of the probability distributions that we have 
+learned.
+
+There is another way to see why the answer is $2^5$, without evaluating the summation. 
+Remembering that $\binom{n}{k}$ represents the number of distinct
+subsets of $\{ 1, ..., n \}$ of size $k$, the sum \@ref(eq:sum-subsets) is just the 
+total number of subsets (of any size) of $\{ 1, ..., 5 \}$. There is another way 
+to count the number of subsets; each element of $\{ 1, ..., 5 \}$ can either be 
+in the subset or not. Since there are 2 choices for each element, the total number of 
+subsets must be:
+$$ 2 \times 2 \times 2 \times 2 \times 2 = 2^5 $$
 
 ## Theory {-}
 
+Many useful sums can be calculated by using the fact that the sum of a p.m.f. over all 
+of the possible values must equal $1$. 
+```{theorem, name="Binomial Theorem"}
+For any real numbers $a, b \geq 0$ and integers $n \geq 0$:
+\begin{equation} 
+(a + b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}. 
+(\#eq:binomial-theorem)
+\end{equation}
+(Note that \@ref(eq:binomial-theorem) holds, even when $a$ and $b$ are negative. However, only the 
+ non-negative case can be proven using the distribution matching technique, and we only need the 
+ Binomial Theorem for $a, b \geq 0$ in the remainder of this book.)
+```
+```{proof}
+\begin{align*}
+\sum_{k=0}^n \binom{n}{k} a^k b^{n-k} &= \sum_{k=0}^n \binom{n}{k} \left(\frac{a}{a+b} \right)^k \left(\frac{b}{a + b}\right)^{n-k} (a + b)^k (a + b)^{n-k} \\
+&= (a + b)^n \sum_{k=0}^n \binom{n}{k} \left(\frac{a}{a+b} \right)^k \left(\frac{b}{a + b}\right)^{n-k} \\
+&= (a + b)^n \underbrace{\sum_{k=0}^n \binom{n}{k} p^k (1-p)^{n-k}}_{=1} & p := \frac{a}{a+b} \\
+&= (a + b)^n
+\end{align*}
+```
+
+```{theorem, name="Geometric Series"}
+For $0 \leq r < 1$, 
+\begin{equation}
+\sum_{k=0}^\infty r^k = 1 + r + r^2 + r^3 + \ldots = \frac{1}{1 - r}.
+(\#eq:geometric-series)
+\end{equation}
+(Note that \@ref(eq:geometric-series) holds for all $|r| < 1$. However, only the 
+ non-negative case can be proven using the distribution matching technique.)
+```
+```{proof}
+\begin{align*}
+\sum_{k=0}^\infty r^k &= \sum_{x=1}^\infty (1 - p)^{x-1} & x := k + 1, p := 1 - r \\
+&= \sum_{x=1}^\infty (1 - p)^{x-1} p \frac{1}{p} \\
+&= \frac{1}{p} \underbrace{\sum_{x=1}^\infty (1 - p)^{x-1} p}_{=1} \\
+&= \frac{1}{1 - r}
+\end{align*}
+```
+
 ## Worked Examples {-}
+
+1. Show Vandermonde's Identity:
+$$ \sum_{k=0}^r \binom{m}{k} \binom{n}{r - k} = \binom{n + m}{r}. $$
+2. Show that $e$ (the mathematical constant approximately equal to $2.718$) is equal to 
+$$ e = 1 + \frac{1}{2!} + \frac{1}{3!} + \frac{1}{4!} + \cdots. $$
+3. Equation \@ref(eq:geometric-series) is the sum of an _infinite_ geometric series. 
+Show the sum of a _finite_ geometric series is:
+$$ \sum_{k=0}^n r^k = \frac{1 - r^n}{1 - r}. $$
 
 ## Exercises {-}
