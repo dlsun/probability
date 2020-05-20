@@ -2,10 +2,102 @@
 
 ## Motivating Example {-}
 
-Newton-Pepys problem
+In 1693, Samuel Pepys and Isaac Newton had written to each other discussing a wager that Pepys was planning to make. The two wanted to figure out which of the following three events had the highest probability of occurring. (These six-sided dice are fair so that each possible number has a $\dfrac{1}{6}$ chance of occurring independent of any other rolls)
+
+**a)** Six dice are thrown and at least one is a 6
+
+**b)** Twelve dice are thrown and at least two are a 6
+
+**c)** Eighteen dice are thrown and at least three are a 6
+
+------
+
+Let's find the probability of each of these events occurring
+
+**a)** There are many possible ways that we could throw at least one 6 out of six dice rolls, (Ex: $2, 2, 3, 4, 5, 6$ or $1, 1, 3, 5, 6, 6$), but it may be easier to count the number of ways that we **don't** roll a 6. There is a $\dfrac{5}{6}$ chance that we don't roll a 6 on a single roll, so the probability that we don't get a 6 in any of the six rolls is $(\dfrac{5}{6})^6$. Therefore, the probability of event a) is $$1 - (\dfrac{5}{6})^6 = .6651$$
+
+**b)** In this event, we also want to subtract the probability of rolling 0 sixes like in part **a)**, but we also want to subtract the probability that we roll one 6 as well. The probability of rolling one 6 followed by 11 non-sixes is $$(\dfrac{1}{6}) \cdot (\dfrac{5}{6})^{11}$$ but there are also 11 other locations that the 6 could have occured, so our final answer becomes $$1 - (\dfrac{5}{6})^{12} - 12(\dfrac{1}{6})(\dfrac{5}{6})^{11} = .6187$$
+
+**c)** Now, we want to subtract the probability of rolling no sixes or rolling one 6, but now we also need to take away the probability of rolling two sixes. In 18 dice rolls, we can find the number of possible orders of two rolls being a 6 and ten rolls not being a 6 with combinations. $\binom{18}{2}$ represents the possible ways to place the two 6s in the 18 rolls, so our probability of rolling two 6s out of 18 dice becomes $$\binom{18}{2}(\dfrac{1}{6})^2(\dfrac{5}{6})^{16}$$
+
+Our final answer becomes $$1 - (\dfrac{5}{6})^{18} - 18(\dfrac{1}{6})(\dfrac{5}{6})^{17} - \binom{18}{2}(\dfrac{1}{6})^2(\dfrac{5}{6})^{16} = 0.5973457$$
+
+Therefore, we can see that event **a)** has the highest probability of occurring.
 
 ## Theory {-}
 
+```{definition}
+The binomial formula is given as
+\begin{equation}
+P(X = k) = \binom{n}{k}p^n(1-p)^{n-k}
+(\#eq:independence)
+\end{equation}
+  
+Where $n$ is the number of draws, $k$ is the number of successes, and $p$ is the probability of success for a single trial.
+
+
+We can use sums of the binomial formula to find probabilities such as $P(X \le k)$, or the C.D.F of X
+  
+$$F(k) = P(X \le k) = \sum_{i=1}^k \binom{n}{k} p^k (1-p)^{n-k}$$
+  
+Similarly we can also find $P(X \ge k)$
+  
+$$P(X \ge k) = \sum_k^np^k(1-p)^{n-k}$$
+```
+
 ## Worked Examples {-}
 
+1. Your free throw percentage is 70%, and your shots are independent from free throw to free throw. Say that you take 9 free throws in a game. Is it more likely that you make 5 free throws or 8 free throws in your game?
+
+$$P(X = 5) = \binom{9}{5}.7^5(1-.7)^{9-5} = 0.1715322$$
+
+```{r}
+dbinom(5, 9, .7)
+```
+
+$$P(X = 8) = \binom{9}{8}.7^8(1-.7)^{9-8} = 0.1556496$$
+
+```{r}
+dbinom(8, 9, .7)
+```
+
+So it is more likely that you make 5 free throws during your game.
+
+------
+
+2. You flip a fair two-sided coin $20$ times and record whether the result was heads or tails. What is the probability that $15$ out of your $20$ flips land on the same side?
+
+We know that this is a binomial model with $p=.5$, so our resulting probability of getting $15$ flips landing on a certain side is 
+
+$$\binom{20}{15}.5^{15}(1-.5)^{20-15} = .0148$$
+But there are two possible sides that our coin can land on, so we must multiply this probability by $2$
+
+$$2(.0148) = .0296$$
+
+------
+
+3. You are taking a multiple choice exam with $100$ questions and you have a $90\%$ chance of getting each question correct. What is the probability that the number of questions that you get correct is divisible by 10?
+
+We will need to add up the probability of every getting every possible multiple of 10 from 0 to 100 in our binomial model.
+
+$$P(X \text{ is divisible by 10}) = \sum_{k=0}^{100/10} \binom{100}{10k}.9^{10k}(1-.9)^{10k}$$
+
+```{r}
+# All even numbers from 0 to 100
+ks = seq(0, 100, 10)
+
+# Summing up the binomial probability of these k values
+sum(dbinom(ks, 100, .9))
+```
+
 ## Exercises {-}
+
+1. You're a professional baseball player and your batting average is $.300$. Let's say that every game you get exactly $4$ at bats. Out of the $162$ games in a baseball season, what is the probability that you end your season with $70$ or more games with exactly $1$ hit?
+
+------
+
+2. There are 58 questions on the math portion of the SAT. Assume that you have a $80\%$ chance at getting the first $40$ questions correct, and a $60\%$ chance at getting the last $18$ questions correct. What is the probability that you get at least at least $42$ of the questions correct?
+
+------
+
+3. You are running a factory that is making car parts, and $20\%$ of the parts produced are known to have defects. What is the minimum number of parts that you need to produce in a day to ensure that you have at least a $95\%$ chance at producing at least $20$ parts that do not have defects?
