@@ -19,6 +19,7 @@ First, let's estimate these three probabilities with simulation.
 ```{r}
 N <- 10000
 x <- replicate(N, sample(1:6, 6, T))
+
 mean(colSums(x == 6) > 0)
 ```
 
