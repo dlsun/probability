@@ -1,0 +1,18 @@
+# Joint Distributions (#joint-discrete)
+
+## Motivating Example {-}
+
+Canonical Examples:
+
+- a coin is tossed 5 times: number of heads in first 3 tosses, number
+  of heads in last 3 tosses
+- min and max of two dice rolls
+
+## Theory {-}
+
+- For simple examples, the joint distribution can be written out in a table.
+- Include one example where the joint distribution is written out as a formula.
+
+## Worked Examples {-}
+
+## Exercises {-}
