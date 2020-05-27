@@ -2,9 +2,98 @@
 
 ## Motivating Example {-}
 
-Poisson process
+In 1898, Ladislaus Bortkiewicz, a Russian economist and statistician, studied the distribution of $122$ men kicked to death by horses among ten Prussin army corps over $20$ years.  most years in most corps, no one dies from being kicked; in one corp in one year, four men were kicked to death. Does this mean something was amiss in this particular corp? Let's take a look at the data.
+
+
+```{r include=FALSE}
+library(tidyverse)
+library(vcd)
+```
+
+```{r}
+data("HorseKicks")
+
+df <- as.tibble(HorseKicks)
+
+df <- df %>%
+  mutate(weighted_n = as.integer(nDeaths) * n) 
+  
+df
+```
+
+
+```{r}
+data <- numeric(200)
+counter <- 1
+col <- 0
+for (num in HorseKicks){
+  for (j in 1:num){
+    data[counter] <- col
+    counter <- counter + 1
+  } 
+  col <- col + 1
+}
+
+hist(data, prob = T)
+lines(0:4, dpois(0:4, sum(df$weighted_n)/200), col = 'red')
+
+```
 
 ## Theory {-}
+
+The Poisson distribution is a very common model for count data. Unlike the other distributions we have studied so far, the Poisson model is often used without justification. 
+
+$$p[x] = e^{-\mu}\frac{\mu^x}{x!}$$
+
+```{r echo=FALSE}
+p_dat <- map_df(1:4, ~ tibble(
+  l = paste(.),
+  x = 0:20,
+  y = dpois(0:20, .)
+))
+
+# Build Normal distributions
+
+n_dat <- map_df(1:4, ~ tibble(
+  l = paste(.),
+  x = seq(0, 20, by = 0.001),
+  y = dnorm(seq(0, 20, by = 0.001), ., sqrt(.))
+))
+
+# Use ggplot2 to plot
+
+ggplot(n_dat, aes(x, y, color = factor(l, levels = 1:4))) +
+  geom_line() +
+  geom_point(data = p_dat, aes(x, y, color = factor(l, levels = 1:4))) +
+  labs(color = "Lambda:") +
+  theme_minimal()
+
+```
+
+One way to view the Poisson Distribution is an approximation to the Binomial when $n$ is large and $p$ is small. 
+
+$$\text{Binomial}(n,p) \approx \text{Poisson}(\mu = np)$$
+
+Why might this explain the usefulness of the Poisson model for count data?
+
+Suppose we want a probability model for the number of typos in a New York Times article when it reaches the copy editor. 
+
+- Each article has many words (e.g., $n = 1000$).
+- There is a small probability that each word has a type (e.g., $p = .005$).
+
+Assuming that typos are independent, then the number of typos is $\text{Binomial}(n = 1000, p = .005)$. Or approximately $Poisson(\mu = 5)$. 
+
+One way to view the Poisson distribution is as an approximation to the Binomial when $n$ is large and $p$ is small.
+
+Let $p = \frac{\mu}{n}$ and observe what happens as $n \to \infty$:
+
+\begin{align*}
+  p[x] &= \binom{n}{x} p^x (1-p)^{n-x} \\
+  &= \binom{n}{x} (\frac{\mu}{n})^x (1 - \frac{\mu}{n})^{n-x} \\
+  &= \frac{n!}{x!(n-x)!n^x}\mu^x(1 - \frac{\mu}{n})^{n-x} \\
+  &= \frac{1}{x!} \mu^x e^{-\mu}
+\end{align*}
+
 
 ## Worked Examples {-}
 
