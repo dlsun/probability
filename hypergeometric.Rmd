@@ -2,8 +2,111 @@
 
 ## Motivating Example {-}
 
+You are out on a weekend fishing trip at a lake that is known to contain $20$ fish. On your first day of fishing, you catch $6$ fish, tag them, and then release them back into the lake.
+
+On your second day, you decide that you are going to go fishing until you catch a total of $10$ fish. What is the probability that you catch all $6$ fish that you previously caught on your first day? What's the probability that none of the fish that you catch were caught on the previous day? What about the probability that you catch exactly $3$ of the fish that you caught on the previous day?
+
+In this example, we are sampling **without replacement** which means that the probability of catching one of the previous day's fish is not independent from trial to trial. 
+
+------
+
+First, let's simulate this situation, and discover the approximate distribution of number of tagged fish out of the $10$ fish that were caught on day $2$. In the below code, a $0$ represents an untagged fish, and a $1$ represents a tagged f
+
+```{r}
+n <- 10000
+fish <- c(rep(0, 14), rep(1, 6))
+
+tagged_fish <- numeric(n)
+for (i in 1:n) {
+  tagged_fish[i] <- sum(sample(fish, 10))
+}
+
+barplot(table(tagged_fish), main="Number of Tagged Fish Caught on Day 2", xlab = "Count", ylab="Number of Tagged Fish")
+prop.table(table(tagged_fish))
+```
+
+So we can see that the most frequent number of tagged fish caught is $3$ with a probability of `r mean(tagged_fish == 3)`
+
+Let's think about how we would be able to calculate the exact probability that we catch $x$ tagged fish out of the $k$ fish collected for the sample.
+
+First of all, the total number of ways that we can pick $10$ fish from a group of $20$, is $\binom{20}{10}$. We know that the number of ways that we can pick $x$ fish from the $6$ tagged fish is $\binom{6}{x}$, which means that the number of ways we can choose the remaining fish from the untagged fish is $\binom{14}{10-x}$.
+
+Therefore, we get
+
+$$P(X=x) = \dfrac{\binom{6}{x}\binom{14}{10-x}}{\binom{20}{10}}$$
+
+Let's compare our simulated values to the theoretical values above. We can see that our simulated distribution is very close to this theoretical distribution.
+
+```{r}
+Theoretical <- choose(6, 0:6)*choose(14, 10 - 0:6) / choose(20, 10)
+Simulated <- prop.table(table(tagged_fish))
+data <- rbind(Theoretical, Simulated)
+barplot(data, beside=T, legend=T)
+```
+
+
+------
+
 ## Theory {-}
+
+```{definition}
+The Hypergeometric distribution is defined as
+\begin{equation}
+P(X = x) = \dfrac{\binom{k}{x}\binom{N-k}{n-x}}{\binom{N}{n}}
+(\#eq:hypergeometric)
+\end{equation}
+  
+Where $k$ is the number of successes in the population, $x$ is the number of successes in the sample, $N$ is the number of items in the population, and $n$ is the number of items drawn from the sample.
+
+```
+
+We can also use sums of the hypergeometric formula to calculate probabilities such as $P(X \le x)$, the c.d.f of $X$
+
+$$P(X \le x) = \sum_{i=0}^x\dfrac{\binom{k}{x}\binom{N-k}{n-x}}{\binom{N}{n}}$$
+
+Similarly, we can find $P(X \ge x)$
+
+$$P(X \ge x) = \sum_{i=x}^n\dfrac{\binom{k}{x}\binom{N-k}{n-x}}{\binom{N}{n}}$$
 
 ## Worked Examples {-}
 
+1. Your state proposes a new lottery game in which you select $6$ numbers from $1$ to $15$. When it is time to draw, the lottery selects $8$ numbers, and prizes are won if at least $4$ of the $6$ numbers that you picked are part of the $8$ numbers that the lottery drew. What is the probability that a randomly selected ticket wins a prize?
+
+This is a hypergeometric distributions with parameters $N=15, n=8,$ and $k=6$. Therefore, the resulting probability becomes
+
+$$\dfrac{\binom{6}{4}\binom{15-6}{8-4}}{\binom{15}{8}} + \dfrac{\binom{6}{5}\binom{15-6}{8-5}}{\binom{15}{8}} + \dfrac{\binom{6}{6}\binom{15-6}{8-6}}{\binom{15}{8}} = 0.3776$$
+
+------
+
+2. In poker, a three-of-a-kind is when your hand consists of exactly $3$ cards of the same rank (Ex: $\{5, 8, J, J, J\}$ or $\{7, 7, 7, K, A\}$). What is the probability that you are dealt $5$ cards, and you have a three-of-a-kind?
+
+The probability that we have $3$ cards of a specific rank out of $5$ cards that are dealt is $$\dfrac{\binom{4}{3}\binom{48}{2}}{\binom{52}{5}} = 0.00174$$
+
+But we have $13$ ranks of cards in our deck, so this probability becomes
+
+$$13 \cdot \dfrac{\binom{4}{3}\binom{48}{2}}{\binom{52}{5}} = 0.02256$$
+
+So there is a $2.256\%$ chance that you are dealt a three-of-a-kind.
+
+------
+
+
 ## Exercises {-}
+
+1. In Texas Hold'em, you are dealt $2$ cards in your hand, and share $5$ cards in the middle of the table with the other players. A flush occurs when you have at least $5$ cards of the same suit out of the $7$ total cards. The deck is shuffled between hands, so that the probability you obtain a flush is independent from hand to hand. What is the probability that you get at least $1$ flush in $10$ hands of Texas Hold'em?
+
+------
+
+2. There are $25$ coins in a jar. $15$ are quarters, $7$ are dimes, and $3$ are pennies. Each time you reach in the jar, your are equally likely to pick any of the coins in the jar. What is the minimum number of times you must reach in the jar to have at least a $50\%$ chance of getting all $3$ pennies.
+
+------
+
+3. You are enrolled in $3$ courses this quarter, and the breakdown of majors by class is as follows:
+
+Class 1: $17$ Statistics Majors and $13$ Math Majors
+
+Class 2: $4$ Statistics Majors and $6$ Math Majors
+
+Class 3: $11$ Statistics Majors and $9$ Math Majors
+
+You pick one of your $3$ classes at random, and then choose a random sample of $20\%$ students from that class. What is the probability that the number of Statistics majors in your sample is equal to the number of Math majors in your sample?
