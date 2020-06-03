@@ -2,47 +2,17 @@
 
 ## Motivating Example {-}
 
-You are out on a weekend fishing trip at a lake that is known to contain $20$ fish. On your first day of fishing, you catch $6$ fish, tag them, and then release them back into the lake.
+The Powerball is a lottery game that runs in 45 U.S. states. When you purchase a lottery ticket, you choose $5$ numbers from $1$ to $69$, and a sixth number from $1$ to $26$. This ball is known as the Powerball.
 
-On your second day, you decide that you are going to go fishing until you catch a total of $10$ fish. What is the probability that you catch all $6$ fish that you previously caught on your first day? What's the probability that none of the fish that you catch were caught on the previous day? What about the probability that you catch exactly $3$ of the fish that you caught on the previous day?
+Drawings occur on Wednesday and Saturday nights, where $5$ white balls are chosen **without replacement** with labels from $1$ to $69$, and a single red ball is chosen with labels ranging from $1$ to $26$. Since the red ball is chosen from a different batch, it is possible for the red Powerball to match a number drawn from the white balls, but it is not possible for two of the five chosen white balls to have the same number.
 
-In this example, we are sampling **without replacement** which means that the probability of catching one of the previous day's fish is not independent from trial to trial. 
+To win the jackpot, (which has reached over $1.5 billion at its peak), you must match your five chosen numbers with the labels of the five white balls drawn, as well as picking the right number for the red Powerball. For the five white balls, they do not have to be chosen in the correct order that they were drawn. 
 
-------
+What is the probability that you go and buy a ticket, that ends up winning the powerball Jackpot?
 
-First, let's simulate this situation, and discover the approximate distribution of number of tagged fish out of the $10$ fish that were caught on day $2$. In the below code, a $0$ represents an untagged fish, and a $1$ represents a tagged f
+First of all, we have to choose the right $5$ white balls labeled $1$ through $69$. To count the ways that this can happen, we can use combinations. We know that we have to have our $5$ chosen numbers drawn, and the remaining $64$ white balls cannot be chosen, which can be represented by $\binom{5}{5} \cdot \binom{64}{0}$. We must then divide this by the number of possible ways to draw $5$ numbers from $69$ possible, so this turns out to be $$\dfrac{\binom{5}{5} \cdot \binom{64}{0}}{\binom{69}{5}} = \dfrac{1}{11238513}$$. 
 
-```{r}
-n <- 10000
-fish <- c(rep(0, 14), rep(1, 6))
-
-tagged_fish <- numeric(n)
-for (i in 1:n) {
-  tagged_fish[i] <- sum(sample(fish, 10))
-}
-
-barplot(table(tagged_fish), main="Number of Tagged Fish Caught on Day 2", xlab = "Count", ylab="Number of Tagged Fish")
-prop.table(table(tagged_fish))
-```
-
-So we can see that the most frequent number of tagged fish caught is $3$ with a probability of `r mean(tagged_fish == 3)`
-
-Let's think about how we would be able to calculate the exact probability that we catch $x$ tagged fish out of the $k$ fish collected for the sample.
-
-First of all, the total number of ways that we can pick $10$ fish from a group of $20$, is $\binom{20}{10}$. We know that the number of ways that we can pick $x$ fish from the $6$ tagged fish is $\binom{6}{x}$, which means that the number of ways we can choose the remaining fish from the untagged fish is $\binom{14}{10-x}$.
-
-Therefore, we get
-
-$$P(X=x) = \dfrac{\binom{6}{x}\binom{14}{10-x}}{\binom{20}{10}}$$
-
-Let's compare our simulated values to the theoretical values above. We can see that our simulated distribution is very close to this theoretical distribution.
-
-```{r}
-Theoretical <- choose(6, 0:6)*choose(14, 10 - 0:6) / choose(20, 10)
-Simulated <- prop.table(table(tagged_fish))
-data <- rbind(Theoretical, Simulated)
-barplot(data, beside=T, legend=T)
-```
+Lastly, we have to multiply this by the chance that we choose the right number for the red Powerball, which is $\dfrac{1}{26}$. Our final probability turns out to be $$\dfrac{1}{11238513 \cdot 26} = \dfrac{1}{292201338}$$, or about a $1$ in $292$ million chance that you win the Powerball.
 
 
 ------
