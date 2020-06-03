@@ -2,10 +2,99 @@
 
 ## Motivating Example {-}
 
-4 heads in 8 tosses vs. 8 tosses for 4 heads?
+In an American roulette wheel, there are $38$ spaces. $18$ are black, $18$ are red, and $2$ are green. You've been playing roulette at the casino for a while now, and decide to make a few more bets. You decide that you will keep betting $\$1$ on red until you win $3$ of your bets. When you win a bet on a color, you get your original $\$1$ back, plus an additional $\$1$ for winning for a total of $\$2$. What are the odds that you place exactly $5$ bets before you leave the casino that night? What about exactly $10$ bets? 
+
+We can first see that each spin of the roulette wheel is a Bernoulli trial with $p=\dfrac{18}{38}$, which means that a set of $n$ spins is a Binomial trial with $p=\dfrac{18}{38}, n=n$. However, this situation is slightly different, because we do not have a fixed value for $n$. In this case, the number of successes $k$ is fixed, and the number of trials $n$ it takes to get $k$ successes is actually our random variable.
+
+Let's simulate this event and see the distribution of trials it takes to get $3$ successes.
+
+```{r}
+N <- 10000
+num_trials <- numeric(N)
+
+for (i in 1:N) {
+  wins <- 0
+  trials <- 0
+  while (wins < 3) {
+    wins <- wins + sample(0:1, 1, T, c(20/38, 18/38))
+    trials <- trials + 1
+  }
+  num_trials[i] <- trials
+}
+barplot(prop.table(table(num_trials)), main="Distribution of Number of Bets", xlab = "Number of Bets")
+```
+
+Above, we can see that the simulated probability of placing exactly $5$ bets is `r mean(num_trials == 5)`, and the probability of placing exactly $10$ bets is `r mean(num_trials == 10)`.
+
+Now let's find the exact probabilities. First, for $P(n=5)$, we know that $3$ of those $5$ trials were successes, which means that the other $2$ had to be failures. We can write this as 
+
+$$(\dfrac{18}{38})^3 \cdot (\dfrac{20}{38})^2$$
+
+However, we must also think of the ordering that these successes and failures can come in. The only requirement is that the last trial must be a success, since we will stop trials as soon as we hit the $3^{rd}$ success. This means that in this example, we need to find the number of ways to fit the $k-1 = 2$ other successes in the first $n-1 = 4$, which can be represented as $\binom{4}{2}$, so our final result becomes
+
+$$P(n=5) = \binom{4}{2} \cdot (\dfrac{18}{38})^3 \cdot (\dfrac{20}{38})^2 = 0.1766488$$
+
+which turns out to be very close to our simulated value above.
+
+For $P(n=10)$, we will do the same process, but now there are $3$ successes and $7$ failures, and we have to find the number of ways to fit the first $2$ successes in the first $9$ trials since we know the final trial is a success. This becomes $$P(n=10) = \binom{9}{2} \cdot (\dfrac{18}{38})^3 \cdot (\dfrac{20}{38})^7 = 0.04280495$$
+
+which is also very close to our simulated value.
 
 ## Theory {-}
 
+```{definition}
+The Negative Binomial distribution is defined as
+\begin{equation}
+P(N=n) = \binom{n-1}{k-1}(p)^k(1-p)^{r}
+(\#eq:negativeBinomial)
+\end{equation}
+```
+
+Where $k$ is the number of successes, $r$ is the number of failures, $n=r+k$, and $p$ is the probability of success on a single trial.
+
+```{definition}
+The special case where $k=1$ is called a Geometric distribution, and counts the number of trials needed to get the first success. The Geometric distribution is defined as
+\begin{equation}
+P(N=n) = (1-p)^{n-1}(p)
+(\#eq:geometric)
+\end{equation}
+```
+
+Where $n$ is the number of trials and $p$ is the probability of success on a single trial.
+
 ## Worked Examples {-}
 
+1. In European roulette, there are $18$ black spaces, $18$ red spaces, and only $1$ green space instead of $2$. How does this change our probabilities of getting your $3^{rd}$ win in exactly $5$ trials? $10$ trials?
+
+Now, our equation becomes
+
+$$P(n = 5) = \binom{4}{2} \cdot (\dfrac{18}{37})^3 \cdot (\dfrac{19}{37})^2 = 0.182166$$
+and
+
+$$P(n = 10) = \binom{9}{2} \cdot (\dfrac{18}{37})^3 \cdot (\dfrac{19}{37})^7 = 0.03902815$$
+
+So the probability of winning your $3$ bets in exactly $5$ hands increases and the probability of winning your $3$ bets in exactly $10$ hands decreases.
+
+------
+
+2. Your coach tells you that you cannot leave basketball practice until you have made at least $20$ free throws. If you free throw probability is $80\%$, find the probability that you are out of practice after taking an even amount of free throws.
+
+We can sum up the Negative Binomial pdf for all even numbers to find this probability. 
+
+$$P(n \text{ is even}) = \sum_{r=0}^{\infty} \binom{20+2r-1}{20-1}(.8)^{20}(1-.8)^{2r} \approx 0.5001504$$
+
+```{r}
+sum(choose(20 + 2*(0:1000) - 1, 19)*(.8)^20*(.2)^(2*(0:1000)))
+```
+
 ## Exercises {-}
+
+1. You are in a home run derby and have a $70\%$ chance of hitting a home run on each pitch. To win the home run derby, you will need $15$ home runs. What is the probability that you complete the home run derby in exactly $20$ pitches?
+
+------
+
+2. Find the probability that you get $4$ heads out of $8$ flips of a fair coin. Then find the probability that you get your $4^{th}$ head on the $8^{th}$ flip. Are these probabilities the same? Why or why not?
+
+------
+
+3. You have two coins. One coin is a fair coin with a $.5$ probability of landing on heads. The other coin is a biased coin with a $.25$ probability of landing on heads. You pick one of these two coins at random, and begin flipping until you get $5$ heads. It takes you $12$ flips in order to get your $5$ heads. What is the probability that the coin you picked was the fair coin? What is the probability you picked the biased coin?
