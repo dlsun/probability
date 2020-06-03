@@ -57,7 +57,7 @@ Therefore, we can see that event **a)** has the highest probability of occurring
 The binomial formula is given as
 \begin{equation}
 P(X = k) = \binom{n}{k}p^n(1-p)^{n-k}
-(\#eq:independence)
+(\#eq:binomial)
 \end{equation}
   
 Where $n$ is the number of draws, $k$ is the number of successes, and $p$ is the probability of success for a single trial.
