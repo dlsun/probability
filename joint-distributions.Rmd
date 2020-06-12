@@ -2,16 +2,135 @@
 
 ## Motivating Example {-}
 
-Canonical Examples:
+Blackwell and Rao are playing are bored and decide to bet on some coins. They have $5$ coins in total and decide to Rao decides to bet on how many heads there are on the first $3$ coins tossed, let's call this $X$. Blackwell decides to bet on how many heads are on the last $3$ coins tossed, let's call this $Y$. Careful statisticians they are they decide that before venturing on putting any money down they want to see the probability distribution of $(X,Y)$, or in other words the pairs of $X$ and $Y$. The number of heads in the first $3$ tosses can be from $0-3$ and same for the number of heads for the last $3$ tosses. So $X \in \{0,1,2,3\}$ and $Y \in \{0,1,2,3\}$. So since $X$ and $Y$ can take up to $3$ values each then the amount of possible pairs is $3 \times 3 = 9$. We can visualize this in a joint distribution table like below.
 
-- a coin is tossed 5 times: number of heads in first 3 tosses, number
-  of heads in last 3 tosses
-- min and max of two dice rolls
+\[
+\begin{array}{c|cccc|l}
+_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
+\hline
+0 & p_{0,0} & p_{0,1} & p_{0,2} & p_{0,3} & \sum_{j=0}^{3}p_{0,j}\\
+1 & p_{1,0} & p_{1,1} & p_{1,2} & p_{1,3} & \sum_{j=0}^{3}p_{1,j} \\
+2 & p_{2,0} & p_{2,1} & p_{2,2} & p_{2,3} & \sum_{j=0}^{3}p_{2,j}\\
+3 & p_{3,0} & p_{3,1} & p_{3,2} & p_{3,3} & \sum_{j=0}^{3}p_{3,j}\\
+\hline
+& \sum_{i=0}^{3}p_{i,0} & \sum_{i=0}^{3}p_{i,1} & \sum_{i=0}^{3}p_{i,2} & \sum_{i=0}^{3}p_{i,3} & 1
+\end{array}
+\]
+
+Where each $p_{i,j}$ represents the probability, $P(X = i \cap Y = j)$. Take a minute to think of how you could solve for each $p_{i,j}$ yourselves. Think carefully about certain edge cases. 
+
+Rao thinks what if $X = 0$, so there were $0$ heads in the first $3$ tosses of  the $5$ coins, what would it mean for $Y = 3$, that there was $3$ heads in the last $3$ tosses of the $5$ coins. Clearly it would not be possible since $3$rd toss would have to be tails and so it could not be possible that the last $3$ tosses were all heads. So the probability of $(0,3)$ is 0, and by that same logic same for $(3,0)$. So clearly $X$ and $Y$ are not independent!
+
+\[
+\begin{array}{c|cccc|l}
+_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
+\hline
+0 & p_{0,0} & p_{0,1} & p_{0,2} & 0 & \sum_{j=0}^{3}p_{0,j}\\
+1 & p_{1,0} & p_{1,1} & p_{1,2} & p_{1,3} & \sum_{j=0}^{3}p_{1,j} \\
+2 & p_{2,0} & p_{2,1} & p_{2,2} & p_{2,3} & \sum_{j=0}^{3}p_{2,j}\\
+3 & 0 & p_{3,1} & p_{3,2} & p_{3,3} & \sum_{j=0}^{3}p_{3,j}\\
+\hline
+& \sum_{i=0}^{3}p_{i,0} & \sum_{i=0}^{3}p_{i,1} & \sum_{i=0}^{3}p_{i,2} & \sum_{i=0}^{3}p_{i,3} & 1
+\end{array}
+\]
+
+Now let's think about two other case that are also simple to calculate. What does $(0,0)$ mean? It means that that there were $0$ heads in the first $3$ and last $3$ tosses of the $5$ tosses. So there were $0$ heads in total. So that would mean the probability would $(1/2)^5$. What about $(3,3)$? It woudl mean that tehre were $3$ heads in the first $3$ and last $3$ tosses of the $5$ tosses. So there were $5$ heads in total. So that would mean the probability would be $(1/2)^5$.
+
+\[
+\begin{array}{c|cccc|l}
+_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
+\hline
+0 & (\frac{1}{2})^5 & p_{0,1} & p_{0,2} & 0 & \sum_{j=0}^{3}p_{0,j}\\
+1 & p_{1,0} & p_{1,1} & p_{1,2} & p_{1,3} & \sum_{j=0}^{3}p_{1,j} \\
+2 & p_{2,0} & p_{2,1} & p_{2,2} & p_{2,3} & \sum_{j=0}^{3}p_{2,j}\\
+3 & 0 & p_{3,1} & p_{3,2} & (\frac{1}{2})^5  & \sum_{j=0}^{3}p_{3,j}\\
+\hline
+& \sum_{i=0}^{3}p_{i,0} & \sum_{i=0}^{3}p_{i,1} & \sum_{i=0}^{3}p_{i,2} & \sum_{i=0}^{3}p_{i,3} & 1
+\end{array}
+\]
+
+Now let's get some more work done. Suppose $X=0$. That would mean that there were $0$ heads in the first $3$ tosses. That event has probability $(1/2)^3$. We know that $Y = 3$ is impossible when $X = 0$ but think about what distribution $Y$ would have given $X = 0$, especially knowing the fact that there are $2$ independent tosses we don't know about. So we would know that $Y = y | X = 0 \sim \text{Binomial}(n=2,p = 1/2)$. You can verify for yourself how this makes sense for our $(0,0)$ $(0,3)$ result. Think about the $X = 3$ case and use the same logic that we just used for that $X = 0$ case to verify our results below.
+
+\[
+\begin{array}{c|cccc|l}
+_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
+\hline
+0 & (\frac{1}{2})^5 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^{3}\cdot (\frac{1}{2})^2 & 0 & \frac{4}{32}\\
+1 & p_{1,0} & p_{1,1} & p_{1,2} & p_{1,3} & \sum_{j=0}^{3}p_{1,j} \\
+2 & p_{2,0} & p_{2,1} & p_{2,2} & p_{2,3} & \sum_{j=0}^{3}p_{2,j}\\
+3 & 0 & (\frac{1}{2})^3\cdot(\frac{1}{2})^2 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^5  & \frac{4}{32}\\
+\hline
+& \sum_{i=0}^{3}p_{i,0} & \sum_{i=0}^{3}p_{i,1} & \sum_{i=0}^{3}p_{i,2} & \sum_{i=0}^{3}p_{i,3} & 1
+\end{array}
+\]
+
+Now let's look at case $(1,1)$. Think about the sequences that make this pair come true. For example, we have $(1,0,0,1,0,0),(0,0,1,0,0),etc$. Notice that it may seem daunting to think about the $3$rd toss where $X$ and $Y$ interact. However think back to the lesson about Law of Total Probability. let $X_i = 1$ for $i \in 1,2,3,$ equal $1$ if the $i$th toss was a heads and $0$ if it was a tails.
+\[P(Y = 1|X = 1) = \sum_{i=1}^{3}P(Y = 1|X_i = 1)P(X_i = 1)\]
+So leveraging our multiplication proeprty we can find $P(X = 1 \cup Y = 1)$ by using $P(X = 1, Y = 1) = P(X = 1)P(Y=1|X=1)$. 
+
+What about the $(2,1)$ case? Now let's define random variable $X_{i,j}$ for parameters $i < j$, $i \in 1,2,3$, and $j \in 2,3$. Let $X_{i,j}$ equal to $1$ if the $ith$ and $jth$ toss were both heads, else $0$. So using the Law of Total Probability
+\[P(Y = 1| X = 2) = \sum_{i=1}^{3}\sum_{j=i+1}^{3}P(X_i = 1 \cap X_j = 1)P(Y = 1|X_{i,j} = 1)\]
+
+Think about the simple changes if $Y = 1$, $Y = 2$, and $Y = 3$. Verify the results in our table.
+
+\[
+\begin{array}{c|cccc|l}
+_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
+\hline
+0 & (\frac{1}{2})^5 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^{3}\cdot (\frac{1}{2})^2 & 0 & \frac{4}{32}\\
+1 & \frac{2}{32} & \frac{5}{32} & \frac{4}{32} & \frac{1}{32} & \frac{12}{32} \\
+2 & \frac{1}{32} & \frac{4}{32} & \frac{5}{32} & \frac{2}{32} & \frac{12}{32}\\
+3 & 0 & (\frac{1}{2})^3\cdot(\frac{1}{2})^2 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^5  & \frac{4}{32}\\
+\hline
+& \frac{4}{32} & \frac{12}{32} & \frac{12}{32}& \frac{4}{32} & 1
+\end{array}
+\]
+
+Rao and Blackwell notice something amazing, that when we sum up the values in row $i$ we get $P(X = i)$ and that we sum up the values in column $j$ we get $P(Y = j)$ for $i \in 0,1,2,3,$ and $j \in 0,1,2,3$. This is true for every joint distribution table. Think about why this is true and how what each value in each box represents. Think about how we can decompose probabilites.
 
 ## Theory {-}
 
-- For simple examples, the joint distribution can be written out in a table.
-- Include one example where the joint distribution is written out as a formula.
+In the discrete probability world many joint distributions can be represented with a joint distribution table. What conditions would be necesssary for us to be able to do this? $X$ and $Y$ must be only able to take on a finite amount of values. Otherwise, our table would be infinitely long! So for example if $X \sim \text{Poisson}(\mu)$ then our $X$ is in fact discrete but the amount of values it can take on is countably infinite. 
+
+What does our joint distribution table represent? Let's take a look back at our motivating example's table.
+
+\[
+\begin{array}{c|cccc|l}
+_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3 & P(X = i)\\
+\hline
+0 & (\frac{1}{2})^5 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^{3}\cdot (\frac{1}{2})^2 & 0 & \frac{4}{32}\\
+1 & \frac{2}{32} & \frac{5}{32} & \frac{4}{32} & \frac{1}{32} & \frac{12}{32} \\
+2 & \frac{1}{32} & \frac{4}{32} & \frac{5}{32} & \frac{2}{32} & \frac{12}{32}\\
+3 & 0 & (\frac{1}{2})^3\cdot(\frac{1}{2})^2 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^5  & \frac{4}{32}\\
+\hline
+P(y = j)& \frac{4}{32} & \frac{12}{32} & \frac{12}{32}& \frac{4}{32} & 1
+\end{array}
+\]
+
+This table represents our _joint distribution_ of $(X,Y)$.
+
+```{definition, echo=TRUE}
+Let $(X,Y)$ be a pair of discrete random variables. The __joint distribution__, $f_{X,Y}$ from $\mathbb{R}^2$ into $[0,1]$ is defined by $f(x,y) = P(X = x \cap Y = y)$.
+```
+
+Each value not in the last row and last column represents $P(X = i \cap Y = j)$. While the last column, the sum of the respective row, represents the _marginal distribution_ of $X$ and the last row, the sum of the respective column, represents the  _marginal distribution_ of $Y$. 
+
+```{definition, echo=TRUE}
+The __marginal distribution__ of $X$ is the pmf of $X$ but in the context of the probability model that gives the joint distribution of the pair $(X,Y)$.
+```
+
+
+
+```{theorem, name="Marginal Distribution Formula"}
+Let $(X,Y)$ be a pair of discrete random variables with joint pmf $f_{x,y}(x,y)$. Let $\theta_X$ represent the values that $X$ can take on and $\theta_Y$ represent the values that $Y$ can take on. Then the marginal pmfs of $X$ and $Y$, $f_X(s) = P(X = x)$  and $f_Y(y) = P(Y = y)$ are given by 
+\[f_X(x) = \sum_{y \in \theta_Y}f_{X,Y}(x,y) \quad f_Y(y) = \sum_{x \in \theta_X}f_{X,Y}(x,y)\]
+```
+
+We can see this clearly in our joint table since we get the marginal distribution of $X$ by summing down up the rows, values of $Y$. Likewise, we get the marginal distribution of $Y$ by summing down the columns, values of $X$.
+
+However, suppose that the values that $X$ and $Y$ can take on are not finite but discrete. Suppose $X$ and $Y$ are independent random variables both distributed by Poisson$(\lambda)$. So what would be the joint distribution of $(X,Y)$. We can just use the definition. So 
+\[f(x,y) = P(X = x, Y = y) - \frac{e^{-\lambda}\lambda^{x}}{x!} \cdot \frac{e^{-\lambda}\lambda^{y}}{y!}\]
+
 
 ## Worked Examples {-}
 
