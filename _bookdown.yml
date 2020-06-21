@@ -3,7 +3,4 @@ language:
   ui:
     chapter_name: "Lesson "
 delete_merged_file: true
-rmd_files: ["index.Rmd",
-            "combinatorics.Rmd", "counting-tricks.Rmd",
-            "conditional.Rmd", "independence.Rmd", "total-probability.Rmd",
-            "random-variables.Rmd", "hypergeometric.Rmd", "binomial.Rmd", "negative-binomial.Rmd", "poisson.Rmd", "sums.Rmd"]
+rmd_files: ["index.Rmd", "counting.Rmd", "factorial.Rmd"]

@@ -1,0 +1,146 @@
+# Probability and Counting {#counting}
+
+## Motivating Example {-}
+
+In 1620, the Grand Duke of Tuscany asked the astronomer and mathematician Galileo 
+to determine whether the numbers on three fair dice are more likely to add up to 9
+or 10. 
+
+## Theory {-}
+
+```{definition, name="Definition of Probability"}
+If all possible outcomes are equally likely, then 
+the probability of an event $A$ is 
+\[ P(A) = \frac{\text{number of outcomes where $A$ occurs}}{\text{number of possible outcomes}}. \]
+```
+
+For example, suppose we want to know the probability of getting an even number when we roll 
+a fair die. There are $6$ equally likely possible outcomes, 
+<div style="text-align:center;font-size:20pt">⚀ ⚁ ⚂ ⚃ ⚄ ⚅,</div>
+of which 3 are even. Therefore, the probability of rolling an even number is 
+\[ P(\text{even number}) = \frac{\text{number of outcomes that are even}}{\text{number of possible outcomes}} = \frac{3}{6}. \]
+
+Next, suppose we want to know the probability of rolling a 7 when we roll two fair dice. 
+There are 36 equally likely outcomes,
+<table style="border-color:none;">
+<tr>
+  <td style="text-align:center;font-size:20pt">⚀⚀</td>
+  <td style="text-align:center;font-size:20pt">⚁⚀</td>
+  <td style="text-align:center;font-size:20pt">⚂⚀</td>
+  <td style="text-align:center;font-size:20pt">⚃⚀</td>
+  <td style="text-align:center;font-size:20pt">⚄⚀</td>
+  <td style="text-align:center;font-size:20pt">⚅⚀</td>
+</tr>
+<tr>
+  <td style="text-align:center;font-size:20pt">⚀⚁</td>
+  <td style="text-align:center;font-size:20pt">⚁⚁</td>
+  <td style="text-align:center;font-size:20pt">⚂⚁</td>
+  <td style="text-align:center;font-size:20pt">⚃⚁</td>
+  <td style="text-align:center;font-size:20pt">⚄⚁</td>
+  <td style="text-align:center;font-size:20pt">⚅⚁</td>
+</tr>
+<tr>
+  <td style="text-align:center;font-size:20pt">⚀⚂</td>
+  <td style="text-align:center;font-size:20pt">⚁⚂</td>
+  <td style="text-align:center;font-size:20pt">⚂⚂</td>
+  <td style="text-align:center;font-size:20pt">⚃⚂</td>
+  <td style="text-align:center;font-size:20pt">⚄⚂</td>
+  <td style="text-align:center;font-size:20pt">⚅⚂</td>
+</tr>
+<tr>
+  <td style="text-align:center;font-size:20pt">⚀⚃</td>
+  <td style="text-align:center;font-size:20pt">⚁⚃</td>
+  <td style="text-align:center;font-size:20pt">⚂⚃</td>
+  <td style="text-align:center;font-size:20pt">⚃⚃</td>
+  <td style="text-align:center;font-size:20pt">⚄⚃</td>
+  <td style="text-align:center;font-size:20pt">⚅⚃</td>
+</tr>
+<tr>
+  <td style="text-align:center;font-size:20pt">⚀⚄</td>
+  <td style="text-align:center;font-size:20pt">⚁⚄</td>
+  <td style="text-align:center;font-size:20pt">⚂⚄</td>
+  <td style="text-align:center;font-size:20pt">⚃⚄</td>
+  <td style="text-align:center;font-size:20pt">⚄⚄</td>
+  <td style="text-align:center;font-size:20pt">⚅⚄</td>
+</tr>
+<tr>
+  <td style="text-align:center;font-size:20pt">⚀⚅</td>
+  <td style="text-align:center;font-size:20pt">⚁⚅</td>
+  <td style="text-align:center;font-size:20pt">⚂⚅</td>
+  <td style="text-align:center;font-size:20pt">⚃⚅</td>
+  <td style="text-align:center;font-size:20pt">⚄⚅</td>
+  <td style="text-align:center;font-size:20pt">⚅⚅</td>
+</tr>
+</table>
+of which 6 outcomes add up to 7. (Check this for yourself!) Therefore, the probability 
+of rolling a 7 is
+\[ P(\text{sum is 7}) = \frac{\text{number of outcomes where the sum is 7}}{\text{number of possible outcomes}} = \frac{6}{36}. \]
+
+Galileo needed to consider the possible outcomes when _three_ dice are rolled. At this point, 
+listing all of the possible outcomes is impractical. We need to 
+find a way to count the number of outcomes without listing all of them.
+
+Here is a way to see that there are 36 ways to roll two dice, without listing them out. There are 
+6 possible outcomes for the first die, and each of these 6 outcomes can be paired with 6 possible 
+outcomes for the second die. Therefore, there must be $6 \cdot 6 = 36$ ways to roll two dice. 
+The following theorem generalizes this principle.
+
+```{theorem, multiplication-principle, name="Multiplication Principle of Counting"}
+If a task can be performed in $n_1$ ways, and for each of these ways, a second task can be 
+performed in $n_2$ ways, then the two tasks can be performed together in a total of 
+$n_1 \cdot n_2$ ways.
+```
+```{proof}
+List the outcomes in a table, with $n_1$ columns and $n_2$ rows (like 
+we did above for the possible outcomes of two dice, where $n_1 = n_2 = 6$). 
+Each column corresponds to one of the $n_1$ possible outcomes of the first task, 
+each row to one of the $n_2$ possible outcomes of the second. There are 
+$n_1 \cdot n_2$ cells in the table.
+```
+
+Using the multiplication principle, we can count the total number of ways of rolling three dice. 
+We already know that there are 36 ways that the first two dice can come out. Each of these 36 
+ways can be matched with each of the 6 ways that the third dice can come out. Therefore, by 
+Theorem \@ref{thm:multiplication-principle}, there are 
+\[ 36 \cdot 6 = 216 \]
+ways the three dice could come out.
+
+Using the multiplication principle, we can calculate the probability that no sixes are 
+rolled among the three dice. In order for there to be no sixes, each of the three dice must have 
+shown one of the other 5 numbers. The number of ways for this to happen is 
+\[ 5 \cdot 5 \cdot 5 = 125, \]
+so the probability is 
+\[ P(\text{no sixes}) = \frac{125}{216} \approx 57.8\%. \]
+
+Now, Galileo was interested in the event that the numbers add up to 9, which is much trickier to 
+count. We will come back to his question in a future lesson, once we have more counting tools 
+under our belt.
+
+
+## Examples {-}
+
+1. In the casino game craps, two dice are rolled by a player, called the "shooter". The first roll 
+is called the "come-out roll". The shooter wins on the come-out roll if they roll a 7 or a 12. 
+On the other hand, they lose if the come-out roll is a 2, 3, or 12. Otherwise, the game continues.
+    a. What is the probability that the shooter wins on the come-out roll?
+    b. What is the probability that the shooter loses on the come-out roll?
+    c. What is the probability that the game continues?
+    d. If you add up the three probabilities you just calculated, what do you get? Why does this make sense?
+2. Many examples in this book will be based on a standard deck of 52 playing cards, consisting 
+of 13 cards of each suit. Familiarize yourself with [the terminology](https://www.youtube.com/watch?v=DkE4KEWiDRs). Suppose you draw one card from a 
+shuffled deck of cards.
+    a. What is the probability that the card is a **heart**?
+    b. What is the probability that the card is an **ace**?
+    c. What is the probability that the card is a **face card** (also known as a "court card")?
+3. Many examples in this book will be based on the casino game roulette. Familiarize yourself with 
+the [roulette wheel](https://www.online-stopwatch.com/chance-games/roulette-wheel/full-screen/). 
+(Click the wheel to spin it.) You win if the ball lands in a pocket that matches your bet.
+    a. What is the probability that you win if you bet on **red**?
+    b. What is the probability that you win if you bet on the number 10?
+    c. What is the probability that you win if you bet on *odd* (i.e., that the number is odd)?
+4. In standard poker, each player is dealt 5 cards off the top of a (shuffled) deck of cards. 
+The hand is called a "flush" if all 5 cards are the same suit. What is the probability that 
+you get a flush of hearts (i.e., all 5 cards are hearts.)?
+
+
+## Additional Exercises {-}

@@ -1,0 +1,67 @@
+# The Factorial {#factorial}
+
+## Motivating Example {-}
+
+How many ways are there to arrange a deck of 52 cards?
+
+## Theory {-}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uNS1QvDzCVw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+We can use the multiplication rule to determine the number of ways to arrange the deck. 
+The first card can be any one of 52 cards. No matter which one it is, 
+the second card can be any one of the remaining 51 cards. So there are $52 \cdot 51$ ways to 
+choose the first 2 cards. For every one of these $52 \cdot 51$ ways, there are $50$ remaining cards 
+to choose as the third card, which makes $52 \cdot 51 \cdot 50$ ways to choose the first 3 cards. 
+And so on. By the time we get to the last card in the deck, there is only $1$ card left. So there are 
+\[ 52 \cdot 51 \cdot 50 \cdot \ldots \cdot 2 \cdot 1 \]
+ways to arrange the 52 cards in a deck.
+
+This is such an important quantity in probability and counting that it has been given a special name. 
+```{definition, factorial, name="Factorial"}
+The quantity $n!$ (pronounced: "n factorial") is defined as 
+\[ n! = n \cdot (n-1) \cdot \ldots \cdot 1. \]
+It represents the number of ways to arrange $n$ objects.
+```
+
+So the number of ways to arrange a deck of cards can be expressed as $52!$. Using 
+[Wolfram Alpha](https://www.wolframalpha.com/input/?i=52%21), we can calculate this to be 
+about $8 \times 10^{67}$, an astronomical number. In particular, it is greater than:
+
+- the number of seconds since the universe began.
+- the number of atoms on Earth.
+
+So the next time you hold a shuffled deck of cards in your hands, spend a moment appreciating the fact 
+that you are holding an arrangement that has likely never before existed in the history of 
+the universe.
+
+
+## Examples {-}
+
+1. Each year, as part of a "Secret Santa" tradition, a group of 4 friends write their names 
+on slips of papers and place the slips into a hat. Each member of the group draws a name at random 
+from the hat and must by a gift for that person. Of course, it is possible that they
+draw their own name, in which case they buy a gift for themselves. What is the probability 
+that everyone in the group ends up buying a gift for themselves? 
+(Note that the names are not placed back in the hat once they are drawn, so each 
+person receives exactly one gift.)
+2. A deck of 52 cards is shuffled thoroughly. What is the probability that the four aces are 
+all next to each other? (Hint: First, count the number of positions that the block of four 
+aces can go, then multiply this by the number of ways of ordering the four aces.)
+3. If a five-letter word is formed at random (meaning that all sequences of five letters are 
+equally likely), what is the probability that no letter occurs more than once?
+4. The "bootstrap" is a statistical method for generating a new data set that is like an existing one.
+Suppose we have a data set consisting of $6$ observations: $x_1, x_2, x_3, x_4, x_5, x_6$. To generate 
+a "bootstrap" data set, we sample from the original data set _with replacement_, meaning that it is 
+possible for each observation to be sampled more than once. Examples of bootstrap data sets include:
+\begin{align*}
+x_4, x_2, x_4, x_3, x_2, x_4 \\
+x_3, x_1, x_6, x_1, x_1, x_2 \\
+x_2, x_1, x_4, x_3, x_6, x_5
+\end{align*}
+Notice that in the last example, each observation appears exactly once. 
+What is the probability that the bootstrap data set contains each observation exactly once?
+
+## Additional Exercises {-}
+
+

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 2 Probability and Counting | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 2 Probability and Counting | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 2 Probability and Counting | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-06-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="factorial.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Why Study Probability?</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#for-statisticians"><i class="fa fa-check"></i><b>1.1</b> For Statisticians</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#for-electrical-engineers"><i class="fa fa-check"></i><b>1.2</b> For Electrical Engineers</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>2</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>3</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="counting" class="section level1">
+<h1><span class="header-section-number">Lesson 2</span> Probability and Counting</h1>
+<div id="motivating-example" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>In 1620, the Grand Duke of Tuscany asked the astronomer and mathematician Galileo
+to determine whether the numbers on three fair dice are more likely to add up to 9
+or 10.</p>
+</div>
+<div id="theory" class="section level2 unnumbered">
+<h2>Theory</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-1" class="definition"><strong>Definition 2.1  (Definition of Probability)  </strong></span>If all possible outcomes are equally likely, then
+the probability of an event <span class="math inline">\(A\)</span> is
+<span class="math display">\[ P(A) = \frac{\text{number of outcomes where $A$ occurs}}{\text{number of possible outcomes}}. \]</span>
+</div>
+
+For example, suppose we want to know the probability of getting an even number when we roll
+a fair die. There are <span class="math inline">\(6\)</span> equally likely possible outcomes,
+<div style="text-align:center;font-size:20pt">
+⚀ ⚁ ⚂ ⚃ ⚄ ⚅,
+</div>
+<p>of which 3 are even. Therefore, the probability of rolling an even number is
+<span class="math display">\[ P(\text{even number}) = \frac{\text{number of outcomes that are even}}{\text{number of possible outcomes}} = \frac{3}{6}. \]</span></p>
+Next, suppose we want to know the probability of rolling a 7 when we roll two fair dice.
+There are 36 equally likely outcomes,
+<table style="border-color:none;">
+<tr>
+<td style="text-align:center;font-size:20pt">
+⚀⚀
+</td>
+<td style="text-align:center;font-size:20pt">
+⚁⚀
+</td>
+<td style="text-align:center;font-size:20pt">
+⚂⚀
+</td>
+<td style="text-align:center;font-size:20pt">
+⚃⚀
+</td>
+<td style="text-align:center;font-size:20pt">
+⚄⚀
+</td>
+<td style="text-align:center;font-size:20pt">
+⚅⚀
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-size:20pt">
+⚀⚁
+</td>
+<td style="text-align:center;font-size:20pt">
+⚁⚁
+</td>
+<td style="text-align:center;font-size:20pt">
+⚂⚁
+</td>
+<td style="text-align:center;font-size:20pt">
+⚃⚁
+</td>
+<td style="text-align:center;font-size:20pt">
+⚄⚁
+</td>
+<td style="text-align:center;font-size:20pt">
+⚅⚁
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-size:20pt">
+⚀⚂
+</td>
+<td style="text-align:center;font-size:20pt">
+⚁⚂
+</td>
+<td style="text-align:center;font-size:20pt">
+⚂⚂
+</td>
+<td style="text-align:center;font-size:20pt">
+⚃⚂
+</td>
+<td style="text-align:center;font-size:20pt">
+⚄⚂
+</td>
+<td style="text-align:center;font-size:20pt">
+⚅⚂
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-size:20pt">
+⚀⚃
+</td>
+<td style="text-align:center;font-size:20pt">
+⚁⚃
+</td>
+<td style="text-align:center;font-size:20pt">
+⚂⚃
+</td>
+<td style="text-align:center;font-size:20pt">
+⚃⚃
+</td>
+<td style="text-align:center;font-size:20pt">
+⚄⚃
+</td>
+<td style="text-align:center;font-size:20pt">
+⚅⚃
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-size:20pt">
+⚀⚄
+</td>
+<td style="text-align:center;font-size:20pt">
+⚁⚄
+</td>
+<td style="text-align:center;font-size:20pt">
+⚂⚄
+</td>
+<td style="text-align:center;font-size:20pt">
+⚃⚄
+</td>
+<td style="text-align:center;font-size:20pt">
+⚄⚄
+</td>
+<td style="text-align:center;font-size:20pt">
+⚅⚄
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-size:20pt">
+⚀⚅
+</td>
+<td style="text-align:center;font-size:20pt">
+⚁⚅
+</td>
+<td style="text-align:center;font-size:20pt">
+⚂⚅
+</td>
+<td style="text-align:center;font-size:20pt">
+⚃⚅
+</td>
+<td style="text-align:center;font-size:20pt">
+⚄⚅
+</td>
+<td style="text-align:center;font-size:20pt">
+⚅⚅
+</td>
+</tr>
+</table>
+<p>of which 6 outcomes add up to 7. (Check this for yourself!) Therefore, the probability
+of rolling a 7 is
+<span class="math display">\[ P(\text{sum is 7}) = \frac{\text{number of outcomes where the sum is 7}}{\text{number of possible outcomes}} = \frac{6}{36}. \]</span></p>
+<p>Galileo needed to consider the possible outcomes when <em>three</em> dice are rolled. At this point,
+listing all of the possible outcomes is impractical. We need to
+find a way to count the number of outcomes without listing all of them.</p>
+<p>Here is a way to see that there are 36 ways to roll two dice, without listing them out. There are
+6 possible outcomes for the first die, and each of these 6 outcomes can be paired with 6 possible
+outcomes for the second die. Therefore, there must be <span class="math inline">\(6 \cdot 6 = 36\)</span> ways to roll two dice.
+The following theorem generalizes this principle.</p>
+
+<div class="theorem">
+<span id="thm:multiplication-principle" class="theorem"><strong>Theorem 2.1  (Multiplication Principle of Counting)  </strong></span>If a task can be performed in <span class="math inline">\(n_1\)</span> ways, and for each of these ways, a second task can be
+performed in <span class="math inline">\(n_2\)</span> ways, then the two tasks can be performed together in a total of
+<span class="math inline">\(n_1 \cdot n_2\)</span> ways.
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> List the outcomes in a table, with <span class="math inline">\(n_1\)</span> columns and <span class="math inline">\(n_2\)</span> rows (like
+we did above for the possible outcomes of two dice, where <span class="math inline">\(n_1 = n_2 = 6\)</span>).
+Each column corresponds to one of the <span class="math inline">\(n_1\)</span> possible outcomes of the first task,
+each row to one of the <span class="math inline">\(n_2\)</span> possible outcomes of the second. There are
+<span class="math inline">\(n_1 \cdot n_2\)</span> cells in the table.
+</div>
+
+<p>Using the multiplication principle, we can count the total number of ways of rolling three dice.
+We already know that there are 36 ways that the first two dice can come out. Each of these 36
+ways can be matched with each of the 6 ways that the third dice can come out. Therefore, by
+Theorem @ref{thm:multiplication-principle}, there are
+<span class="math display">\[ 36 \cdot 6 = 216 \]</span>
+ways the three dice could come out.</p>
+<p>Using the multiplication principle, we can calculate the probability that no sixes are
+rolled among the three dice. In order for there to be no sixes, each of the three dice must have
+shown one of the other 5 numbers. The number of ways for this to happen is
+<span class="math display">\[ 5 \cdot 5 \cdot 5 = 125, \]</span>
+so the probability is
+<span class="math display">\[ P(\text{no sixes}) = \frac{125}{216} \approx 57.8\%. \]</span></p>
+<p>Now, Galileo was interested in the event that the numbers add up to 9, which is much trickier to
+count. We will come back to his question in a future lesson, once we have more counting tools
+under our belt.</p>
+</div>
+<div id="examples" class="section level2 unnumbered">
+<h2>Examples</h2>
+<ol style="list-style-type: decimal">
+<li>In the casino game craps, two dice are rolled by a player, called the “shooter”. The first roll
+is called the “come-out roll”. The shooter wins on the come-out roll if they roll a 7 or a 12.
+On the other hand, they lose if the come-out roll is a 2, 3, or 12. Otherwise, the game continues.
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that the shooter wins on the come-out roll?</li>
+<li>What is the probability that the shooter loses on the come-out roll?</li>
+<li>What is the probability that the game continues?</li>
+<li>If you add up the three probabilities you just calculated, what do you get? Why does this make sense?</li>
+</ol></li>
+<li>Many examples in this book will be based on a standard deck of 52 playing cards, consisting
+of 13 cards of each suit. Familiarize yourself with <a href="https://www.youtube.com/watch?v=DkE4KEWiDRs">the terminology</a>. Suppose you draw one card from a
+shuffled deck of cards.
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that the card is a <strong>heart</strong>?</li>
+<li>What is the probability that the card is an <strong>ace</strong>?</li>
+<li>What is the probability that the card is a <strong>face card</strong> (also known as a “court card”)?</li>
+</ol></li>
+<li>Many examples in this book will be based on the casino game roulette. Familiarize yourself with
+the <a href="https://www.online-stopwatch.com/chance-games/roulette-wheel/full-screen/">roulette wheel</a>.
+(Click the wheel to spin it.) You win if the ball lands in a pocket that matches your bet.
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that you win if you bet on <strong>red</strong>?</li>
+<li>What is the probability that you win if you bet on the number 10?</li>
+<li>What is the probability that you win if you bet on <em>odd</em> (i.e., that the number is odd)?</li>
+</ol></li>
+<li>In standard poker, each player is dealt 5 cards off the top of a (shuffled) deck of cards.
+The hand is called a “flush” if all 5 cards are the same suit. What is the probability that
+you get a flush of hearts (i.e., all 5 cards are hearts.)?</li>
+</ol>
+</div>
+<div id="additional-exercises" class="section level2 unnumbered">
+<h2>Additional Exercises</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="factorial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/counting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

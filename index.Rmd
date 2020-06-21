@@ -12,5 +12,8 @@ github-repo: dlsun/probability
 description: "Introduction to probability textbook."
 ---
 
-# Why Study Probability? {-}
+# Why Study Probability?
 
+## For Statisticians
+
+## For Electrical Engineers
