@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 3 Box Models and Combinations | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 3 Box Models and Combinations | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 3 Box Models and Combinations | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-06-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="factorial.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="box-models" class="section level1">
+<h1><span class="header-section-number">Lesson 3</span> Box Models and Combinations</h1>
+<div id="theory-2" class="section level2 unnumbered">
+<h2>Theory</h2>
+<p>Many counting and probability problems can be reduced to a <strong>box model</strong>.
+In a box model, there are <span class="math inline">\(N\)</span> tickets in a box, and we draw
+<span class="math inline">\(n\)</span> tickets from the box.</p>
+<p>For example, three rolls of a fair die can be modeled as <span class="math inline">\(n=3\)</span> draws from
+the box
+<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{6}$}. \]</span>
+Each time we draw a ticket, we have to put it back before drawing again, since
+the outcome of one die does not affect the outcome of any other die roll. In other
+words, the <span class="math inline">\(n=3\)</span> draws are made <strong>with replacement</strong>.</p>
+<p>In other situations, the draws are made <strong>without replacement</strong>.
+For example, consider four friends who draw names from a hat to determine
+whom each person’s Secret Santa is. If we call the four friends
+“1”, “2”, “3”, and “4” (their actual names are unimportant, as far as
+probability is concerned), then we can model the Secret Santa game as
+<span class="math inline">\(n=4\)</span> draws from the box
+<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \fbox{3}\ \fbox{4}$}. \]</span>
+Since every person has exactly one Secret Santa, the draws must be made
+without replacement. Once a Secret Santa has been chosen for person 3,
+we remove <span class="math inline">\(\fbox{3}\)</span> from the box so that they do not end up with
+two Secret Santas.</p>
+<p>Using the multiplication principle, we can count the number of ways to
+draw <span class="math inline">\(n\)</span> tickets from the box
+<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{N}$}. \]</span></p>
+<ul>
+<li>If drawing <strong>with replacement</strong>, the number of possible ways is
+<span class="math display">\[ \underbrace{N \cdot N \cdot N \cdot \ldots \cdot N}_{\text{$n$ terms}} = N^n, \]</span>
+since we have <span class="math inline">\(N\)</span> tickets to choose from on each draw.</li>
+<li>If drawing <strong>without replacement</strong>, the number of possibl ways is
+<span class="math display">\[ \underbrace{N \cdot (N-1) \cdot (N-2) \cdot \ldots \cdot (N-n+1)}_{\text{$n$ terms}} = \frac{N!}{(N-n)!}, \]</span>
+since the number of tickets remaining in the box decreases by 1 on each draw.</li>
+</ul>
+<p>For example, if we assign a number 1 to 52 to each card in a standard playing deck, then
+a poker hand can be modeled as <span class="math inline">\(n=5\)</span> draws, without replacement, from the box
+<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{52}$}. \]</span>
+The number of possible poker hands is
+<span class="math display">\[ \frac{52!}{(52-5)!} = 52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 = 311,875,200. \]</span></p>
+<p>We can use this to calculate the probability of a four-of-a-kind, which is when the hand contains
+all 4 cards of a particular rank. For example, the hand below is an example of a four-of-a-kind, since
+it contains all four 7s in the deck. (It also contains the Jack of Spades. This
+remaining card is called the “kicker”. No matter what card the kicker is, the hand is still
+a four-of-a-kind.)</p>
+<p><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_hearts.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_clubs.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_spades.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_diamonds.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_spades.png" width="20%" /></p>
+<p>How many of the <span class="math inline">\(52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 = 311,875,200\)</span> possible outcomes result in a four-of-a-kind? Here is the logic:</p>
+<ul>
+<li>The first card can be any one of the 52 cards.</li>
+<li>Once we have chosen the first card, the rank is determined. The second card must be one of the
+3 remaining cards of that rank.</li>
+<li>The third card must be one of the 2 remaining cards of that rank.</li>
+<li>The fourth card must be the last remaining card of that rank.</li>
+<li>The last card, the kicker, is one of the other 48 cards in the deck.</li>
+<li>We assumed that the kicker was the last card in the hand. But the kicker could just as well have been the first card in the hand. In fact, there are 5 positions where the kicker could have gone.</li>
+</ul>
+<p>So the probability of a four-of-a-kind is
+<span class="math display">\[ \frac{(52 \cdot 3 \cdot 2 \cdot 1 \cdot 48) \cdot 5}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48} \approx .0024. \]</span></p>
+<p>The calculation above was unnecessarily complicated because we considered the <strong>order</strong> in which the cards were
+drawn. Fortunately, when drawing <em>without replacement</em>, it is equally valid to count the number of outcomes
+where <strong>order doesn’t matter</strong>. That is, it does not matter whether the kicker is the first card or the last card
+in the hand; we do not double-count different orderings of the same 5 cards.</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-3" class="theorem"><strong>Theorem 3.1  (Combinations)  </strong></span>The number of ways to draw <span class="math inline">\(n\)</span> tickets from the box
+<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{N}$}, \]</span>
+when <em>order doesn’t matter</em>, is symbolized <span class="math inline">\(\binom{N}{n}\)</span> (pronounced: “<span class="math inline">\(N\)</span> choose <span class="math inline">\(n\)</span>”)
+and is equal to
+<span class="math display">\[ \binom{N}{n} = \frac{N!}{n! (N-n)!}. \]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> By the multiplication principle of counting, we know that:
+<span class="math display">\[\begin{align*}
+\left(\text{# ways when order matters}\right) &amp;= \left(\text{# ways when order doesn&#39;t matter}\right) \\
+  &amp;\phantom{==} \cdot  \left(\text{# ways to order $n$ objects}\right).
+\end{align*}\]</span>
+We already know that the number of ways to draw <span class="math inline">\(n\)</span> tickets from the above box, when order matters, is
+<span class="math inline">\(\frac{N!}{(N-n)!}\)</span>. We also know that the number of ways to order <span class="math inline">\(n\)</span> objects is <span class="math inline">\(n!\)</span>. Therefore:
+<span class="math display">\[\begin{align*}
+\binom{N}{n} = \left(\text{# ways when order doesn&#39;t matter}\right) &amp;= \frac{\left(\text{# ways when order matters}\right)}{\left(\text{# ways to order $n$ objects}\right)} \\
+  &amp;= \frac{N!}{n! (N-n)!}
+\end{align*}\]</span>
+</div>
+
+<p>Now let’s apply combinations to calculate the probability of a four-of-a-kind. If we ignore the order
+of the cards in the hand, there are
+<span class="math display">\[ \binom{52}{5} \]</span>
+possible poker hands. How many of these are a four-of-a-kind? For a given rank, there is only 1 way to
+select all four cards of that rank, now that the order of the cards does not matter. So we just need to
+choose the rank of the four-of-a-kind (there are 13 ranks) and the kicker (any one of the remaining 48 cards).
+So there are
+<span class="math display">\[ 13 \times 48 \]</span>
+ways to get a four-of-a-kind when order does not matter. The probability is therefore
+<span class="math display">\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{13 \times 48}{\frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5!}} \approx .0024, \]</span>
+which matches the answer we calculated earlier.</p>
+<p>The easiest way to calculate binomial coefficients is to <a href="https://www.wolframalpha.com/input/?i=52%20choose%205">use Wolfram Alpha</a>.</p>
+</div>
+<div id="examples-2" class="section level2 unnumbered">
+<h2>Examples</h2>
+<ol style="list-style-type: decimal">
+<li>In a previous lesson, you calculated the probability of a “flush of hearts” in poker by counting
+the possible hands, accounting for the order in which the cards were drawn. Repeat the calculation
+by counting the possible hands where order does not matter.</li>
+<li>How many different 8-letter “words” can be formed by rearranging the letters in LALALAAA?
+(<strong>Hint:</strong> Model this situation using <span class="math inline">\(n=3\)</span> draws from the box
+<span class="math inline">\(\fbox{\(\fbox{1}\ \fbox{2}\ \ldots\ \fbox{8}\)}\)</span>. The tickets that you
+draw correspond to the <em>positions</em> of the three Ls. So, for example, drawing
+<span class="math inline">\(\fbox{3}, \fbox{1}, \fbox{5}\)</span> corresponds to the word LALALAAA.
+You still need to figure out whether the draws should be made with replacement and whether you should
+count different orderings of the same 3 tickets.)</li>
+<li>You toss a coin 60 times. Each toss results in two equally likely outcomes, heads or tails.
+What is the probability that you get exactly 30 heads in the 60 tosses?
+(<strong>Hint:</strong> To count the number of ways of getting exactly 30 heads, you need to count the number of
+ways of arranging 30 H and 30 Ts. The general strategy from the previous question may be helpful here.)</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="factorial.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/box-models.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
