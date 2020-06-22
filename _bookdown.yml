@@ -4,3 +4,4 @@ language:
     chapter_name: "Lesson "
 delete_merged_file: true
 rmd_files: ["index.Rmd", "counting.Rmd", "factorial.Rmd"]
+output_dir: "docs"

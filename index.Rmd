@@ -16,4 +16,18 @@ description: "Introduction to probability textbook."
 
 ## For Statisticians
 
+Go through this interactive Colab notebook. Be sure to read the text and execute the code.
+
+If you have never used Colab before, you may want to watch 
+[this introductory video](https://www.youtube.com/watch?v=inN8seMm7UI) first. You will need to 
+log in with a Google account in order to use Colab.
+
 ## For Electrical Engineers
+
+Go through this interactive Colab notebook. Be sure to read the text and execute the code.
+
+If you have never used Colab before, you may want to watch 
+[this introductory video](https://www.youtube.com/watch?v=inN8seMm7UI) first. You will need to 
+log in with a Google account in order to use Colab.
+
+

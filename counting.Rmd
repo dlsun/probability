@@ -8,6 +8,8 @@ or 10.
 
 ## Theory {-}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w9iG_7cuORk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{definition, name="Definition of Probability"}
 If all possible outcomes are equally likely, then 
 the probability of an event $A$ is 
@@ -137,10 +139,10 @@ the [roulette wheel](https://www.online-stopwatch.com/chance-games/roulette-whee
 (Click the wheel to spin it.) You win if the ball lands in a pocket that matches your bet.
     a. What is the probability that you win if you bet on **red**?
     b. What is the probability that you win if you bet on the number 10?
-    c. What is the probability that you win if you bet on *odd* (i.e., that the number is odd)?
+    c. What is the probability that you win if you bet on **odd** (i.e., that the number is odd)?
 4. In standard poker, each player is dealt 5 cards off the top of a (shuffled) deck of cards. 
 The hand is called a "flush" if all 5 cards are the same suit. What is the probability that 
-you get a flush of hearts (i.e., all 5 cards are hearts.)?
+you get a flush of hearts (i.e., all 5 cards are hearts)?
 
 
 ## Additional Exercises {-}
