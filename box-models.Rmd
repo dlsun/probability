@@ -79,7 +79,7 @@ So the probability of a four-of-a-kind is
 
 The calculation above was unnecessarily complicated because we considered the **order** in which the cards were 
 drawn. Fortunately, when drawing _without replacement_, it is equally valid to count the number of outcomes 
-where **order doesn't matter**. That is, it does not matter whether the kicker is the first card or the last card 
+where **order doesn't matter**. That is, it does not matter whether the kicker is the first card or the last card
 in the hand; we do not double-count different orderings of the same 5 cards.
 
 ```{theorem, name="Combinations"}
@@ -105,17 +105,16 @@ $\frac{N!}{(N-n)!}$. We also know that the number of ways to order $n$ objects i
 
 Now let's apply combinations to calculate the probability of a four-of-a-kind. If we ignore the order 
 of the cards in the hand, there are 
-\[ \binom{52}{5} \]
-possible poker hands. How many of these are a four-of-a-kind? For a given rank, there is only 1 way to 
+\[ \binom{52}{5} = 2,598,960. \]
+possible poker hands. (The easiest way to calculate binomial coefficients is to [use Wolfram Alpha](https://www.wolframalpha.com/input/?i=52%20choose%205).) How many of these are a four-of-a-kind? For a given rank, there is only 1 way to 
 select all four cards of that rank, now that the order of the cards does not matter. So we just need to 
 choose the rank of the four-of-a-kind (there are 13 ranks) and the kicker (any one of the remaining 48 cards).
 So there are 
-\[ 13 \times 48 \]
+\[ 13 \times 48 = 624 \]
 ways to get a four-of-a-kind when order does not matter. The probability is therefore 
-\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{13 \times 48}{\frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5!}} \approx .00024, \]
+\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{624}{2,598,960} \approx .00024, \]
 which matches the answer we calculated earlier.
 
-The easiest way to calculate binomial coefficients is to [use Wolfram Alpha](https://www.wolframalpha.com/input/?i=52%20choose%205).
 
 
 ## Examples {-}

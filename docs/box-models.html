@@ -205,16 +205,15 @@ We already know that the number of ways to draw <span class="math inline">\(n\)<
 
 <p>Now let’s apply combinations to calculate the probability of a four-of-a-kind. If we ignore the order
 of the cards in the hand, there are
-<span class="math display">\[ \binom{52}{5} \]</span>
-possible poker hands. How many of these are a four-of-a-kind? For a given rank, there is only 1 way to
+<span class="math display">\[ \binom{52}{5} = 2,598,960. \]</span>
+possible poker hands. (The easiest way to calculate binomial coefficients is to <a href="https://www.wolframalpha.com/input/?i=52%20choose%205">use Wolfram Alpha</a>.) How many of these are a four-of-a-kind? For a given rank, there is only 1 way to
 select all four cards of that rank, now that the order of the cards does not matter. So we just need to
 choose the rank of the four-of-a-kind (there are 13 ranks) and the kicker (any one of the remaining 48 cards).
 So there are
-<span class="math display">\[ 13 \times 48 \]</span>
+<span class="math display">\[ 13 \times 48 = 624 \]</span>
 ways to get a four-of-a-kind when order does not matter. The probability is therefore
-<span class="math display">\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{13 \times 48}{\frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5!}} \approx .00024, \]</span>
+<span class="math display">\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{624}{2,598,960} \approx .00024, \]</span>
 which matches the answer we calculated earlier.</p>
-<p>The easiest way to calculate binomial coefficients is to <a href="https://www.wolframalpha.com/input/?i=52%20choose%205">use Wolfram Alpha</a>.</p>
 </div>
 <div id="examples-2" class="section level2 unnumbered">
 <h2>Examples</h2>
