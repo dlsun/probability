@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 4 Sampling With Replacement | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 4 Sampling With Replacement | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 4 Sampling With Replacement | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-06-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="box-models.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="replacement" class="section level1">
+<h1><span class="header-section-number">Lesson 4</span> Sampling With Replacement</h1>
+<div id="motivating-example-3" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>Recall Galileo’s problem from Lesson <a href="counting.html#counting">1</a>. He wanted to know whether
+a sum of 9 or a sum of 10 was more likely when 3 dice are rolled. In fact,
+Galileo’s peers reasoned that the two events should be equally likely,
+since there are six ways to get a sum of 9</p>
+<p><span class="math display">\[\begin{align*}
+3 + 3 + 3 &amp; &amp; 2 + 3 + 4 &amp; &amp; 2 + 2 + 5 &amp; &amp; 1 + 4 + 4 &amp; &amp; 1 + 3 + 5 &amp; &amp; 1 + 2 + 6
+\end{align*}\]</span></p>
+<p>and also six ways to get a sum of 10:</p>
+<p><span class="math display">\[\begin{align*}
+3 + 3 + 4
+ &amp; &amp; 2 + 4 + 4
+ &amp; &amp; 2 + 3 + 5
+ &amp; &amp; 2 + 2 + 6
+ &amp; &amp; 1 + 4 + 5
+ &amp; &amp; 1 + 3 + 6
+\end{align*}\]</span></p>
+<p>But gamblers of the day knew better. From experience, they knew that
+a sum of 10 was more likely than a sum of 9. But where did Galileo’s
+peers go wrong in their reasoning?</p>
+</div>
+<div id="discussion" class="section level2 unnumbered">
+<h2>Discussion</h2>
+<p>Recall from Lesson <a href="box-models.html#box-models">3</a> that the three rolls of a die can be
+modeled as <span class="math inline">\(n=3\)</span> draws <em>with replacement</em> from the box
+<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{6}$}. \]</span>
+Galileo’s peers showed that there are 6 ways to get a sum of 9
+<em>if you ignore the order in which the tickets were drawn</em>.
+(Notice that they included 2 + 3 + 5, but not 3 + 5 + 2 and other orderings of the same three rolls.)
+They also showed that there are 6 ways to get a sum of 10. Why does this not
+guarantee the probabilities of the two events are the same?</p>
+<p>Notice that this case (draws with replacement, where order doesn’t matter) is one that
+we have not studied yet.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="center">with replacement</th>
+<th align="center">without replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">order matters</td>
+<td align="center"><span class="math inline">\(N^n\)</span></td>
+<td align="center"><span class="math inline">\(\frac{N!}{(N-n)!}\)</span></td>
+</tr>
+<tr class="even">
+<td align="right">order doesn’t matter</td>
+<td align="center">???</td>
+<td align="center"><span class="math inline">\(\binom{N}{n} = \frac{N!}{n!(N-n)!}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>To settle the question, we have to go back to counting outcomes where order matters.</p>
+<ul>
+<li>The outcome <span class="math inline">\(2 + 3 + 4\)</span> corresponds to <span class="math inline">\(3! = 6\)</span> outcomes, when you count the different possible orderings:
+<ul>
+<li><span class="math inline">\(2 + 3 + 4\)</span></li>
+<li><span class="math inline">\(2 + 4 + 3\)</span></li>
+<li><span class="math inline">\(3 + 2 + 4\)</span></li>
+<li><span class="math inline">\(3 + 4 + 2\)</span></li>
+<li><span class="math inline">\(4 + 2 + 3\)</span></li>
+<li><span class="math inline">\(4 + 3 + 2\)</span></li>
+</ul></li>
+<li>On the other hand, the outcome <span class="math inline">\(2 + 2 + 5\)</span> can only be reordered <span class="math inline">\(3\)</span> different ways:
+<ul>
+<li><span class="math inline">\(2 + 2 + 5\)</span></li>
+<li><span class="math inline">\(2 + 5 + 2\)</span></li>
+<li><span class="math inline">\(5 + 2 + 2\)</span></li>
+</ul></li>
+<li>And the outcome <span class="math inline">\(3 + 3 + 3\)</span> only has one possible ordering.</li>
+</ul>
+<p>In other words, when we draw with replacement, the same ticket can be drawn more than once, and
+repetitions reduce the number of ways the tickets can be reordered. The problem with
+simply counting the number of outcomes is that the 6 outcomes
+<span class="math display">\[\begin{align*}
+3 + 3 + 3 &amp; &amp; 2 + 3 + 4 &amp; &amp; 2 + 2 + 5 &amp; &amp; 1 + 4 + 4 &amp; &amp; 1 + 3 + 5 &amp; &amp; 1 + 2 + 6
+\end{align*}\]</span>
+are not all equally likely. <span class="math inline">\(2 + 3 + 4\)</span> is actually twice as likely as <span class="math inline">\(2 + 2 + 5\)</span> and
+six times as likely as <span class="math inline">\(3 + 3 + 3\)</span>. When drawing with replacement, only the ordered outcomes
+are equally likely.</p>
+This was Galileo’s insight. When he took into account the number of possible orderings associated
+with each unordered outcome:
+<span class="math display">\[\begin{array}{rr}
+\hline
+\text{Unordered Outcome} &amp; \text{Possible Orderings} \\
+\hline
+3 + 3 + 3 &amp; \text{1 way}\  \\
+2 + 3 + 4 &amp; \text{6 ways} \\
+2 + 2 + 5 &amp; \text{3 ways} \\ 
+1 + 4 + 4 &amp; \text{3 ways} \\
+1 + 3 + 5 &amp; \text{6 ways} \\
+1 + 2 + 6 &amp; + \text{6 ways} \\
+\hline
+ &amp; \text{25 ways}
+\end{array}\]</span>
+<p>he found that the probability of a 9 was actually
+<span class="math display">\[ \frac{25}{216}. \]</span>
+Repeating the calculation for the probability of a 10, Galileo showed that the two
+probabilities were indeed different.</p>
+</div>
+<div id="examples-3" class="section level2 unnumbered">
+<h2>Examples</h2>
+<ol style="list-style-type: decimal">
+<li>Here’s a different illustration of the fact that not all unordered outcomes are
+equally likely when draws are made with replacement. In the Pick 3 Lotto, a winning number is
+chosen between 000 to 999. Contestants win if the digits in their chosen number matches
+the winning number, <em>in any order</em>.
+<ol style="list-style-type: lower-alpha">
+<li>What is your chance of winning if you bet on 053?</li>
+<li>What is your chance of winning if you bet on 055?</li>
+<li>What is your chance of winning if you bet on 555?</li>
+</ol></li>
+<li>Complete the solution to Galileo’s problem. What is the probability that the sum is 10
+when 3 fair dice are rolled? How does this compare with the probability that the sum is 9?</li>
+</ol>
+</div>
+<div id="bonus-material" class="section level2 unnumbered">
+<h2>Bonus Material</h2>
+<p>You will rarely need to
+count the <em>unordered</em> ways that <span class="math inline">\(n\)</span> tickets can be drawn <em>with replacement</em>, since the
+unordered outcomes are not equally likely. However, in case you are curious how this
+can be calculated, the following video explains how. This video is completely optional!</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UTCScjoPymA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="box-models.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/replacement.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
