@@ -1,5 +1,25 @@
 # Box Models and Combinations {#box-models}
 
+## Motivating Example {-}
+
+One of the most powerful hands in poker is a four-of-a-kind, which is when the hand contains 
+all 4 cards of a particular rank. For example, the hand below is an example of a four-of-a-kind, since 
+it contains all four 7s in the deck. (It also contains the Jack of Spades. This 
+remaining card is called the "kicker". No matter what card the kicker is, the hand is still 
+a four-of-a-kind.)
+
+```{r echo=FALSE, image_grobs, fig.show = "hold", out.width = "20%", fig.align = "default"}
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_hearts.png")
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_clubs.png")
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_spades.png")
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_diamonds.png")
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_spades.png")
+```
+
+In this lesson, we will calculate the probability of a four-of-a-kind in two ways: (1) 
+using methods that we have already learned and (2) using a new method that will be introduced 
+in this lesson.
+
 ## Theory {-}
 
 Many counting and probability problems can be reduced to a **box model**. 
@@ -42,32 +62,20 @@ a poker hand can be modeled as $n=5$ draws, without replacement, from the box
 The number of possible poker hands is 
 \[ \frac{52!}{(52-5)!} = 52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 = 311,875,200. \]
 
-We can use this to calculate the probability of a four-of-a-kind, which is when the hand contains 
-all 4 cards of a particular rank. For example, the hand below is an example of a four-of-a-kind, since 
-it contains all four 7s in the deck. (It also contains the Jack of Spades. This 
-remaining card is called the "kicker". No matter what card the kicker is, the hand is still 
-a four-of-a-kind.)
+We can use this to calculate the probability of a four-of-a-kind. How many of the 
+possible outcomes result in a four-of-a-kind? Here is the reasoning:
 
-```{r echo=FALSE, image_grobs, fig.show = "hold", out.width = "20%", fig.align = "default"}
-knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_hearts.png")
-knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_clubs.png")
-knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_spades.png")
-knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_diamonds.png")
-knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_spades.png")
-```
-
-How many of the $52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 = 311,875,200$ possible outcomes result in a four-of-a-kind? Here is the logic:
-
-- The first card can be any one of the 52 cards.
-- Once we have chosen the first card, the rank is determined. The second card must be one of the 
-3 remaining cards of that rank.
-- The third card must be one of the 2 remaining cards of that rank.
-- The fourth card must be the last remaining card of that rank.
-- The last card, the kicker, is one of the other 48 cards in the deck.
-- We assumed that the kicker was the last card in the hand. But the kicker could just as well have been the first card in the hand. In fact, there are 5 positions where the kicker could have gone.
+- Let's start by assuming that the first four cards in the hand are the four-of-a-kind and the 
+last card is the kicker.
+    - The first card can be any one of the 52 cards.
+    - Once we have chosen the first card, the rank is determined. The second card must be one of the 3 remaining cards of that rank.
+    - The third card must be one of the 2 remaining cards of that rank.
+    - The fourth card must be the last remaining card of that rank.
+    - The last card, the kicker, is one of the other 48 cards in the deck.
+- We assumed that the kicker was the last card in the hand. But the kicker could just as well have been the first card in the hand. In fact, the kicker could have been in any one of 5 positions.
 
 So the probability of a four-of-a-kind is
-\[ \frac{(52 \cdot 3 \cdot 2 \cdot 1 \cdot 48) \cdot 5}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48} \approx .0024. \]
+\[ \frac{(52 \cdot 3 \cdot 2 \cdot 1 \cdot 48) \cdot 5}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48} \approx .00024. \]
 
 The calculation above was unnecessarily complicated because we considered the **order** in which the cards were 
 drawn. Fortunately, when drawing _without replacement_, it is equally valid to count the number of outcomes 
@@ -104,7 +112,7 @@ choose the rank of the four-of-a-kind (there are 13 ranks) and the kicker (any o
 So there are 
 \[ 13 \times 48 \]
 ways to get a four-of-a-kind when order does not matter. The probability is therefore 
-\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{13 \times 48}{\frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5!}} \approx .0024, \]
+\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{13 \times 48}{\frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}{5!}} \approx .00024, \]
 which matches the answer we calculated earlier.
 
 The easiest way to calculate binomial coefficients is to [use Wolfram Alpha](https://www.wolframalpha.com/input/?i=52%20choose%205).
