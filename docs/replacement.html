@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-22" />
+<meta name="date" content="2020-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -147,7 +147,7 @@ Galileo’s peers showed that there are 6 ways to get a sum of 9
 (Notice that they included 2 + 3 + 5, but not 3 + 5 + 2 and other orderings of the same three rolls.)
 They also showed that there are 6 ways to get a sum of 10. Why does this not
 guarantee the probabilities of the two events are the same?</p>
-<p>Notice that this case (draws with replacement, where order doesn’t matter) is one that
+<p>Notice that this case (draws with replacement, order doesn’t matter) is one that
 we have not studied yet.</p>
 <table>
 <thead>
@@ -170,9 +170,9 @@ we have not studied yet.</p>
 </tr>
 </tbody>
 </table>
-<p>To settle the question, we have to go back to counting outcomes where order matters.</p>
+<p>To settle the question, let’s go back to counting ordered outcomes.</p>
 <ul>
-<li>The outcome <span class="math inline">\(2 + 3 + 4\)</span> corresponds to <span class="math inline">\(3! = 6\)</span> outcomes, when you count the different possible orderings:
+<li>The outcome <span class="math inline">\(2 + 3 + 4\)</span> corresponds to <span class="math inline">\(3! = 6\)</span> outcomes, when you account for the possible orderings:
 <ul>
 <li><span class="math inline">\(2 + 3 + 4\)</span></li>
 <li><span class="math inline">\(2 + 4 + 3\)</span></li>
@@ -190,13 +190,13 @@ we have not studied yet.</p>
 <li>And the outcome <span class="math inline">\(3 + 3 + 3\)</span> only has one possible ordering.</li>
 </ul>
 <p>In other words, when we draw with replacement, the same ticket can be drawn more than once, and
-repetitions reduce the number of ways the tickets can be reordered. The problem with
+repetitions reduce the number of ways that tickets can be reordered. The problem with
 simply counting the number of outcomes is that the 6 outcomes
 <span class="math display">\[\begin{align*}
 3 + 3 + 3 &amp; &amp; 2 + 3 + 4 &amp; &amp; 2 + 2 + 5 &amp; &amp; 1 + 4 + 4 &amp; &amp; 1 + 3 + 5 &amp; &amp; 1 + 2 + 6
 \end{align*}\]</span>
-are not all equally likely. <span class="math inline">\(2 + 3 + 4\)</span> is actually twice as likely as <span class="math inline">\(2 + 2 + 5\)</span> and
-six times as likely as <span class="math inline">\(3 + 3 + 3\)</span>. When drawing with replacement, only the ordered outcomes
+are not all equally likely. <span class="math inline">\(2 + 3 + 4\)</span> is twice as likely as <span class="math inline">\(2 + 2 + 5\)</span> and
+six times as likely as <span class="math inline">\(3 + 3 + 3\)</span>. When draws are made with replacement, only ordered outcomes
 are equally likely.</p>
 This was Galileo’s insight. When he took into account the number of possible orderings associated
 with each unordered outcome:
@@ -215,7 +215,8 @@ with each unordered outcome:
 \end{array}\]</span>
 <p>he found that the probability of a 9 was actually
 <span class="math display">\[ \frac{25}{216}. \]</span>
-Repeating the calculation for the probability of a 10, Galileo showed that the two
+(Remember that there are <span class="math inline">\(6^3 = 216\)</span> equally likely outcomes when order matters.)</p>
+<p>Repeating the calculation for the probability of a 10, Galileo showed that the two
 probabilities were indeed different.</p>
 </div>
 <div id="examples-3" class="section level2 unnumbered">

@@ -2,11 +2,9 @@
 
 ## Motivating Example {-}
 
-One of the most powerful hands in poker is a four-of-a-kind, which is when the hand contains 
-all 4 cards of a particular rank. For example, the hand below is an example of a four-of-a-kind, since 
-it contains all four 7s in the deck. (It also contains the Jack of Spades. This 
-remaining card is called the "kicker". No matter what card the kicker is, the hand is still 
-a four-of-a-kind.)
+One of the most coveted hands in poker is a four-of-a-kind, which is when the hand contains 
+all four cards of a particular rank. For example, the hand below is an example of a four-of-a-kind, 
+since it contains all four 7s in the deck. (The last card, called the "kicker", can be any other card.)
 
 ```{r echo=FALSE, image_grobs, fig.show = "hold", out.width = "20%", fig.align = "default"}
 knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_hearts.png")
@@ -17,8 +15,8 @@ knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-
 ```
 
 In this lesson, we will calculate the probability of a four-of-a-kind in two ways: (1) 
-using methods that we have already learned and (2) using a new method that will be introduced 
-in this lesson.
+using methods that we have already learned and (2) using combinations, which is a new 
+method that will be introduced in this lesson.
 
 ## Theory {-}
 
@@ -29,8 +27,9 @@ $n$ tickets from the box.
 For example, three rolls of a fair die can be modeled as $n=3$ draws from 
 the box 
 \[ \fbox{$\fbox{1}\ \fbox{2}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{6}$}. \]
-Each time we draw a ticket, we have to put it back before drawing again, since 
-the outcome of one die does not affect the outcome of any other die roll. In other 
+In order to accurately model how dice behave (i.e., the outcome of one die 
+roll does not affect the outcome of another), we have to place the ticket 
+back in the box after each draw. In other 
 words, the $n=3$ draws are made **with replacement**.
 
 In other situations, the draws are made **without replacement**. 
@@ -45,14 +44,14 @@ without replacement. Once a Secret Santa has been chosen for person 3,
 we remove $\fbox{3}$ from the box so that they do not end up with
 two Secret Santas.
 
-Using the multiplication principle, we can count the number of ways to 
+Using the multiplication principle (Theorem \@ref(thm:multiplication-principle)), we can count the number of ways to 
 draw $n$ tickets from the box 
-\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{N}$}. \]
+\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{\(N\)}$}. \]
 
 - If drawing **with replacement**, the number of possible ways is 
 \[ \underbrace{N \cdot N \cdot N \cdot \ldots \cdot N}_{\text{$n$ terms}} = N^n, \]
 since we have $N$ tickets to choose from on each draw.
-- If drawing **without replacement**, the number of possibl ways is
+- If drawing **without replacement**, the number of possible ways is
 \[ \underbrace{N \cdot (N-1) \cdot (N-2) \cdot \ldots \cdot (N-n+1)}_{\text{$n$ terms}} = \frac{N!}{(N-n)!}, \]
 since the number of tickets remaining in the box decreases by 1 on each draw.
 
@@ -62,65 +61,83 @@ a poker hand can be modeled as $n=5$ draws, without replacement, from the box
 The number of possible poker hands is 
 \[ \frac{52!}{(52-5)!} = 52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 = 311,875,200. \]
 
-We can use this to calculate the probability of a four-of-a-kind. How many of the 
-possible outcomes result in a four-of-a-kind? Here is the reasoning:
+How many of these possible outcomes result in a four-of-a-kind? Here is the reasoning:
 
 - Let's start by assuming that the first four cards in the hand are the four-of-a-kind and the 
 last card is the kicker.
     - The first card can be any one of the 52 cards.
-    - Once we have chosen the first card, the rank is determined. The second card must be one of the 3 remaining cards of that rank.
+    - Once we have chosen the first card, the rank of the four-of-a-kind is determined. 
+    The second card must be one of the 3 remaining cards of the same rank.
     - The third card must be one of the 2 remaining cards of that rank.
-    - The fourth card must be the last remaining card of that rank.
+    - The fourth card must be the 1 remaining card of that rank.
     - The last card, the kicker, is one of the other 48 cards in the deck.
-- We assumed that the kicker was the last card in the hand. But the kicker could just as well have been the first card in the hand. In fact, the kicker could have been in any one of 5 positions.
+- We assumed that the kicker was the last card in the hand. But the kicker could just as well have been the first card in the hand. In fact, the kicker could have been in any one of 5 positions. So we need to multiply 
+everything by 5 in the end.
 
 So the probability of a four-of-a-kind is
 \[ \frac{(52 \cdot 3 \cdot 2 \cdot 1 \cdot 48) \cdot 5}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48} \approx .00024. \]
 
-The calculation above was unnecessarily complicated because we considered the **order** in which the cards were 
-drawn. Fortunately, when drawing _without replacement_, it is equally valid to count the number of outcomes 
-where **order doesn't matter**. That is, it does not matter whether the kicker is the first card or the last card
-in the hand; we do not double-count different orderings of the same 5 cards.
+This calculation was complicated because we had to consider the different **orders** 
+in which the cards might be drawn. It is often easier to 
+ignore the order when counting outcomes. That is, we treat $\fbox{1}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{8}$ 
+as the same outcome as $\fbox{3}\ \fbox{5}\ \fbox{4}\ \fbox{1}\ \fbox{8}$; we do not double count 
+different reorderings of the same draws. Fortunately, when the draws are made _without replacement_, 
+the unordered outcomes are also equally likely, so it is equally valid to count unordered outcomes as 
+ordered ones for the purposes of calculating probabilities. If we ignore order when counting, 
+we say that "**order doesn't matter**".
 
 ```{theorem, name="Combinations"}
 The number of ways to draw $n$ tickets from the box 
-\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{N}$}, \]
+\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{\(N\)}$}, \]
 when _order doesn't matter_, is symbolized $\binom{N}{n}$ (pronounced: "$N$ choose $n$") 
 and is equal to 
 \[ \binom{N}{n} = \frac{N!}{n! (N-n)!}. \]
 ```
 ```{proof}
-By the multiplication principle of counting, we know that:
+We know that any set of $n$ distinct objects can be reordered in $n!$ ways. 
+So when we count different reorderings of the same set of $n$ tickets, we end up counting each set of 
+distinct tickets $n!$ times. By the multiplication principle (Theorem \@ref(thm:multiplication-principle)):
 \begin{align*}
-\left(\text{# ways when order matters}\right) &= \left(\text{# ways when order doesn't matter}\right) \\
-  &\phantom{==} \cdot  \left(\text{# ways to order $n$ objects}\right).
+\left(\text{# ways when order matters}\right) &= \left(\text{# ways when order doesn't matter}\right) \cdot n!.
 \end{align*}
-We already know that the number of ways to draw $n$ tickets from the above box, when order matters, is 
-$\frac{N!}{(N-n)!}$. We also know that the number of ways to order $n$ objects is $n!$. Therefore:
+But we already know the left-hand side of this equation, the number of ways 
+to draw $n$ tickets without replacement when order matters: it is $\frac{N!}{(N-n)!}$. Solving 
+for the unknown in this equation, we end up with:
 \begin{align*}
-\binom{N}{n} = \left(\text{# ways when order doesn't matter}\right) &= \frac{\left(\text{# ways when order matters}\right)}{\left(\text{# ways to order $n$ objects}\right)} \\
+\binom{N}{n} \overset{\text{def}}{=} \left(\text{# ways when order doesn't matter}\right) &= \frac{\left(\text{# ways when order matters}\right)}{n!} \\
   &= \frac{N!}{n! (N-n)!}
 \end{align*}
 ```
 
-Now let's apply combinations to calculate the probability of a four-of-a-kind. If we ignore the order 
+Now, let's revisit the probability of a four-of-a-kind using combinations. If we ignore the order 
 of the cards in the hand, there are 
 \[ \binom{52}{5} = 2,598,960. \]
-possible poker hands. (The easiest way to calculate binomial coefficients is to [use Wolfram Alpha](https://www.wolframalpha.com/input/?i=52%20choose%205).) How many of these are a four-of-a-kind? For a given rank, there is only 1 way to 
-select all four cards of that rank, now that the order of the cards does not matter. So we just need to 
-choose the rank of the four-of-a-kind (there are 13 ranks) and the kicker (any one of the remaining 48 cards).
-So there are 
-\[ 13 \times 48 = 624 \]
-ways to get a four-of-a-kind when order does not matter. The probability is therefore 
+possible poker hands. (Binomial coefficients can be calculated [using Wolfram Alpha](https://www.wolframalpha.com/input/?i=52%20choose%205).) Notice how much smaller this number is 
+than the 300+ million ordered poker hands. That is because when order matters, 
+each distinct (unordered) poker hand gets counted $5! = 120$ times, once for each possible way of 
+reordering the 5 cards in the hand.
+
+How many "unordered" four-of-a-kind hands are there? Here is how to count them:
+
+- There are 13 ranks (Ace through King). Any one of these ranks could be the rank for the four-of-a-kind.
+- Once we have chosen the rank, that completely determines 4 of the 5 cards in the four-of-a-kind hand. 
+There is only one way to include all 4 cards of a given rank, since we are no longer concerned with 
+the order in which they are drawn or their position in the hand.
+- So all that's left is to choose the kicker, which can be any one of the remaining 48 cards.
+
+So when we ignore order, there are 
+\[ 13 \cdot 48 = 624 \]
+ways to get a four-of-a-kind. The probability is therefore 
 \[ \frac{13 \times 48}{\binom{52}{5}} = \frac{624}{2,598,960} \approx .00024, \]
-which matches the answer we calculated earlier.
+which matches the answer from before. Notice how much simpler $13 \cdot 48$ is, compared 
+with the mental gymnastics needed to account for the order. 
 
 
 
 ## Examples {-}
 
-1. In a previous lesson, you calculated the probability of a "flush of hearts" in poker by counting 
-the possible hands, accounting for the order in which the cards were drawn. Repeat the calculation 
+1. In Lesson \@ref(counting), you calculated the probability of a "flush of hearts" in poker by counting 
+the possible hands. There, you took order into account. Repeat the calculation 
 by counting the possible hands where order does not matter.
 2. How many different 8-letter "words" can be formed by rearranging the letters in LALALAAA? 
 (**Hint:** Model this situation using $n=3$ draws from the box 

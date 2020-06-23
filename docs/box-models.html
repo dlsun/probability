@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-22" />
+<meta name="date" content="2020-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="factorial.html"/>
-
+<link rel="next" href="replacement.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -87,6 +87,12 @@
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -111,15 +117,13 @@
 <h1><span class="header-section-number">Lesson 3</span> Box Models and Combinations</h1>
 <div id="motivating-example-2" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
-<p>One of the most powerful hands in poker is a four-of-a-kind, which is when the hand contains
-all 4 cards of a particular rank. For example, the hand below is an example of a four-of-a-kind, since
-it contains all four 7s in the deck. (It also contains the Jack of Spades. This
-remaining card is called the “kicker”. No matter what card the kicker is, the hand is still
-a four-of-a-kind.)</p>
+<p>One of the most coveted hands in poker is a four-of-a-kind, which is when the hand contains
+all four cards of a particular rank. For example, the hand below is an example of a four-of-a-kind,
+since it contains all four 7s in the deck. (The last card, called the “kicker”, can be any other card.)</p>
 <p><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_hearts.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_clubs.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_spades.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_diamonds.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_spades.png" width="20%" /></p>
 <p>In this lesson, we will calculate the probability of a four-of-a-kind in two ways: (1)
-using methods that we have already learned and (2) using a new method that will be introduced
-in this lesson.</p>
+using methods that we have already learned and (2) using combinations, which is a new
+method that will be introduced in this lesson.</p>
 </div>
 <div id="theory-2" class="section level2 unnumbered">
 <h2>Theory</h2>
@@ -129,8 +133,9 @@ In a box model, there are <span class="math inline">\(N\)</span> tickets in a bo
 <p>For example, three rolls of a fair die can be modeled as <span class="math inline">\(n=3\)</span> draws from
 the box
 <span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{6}$}. \]</span>
-Each time we draw a ticket, we have to put it back before drawing again, since
-the outcome of one die does not affect the outcome of any other die roll. In other
+In order to accurately model how dice behave (i.e., the outcome of one die
+roll does not affect the outcome of another), we have to place the ticket
+back in the box after each draw. In other
 words, the <span class="math inline">\(n=3\)</span> draws are made <strong>with replacement</strong>.</p>
 <p>In other situations, the draws are made <strong>without replacement</strong>.
 For example, consider four friends who draw names from a hat to determine
@@ -143,14 +148,14 @@ Since every person has exactly one Secret Santa, the draws must be made
 without replacement. Once a Secret Santa has been chosen for person 3,
 we remove <span class="math inline">\(\fbox{3}\)</span> from the box so that they do not end up with
 two Secret Santas.</p>
-<p>Using the multiplication principle, we can count the number of ways to
+<p>Using the multiplication principle (Theorem <a href="counting.html#thm:multiplication-principle">1.1</a>), we can count the number of ways to
 draw <span class="math inline">\(n\)</span> tickets from the box
-<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{N}$}. \]</span></p>
+<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{\(N\)}$}. \]</span></p>
 <ul>
 <li>If drawing <strong>with replacement</strong>, the number of possible ways is
 <span class="math display">\[ \underbrace{N \cdot N \cdot N \cdot \ldots \cdot N}_{\text{$n$ terms}} = N^n, \]</span>
 since we have <span class="math inline">\(N\)</span> tickets to choose from on each draw.</li>
-<li>If drawing <strong>without replacement</strong>, the number of possibl ways is
+<li>If drawing <strong>without replacement</strong>, the number of possible ways is
 <span class="math display">\[ \underbrace{N \cdot (N-1) \cdot (N-2) \cdot \ldots \cdot (N-n+1)}_{\text{$n$ terms}} = \frac{N!}{(N-n)!}, \]</span>
 since the number of tickets remaining in the box decreases by 1 on each draw.</li>
 </ul>
@@ -159,30 +164,35 @@ a poker hand can be modeled as <span class="math inline">\(n=5\)</span> draws, w
 <span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{52}$}. \]</span>
 The number of possible poker hands is
 <span class="math display">\[ \frac{52!}{(52-5)!} = 52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 = 311,875,200. \]</span></p>
-<p>We can use this to calculate the probability of a four-of-a-kind. How many of the
-possible outcomes result in a four-of-a-kind? Here is the reasoning:</p>
+<p>How many of these possible outcomes result in a four-of-a-kind? Here is the reasoning:</p>
 <ul>
 <li>Let’s start by assuming that the first four cards in the hand are the four-of-a-kind and the
 last card is the kicker.
 <ul>
 <li>The first card can be any one of the 52 cards.</li>
-<li>Once we have chosen the first card, the rank is determined. The second card must be one of the 3 remaining cards of that rank.</li>
+<li>Once we have chosen the first card, the rank of the four-of-a-kind is determined.
+The second card must be one of the 3 remaining cards of the same rank.</li>
 <li>The third card must be one of the 2 remaining cards of that rank.</li>
-<li>The fourth card must be the last remaining card of that rank.</li>
+<li>The fourth card must be the 1 remaining card of that rank.</li>
 <li>The last card, the kicker, is one of the other 48 cards in the deck.</li>
 </ul></li>
-<li>We assumed that the kicker was the last card in the hand. But the kicker could just as well have been the first card in the hand. In fact, the kicker could have been in any one of 5 positions.</li>
+<li>We assumed that the kicker was the last card in the hand. But the kicker could just as well have been the first card in the hand. In fact, the kicker could have been in any one of 5 positions. So we need to multiply
+everything by 5 in the end.</li>
 </ul>
 <p>So the probability of a four-of-a-kind is
 <span class="math display">\[ \frac{(52 \cdot 3 \cdot 2 \cdot 1 \cdot 48) \cdot 5}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48} \approx .00024. \]</span></p>
-<p>The calculation above was unnecessarily complicated because we considered the <strong>order</strong> in which the cards were
-drawn. Fortunately, when drawing <em>without replacement</em>, it is equally valid to count the number of outcomes
-where <strong>order doesn’t matter</strong>. That is, it does not matter whether the kicker is the first card or the last card
-in the hand; we do not double-count different orderings of the same 5 cards.</p>
+<p>This calculation was complicated because we had to consider the different <strong>orders</strong>
+in which the cards might be drawn. It is often easier to
+ignore the order when counting outcomes. That is, we treat <span class="math inline">\(\fbox{1}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{8}\)</span>
+as the same outcome as <span class="math inline">\(\fbox{3}\ \fbox{5}\ \fbox{4}\ \fbox{1}\ \fbox{8}\)</span>; we do not double count
+different reorderings of the same draws. Fortunately, when the draws are made <em>without replacement</em>,
+the unordered outcomes are also equally likely, so it is equally valid to count unordered outcomes as
+ordered ones for the purposes of calculating probabilities. If we ignore order when counting,
+we say that “<strong>order doesn’t matter</strong>”.</p>
 
 <div class="theorem">
 <span id="thm:unnamed-chunk-3" class="theorem"><strong>Theorem 3.1  (Combinations)  </strong></span>The number of ways to draw <span class="math inline">\(n\)</span> tickets from the box
-<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{N}$}, \]</span>
+<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{\(N\)}$}, \]</span>
 when <em>order doesn’t matter</em>, is symbolized <span class="math inline">\(\binom{N}{n}\)</span> (pronounced: “<span class="math inline">\(N\)</span> choose <span class="math inline">\(n\)</span>”)
 and is equal to
 <span class="math display">\[ \binom{N}{n} = \frac{N!}{n! (N-n)!}. \]</span>
@@ -190,36 +200,48 @@ and is equal to
 
 
 <div class="proof">
- <span class="proof"><em>Proof. </em></span> By the multiplication principle of counting, we know that:
+ <span class="proof"><em>Proof. </em></span> We know that any set of <span class="math inline">\(n\)</span> distinct objects can be reordered in <span class="math inline">\(n!\)</span> ways.
+So when we count different reorderings of the same set of <span class="math inline">\(n\)</span> tickets, we end up counting each set of
+distinct tickets <span class="math inline">\(n!\)</span> times. By the multiplication principle (Theorem <a href="counting.html#thm:multiplication-principle">1.1</a>):
 <span class="math display">\[\begin{align*}
-\left(\text{# ways when order matters}\right) &amp;= \left(\text{# ways when order doesn&#39;t matter}\right) \\
-  &amp;\phantom{==} \cdot  \left(\text{# ways to order $n$ objects}\right).
+\left(\text{# ways when order matters}\right) &amp;= \left(\text{# ways when order doesn&#39;t matter}\right) \cdot n!.
 \end{align*}\]</span>
-We already know that the number of ways to draw <span class="math inline">\(n\)</span> tickets from the above box, when order matters, is
-<span class="math inline">\(\frac{N!}{(N-n)!}\)</span>. We also know that the number of ways to order <span class="math inline">\(n\)</span> objects is <span class="math inline">\(n!\)</span>. Therefore:
+But we already know the left-hand side of this equation, the number of ways
+to draw <span class="math inline">\(n\)</span> tickets without replacement when order matters: it is <span class="math inline">\(\frac{N!}{(N-n)!}\)</span>. Solving
+for the unknown in this equation, we end up with:
 <span class="math display">\[\begin{align*}
-\binom{N}{n} = \left(\text{# ways when order doesn&#39;t matter}\right) &amp;= \frac{\left(\text{# ways when order matters}\right)}{\left(\text{# ways to order $n$ objects}\right)} \\
+\binom{N}{n} \overset{\text{def}}{=} \left(\text{# ways when order doesn&#39;t matter}\right) &amp;= \frac{\left(\text{# ways when order matters}\right)}{n!} \\
   &amp;= \frac{N!}{n! (N-n)!}
 \end{align*}\]</span>
 </div>
 
-<p>Now let’s apply combinations to calculate the probability of a four-of-a-kind. If we ignore the order
+<p>Now, let’s revisit the probability of a four-of-a-kind using combinations. If we ignore the order
 of the cards in the hand, there are
 <span class="math display">\[ \binom{52}{5} = 2,598,960. \]</span>
-possible poker hands. (The easiest way to calculate binomial coefficients is to <a href="https://www.wolframalpha.com/input/?i=52%20choose%205">use Wolfram Alpha</a>.) How many of these are a four-of-a-kind? For a given rank, there is only 1 way to
-select all four cards of that rank, now that the order of the cards does not matter. So we just need to
-choose the rank of the four-of-a-kind (there are 13 ranks) and the kicker (any one of the remaining 48 cards).
-So there are
-<span class="math display">\[ 13 \times 48 = 624 \]</span>
-ways to get a four-of-a-kind when order does not matter. The probability is therefore
+possible poker hands. (Binomial coefficients can be calculated <a href="https://www.wolframalpha.com/input/?i=52%20choose%205">using Wolfram Alpha</a>.) Notice how much smaller this number is
+than the 300+ million ordered poker hands. That is because when order matters,
+each distinct (unordered) poker hand gets counted <span class="math inline">\(5! = 120\)</span> times, once for each possible way of
+reordering the 5 cards in the hand.</p>
+<p>How many “unordered” four-of-a-kind hands are there? Here is how to count them:</p>
+<ul>
+<li>There are 13 ranks (Ace through King). Any one of these ranks could be the rank for the four-of-a-kind.</li>
+<li>Once we have chosen the rank, that completely determines 4 of the 5 cards in the four-of-a-kind hand.
+There is only one way to include all 4 cards of a given rank, since we are no longer concerned with
+the order in which they are drawn or their position in the hand.</li>
+<li>So all that’s left is to choose the kicker, which can be any one of the remaining 48 cards.</li>
+</ul>
+<p>So when we ignore order, there are
+<span class="math display">\[ 13 \cdot 48 = 624 \]</span>
+ways to get a four-of-a-kind. The probability is therefore
 <span class="math display">\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{624}{2,598,960} \approx .00024, \]</span>
-which matches the answer we calculated earlier.</p>
+which matches the answer from before. Notice how much simpler <span class="math inline">\(13 \cdot 48\)</span> is, compared
+with the mental gymnastics needed to account for the order.</p>
 </div>
 <div id="examples-2" class="section level2 unnumbered">
 <h2>Examples</h2>
 <ol style="list-style-type: decimal">
-<li>In a previous lesson, you calculated the probability of a “flush of hearts” in poker by counting
-the possible hands, accounting for the order in which the cards were drawn. Repeat the calculation
+<li>In Lesson <a href="counting.html#counting">1</a>, you calculated the probability of a “flush of hearts” in poker by counting
+the possible hands. There, you took order into account. Repeat the calculation
 by counting the possible hands where order does not matter.</li>
 <li>How many different 8-letter “words” can be formed by rearranging the letters in LALALAAA?
 (<strong>Hint:</strong> Model this situation using <span class="math inline">\(n=3\)</span> draws from the box
@@ -241,8 +263,8 @@ ways of arranging 30 H and 30 Ts. The general strategy from the previous questio
           </div>
         </div>
       </div>
-<a href="factorial.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="factorial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="replacement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
