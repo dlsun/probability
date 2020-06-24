@@ -33,6 +33,35 @@ that the event $A \text{ or } B$ happens on 11 out of 36 outcomes, so
 \[ P(A \text{ or } B) = \frac{11}{36} \neq \frac{12}{36} = \frac{1}{6} + \frac{1}{6} = P(A) + P(B). \]
 $P(A) + P(B)$ double counts the outcome where _both_ rolls were ⚅s.
 
+```{r, echo=FALSE, engine='tikz', out.width='60%', fig.ext='png', fig.align='center', fig.cap='Double Counting Dice Rolls', engine.opts = list(template = "tikz_template.tex")}
+\begin{tikzpicture}
+	
+	\foreach \i 	in {1, 2, 3, 4, 5, 6} {
+		\fill [blue!50,opacity=.3] (1.5*6 - .75, -1*\i - .5) rectangle (1.5*6 + .75, -1*\i + .5);
+	}
+	\foreach \i 	in {1, 2, 3, 4, 5, 6} {	
+		\fill [red!50,opacity=.3] (1.5*\i - .75, -1*6 - .5) rectangle (1.5*\i + .75, -1*6 + .5);
+	}
+
+	\foreach \i in {1, ..., 6} {
+		\foreach \j in {1, ..., 6} {
+			\node[rectangle,draw] at (1.5*\i, -\j) {\Large\epsdice{\j}\ \epsdice{\i}};
+		}
+	}
+
+    		\foreach \i 	in {1, ..., 6} {
+    			\foreach \j in {1, ..., 6} {
+    				\node[rectangle,draw,opacity=.3] at (1.5*\i, -\j) {\Large\epsdice{\j}\ \epsdice{\i}};
+    			}
+    		}
+		
+		\foreach \i 	in {1, ..., 6} {
+			\node[rectangle,draw] at (1.5*\i, -1*4) {\Large\epsdice{4}\ \epsdice{\i}};
+			\node[rectangle,draw] at (1.5*4, -1*\i) {\Large\epsdice{\i}\ \epsdice{4}};
+		}
+\end{tikzpicture}
+```
+
 One way to avoid double counting is to subtract the cases that are double counted.
 
 ```{theorem, name="Inclusion-Exclusion Principle"}
@@ -56,7 +85,7 @@ One way to avoid double counting is to subtract the cases that are double counte
 
 So, for example:
 \begin{align*} 
-P(\text{at least one ⚅ in 2 rolls}) &= P(\text{⚅ on 1st roll}) + P(\text{⚅ on 2nd roll}) - (P(\text{⚅ on both rolls}) \\
+P(\text{at least one ⚅ in 2 rolls}) &= P(\text{⚅ on 1st roll}) + P(\text{⚅ on 2nd roll}) - P(\text{⚅ on both rolls}) \\
 &= \frac{1}{6} + \frac{1}{6} - \frac{1}{36} \\
 &= \frac{11}{36}
 \end{align*}
