@@ -20,6 +20,8 @@ method that will be introduced in this lesson.
 
 ## Theory {-}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M3VFRQCQZJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Many counting and probability problems can be reduced to a **box model**. 
 In a box model, there are $N$ tickets in a box, and we draw
 $n$ tickets from the box.
