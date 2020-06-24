@@ -79,6 +79,8 @@ everything by 5 in the end.
 So the probability of a four-of-a-kind is
 \[ \frac{(52 \cdot 3 \cdot 2 \cdot 1 \cdot 48) \cdot 5}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48} \approx .00024. \]
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M6twelcVmz4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 This calculation was complicated because we had to consider the different **orders** 
 in which the cards might be drawn. It is often easier to 
 ignore the order when counting outcomes. That is, we treat $\fbox{1}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{8}$ 
