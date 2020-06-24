@@ -9,6 +9,10 @@ One day, she mentions to you, "I need to stop by St. Joseph's after work for a P
 St. Joseph's is a local all-boys school. So now you know that at least one of her children is a boy. 
 What is the probability now that both her children are boys?
 
+Most people assume that the answer is $\frac{1}{2}$, since the other child is equally likely to be a 
+boy or a girl, and the gender of one child does not affect the gender of another. The actual 
+answer may surprise you....
+
 ## Theory {-}
 
 To quantify how probabilities change in light of new information, we calculate the **conditional probability**.
@@ -37,6 +41,10 @@ So the conditional probability above is
 In the above example, the joint probability $P(\text{both boys} \text{ and } \text{at least one boy})$ is easy to calculate because the two events are redundant. If we know that both are boys, then we automatically know that at least one is a boy.
 
 The information that at least one of her children attends St. Joseph's (and, thus, is a boy) increases the probability that she has two boys from $1/4$ to $1/3$.
+
+If this result was counterintuitive to you, the video below gives some intuition.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T-w-e7RNdgY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Examples {-}
 
