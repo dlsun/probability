@@ -3,5 +3,6 @@ language:
   ui:
     chapter_name: "Lesson "
 delete_merged_file: true
-rmd_files: ["index.Rmd", "counting.Rmd", "factorial.Rmd"]
+rmd_files: ["index.Rmd", "counting.Rmd", "factorial.Rmd", "box-models.Rmd",
+            "replacement.Rmd", "double-counting.Rmd", "conditional.Rmd", "independence.Rmd"]
 output_dir: "docs"

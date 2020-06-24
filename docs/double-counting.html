@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-23" />
+<meta name="date" content="2020-06-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,68 +52,6 @@
 
 
 
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -164,13 +102,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#theory-4"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#examples-5"><i class="fa fa-check"></i>Examples</a></li>
-<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>7</b> Independence</a><ul>
 <li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#theory-5"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#examples-6"><i class="fa fa-check"></i>Examples</a></li>
-<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -197,13 +135,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="motivating-example-4" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
 <p>The French nobleman (and avid gambler) Chevalier de Méré knew that betting on at least one
-⚅ in four rolls of a die was a favorable bet.</p>
+six (⚅) in 4 rolls of a die was a favorable bet for him. Once other gamblers caught on, he
+devised a new bet: at least one double-six (⚅⚅) in 24 rolls of two dice. Although he did not know
+how to calculate the probabilities, he reasoned that the two bets should be equivalent, since</p>
+<ul>
+<li>double-sixes are <span class="math inline">\(1/6\)</span> as likely as a single six,</li>
+<li>but there are <span class="math inline">\(6\)</span> times as many rolls to compensate</li>
+</ul>
+<p>Are the two bets equivalent?</p>
 </div>
 <div id="theory-3" class="section level2 unnumbered">
 <h2>Theory</h2>
+<p>Here is a common (but wrong) way of calculating the probability of getting at least one six in
+4 rolls of a die.</p>
+<p><span class="math display">\[\begin{align*}
+P(\text{at least one ⚅}) &amp;= P(\text{⚅ on 1st roll, or ⚅ on 2nd roll, or ⚅ on 3rd roll or ⚅ on 4th roll}) \\
+&amp;= P(\text{⚅ on 1st roll}) + P(\text{⚅ on 2nd roll}) + P(\text{⚅ on 3nd roll}) + P(\text{⚅ on 4th roll}) \\
+&amp;= \frac{1}{6} + \frac{1}{6} + \frac{1}{6} + \frac{1}{6} \\
+&amp;= \frac{4}{6} ?
+\end{align*}\]</span></p>
+<p>What’s wrong with the above reasoning? The problem is that
+<span class="math display">\[ P(A \text{ or } B) \neq P(A) + P(B) \]</span>
+in general. The reason is that <span class="math inline">\(P(A) + P(B)\)</span> double counts outcomes where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> both happen.</p>
+<p>For example, suppose <span class="math inline">\(A\)</span> is “⚅ on 1st roll” and <span class="math inline">\(B\)</span> is “⚅ on 2nd roll”. Then, it is not hard to see
+that the event <span class="math inline">\(A \text{ or } B\)</span> happens on 11 out of 36 outcomes, so
+<span class="math display">\[ P(A \text{ or } B) = \frac{11}{36} \neq \frac{12}{36} = \frac{1}{6} + \frac{1}{6} = P(A) + P(B). \]</span>
+<span class="math inline">\(P(A) + P(B)\)</span> double counts the outcome where <em>both</em> rolls were ⚅s.</p>
+<p>One way to avoid double counting is to subtract the cases that are double counted.</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-5" class="theorem"><strong>Theorem 5.1  (Inclusion-Exclusion Principle)  </strong></span><span class="math display">\[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]</span>
+<span id="thm:unnamed-chunk-5" class="theorem"><strong>Theorem 5.1  (Inclusion-Exclusion Principle)  </strong></span><span class="math display">\[ P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B) \]</span>
 </div>
 
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
@@ -212,31 +173,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 5.1: Intuition for the Inclusion-Exclusion Principle
 </p>
 </div>
+<p>So, for example:
+<span class="math display">\[\begin{align*} 
+P(\text{at least one ⚅ in 2 rolls}) &amp;= P(\text{⚅ on 1st roll}) + P(\text{⚅ on 2nd roll}) - (P(\text{⚅ on both rolls}) \\
+&amp;= \frac{1}{6} + \frac{1}{6} - \frac{1}{36} \\
+&amp;= \frac{11}{36}
+\end{align*}\]</span></p>
+<p>However, this approach does not scale well to calculating the probability of at least one ⚅ in 4 rolls.</p>
+<p>In many situations, it is easier to calculate the probability that an event does <em>not</em> happen, also known as the
+<strong>complement</strong> of the event. Because the total probability has to be 1, the two probabilities are related by the following formula.</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-7" class="theorem"><strong>Theorem 5.2  (Complement Rule)  </strong></span><span class="math display">\[ P(A^c) = 1 - P(A) \]</span>
+<span id="thm:unnamed-chunk-7" class="theorem"><strong>Theorem 5.2  (Complement Rule)  </strong></span><span class="math display">\[ P(\text{not } A) = 1 - P(A). \]</span>
 </div>
 
+<p>Let’s apply the Complement Rule to the Chevalier de Méré’s problem. To calculate the probability of getting at least one ⚅ in 4 rolls,
+we can calculate the probability of the complement. If we did not get at least one ⚅, that must mean that we got no ⚅s. This means that
+every roll was one of the other 5 outcomes. This probability is much easier to calculate using the counting tricks we have learned.
+<span class="math display">\[\begin{align*}
+P(\text{at least one ⚅}) &amp;= 1 - P(\text{no ⚅s}) \\
+&amp;= 1 - \frac{5^4}{6^4} \\
+&amp;\approx 0.5177.
+\end{align*}\]</span></p>
 </div>
 <div id="examples-4" class="section level2 unnumbered">
 <h2>Examples</h2>
 <ol style="list-style-type: decimal">
-<li><p>In poker, a hand is called “two pair” if there are 2 cards of one rank,
+<li><p>In poker, a “two pair” hand has 2 cards of one rank,
 2 cards of another rank, and 1 card of a third rank. For example, the hand
-2, 2, Q, Q, J is a “two pair” hand. Your friend calculates the probability of “two pair” as follows:</p>
+2, 2, Q, Q, J is a “two pair”. Your friend calculates the probability of “two pair” as follows:</p>
 <ul>
 <li>There are <span class="math inline">\(\binom{52}{5}\)</span> equally likely hands (where order does not matter).</li>
-<li>Next, we need to count up how many ways there are to choose the first pair. There are <span class="math inline">\(13\)</span> choices for the rank and <span class="math inline">\(\binom{4}{2}\)</span> choices for the two cards within the rank, so there are <span class="math inline">\(13 \times \binom{4}{2}\)</span> ways.</li>
-<li>We also need to count up how many ways there are to choose the second pair. Since one rank has already been chosen, there are <span class="math inline">\(12 \times \binom{4}{2}\)</span> ways to do this.</li>
-<li>Finally, we need to choose the remaining card. There are <span class="math inline">\(11 \times \binom{4}{1} = 44\)</span> ways to do this.</li>
-</ul></li>
-</ol>
+<li>We count the number of ways to choose the first pair. There are <span class="math inline">\(13\)</span> choices for the rank and <span class="math inline">\(\binom{4}{2}\)</span> choices for the two cards within the rank, so there are <span class="math inline">\(13 \times \binom{4}{2}\)</span> ways.</li>
+<li>Next, we count the ways to choose the second pair. Since one rank has already been chosen, there are <span class="math inline">\(12 \times \binom{4}{2}\)</span> ways to do this.</li>
+<li>Finally, we choose the remaining card. There are <span class="math inline">\(11 \times \binom{4}{1} = 44\)</span> ways to do this.</li>
+</ul>
 <p>Your friend calculates the probability as
 <span class="math display">\[ \frac{13 \times \binom{4}{2} \times 12 \times \binom{4}{2} \times 44}{\binom{52}{5}} \approx .095, \]</span>
-but then <a href="http://www.math.hawaii.edu/~ramsey/Probability/PokerHands.html">finds online</a> that the actual probability of “two pair” is only <span class="math inline">\(.0475\)</span>. Suspiciously, this number is exactly half the probability that your friend got, so he knows he must have double-counted somewhere. But where?</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Complete the calculation for the Chevalier de Méré. Calculate the probability of
-getting at least one ⚅⚅ in 24 rolls of two dice.</li>
+but then <a href="http://www.math.hawaii.edu/~ramsey/Probability/PokerHands.html">finds online</a> that the actual probability of “two pair” is only <span class="math inline">\(.0475\)</span>. This number is exactly half the probability that your friend got, so he suspects that he double-counted. But where?</p></li>
+<li><p>Complete the calculation for the Chevalier de Méré. Calculate the probability of
+getting at least one ⚅⚅ in 24 rolls of two dice.</p></li>
 </ol>
 
 </div>
@@ -278,7 +254,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/counting-tricks.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/double-counting.Rmd",
 "text": "Edit"
 },
 "history": {
