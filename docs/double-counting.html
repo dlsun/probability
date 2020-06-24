@@ -161,16 +161,22 @@ in general. The reason is that <span class="math inline">\(P(A) + P(B)\)</span> 
 that the event <span class="math inline">\(A \text{ or } B\)</span> happens on 11 out of 36 outcomes, so
 <span class="math display">\[ P(A \text{ or } B) = \frac{11}{36} \neq \frac{12}{36} = \frac{1}{6} + \frac{1}{6} = P(A) + P(B). \]</span>
 <span class="math inline">\(P(A) + P(B)\)</span> double counts the outcome where <em>both</em> rolls were ⚅s.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" alt="Double Counting Dice Rolls" width="60%" />
+<p class="caption">
+Figure 5.1: Double Counting Dice Rolls
+</p>
+</div>
 <p>One way to avoid double counting is to subtract the cases that are double counted.</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-5" class="theorem"><strong>Theorem 5.1  (Inclusion-Exclusion Principle)  </strong></span><span class="math display">\[ P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B) \]</span>
+<span id="thm:unnamed-chunk-6" class="theorem"><strong>Theorem 5.1  (Inclusion-Exclusion Principle)  </strong></span><span class="math display">\[ P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B) \]</span>
 </div>
 
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" alt="Intuition for the Inclusion-Exclusion Principle" width="60%" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-7-1.png" alt="Intuition for the Inclusion-Exclusion Principle" width="60%" />
 <p class="caption">
-Figure 5.1: Intuition for the Inclusion-Exclusion Principle
+Figure 5.2: Intuition for the Inclusion-Exclusion Principle
 </p>
 </div>
 <p>So, for example:
@@ -184,7 +190,7 @@ P(\text{at least one ⚅ in 2 rolls}) &amp;= P(\text{⚅ on 1st roll}) + P(\text
 <strong>complement</strong> of the event. Because the total probability has to be 1, the two probabilities are related by the following formula.</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-7" class="theorem"><strong>Theorem 5.2  (Complement Rule)  </strong></span><span class="math display">\[ P(\text{not } A) = 1 - P(A). \]</span>
+<span id="thm:unnamed-chunk-8" class="theorem"><strong>Theorem 5.2  (Complement Rule)  </strong></span><span class="math display">\[ P(\text{not } A) = 1 - P(A). \]</span>
 </div>
 
 <p>Let’s apply the Complement Rule to the Chevalier de Méré’s problem. To calculate the probability of getting at least one ⚅ in 4 rolls,
