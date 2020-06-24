@@ -48,7 +48,7 @@ To verify that the two probabilities are _exactly_ the same, we
 do the calculation:
 
 \begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &= \frac{P(\text{not red on first 4 spins}\ \cap\ \text{red on 5th spin}) }{P(\text{not red on first 4 spins})} \\
+P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &= \frac{P(\text{not red on first 4 spins and red on 5th spin}) }{P(\text{not red on first 4 spins})} \\
 &= \frac{ 20^4 \cdot 18 \big/ 38^5 }{20^4 \big/ 38^4} \\
 &= \frac{18}{38}.
 \end{align*}
@@ -64,7 +64,7 @@ events are **independent**. In this case, whether the gambler wins on the 5th sp
 independent of the fact that he has lost each of the last 4 spins. The folk belief that one is 
 "due" for a win after a series of losses is plain wrong and is known as the **gambler's fallacy**.
 
-```{definition}
+```{definition, name="Independence"}
 Two events $A$ and $B$ are said to be **independent** if the 
 \begin{equation}
 P(B | A) = P(B).
@@ -75,26 +75,45 @@ P(B | A) = P(B).
 ```{theorem}
 Two events $A$ and $B$ are independent if and only if their probabilities multiply:
 \begin{equation}
-P(A \cap B) = P(A) P(B).
+P(A \text{ and } B) = P(A) P(B).
 (\#eq:independence-mult)
 \end{equation}
 ```
 ```{proof}
 First, we assume \@ref(eq:independence) and show that \@ref(eq:independence-mult) holds:
 \begin{align*}
-P(A \cap B) &= P(A) P(B | A) & \text{by the Multiplication Rule} \\
+P(A \text{ and } B) &= P(A) P(B | A) & \text{by the Multiplication Rule} \\
 &= P(A) P(B) & \text{by assumption}.
 \end{align*}
 
 Conversely, we assume \@ref(eq:independence-mult) and show that \@ref(eq:independence) holds:
 \begin{align*}
-P(B | A) &= \frac{P(A \cap B)}{P(A)} & \text{by the definition of conditional probability}  \\
+P(B | A) &= \frac{P(A \text{ and } B)}{P(A)} & \text{by the definition of conditional probability}  \\
 &= \frac{P(A) P(B)}{P(A)} & \text{by assumption} \\
 &= P(B).
 \end{align*}
 ```
 
+Here is an example that combines several concepts from the past few lessons.
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Kgudt4PXs28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+```{example}
+You and a fellow castaway are stranded on a desert island, playing dice for the last banana. Two dice will be rolled. 
+If the biggest number is 1, 2, 3, or 4, then Player 1 wins. If the biggest number is 5 or 6, then Player 2 wins. 
+Would you rather be Player 1 or Player 2?
+```
+```{solution}
+Player 2 has a $20/36 = 0.5556$ chance of winning. Here's why:
+\begin{align*} 
+P(\text{biggest number is 5, 6}) &= 1 - P(\text{biggest number is 1, 2, 3, 4}) \\
+&= 1 - P(\text{1st die is 1, 2, 3, 4 and 2nd die is 1, 2, 3, 4}) \\
+&= 1 - \frac{4}{6} \cdot \frac{4}{6}\ \ \text{(by independence)} \\
+&= 1 - \frac{16}{36} \\
+&= \frac{20}{36}
+\end{align*}
+```
+
 
 ## Examples {-}
 
