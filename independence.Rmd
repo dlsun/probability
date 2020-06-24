@@ -94,6 +94,8 @@ P(B | A) &= \frac{P(A \cap B)}{P(A)} & \text{by the definition of conditional pr
 \end{align*}
 ```
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Kgudt4PXs28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Examples {-}
 
 1. One card is dealt off the top of a well-shuffled deck of cards. Is the event that the card is a 
