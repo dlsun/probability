@@ -2,88 +2,84 @@
 
 ## Motivating Example {-}
 
-Anny is an incredibly superstitious person and a huge fan of chess competitor Hikaru Nakamura, and tomorrow is the World Chess Championship. Her big superstition is that if it rains on a tournament day for Hikaru he will have a $70\%$ chance of winning the whole thing, and it does not rain then he will have a $15\%$ chance of winning the whole thing. Anny checks the weather at the night and it says the chance it rains tomorrow is $30\%$. What is the probability that Hikaru wins the World Chess Championship? Let's do a simulation
-
-```{r}
-N <- 100000
-outcomes <- rep(0, N)
-
-for (i in 1:N){
-  weather <- sample(c("Rainy", "Not Rainy"), 1, prob = c(.3, .7))
-  if (weather == "Rainy"){
-    outcome <- sample(c("Win", "Loss"), 1, prob = c(.7, .3))
-  }
-  else{
-    outcome <- sample(c("Win", "Loss"), 1, prob = c(.15, .85))
-  }
-  outcomes[i] <- outcome
-}
-results <- table(outcomes)
-results
-
-```
-
-The simulated probability of Hikaru winning is 
-$`r results["Win"]` / `r length(outcomes)` \approx `r round(results["Win"] / length(outcomes), 3)`$.
+You watch a magician place 4 ordinary quarters and 1 double-headed quarter into a box. If you select a coin 
+from the box at random and toss it, what is the probability that it lands heads?
 
 ## Theory {-}
 
-Previously we have encountered problems before that give us the direct probabilities of an event A of occuring and an event B happening. Suppose now we don't know the probability of event A happening but we know a few other things. 
+In some situations, calculating the probability of an event is easy, once you condition on the right information.
+For example, in the example above, if we knew that the coin we chose was ordinary, then:
+\[ P(\text{heads} | \text{ordinary}) = \frac{1}{2}. \]
+On the other hand, if the coin we chose was double-headed, then 
+\[ P(\text{heads} | \text{double-headed}) = 1. \]
 
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext='pdf', fig.cap='Probability Space of $X$'}
-\begin{tikzpicture}[fill=gray]
-% left hand
-\scope
-\clip (-2,-2) rectangle (2,2)
-      (1,0) circle (1);
-       (0,0) circle (1);
-\endscope
-\draw (0,0)  node[align=center,minimum size=3cm,draw,circle] {$A$}
-      (-2,-2) rectangle (3,2);
-\draw (2,1.5) node[align = center] {$B$};
-\draw (-1.5,1.5) node[align = center] {$B^c$};
-\draw (0.5,-2) -- (0.5,2);
-\end{tikzpicture}
+How do we combine these conditional probabilities to come up with $P(\text{heads})$, 
+the overall probability that the coin lands heads?
+
+```{theorem, ltp, name="Law of Total Probability"}
+Let $A_1, ..., A_n$ be a partition of the possible outcomes. Then:
+  \[ P(B) = \sum_{i=1}^n P(A_i) P(B | A_i). \]
 ```
 
-We can see from the diagram that $P(X = B \cap A)$ makes up the right part of $A$'s circle and $P(X = B^c \cap A)$ makes up the left part of $A$'s circle. So it is clear that probability of event $A$ is just the sum of $P(X = B \cap A)$ and $P(X = B^c \cap A)$. 
+A **partition** is a collection of non-overlapping events that cover all the possible outcomes. 
+For example, in the example above, $A_1 = \{ \text{ordinary}\}$ and $A_2 = \{ \text{double-headed} \}$
+is a partition, since the coin we pick has to be one of the two and it cannot be both.
 
-Another way of writing this using the conditional probability version of the "and" formula  is simply
-
-$$P(A) = \sum_x P(X=x) P(A | X=x). $$
-
-Let's plug in the information from the Hikaru Nakamura example
-
-\begin{alignat*}{2}
-x_1 &+{}& 4x_2 &= -2 \\
-x_1 &+{}& 2x_2 &= 6 \\
-2x_1&+{}& 3x_2 &= 1 
-\end{alignat*}
-
-
+Applying the Law of Total Probability to this problem, we have 
 \begin{align*}
-P(\text{Hikaru Wins}) &= P(X = \text{ Rain})P(\text{Hikaru Wins}|X = \text{ Rain}) +\\
-&\phantom{aaa} P(X = \text{ No Rain})P(\text{Hikaru Wins}|X = \text{ No Rain})\\
-&= 0.3 \cdot 0.7 + 0.7 \cdot 0.15 \\
-&= 0.315
+P(\text{heads}) &= P(\text{ordinary}) P(\text{heads} | \text{ordinary}) + P(\text{double-headed}) P(\text{heads} | \text{double-headed}) \\
+&= 0.8 \cdot \frac{1}{2} + 0.2 \cdot 1 \\
+&= 0.6
 \end{align*}
 
-Which is quite close to our simulated value!
+So the overall probability $P(B)$ is just a weighted average of the conditional probabilities 
+$P(B | A_i)$, where the "weights" are $P(A_i)$. (Note that these "weights" have to add up to 1, since 
+$A_1, ..., A_n$ are a partition of all the possible outcomes, whose total probability is $1.0$.) 
+This means that the overall probability $P(B)$ will always lie somewhere between the conditional 
+probabilities $P(B | A_i)$, with more weight given to the more probable scenarios. For example,
+we could have predicted that $P(\text{heads})$ would lie somewhere between $\frac{1}{2}$ and $1$; 
+the fact that it is much closer to the former is because choosing the ordinary coin was more probable.
+
+<!-- Previously we have encountered problems before that give us the direct probabilities of an event A of occuring and an event B happening.  -->
+<!-- Suppose now we don't know the probability of event A happening but we know a few other things.  -->
+
+<!-- ```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext='png', fig.cap='Probability Space of $X$'} -->
+<!-- \begin{tikzpicture}[fill=gray] -->
+<!-- % left hand -->
+<!-- \scope -->
+<!-- \clip (-2,-2) rectangle (2,2) -->
+<!--       (1,0) circle (1); -->
+<!--        (0,0) circle (1); -->
+<!-- \endscope -->
+<!-- \draw (0,0)  node[align=center,minimum size=3cm,draw,circle] {$A$} -->
+<!--       (-2,-2) rectangle (3,2); -->
+<!-- \draw (2,1.5) node[align = center] {$B$}; -->
+<!-- \draw (-1.5,1.5) node[align = center] {$B^c$}; -->
+<!-- \draw (0.5,-2) -- (0.5,2); -->
+<!-- \end{tikzpicture} -->
+<!-- ``` -->
+
+<!-- We can see from the diagram that $P(X = B \cap A)$ makes up the right part of $A$'s circle and $P(X = B^c \cap A)$ makes up the left part of $A$'s circle. So it is clear that probability of event $A$ is just the sum of $P(X = B \cap A)$ and $P(X = B^c \cap A)$.  -->
+
+<!-- Another way of writing this using the conditional probability version of the "and" formula  is simply -->
+
+<!-- $$P(A) = \sum_x P(X=x) P(A | X=x). $$ -->
+
 
 ## Worked Examples {-}
 
-1. 
-The ELISA test is used to screen blood for HIV. 
+1. Here are some things we already know about a deck of cards:
 
-- When the blood contains HIV, it gives a positive result 99\% of the time. 
-- When the blood does not contain HIV, it gives a negative result 94\% of the time. 
+    - The top card in a shuffled deck of cards has a $13/52$ chance of being a diamond.
+    - If the top card is a diamond, then the second card has a $12/51$ chance of being a diamond.
+    - If the top card is not a diamond, then the second card has a $13/51$ chance of being a diamond.
 
-If the prevalence of HIV is 0.7\% in the adult male population, what is the probability that a randomly selected adult male will test positive?
+    Now, suppose we "burn" (i.e., discard) the top card without looking at it. What is the 
+    probability that the second card is a diamond? Use the Law of Total Probability, conditioning on the top card.
+    Does burning cards affect probabilities?
 
-Suppose an adult male patient has just tested positive and wants to know the probability that he has HIV. What would you tell him?
-
-2. You draw two cards from a well-shuffled deck of cards. What is the probability that the 2nd card is a heart?
-
-3. Let $X \sim \text{Binomial}(n, p)$ and $Y \sim \text{Binomial}(m, p)$. What is the distribution of $S = X + Y$?
-
-## Exercises {-}
+2. Anny is a fan of chess competitor Hikaru Nakamura, and tomorrow is the World Chess Championship. 
+She is superstitious and believes that the weather influences how he will perform. Hikaru has a 60% chance of winning 
+if it rains, a 25% chance if it is cloudy, and a 10% chance if it is sunny. Anny checks the weather the night before, 
+and the forecast says that the chance of rain tomorrow is 40%; otherwise, it is equally likely to be cloudy as sunny. 
+What is the probability that Hikaru wins the World Chess Championship?

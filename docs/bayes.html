@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-24" />
+<meta name="date" content="2020-06-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,8 +162,16 @@ let <span class="math inline">\(A\)</span> be “currently a Cal Poly student”
 <li><span class="math inline">\(P(A | B)\)</span> is very low, as only a very small fraction of people who went to high school in CA are currently in college, much less
 at Cal Poly.</li>
 </ul>
-<p>Bayes’ Theorem is a way to convert probabilities of the form <span class="math inline">\(P(B | A)\)</span> into probabilities of the form <span class="math inline">\(P(A | B)\)</span>.
-Don’t let its simplicity deceive you; it is one of the most important and powerful results in all of probability and statistics.</p>
+<p>Bayes’ Theorem is a way to convert probabilities of the form <span class="math inline">\(P(B | A)\)</span> into probabilities of the form <span class="math inline">\(P(A | B)\)</span>. This switcheroo
+is surprisingly common in probability and statistics. For example,</p>
+<ul>
+<li>Doctors know the probability that a patient tests positive (<span class="math inline">\(B\)</span>) given that they have the disease (<span class="math inline">\(A\)</span>), but a patient
+is more interested in the probability that he has the disease (<span class="math inline">\(A\)</span>) given that he tested positive (<span class="math inline">\(B\)</span>).</li>
+<li>E-mail providers can collect data on the probability that an e-mail contains a certain word (<span class="math inline">\(B\)</span>) given that it is
+spam (<span class="math inline">\(A\)</span>), but a spam filter needs the probability that the e-mail is spam (<span class="math inline">\(A\)</span>) given that it contains the word (<span class="math inline">\(B\)</span>).</li>
+</ul>
+<p>Don’t be deceived by its simplicity; Bayes’ Theorem
+is one of the most important and powerful results in all of probability and statistics.</p>
 
 <div class="theorem">
 <span id="thm:unnamed-chunk-16" class="theorem"><strong>Theorem 9.1  (Bayes’ Theorem)  </strong></span><span class="math display">\[ P(A | B) = \frac{P(A) P(B | A)}{P(B)}. \]</span>
@@ -177,6 +185,10 @@ P(A | B) = \frac{P(A \textbf{ and } B)}{P(B)} = \frac{P(A) P(B | A)}{P(B)}.
 \end{equation}\]</span>
 </div>
 
+<p>The next video covers some of the intuition and the history behind Bayes’ Theorem. Don’t worry about the details for now.
+This video is meant to be more inspiring than informative.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R13BD8qKeTg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>In most problems, you will combine Bayes’ Theorem with the Law of Total Probability (<a href="ltp.html#thm:ltp">8.1</a>). The solution to the
 HIV testing example from above illustrates the common tricks.</p>
 
@@ -192,11 +204,11 @@ P(\textbf{not } H) &amp;= 0.99 &amp; P(\textbf{not } T | H) &amp;= 0.02 &amp; P(
 \end{align*}\]</span></p>
 <p>Since we already have <span class="math inline">\(P(T | H)\)</span> and we want to know <span class="math inline">\(P(H | T)\)</span>, this is a job for Bayes’ Rule:
 <span class="math display">\[ P(H | T) = \frac{P(H) P(T | H)}{P(T)} = \frac{0.01 \cdot 0.98}{P(T)}. \]</span>
-Unfortunately, we do not know <span class="math inline">\(P(T)\)</span>, the probability of testing positive. However, we do know
+Unfortunately, we do not know <span class="math inline">\(P(T)\)</span>, the probability of testing positive overall. However, we do know
 its probability, conditional on HIV status. So we apply the Law of Total Probability, partitioning
 by HIV status:
 <span class="math display">\[ P(T) = P(H) P(T | H) + P(\textbf{not } H) P(T | \textbf{not } H) = 0.01 \cdot 0.98 + 0.99 \cdot 0.06. \]</span>
-Now we plug this into Bayes’ Rule:
+Finally, we plug this result into Bayes’ Rule:
 <span class="math display">\[ P(H | T) = \frac{0.01 \cdot 0.98}{0.01 \cdot 0.98 + 0.99 \cdot 0.06} = .142. \]</span></p>
 So even though the patient tested positive for HIV, he only has a 14.2% chance of actually having HIV!
 </div>
@@ -211,6 +223,10 @@ have the disease, that the false positives overwhelm the true positives.</p>
 Figure 9.1: Intuition for Bayes’ Rule
 </p>
 </div>
+<p>This video will give you deep insights about Bayes’ rule. You should be able to follow most of it, but you may want to come
+back to this video after trying some of the examples below.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HZGCoVF3YvM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 </div>
 <div id="examples-7" class="section level2">
 <h2><span class="header-section-number">9.3</span> Examples</h2>
@@ -226,8 +242,9 @@ unobtanium is not present.</p>
 <p>(<strong>Hint:</strong> One of these probabilities can be read off directly from the question prompt.
 The other needs to be calculated using Bayes’ Rule.)</p>
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/1csFTDXXULY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p></li>
-<li><p>One application where Bayes’ Theorem has been extremely successful is spam filtering. From historical data, the
-phrase “free money” is used in 10% of spam e-mails. That is, <span class="math inline">\(P(\text{&quot;free money&quot;} | \text{spam}) = 0.1\)</span>.
+<li><p>One application where Bayes’ Theorem has been extremely successful is spam filtering. From historical data,
+80% of all e-mail is spam, and the phrase “free money” is used in 10% of spam e-mails. That is,
+<span class="math inline">\(P(\text{&quot;free money&quot;} | \text{spam}) = 0.1\)</span>.
 The phrase is also used in 1% of non-spam e-mails. A new e-mail has just arrived which contains the phrase
 “free money”. Given this information, what is the probability that it is spam,
 <span class="math inline">\(P(\text{spam} | \text{&quot;free money&quot;})\)</span>?</p></li>

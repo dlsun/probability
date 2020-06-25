@@ -20,8 +20,16 @@ let $A$ be "currently a Cal Poly student" and $B$ be "went to high school in Cal
 - $P(A | B)$ is very low, as only a very small fraction of people who went to high school in CA are currently in college, much less 
 at Cal Poly.
 
-Bayes' Theorem is a way to convert probabilities of the form $P(B | A)$ into probabilities of the form $P(A | B)$. 
-Don't let its simplicity deceive you; it is one of the most important and powerful results in all of probability and statistics. 
+Bayes' Theorem is a way to convert probabilities of the form $P(B | A)$ into probabilities of the form $P(A | B)$. This switcheroo 
+is surprisingly common in probability and statistics. For example, 
+
+- Doctors know the probability that a patient tests positive ($B$) given that they have the disease ($A$), but a patient 
+is more interested in the probability that he has the disease ($A$) given that he tested positive ($B$).
+- E-mail providers can collect data on the probability that an e-mail contains a certain word ($B$) given that it is 
+spam ($A$), but a spam filter needs the probability that the e-mail is spam ($A$) given that it contains the word ($B$).
+
+Don't be deceived by its simplicity; Bayes' Theorem 
+is one of the most important and powerful results in all of probability and statistics. 
 
 ```{theorem, name="Bayes' Theorem"}
 \[ P(A | B) = \frac{P(A) P(B | A)}{P(B)}. \]
@@ -32,6 +40,11 @@ By the definition of conditional probability (\@ref(def:conditional)) and the mu
 P(A | B) = \frac{P(A \textbf{ and } B)}{P(B)} = \frac{P(A) P(B | A)}{P(B)}.
 \end{equation}
 ```
+
+The next video covers some of the intuition and the history behind Bayes' Theorem. Don't worry about the details for now. 
+This video is meant to be more inspiring than informative.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R13BD8qKeTg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 In most problems, you will combine Bayes' Theorem with the Law of Total Probability (\@ref(thm:ltp)). The solution to the 
 HIV testing example from above illustrates the common tricks.
@@ -50,11 +63,11 @@ P(\textbf{not } H) &= 0.99 & P(\textbf{not } T | H) &= 0.02 & P(T | \textbf{not 
 
 Since we already have $P(T | H)$ and we want to know $P(H | T)$, this is a job for Bayes' Rule:
 \[ P(H | T) = \frac{P(H) P(T | H)}{P(T)} = \frac{0.01 \cdot 0.98}{P(T)}. \]
-Unfortunately, we do not know $P(T)$, the probability of testing positive. However, we do know 
+Unfortunately, we do not know $P(T)$, the probability of testing positive overall. However, we do know 
 its probability, conditional on HIV status. So we apply the Law of Total Probability, partitioning 
 by HIV status:
 \[ P(T) = P(H) P(T | H) + P(\textbf{not } H) P(T | \textbf{not } H) = 0.01 \cdot 0.98 + 0.99 \cdot 0.06. \]
-Now we plug this into Bayes' Rule:
+Finally, we plug this result into Bayes' Rule:
 \[ P(H | T) = \frac{0.01 \cdot 0.98}{0.01 \cdot 0.98 + 0.99 \cdot 0.06} = .142. \]
 
 So even though the patient tested positive for HIV, he only has a 14.2% chance of actually having HIV!
@@ -91,6 +104,11 @@ have the disease, that the false positives overwhelm the true positives.
 	\end{tikzpicture}
 ```
 
+This video will give you deep insights about Bayes' rule. You should be able to follow most of it, but you may want to come 
+back to this video after trying some of the examples below.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HZGCoVF3YvM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Examples
 
 1. The rare mineral unobtanium is present in only 1% of rocks in a mine. You have an 
@@ -106,8 +124,9 @@ unobtanium is not present.
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/1csFTDXXULY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-2. One application where Bayes' Theorem has been extremely successful is spam filtering. From historical data, the 
-phrase "free money" is used in 10% of spam e-mails. That is, $P(\text{"free money"} | \text{spam}) = 0.1$. 
+2. One application where Bayes' Theorem has been extremely successful is spam filtering. From historical data, 
+80% of all e-mail is spam, and the phrase "free money" is used in 10% of spam e-mails. That is, 
+$P(\text{"free money"} | \text{spam}) = 0.1$. 
 The phrase is also used in 1% of non-spam e-mails. A new e-mail has just arrived which contains the phrase
 "free money". Given this information, what is the probability that it is spam, 
 $P(\text{spam} | \text{"free money"})$?

@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-24" />
+<meta name="date" content="2020-06-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="independence.html"/>
-
+<link rel="next" href="bayes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -115,6 +115,11 @@
 <li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-7"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -153,7 +158,7 @@ On the other hand, if the coin we chose was double-headed, then
 the overall probability that the coin lands heads?</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-16" class="theorem"><strong>Theorem 8.1  (Law of Total Probability)  </strong></span>Let <span class="math inline">\(A_1, ..., A_n\)</span> be a partition of the possible outcomes. Then:
+<span id="thm:ltp" class="theorem"><strong>Theorem 8.1  (Law of Total Probability)  </strong></span>Let <span class="math inline">\(A_1, ..., A_n\)</span> be a partition of the possible outcomes. Then:
 <span class="math display">\[ P(B) = \sum_{i=1}^n P(A_i) P(B | A_i). \]</span>
 </div>
 
@@ -197,7 +202,7 @@ the fact that it is much closer to the former is because choosing the ordinary c
 <div id="worked-examples" class="section level2 unnumbered">
 <h2>Worked Examples</h2>
 <ol style="list-style-type: decimal">
-<li><p>Here are things we already know about a deck of cards:</p>
+<li><p>Here are some things we already know about a deck of cards:</p>
 <ul>
 <li>The top card in a shuffled deck of cards has a <span class="math inline">\(13/52\)</span> chance of being a diamond.</li>
 <li>If the top card is a diamond, then the second card has a <span class="math inline">\(12/51\)</span> chance of being a diamond.</li>
@@ -205,11 +210,12 @@ the fact that it is much closer to the former is because choosing the ordinary c
 </ul>
 <p>Now, suppose we “burn” (i.e., discard) the top card without looking at it. What is the
 probability that the second card is a diamond? Use the Law of Total Probability, conditioning on the top card.
-Why does the answer make intuitive sense?</p></li>
+Does burning cards affect probabilities?</p></li>
 <li><p>Anny is a fan of chess competitor Hikaru Nakamura, and tomorrow is the World Chess Championship.
-Her big superstition is that if it rains on a tournament day, Hikaru has a <span class="math inline">\(70\%\)</span> chance of winning the whole thing,
-and if it does not rain, he has only a <span class="math inline">\(15\%\)</span> chance of winning. Anny checks the weather at the night and it says
-the chance of tomorrow is <span class="math inline">\(30\%\)</span>. What is the probability that Hikaru wins the World Chess Championship?</p></li>
+She is superstitious and believes that the weather influences how he will perform. Hikaru has a 60% chance of winning
+if it rains, a 25% chance if it is cloudy, and a 10% chance if it is sunny. Anny checks the weather the night before,
+and the forecast says that the chance of rain tomorrow is 40%; otherwise, it is equally likely to be cloudy as sunny.
+What is the probability that Hikaru wins the World Chess Championship?</p></li>
 </ol>
 
 </div>
@@ -219,8 +225,8 @@ the chance of tomorrow is <span class="math inline">\(30\%\)</span>. What is the
           </div>
         </div>
       </div>
-<a href="independence.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="independence.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
