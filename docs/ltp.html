@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 8 Law of Total Probability | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 8 Law of Total Probability | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 8 Law of Total Probability | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-06-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="independence.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="double-counting.html"><a href="double-counting.html"><i class="fa fa-check"></i><b>5</b> Double Counting</a><ul>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#motivating-example-4"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#theory-3"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#examples-4"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conditional.html"><a href="conditional.html"><i class="fa fa-check"></i><b>6</b> Conditional Probability</a><ul>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#theory-4"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#examples-5"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>7</b> Independence</a><ul>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#theory-5"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#examples-6"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ltp" class="section level1">
+<h1><span class="header-section-number">Lesson 8</span> Law of Total Probability</h1>
+<div id="motivating-example-7" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>You watch a magician place 4 ordinary quarters and 1 double-headed quarter into a box. If you select a coin
+from the box at random and toss it, what is the probability that it lands heads?</p>
+</div>
+<div id="theory-6" class="section level2 unnumbered">
+<h2>Theory</h2>
+<p>In some situations, calculating the probability of an event is easy, once you condition on the right information.
+For example, in the example above, if we knew that the coin we chose was ordinary, then:
+<span class="math display">\[ P(\text{heads} | \text{ordinary}) = \frac{1}{2}. \]</span>
+On the other hand, if the coin we chose was double-headed, then
+<span class="math display">\[ P(\text{heads} | \text{double-headed}) = 1. \]</span></p>
+<p>How do we combine these conditional probabilities to come up with <span class="math inline">\(P(\text{heads})\)</span>,
+the overall probability that the coin lands heads?</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-16" class="theorem"><strong>Theorem 8.1  (Law of Total Probability)  </strong></span>Let <span class="math inline">\(A_1, ..., A_n\)</span> be a partition of the possible outcomes. Then:
+<span class="math display">\[ P(B) = \sum_{i=1}^n P(A_i) P(B | A_i). \]</span>
+</div>
+
+<p>A <strong>partition</strong> is a collection of non-overlapping events that cover all the possible outcomes.
+For example, in the example above, <span class="math inline">\(A_1 = \{ \text{ordinary}\}\)</span> and <span class="math inline">\(A_2 = \{ \text{double-headed} \}\)</span>
+is a partition, since the coin we pick has to be one of the two and it cannot be both.</p>
+<p>Applying the Law of Total Probability to this problem, we have
+<span class="math display">\[\begin{align*}
+P(\text{heads}) &amp;= P(\text{ordinary}) P(\text{heads} | \text{ordinary}) + P(\text{double-headed}) P(\text{heads} | \text{double-headed}) \\
+&amp;= 0.8 \cdot \frac{1}{2} + 0.2 \cdot 1 \\
+&amp;= 0.6
+\end{align*}\]</span></p>
+<p>So the overall probability <span class="math inline">\(P(B)\)</span> is just a weighted average of the conditional probabilities
+<span class="math inline">\(P(B | A_i)\)</span>, where the “weights” are <span class="math inline">\(P(A_i)\)</span>. (Note that these “weights” have to add up to 1, since
+<span class="math inline">\(A_1, ..., A_n\)</span> are a partition of all the possible outcomes, whose total probability is <span class="math inline">\(1.0\)</span>.)
+This means that the overall probability <span class="math inline">\(P(B)\)</span> will always lie somewhere between the conditional
+probabilities <span class="math inline">\(P(B | A_i)\)</span>, with more weight given to the more probable scenarios. For example,
+we could have predicted that <span class="math inline">\(P(\text{heads})\)</span> would lie somewhere between <span class="math inline">\(\frac{1}{2}\)</span> and <span class="math inline">\(1\)</span>;
+the fact that it is much closer to the former is because choosing the ordinary coin was more probable.</p>
+<!-- Previously we have encountered problems before that give us the direct probabilities of an event A of occuring and an event B happening.  -->
+<!-- Suppose now we don't know the probability of event A happening but we know a few other things.  -->
+<!-- ```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext='png', fig.cap='Probability Space of $X$'} -->
+<!-- \begin{tikzpicture}[fill=gray] -->
+<!-- % left hand -->
+<!-- \scope -->
+<!-- \clip (-2,-2) rectangle (2,2) -->
+<!--       (1,0) circle (1); -->
+<!--        (0,0) circle (1); -->
+<!-- \endscope -->
+<!-- \draw (0,0)  node[align=center,minimum size=3cm,draw,circle] {$A$} -->
+<!--       (-2,-2) rectangle (3,2); -->
+<!-- \draw (2,1.5) node[align = center] {$B$}; -->
+<!-- \draw (-1.5,1.5) node[align = center] {$B^c$}; -->
+<!-- \draw (0.5,-2) -- (0.5,2); -->
+<!-- \end{tikzpicture} -->
+<!-- ``` -->
+<!-- We can see from the diagram that $P(X = B \cap A)$ makes up the right part of $A$'s circle and $P(X = B^c \cap A)$ makes up the left part of $A$'s circle. So it is clear that probability of event $A$ is just the sum of $P(X = B \cap A)$ and $P(X = B^c \cap A)$.  -->
+<!-- Another way of writing this using the conditional probability version of the "and" formula  is simply -->
+<!-- $$P(A) = \sum_x P(X=x) P(A | X=x). $$ -->
+</div>
+<div id="worked-examples" class="section level2 unnumbered">
+<h2>Worked Examples</h2>
+<ol style="list-style-type: decimal">
+<li><p>Here are things we already know about a deck of cards:</p>
+<ul>
+<li>The top card in a shuffled deck of cards has a <span class="math inline">\(13/52\)</span> chance of being a diamond.</li>
+<li>If the top card is a diamond, then the second card has a <span class="math inline">\(12/51\)</span> chance of being a diamond.</li>
+<li>If the top card is not a diamond, then the second card has a <span class="math inline">\(13/51\)</span> chance of being a diamond.</li>
+</ul>
+<p>Now, suppose we “burn” (i.e., discard) the top card without looking at it. What is the
+probability that the second card is a diamond? Use the Law of Total Probability, conditioning on the top card.
+Why does the answer make intuitive sense?</p></li>
+<li><p>Anny is a fan of chess competitor Hikaru Nakamura, and tomorrow is the World Chess Championship.
+Her big superstition is that if it rains on a tournament day, Hikaru has a <span class="math inline">\(70\%\)</span> chance of winning the whole thing,
+and if it does not rain, he has only a <span class="math inline">\(15\%\)</span> chance of winning. Anny checks the weather at the night and it says
+the chance of tomorrow is <span class="math inline">\(30\%\)</span>. What is the probability that Hikaru wins the World Chess Championship?</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="independence.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/total-probability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
