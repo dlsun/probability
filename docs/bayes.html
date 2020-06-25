@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 9 Bayes’ Theorem | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 9 Bayes’ Theorem | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 9 Bayes’ Theorem | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-06-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ltp.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="double-counting.html"><a href="double-counting.html"><i class="fa fa-check"></i><b>5</b> Double Counting</a><ul>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#motivating-example-4"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#theory-3"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#examples-4"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conditional.html"><a href="conditional.html"><i class="fa fa-check"></i><b>6</b> Conditional Probability</a><ul>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#theory-4"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#examples-5"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>7</b> Independence</a><ul>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#theory-5"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#examples-6"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-7"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bayes" class="section level1">
+<h1><span class="header-section-number">Lesson 9</span> Bayes’ Theorem</h1>
+<div id="motivating-example-8" class="section level2">
+<h2><span class="header-section-number">9.1</span> Motivating Example</h2>
+<p>The ELISA test is used to screen blood for HIV.</p>
+<ul>
+<li>When the blood contains HIV, it gives a positive result 98% of the time.</li>
+<li>When the blood does not contain HIV, it gives a negative result 94% of the time.</li>
+</ul>
+<p>The prevalence of HIV is about 1% in the adult male population.
+A patient has just tested positive and wants to know the probability that he has HIV.
+What would you tell him?</p>
+</div>
+<div id="theory-7" class="section level2">
+<h2><span class="header-section-number">9.2</span> Theory</h2>
+<p>The conditional probabilities <span class="math inline">\(P(A | B)\)</span> and <span class="math inline">\(P(B | A)\)</span> are not the same. For example,
+let <span class="math inline">\(A\)</span> be “Cal Poly student” and <span class="math inline">\(B\)</span> be “went to high school in California”.</p>
+<ul>
+<li><span class="math inline">\(P(B | A)\)</span> is very high, about <span class="math inline">\(0.85\)</span>, since most Cal Poly students are in-state.</li>
+<li><span class="math inline">\(P(A | B)\)</span> is very low, as only a very small fraction of people who went to high school in CA are currently Cal Poly students.</li>
+</ul>
+<p>Bayes’ Theorem is a way to convert probabilities of the form <span class="math inline">\(P(B | A)\)</span> into probabilities. Don’t let its simplicity
+deceive you; it is one of the most important and powerful results in all of probability and statistics.</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-16" class="theorem"><strong>Theorem 9.1  (Bayes’ Theorem)  </strong></span><span class="math display">\[ P(A | B) = \frac{P(A) P(B | A)}{P(B)}. \]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> By the definition of conditional probability (<a href="conditional.html#def:conditional">6.1</a>) and the multiplication rule (<a href="conditional.html#thm:multiplication-rule">6.1</a>):
+<span class="math display">\[\begin{equation} 
+P(A | B) = \frac{P(A \textbf{ and } B)}{P(B)} = \frac{P(A) P(B | A)}{P(B)}.
+\end{equation}\]</span>
+</div>
+
+<p>In most problems, you will combine Bayes’ Theorem with the Law of Total Probability (<a href="ltp.html#thm:ltp">8.1</a>). The solution to the
+motivating example illustrates all of the common tricks.</p>
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> Let’s represent HIV positive by <span class="math inline">\(H\)</span> and a positive ELISA test by <span class="math inline">\(T\)</span>.</p>
+<p>The problem statement tells us that
+<span class="math display">\[\begin{align*}
+P(H) &amp;= 0.01 &amp; P(T | H) &amp;= 0.98 &amp; P(\textbf{not } T | \textbf{not } H) &amp;= 0.94.
+\end{align*}\]</span>
+By the Complement Rule, we can infer that
+<span class="math display">\[\begin{align*}
+P(\textbf{not } H) = 0.99 &amp; P(\textbf{not } T | H) &amp;= 0.02 &amp; P(T | \textbf{not } H) &amp;= 0.06.
+\end{align*}\]</span></p>
+<p>Since we already have <span class="math inline">\(P(T | H)\)</span> and we want to know <span class="math inline">\(P(H | T)\)</span>, this is a job for Bayes’ Rule:
+<span class="math display">\[ P(H | T) = \frac{P(H) P(T | H)}{P(T)} = \frac{0.01 \cdot 0.98}{P(T)}. \]</span>
+Unfortunately, we do not know <span class="math inline">\(P(T)\)</span>, the probability of testing positive. However, we do know
+its probability, conditional on HIV status. So we apply the Law of Total Probability, partitioning
+by HIV status:
+<span class="math display">\[ P(T) = P(H) P(T | H) + P(\textbf{not } H) P(T | \textbf{not } H) = 0.01 \cdot 0.98 + 0.99 \cdot 0.06. \]</span>
+Now we plug this into Bayes’ Rule:
+<span class="math display">\[ P(H | T) = \frac{0.01 \cdot 0.98}{0.01 \cdot 0.98 + 0.99 \cdot 0.06} = .142. \]</span></p>
+So even though the patient tested positive for HIV, he only has a 14.2% chance of actually having HIV!
+</div>
+
+<p>The low probability is surprising at first. But it makes sense if we think about the problem geometrically. The figure below partitions
+adult males based on their HIV status and test status. The shaded area represents all people who tested positive. The people
+who actually have HIV make up only a tiny fraction of all the people who tested positive because there are so many more people who do not
+have the disease, that the false positives overwhelm the true positives.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-19"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" alt="Intuition for Bayes' Rule" width="60%" />
+<p class="caption">
+Figure 9.1: Intuition for Bayes’ Rule
+</p>
+</div>
+</div>
+<div id="examples-7" class="section level2">
+<h2><span class="header-section-number">9.3</span> Examples</h2>
+<ol style="list-style-type: decimal">
+<li><p>The rare mineral unobtanium is present in only 1% of rocks in a mine. You have an
+unobtanium detector, which never fails to detect unobtanium when it is present.
+Otherwise, it is still reliable, returning accurate readings 90% of the time when
+unobtanium is not present.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What is <span class="math inline">\(P(\text{unobtanium detected} | \text{unobtanium present})\)</span>?</li>
+<li>What is <span class="math inline">\(P(\text{unobtanium present} | \text{unobtanium detected})\)</span>?</li>
+</ol>
+<p>(<strong>Hint:</strong> One of these probabilities can be read off directly from the question prompt.
+The other needs to be calculated using Bayes’ Rule.)</p>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/1csFTDXXULY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p></li>
+<li><p>One application where Bayes’ Theorem has been extremely successful is spam filtering. From historical data, the
+phrase “free money” is used in 10% of spam e-mails. That is, <span class="math inline">\(P(\text{&quot;free money&quot;} | \text{spam}) = 0.1\)</span>.
+The phrase is also used in 1% of non-spam e-mails. A new e-mail has just arrived which contains the phrase
+“free money”. Given this information, what is the probability that it is spam,
+<span class="math inline">\(P(\text{spam} | \text{&quot;free money&quot;})\)</span>?</p></li>
+<li><p>A certain disease afflicts 10% of the population. A test for the disease is 90% accurate for patients with the disease
+and 80% accurate for patients without the disease. Suppose you test positive for the disease.
+What is the probability that you actually have the disease?</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ltp.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/bayes.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
