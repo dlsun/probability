@@ -151,22 +151,58 @@ answer may surprise you….</p>
 <p>In general, to calculate a conditional probability, we use the following formula.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-9" class="definition"><strong>Definition 6.1  (Conditional Probability)  </strong></span><span class="math display">\[ P(B | A) = \frac{P(A \text{ and } B)}{P(A)}. \]</span>
+<span id="def:conditional" class="definition"><strong>Definition 6.1  (Conditional Probability)  </strong></span><span class="math display">\[ P(B | A) = \frac{P(A \textbf{ and } B)}{P(A)}. \]</span>
 </div>
 
-<p>The probability <span class="math inline">\(P(A \text{ and } B)\)</span> is called the <strong>joint probability</strong> of the two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
+<p>The probability <span class="math inline">\(P(A \textbf{ and } B)\)</span> is called the <strong>joint probability</strong> of the two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
 <p>So the conditional probability above is</p>
 <p><span class="math display">\[\begin{align*}
- P(\text{both boys}\ |\ \text{at least one boy}) &amp;= \frac{P(\text{both boys} \text{ and } \text{at least one boy})}{P(\text{at least one boy})} \\ 
+ P(\text{both boys}\ |\ \text{at least one boy}) &amp;= \frac{P(\text{both boys} \textbf{ and } \text{at least one boy})}{P(\text{at least one boy})} \\ 
  &amp;= \frac{P(\text{both boys})}{P(\text{at least one boy})} \\
  &amp;= \frac{1/4}{3/4} \\
  &amp;= \frac{1}{3}. 
  \end{align*}\]</span></p>
-<p>In the above example, the joint probability <span class="math inline">\(P(\text{both boys} \text{ and } \text{at least one boy})\)</span> is easy to calculate because the two events are redundant. If we know that both are boys, then we automatically know that at least one is a boy.</p>
+<p>In the above example, the joint probability <span class="math inline">\(P(\text{both boys} \textbf{ and } \text{at least one boy})\)</span> is easy to calculate because the two events are redundant. If we know that both are boys, then we automatically know that at least one is a boy.</p>
 <p>The information that at least one of her children attends St. Joseph’s (and, thus, is a boy) increases the probability that she has two boys from <span class="math inline">\(1/4\)</span> to <span class="math inline">\(1/3\)</span>.</p>
 <p>If this result was counterintuitive to you, the video below gives some intuition.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/T-w-e7RNdgY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+<p><br/></p>
+We can rearrange the conditional probability formula to get a formula that is useful for calculating the joint probability
+when the conditional probability is known.
+
+<div class="theorem">
+<span id="thm:multiplication-rule" class="theorem"><strong>Theorem 6.1  (Multiplication Rule)  </strong></span><span class="math display">\[ P(A \textbf{ and } B) = P(A) \cdot P(B | A). \]</span>
+</div>
+
+
+<div class="example">
+<span id="exm:unnamed-chunk-9" class="example"><strong>Example 6.1  </strong></span>Two cards are dealt off the top of a shuffled deck of cards. What is the probability that both are queens?
+</div>
+
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> In this case, we want to calculate the joint probability
+<span class="math display">\[ P(\text{1st card is Q} \textbf{ and } \text{2nd card is Q}), \]</span>
+and the conditional probability
+<span class="math display">\[ P(\text{2nd card is Q} | \text{1st card is Q}) \]</span>
+is simple. If it is known that
+the 1st card was a queen, then there are only 51 cards remaining in the deck, of which 3 are queens, so
+<span class="math display">\[  P(\text{2nd card is Q} | \text{1st card is Q}) = \frac{3}{51}. \]</span></p>
+<p>By the Multiplication Rule (<a href="conditional.html#thm:multiplication-rule">6.1</a>),
+<span class="math display">\[\begin{align*}
+P(\text{1st card is Q} \textbf{ and } \text{2nd card is Q}) &amp;= P(\text{1st card is Q}) \cdot P(\text{2nd card is Q} | \text{1st card is Q}) \\
+&amp;= \frac{4}{52} \cdot \frac{3}{51} 
+\end{align*}\]</span></p>
+<p>Let’s compare this with a solution based on counting the outcomes directly. There are <span class="math inline">\(52 \cdot 51\)</span> equally likely (ordered) outcomes,
+of which <span class="math inline">\(4 \cdot 3\)</span> are both queens. Therefore, the probability is
+<span class="math display">\[ P(\text{1st card is queen} \textbf{ and } \text{2nd card is queen}) = \frac{4 \cdot 3}{52 \cdot 51}. \]</span>
+We get the same answer; the only thing that changes is the order of operations:</p>
+<ul>
+<li>In counting, we first multiply to get the number of outcomes, then divide to get probabilities.</li>
+<li>In the multiplication rule, we first divide to get probabilities, then multiply the probabilities.
+</div></li>
+</ul>
 </div>
 <div id="examples-5" class="section level2 unnumbered">
 <h2>Examples</h2>

@@ -173,7 +173,7 @@ red pocket on any of the first 4 spins:
 <p>To verify that the two probabilities are <em>exactly</em> the same, we
 do the calculation:</p>
 <p><span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= \frac{P(\text{not red on first 4 spins and red on 5th spin}) }{P(\text{not red on first 4 spins})} \\
+P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= \frac{P(\text{not red on first 4 spins} \textbf{ and } \text{red on 5th spin}) }{P(\text{not red on first 4 spins})} \\
 &amp;= \frac{ 20^4 \cdot 18 \big/ 38^5 }{20^4 \big/ 38^4} \\
 &amp;= \frac{18}{38}.
 \end{align*}\]</span></p>
@@ -189,18 +189,20 @@ independent of the fact that he has lost each of the last 4 spins. The folk beli
 “due” for a win after a series of losses is plain wrong and is known as the <strong>gambler’s fallacy</strong>.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-10" class="definition"><strong>Definition 7.1  (Independence)  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be <strong>independent</strong> if the
+<span id="def:unnamed-chunk-11" class="definition"><strong>Definition 7.1  (Independence)  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be <strong>independent</strong> if the
 <span class="math display" id="eq:independence">\[\begin{equation}
 P(B | A) = P(B).
 \tag{7.1}
 \end{equation}\]</span>
 </div>
 
+The next result follows by applying the Multiplication Rule (<a href="conditional.html#thm:multiplication-rule">6.1</a>) to
+the definition of independence.
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-11" class="theorem"><strong>Theorem 7.1  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if their probabilities multiply:
+<span id="thm:unnamed-chunk-12" class="theorem"><strong>Theorem 7.1  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if their probabilities multiply:
 <span class="math display" id="eq:independence-mult">\[\begin{equation}
-P(A \text{ and } B) = P(A) P(B).
+P(A \textbf{ and } B) = P(A) P(B).
 \tag{7.2}
 \end{equation}\]</span>
 </div>
@@ -209,12 +211,12 @@ P(A \text{ and } B) = P(A) P(B).
 <div class="proof">
 <p> <span class="proof"><em>Proof. </em></span> First, we assume <a href="independence.html#eq:independence">(7.1)</a> and show that <a href="independence.html#eq:independence-mult">(7.2)</a> holds:
 <span class="math display">\[\begin{align*}
-P(A \text{ and } B) &amp;= P(A) P(B | A) &amp; \text{by the Multiplication Rule} \\
+P(A \textbf{ and } B) &amp;= P(A) P(B | A) &amp; \text{by the Multiplication Rule} \\
 &amp;= P(A) P(B) &amp; \text{by assumption}.
 \end{align*}\]</span></p>
 Conversely, we assume <a href="independence.html#eq:independence-mult">(7.2)</a> and show that <a href="independence.html#eq:independence">(7.1)</a> holds:
 <span class="math display">\[\begin{align*}
-P(B | A) &amp;= \frac{P(A \text{ and } B)}{P(A)} &amp; \text{by the definition of conditional probability}  \\
+P(B | A) &amp;= \frac{P(A \textbf{ and } B)}{P(A)} &amp; \text{by the definition of conditional probability}  \\
 &amp;= \frac{P(A) P(B)}{P(A)} &amp; \text{by assumption} \\
 &amp;= P(B).
 \end{align*}\]</span>
@@ -225,7 +227,7 @@ P(B | A) &amp;= \frac{P(A \text{ and } B)}{P(A)} &amp; \text{by the definition o
 </iframe>
 
 <div class="example">
-<span id="exm:unnamed-chunk-13" class="example"><strong>Example 7.1  </strong></span>You and a fellow castaway are stranded on a desert island, playing dice for the last banana. Two dice will be rolled.
+<span id="exm:unnamed-chunk-14" class="example"><strong>Example 7.1  </strong></span>You and a fellow castaway are stranded on a desert island, playing dice for the last banana. Two dice will be rolled.
 If the biggest number is 1, 2, 3, or 4, then Player 1 wins. If the biggest number is 5 or 6, then Player 2 wins.
 Would you rather be Player 1 or Player 2?
 </div>
@@ -235,7 +237,7 @@ Would you rather be Player 1 or Player 2?
  <span class="solution"><em>Solution. </em></span> Player 2 has a <span class="math inline">\(20/36 = 0.5556\)</span> chance of winning. Here’s why:
 <span class="math display">\[\begin{align*} 
 P(\text{biggest number is 5, 6}) &amp;= 1 - P(\text{biggest number is 1, 2, 3, 4}) \\
-&amp;= 1 - P(\text{1st die is 1, 2, 3, 4 and 2nd die is 1, 2, 3, 4}) \\
+&amp;= 1 - P(\text{1st die is 1, 2, 3, 4} \textbf{ and } \text{2nd die is 1, 2, 3, 4}) \\
 &amp;= 1 - \frac{4}{6} \cdot \frac{4}{6}\ \ \text{(by independence)} \\
 &amp;= 1 - \frac{16}{36} \\
 &amp;= \frac{20}{36}
