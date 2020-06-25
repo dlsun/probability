@@ -113,12 +113,12 @@
 <li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
 <li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
-<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#examples-7"><i class="fa fa-check"></i>Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
 <li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
 <li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
-<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-7"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-8"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -152,6 +152,11 @@
 <p>The prevalence of HIV is about 1% in the adult male population.
 A patient has just tested positive and wants to know the probability that he has HIV.
 What would you tell him?</p>
+<p>The solution to this problem involves an important theorem in probability and statistics called
+<strong>Bayes’ Theorem</strong>. This video covers some of the intuition and the history behind Bayes’ Theorem.
+Don’t worry about the details for now. This video is meant to be more inspiring than informative.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R13BD8qKeTg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 </div>
 <div id="theory-7" class="section level2">
 <h2><span class="header-section-number">9.2</span> Theory</h2>
@@ -185,12 +190,12 @@ P(A | B) = \frac{P(A \textbf{ and } B)}{P(B)} = \frac{P(A) P(B | A)}{P(B)}.
 \end{equation}\]</span>
 </div>
 
-<p>The next video covers some of the intuition and the history behind Bayes’ Theorem. Don’t worry about the details for now.
-This video is meant to be more inspiring than informative.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/R13BD8qKeTg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<p>The next video provides intuition about this proof, connecting it with concepts from the past few lessons, including
+conditional probability and independence.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U_85TaXbeIo?start=13" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>In most problems, you will combine Bayes’ Theorem with the Law of Total Probability (<a href="ltp.html#thm:ltp">8.1</a>). The solution to the
-HIV testing example from above illustrates the common tricks.</p>
+<p>To solve most problems, you will need to combine Bayes’ Theorem with the Law of Total Probability (<a href="ltp.html#thm:ltp">8.1</a>).
+The solution to the HIV testing example from above demonstrates some of the common tricks.</p>
 
 <div class="solution">
 <p> <span class="solution"><em>Solution. </em></span> Let’s represent HIV positive by <span class="math inline">\(H\)</span> and a positive ELISA test by <span class="math inline">\(T\)</span>.</p>
@@ -223,12 +228,12 @@ have the disease, that the false positives overwhelm the true positives.</p>
 Figure 9.1: Intuition for Bayes’ Rule
 </p>
 </div>
-<p>This video will give you deep insights about Bayes’ rule. You should be able to follow most of it, but you may want to come
+<p>The next video will give you deep insights about Bayes’ rule. You should be able to follow most of it, but you may want to come
 back to this video after trying some of the examples below.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HZGCoVF3YvM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="examples-7" class="section level2">
+<div id="examples-8" class="section level2">
 <h2><span class="header-section-number">9.3</span> Examples</h2>
 <ol style="list-style-type: decimal">
 <li><p>The rare mineral unobtanium is present in only 1% of rocks in a mine. You have an

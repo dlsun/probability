@@ -11,6 +11,12 @@ The prevalence of HIV is about 1\% in the adult male population.
 A patient has just tested positive and wants to know the probability that he has HIV. 
 What would you tell him?
 
+The solution to this problem involves an important theorem in probability and statistics called 
+**Bayes' Theorem**. This video covers some of the intuition and the history behind Bayes' Theorem. 
+Don't worry about the details for now. This video is meant to be more inspiring than informative.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R13BD8qKeTg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Theory
 
 The conditional probabilities $P(A | B)$ and $P(B | A)$ are not the same. For example, 
@@ -41,13 +47,13 @@ P(A | B) = \frac{P(A \textbf{ and } B)}{P(B)} = \frac{P(A) P(B | A)}{P(B)}.
 \end{equation}
 ```
 
-The next video covers some of the intuition and the history behind Bayes' Theorem. Don't worry about the details for now. 
-This video is meant to be more inspiring than informative.
+The next video provides intuition about this proof, connecting it with concepts from the past few lessons, including 
+conditional probability and independence.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/R13BD8qKeTg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U_85TaXbeIo?start=13" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-In most problems, you will combine Bayes' Theorem with the Law of Total Probability (\@ref(thm:ltp)). The solution to the 
-HIV testing example from above illustrates the common tricks.
+To solve most problems, you will need to combine Bayes' Theorem with the Law of Total Probability (\@ref(thm:ltp)). 
+The solution to the HIV testing example from above demonstrates some of the common tricks.
 
 ```{solution}
 Let's represent HIV positive by $H$ and a positive ELISA test by $T$.
@@ -104,7 +110,7 @@ have the disease, that the false positives overwhelm the true positives.
 	\end{tikzpicture}
 ```
 
-This video will give you deep insights about Bayes' rule. You should be able to follow most of it, but you may want to come 
+The next video will give you deep insights about Bayes' rule. You should be able to follow most of it, but you may want to come 
 back to this video after trying some of the examples below.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HZGCoVF3YvM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

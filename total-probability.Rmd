@@ -23,7 +23,7 @@ Let $A_1, ..., A_n$ be a partition of the possible outcomes. Then:
 
 A **partition** is a collection of non-overlapping events that cover all the possible outcomes. 
 For example, in the example above, $A_1 = \{ \text{ordinary}\}$ and $A_2 = \{ \text{double-headed} \}$
-is a partition, since the coin we pick has to be one of the two and it cannot be both.
+is a partition, since the coin that we selected has to be one of the two and cannot be both.
 
 Applying the Law of Total Probability to this problem, we have 
 \begin{align*}
@@ -66,10 +66,9 @@ the fact that it is much closer to the former is because choosing the ordinary c
 <!-- $$P(A) = \sum_x P(X=x) P(A | X=x). $$ -->
 
 
-## Worked Examples {-}
+## Examples {-}
 
 1. Here are some things we already know about a deck of cards:
-
     - The top card in a shuffled deck of cards has a $13/52$ chance of being a diamond.
     - If the top card is a diamond, then the second card has a $12/51$ chance of being a diamond.
     - If the top card is not a diamond, then the second card has a $13/51$ chance of being a diamond.

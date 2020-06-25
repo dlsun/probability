@@ -113,12 +113,12 @@
 <li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
 <li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
-<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#examples-7"><i class="fa fa-check"></i>Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
 <li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
 <li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
-<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-7"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-8"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -164,7 +164,7 @@ the overall probability that the coin lands heads?</p>
 
 <p>A <strong>partition</strong> is a collection of non-overlapping events that cover all the possible outcomes.
 For example, in the example above, <span class="math inline">\(A_1 = \{ \text{ordinary}\}\)</span> and <span class="math inline">\(A_2 = \{ \text{double-headed} \}\)</span>
-is a partition, since the coin we pick has to be one of the two and it cannot be both.</p>
+is a partition, since the coin that we selected has to be one of the two and cannot be both.</p>
 <p>Applying the Law of Total Probability to this problem, we have
 <span class="math display">\[\begin{align*}
 P(\text{heads}) &amp;= P(\text{ordinary}) P(\text{heads} | \text{ordinary}) + P(\text{double-headed}) P(\text{heads} | \text{double-headed}) \\
@@ -199,10 +199,10 @@ the fact that it is much closer to the former is because choosing the ordinary c
 <!-- Another way of writing this using the conditional probability version of the "and" formula  is simply -->
 <!-- $$P(A) = \sum_x P(X=x) P(A | X=x). $$ -->
 </div>
-<div id="worked-examples" class="section level2 unnumbered">
-<h2>Worked Examples</h2>
+<div id="examples-7" class="section level2 unnumbered">
+<h2>Examples</h2>
 <ol style="list-style-type: decimal">
-<li><p>Here are some things we already know about a deck of cards:</p>
+<li>Here are some things we already know about a deck of cards:
 <ul>
 <li>The top card in a shuffled deck of cards has a <span class="math inline">\(13/52\)</span> chance of being a diamond.</li>
 <li>If the top card is a diamond, then the second card has a <span class="math inline">\(12/51\)</span> chance of being a diamond.</li>
