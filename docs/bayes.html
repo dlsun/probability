@@ -156,13 +156,14 @@ What would you tell him?</p>
 <div id="theory-7" class="section level2">
 <h2><span class="header-section-number">9.2</span> Theory</h2>
 <p>The conditional probabilities <span class="math inline">\(P(A | B)\)</span> and <span class="math inline">\(P(B | A)\)</span> are not the same. For example,
-let <span class="math inline">\(A\)</span> be “Cal Poly student” and <span class="math inline">\(B\)</span> be “went to high school in California”.</p>
+let <span class="math inline">\(A\)</span> be “currently a Cal Poly student” and <span class="math inline">\(B\)</span> be “went to high school in California”.</p>
 <ul>
 <li><span class="math inline">\(P(B | A)\)</span> is very high, about <span class="math inline">\(0.85\)</span>, since most Cal Poly students are in-state.</li>
-<li><span class="math inline">\(P(A | B)\)</span> is very low, as only a very small fraction of people who went to high school in CA are currently Cal Poly students.</li>
+<li><span class="math inline">\(P(A | B)\)</span> is very low, as only a very small fraction of people who went to high school in CA are currently in college, much less
+at Cal Poly.</li>
 </ul>
-<p>Bayes’ Theorem is a way to convert probabilities of the form <span class="math inline">\(P(B | A)\)</span> into probabilities. Don’t let its simplicity
-deceive you; it is one of the most important and powerful results in all of probability and statistics.</p>
+<p>Bayes’ Theorem is a way to convert probabilities of the form <span class="math inline">\(P(B | A)\)</span> into probabilities of the form <span class="math inline">\(P(A | B)\)</span>.
+Don’t let its simplicity deceive you; it is one of the most important and powerful results in all of probability and statistics.</p>
 
 <div class="theorem">
 <span id="thm:unnamed-chunk-16" class="theorem"><strong>Theorem 9.1  (Bayes’ Theorem)  </strong></span><span class="math display">\[ P(A | B) = \frac{P(A) P(B | A)}{P(B)}. \]</span>
@@ -177,7 +178,7 @@ P(A | B) = \frac{P(A \textbf{ and } B)}{P(B)} = \frac{P(A) P(B | A)}{P(B)}.
 </div>
 
 <p>In most problems, you will combine Bayes’ Theorem with the Law of Total Probability (<a href="ltp.html#thm:ltp">8.1</a>). The solution to the
-motivating example illustrates all of the common tricks.</p>
+HIV testing example from above illustrates the common tricks.</p>
 
 <div class="solution">
 <p> <span class="solution"><em>Solution. </em></span> Let’s represent HIV positive by <span class="math inline">\(H\)</span> and a positive ELISA test by <span class="math inline">\(T\)</span>.</p>
@@ -187,7 +188,7 @@ P(H) &amp;= 0.01 &amp; P(T | H) &amp;= 0.98 &amp; P(\textbf{not } T | \textbf{no
 \end{align*}\]</span>
 By the Complement Rule, we can infer that
 <span class="math display">\[\begin{align*}
-P(\textbf{not } H) = 0.99 &amp; P(\textbf{not } T | H) &amp;= 0.02 &amp; P(T | \textbf{not } H) &amp;= 0.06.
+P(\textbf{not } H) &amp;= 0.99 &amp; P(\textbf{not } T | H) &amp;= 0.02 &amp; P(T | \textbf{not } H) &amp;= 0.06.
 \end{align*}\]</span></p>
 <p>Since we already have <span class="math inline">\(P(T | H)\)</span> and we want to know <span class="math inline">\(P(H | T)\)</span>, this is a job for Bayes’ Rule:
 <span class="math display">\[ P(H | T) = \frac{P(H) P(T | H)}{P(T)} = \frac{0.01 \cdot 0.98}{P(T)}. \]</span>

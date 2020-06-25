@@ -1,0 +1,118 @@
+# Bayes' Theorem {#bayes}
+
+## Motivating Example
+
+The ELISA test is used to screen blood for HIV. 
+
+- When the blood contains HIV, it gives a positive result 98\% of the time. 
+- When the blood does not contain HIV, it gives a negative result 94\% of the time. 
+
+The prevalence of HIV is about 1\% in the adult male population. 
+A patient has just tested positive and wants to know the probability that he has HIV. 
+What would you tell him?
+
+## Theory
+
+The conditional probabilities $P(A | B)$ and $P(B | A)$ are not the same. For example, 
+let $A$ be "currently a Cal Poly student" and $B$ be "went to high school in California". 
+
+- $P(B | A)$ is very high, about $0.85$, since most Cal Poly students are in-state. 
+- $P(A | B)$ is very low, as only a very small fraction of people who went to high school in CA are currently in college, much less 
+at Cal Poly.
+
+Bayes' Theorem is a way to convert probabilities of the form $P(B | A)$ into probabilities of the form $P(A | B)$. 
+Don't let its simplicity deceive you; it is one of the most important and powerful results in all of probability and statistics. 
+
+```{theorem, name="Bayes' Theorem"}
+\[ P(A | B) = \frac{P(A) P(B | A)}{P(B)}. \]
+```
+```{proof}
+By the definition of conditional probability (\@ref(def:conditional)) and the multiplication rule (\@ref(thm:multiplication-rule)):
+\begin{equation} 
+P(A | B) = \frac{P(A \textbf{ and } B)}{P(B)} = \frac{P(A) P(B | A)}{P(B)}.
+\end{equation}
+```
+
+In most problems, you will combine Bayes' Theorem with the Law of Total Probability (\@ref(thm:ltp)). The solution to the 
+HIV testing example from above illustrates the common tricks.
+
+```{solution}
+Let's represent HIV positive by $H$ and a positive ELISA test by $T$.
+
+The problem statement tells us that 
+\begin{align*}
+P(H) &= 0.01 & P(T | H) &= 0.98 & P(\textbf{not } T | \textbf{not } H) &= 0.94.
+\end{align*}
+By the Complement Rule, we can infer that 
+\begin{align*}
+P(\textbf{not } H) &= 0.99 & P(\textbf{not } T | H) &= 0.02 & P(T | \textbf{not } H) &= 0.06.
+\end{align*}
+
+Since we already have $P(T | H)$ and we want to know $P(H | T)$, this is a job for Bayes' Rule:
+\[ P(H | T) = \frac{P(H) P(T | H)}{P(T)} = \frac{0.01 \cdot 0.98}{P(T)}. \]
+Unfortunately, we do not know $P(T)$, the probability of testing positive. However, we do know 
+its probability, conditional on HIV status. So we apply the Law of Total Probability, partitioning 
+by HIV status:
+\[ P(T) = P(H) P(T | H) + P(\textbf{not } H) P(T | \textbf{not } H) = 0.01 \cdot 0.98 + 0.99 \cdot 0.06. \]
+Now we plug this into Bayes' Rule:
+\[ P(H | T) = \frac{0.01 \cdot 0.98}{0.01 \cdot 0.98 + 0.99 \cdot 0.06} = .142. \]
+
+So even though the patient tested positive for HIV, he only has a 14.2% chance of actually having HIV!
+```
+
+The low probability is surprising at first. But it makes sense if we think about the problem geometrically. The figure below partitions 
+adult males based on their HIV status and test status. The shaded area represents all people who tested positive. The people 
+who actually have HIV make up only a tiny fraction of all the people who tested positive because there are so many more people who do not 
+have the disease, that the false positives overwhelm the true positives.
+
+```{r, echo=FALSE, engine='tikz', out.width='60%', fig.ext='png', fig.align='center', fig.cap="Intuition for Bayes' Rule"}
+	\begin{tikzpicture}[scale=.6]
+	
+	\draw (0, 0) rectangle (10, 10);
+
+		\draw (0.5, 0) -- (0.5, 10);
+		\node[above] at (0.25, 10) {{\scriptsize $H$}};
+		\node[above] at (5.5, 10) {{\scriptsize $\textbf{not } H$}};
+		\node[below] at (0.25, 0) {{\small 1\%}};
+		\node[below] at (5.5, 0) {{\small 99\%}};
+	
+		\draw[fill=gray!50] (0, 0) rectangle (0.5, 9.5);
+		\node at (0.25, 5) {$+$};
+		\node at (0.25, 9.65) {$-$};
+		\node[above,rotate=90] at (0, 5) {{\small 99\%}};
+		\node[above,rotate=90] at (0, 9.75) {{\small 1\%}};
+	
+		\draw[fill=gray!50] (0.5, 0) rectangle (10, 1.4);
+		\node at (5.5, 0.7) {$+$};
+		\node at (5.5, 6.5) {$-$};
+		\node[below,rotate=90] at (10, 0.7) {{\small 6\%}};
+		\node[below,rotate=90] at (10, 6.5) {{\small 94\%}};
+	
+	\end{tikzpicture}
+```
+
+## Examples
+
+1. The rare mineral unobtanium is present in only 1% of rocks in a mine. You have an 
+unobtanium detector, which never fails to detect unobtanium when it is present. 
+Otherwise, it is still reliable, returning accurate readings 90% of the time when 
+unobtanium is not present. 
+
+    a. What is $P(\text{unobtanium detected} | \text{unobtanium present})$? 
+    b. What is $P(\text{unobtanium present} | \text{unobtanium detected})$? 
+
+    (**Hint:** One of these probabilities can be read off directly from the question prompt. 
+    The other needs to be calculated using Bayes' Rule.)
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/1csFTDXXULY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+2. One application where Bayes' Theorem has been extremely successful is spam filtering. From historical data, the 
+phrase "free money" is used in 10% of spam e-mails. That is, $P(\text{"free money"} | \text{spam}) = 0.1$. 
+The phrase is also used in 1% of non-spam e-mails. A new e-mail has just arrived which contains the phrase
+"free money". Given this information, what is the probability that it is spam, 
+$P(\text{spam} | \text{"free money"})$?
+
+3. A certain disease afflicts 10% of the population. A test for the disease is 90% accurate for patients with the disease 
+and 80% accurate for patients without the disease. Suppose you test positive for the disease. 
+What is the probability that you actually have the disease?
+
