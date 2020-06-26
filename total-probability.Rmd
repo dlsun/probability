@@ -7,6 +7,8 @@ from the box at random and toss it, what is the probability that it lands heads?
 
 ## Theory {-}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kBckCdq3tB8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 In some situations, calculating the probability of an event is easy, once you condition on the right information.
 For example, in the example above, if we knew that the coin we chose was ordinary, then:
 \[ P(\text{heads} | \text{ordinary}) = \frac{1}{2}. \]
