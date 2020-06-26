@@ -1,0 +1,109 @@
+# Cumulative Distribution Functions {#cdf}
+
+## Theory {-}
+
+The p.m.f. (\@ref(def:pmf-function)) is one way to describe a random variable, but 
+it is not the only way. The **cumulative distribution function** is a different 
+representation that contains the same information as the p.m.f.
+
+```{definition cdf-function, name="Cumulative Distribution Function"}
+The **cumulative distribution function** (c.d.f.) is a function that returns the probability 
+that a random variable is _less than or equal_ to a particular value:
+\[ F(x) = P(X \leq x). \]
+It is called "cumulative" because it includes all the probability up to (and including) $x$.
+```
+
+```{example, name="Calculating the C.D.F."}
+Let's calculate the c.d.f. of $X$, the number of diamonds among the community cards, using the 
+p.m.f. that we calculated in Lesson \@ref(rv). Note that 
+$F(x)$ is the sum of all the probabilities up to $x$. So, for example, 
+\begin{align*}
+F(2.8) = P(X \leq 2.8) &= f(0) + f(1) + f(2) \\
+&= .2546 + .4243 + .2496 \\
+&= .9284.
+\end{align*}
+There is no simple formula for $F(x)$. However, we can describe it piecewise.
+\[ F(x) = \begin{cases} 0 & x \leq 0 \\
+.2546 & 0 \leq x < 1 \\
+.6788 & 1 \leq x < 2 \\
+.9284 & 2 \leq x < 3 \\
+.9926 & 3 \leq x < 4 \\
+.9997 & 4 \leq x < 5 \\
+1.0 & x \geq 5
+\end{cases}. \]
+Note that the c.d.f. of $X$ has the following properties:
+
+- It is constant between integers. Because it is impossible for the random variable $X$ 
+to assume non-integer values, $F(1.2) = P(X \leq 1.2)$ and $F(1) = P(X \leq 1)$ must be the same.
+- The value of $F(x)$ increases from 0 to 1 as $x$ increases. This makes sense because as $x$ increases, 
+we accumulate more and more probability.
+```
+
+```{example, name="Graphing the C.D.F."}
+The properties of the c.d.f. become clearer on a graph, like the one below. 
+Because the random variable $X$ cannot take on decimal values, the c.d.f. of $X$ does not change 
+between integers, giving it its step-function appearance.
+
+```{r cdf-graph, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(0:5, phyper(0:5, 11, 37, 5), pch=19, xlab="x", ylab="F(x)", xlim=c(-0.5, 5.5), ylim=c(-0.05, 1.05))
+points(0:5, phyper(-1:4, 11, 37, 5), xlab="x", ylab="f(x)")
+lines(c(-1, 0), c(0, 0), lwd=2)
+for(x in 0:5) {
+  p <- phyper(x, 11, 37, 5)
+  lines(c(x, x + 1), c(p, p), lwd=2)
+}
+```
+
+Note that the c.d.f. $F(x)$ can be evaluated at all values $x$, not just at integer values. 
+
+```
+
+```{example, name="Using the C.D.F."}
+Some probabilities are easier to calculate using the c.d.f. than using the p.m.f. 
+For example, the probability that Alice gets a flush, $P(X \geq 3)$, can be calculated 
+by using the complement rule (\@ref(thm:complement)) and looking up the appropriate 
+probability directly from the c.d.f. $F(x)$.
+
+\begin{align*} 
+P(X \geq 3) &= 1 - P(X < 3) \\
+&= 1 - P(X \leq 2) \\
+&= 1 - F(2) \\
+&= 1 - .9284 \\
+&= .0716
+\end{align*}
+
+Remember that the c.d.f. $F(x)$ always includes the probability of $x$. Since 
+$P(X < 3)$ should not include the probability of $3$, we use $F(2)$ instead of 
+$F(3)$.
+
+At the beginning of this lesson, we mentioned that the c.d.f. contains the exact same 
+information as the p.m.f., no more and no less. Therefore, it should be possible 
+to recover the p.m.f. from the c.d.f. 
+
+For example, how would we calculate $f(3) = P(X = 3)$, if we only knew the c.d.f. $F(x)$? We could
+subtract $P(X \leq 2)$ from $P(X \leq 3)$ to get just the probability that it is equal to 3.
+\begin{align*}
+f(3) = P(X = 3) &= P(X \leq 3) - P(X \leq 2) \\
+&= F(3) - F(2) \\
+&= .9926 - .9284 \\
+&= .0642,
+\end{align*}
+which agrees with the p.m.f. from Lesson \@ref(rv).
+```
+
+## Examples {-}
+
+1. Continuing with the example from the lesson, let $Y$ be the number of Jacks among the community cards. 
+Calculate and graph the c.d.f. of $Y$.
+
+2. Consider a random variable $Z$ with c.d.f. given by the formula
+\begin{align*} 
+F(x) &= \begin{cases} 1 - 3^{-\lfloor x \rfloor} & x \geq 0 \\ 0 & \text{otherwise} \end{cases}.
+\end{align*}
+(Note that $\lfloor x \rfloor$ denotes the _floor_ operator, which rounds $x$ down to the nearest integer. 
+So $\lfloor 3.9 \rfloor = 3$ and $\lfloor 7.1 \rfloor = 7$.) 
+
+    Graph the c.d.f. $F(x)$. Then, use it to calculate:
+    a. $P(Z > 3)$
+    b. $P(Z = 2)$
+

@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-25" />
+<meta name="date" content="2020-06-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,68 +52,6 @@
 
 
 
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -188,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#examples-9"><i class="fa fa-check"></i>Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="cdf.html"><a href="cdf.html"><i class="fa fa-check"></i><b>11</b> Cumulative Distribution Functions</a><ul>
-<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#motivating-example-10"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#theory-9"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#examples-10"><i class="fa fa-check"></i>Examples</a></li>
 </ul></li>
@@ -214,27 +151,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="cdf" class="section level1">
 <h1><span class="header-section-number">Lesson 11</span> Cumulative Distribution Functions</h1>
-<div id="motivating-example-10" class="section level2 unnumbered">
-<h2>Motivating Example</h2>
-</div>
 <div id="theory-9" class="section level2 unnumbered">
 <h2>Theory</h2>
+<p>The p.m.f. (<a href="rv.html#def:pmf-function">10.1</a>) is one way to describe a random variable, but
+it is not the only way. The <strong>cumulative distribution function</strong> is a different
+representation that contains the same information as the p.m.f.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-22" class="definition"><strong>Definition 11.1  (Cumulative Distribution Function)  </strong></span><span class="math display">\[ F(x) = P(X \leq x) \]</span>
+<span id="def:cdf-function" class="definition"><strong>Definition 11.1  (Cumulative Distribution Function)  </strong></span>The <strong>cumulative distribution function</strong> (c.d.f.) is a function that returns the probability
+that a random variable is <em>less than or equal</em> to a particular value:
+<span class="math display">\[ F(x) = P(X \leq x). \]</span>
+It is called “cumulative” because it includes all the probability up to (and including) <span class="math inline">\(x\)</span>.
+</div>
+
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-22" class="example"><strong>Example 11.1  (Calculating the C.D.F.)  </strong></span>Let’s calculate the c.d.f. of <span class="math inline">\(X\)</span>, the number of diamonds among the community cards, using the
+p.m.f. that we calculated in Lesson <a href="rv.html#rv">10</a>. Note that
+<span class="math inline">\(F(x)\)</span> is the sum of all the probabilities up to <span class="math inline">\(x\)</span>. So, for example,
+<span class="math display">\[\begin{align*}
+F(2.8) = P(X \leq 2.8) &amp;= f(0) + f(1) + f(2) \\
+&amp;= .2546 + .4243 + .2496 \\
+&amp;= .9284.
+\end{align*}\]</span>
+There is no simple formula for <span class="math inline">\(F(x)\)</span>. However, we can describe it piecewise.
+<span class="math display">\[ F(x) = \begin{cases} 0 &amp; x \leq 0 \\
+.2546 &amp; 0 \leq x &lt; 1 \\
+.6788 &amp; 1 \leq x &lt; 2 \\
+.9284 &amp; 2 \leq x &lt; 3 \\
+.9926 &amp; 3 \leq x &lt; 4 \\
+.9997 &amp; 4 \leq x &lt; 5 \\
+1.0 &amp; x \geq 5
+\end{cases}. \]</span>
+Note that the c.d.f. of <span class="math inline">\(X\)</span> has the following properties:</p>
+<ul>
+<li>It is constant between integers. Because it is impossible for the random variable <span class="math inline">\(X\)</span>
+to assume non-integer values, <span class="math inline">\(F(1.2) = P(X \leq 1.2)\)</span> and <span class="math inline">\(F(1) = P(X \leq 1)\)</span> must be the same.</li>
+<li>The value of <span class="math inline">\(F(x)\)</span> increases from 0 to 1 as <span class="math inline">\(x\)</span> increases. This makes sense because as <span class="math inline">\(x\)</span> increases,
+we accumulate more and more probability.
+</div></li>
+</ul>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-23" class="example"><strong>Example 11.2  (Graphing the C.D.F.)  </strong></span>The properties of the c.d.f. become clearer on a graph, like the one below.
+Because the random variable <span class="math inline">\(X\)</span> cannot take on decimal values, the c.d.f. of <span class="math inline">\(X\)</span> does not change
+between integers, giving it its step-function appearance.</p>
+</div>
+
+<p><img src="bookdown-demo_files/figure-html/cdf-graph-1.png" width="672" /></p>
+<p>Note that the c.d.f. <span class="math inline">\(F(x)\)</span> can be evaluated at all values <span class="math inline">\(x\)</span>, not just at integer values.</p>
+<p>```</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-24" class="example"><strong>Example 11.3  (Using the C.D.F.)  </strong></span>Some probabilities are easier to calculate using the c.d.f. than using the p.m.f.
+For example, the probability that Alice gets a flush, <span class="math inline">\(P(X \geq 3)\)</span>, can be calculated
+by using the complement rule (<a href="double-counting.html#thm:complement">5.2</a>) and looking up the appropriate
+probability directly from the c.d.f. <span class="math inline">\(F(x)\)</span>.</p>
+<p><span class="math display">\[\begin{align*} 
+P(X \geq 3) &amp;= 1 - P(X &lt; 3) \\
+&amp;= 1 - P(X \leq 2) \\
+&amp;= 1 - F(2) \\
+&amp;= 1 - .9284 \\
+&amp;= .0716
+\end{align*}\]</span></p>
+<p>Remember that the c.d.f. <span class="math inline">\(F(x)\)</span> always includes the probability of <span class="math inline">\(x\)</span>. Since
+<span class="math inline">\(P(X &lt; 3)\)</span> should not include the probability of <span class="math inline">\(3\)</span>, we use <span class="math inline">\(F(2)\)</span> instead of
+<span class="math inline">\(F(3)\)</span>.</p>
+<p>At the beginning of this lesson, we mentioned that the c.d.f. contains the exact same
+information as the p.m.f., no more and no less. Therefore, it should be possible
+to recover the p.m.f. from the c.d.f.</p>
+For example, how would we calculate <span class="math inline">\(f(3) = P(X = 3)\)</span>, if we only knew the c.d.f. <span class="math inline">\(F(x)\)</span>? We could
+subtract <span class="math inline">\(P(X \leq 2)\)</span> from <span class="math inline">\(P(X \leq 3)\)</span> to get just the probability that it is equal to 3.
+<span class="math display">\[\begin{align*}
+f(3) = P(X = 3) &amp;= P(X \leq 3) - P(X \leq 2) \\
+&amp;= F(3) - F(2) \\
+&amp;= .9926 - .9284 \\
+&amp;= .0642,
+\end{align*}\]</span>
+which agrees with the p.m.f. from Lesson <a href="rv.html#rv">10</a>.
 </div>
 
 </div>
 <div id="examples-10" class="section level2 unnumbered">
 <h2>Examples</h2>
 <ol style="list-style-type: decimal">
-<li><p>Continuing with the example from the lesson, let <span class="math inline">\(Y\)</span> be the number of jacks among the community cards. Calculate and graph the c.d.f.
-of <span class="math inline">\(Y\)</span>.</p></li>
-<li>Consider a random variable <span class="math inline">\(Z\)</span> with c.d.f.
+<li><p>Continuing with the example from the lesson, let <span class="math inline">\(Y\)</span> be the number of Jacks among the community cards.
+Calculate and graph the c.d.f. of <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>Consider a random variable <span class="math inline">\(Z\)</span> with c.d.f. given by the formula
 <span class="math display">\[\begin{align*} 
-F(z) &amp;= \begin{cases} 1 - 3^{-\lfloor z \rfloor} &amp; z \geq 0 \\ 0 &amp; \text{otherwise} \end{cases}.
+F(x) &amp;= \begin{cases} 1 - 3^{-\lfloor x \rfloor} &amp; x \geq 0 \\ 0 &amp; \text{otherwise} \end{cases}.
 \end{align*}\]</span>
-Calculate:
+(Note that <span class="math inline">\(\lfloor x \rfloor\)</span> denotes the <em>floor</em> operator, which rounds <span class="math inline">\(x\)</span> down to the nearest integer.
+So <span class="math inline">\(\lfloor 3.9 \rfloor = 3\)</span> and <span class="math inline">\(\lfloor 7.1 \rfloor = 7\)</span>.)</p>
+Graph the c.d.f. <span class="math inline">\(F(x)\)</span>. Then, use it to calculate:
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(P(Z &gt; 3)\)</span></li>
 <li><span class="math inline">\(P(Z = 2)\)</span></li>

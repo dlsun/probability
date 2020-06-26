@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-25" />
+<meta name="date" content="2020-06-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="bayes.html"/>
-
+<link rel="next" href="cdf.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,68 +52,6 @@
 
 
 
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -187,6 +125,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#theory-8"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#examples-9"><i class="fa fa-check"></i>Examples</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="cdf.html"><a href="cdf.html"><i class="fa fa-check"></i><b>11</b> Cumulative Distribution Functions</a><ul>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#theory-9"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#examples-10"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -229,78 +171,165 @@ there are in the community cards. If there are 3 or more, then she has a flush.<
 in the suit than in the number of jacks among the community cards. If there are 2,
 then he has a four-of-a-kind. If there are 0, then he just has a lowly
 pair.</p>
-<p>Both Alice and Bob are interested in the same probability experiment:
+<p>Both Alice and Bob are interested in the same random phenomenon:
 the 5 community cards with their
-<span class="math inline">\(48 \times 47 \times 46 \times 45 \times 44 \approx 200,000,000\)</span> possible outcomes.
+<span class="math inline">\(\binom{48}{5} \approx 1,712,304\)</span> possible outcomes.
 However, their attention is drawn to different quantities:</p>
 <ul>
 <li>Alice to the <em>number of diamonds</em></li>
 <li>Bob to the <em>number of jacks</em></li>
 </ul>
 <p>The <em>number of diamonds</em> and the <em>number of jacks</em> are two examples of <strong>random variables</strong> associated
-with this probability experiment. A random variable is simply a way of assigning a number to every
+with this phenomenon. A random variable is simply a way of assigning a number to every
 possible outcome in a probability experiment. As we have seen,
 depending on the quantity of interest, there may be many random variables associated with the same
 probability experiment.</p>
 <p>To appreciate that Alice and Bob are interested in different random variables, suppose the
 5 community cards are revealed to be</p>
 <p><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/4_of_hearts.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_diamonds.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/4_of_clubs.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/ace_of_spades.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/8_of_diamonds.png" width="20%" /></p>
-<p>Alice’s random variable (the <em>number of diamonds</em>) is 2, while Bob’s random variable (the <em>number of jacks</em>) is 1. Of course, these are just the values of the
-random variables for just one of the over 200 million possible outcomes. To aid with betting,
-Alice and Bob need to know the <em>probabilities</em>, e.g.,</p>
+<p>Alice’s random variable (the <em>number of diamonds</em>) is 2,
+while Bob’s (the <em>number of jacks</em>) is 1. To help them decide how much to bet,
+Alice and Bob need to know the <em>probabilities</em>, such as</p>
 <ul>
-<li>the probability that the number of diamonds is less than 3</li>
-<li>the probability that the number of jacks equals 1.</li>
+<li>the probability that the number of diamonds is at least 3.</li>
+<li>the probability that the number of jacks equals 2.</li>
 </ul>
-<p>We can simulate the values that a random variable will take.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># define a standard deck of cards (A=1, J=11, Q=12, K=13)</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">cards &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="dt">rank=</span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>, <span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">suit=</span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;S&quot;</span>), <span class="dt">each=</span><span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># remove the 4 cards that Alice and Bob already have</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">remaining_cards &lt;-<span class="st"> </span>cards[<span class="op">-</span><span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">16</span>, <span class="dv">25</span>, <span class="dv">37</span>), ]</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"># initialize vectors for storing the numbers of diamonds</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">numbers_of_diamonds &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co"># repeat 10000 times</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10000</span>) {</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">  <span class="co"># simulate 5 community cards</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">  samp &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">nrow</span>(remaining_cards), <span class="dt">size=</span><span class="dv">5</span>, <span class="dt">replace=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">  comm &lt;-<span class="st"> </span>remaining_cards[samp, ]</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">  </a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">  <span class="co"># count up how many diamonds there are, add to the vector</span></a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">  numbers_of_diamonds &lt;-<span class="st"> </span><span class="kw">c</span>(numbers_of_diamonds, <span class="kw">sum</span>(comm<span class="op">$</span>suit <span class="op">==</span><span class="st"> &quot;D&quot;</span>))</a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">}</a>
-<a class="sourceLine" id="cb1-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="co"># tabulate the simulations</span></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="kw">table</span>(numbers_of_diamonds)</a></code></pre></div>
-<pre><code>## numbers_of_diamonds
-##    0    1    2    3    4    5 
-## 2577 4169 2543  632   75    4</code></pre>
-<p>Probabilities such as these are how we ultimately describe random variables.</p>
+<!-- We can simulate the values that a random variable will take. -->
+<!-- ```{r} -->
+<!-- # define a standard deck of cards (A=1, J=11, Q=12, K=13) -->
+<!-- cards <- data.frame( -->
+<!--   rank=rep(1:13, 4), -->
+<!--   suit=rep(c("C", "D", "H", "S"), each=13) -->
+<!-- ) -->
+<!-- # remove the 4 cards that Alice and Bob already have -->
+<!-- remaining_cards <- cards[-c(11, 16, 25, 37), ] -->
+<!-- # initialize vectors for storing the numbers of diamonds -->
+<!-- numbers_of_diamonds <- c() -->
+<!-- # repeat 10000 times -->
+<!-- for (i in 1:10000) { -->
+<!--   # simulate 5 community cards -->
+<!--   samp <- sample(nrow(remaining_cards), size=5, replace=FALSE) -->
+<!--   comm <- remaining_cards[samp, ] -->
+<!--   # count up how many diamonds there are, add to the vector -->
+<!--   numbers_of_diamonds <- c(numbers_of_diamonds, sum(comm$suit == "D")) -->
+<!-- } -->
+<!-- # tabulate the simulations -->
+<!-- table(numbers_of_diamonds) -->
+<!-- ``` -->
+<!-- Probabilities such as these are how we ultimately describe random variables. -->
 </div>
 <div id="theory-8" class="section level2 unnumbered">
 <h2>Theory</h2>
+<p>We describe random variables (such as the number of diamonds or the number of jacks) by the
+probabilities of their possible values. This is summarized by a function called the
+<strong>probability mass function</strong>.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-21" class="definition"><strong>Definition 10.1  (Probability Mass Function)  </strong></span><span class="math display">\[ f(x) = P(X = x) \]</span>
+<span id="def:pmf-function" class="definition"><strong>Definition 10.1  (Probability Mass Function)  </strong></span>The <strong>probability mass function</strong> (p.m.f.) of a random variable <span class="math inline">\(X\)</span> is a function that
+specifies the probability of different outcomes:
+<span class="math display">\[ f(x) = P(X = x). \]</span>
 </div>
 
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-19" class="example"><strong>Example 10.1  (Calculating the P.M.F.)  </strong></span>Let’s calculate the p.m.f. of the number of diamonds, <span class="math inline">\(X\)</span>, among the community cards. We deal
+5 cards from a deck of cards that has had 4 cards removed (because they have already been
+dealt to Alice and Bob). Furthermore, we know that 2 of these cards were diamonds.
+So the deck has 48 cards left, of which 11 are diamonds.</p>
+<p>First, we calculate <span class="math inline">\(f(0)\)</span>, the probability that <span class="math inline">\(X = 0\)</span>. In order for there to be no
+diamonds, all 5 cards must be selected from the <span class="math inline">\(48 - 11 = 37\)</span> non-diamonds. So the probabiilty is
+<span class="math display">\[ f(0) = P(X = 0) = \frac{\binom{37}{5}}{\binom{48}{5}} = .2546. \]</span></p>
+<p>Next, we calculate <span class="math inline">\(f(1)\)</span>, the probability that <span class="math inline">\(X = 1\)</span>. We can choose any one of the 11 diamonds
+and pair it with any of the <span class="math inline">\(\binom{37}{4}\)</span> ways to choose 4 cards from the non-diamonds.
+<span class="math display">\[ f(1) = P(X = 1) = \frac{11 \cdot \binom{37}{4}}{\binom{48}{5}} = .4243. \]</span></p>
+<p>Now, we calculate <span class="math inline">\(f(2)\)</span>, the probability that <span class="math inline">\(X = 2\)</span>. We can match any one of the
+<span class="math inline">\(\binom{11}{2}\)</span> ways to choose 2 diamonds with the <span class="math inline">\(\binom{37}{3}\)</span> ways to choose
+3 non-diamonds:
+<span class="math display">\[ f(2) = P(X = 2) = \frac{\binom{11}{2} \cdot \binom{37}{3}}{\binom{48}{5}} = .2496. \]</span></p>
+<p>Continuing in this way, we can calculate <span class="math inline">\(f(3)\)</span>, <span class="math inline">\(f(4)\)</span>, and <span class="math inline">\(f(5)\)</span>. (Try these yourself!)</p>
+<p>When the random variable only takes on a handful of possible values, we can write out
+the probabilities in a table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><span class="math inline">\(f(x)\)</span></td>
+<td align="center">.2546</td>
+<td align="center">.4243</td>
+<td align="center">.2496</td>
+<td align="center">.0642</td>
+<td align="center">.0071</td>
+<td align="center">.0002</td>
+</tr>
+</tbody>
+</table>
+For random variables that take on many possible values, it is usually more convenient
+to specify the p.m.f. as a formula. In this example, the formula below produces the
+same probabilities as the table above, when you plug in the right value of <span class="math inline">\(x\)</span>:
+<span class="math display">\[\begin{align*}
+f(x) &amp;= \frac{\binom{11}{x} \binom{37}{5-x}}{\binom{48}{5}} &amp; x &amp;= 0, 1, 2, 3, 4, 5. 
+\end{align*}\]</span>
+Try plugging different values of <span class="math inline">\(x\)</span> into this formula and verifying that you get
+the probabilities in the table above.
+</div>
+
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-20" class="example"><strong>Example 10.2  (Using the P.M.F.)  </strong></span>In order for Alice to have a flush, there must be at least 3 diamonds among the community cards.
+Let’s see how she can easily calculate this probability, once she has the p.m.f. <span class="math inline">\(f(x)\)</span>.</p>
+<p>In terms of the random variable <span class="math inline">\(X\)</span>, the probability that there are at least 3 diamonds is
+<span class="math inline">\(P(X \geq 3)\)</span>, which is
+<span class="math display">\[\begin{align*} 
+P(X \geq 3) &amp;= f(3) + f(4) + f(5) \\
+&amp;= .0642 + .0071 + .0002 \\
+&amp;= .0715.
+\end{align*}\]</span></p>
+The complement rule (<a href="double-counting.html#thm:complement">5.2</a>) can sometimes save time. Although it would not helped in this example,
+we could have also calculated the probability as follows:
+<span class="math display">\[\begin{align*}
+P(X \geq 3) &amp;= 1 - P(X &lt; 3) \\
+&amp;= 1 - (f(0) + f(1) + f(2)) \\
+&amp;= 1 - (.2546 + .4243 + .2496) \\
+&amp;= .0715.
+\end{align*}\]</span>
+</div>
+
+
+<div class="example">
+<span id="exm:unnamed-chunk-21" class="example"><strong>Example 10.3  (Graphing the P.M.F.)  </strong></span>A graph of the p.m.f. can quickly reveal which values of a random
+variable are more or less likely.
+On the graph below, the <span class="math inline">\(x\)</span>-axis represents the
+possible values of the random variable. Each impulse represents the
+probability of a possible value.
+</div>
+
+<p><img src="bookdown-demo_files/figure-html/pmf-graph-1.png" width="672" /></p>
+<p>From the graph, it is immediately clear that 1 diamond is most probable.
+Unfortunately for Alice, it does not seem promising that she will get the
+3 or more diamonds she needs to secure a flush.</p>
 </div>
 <div id="examples-9" class="section level2 unnumbered">
 <h2>Examples</h2>
 <ol style="list-style-type: decimal">
-<li><p>Continuing with the example from the lesson, let <span class="math inline">\(Y\)</span> be the number of jacks in the community cards. Calculate and graph the p.m.f. of <span class="math inline">\(Y\)</span>.</p></li>
-<li><p>We roll two fair, six-sided dice.</p>
+<li><p>Continuing with the example from the lesson, let <span class="math inline">\(Y\)</span> be the number of Jacks in the community cards. Calculate and graph the p.m.f. of <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>Two fair, six-sided dice are rolled.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Let <span class="math inline">\(S\)</span> be the sum of the two numbers. Calculate and graph the p.m.f. of <span class="math inline">\(S\)</span>.</li>
-<li>Let <span class="math inline">\(D\)</span> be the absolute difference between the two numbers. (That is, <span class="math inline">\(D\)</span> is always a positive number.) Calculate and
-graph the p.m.f. of <span class="math inline">\(D\)</span>.</li>
+<li>Let <span class="math inline">\(D\)</span> be the absolute difference between the two numbers.
+(That is, <span class="math inline">\(D\)</span> is always a positive number.) Calculate and graph the p.m.f. of <span class="math inline">\(D\)</span>.</li>
 </ol></li>
-<li><p>A fair coin is tossed 5 times. Let <span class="math inline">\(Z\)</span> be the number of heads. Calculate and graph the p.m.f. of <span class="math inline">\(Z\)</span>.</p></li>
+<li><p>A fair coin is tossed 5 times. Let <span class="math inline">\(Z\)</span> be the number of heads. Calculate and graph the p.m.f. of <span class="math inline">\(Z\)</span>.
+Use the p.m.f. to calculate the probability of getting at least 2 heads.</p></li>
 </ol>
 
 </div>
@@ -310,8 +339,8 @@ graph the p.m.f. of <span class="math inline">\(D\)</span>.</li>
           </div>
         </div>
       </div>
-<a href="bayes.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="bayes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cdf.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

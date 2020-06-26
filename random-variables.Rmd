@@ -2,16 +2,204 @@
 
 ## Motivating Example {-}
 
+Texas hold 'em is a popular variant of poker. In Texas hold'em, each 
+player starts with 2 cards (called "hole cards") that are only known to them. 
+In addition, there are 5 cards in the center (called "community cards") that
+are shared by all the players. The player that wins is the one with the 
+best five-card poker hand among the 7 cards (i.e., the 2 hole cards unique to them, 
+plus the 5 community cards). 
+
+Alice and Bob are playing Texas hold'em using a single deck of cards. The 
+5 community cards have not been revealed yet. 
+
+Alice is looking at her 2 hole cards, which are
+
+```{r alice, echo=FALSE, fig.show = "hold", out.width = "20%", fig.align = "default"}
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/queen_of_diamonds.png") 
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/3_of_diamonds.png")
+```
+
+Because she already has two diamonds, she wonders how many more diamonds 
+there are in the community cards. If there are 3 or more, then she has a flush.
+
+Bob, on the other hand, has the following hole cards 
+
+```{r bob, echo=FALSE, fig.show = "hold", out.width = "20%", fig.align = "default"}
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_clubs.png") 
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_hearts.png")
+```
+
+Because he has two jacks of different suits, he is less interested 
+in the suit than in the number of jacks among the community cards. If there are 2, 
+then he has a four-of-a-kind. If there are 0, then he just has a lowly 
+pair.
+
+Both Alice and Bob are interested in the same random phenomenon: 
+the 5 community cards with their 
+$\binom{48}{5} \approx 1,712,304$ possible outcomes. 
+However, their attention is drawn to different quantities:
+
+- Alice to the _number of diamonds_
+- Bob to the _number of jacks_
+
+The _number of diamonds_ and the _number of jacks_ are two examples of **random variables** associated 
+with this phenomenon. A random variable is simply a way of assigning a number to every 
+possible outcome in a probability experiment. As we have seen, 
+depending on the quantity of interest, there may be many random variables associated with the same 
+probability experiment.
+
+To appreciate that Alice and Bob are interested in different random variables, suppose the 
+5 community cards are revealed to be
+
+```{r community, echo=FALSE, fig.show = "hold", out.width = "20%", fig.align = "default"}
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/4_of_hearts.png")
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_diamonds.png")
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/4_of_clubs.png")
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/ace_of_spades.png")
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/8_of_diamonds.png")
+```
+
+Alice's random variable (the _number of diamonds_) is 2, 
+while Bob's (the _number of jacks_) is 1. To help them decide how much to bet, 
+Alice and Bob need to know the _probabilities_, such as
+
+- the probability that the number of diamonds is at least 3.
+- the probability that the number of jacks equals 2.
+
+<!-- We can simulate the values that a random variable will take. -->
+
+<!-- ```{r} -->
+<!-- # define a standard deck of cards (A=1, J=11, Q=12, K=13) -->
+<!-- cards <- data.frame( -->
+<!--   rank=rep(1:13, 4), -->
+<!--   suit=rep(c("C", "D", "H", "S"), each=13) -->
+<!-- ) -->
+
+<!-- # remove the 4 cards that Alice and Bob already have -->
+<!-- remaining_cards <- cards[-c(11, 16, 25, 37), ] -->
+
+<!-- # initialize vectors for storing the numbers of diamonds -->
+<!-- numbers_of_diamonds <- c() -->
+
+<!-- # repeat 10000 times -->
+<!-- for (i in 1:10000) { -->
+<!--   # simulate 5 community cards -->
+<!--   samp <- sample(nrow(remaining_cards), size=5, replace=FALSE) -->
+<!--   comm <- remaining_cards[samp, ] -->
+
+<!--   # count up how many diamonds there are, add to the vector -->
+<!--   numbers_of_diamonds <- c(numbers_of_diamonds, sum(comm$suit == "D")) -->
+<!-- } -->
+
+<!-- # tabulate the simulations -->
+<!-- table(numbers_of_diamonds) -->
+<!-- ``` -->
+
+<!-- Probabilities such as these are how we ultimately describe random variables. -->
+
+
 ## Theory {-}
 
-```{definition, name="Probability Mass Function"}
-\[ f[x] = P(X = x) \]
+We describe random variables (such as the number of diamonds or the number of jacks) by the 
+probabilities of their possible values. This is summarized by a function called the 
+**probability mass function**.
+
+```{definition pmf-function, name="Probability Mass Function"}
+The **probability mass function** (p.m.f.) of a random variable $X$ is a function that 
+specifies the probability of different outcomes:
+\[ f(x) = P(X = x). \]
 ```
 
-```{definition, name="Cumulative Distribution Function"}
-\[ F(x) = P(X \leq x) \]
+```{example, name="Calculating the P.M.F."}
+Let's calculate the p.m.f. of the number of diamonds, $X$, among the community cards. We deal 
+5 cards from a deck of cards that has had 4 cards removed (because they have already been 
+dealt to Alice and Bob). Furthermore, we know that 2 of these cards were diamonds.
+So the deck has 48 cards left, of which 11 are diamonds.
+
+First, we calculate $f(0)$, the probability that $X = 0$. In order for there to be no 
+diamonds, all 5 cards must be selected from the $48 - 11 = 37$ non-diamonds. So the probabiilty is 
+\[ f(0) = P(X = 0) = \frac{\binom{37}{5}}{\binom{48}{5}} = .2546. \]
+
+Next, we calculate $f(1)$, the probability that $X = 1$. We can choose any one of the 11 diamonds 
+and pair it with any of the $\binom{37}{4}$ ways to choose 4 cards from the non-diamonds.
+\[ f(1) = P(X = 1) = \frac{11 \cdot \binom{37}{4}}{\binom{48}{5}} = .4243. \]
+
+Now, we calculate $f(2)$, the probability that $X = 2$. We can match any one of the 
+$\binom{11}{2}$ ways to choose 2 diamonds with the $\binom{37}{3}$ ways to choose 
+3 non-diamonds:
+\[ f(2) = P(X = 2) = \frac{\binom{11}{2} \cdot \binom{37}{3}}{\binom{48}{5}} = .2496. \]
+
+Continuing in this way, we can calculate $f(3)$, $f(4)$, and $f(5)$. (Try these yourself!)
+
+When the random variable only takes on a handful of possible values, we can write out 
+the probabilities in a table.
+
+|       | 0  | 1  | 2  |  3 | 4  | 5  |
+|------:|:--:|:--:|:--:|:--:|:--:|:--:|
+|$f(x)$ | .2546 | .4243 | .2496 | .0642 | .0071 | .0002
+
+For random variables that take on many possible values, it is usually more convenient 
+to specify the p.m.f. as a formula. In this example, the formula below produces the 
+same probabilities as the table above, when you plug in the right value of $x$:
+\begin{align*}
+f(x) &= \frac{\binom{11}{x} \binom{37}{5-x}}{\binom{48}{5}} & x &= 0, 1, 2, 3, 4, 5. 
+\end{align*}
+Try plugging different values of $x$ into this formula and verifying that you get 
+the probabilities in the table above.
 ```
 
-## Worked Examples {-}
+```{example, name="Using the P.M.F."}
+In order for Alice to have a flush, there must be at least 3 diamonds among the community cards. 
+Let's see how she can easily calculate this probability, once she has the p.m.f. $f(x)$.
 
-## Exercises {-}
+In terms of the random variable $X$, the probability that there are at least 3 diamonds is 
+$P(X \geq 3)$, which is 
+\begin{align*} 
+P(X \geq 3) &= f(3) + f(4) + f(5) \\
+&= .0642 + .0071 + .0002 \\
+&= .0715.
+\end{align*}
+
+The complement rule (\@ref(thm:complement)) can sometimes save time. Although it would not helped in this example, 
+we could have also calculated the probability as follows:
+\begin{align*}
+P(X \geq 3) &= 1 - P(X < 3) \\
+&= 1 - (f(0) + f(1) + f(2)) \\
+&= 1 - (.2546 + .4243 + .2496) \\
+&= .0715.
+\end{align*}
+```
+
+```{example, name="Graphing the P.M.F."}
+A graph of the p.m.f. can quickly reveal which values of a random 
+variable are more or less likely. 
+On the graph below, the $x$-axis represents the 
+possible values of the random variable. Each impulse represents the 
+probability of a possible value.
+```
+
+```{r pmf-graph, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(0:5, dhyper(0:5, 11, 37, 5), pch=19, xlab="x", ylab="f(x)")
+for(x in 0:5) {
+  lines(c(x, x), c(0, dhyper(x, 11, 37, 5)), lwd=2)
+}
+```
+
+From the graph, it is immediately clear that 1 diamond is most probable. 
+Unfortunately for Alice, it does not seem promising that she will get the 
+3 or more diamonds she needs to secure a flush.
+
+
+
+## Examples {-}
+
+1. Continuing with the example from the lesson, let $Y$ be the number of Jacks in the community cards. Calculate and graph the p.m.f. of $Y$.
+
+2. Two fair, six-sided dice are rolled.
+
+    a. Let $S$ be the sum of the two numbers. Calculate and graph the p.m.f. of $S$.
+    b. Let $D$ be the absolute difference between the two numbers. 
+    (That is, $D$ is always a positive number.) Calculate and graph the p.m.f. of $D$.
+
+3. A fair coin is tossed 5 times. Let $Z$ be the number of heads. Calculate and graph the p.m.f. of $Z$. 
+Use the p.m.f. to calculate the probability of getting at least 2 heads.
