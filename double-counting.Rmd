@@ -95,7 +95,7 @@ However, this approach does not scale well to calculating the probability of at 
 In many situations, it is easier to calculate the probability that an event does _not_ happen, also known as the 
 **complement** of the event. Because the total probability has to be 1, the two probabilities are related by the following formula.
 
-```{theorem, name="Complement Rule"}
+```{theorem complement, name="Complement Rule"}
 \[ P(\text{not } A) = 1 - P(A). \]
 ```
 
