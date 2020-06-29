@@ -37,10 +37,11 @@ $$ P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}). $$
 <!-- results -->
 <!-- ``` -->
 
-<!-- The simulated probability is  -->
-<!-- $`r results["red"]` / `r length(sims)` \approx `r round(results["red"] / length(sims), 3)`$, which  -->
-<!-- does not seem different from the overall probability of a ball landing in a red pocket,  -->
+<!-- The simulated probability is -->
+<!-- $`r results["red"]` / `r length(sims)` \approx `r round(results["red"] / length(sims), 3)`$, which -->
+<!-- does not seem different from the overall probability of a ball landing in a red pocket, -->
 <!-- $18 / 38 \approx 0.474$. -->
+
 
 ## Theory {-}
 

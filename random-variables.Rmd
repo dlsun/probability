@@ -100,7 +100,7 @@ Alice and Bob need to know the _probabilities_, such as
 
 ## Theory {-}
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eOkqx5aa3Kc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Gm-6ccZ7OvM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 We describe random variables (such as the number of diamonds or the number of jacks) by the 
 probabilities of their possible values. This is summarized by a function called the 
@@ -111,6 +111,9 @@ The **probability mass function** (p.m.f.) of a random variable $X$ is a functio
 specifies the probability of different outcomes:
 \[ f(x) = P(X = x). \]
 ```
+
+Informally, the information contained in the p.m.f. is called the **distribution** of the 
+random variable.
 
 ```{example, name="Calculating the P.M.F."}
 Let's calculate the p.m.f. of the number of diamonds, $X$, among the community cards. We deal 
@@ -173,8 +176,8 @@ P(X \geq 3) &= 1 - P(X < 3) \\
 ```
 
 ```{example, name="Graphing the P.M.F."}
-A graph of the p.m.f. can quickly reveal which values of a random 
-variable are more or less likely. 
+A graph of the p.m.f. is the best way to understand the distribution of a 
+random variable over its possible values. 
 On the graph below, the $x$-axis represents the 
 possible values of the random variable. Each impulse represents the 
 probability of a possible value.

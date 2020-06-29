@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-28" />
+<meta name="date" content="2020-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -131,7 +193,11 @@
 </ul></li>
 <li class="chapter" data-level="12" data-path="hypergeometric.html"><a href="hypergeometric.html"><i class="fa fa-check"></i><b>12</b> Hypergeometric Distribution</a><ul>
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#motivating-example-10"><i class="fa fa-check"></i>Motivating Example</a></li>
-<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-10"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-10"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#graphing"><i class="fa fa-check"></i>Graphing</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#calculating-hypergeometric-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Hypergeometric Probabilities on the Computer</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#another-formula-for-the-hypergeometric-distribution-optional"><i class="fa fa-check"></i>Another Formula for the Hypergeometric Distribution (optional)</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#additional-exercises-4"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
@@ -238,15 +304,99 @@ Therefore, the probability of getting exactly <span class="math inline">\(x\)</s
 <span class="math display">\[ f(x) = P(X = x) = \dfrac{\binom{N_1}{x}\binom{N_0}{n-x}}{\binom{N}{n}}. \]</span>
 </div>
 
+<div id="graphing" class="section level3 unnumbered">
+<h3>Graphing</h3>
 <p>Let’s graph the hypergeometric distribution for different values of <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, and <span class="math inline">\(N_0\)</span>.</p>
-<p><strong>TODO</strong></p>
+<p>First, we hold the number of draws constant at <span class="math inline">\(n=5\)</span> and vary the composition of the box.</p>
+<p><img src="bookdown-demo_files/figure-html/hypergeometric-pmf-1-1.png" width="672" /></p>
+<p>The distribution shifts, depending on the composition of the box. The more
+<span class="math inline">\(\fbox{1}\)</span>s there are in the box, the more <span class="math inline">\(\fbox{1}\)</span>s in the sample.</p>
+<p>Next, we study how the distribution changes as a function of <span class="math inline">\(n / N\)</span>, the relative fraction of
+tickets removed from the box. For all of the graphs below, <span class="math inline">\(N_1 = N_0 = N/2\)</span>.
+<img src="bookdown-demo_files/figure-html/hypergeometric-pmf-2-1.png" width="672" /></p>
+<p>All three plots are symmetric, which makes sense, since there are exactly as many
+<span class="math inline">\(\fbox{1}\)</span>s as <span class="math inline">\(\fbox{0}\)</span>s in the box. However, when the number of draws makes up a large
+fraction of the box, as in the leftmost plot, the distribution is very tightly
+concentrated around intermediate values, such as 4, 5, and 6. This makes sense because sampling without
+replacement is “self-balancing”. Each time we draw a <span class="math inline">\(\fbox{1}\)</span>, it becomes less likely that we will
+draw a <span class="math inline">\(\fbox{1}\)</span> again (and more likely to draw a <span class="math inline">\(\fbox{0}\)</span>). This makes extreme outcomes,
+such as drawing all <span class="math inline">\(\fbox{1}\)</span>s, less likely.</p>
+</div>
+<div id="calculating-hypergeometric-probabilities-on-the-computer" class="section level3 unnumbered">
+<h3>Calculating Hypergeometric Probabilities on the Computer</h3>
+<p>Calculating hypergeometric probabilities by hand is unwieldy when <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, and <span class="math inline">\(N_0\)</span> are large.
+Fortunately, the hypergeometric distribution is built into many software packages.</p>
+For example, suppose we want to solve the following problem.
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-28" class="example"><strong>Example 12.2  (Capture-Recapture)  </strong></span>One way to estimate the number of animals in a population is <strong>capture-recapture</strong>. For example, suppose
+we want to estimate the number of fish in a lake. Clearly, it is impractical to catch all of the fish.
+Instead, we capture <span class="math inline">\(m\)</span> fish one week, tag them, and release them back into the lake. We go back the next
+week, after these tagged fish have had a chance to mix with the population, and catch another <span class="math inline">\(n\)</span> distinct fish.
+Some, but not all, of these <span class="math inline">\(n\)</span> fish will be tagged. The number of tagged fish in this second catch
+allows us to estimate the population of fish in the lake.</p>
+<p>Suppose there are actually 100 fish in the lake; we capture <span class="math inline">\(m=20\)</span> fish the first week and <span class="math inline">\(n=30\)</span> fish the next week.
+What is the probability that <em>at least</em> <span class="math inline">\(7\)</span> of the <span class="math inline">\(30\)</span> fish will be tagged?</p>
+<p>We can represent this using a box model. The fish in the lake will be represented by <span class="math inline">\(N=100\)</span> tickets, with
+<span class="math display">\[\begin{align*}
+\text{$N_1=20$ tickets labeled } \fbox{1} &amp;\text{ representing the tagged fish} \\
+\text{$N_0=80$ tickets labeled } \fbox{0} &amp;\text{ representing the non-tagged fish}.
+\end{align*}\]</span>
+Now, if we draw <span class="math inline">\(n=30\)</span> times from this box without replacement, then the number of <span class="math inline">\(\fbox{1}\)</span>s we get
+corresponds to the number of tagged fish we get.</p>
+Therefore, the number of tagged fish is a <span class="math inline">\(\text{Hypergeometric}(n=30, N_1=20, N_0=80)\)</span> random variable.
+However, to calculate the probability that <em>at least</em> <span class="math inline">\(7\)</span> of the <span class="math inline">\(30\)</span> fish will be tagged, we have
+to evaluate the p.m.f. at 7, 8, 9, etc. This is a job for a computer, not a human.
+</div>
+
+<p>In Python, we use a library called <a href="http://dlsun.github.io/symbulate">Symbulate</a>. We first specify the parameters
+of the hypergeometric distribution; then we evaluate the p.m.f. using the <code>.pmf()</code> method. Note that <code>.pmf()</code> accepts
+either a single number or a list of numbers. If a list of numbers is passed into <code>.pmf()</code>, then it will evaluate the
+p.m.f. at each of those numbers, returning a list of probabilities.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">probs <span class="op">=</span> Hypergeometric(n<span class="op">=</span><span class="dv">30</span>, N1<span class="op">=</span><span class="dv">20</span>, N0<span class="op">=</span><span class="dv">80</span>).pmf(<span class="bu">range</span>(<span class="dv">7</span>, <span class="dv">31</span>))</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">probs</a></code></pre></div>
+<pre><code>## array([1.80287211e-01, 1.16176457e-01, 5.77600464e-02, 2.22376179e-02,
+##        6.62820205e-03, 1.52341741e-03, 2.67853610e-04, 3.55743076e-05,
+##        3.50270105e-06, 2.48771382e-07, 1.22310776e-08, 3.89715707e-10,
+##        7.13438366e-12, 5.60558716e-14, 0.00000000e+00, 0.00000000e+00,
+##        0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
+##        0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00])</code></pre>
+<p>To add these probabilities, we call <code>sum()</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="bu">sum</span>(probs)</a></code></pre></div>
+<pre><code>## 0.38492014376629696</code></pre>
+<p>We could have also gotten the same answer by using c.d.f.s. Note that <span class="math inline">\(P(X \geq 7) = 1 - F(6)\)</span>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span> Hypergeometric(n<span class="op">=</span><span class="dv">30</span>, N1<span class="op">=</span><span class="dv">20</span>, N0<span class="op">=</span><span class="dv">80</span>).cdf(<span class="dv">6</span>)</a></code></pre></div>
+<pre><code>## 0.384920143766305</code></pre>
+<p>You can play around with the Python code in <a href="https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/py/Calculating_Hypergeometric_Probabilities.ipynb">this Colab notebook</a>.</p>
+<p>It is possible to do the same calculation in R, a statistical programming language.
+Note that R uses different names for the parameters. Like Python, R can evaluate the p.m.f. at a
+single value or a vector of values.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">probs &lt;-<span class="st"> </span><span class="kw">dhyper</span>(<span class="dt">x=</span><span class="dv">7</span><span class="op">:</span><span class="dv">30</span>, <span class="dt">m=</span><span class="dv">20</span>, <span class="dt">n=</span><span class="dv">80</span>, <span class="dt">k=</span><span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">probs</a></code></pre></div>
+<pre><code>##  [1] 1.802872e-01 1.161765e-01 5.776005e-02 2.223762e-02 6.628202e-03
+##  [6] 1.523417e-03 2.678536e-04 3.557431e-05 3.502701e-06 2.487714e-07
+## [11] 1.223108e-08 3.897157e-10 7.134384e-12 5.605587e-14 0.000000e+00
+## [16] 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00
+## [21] 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00</code></pre>
+<p>To add these probabilities, we call <code>sum()</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">sum</span>(probs)</a></code></pre></div>
+<pre><code>## [1] 0.3849201</code></pre>
+<p>We could have also gotten the same answer by using c.d.f.s. Notice how R uses the prefix <code>d</code> for p.m.f.s and the prefix
+<code>p</code> for c.d.f.s.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">phyper</span>(<span class="dv">6</span>, <span class="dt">m=</span><span class="dv">20</span>, <span class="dt">n=</span><span class="dv">80</span>, <span class="dt">k=</span><span class="dv">30</span>)</a></code></pre></div>
+<pre><code>## [1] 0.3849201</code></pre>
+<p>You can play around with the R code in <a href="https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/r/Calculating_Hypergeometric_Probabilities.ipynb">this Colab notebook</a>.</p>
+</div>
+<div id="another-formula-for-the-hypergeometric-distribution-optional" class="section level3 unnumbered">
+<h3>Another Formula for the Hypergeometric Distribution (optional)</h3>
 <p>There is another formula for the hypergeometric p.m.f. that looks different but is equivalent to
 <a href="hypergeometric.html#eq:hypergeometric">(12.1)</a>. It is based on counting the number of ordered outcomes, instead of the
 number of unordered outcomes. You should verify that this formula gives the same probabilities as
 <a href="hypergeometric.html#eq:hypergeometric">(12.1)</a>.</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-28" class="theorem"><strong>Theorem 12.2  (Another Formula for the Hypergeometric)  </strong></span>
+<span id="thm:unnamed-chunk-35" class="theorem"><strong>Theorem 12.2  (Another Formula for the Hypergeometric)  </strong></span>
 The p.m.f. of a <span class="math inline">\(\text{Hypergeometric}(n, N_1, N_0)\)</span> random variable can also be written as
 <span class="math display">\[ f(x) = \frac{\binom{n}{x} \cdot \frac{N_1!}{(N_1 - x)!} \cdot \frac{N_0!}{(N_0 - n + x)!}}{\frac{N!}{(N-n)!}}. \]</span>
 </div>
@@ -287,6 +437,7 @@ It is easy to see that this formula is equivalent to <a href="hypergeometric.htm
 <!-- $$F(x) = P(X \leq x) = \sum_{k=0}^x\dfrac{\binom{N_1}{k}\binom{N_0}{n-k}}{\binom{N}{n}}$$ -->
 <!-- ``` -->
 </div>
+</div>
 <div id="essential-practice" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
@@ -300,7 +451,7 @@ to the public. The process of crash testing destroys the car. Suppose that a pro
 <li>the probability that at least 1 car will be found defective?</li>
 <li>the probability that exactly 2 cars will be found defective?</li>
 </ol></li>
-<li><p>The state proposes a lottery in which you select <span class="math inline">\(6\)</span> numbers from <span class="math inline">\(1\)</span> to <span class="math inline">\(15\)</span>. When it is time to draw, the lottery selects <span class="math inline">\(8\)</span> numbers, and you win if at least <span class="math inline">\(4\)</span> of the <span class="math inline">\(6\)</span> numbers you picked are among the <span class="math inline">\(8\)</span> numbers that the lottery drew. What is the probability you win the prize?</p></li>
+<li><p>The state proposes a lottery in which you select <span class="math inline">\(6\)</span> numbers from <span class="math inline">\(1\)</span> to <span class="math inline">\(15\)</span>. When it is time to draw, the lottery selects <span class="math inline">\(8\)</span> different numbers, and you win if at least <span class="math inline">\(4\)</span> of the <span class="math inline">\(6\)</span> numbers you picked are among the <span class="math inline">\(8\)</span> numbers that the lottery drew. What is the probability you win the prize?</p></li>
 </ol>
 <!-- This is a hypergeometric distributions with parameters $N=15, n=8,$ and $k=6$. Therefore, the resulting probability becomes -->
 <!-- $$\dfrac{\binom{6}{4}\binom{15-6}{8-4}}{\binom{15}{8}} + \dfrac{\binom{6}{5}\binom{15-6}{8-5}}{\binom{15}{8}} + \dfrac{\binom{6}{6}\binom{15-6}{8-6}}{\binom{15}{8}} = 0.3776$$ -->
