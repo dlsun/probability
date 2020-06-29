@@ -34,6 +34,8 @@ derive the p.m.f. by matching this random variable to a template.
 In probability, some distributions are so common that they have been given names. The first named distribution 
 that we will learn is the **hypergeometric distribution**.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UgqQc6epZnc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{theorem hypergeometric, name="Hypergeometric Distribution"}
 If a random variable can be described as the number of $\fbox{1}$s in $n$ random draws, _without replacement_, 
 from the box 
