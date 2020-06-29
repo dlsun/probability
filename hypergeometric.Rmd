@@ -2,81 +2,205 @@
 
 ## Motivating Example {-}
 
-The Powerball is a lottery game that runs in 45 U.S. states. When you purchase a lottery ticket, you choose $5$ numbers from $1$ to $69$, and a sixth number from $1$ to $26$. This ball is known as the Powerball.
+We revisit the Texas Hold'em example from Lesson \@ref(rv), when we first learned about random variables. In that 
+example, Alice was dealt 
 
-Drawings occur on Wednesday and Saturday nights, where $5$ white balls are chosen **without replacement** with labels from $1$ to $69$, and a single red ball is chosen with labels ranging from $1$ to $26$. Since the red ball is chosen from a different batch, it is possible for the red Powerball to match a number drawn from the white balls, but it is not possible for two of the five chosen white balls to have the same number.
+```{r, echo=FALSE, fig.show = "hold", out.width = "20%", fig.align = "default"}
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/queen_of_diamonds.png") 
+knitr::include_graphics("https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/3_of_diamonds.png")
+```
 
-To win the jackpot, (which has reached over $1.5 billion at its peak), you must match your five chosen numbers with the labels of the five white balls drawn, as well as picking the right number for the red Powerball. For the five white balls, they do not have to be chosen in the correct order that they were drawn. 
+and she wanted to know the distribution of _the number of diamonds_ among the community cards. If this random variable
+is at least 3, then she has a flush.
 
-What is the probability that you go and buy a ticket, that ends up winning the powerball Jackpot?
-
-First of all, we have to choose the right $5$ white balls labeled $1$ through $69$. To count the ways that this can happen, we can use combinations. We know that we have to have our $5$ chosen numbers drawn, and the remaining $64$ white balls cannot be chosen, which can be represented by $\binom{5}{5} \cdot \binom{64}{0}$. We must then divide this by the number of possible ways to draw $5$ numbers from $69$ possible, so this turns out to be $$\dfrac{\binom{5}{5} \cdot \binom{64}{0}}{\binom{69}{5}} = \dfrac{1}{11238513}$$. 
-
-Lastly, we have to multiply this by the chance that we choose the right number for the red Powerball, which is $\dfrac{1}{26}$. Our final probability turns out to be $$\dfrac{1}{11238513 \cdot 26} = \dfrac{1}{292201338}$$, or about a $1$ in $292$ million chance that you win the Powerball.
+In Lesson \@ref(rv), we derived the p.m.f. of _the number of diamonds_ from scratch. In this lesson, we will 
+derive the p.m.f. by matching this random variable to a template.
 
 
-------
+<!-- The Powerball is a lottery game that runs in 45 U.S. states. When you purchase a lottery ticket, you choose $5$ numbers from $1$ to $69$, and a sixth number from $1$ to $26$. This ball is known as the Powerball. -->
+
+<!-- Drawings occur on Wednesday and Saturday nights, where $5$ white balls are chosen **without replacement** with labels from $1$ to $69$, and a single red ball is chosen with labels ranging from $1$ to $26$. Since the red ball is chosen from a different batch, it is possible for the red Powerball to match a number drawn from the white balls, but it is not possible for two of the five chosen white balls to have the same number. -->
+
+<!-- To win the jackpot, (which has reached over $1.5 billion at its peak), you must match your five chosen numbers with the labels of the five white balls drawn, as well as picking the right number for the red Powerball. For the five white balls, they do not have to be chosen in the correct order that they were drawn.  -->
+
+<!-- What is the probability that you go and buy a ticket, that ends up winning the powerball Jackpot? -->
+
+<!-- First of all, we have to choose the right $5$ white balls labeled $1$ through $69$. To count the ways that this can happen, we can use combinations. We know that we have to have our $5$ chosen numbers drawn, and the remaining $64$ white balls cannot be chosen, which can be represented by $\binom{5}{5} \cdot \binom{64}{0}$. We must then divide this by the number of possible ways to draw $5$ numbers from $69$ possible, so this turns out to be $$\dfrac{\binom{5}{5} \cdot \binom{64}{0}}{\binom{69}{5}} = \dfrac{1}{11238513}$$.  -->
+
+<!-- Lastly, we have to multiply this by the chance that we choose the right number for the red Powerball, which is $\dfrac{1}{26}$. Our final probability turns out to be $$\dfrac{1}{11238513 \cdot 26} = \dfrac{1}{292201338}$$, or about a $1$ in $292$ million chance that you win the Powerball. -->
 
 ## Theory {-}
 
-```{definition}
-The Hypergeometric distribution is defined as
+In probability, some distributions are so common that they have been given names. The first named distribution 
+that we will learn is the **hypergeometric distribution**.
+
+```{theorem hypergeometric, name="Hypergeometric Distribution"}
+If a random variable can be described as the number of $\fbox{1}$s in $n$ random draws, _without replacement_, 
+from the box 
+\[ \overbrace{\underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0}\ \underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1}}^N, \]
+then its p.m.f. is given by 
 \begin{equation}
-P(X = x) = \dfrac{\binom{k}{x}\binom{N-k}{n-x}}{\binom{N}{n}}
+f(x) = \dfrac{\binom{N_1}{x}\binom{N_0}{n-x}}{\binom{N}{n}}, x=0, ..., n,
 (\#eq:hypergeometric)
 \end{equation}
+where $N = N_1 + N_0$ is the number of tickets in the box.
   
-Where $k$ is the number of successes in the population, $x$ is the number of successes in the sample, $N$ is the number of items in the population, and $n$ is the number of items drawn from the sample.
-
+We say that the random variable has a $\text{Hypergeometric}(n, N_1, N_0)$ distribution, and $n$, $N_1$, 
+$N_0$ are called **parameters** of the distribution.
 ```
 
-We can also use sums of the hypergeometric formula to calculate probabilities such as $P(X \le x)$, the c.d.f of $X$
+We will derive the formula \@ref(eq:hypergeometric) later in this lesson. 
+First, let's see how this result allows us to avoid most calculations.
 
-$$P(X \le x) = \sum_{i=0}^x\dfrac{\binom{k}{x}\binom{N-k}{n-x}}{\binom{N}{n}}$$
+```{example name="The Number of Diamonds"}
+In Alice's case, the community cards are $5$ cards taken at random, without replacement, 
+from a deck of $48$ cards. So we can represent it by a box model with $N=48$ tickets, with 
+\begin{align*}
+\text{$N_1=11$ tickets labeled } \fbox{1} &\text{ representing the diamond cards} \\
+\text{$N_0=37$ tickets labeled } \fbox{0} &\text{ representing the non-diamond cards}.
+\end{align*}
+Now, if we draw $n=5$ times from this box without replacement, then the number of $\fbox{1}$s we get 
+corresponds to the number of diamonds. 
 
-Similarly, we can find $P(X \ge x)$
+Therefore, by Theorem \@ref(thm:hypergeometric), we know that the number of diamonds follows a 
+$\text{Hypergeometric}(n=5, N_1=11, N_0=37)$ distribution. We can now write down the p.m.f. by pluggging 
+the values of the parameters $n$, $N_1$, $N_0$ into \@ref(eq:hypergeometric):
+\[ f(x) = \frac{\binom{11}{x} \binom{37}{5-x}}{\binom{48}{5}}, x=0, 1, \ldots, 5. \]
 
-$$P(X \ge x) = \sum_{i=x}^n\dfrac{\binom{k}{x}\binom{N-k}{n-x}}{\binom{N}{n}}$$
+Now that we have a formula for the p.m.f., we can calculate probabilities by plugging numbers into it. So, for example, 
+the probability that Alice gets a flush is:
+\begin{align*}
+P(X \geq 3) &= f(3) + f(4) + f(5) \\
+&= \frac{\binom{11}{3} \binom{37}{5-3}}{\binom{48}{5}} + \frac{\binom{11}{4} \binom{37}{5-4}}{\binom{48}{5}} + \frac{\binom{11}{5} \binom{37}{5-5}}{\binom{48}{5}} \\
+&\approx .0715.
+\end{align*}
+```
 
-## Worked Examples {-}
+Now, let's derive the p.m.f. of the hypergeometric distribution. Understanding this derivation will help you 
+remember the formula!
 
-1. Your state proposes a new lottery game in which you select $6$ numbers from $1$ to $15$. When it is time to draw, the lottery selects $8$ numbers, and prizes are won if at least $4$ of the $6$ numbers that you picked are part of the $8$ numbers that the lottery drew. What is the probability that a randomly selected ticket wins a prize?
+```{proof}
+If we number each ticket $1, 2, \ldots, N$, then there are $\binom{N}{n}$ equally likely unordered outcomes. 
+Note that in this way of counting, the $\fbox{1}$s in the box are distinct. So drawing the first $\fbox{1}$ 
+in the box is not the same as drawing the second $\fbox{1}$ in the box.
 
-This is a hypergeometric distributions with parameters $N=15, n=8,$ and $k=6$. Therefore, the resulting probability becomes
+How many of the possible outcomes have exactly $x$ $\fbox{1}$s? 
+  
+  - There are $\binom{N_1}{x}$ unordered ways to choose $x$ $\fbox{1}$s from the $N_1$ $\fbox{1}$s.
+  - There are $\binom{N_0}{n-x}$ unordered ways to choose the remaining $n-x$ $\fbox{0}$s.
 
-$$\dfrac{\binom{6}{4}\binom{15-6}{8-4}}{\binom{15}{8}} + \dfrac{\binom{6}{5}\binom{15-6}{8-5}}{\binom{15}{8}} + \dfrac{\binom{6}{6}\binom{15-6}{8-6}}{\binom{15}{8}} = 0.3776$$
+Since any one of the $\binom{N_1}{x}$ ways of choosing the $\fbox{1}$s can be paired with any one of the 
+$\binom{N_0}{n-x}$ ways of choosing the $\fbox{0}$s, the total number of ways to choose $n$ tickets, 
+resulting in $x$ $\fbox{1}$s and $n-x$ $\fbox{0}$s, is
+\[ \binom{N_1}{x} \cdot \binom{N_0}{n-x}, \]
+by the multiplication principle of counting (Theorem \@ref(thm:multiplication-principle)).
 
-------
+Therefore, the probability of getting exactly $x$ $\fbox{1}$s in $n$ draws is:
+\[ f(x) = P(X = x) = \dfrac{\binom{N_1}{x}\binom{N_0}{n-x}}{\binom{N}{n}}. \]
+```
 
-2. In poker, a three-of-a-kind is when your hand consists of exactly $3$ cards of the same rank (Ex: $\{5, 8, J, J, J\}$ or $\{7, 7, 7, K, A\}$). What is the probability that you are dealt $5$ cards, and you have a three-of-a-kind?
+Let's graph the hypergeometric distribution for different values of $n$, $N_1$, and $N_0$.
 
-The probability that we have $3$ cards of a specific rank out of $5$ cards that are dealt is $$\dfrac{\binom{4}{3}\binom{48}{2}}{\binom{52}{5}} = 0.00174$$
+**TODO**
 
-But we have $13$ ranks of cards in our deck, so this probability becomes
+There is another formula for the hypergeometric p.m.f. that looks different but is equivalent to 
+\@ref(eq:hypergeometric). It is based on counting the number of ordered outcomes, instead of the 
+number of unordered outcomes. You should verify that this formula gives the same probabilities as 
+\@ref(eq:hypergeometric).
 
-$$13 \cdot \dfrac{\binom{4}{3}\binom{48}{2}}{\binom{52}{5}} = 0.02256$$
+```{theorem, name="Another Formula for the Hypergeometric"}
 
-So there is a $2.256\%$ chance that you are dealt a three-of-a-kind.
+The p.m.f. of a $\text{Hypergeometric}(n, N_1, N_0)$ random variable can also be written as 
+\[ f(x) = \frac{\binom{n}{x} \cdot \frac{N_1!}{(N_1 - x)!} \cdot \frac{N_0!}{(N_0 - n + x)!}}{\frac{N!}{(N-n)!}}. \]
+```
 
-------
+```{proof}
+There are 
+$\frac{N!}{(N-n)!}$ ways to choose $n$ tickets from $N$, if we account for the order in which $n$
+the tickets were drawn. How many of these _ordered_ outcomes have exactly $x$ $\fbox{1}$s and $n-x$ $\fbox{0}$s? 
+
+Let's start by counting the number of outcomes that look like 
+\begin{equation}
+\underbrace{\fbox{1}, \ldots, \fbox{1}}_{x}, \underbrace{\fbox{0}, \ldots, \fbox{0}}_{n-x}, 
+(\#eq:hypergeometric-ordered)
+\end{equation}
+in this exact order. There are $N_1$ choices for the first $\fbox{1}$, $N_1 - 1$ choices for the second, 
+and so on, until we get to the last $\fbox{1}$, for which there are $N_1 - x + 1$ choices. Then, there 
+are $N_0$ choices for the first $\fbox{0}$, $N_0 - 1$ choices for the second, and so on. By the 
+multiplication principle of counting (Theorem \@ref(thm:multiplication-principle)), there are 
+\begin{equation}
+\underbrace{N_1 \cdot (N_1 - 1) \cdot \ldots \cdot (N_1 - x + 1)}_{\displaystyle\frac{N_1!}{(N_1 - x)!}} \cdot \underbrace{N_0 \cdot (N_0 - 1) \cdot \ldots \cdot (N_0 - (n - x) + 1)}_{\displaystyle\frac{N_0!}{(N_0 - n + x)!}}. 
+(\#eq:hypergeometric-ordered-count)
+\end{equation}
+ways to get an outcome like \@ref(eq:hypergeometric-ordered), in that exact order.
+
+However, because we are counting ordered outcomes, we need to account for the possibility that the 
+$\fbox{1}$s and $\fbox{0}$s were drawn in a different order than \@ref(eq:hypergeometric-ordered). 
+There are $\binom{n}{x}$ ways to reorder the $\fbox{1}$s and $\fbox{0}$s, 
+each of which can be obtained in \@ref(eq:hypergeometric-ordered-count) ways. So the total number of (ordered) ways 
+to get $x$ $\fbox{1}$s and $n-x$ $\fbox{0}$s is 
+\[ \binom{n}{x} \cdot \frac{N_1!}{(N_1 - x)!} \cdot \frac{N_0!}{(N_0 - n + x)!} \]
+
+So the p.m.f. can be written as 
+\[ f(x) = P(X = x) = \frac{\binom{n}{x} \cdot \frac{N_1!}{(N_1 - x)!} \cdot \frac{N_0!}{(N_0 - n + x)!}}{\frac{N!}{(N-n)!}}. \]
+It is easy to see that this formula is equivalent to \@ref(eq:hypergeometric), if you write out the binomial coefficients in 
+\@ref(eq:hypergeometric) as factorials and regroup $\frac{n!}{x! (n-x)!}$ as $\binom{n}{x}$.
+```
+
+<!-- ```{example, name="CDF"} -->
+<!-- We can also use sums of the hypergeometric formula to calculate probabilities such as $P(X \le x)$, the c.d.f of $X$ -->
+
+<!-- $$F(x) = P(X \leq x) = \sum_{k=0}^x\dfrac{\binom{N_1}{k}\binom{N_0}{n-k}}{\binom{N}{n}}$$ -->
+<!-- ``` -->
 
 
-## Exercises {-}
+## Essential Practice {-}
 
-1. In Texas Hold'em, you are dealt $2$ cards in your hand, and share $5$ cards in the middle of the table with the other players. A flush occurs when you have at least $5$ cards of the same suit out of the $7$ total cards. The deck is shuffled between hands, so that the probability you obtain a flush is independent from hand to hand. What is the probability that you get at least $1$ flush in $10$ hands of Texas Hold'em?
+1. Recall in the example from Lesson \@ref(rv), there was another player, Bob, who had two Jacks and was looking to get a 
+four-of-a-kind. For Bob, the random variable of interest was _the number of Jacks_ among the community cards. Use a box 
+model to argue that Bob's random variable also has a hypergeometric distribution. What are its parameters?
+2. In order to ensure safety, a random sample of cars on each production line are crash-tested before being released 
+to the public. The process of crash testing destroys the car. Suppose that a production line contains 10 defective and 
+190 working cars. If 4 of these cars are chosen at random for crash-testing, what is:
 
-------
+    a. the probability that at least 1 car will be found defective?
+    b. the probability that exactly 2 cars will be found defective?
+    
+3. The state proposes a lottery in which you select $6$ numbers from $1$ to $15$. When it is time to draw, the lottery selects $8$ numbers, and you win if at least $4$ of the $6$ numbers you picked are among the $8$ numbers that the lottery drew. What is the probability you win the prize?
 
-2. There are $25$ coins in a jar. $15$ are quarters, $7$ are dimes, and $3$ are pennies. Each time you reach in the jar, your are equally likely to pick any of the coins in the jar. What is the minimum number of times you must reach in the jar to have at least a $50\%$ chance of getting all $3$ pennies.
+<!-- This is a hypergeometric distributions with parameters $N=15, n=8,$ and $k=6$. Therefore, the resulting probability becomes -->
 
-------
+<!-- $$\dfrac{\binom{6}{4}\binom{15-6}{8-4}}{\binom{15}{8}} + \dfrac{\binom{6}{5}\binom{15-6}{8-5}}{\binom{15}{8}} + \dfrac{\binom{6}{6}\binom{15-6}{8-6}}{\binom{15}{8}} = 0.3776$$ -->
+<!-- 3. In poker, a three-of-a-kind is when your hand consists of exactly $3$ cards of the same rank (Ex: $\{5, 8, J, J, J\}$ or $\{7, 7, 7, K, A\}$). What is the probability that you are dealt $5$ cards, and you have a three-of-a-kind? -->
 
-3. You are enrolled in $3$ courses this quarter, and the breakdown of majors by class is as follows:
+<!-- The probability that we have $3$ cards of a specific rank out of $5$ cards that are dealt is $$\dfrac{\binom{4}{3}\binom{48}{2}}{\binom{52}{5}} = 0.00174$$ -->
 
-Class 1: $17$ Statistics Majors and $13$ Math Majors
+<!-- But we have $13$ ranks of cards in our deck, so this probability becomes -->
 
-Class 2: $4$ Statistics Majors and $6$ Math Majors
+<!-- $$13 \cdot \dfrac{\binom{4}{3}\binom{48}{2}}{\binom{52}{5}} = 0.02256$$ -->
 
-Class 3: $11$ Statistics Majors and $9$ Math Majors
+<!-- So there is a $2.256\%$ chance that you are dealt a three-of-a-kind. -->
 
-You pick one of your $3$ classes at random, and then choose a random sample of $20\%$ students from that class. What is the probability that the number of Statistics majors in your sample is equal to the number of Math majors in your sample?
+<!-- ------ -->
+
+
+## Additional Exercises {-}
+
+1. You are enrolled in $3$ courses this quarter, and the breakdown of majors by class is as follows:
+
+    - Class 1: $4$ Statistics majors and $6$ Computer Science majors
+    - Class 2: $17$ Statistics majors and $13$ Computer Science majors
+    - Class 3: $11$ Statistics majors and $9$ Computer Science majors
+    
+    a. If you take a simple random sample of $20\%$ of the students in Class 1, what is the probability that the number of 
+    Statistics majors in your sample is equal to the number of Computer Science majors? (Note: In a simple random sample, 
+    each student can be selected at most once.)
+    b. Now, suppose you pick one of your $3$ classes at random and then choose a random sample of $20\%$ of students 
+    from that class. What is the probability that the number of Statistics majors in your sample is equal to the number of Math 
+    majors in your sample?
+2. In Texas Hold'em, each player has $2$ cards of their own, and all players share $5$ cards in the center of the table. 
+A player has a flush when there are at least $5$ cards of the same suit out of the $7$ total cards. The deck is shuffled between hands, so that the probability you obtain a flush is independent from hand to hand. What is the probability that you get a flush 
+at least once in $10$ hands of Texas Hold'em? (_Hint:_ First, calculate the probability of a flush of spades. 
+Then, repeat for the other suits, and add the probabilities together to obtain the overall probability of a flush.)
+3. There are $25$ coins in a jar. $15$ are quarters, $7$ are dimes, and $3$ are pennies. Each time you reach in the jar, you are equally likely to pick any of the coins in the jar. The coins are not replaced in the jar after each draw. 
+What is the minimum number of times you must reach in the jar to have at least a $50\%$ chance of getting all $3$ pennies? (_Hint:_ In this question, $n$ is unknown. You will have to try a few different values of $n$ to get the answer.)
