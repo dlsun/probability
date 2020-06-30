@@ -352,8 +352,8 @@ to the public. The process of crash testing destroys the car. Suppose that a pro
     Statistics majors in your sample is equal to the number of Computer Science majors? (Note: In a simple random sample, 
     each student can be selected at most once.)
     b. Now, suppose you pick one of your $3$ classes at random and then choose a random sample of $20\%$ of students 
-    from that class. What is the probability that the number of Statistics majors in your sample is equal to the number of Math 
-    majors in your sample?
+    from that class. What is the probability that the number of Statistics majors in your sample is equal to the number of 
+    Computer Science majors in your sample?
 2. In Texas Hold'em, each player has $2$ cards of their own, and all players share $5$ cards in the center of the table. 
 A player has a flush when there are at least $5$ cards of the same suit out of the $7$ total cards. The deck is shuffled between hands, so that the probability you obtain a flush is independent from hand to hand. What is the probability that you get a flush 
 at least once in $10$ hands of Texas Hold'em? (_Hint:_ First, calculate the probability of a flush of spades. 
