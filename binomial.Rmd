@@ -263,7 +263,7 @@ $$ \displaystyle \fbox{\(\fbox{1}\ \fbox{1}\ \fbox{0}\ \fbox{0}\)}. $$
 Although the first box is more natural, the second box is equally valid. Any box with the same 
 number of $\fbox{1}$s as $\fbox{0}$s can be used to model a coin toss, since they all guarantee 
 a 50% chance of drawing a $\fbox{1}$. The fact that the binomial distribution does not depend on 
-$N$ should not be surprising not surprising, in light of \@ref{eq:binomial2}, which shows that the 
+$N$ should not be surprising not surprising, in light of \@ref(eq:binomial2), which shows that the 
 binomial p.m.f. can be written solely in terms of $p = N_1 / N$, the proportion of $\fbox{1}$s in the box.
 
 ### Calculating Binomial Probabilities on the Computer {-}
