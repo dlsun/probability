@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-29" />
+<meta name="date" content="2020-06-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -205,6 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#graphing-1"><i class="fa fa-check"></i>Graphing</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#additional-exercises-5"><i class="fa fa-check"></i>Additional Exercises</a></li>
@@ -236,20 +237,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In 1693, Samuel Pepys (who is best remembered today for <a href="https://www.pepysdiary.com/">his diary</a>) wrote a letter to
 Isaac Newton inquiring about a wager that Pepys was planning to make. Pepys wanted to know which of the
 following events had the highest probability of occurring.</p>
-<pre><code>A. 6 dice are thrown and at least 1 is a $\epsdice{6}$
-B. 12 dice are thrown and at least 2 are $\epsdice{6}$s
-C. 18 dice are thrown and at least 3 are $\epsdice{6}$s</code></pre>
+<p>A. 6 dice are thrown and at least 1 is a ⚅</p>
+<p>B. 12 dice are thrown and at least 2 are ⚅s</p>
+<p>C. 18 dice are thrown and at least 3 are ⚅s</p>
 <p>Pepys thought that C had the highest probability, but Newton disagreed.</p>
-<p>The probability of A is straightforward to calculate. We use the Complement Rule <a href="double-counting.html#thm:complement">5.2</a>,
+<p>The probability of A is straightforward to calculate. We use the Complement Rule (Theorem <a href="double-counting.html#thm:complement">5.2</a>),
 much like we did in the Chevalier de Méré example from Lesson <a href="double-counting.html#double-counting">5</a>.
 <span class="math display">\[\begin{align*}
-P(\text{at least 1 $\epsdice{6}$ in 6 rolls}) &amp;= 1 - P(\text{0 $\epsdice{6}$s in 6 rolls}) \\
+P(\text{at least 1 ⚅ in 6 rolls}) &amp;= 1 - P(\text{0 ⚅s in 6 rolls}) \\
 &amp;= 1 - \frac{5^6}{6^6} \\
 &amp;\approx .665
 \end{align*}\]</span></p>
-<p>However, the probabilities of the other two events are trickier to calculate. It is not
-trivial to calculate the number of ways to get exactly 2 sixes in 18 dice rolls. In this lesson,
-we learn how.</p>
+<p>However, the probabilities of the other two events are trickier to calculate. For example, it is not
+obvious how to count the number of ways to get exactly 2 sixes in 18 dice rolls. In this lesson,
+we learn how this is done.</p>
 <!-- ------ -->
 <!-- First, let's estimate these three probabilities with simulation. -->
 <!-- **a)** -->
@@ -279,8 +280,8 @@ we learn how.</p>
 <div id="theory-11" class="section level2 unnumbered">
 <h2>Theory</h2>
 <p>In this lesson, we learn another named distribution that is virtually identical to the
-hypergeometric distribution, except in one detail: the draws are made with replacement instead of
-without replacement.</p>
+hypergeometric distribution, except in one important detail: the draws are made
+<em>with replacement</em> instead of <em>without replacement</em>.</p>
 
 <div class="theorem">
 <p><span id="thm:binomial" class="theorem"><strong>Theorem 13.1  (Binomial Distribution)  </strong></span>If a random variable can be described as the number of <span class="math inline">\(\fbox{1}\)</span>s in <span class="math inline">\(n\)</span> random draws, <em>with replacement</em>,
@@ -303,20 +304,20 @@ where <span class="math inline">\(p = N_1 / N\)</span> is the proportion of <spa
 </div>
 
 <p>We will derive the formulas <a href="binomial.html#eq:binomial1">(13.1)</a> and <a href="binomial.html#eq:binomial2">(13.2)</a> later in this lesson.
-First, let’s see how these formulas allow us to avoid most calculations.</p>
+For now, let’s see how these formulas allow us to avoid calculations.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-37" class="example"><strong>Example 13.1  (The Newton-Pepys Problem)  </strong></span>Let’s model each die roll as a draw from a box. Each die has <span class="math inline">\(6\)</span> equally likely outcomes, so
-we place <span class="math inline">\(N=6\)</span> tickets into the box. Since we are only interested in the number of <span class="math inline">\(\epsdice{6}\)</span>s,
-we will label only one these tickets <span class="math inline">\(\fbox{1}\)</span>, corresponding to <span class="math inline">\(\epsdice{6}\)</span>; the other five
+<p><span id="exm:unnamed-chunk-38" class="example"><strong>Example 13.1  (The Newton-Pepys Problem)  </strong></span>Let’s model each die roll as a draw from a box. Each die has <span class="math inline">\(6\)</span> equally likely outcomes, so
+we place <span class="math inline">\(N=6\)</span> tickets into the box. Since we are only interested in the number of ⚅s,
+we will label only one these tickets <span class="math inline">\(\fbox{1}\)</span>, corresponding to a ⚅; the other five
 tickets will be labeled <span class="math inline">\(\fbox{0}\)</span>.</p>
 <p><span class="math display">\[ \fbox{$\fbox{1}\ \fbox{0}\ \fbox{0}\ \fbox{0}\ \fbox{0}\ \fbox{0}$} \]</span></p>
 <p>To model 12 rolls of the die, we draw <span class="math inline">\(n=12\)</span> tickets <em>with replacement</em>.
 We draw with replacement so that the outcome of one die roll does not affect the outcome of another.
 In other words, we want the dice rolls to be independent, and drawing with replacement is the only
-way to model independence. The number of <span class="math inline">\(\fbox{1}\)</span>s we get in these 12 draws represents the
-number of <span class="math inline">\(\epsdice{6}\)</span>s in 12 rolls.</p>
-<p>Therefore, by Theorem <a href="binomial.html#thm:binomial">13.1</a>, we now know that the number of <span class="math inline">\(\epsdice{6}\)</span>s in
+way to model independence. The number of <span class="math inline">\(\fbox{1}\)</span>s in these 12 draws represents the
+number of ⚅s that one would get in 12 rolls of a fair die.</p>
+<p>Therefore, by Theorem <a href="binomial.html#thm:binomial">13.1</a>, we now know that the number of ⚅s in
 12 rolls follows a
 <span class="math inline">\(\text{Binomial}(n=5, N_1=1, N_0=5)\)</span> distribution. We can now write down the p.m.f. by plugging
 the values of the parameters <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_0\)</span> into <a href="binomial.html#eq:binomial1">(13.1)</a>:
@@ -325,20 +326,20 @@ the values of the parameters <span class="math inline">\(n\)</span>, <span class
 <a href="binomial.html#eq:binomial2">(13.2)</a>, we have:
 <span class="math display">\[ f(x) = \binom{12}{x} \left(\frac{1}{6}\right)^x \left(\frac{5}{6} \right)^{12-x}, x=0, 1, \ldots, 12. \]</span></p>
 Both formulas should produce the same probabilities. To answer Pepys’ question about the probability of
-getting at least 2 <span class="math inline">\(\epsdice{6}\)</span>s in 12 rolls, we combine the binomial distribution with the complement rule,
+getting at least 2 ⚅s in 12 rolls, we combine the binomial distribution with the complement rule,
 <span class="math display">\[\begin{align*}
 P(X \geq 2) &amp;= 1 - P(X \leq 1)  \\
 &amp;= 1 - (f(0) + f(1)) \\
-&amp;= 1 - \binom{12}{0} \left(\frac{1}{6}\right)^0 \left(\frac{5}{6} \right)^{12} - \binom{12}{1} \left(\frac{1}{6}\right)^1 \left(\frac{5}{6} \right)^{11}
+&amp;= 1 - \binom{12}{0} \left(\frac{1}{6}\right)^0 \left(\frac{5}{6} \right)^{12} - \binom{12}{1} \left(\frac{1}{6}\right)^1 \left(\frac{5}{6} \right)^{11} \\
+&amp;= 1 - \left(\frac{5}{6} \right)^{12} - 12 \left(\frac{1}{6}\right) \left(\frac{5}{6} \right)^{11} \\
 &amp;\approx .6187.
 \end{align*}\]</span>
 </div>
 
-<p>Now, let’s derive the p.m.f. of the binomial distribution. Understanding this derivation will help you
-remember the formula!</p>
+<p>Now, let’s derive the p.m.f. of the binomial distribution.</p>
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> There are <span class="math inline">\(N^n\)</span> ordered ways to choose <span class="math inline">\(n\)</span> tickets from <span class="math inline">\(N\)</span> with replacement. Remember from Lesson
+<p> <span class="proof"><em>Proof. </em></span> There are <span class="math inline">\(N^n\)</span> ordered ways to choose <span class="math inline">\(n\)</span> tickets from <span class="math inline">\(N\)</span> with replacement. Recall from Lesson
 <a href="replacement.html#replacement">4</a> that when sampling with replacement, we must count ordered outcomes, since the
 unordered outcomes are not all equally likely.</p>
 <p>Let’s start by counting the number of outcomes that look like
@@ -346,17 +347,17 @@ unordered outcomes are not all equally likely.</p>
 \underbrace{\fbox{1}, \ldots, \fbox{1}}_{x}, \underbrace{\fbox{0}, \ldots, \fbox{0}}_{n-x}, 
 \tag{13.3}
 \end{equation}\]</span>
-in this exact order. There are <span class="math inline">\(N_1\)</span> choices for the first <span class="math inline">\(\fbox{1}\)</span>, <span class="math inline">\(N_1\)</span> choices for the second,
-and so on, until we get to the last <span class="math inline">\(\fbox{1}\)</span>, for which there are still <span class="math inline">\(N_1\)</span> choices, since we
-are sampling with replacement. Likewise, there
-are <span class="math inline">\(N_0\)</span> choices for the first <span class="math inline">\(\fbox{0}\)</span>, <span class="math inline">\(N_0\)</span> choices for the second, and so on. By the
+in this exact order. There are <span class="math inline">\(N_1\)</span> choices for the first <span class="math inline">\(\fbox{1}\)</span>, <span class="math inline">\(N_1\)</span> choices for the second
+<span class="math inline">\(\fbox{1}\)</span>, and in fact, <span class="math inline">\(N_1\)</span> choices for all <span class="math inline">\(x\)</span> <span class="math inline">\(\fbox{1}\)</span>s, since we
+are drawing with replacement. Likewise, there
+are <span class="math inline">\(N_0\)</span> choices for all <span class="math inline">\(n-x\)</span> <span class="math inline">\(\fbox{0}\)</span>s. By the
 multiplication principle of counting (Theorem <a href="counting.html#thm:multiplication-principle">1.1</a>), there are
 <span class="math display" id="eq:binomial-ordered-count">\[\begin{equation}
 N_1^x \cdot N_0^{n-x}. 
 \tag{13.4}
 \end{equation}\]</span>
 ways to get an outcome like <a href="binomial.html#eq:binomial-ordered">(13.3)</a>, in that exact order.</p>
-<p>However, because we are counting ordered outcomes, we need to account for the possibility that the
+<p>However, because we are counting ordered outcomes, we also need to account for the possibility that the
 <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(\fbox{0}\)</span>s were drawn in a different order than <a href="binomial.html#eq:binomial-ordered">(13.3)</a>.
 There are <span class="math inline">\(\binom{n}{x}\)</span> ways to reorder the <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(\fbox{0}\)</span>s,
 each of which can be obtained in <a href="binomial.html#eq:binomial-ordered-count">(13.4)</a> ways. So the total number of (ordered) ways
@@ -364,135 +365,126 @@ to get <span class="math inline">\(x\)</span> <span class="math inline">\(\fbox{
 <span class="math display">\[ \binom{n}{x} \cdot N_1^x \cdot N_0^{n-x}.  \]</span></p>
 <p>So the p.m.f. can be written as
 <span class="math display">\[ f(x) = P(X = x) = \frac{\binom{n}{x} \cdot N_1^x \cdot N_0^{n-x}}{N^n}. \]</span></p>
-It is easy to see that this formula is equivalent to <a href="binomial.html#eq:binomial2">(13.2)</a>, if we break <span class="math inline">\(N^n\)</span> into <span class="math inline">\(N^x \cdot N^{n-x}\)</span>.
+To see that this formula is the same as <a href="binomial.html#eq:binomial2">(13.2)</a>, we write <span class="math inline">\(N^n = N^x \cdot N^{n-x}\)</span>.
 Then, we have:
 <span class="math display">\[\begin{align*}
 f(x) &amp;= \binom{n}{x}\frac{N_1^x \cdot N_0^{n-x}}{N^x \cdot N^{n-x}} \\
 &amp;= \binom{n}{x} \left( \frac{N_1}{N} \right)^x \left( \frac{N_0}{N} \right)^{n-x} \\
-&amp;= \binom{n}{x} p^x (1 - p)^{n-x}.
+&amp;= \binom{n}{x} p^x (1 - p)^{n-x},
 \end{align*}\]</span>
+where in the last line, we used the fact that <span class="math inline">\(\frac{N_0}{N} = \frac{N - N_1}{N} = 1 - \frac{N_1}{N} = 1 - p\)</span>.
 </div>
 
 <div id="graphing-1" class="section level3 unnumbered">
 <h3>Graphing</h3>
 <p>Let’s graph the binomial distribution for different values of <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, and <span class="math inline">\(N_0\)</span>.</p>
 <p>First, we hold the number of draws constant at <span class="math inline">\(n=5\)</span> and vary the composition of the box.</p>
-<pre><code>## Warning in dbinom(0:n, N1, N0, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(0:n, N1, N0, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(0:n, N1, N0, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced
-
-## Warning in dbinom(x, N1, N0, n): NaNs produced</code></pre>
 <p><img src="bookdown-demo_files/figure-html/binomial-pmf-1-1.png" width="672" /></p>
 <p>The distribution shifts, depending on the composition of the box. The more
 <span class="math inline">\(\fbox{1}\)</span>s there are in the box, the more <span class="math inline">\(\fbox{1}\)</span>s in the sample.</p>
 <p>Next, we study how the distribution changes as a function of <span class="math inline">\(n / N\)</span>, the relative fraction of
-tickets removed from the box. For all of the graphs below, <span class="math inline">\(N_1 = N_0 = N/2\)</span>.</p>
-<pre><code>## Warning in dbinom(0:n, N/2, N/2, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+draws we make from the box. For all of the graphs below, <span class="math inline">\(N_1 = N_0 = N/2\)</span>.
+<img src="bookdown-demo_files/figure-html/binomial-pmf-2-1.png" width="672" /></p>
+<p>In contrast to the hypergeometric distribution, the binomial distribution does
+not change when we vary the number of tickets in the box, as long as we keep the relative
+proportions of <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(\fbox{0}\)</span>s the same. This makes sense because we are
+drawing <em>with replacement</em>, so it does not matter how many draws we make; the box
+always looks the same.</p>
+<p>The binomial distribution is indifferent to the exact number of tickets <span class="math inline">\(N\)</span> in the box.<br />
+For example, to model a coin toss, we could use</p>
+<p><span class="math display">\[ \displaystyle \fbox{\(\fbox{1}\ \fbox{0}\)} \]</span>
+or
+<span class="math display">\[ \displaystyle \fbox{\(\fbox{1}\ \fbox{1}\ \fbox{0}\ \fbox{0}\)}. \]</span>
+Although the first box is more natural, the second box is equally valid. Any box with the same
+number of <span class="math inline">\(\fbox{1}\)</span>s as <span class="math inline">\(\fbox{0}\)</span>s can be used to model a coin toss, since they all guarantee
+a 50% chance of drawing a <span class="math inline">\(\fbox{1}\)</span>. The fact that the binomial distribution does not depend on
+<span class="math inline">\(N\)</span> should not be surprising not surprising, in light of @ref{eq:binomial2}, which shows that the
+binomial p.m.f. can be written solely in terms of <span class="math inline">\(p = N_1 / N\)</span>, the proportion of <span class="math inline">\(\fbox{1}\)</span>s in the box.</p>
+</div>
+<div id="calculating-binomial-probabilities-on-the-computer" class="section level3 unnumbered">
+<h3>Calculating Binomial Probabilities on the Computer</h3>
+<p>Calculating binomial probabilities by hand can be unwieldy when <span class="math inline">\(n\)</span> is large.
+Fortunately, the binomial distribution is built into many software packages.</p>
+For example, suppose we want to solve the following problem.
 
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+<div class="example">
+<p><span id="exm:unnamed-chunk-40" class="example"><strong>Example 13.2  (Parity Checks)  </strong></span>Messages that are exactly 50-bits long are regularly sent over a noisy communication channel.
+Each bit has a 1% chance of being corrupted by the channel. That is, the receiver saw a <span class="math inline">\(0\)</span>
+where the original message had a <span class="math inline">\(1\)</span>, and vice versa. Each
+bit is corrupted independently of any other bit.</p>
+<p>To help detect errors, a 51st bit, called a <strong>parity bit</strong>, is sent along
+with the message. This bit is chosen to make the sum of all 51 bits come out to
+an even integer. When the receiver receives the message, she can calculate the
+sum of all 51 bits herself. If the sum is odd, then she knows that the message has
+been corrupted and can ask the sender to resend the message. This is called a
+parity check.</p>
+<p>The parity check works if exactly one bit is corrupted. However, if exactly two bits are
+corrupted, then the sum of all 51 bits will be even, and hence the errors will not be detected by the
+receiver. In general, errors will not be detected if an even number of bits are corrupted.</p>
+What is the probability that a corrupted message goes undetected?
+</div>
 
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
 
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> First, we will set up a box model for <em>the number of corrupted bits</em>. We have a box with</p>
+<ul>
+<li><span class="math inline">\(N_0 = 99\)</span> tickets labeled <span class="math inline">\(\fbox{0}\)</span></li>
+<li><span class="math inline">\(N_1 = 1\)</span> tickets labeled <span class="math inline">\(\fbox{1}\)</span></li>
+</ul>
+<p>to represent the 1% chance that each bit is corrupted. We will draw 51 times from this box to represent the
+51 bits in the message. We draw <em>with replacement</em>, since the bits are corrupted independently.
+Then, the number of <span class="math inline">\(\fbox{1}\)</span>s corresponds to the number of corrupted bits.</p>
+<p>Therefore, we know that the number of corrupted bits, which we will call <span class="math inline">\(X\)</span>,
+follows a <span class="math inline">\(\text{Binomial}(n=51, N_1=1, N_0=99)\)</span> distribution.</p>
+The probability that a corrupted message goes undetected is the probability that
+<span class="math inline">\(X\)</span> is positive and even. (If <span class="math inline">\(X=0\)</span>, then the message was not corrupted in the first place.
+If <span class="math inline">\(X\)</span> is odd, then the error will be caught by the parity check.) To calculate this
+probability, we sum the p.m.f. over the relevant values:
+<span class="math display">\[\begin{align*} 
+P(\text{corrupted message goes undetected}) &amp;= P(\text{$X$ is positive and even}) \\
+&amp;= f(2) + f(4) + f(6) + \ldots + f(50)
+\end{align*}\]</span>
+This would require evaluating the p.m.f. at 25 different values! This is a job for a computer, not a human.
+</div>
 
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(0:n, N/2, N/2, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(0:n, N/2, N/2, n): NaNs produced</code></pre>
-<pre><code>## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced
-
-## Warning in dbinom(x, N/2, N/2, n): NaNs produced</code></pre>
-<p><img src="bookdown-demo_files/figure-html/binomial-pmf-2-1.png" width="672" /></p>
-<p>In contrast to the hypergeometric distribution, there is no difference in the p.m.f.
-when</p>
+<p>Here’s how we would calculate the probability using the Python library <a href="http://dlsun.github.io/symbulate">Symbulate</a>.
+We first specify the parameters of the binomial distribution. Note that Symbulate requires that the parameters
+be <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, so we have to do a bit of conversion. Then, we create a list of the positive even values and
+evaluate the p.m.f. at all of these values, in one fell swoop, using the <code>.pmf()</code> method.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">probs <span class="op">=</span> Binomial(n<span class="op">=</span><span class="dv">51</span>, p<span class="op">=</span><span class="fl">0.01</span>).pmf(<span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">51</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">probs</a></code></pre></div>
+<pre><code>## array([7.79174480e-02, 1.55818996e-03, 1.14573571e-05, 4.13324569e-08,
+##        8.46244910e-11, 1.07274277e-13, 8.91255091e-17, 5.04689904e-20,
+##        2.00253338e-23, 5.67792557e-27, 1.16616574e-30, 1.75027722e-34,
+##        1.92868014e-38, 1.56177790e-42, 9.26787459e-47, 4.00356955e-51,
+##        1.24511721e-55, 2.74244677e-60, 4.17928311e-65, 4.26413949e-70,
+##        2.77920480e-75, 1.07909959e-80, 2.23393269e-86, 2.02064767e-92,
+##        5.04900000e-99])</code></pre>
+<p>To add these probabilities, we call <code>sum()</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="bu">sum</span>(probs)</a></code></pre></div>
+<pre><code>## 0.07948713677652883</code></pre>
+<p>You can play around with the Python code in <a href="https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/py/Calculating_Binomial_Probabilities.ipynb">this Colab notebook</a>.</p>
+<p>It is also possible to do this calculation in R, a statistical programming language.
+Note that R uses the names <code>size=</code> and <code>prob=</code> for <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, respectively. We create a list of the
+positive even integers from 2 to 51, and evaluate the binomial p.m.f. at these values.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">probs &lt;-<span class="st"> </span><span class="kw">dbinom</span>(<span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">2</span>, <span class="dt">to=</span><span class="dv">51</span>, <span class="dt">by=</span><span class="dv">2</span>), <span class="dt">size=</span><span class="dv">51</span>, <span class="dt">prob=</span><span class="fl">0.01</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">probs</a></code></pre></div>
+<pre><code>##  [1] 7.791745e-02 1.558190e-03 1.145736e-05 4.133246e-08 8.462449e-11
+##  [6] 1.072743e-13 8.912551e-17 5.046899e-20 2.002533e-23 5.677926e-27
+## [11] 1.166166e-30 1.750277e-34 1.928680e-38 1.561778e-42 9.267875e-47
+## [16] 4.003570e-51 1.245117e-55 2.742447e-60 4.179283e-65 4.264139e-70
+## [21] 2.779205e-75 1.079100e-80 2.233933e-86 2.020648e-92 5.049000e-99</code></pre>
+<p>To add these probabilities, we call <code>sum()</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">sum</span>(probs)</a></code></pre></div>
+<pre><code>## [1] 0.07948714</code></pre>
+<p>You can play around with the R code in <a href="https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/r/Calculating_Binomial_Probabilities.ipynb">this Colab notebook</a>.</p>
 </div>
 </div>
 <div id="essential-practice-1" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li>Show Mr. Pepys that C (at least 3 <span class="math inline">\(\epsdice{6}\)</span>s in 18 rolls) is actually the <em>least</em> likely of the three
+<li>Show Mr. Pepys that C (at least 3 ⚅s in 18 rolls) is actually the <em>least</em> likely of the three
 options.</li>
 <li>About 10% of passengers who are scheduled to take a particular flight fail to show up. For this reason,
 airlines overbook flights, selling more tickets than they have seats, with the expectation that they will
@@ -512,14 +504,14 @@ Can you think of a situation where this would not be a reasonable assumption?)
 <!-- ``` -->
 <!-- So it is more likely that you make 5 free throws during your game. -->
 <ol start="3" style="list-style-type: decimal">
-<li>In the World Series of baseball, two teams (call them A and B) play a sequence of games
+<li><p>In the World Series of baseball, two teams (call them A and B) play a sequence of games
 against each other, and the first team to win four games wins the series. Suppose team <span class="math inline">\(A\)</span> is
 slightly better, with a <span class="math inline">\(0.6\)</span> probability of winning each game, and
-assume the games are independent. What is the probability that team <span class="math inline">\(A\)</span> wins the series?</li>
-</ol>
+assume the games are independent. What is the probability that team <span class="math inline">\(A\)</span> wins the series?</p>
 <p>(<em>Hint:</em> After 7 games, one of the teams must have won the Series. Even though the teams only play
 until one team has won four games, this calculation is easiest if you assume that the teams always
-play 7 games.)</p>
+play 7 games.)</p></li>
+</ol>
 <!-- 3. You flip a fair two-sided coin $20$ times and record whether the result was heads or tails. What is the probability that $15$ out of your $20$ flips land on the same side? -->
 <!-- We know that this is a binomial model with $p=.5$, so our resulting probability of getting $15$ flips landing on a certain side is  -->
 <!-- $$\binom{20}{15}.5^{15}(1-.5)^{20-15} = .0148$$ -->

@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-29" />
+<meta name="date" content="2020-06-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="cdf.html"/>
-
+<link rel="next" href="binomial.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -201,6 +201,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#additional-exercises-4"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="13" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>13</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#graphing-1"><i class="fa fa-check"></i>Graphing</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#additional-exercises-5"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -273,7 +282,7 @@ from a deck of <span class="math inline">\(48\)</span> cards. So we can represen
 Now, if we draw <span class="math inline">\(n=5\)</span> times from this box without replacement, then the number of <span class="math inline">\(\fbox{1}\)</span>s we get
 corresponds to the number of diamonds.</p>
 <p>Therefore, by Theorem <a href="hypergeometric.html#thm:hypergeometric">12.1</a>, we know that the number of diamonds follows a
-<span class="math inline">\(\text{Hypergeometric}(n=5, N_1=11, N_0=37)\)</span> distribution. We can now write down the p.m.f. by pluggging
+<span class="math inline">\(\text{Hypergeometric}(n=5, N_1=11, N_0=37)\)</span> distribution. We can now write down the p.m.f. by plugging
 the values of the parameters <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_0\)</span> into <a href="hypergeometric.html#eq:hypergeometric">(12.1)</a>:
 <span class="math display">\[ f(x) = \frac{\binom{11}{x} \binom{37}{5-x}}{\binom{48}{5}}, x=0, 1, \ldots, 5. \]</span></p>
 Now that we have a formula for the p.m.f., we can calculate probabilities by plugging numbers into it. So, for example,
@@ -339,9 +348,13 @@ Instead, we capture <span class="math inline">\(m\)</span> fish one week, tag th
 week, after these tagged fish have had a chance to mix with the population, and catch another <span class="math inline">\(n\)</span> distinct fish.
 Some, but not all, of these <span class="math inline">\(n\)</span> fish will be tagged. The number of tagged fish in this second catch
 allows us to estimate the population of fish in the lake.</p>
-<p>Suppose there are actually 100 fish in the lake; we capture <span class="math inline">\(m=20\)</span> fish the first week and <span class="math inline">\(n=30\)</span> fish the next week.
-What is the probability that <em>at least</em> <span class="math inline">\(7\)</span> of the <span class="math inline">\(30\)</span> fish will be tagged?</p>
-<p>We can represent this using a box model. The fish in the lake will be represented by <span class="math inline">\(N=100\)</span> tickets, with
+Suppose there are actually 100 fish in the lake; we capture <span class="math inline">\(m=20\)</span> fish the first week and <span class="math inline">\(n=30\)</span> fish the next week.
+What is the probability that <em>at least</em> <span class="math inline">\(7\)</span> of the <span class="math inline">\(30\)</span> fish will be tagged?
+</div>
+
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> We can represent this using a box model. The fish in the lake will be represented by <span class="math inline">\(N=100\)</span> tickets, with
 <span class="math display">\[\begin{align*}
 \text{$N_1=20$ tickets labeled } \fbox{1} &amp;\text{ representing the tagged fish} \\
 \text{$N_0=80$ tickets labeled } \fbox{0} &amp;\text{ representing the non-tagged fish}.
@@ -400,7 +413,7 @@ number of unordered outcomes. You should verify that this formula gives the same
 <a href="hypergeometric.html#eq:hypergeometric">(12.1)</a>.</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-35" class="theorem"><strong>Theorem 12.2  (Another Formula for the Hypergeometric)  </strong></span>
+<span id="thm:unnamed-chunk-36" class="theorem"><strong>Theorem 12.2  (Another Formula for the Hypergeometric)  </strong></span>
 The p.m.f. of a <span class="math inline">\(\text{Hypergeometric}(n, N_1, N_0)\)</span> random variable can also be written as
 <span class="math display">\[ f(x) = \frac{\binom{n}{x} \cdot \frac{N_1!}{(N_1 - x)!} \cdot \frac{N_0!}{(N_0 - n + x)!}}{\frac{N!}{(N-n)!}}. \]</span>
 </div>
@@ -498,8 +511,8 @@ What is the minimum number of times you must reach in the jar to have at least a
           </div>
         </div>
       </div>
-<a href="cdf.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="cdf.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="binomial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

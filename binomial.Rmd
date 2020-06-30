@@ -2,129 +2,421 @@
 
 ## Motivating Example {-}
 
-In 1693, Samuel Pepys and Isaac Newton had written to each other discussing a wager that Pepys was planning to make. The two wanted to figure out which of the following three events had the highest probability of occurring. (These six-sided dice are fair so that each possible number has a $\dfrac{1}{6}$ chance of occurring independent of any other rolls)
+In 1693, Samuel Pepys (who is best remembered today for [his diary](https://www.pepysdiary.com/)) wrote a letter to 
+Isaac Newton inquiring about a wager that Pepys was planning to make. Pepys wanted to know which of the 
+following events had the highest probability of occurring.
 
-**a)** Six dice are thrown and at least one is a 6
+A. 6 dice are thrown and at least 1 is a ⚅
 
-**b)** Twelve dice are thrown and at least two are a 6
+B. 12 dice are thrown and at least 2 are ⚅s
 
-**c)** Eighteen dice are thrown and at least three are a 6
+C. 18 dice are thrown and at least 3 are ⚅s
+    
+Pepys thought that C had the highest probability, but Newton disagreed.
 
-------
+The probability of A is straightforward to calculate. We use the Complement Rule (Theorem \@ref(thm:complement)), 
+much like we did in the Chevalier de Méré example from Lesson \@ref(double-counting). 
+\begin{align*}
+P(\text{at least 1 ⚅ in 6 rolls}) &= 1 - P(\text{0 ⚅s in 6 rolls}) \\
+&= 1 - \frac{5^6}{6^6} \\
+&\approx .665
+\end{align*}
 
-First, let's estimate these three probabilities with simulation.
+However, the probabilities of the other two events are trickier to calculate. For example, it is not 
+obvious how to count the number of ways to get exactly 2 sixes in 18 dice rolls. In this lesson, 
+we learn how this is done.
 
-**a)**
+<!-- ------ -->
 
-```{r}
-N <- 10000
-x <- replicate(N, sample(1:6, 6, T))
+<!-- First, let's estimate these three probabilities with simulation. -->
 
-mean(colSums(x == 6) > 0)
-```
+<!-- **a)** -->
 
-**b)**
+<!-- ```{r} -->
+<!-- N <- 10000 -->
+<!-- x <- replicate(N, sample(1:6, 6, T)) -->
 
-```{r}
-x <- replicate(N, sample(1:6, 12, T))
-mean(colSums(x == 6) > 1)
-```
+<!-- mean(colSums(x == 6) > 0) -->
+<!-- ``` -->
 
-**c)**
+<!-- **b)** -->
 
-```{r}
-x <- replicate(N, sample(1:6, 18, T))
-mean(colSums(x == 6) > 2)
-```
+<!-- ```{r} -->
+<!-- x <- replicate(N, sample(1:6, 12, T)) -->
+<!-- mean(colSums(x == 6) > 1) -->
+<!-- ``` -->
 
-So from the simulations, it seems that event **a)** has the highest probability of occurring.
+<!-- **c)** -->
 
-Now let's find the exact probability of each of these events occurring
+<!-- ```{r} -->
+<!-- x <- replicate(N, sample(1:6, 18, T)) -->
+<!-- mean(colSums(x == 6) > 2) -->
+<!-- ``` -->
 
-**a)** There are many possible ways that we could throw at least one 6 out of six dice rolls, (Ex: $2, 2, 3, 4, 5, 6$ or $1, 1, 3, 5, 6, 6$), but it may be easier to count the number of ways that we **don't** roll a 6. There is a $\dfrac{5}{6}$ chance that we don't roll a 6 on a single roll, so the probability that we don't get a 6 in any of the six rolls is $(\dfrac{5}{6})^6$. Therefore, the probability of event a) is $$1 - (\dfrac{5}{6})^6 = .6651$$
+<!-- So from the simulations, it seems that event **a)** has the highest probability of occurring. -->
 
-**b)** In this event, we also want to subtract the probability of rolling 0 sixes like in part **a)**, but we also want to subtract the probability that we roll one 6 as well. The probability of rolling one 6 followed by 11 non-sixes is $$(\dfrac{1}{6}) \cdot (\dfrac{5}{6})^{11}$$ but there are also 11 other locations that the 6 could have occured, so our final answer becomes $$1 - (\dfrac{5}{6})^{12} - 12(\dfrac{1}{6})(\dfrac{5}{6})^{11} = .6187$$
+<!-- Now let's find the exact probability of each of these events occurring -->
 
-**c)** Now, we want to subtract the probability of rolling no sixes or rolling one 6, but now we also need to take away the probability of rolling two sixes. In 18 dice rolls, we can find the number of possible orders of two rolls being a 6 and ten rolls not being a 6 with combinations. $\binom{18}{2}$ represents the possible ways to place the two 6s in the 18 rolls, so our probability of rolling two 6s out of 18 dice becomes $$\binom{18}{2}(\dfrac{1}{6})^2(\dfrac{5}{6})^{16}$$
+<!-- **a)** There are many possible ways that we could throw at least one 6 out of six dice rolls, (Ex: $2, 2, 3, 4, 5, 6$ or $1, 1, 3, 5, 6, 6$), but it may be easier to count the number of ways that we **don't** roll a 6. There is a $\dfrac{5}{6}$ chance that we don't roll a 6 on a single roll, so the probability that we don't get a 6 in any of the six rolls is $(\dfrac{5}{6})^6$. Therefore, the probability of event a) is $$1 - (\dfrac{5}{6})^6 = .6651$$ -->
 
-Our final answer becomes $$1 - (\dfrac{5}{6})^{18} - 18(\dfrac{1}{6})(\dfrac{5}{6})^{17} - \binom{18}{2}(\dfrac{1}{6})^2(\dfrac{5}{6})^{16} = 0.5973457$$
+<!-- **b)** In this event, we also want to subtract the probability of rolling 0 sixes like in part **a)**, but we also want to subtract the probability that we roll one 6 as well. The probability of rolling one 6 followed by 11 non-sixes is $$(\dfrac{1}{6}) \cdot (\dfrac{5}{6})^{11}$$ but there are also 11 other locations that the 6 could have occured, so our final answer becomes $$1 - (\dfrac{5}{6})^{12} - 12(\dfrac{1}{6})(\dfrac{5}{6})^{11} = .6187$$ -->
 
-Therefore, we can see that event **a)** has the highest probability of occurring.
+<!-- **c)** Now, we want to subtract the probability of rolling no sixes or rolling one 6, but now we also need to take away the probability of rolling two sixes. In 18 dice rolls, we can find the number of possible orders of two rolls being a 6 and ten rolls not being a 6 with combinations. $\binom{18}{2}$ represents the possible ways to place the two 6s in the 18 rolls, so our probability of rolling two 6s out of 18 dice becomes $$\binom{18}{2}(\dfrac{1}{6})^2(\dfrac{5}{6})^{16}$$ -->
+
+<!-- Our final answer becomes $$1 - (\dfrac{5}{6})^{18} - 18(\dfrac{1}{6})(\dfrac{5}{6})^{17} - \binom{18}{2}(\dfrac{1}{6})^2(\dfrac{5}{6})^{16} = 0.5973457$$ -->
+
+<!-- Therefore, we can see that event **a)** has the highest probability of occurring. -->
 
 ## Theory {-}
 
-```{definition}
-The binomial formula is given as
+In this lesson, we learn another named distribution that is virtually identical to the 
+hypergeometric distribution, except in one important detail: the draws are made 
+_with replacement_ instead of _without replacement_.
+
+```{theorem binomial, name="Binomial Distribution"}
+If a random variable can be described as the number of $\fbox{1}$s in $n$ random draws, _with replacement_, 
+from the box 
+\[ \overbrace{\underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0}\ \underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1}}^N, \]
+then its p.m.f. is given by 
 \begin{equation}
-P(X = k) = \binom{n}{k}p^n(1-p)^{n-k}
-(\#eq:binomial)
+f(x) = \dfrac{\binom{n}{x} N_1^x N_0^{n-x}}{N^n}, x=0, ..., n,
+(\#eq:binomial1)
 \end{equation}
+where $N = N_1 + N_0$ is the number of tickets in the box.
   
-Where $n$ is the number of draws, $k$ is the number of successes, and $p$ is the probability of success for a single trial.
+We say that the random variable has a $\text{Binomial}(n, N_1, N_0)$ distribution, and $n$, $N_1$, 
+$N_0$ are called **parameters** of the distribution.
 
-
-We can use sums of the binomial formula to find probabilities such as $P(X \le k)$, or the C.D.F of X
-  
-$$F(k) = P(X \le k) = \sum_{i=1}^k \binom{n}{k} p^k (1-p)^{n-k}$$
-  
-Similarly we can also find $P(X \ge k)$
-  
-$$P(X \ge k) = \sum_k^np^k(1-p)^{n-k}$$
+Equivalently, \@ref(eq:binomial1) can be written as 
+\begin{equation}
+f(x) = \binom{n}{x} p^x (1 - p)^{n-x}, x=0, ..., n,
+(\#eq:binomial2)
+\end{equation}
+where $p = N_1 / N$ is the proportion of $\fbox{1}$s in the box.
 ```
 
-## Worked Examples {-}
+We will derive the formulas \@ref(eq:binomial1) and \@ref(eq:binomial2) later in this lesson. 
+For now, let's see how these formulas allow us to avoid calculations.
 
-1. Your free throw percentage is 70%, and your shots are independent from free throw to free throw. Say that you take 9 free throws in a game. Is it more likely that you make 5 free throws or 8 free throws in your game?
+```{example name="The Newton-Pepys Problem"}
+Let's model each die roll as a draw from a box. Each die has $6$ equally likely outcomes, so 
+we place $N=6$ tickets into the box. Since we are only interested in the number of ⚅s, 
+we will label only one these tickets $\fbox{1}$, corresponding to a ⚅; the other five 
+tickets will be labeled $\fbox{0}$.
 
-$$P(X = 5) = \binom{9}{5}.7^5(1-.7)^{9-5} = 0.1715322$$
+\[ \fbox{$\fbox{1}\ \fbox{0}\ \fbox{0}\ \fbox{0}\ \fbox{0}\ \fbox{0}$} \]
 
+To model 12 rolls of the die, we draw $n=12$ tickets _with replacement_. 
+We draw with replacement so that the outcome of one die roll does not affect the outcome of another. 
+In other words, we want the dice rolls to be independent, and drawing with replacement is the only 
+way to model independence. The number of $\fbox{1}$s in these 12 draws represents the 
+number of ⚅s that one would get in 12 rolls of a fair die. 
+
+Therefore, by Theorem \@ref(thm:binomial), we now know that the number of ⚅s in 
+12 rolls follows a 
+$\text{Binomial}(n=5, N_1=1, N_0=5)$ distribution. We can now write down the p.m.f. by plugging 
+the values of the parameters $n$, $N_1$, $N_0$ into \@ref(eq:binomial1):
+\[ f(x) = \frac{\binom{12}{x} 1^x 5^{12-x}}{6^{12}}, x=0, 1, \ldots, 12. \]
+
+Equivalently, we have $p = N_1/N = 1/6$, and plugging in the values of the parameters $n$ and $p$ into 
+\@ref(eq:binomial2), we have:
+\[ f(x) = \binom{12}{x} \left(\frac{1}{6}\right)^x \left(\frac{5}{6} \right)^{12-x}, x=0, 1, \ldots, 12. \]
+
+Both formulas should produce the same probabilities. To answer Pepys' question about the probability of 
+getting at least 2 ⚅s in 12 rolls, we combine the binomial distribution with the complement rule,
+\begin{align*}
+P(X \geq 2) &= 1 - P(X \leq 1)  \\
+&= 1 - (f(0) + f(1)) \\
+&= 1 - \binom{12}{0} \left(\frac{1}{6}\right)^0 \left(\frac{5}{6} \right)^{12} - \binom{12}{1} \left(\frac{1}{6}\right)^1 \left(\frac{5}{6} \right)^{11} \\
+&= 1 - \left(\frac{5}{6} \right)^{12} - 12 \left(\frac{1}{6}\right) \left(\frac{5}{6} \right)^{11} \\
+&\approx .6187.
+\end{align*}
+```
+
+Now, let's derive the p.m.f. of the binomial distribution.
+
+```{proof}
+There are $N^n$ ordered ways to choose $n$ tickets from $N$ with replacement. Recall from Lesson 
+\@ref(replacement) that when sampling with replacement, we must count ordered outcomes, since the 
+unordered outcomes are not all equally likely.
+
+Let's start by counting the number of outcomes that look like 
+\begin{equation}
+\underbrace{\fbox{1}, \ldots, \fbox{1}}_{x}, \underbrace{\fbox{0}, \ldots, \fbox{0}}_{n-x}, 
+(\#eq:binomial-ordered)
+\end{equation}
+in this exact order. There are $N_1$ choices for the first $\fbox{1}$, $N_1$ choices for the second 
+$\fbox{1}$, and in fact, $N_1$ choices for all $x$ $\fbox{1}$s, since we 
+are drawing with replacement. Likewise, there 
+are $N_0$ choices for all $n-x$ $\fbox{0}$s. By the 
+multiplication principle of counting (Theorem \@ref(thm:multiplication-principle)), there are 
+\begin{equation}
+N_1^x \cdot N_0^{n-x}. 
+(\#eq:binomial-ordered-count)
+\end{equation}
+ways to get an outcome like \@ref(eq:binomial-ordered), in that exact order.
+
+However, because we are counting ordered outcomes, we also need to account for the possibility that the 
+$\fbox{1}$s and $\fbox{0}$s were drawn in a different order than \@ref(eq:binomial-ordered). 
+There are $\binom{n}{x}$ ways to reorder the $\fbox{1}$s and $\fbox{0}$s, 
+each of which can be obtained in \@ref(eq:binomial-ordered-count) ways. So the total number of (ordered) ways 
+to get $x$ $\fbox{1}$s and $n-x$ $\fbox{0}$s is 
+\[ \binom{n}{x} \cdot N_1^x \cdot N_0^{n-x}.  \]
+
+So the p.m.f. can be written as 
+\[ f(x) = P(X = x) = \frac{\binom{n}{x} \cdot N_1^x \cdot N_0^{n-x}}{N^n}. \]
+
+To see that this formula is the same as \@ref(eq:binomial2), we write $N^n = N^x \cdot N^{n-x}$. 
+Then, we have:
+\begin{align*}
+f(x) &= \binom{n}{x}\frac{N_1^x \cdot N_0^{n-x}}{N^x \cdot N^{n-x}} \\
+&= \binom{n}{x} \left( \frac{N_1}{N} \right)^x \left( \frac{N_0}{N} \right)^{n-x} \\
+&= \binom{n}{x} p^x (1 - p)^{n-x},
+\end{align*}
+where in the last line, we used the fact that $\frac{N_0}{N} = \frac{N - N_1}{N} = 1 - \frac{N_1}{N} = 1 - p$.
+```
+
+### Graphing {-}
+
+Let's graph the binomial distribution for different values of $n$, $N_1$, and $N_0$.
+
+First, we hold the number of draws constant at $n=5$ and vary the composition of the box. 
+
+```{r binomial-pmf-1, echo=FALSE, fig.show = "hold", fig.align = "default", fig.asp=0.5}
+library(latex2exp)
+
+par(mfrow=c(1, 3))
+n <- 5
+N1 <- 4
+N0 <- 16
+plot(0:5, dbinom(0:n, n, 0.25), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("Binomial$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in 0:5) {
+  lines(c(x, x), c(0, dbinom(x, n, 0.5)), lwd=2)
+} 
+
+n <- 5
+N1 <- 10
+N0 <- 10
+plot(0:5, dbinom(0:n, n, 0.5), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("Binomial$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in 0:5) {
+  lines(c(x, x), c(0, dbinom(x, n, 0.5)), lwd=2)
+}
+
+n <- 5
+N1 <- 16
+N0 <- 4
+plot(0:5, dbinom(0:n, n, 0.75), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("Binomial$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in 0:5) {
+  lines(c(x, x), c(0, dbinom(x, n, 0.5)), lwd=2)
+}
+```
+
+The distribution shifts, depending on the composition of the box. The more 
+$\fbox{1}$s there are in the box, the more $\fbox{1}$s in the sample.
+
+Next, we study how the distribution changes as a function of $n / N$, the relative fraction of 
+draws we make from the box. For all of the graphs below, $N_1 = N_0 = N/2$. 
+```{r binomial-pmf-2, echo=FALSE, fig.show = "hold", fig.align = "default", fig.asp=0.5}
+library(latex2exp)
+
+par(mfrow=c(1, 3))
+n <- 10
+N <- 20
+plot(0:n, dbinom(0:n, n, 0.5), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("Binomial$(n=", n, ", N=", N, ")$")))
+for(x in 0:n) {
+  lines(c(x, x), c(0, dbinom(x, n, 0.5)), lwd=2)
+} 
+
+n <- 10
+N <- 50
+plot(0:n, dbinom(0:n, n, 0.5), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("Binomial$(n=", n, ", N=", N, ")$")))
+for(x in 0:n) {
+  lines(c(x, x), c(0, dbinom(x, n, 0.5)), lwd=2)
+}
+
+n <- 10
+N <- 100
+plot(0:n, dbinom(0:n, n, 0.5), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("Binomial$(n=", n, ", N=", N, ")$")))
+for(x in 0:n) {
+  lines(c(x, x), c(0, dbinom(x, n, 0.5)), lwd=2)
+}
+```
+
+In contrast to the hypergeometric distribution, the binomial distribution does 
+not change when we vary the number of tickets in the box, as long as we keep the relative 
+proportions of $\fbox{1}$s and $\fbox{0}$s the same. This makes sense because we are 
+drawing _with replacement_, so it does not matter how many draws we make; the box 
+always looks the same. 
+
+The binomial distribution is indifferent to the exact number of tickets $N$ in the box.  
+For example, to model a coin toss, we could use 
+
+$$ \displaystyle \fbox{\(\fbox{1}\ \fbox{0}\)} $$
+or 
+$$ \displaystyle \fbox{\(\fbox{1}\ \fbox{1}\ \fbox{0}\ \fbox{0}\)}. $$
+Although the first box is more natural, the second box is equally valid. Any box with the same 
+number of $\fbox{1}$s as $\fbox{0}$s can be used to model a coin toss, since they all guarantee 
+a 50% chance of drawing a $\fbox{1}$. The fact that the binomial distribution does not depend on 
+$N$ should not be surprising not surprising, in light of \@ref{eq:binomial2}, which shows that the 
+binomial p.m.f. can be written solely in terms of $p = N_1 / N$, the proportion of $\fbox{1}$s in the box.
+
+### Calculating Binomial Probabilities on the Computer {-}
+
+Calculating binomial probabilities by hand can be unwieldy when $n$ is large. 
+Fortunately, the binomial distribution is built into many software packages.
+
+For example, suppose we want to solve the following problem.
+```{example, name="Parity Checks"}
+Messages that are exactly 50-bits long are regularly sent over a noisy communication channel. 
+Each bit has a 1\% chance of being corrupted by the channel. That is, the receiver saw a $0$ 
+where the original message had a $1$, and vice versa. Each 
+bit is corrupted independently of any other bit.
+
+To help detect errors, a 51st bit, called a **parity bit**, is sent along 
+with the message. This bit is chosen to make the sum of all 51 bits come out to 
+an even integer. When the receiver receives the message, she can calculate the 
+sum of all 51 bits herself. If the sum is odd, then she knows that the message has 
+been corrupted and can ask the sender to resend the message. This is called a 
+parity check.
+
+The parity check works if exactly one bit is corrupted. However, if exactly two bits are 
+corrupted, then the sum of all 51 bits will be even, and hence the errors will not be detected by the 
+receiver. In general, errors will not be detected if an even number of bits are corrupted.
+
+What is the probability that a corrupted message goes undetected?
+```
+
+```{solution}
+First, we will set up a box model for _the number of corrupted bits_. We have a box with 
+
+- $N_0 = 99$ tickets labeled $\fbox{0}$
+- $N_1 = 1$ tickets labeled $\fbox{1}$
+  
+to represent the 1% chance that each bit is corrupted. We will draw 51 times from this box to represent the 
+51 bits in the message. We draw _with replacement_, since the bits are corrupted independently. 
+Then, the number of $\fbox{1}$s corresponds to the number of corrupted bits.
+
+Therefore, we know that the number of corrupted bits, which we will call $X$, 
+follows a $\text{Binomial}(n=51, N_1=1, N_0=99)$ distribution.
+
+The probability that a corrupted message goes undetected is the probability that 
+$X$ is positive and even. (If $X=0$, then the message was not corrupted in the first place. 
+If $X$ is odd, then the error will be caught by the parity check.) To calculate this 
+probability, we sum the p.m.f. over the relevant values:
+\begin{align*} 
+P(\text{corrupted message goes undetected}) &= P(\text{$X$ is positive and even}) \\
+&= f(2) + f(4) + f(6) + \ldots + f(50)
+\end{align*}
+This would require evaluating the p.m.f. at 25 different values! This is a job for a computer, not a human.
+```
+
+Here's how we would calculate the probability using the Python library [Symbulate](http://dlsun.github.io/symbulate). 
+We first specify the parameters of the binomial distribution. Note that Symbulate requires that the parameters 
+be $n$ and $p$, so we have to do a bit of conversion. Then, we create a list of the positive even values and 
+evaluate the p.m.f. at all of these values, in one fell swoop, using the `.pmf()` method.
+```{python}
+from symbulate import *
+probs = Binomial(n=51, p=0.01).pmf(range(2, 51, 2))
+probs
+```
+
+To add these probabilities, we call `sum()`:
+```{python}
+sum(probs)
+```
+
+You can play around with the Python code in [this Colab notebook](https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/py/Calculating_Binomial_Probabilities.ipynb). 
+
+It is also possible to do this calculation in R, a statistical programming language. 
+Note that R uses the names `size=` and `prob=` for $n$ and $p$, respectively. We create a list of the 
+positive even integers from 2 to 51, and evaluate the binomial p.m.f. at these values.
 ```{r}
-dbinom(5, 9, .7)
+probs <- dbinom(seq(from=2, to=51, by=2), size=51, prob=0.01)
+probs
 ```
 
-$$P(X = 8) = \binom{9}{8}.7^8(1-.7)^{9-8} = 0.1556496$$
-
+To add these probabilities, we call `sum()`:
 ```{r}
-dbinom(8, 9, .7)
+sum(probs)
 ```
 
-So it is more likely that you make 5 free throws during your game.
+You can play around with the R code in [this Colab notebook](https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/r/Calculating_Binomial_Probabilities.ipynb). 
 
-------
 
-2. You flip a fair two-sided coin $20$ times and record whether the result was heads or tails. What is the probability that $15$ out of your $20$ flips land on the same side?
+## Essential Practice {-}
 
-We know that this is a binomial model with $p=.5$, so our resulting probability of getting $15$ flips landing on a certain side is 
+1. Show Mr. Pepys that C (at least 3 ⚅s in 18 rolls) is actually the _least_ likely of the three 
+options.
+2. About 10% of passengers who are scheduled to take a particular flight fail to show up. For this reason, 
+airlines overbook flights, selling more tickets than they have seats, with the expectation that they will 
+have some no shows. An airline with seating for 100 passengers sells 110 tickets for 
+the flight. What is the probability that they will have enough seats for all the passengers for all of 
+the passengers who show up for the flight? (Assume that passengers independently show up for the flight. 
+Can you think of a situation where this would not be a reasonable assumption?)
+<!-- 3. Your free throw percentage is 70%, and your shots are independent from free throw to free throw. Say that you take 9 free throws in a game. Is it more likely that you make 5 free throws or 8 free throws in your game? -->
 
-$$\binom{20}{15}.5^{15}(1-.5)^{20-15} = .0148$$
-But there are two possible sides that our coin can land on, so we must multiply this probability by $2$
+<!-- $$P(X = 5) = \binom{9}{5}.7^5(1-.7)^{9-5} = 0.1715322$$ -->
 
-$$2(.0148) = .0296$$
+<!-- ```{r} -->
+<!-- dbinom(5, 9, .7) -->
+<!-- ``` -->
 
-------
+<!-- $$P(X = 8) = \binom{9}{8}.7^8(1-.7)^{9-8} = 0.1556496$$ -->
 
-3. You are taking a multiple choice exam with $100$ questions and you have a $90\%$ chance of getting each question correct. What is the probability that the number of questions that you get correct is divisible by 10?
+<!-- ```{r} -->
+<!-- dbinom(8, 9, .7) -->
+<!-- ``` -->
 
-We will need to add up the probability of every getting every possible multiple of 10 from 0 to 100 in our binomial model.
+<!-- So it is more likely that you make 5 free throws during your game. -->
 
-$$P(X \text{ is divisible by 10}) = \sum_{k=0}^{100/10} \binom{100}{10k}.9^{10k}(1-.9)^{10k}$$
+3. In the World Series of baseball, two teams (call them A and B) play a sequence of games 
+against each other, and the first team to win four games wins the series. Suppose team $A$ is 
+slightly better, with a $0.6$ probability of winning each game, and 
+assume the games are independent. What is the probability that team $A$ wins the series?
 
-```{r}
-# All even numbers from 0 to 100
-ks = seq(0, 100, 10)
+    (_Hint:_ After 7 games, one of the teams must have won the Series. Even though the teams only play 
+until one team has won four games, this calculation is easiest if you assume that the teams always 
+play 7 games.)
 
-# Summing up the binomial probability of these k values
-sum(dbinom(ks, 100, .9))
-```
+<!-- 3. You flip a fair two-sided coin $20$ times and record whether the result was heads or tails. What is the probability that $15$ out of your $20$ flips land on the same side? -->
 
-## Exercises {-}
+<!-- We know that this is a binomial model with $p=.5$, so our resulting probability of getting $15$ flips landing on a certain side is  -->
 
-1. You're a professional baseball player and your batting average is $.300$. Let's say that every game you get exactly $4$ at bats. Out of the $162$ games in a baseball season, what is the probability that you end your season with $70$ or more games with exactly $1$ hit?
+<!-- $$\binom{20}{15}.5^{15}(1-.5)^{20-15} = .0148$$ -->
+<!-- But there are two possible sides that our coin can land on, so we must multiply this probability by $2$ -->
 
-------
+<!-- $$2(.0148) = .0296$$ -->
 
-2. There are 58 questions on the math portion of the SAT. Assume that you have a $80\%$ chance at getting the first $40$ questions correct, and a $60\%$ chance at getting the last $18$ questions correct. What is the probability that you get at least at least $42$ of the questions correct?
+<!-- ------ -->
 
-------
+<!-- 3. You are taking a multiple choice exam with $100$ questions and you have a $90\%$ chance of getting each question correct. What is the probability that the number of questions that you get correct is divisible by 10? -->
 
-3. You are running a factory that is making car parts, and $20\%$ of the parts produced are known to have defects. What is the minimum number of parts that you need to produce in a day to ensure that you have at least a $95\%$ chance at producing at least $20$ parts that do not have defects?
+<!-- We will need to add up the probability of every getting every possible multiple of 10 from 0 to 100 in our binomial model. -->
+
+<!-- $$P(X \text{ is divisible by 10}) = \sum_{k=0}^{100/10} \binom{100}{10k}.9^{10k}(1-.9)^{10k}$$ -->
+
+<!-- ```{r} -->
+<!-- # All even numbers from 0 to 100 -->
+<!-- ks = seq(0, 100, 10) -->
+
+<!-- # Summing up the binomial probability of these k values -->
+<!-- sum(dbinom(ks, 100, .9)) -->
+<!-- ``` -->
+
+## Additional Exercises {-}
+
+<!-- 1. You're a professional baseball player and your batting average is $.300$. Let's say that every game you get exactly $4$ at bats. Out of the $162$ games in a baseball season, what is the probability that you end your season with $70$ or more games with exactly $1$ hit? -->
+
+<!-- ------ -->
+
+<!-- 2. There are 58 questions on the math portion of the SAT. Assume that you have a $80\%$ chance at getting the first $40$ questions correct, and a $60\%$ chance at getting the last $18$ questions correct. What is the probability that you get at least at least $42$ of the questions correct? -->
+
+<!-- ------ -->
+
+<!-- 3. You are running a factory that is making car parts, and $20\%$ of the parts produced are known to have defects. What is the minimum number of parts that you need to produce in a day to ensure that you have at least a $95\%$ chance at producing at least $20$ parts that do not have defects? -->
