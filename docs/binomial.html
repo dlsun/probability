@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 13 Binomial Distribution | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 13 Binomial Distribution | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 13 Binomial Distribution | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-06-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hypergeometric.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="double-counting.html"><a href="double-counting.html"><i class="fa fa-check"></i><b>5</b> Double Counting</a><ul>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#motivating-example-4"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#theory-3"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#examples-4"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conditional.html"><a href="conditional.html"><i class="fa fa-check"></i><b>6</b> Conditional Probability</a><ul>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#theory-4"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#examples-5"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>7</b> Independence</a><ul>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#theory-5"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#examples-6"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#examples-7"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-8"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rv.html"><a href="rv.html"><i class="fa fa-check"></i><b>10</b> Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#motivating-example-9"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#theory-8"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#examples-9"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cdf.html"><a href="cdf.html"><i class="fa fa-check"></i><b>11</b> Cumulative Distribution Functions</a><ul>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#theory-9"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#examples-10"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="hypergeometric.html"><a href="hypergeometric.html"><i class="fa fa-check"></i><b>12</b> Hypergeometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#motivating-example-10"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-10"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#graphing"><i class="fa fa-check"></i>Graphing</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#calculating-hypergeometric-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Hypergeometric Probabilities on the Computer</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#another-formula-for-the-hypergeometric-distribution-optional"><i class="fa fa-check"></i>Another Formula for the Hypergeometric Distribution (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#additional-exercises-4"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>13</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#graphing-1"><i class="fa fa-check"></i>Graphing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#additional-exercises-5"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="binomial" class="section level1">
+<h1><span class="header-section-number">Lesson 13</span> Binomial Distribution</h1>
+<div id="motivating-example-11" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>In 1693, Samuel Pepys (who is best remembered today for <a href="https://www.pepysdiary.com/">his diary</a>) wrote a letter to
+Isaac Newton inquiring about a wager that Pepys was planning to make. Pepys wanted to know which of the
+following events had the highest probability of occurring.</p>
+<pre><code>A. 6 dice are thrown and at least 1 is a $\epsdice{6}$
+B. 12 dice are thrown and at least 2 are $\epsdice{6}$s
+C. 18 dice are thrown and at least 3 are $\epsdice{6}$s</code></pre>
+<p>Pepys thought that C had the highest probability, but Newton disagreed.</p>
+<p>The probability of A is straightforward to calculate. We use the Complement Rule <a href="double-counting.html#thm:complement">5.2</a>,
+much like we did in the Chevalier de Méré example from Lesson <a href="double-counting.html#double-counting">5</a>.
+<span class="math display">\[\begin{align*}
+P(\text{at least 1 $\epsdice{6}$ in 6 rolls}) &amp;= 1 - P(\text{0 $\epsdice{6}$s in 6 rolls}) \\
+&amp;= 1 - \frac{5^6}{6^6} \\
+&amp;\approx .665
+\end{align*}\]</span></p>
+<p>However, the probabilities of the other two events are trickier to calculate. It is not
+trivial to calculate the number of ways to get exactly 2 sixes in 18 dice rolls. In this lesson,
+we learn how.</p>
+<!-- ------ -->
+<!-- First, let's estimate these three probabilities with simulation. -->
+<!-- **a)** -->
+<!-- ```{r} -->
+<!-- N <- 10000 -->
+<!-- x <- replicate(N, sample(1:6, 6, T)) -->
+<!-- mean(colSums(x == 6) > 0) -->
+<!-- ``` -->
+<!-- **b)** -->
+<!-- ```{r} -->
+<!-- x <- replicate(N, sample(1:6, 12, T)) -->
+<!-- mean(colSums(x == 6) > 1) -->
+<!-- ``` -->
+<!-- **c)** -->
+<!-- ```{r} -->
+<!-- x <- replicate(N, sample(1:6, 18, T)) -->
+<!-- mean(colSums(x == 6) > 2) -->
+<!-- ``` -->
+<!-- So from the simulations, it seems that event **a)** has the highest probability of occurring. -->
+<!-- Now let's find the exact probability of each of these events occurring -->
+<!-- **a)** There are many possible ways that we could throw at least one 6 out of six dice rolls, (Ex: $2, 2, 3, 4, 5, 6$ or $1, 1, 3, 5, 6, 6$), but it may be easier to count the number of ways that we **don't** roll a 6. There is a $\dfrac{5}{6}$ chance that we don't roll a 6 on a single roll, so the probability that we don't get a 6 in any of the six rolls is $(\dfrac{5}{6})^6$. Therefore, the probability of event a) is $$1 - (\dfrac{5}{6})^6 = .6651$$ -->
+<!-- **b)** In this event, we also want to subtract the probability of rolling 0 sixes like in part **a)**, but we also want to subtract the probability that we roll one 6 as well. The probability of rolling one 6 followed by 11 non-sixes is $$(\dfrac{1}{6}) \cdot (\dfrac{5}{6})^{11}$$ but there are also 11 other locations that the 6 could have occured, so our final answer becomes $$1 - (\dfrac{5}{6})^{12} - 12(\dfrac{1}{6})(\dfrac{5}{6})^{11} = .6187$$ -->
+<!-- **c)** Now, we want to subtract the probability of rolling no sixes or rolling one 6, but now we also need to take away the probability of rolling two sixes. In 18 dice rolls, we can find the number of possible orders of two rolls being a 6 and ten rolls not being a 6 with combinations. $\binom{18}{2}$ represents the possible ways to place the two 6s in the 18 rolls, so our probability of rolling two 6s out of 18 dice becomes $$\binom{18}{2}(\dfrac{1}{6})^2(\dfrac{5}{6})^{16}$$ -->
+<!-- Our final answer becomes $$1 - (\dfrac{5}{6})^{18} - 18(\dfrac{1}{6})(\dfrac{5}{6})^{17} - \binom{18}{2}(\dfrac{1}{6})^2(\dfrac{5}{6})^{16} = 0.5973457$$ -->
+<!-- Therefore, we can see that event **a)** has the highest probability of occurring. -->
+</div>
+<div id="theory-11" class="section level2 unnumbered">
+<h2>Theory</h2>
+<p>In this lesson, we learn another named distribution that is virtually identical to the
+hypergeometric distribution, except in one detail: the draws are made with replacement instead of
+without replacement.</p>
+
+<div class="theorem">
+<p><span id="thm:binomial" class="theorem"><strong>Theorem 13.1  (Binomial Distribution)  </strong></span>If a random variable can be described as the number of <span class="math inline">\(\fbox{1}\)</span>s in <span class="math inline">\(n\)</span> random draws, <em>with replacement</em>,
+from the box
+<span class="math display">\[ \overbrace{\underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0}\ \underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1}}^N, \]</span>
+then its p.m.f. is given by
+<span class="math display" id="eq:binomial1">\[\begin{equation}
+f(x) = \dfrac{\binom{n}{x} N_1^x N_0^{n-x}}{N^n}, x=0, ..., n,
+\tag{13.1}
+\end{equation}\]</span>
+where <span class="math inline">\(N = N_1 + N_0\)</span> is the number of tickets in the box.</p>
+<p>We say that the random variable has a <span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span> distribution, and <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>,
+<span class="math inline">\(N_0\)</span> are called <strong>parameters</strong> of the distribution.</p>
+Equivalently, <a href="binomial.html#eq:binomial1">(13.1)</a> can be written as
+<span class="math display" id="eq:binomial2">\[\begin{equation}
+f(x) = \binom{n}{x} p^x (1 - p)^{n-x}, x=0, ..., n,
+\tag{13.2}
+\end{equation}\]</span>
+where <span class="math inline">\(p = N_1 / N\)</span> is the proportion of <span class="math inline">\(\fbox{1}\)</span>s in the box.
+</div>
+
+<p>We will derive the formulas <a href="binomial.html#eq:binomial1">(13.1)</a> and <a href="binomial.html#eq:binomial2">(13.2)</a> later in this lesson.
+First, let’s see how these formulas allow us to avoid most calculations.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-37" class="example"><strong>Example 13.1  (The Newton-Pepys Problem)  </strong></span>Let’s model each die roll as a draw from a box. Each die has <span class="math inline">\(6\)</span> equally likely outcomes, so
+we place <span class="math inline">\(N=6\)</span> tickets into the box. Since we are only interested in the number of <span class="math inline">\(\epsdice{6}\)</span>s,
+we will label only one these tickets <span class="math inline">\(\fbox{1}\)</span>, corresponding to <span class="math inline">\(\epsdice{6}\)</span>; the other five
+tickets will be labeled <span class="math inline">\(\fbox{0}\)</span>.</p>
+<p><span class="math display">\[ \fbox{$\fbox{1}\ \fbox{0}\ \fbox{0}\ \fbox{0}\ \fbox{0}\ \fbox{0}$} \]</span></p>
+<p>To model 12 rolls of the die, we draw <span class="math inline">\(n=12\)</span> tickets <em>with replacement</em>.
+We draw with replacement so that the outcome of one die roll does not affect the outcome of another.
+In other words, we want the dice rolls to be independent, and drawing with replacement is the only
+way to model independence. The number of <span class="math inline">\(\fbox{1}\)</span>s we get in these 12 draws represents the
+number of <span class="math inline">\(\epsdice{6}\)</span>s in 12 rolls.</p>
+<p>Therefore, by Theorem <a href="binomial.html#thm:binomial">13.1</a>, we now know that the number of <span class="math inline">\(\epsdice{6}\)</span>s in
+12 rolls follows a
+<span class="math inline">\(\text{Binomial}(n=5, N_1=1, N_0=5)\)</span> distribution. We can now write down the p.m.f. by plugging
+the values of the parameters <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_0\)</span> into <a href="binomial.html#eq:binomial1">(13.1)</a>:
+<span class="math display">\[ f(x) = \frac{\binom{12}{x} 1^x 5^{12-x}}{6^{12}}, x=0, 1, \ldots, 12. \]</span></p>
+<p>Equivalently, we have <span class="math inline">\(p = N_1/N = 1/6\)</span>, and plugging in the values of the parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> into
+<a href="binomial.html#eq:binomial2">(13.2)</a>, we have:
+<span class="math display">\[ f(x) = \binom{12}{x} \left(\frac{1}{6}\right)^x \left(\frac{5}{6} \right)^{12-x}, x=0, 1, \ldots, 12. \]</span></p>
+Both formulas should produce the same probabilities. To answer Pepys’ question about the probability of
+getting at least 2 <span class="math inline">\(\epsdice{6}\)</span>s in 12 rolls, we combine the binomial distribution with the complement rule,
+<span class="math display">\[\begin{align*}
+P(X \geq 2) &amp;= 1 - P(X \leq 1)  \\
+&amp;= 1 - (f(0) + f(1)) \\
+&amp;= 1 - \binom{12}{0} \left(\frac{1}{6}\right)^0 \left(\frac{5}{6} \right)^{12} - \binom{12}{1} \left(\frac{1}{6}\right)^1 \left(\frac{5}{6} \right)^{11}
+&amp;\approx .6187.
+\end{align*}\]</span>
+</div>
+
+<p>Now, let’s derive the p.m.f. of the binomial distribution. Understanding this derivation will help you
+remember the formula!</p>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> There are <span class="math inline">\(N^n\)</span> ordered ways to choose <span class="math inline">\(n\)</span> tickets from <span class="math inline">\(N\)</span> with replacement. Remember from Lesson
+<a href="replacement.html#replacement">4</a> that when sampling with replacement, we must count ordered outcomes, since the
+unordered outcomes are not all equally likely.</p>
+<p>Let’s start by counting the number of outcomes that look like
+<span class="math display" id="eq:binomial-ordered">\[\begin{equation}
+\underbrace{\fbox{1}, \ldots, \fbox{1}}_{x}, \underbrace{\fbox{0}, \ldots, \fbox{0}}_{n-x}, 
+\tag{13.3}
+\end{equation}\]</span>
+in this exact order. There are <span class="math inline">\(N_1\)</span> choices for the first <span class="math inline">\(\fbox{1}\)</span>, <span class="math inline">\(N_1\)</span> choices for the second,
+and so on, until we get to the last <span class="math inline">\(\fbox{1}\)</span>, for which there are still <span class="math inline">\(N_1\)</span> choices, since we
+are sampling with replacement. Likewise, there
+are <span class="math inline">\(N_0\)</span> choices for the first <span class="math inline">\(\fbox{0}\)</span>, <span class="math inline">\(N_0\)</span> choices for the second, and so on. By the
+multiplication principle of counting (Theorem <a href="counting.html#thm:multiplication-principle">1.1</a>), there are
+<span class="math display" id="eq:binomial-ordered-count">\[\begin{equation}
+N_1^x \cdot N_0^{n-x}. 
+\tag{13.4}
+\end{equation}\]</span>
+ways to get an outcome like <a href="binomial.html#eq:binomial-ordered">(13.3)</a>, in that exact order.</p>
+<p>However, because we are counting ordered outcomes, we need to account for the possibility that the
+<span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(\fbox{0}\)</span>s were drawn in a different order than <a href="binomial.html#eq:binomial-ordered">(13.3)</a>.
+There are <span class="math inline">\(\binom{n}{x}\)</span> ways to reorder the <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(\fbox{0}\)</span>s,
+each of which can be obtained in <a href="binomial.html#eq:binomial-ordered-count">(13.4)</a> ways. So the total number of (ordered) ways
+to get <span class="math inline">\(x\)</span> <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(n-x\)</span> <span class="math inline">\(\fbox{0}\)</span>s is
+<span class="math display">\[ \binom{n}{x} \cdot N_1^x \cdot N_0^{n-x}.  \]</span></p>
+<p>So the p.m.f. can be written as
+<span class="math display">\[ f(x) = P(X = x) = \frac{\binom{n}{x} \cdot N_1^x \cdot N_0^{n-x}}{N^n}. \]</span></p>
+It is easy to see that this formula is equivalent to <a href="binomial.html#eq:binomial2">(13.2)</a>, if we break <span class="math inline">\(N^n\)</span> into <span class="math inline">\(N^x \cdot N^{n-x}\)</span>.
+Then, we have:
+<span class="math display">\[\begin{align*}
+f(x) &amp;= \binom{n}{x}\frac{N_1^x \cdot N_0^{n-x}}{N^x \cdot N^{n-x}} \\
+&amp;= \binom{n}{x} \left( \frac{N_1}{N} \right)^x \left( \frac{N_0}{N} \right)^{n-x} \\
+&amp;= \binom{n}{x} p^x (1 - p)^{n-x}.
+\end{align*}\]</span>
+</div>
+
+<div id="graphing-1" class="section level3 unnumbered">
+<h3>Graphing</h3>
+<p>Let’s graph the binomial distribution for different values of <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, and <span class="math inline">\(N_0\)</span>.</p>
+<p>First, we hold the number of draws constant at <span class="math inline">\(n=5\)</span> and vary the composition of the box.</p>
+<pre><code>## Warning in dbinom(0:n, N1, N0, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(0:n, N1, N0, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(0:n, N1, N0, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced
+
+## Warning in dbinom(x, N1, N0, n): NaNs produced</code></pre>
+<p><img src="bookdown-demo_files/figure-html/binomial-pmf-1-1.png" width="672" /></p>
+<p>The distribution shifts, depending on the composition of the box. The more
+<span class="math inline">\(\fbox{1}\)</span>s there are in the box, the more <span class="math inline">\(\fbox{1}\)</span>s in the sample.</p>
+<p>Next, we study how the distribution changes as a function of <span class="math inline">\(n / N\)</span>, the relative fraction of
+tickets removed from the box. For all of the graphs below, <span class="math inline">\(N_1 = N_0 = N/2\)</span>.</p>
+<pre><code>## Warning in dbinom(0:n, N/2, N/2, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(0:n, N/2, N/2, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(0:n, N/2, N/2, n): NaNs produced</code></pre>
+<pre><code>## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced
+
+## Warning in dbinom(x, N/2, N/2, n): NaNs produced</code></pre>
+<p><img src="bookdown-demo_files/figure-html/binomial-pmf-2-1.png" width="672" /></p>
+<p>In contrast to the hypergeometric distribution, there is no difference in the p.m.f.
+when</p>
+</div>
+</div>
+<div id="essential-practice-1" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<ol style="list-style-type: decimal">
+<li>Show Mr. Pepys that C (at least 3 <span class="math inline">\(\epsdice{6}\)</span>s in 18 rolls) is actually the <em>least</em> likely of the three
+options.</li>
+<li>About 10% of passengers who are scheduled to take a particular flight fail to show up. For this reason,
+airlines overbook flights, selling more tickets than they have seats, with the expectation that they will
+have some no shows. An airline with seating for 100 passengers sells 110 tickets for
+the flight. What is the probability that they will have enough seats for all the passengers for all of
+the passengers who show up for the flight? (Assume that passengers independently show up for the flight.
+Can you think of a situation where this would not be a reasonable assumption?)
+<!-- 3. Your free throw percentage is 70%, and your shots are independent from free throw to free throw. Say that you take 9 free throws in a game. Is it more likely that you make 5 free throws or 8 free throws in your game? --></li>
+</ol>
+<!-- $$P(X = 5) = \binom{9}{5}.7^5(1-.7)^{9-5} = 0.1715322$$ -->
+<!-- ```{r} -->
+<!-- dbinom(5, 9, .7) -->
+<!-- ``` -->
+<!-- $$P(X = 8) = \binom{9}{8}.7^8(1-.7)^{9-8} = 0.1556496$$ -->
+<!-- ```{r} -->
+<!-- dbinom(8, 9, .7) -->
+<!-- ``` -->
+<!-- So it is more likely that you make 5 free throws during your game. -->
+<ol start="3" style="list-style-type: decimal">
+<li>In the World Series of baseball, two teams (call them A and B) play a sequence of games
+against each other, and the first team to win four games wins the series. Suppose team <span class="math inline">\(A\)</span> is
+slightly better, with a <span class="math inline">\(0.6\)</span> probability of winning each game, and
+assume the games are independent. What is the probability that team <span class="math inline">\(A\)</span> wins the series?</li>
+</ol>
+<p>(<em>Hint:</em> After 7 games, one of the teams must have won the Series. Even though the teams only play
+until one team has won four games, this calculation is easiest if you assume that the teams always
+play 7 games.)</p>
+<!-- 3. You flip a fair two-sided coin $20$ times and record whether the result was heads or tails. What is the probability that $15$ out of your $20$ flips land on the same side? -->
+<!-- We know that this is a binomial model with $p=.5$, so our resulting probability of getting $15$ flips landing on a certain side is  -->
+<!-- $$\binom{20}{15}.5^{15}(1-.5)^{20-15} = .0148$$ -->
+<!-- But there are two possible sides that our coin can land on, so we must multiply this probability by $2$ -->
+<!-- $$2(.0148) = .0296$$ -->
+<!-- ------ -->
+<!-- 3. You are taking a multiple choice exam with $100$ questions and you have a $90\%$ chance of getting each question correct. What is the probability that the number of questions that you get correct is divisible by 10? -->
+<!-- We will need to add up the probability of every getting every possible multiple of 10 from 0 to 100 in our binomial model. -->
+<!-- $$P(X \text{ is divisible by 10}) = \sum_{k=0}^{100/10} \binom{100}{10k}.9^{10k}(1-.9)^{10k}$$ -->
+<!-- ```{r} -->
+<!-- # All even numbers from 0 to 100 -->
+<!-- ks = seq(0, 100, 10) -->
+<!-- # Summing up the binomial probability of these k values -->
+<!-- sum(dbinom(ks, 100, .9)) -->
+<!-- ``` -->
+</div>
+<div id="additional-exercises-5" class="section level2 unnumbered">
+<h2>Additional Exercises</h2>
+<!-- 1. You're a professional baseball player and your batting average is $.300$. Let's say that every game you get exactly $4$ at bats. Out of the $162$ games in a baseball season, what is the probability that you end your season with $70$ or more games with exactly $1$ hit? -->
+<!-- ------ -->
+<!-- 2. There are 58 questions on the math portion of the SAT. Assume that you have a $80\%$ chance at getting the first $40$ questions correct, and a $60\%$ chance at getting the last $18$ questions correct. What is the probability that you get at least at least $42$ of the questions correct? -->
+<!-- ------ -->
+<!-- 3. You are running a factory that is making car parts, and $20\%$ of the parts produced are known to have defects. What is the minimum number of parts that you need to produce in a day to ensure that you have at least a $95\%$ chance at producing at least $20$ parts that do not have defects? -->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hypergeometric.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/binomial.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
