@@ -96,7 +96,7 @@ where $p = N_1 / N$ is the proportion of $\fbox{1}$s in the box.
 ```
 
 We will derive the formulas \@ref(eq:binomial1) and \@ref(eq:binomial2) later in this lesson. 
-For now, let's see how these formulas allow us to avoid calculations.
+For now, let's see how these formulas allow us to bypass calculations.
 
 ```{example name="The Newton-Pepys Problem"}
 Let's model each die roll as a draw from a box. Each die has $6$ equally likely outcomes, so 
@@ -176,7 +176,7 @@ f(x) &= \binom{n}{x}\frac{N_1^x \cdot N_0^{n-x}}{N^x \cdot N^{n-x}} \\
 where in the last line, we used the fact that $\frac{N_0}{N} = \frac{N - N_1}{N} = 1 - \frac{N_1}{N} = 1 - p$.
 ```
 
-### Graphing {-}
+### Visualizing the Distribution {-}
 
 Let's graph the binomial distribution for different values of $n$, $N_1$, and $N_0$.
 
@@ -260,10 +260,10 @@ For example, to model a coin toss, we could use
 $$ \displaystyle \fbox{\(\fbox{1}\ \fbox{0}\)} $$
 or 
 $$ \displaystyle \fbox{\(\fbox{1}\ \fbox{1}\ \fbox{0}\ \fbox{0}\)}. $$
-Although the first box is more natural, the second box is equally valid. Any box with the same 
+Although the first box may be more natural, the second box is equally valid. Any box with the same 
 number of $\fbox{1}$s as $\fbox{0}$s can be used to model a coin toss, since they all guarantee 
 a 50% chance of drawing a $\fbox{1}$. The fact that the binomial distribution does not depend on 
-$N$ should not be surprising not surprising, in light of \@ref(eq:binomial2), which shows that the 
+$N$ should not be surprising in light of \@ref(eq:binomial2), which shows that the 
 binomial p.m.f. can be written solely in terms of $p = N_1 / N$, the proportion of $\fbox{1}$s in the box.
 
 ### Calculating Binomial Probabilities on the Computer {-}
@@ -286,8 +286,8 @@ been corrupted and can ask the sender to resend the message. This is called a
 parity check.
 
 The parity check works if exactly one bit is corrupted. However, if exactly two bits are 
-corrupted, then the sum of all 51 bits will be even, and hence the errors will not be detected by the 
-receiver. In general, errors will not be detected if an even number of bits are corrupted.
+corrupted, then the sum of all 51 bits will be even, and hence the receiver will not detect 
+the error. In general, errors will not be detected if an even number of bits are corrupted.
 
 What is the probability that a corrupted message goes undetected?
 ```
@@ -300,7 +300,7 @@ First, we will set up a box model for _the number of corrupted bits_. We have a 
   
 to represent the 1% chance that each bit is corrupted. We will draw 51 times from this box to represent the 
 51 bits in the message. We draw _with replacement_, since the bits are corrupted independently. 
-Then, the number of $\fbox{1}$s corresponds to the number of corrupted bits.
+Now, the number of $\fbox{1}$s in the 51 draws corresponds to the number of corrupted bits.
 
 Therefore, we know that the number of corrupted bits, which we will call $X$, 
 follows a $\text{Binomial}(n=51, N_1=1, N_0=99)$ distribution.
@@ -313,13 +313,14 @@ probability, we sum the p.m.f. over the relevant values:
 P(\text{corrupted message goes undetected}) &= P(\text{$X$ is positive and even}) \\
 &= f(2) + f(4) + f(6) + \ldots + f(50)
 \end{align*}
-This would require evaluating the p.m.f. at 25 different values! This is a job for a computer, not a human.
+This requires evaluating the p.m.f. at 25 different values! This is a job for a computer, not a human.
 ```
+
 
 Here's how we would calculate the probability using the Python library [Symbulate](http://dlsun.github.io/symbulate). 
 We first specify the parameters of the binomial distribution. Note that Symbulate requires that the parameters 
-be $n$ and $p$, so we have to do a bit of conversion. Then, we create a list of the positive even values and 
-evaluate the p.m.f. at all of these values, in one fell swoop, using the `.pmf()` method.
+be $n$ and $p$, so we have to convert $N_1=1, N_0=99$ into $p = 0.01$. Then, we create a list of the positive even 
+values and evaluate the p.m.f. at all of these values, in one fell swoop, using the `.pmf()` method.
 ```{python}
 from symbulate import *
 probs = Binomial(n=51, p=0.01).pmf(range(2, 51, 2))

@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>13</b> Binomial Distribution</a><ul>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
-<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#graphing-1"><i class="fa fa-check"></i>Graphing</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#visualizing-the-distribution"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
@@ -304,7 +304,7 @@ where <span class="math inline">\(p = N_1 / N\)</span> is the proportion of <spa
 </div>
 
 <p>We will derive the formulas <a href="binomial.html#eq:binomial1">(13.1)</a> and <a href="binomial.html#eq:binomial2">(13.2)</a> later in this lesson.
-For now, let’s see how these formulas allow us to avoid calculations.</p>
+For now, let’s see how these formulas allow us to bypass calculations.</p>
 
 <div class="example">
 <p><span id="exm:unnamed-chunk-38" class="example"><strong>Example 13.1  (The Newton-Pepys Problem)  </strong></span>Let’s model each die roll as a draw from a box. Each die has <span class="math inline">\(6\)</span> equally likely outcomes, so
@@ -375,8 +375,8 @@ f(x) &amp;= \binom{n}{x}\frac{N_1^x \cdot N_0^{n-x}}{N^x \cdot N^{n-x}} \\
 where in the last line, we used the fact that <span class="math inline">\(\frac{N_0}{N} = \frac{N - N_1}{N} = 1 - \frac{N_1}{N} = 1 - p\)</span>.
 </div>
 
-<div id="graphing-1" class="section level3 unnumbered">
-<h3>Graphing</h3>
+<div id="visualizing-the-distribution" class="section level3 unnumbered">
+<h3>Visualizing the Distribution</h3>
 <p>Let’s graph the binomial distribution for different values of <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, and <span class="math inline">\(N_0\)</span>.</p>
 <p>First, we hold the number of draws constant at <span class="math inline">\(n=5\)</span> and vary the composition of the box.</p>
 <p><img src="bookdown-demo_files/figure-html/binomial-pmf-1-1.png" width="672" /></p>
@@ -395,10 +395,10 @@ For example, to model a coin toss, we could use</p>
 <p><span class="math display">\[ \displaystyle \fbox{\(\fbox{1}\ \fbox{0}\)} \]</span>
 or
 <span class="math display">\[ \displaystyle \fbox{\(\fbox{1}\ \fbox{1}\ \fbox{0}\ \fbox{0}\)}. \]</span>
-Although the first box is more natural, the second box is equally valid. Any box with the same
+Although the first box may be more natural, the second box is equally valid. Any box with the same
 number of <span class="math inline">\(\fbox{1}\)</span>s as <span class="math inline">\(\fbox{0}\)</span>s can be used to model a coin toss, since they all guarantee
 a 50% chance of drawing a <span class="math inline">\(\fbox{1}\)</span>. The fact that the binomial distribution does not depend on
-<span class="math inline">\(N\)</span> should not be surprising not surprising, in light of <a href="binomial.html#eq:binomial2">(13.2)</a>, which shows that the
+<span class="math inline">\(N\)</span> should not be surprising in light of <a href="binomial.html#eq:binomial2">(13.2)</a>, which shows that the
 binomial p.m.f. can be written solely in terms of <span class="math inline">\(p = N_1 / N\)</span>, the proportion of <span class="math inline">\(\fbox{1}\)</span>s in the box.</p>
 </div>
 <div id="calculating-binomial-probabilities-on-the-computer" class="section level3 unnumbered">
@@ -419,8 +419,8 @@ sum of all 51 bits herself. If the sum is odd, then she knows that the message h
 been corrupted and can ask the sender to resend the message. This is called a
 parity check.</p>
 <p>The parity check works if exactly one bit is corrupted. However, if exactly two bits are
-corrupted, then the sum of all 51 bits will be even, and hence the errors will not be detected by the
-receiver. In general, errors will not be detected if an even number of bits are corrupted.</p>
+corrupted, then the sum of all 51 bits will be even, and hence the receiver will not detect
+the error. In general, errors will not be detected if an even number of bits are corrupted.</p>
 What is the probability that a corrupted message goes undetected?
 </div>
 
@@ -433,7 +433,7 @@ What is the probability that a corrupted message goes undetected?
 </ul>
 <p>to represent the 1% chance that each bit is corrupted. We will draw 51 times from this box to represent the
 51 bits in the message. We draw <em>with replacement</em>, since the bits are corrupted independently.
-Then, the number of <span class="math inline">\(\fbox{1}\)</span>s corresponds to the number of corrupted bits.</p>
+Now, the number of <span class="math inline">\(\fbox{1}\)</span>s in the 51 draws corresponds to the number of corrupted bits.</p>
 <p>Therefore, we know that the number of corrupted bits, which we will call <span class="math inline">\(X\)</span>,
 follows a <span class="math inline">\(\text{Binomial}(n=51, N_1=1, N_0=99)\)</span> distribution.</p>
 The probability that a corrupted message goes undetected is the probability that
@@ -444,13 +444,13 @@ probability, we sum the p.m.f. over the relevant values:
 P(\text{corrupted message goes undetected}) &amp;= P(\text{$X$ is positive and even}) \\
 &amp;= f(2) + f(4) + f(6) + \ldots + f(50)
 \end{align*}\]</span>
-This would require evaluating the p.m.f. at 25 different values! This is a job for a computer, not a human.
+This requires evaluating the p.m.f. at 25 different values! This is a job for a computer, not a human.
 </div>
 
 <p>Here’s how we would calculate the probability using the Python library <a href="http://dlsun.github.io/symbulate">Symbulate</a>.
 We first specify the parameters of the binomial distribution. Note that Symbulate requires that the parameters
-be <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, so we have to do a bit of conversion. Then, we create a list of the positive even values and
-evaluate the p.m.f. at all of these values, in one fell swoop, using the <code>.pmf()</code> method.</p>
+be <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, so we have to convert <span class="math inline">\(N_1=1, N_0=99\)</span> into <span class="math inline">\(p = 0.01\)</span>. Then, we create a list of the positive even
+values and evaluate the p.m.f. at all of these values, in one fell swoop, using the <code>.pmf()</code> method.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">probs <span class="op">=</span> Binomial(n<span class="op">=</span><span class="dv">51</span>, p<span class="op">=</span><span class="fl">0.01</span>).pmf(<span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">51</span>, <span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">probs</a></code></pre></div>
