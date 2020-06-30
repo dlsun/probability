@@ -192,7 +192,7 @@ N0 <- 16
 plot(0:5, dbinom(0:n, n, 0.25), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
      main=TeX(paste("Binomial$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
 for(x in 0:5) {
-  lines(c(x, x), c(0, dbinom(x, n, 0.5)), lwd=2)
+  lines(c(x, x), c(0, dbinom(x, n, 0.25)), lwd=2)
 } 
 
 n <- 5
@@ -210,7 +210,7 @@ N0 <- 4
 plot(0:5, dbinom(0:n, n, 0.75), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
      main=TeX(paste("Binomial$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
 for(x in 0:5) {
-  lines(c(x, x), c(0, dbinom(x, n, 0.5)), lwd=2)
+  lines(c(x, x), c(0, dbinom(x, n, 0.75)), lwd=2)
 }
 ```
 
