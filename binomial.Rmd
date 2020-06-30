@@ -114,7 +114,7 @@ number of ⚅s that one would get in 12 rolls of a fair die.
 
 Therefore, by Theorem \@ref(thm:binomial), we now know that the number of ⚅s in 
 12 rolls follows a 
-$\text{Binomial}(n=5, N_1=1, N_0=5)$ distribution. We can now write down the p.m.f. by plugging 
+$\text{Binomial}(n=12, N_1=1, N_0=5)$ distribution. We can now write down the p.m.f. by plugging 
 the values of the parameters $n$, $N_1$, $N_0$ into \@ref(eq:binomial1):
 \[ f(x) = \frac{\binom{12}{x} 1^x 5^{12-x}}{6^{12}}, x=0, 1, \ldots, 12. \]
 

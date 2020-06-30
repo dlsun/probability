@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12" data-path="hypergeometric.html"><a href="hypergeometric.html"><i class="fa fa-check"></i><b>12</b> Hypergeometric Distribution</a><ul>
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#motivating-example-10"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-10"><i class="fa fa-check"></i>Theory</a><ul>
-<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#graphing"><i class="fa fa-check"></i>Graphing</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#visualizing-the-distribution"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#calculating-hypergeometric-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Hypergeometric Probabilities on the Computer</a></li>
 <li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#another-formula-for-the-hypergeometric-distribution-optional"><i class="fa fa-check"></i>Another Formula for the Hypergeometric Distribution (optional)</a></li>
 </ul></li>
@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>13</b> Binomial Distribution</a><ul>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
-<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#visualizing-the-distribution"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#visualizing-the-distribution-1"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
@@ -319,7 +319,7 @@ way to model independence. The number of <span class="math inline">\(\fbox{1}\)<
 number of ⚅s that one would get in 12 rolls of a fair die.</p>
 <p>Therefore, by Theorem <a href="binomial.html#thm:binomial">13.1</a>, we now know that the number of ⚅s in
 12 rolls follows a
-<span class="math inline">\(\text{Binomial}(n=5, N_1=1, N_0=5)\)</span> distribution. We can now write down the p.m.f. by plugging
+<span class="math inline">\(\text{Binomial}(n=12, N_1=1, N_0=5)\)</span> distribution. We can now write down the p.m.f. by plugging
 the values of the parameters <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_0\)</span> into <a href="binomial.html#eq:binomial1">(13.1)</a>:
 <span class="math display">\[ f(x) = \frac{\binom{12}{x} 1^x 5^{12-x}}{6^{12}}, x=0, 1, \ldots, 12. \]</span></p>
 <p>Equivalently, we have <span class="math inline">\(p = N_1/N = 1/6\)</span>, and plugging in the values of the parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> into
@@ -375,7 +375,7 @@ f(x) &amp;= \binom{n}{x}\frac{N_1^x \cdot N_0^{n-x}}{N^x \cdot N^{n-x}} \\
 where in the last line, we used the fact that <span class="math inline">\(\frac{N_0}{N} = \frac{N - N_1}{N} = 1 - \frac{N_1}{N} = 1 - p\)</span>.
 </div>
 
-<div id="visualizing-the-distribution" class="section level3 unnumbered">
+<div id="visualizing-the-distribution-1" class="section level3 unnumbered">
 <h3>Visualizing the Distribution</h3>
 <p>Let’s graph the binomial distribution for different values of <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, and <span class="math inline">\(N_0\)</span>.</p>
 <p>First, we hold the number of draws constant at <span class="math inline">\(n=5\)</span> and vary the composition of the box.</p>
