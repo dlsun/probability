@@ -73,6 +73,8 @@ In this lesson, we learn another named distribution that is virtually identical 
 hypergeometric distribution, except in one important detail: the draws are made 
 _with replacement_ instead of _without replacement_.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sn-mp_ESSMc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{theorem binomial, name="Binomial Distribution"}
 If a random variable can be described as the number of $\fbox{1}$s in $n$ random draws, _with replacement_, 
 from the box 

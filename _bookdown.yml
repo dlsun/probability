@@ -6,5 +6,5 @@ delete_merged_file: true
 rmd_files: ["index.Rmd", "counting.Rmd", "factorial.Rmd", "box-models.Rmd",
             "replacement.Rmd", "double-counting.Rmd", "conditional.Rmd", "independence.Rmd",
             "total-probability.Rmd", "bayes.Rmd", "random-variables.Rmd", "cdf.Rmd",
-            "hypergeometric.Rmd"]
+            "hypergeometric.Rmd", "binomial.Rmd"]
 output_dir: "docs"
