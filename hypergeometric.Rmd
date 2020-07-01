@@ -65,7 +65,7 @@ Now, if we draw $n=5$ times from this box without replacement, then the number o
 corresponds to the number of diamonds. 
 
 Therefore, by Theorem \@ref(thm:hypergeometric), we know that the number of diamonds follows a 
-$\text{Hypergeometric}(n=5, N_1=11, N_0=37)$ distribution. We can now write down the p.m.f. by pluggging 
+$\text{Hypergeometric}(n=5, N_1=11, N_0=37)$ distribution. We can now write down the p.m.f. by plugging 
 the values of the parameters $n$, $N_1$, $N_0$ into \@ref(eq:hypergeometric):
 \[ f(x) = \frac{\binom{11}{x} \binom{37}{5-x}}{\binom{48}{5}}, x=0, 1, \ldots, 5. \]
 
@@ -103,7 +103,7 @@ Therefore, the probability of getting exactly $x$ $\fbox{1}$s in $n$ draws is:
 \[ f(x) = P(X = x) = \dfrac{\binom{N_1}{x}\binom{N_0}{n-x}}{\binom{N}{n}}. \]
 ```
 
-### Graphing {-}
+### Visualizing the Distribution {-}
 
 Let's graph the hypergeometric distribution for different values of $n$, $N_1$, and $N_0$.
 
@@ -199,7 +199,9 @@ allows us to estimate the population of fish in the lake.
 
 Suppose there are actually 100 fish in the lake; we capture $m=20$ fish the first week and $n=30$ fish the next week. 
 What is the probability that _at least_ $7$ of the $30$ fish will be tagged?
-  
+```
+
+```{solution}  
 We can represent this using a box model. The fish in the lake will be represented by $N=100$ tickets, with 
 \begin{align*}
 \text{$N_1=20$ tickets labeled } \fbox{1} &\text{ representing the tagged fish} \\

@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-06-30" />
+<meta name="date" content="2020-07-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="binomial.html"/>
-
+<link rel="next" href="negative-binomial.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -217,6 +217,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#essential-practice-2"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="15" data-path="negative-binomial.html"><a href="negative-binomial.html"><i class="fa fa-check"></i><b>15</b> Negative Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#motivating-example-13"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#theory-13"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#visualizing-the-distribution-3"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#calculating-negative-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Negative Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#essential-practice-3"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#additional-exercises-6"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -254,7 +263,7 @@ But how do we use this to determine the probability that it takes more than 6 ro
 <p><span id="thm:geometric" class="theorem"><strong>Theorem 14.1  (Geometric Distribution)  </strong></span>If a random variable can be described as the number of draws, <em>with replacement</em>,
 from the box
 <span class="math display">\[ \overbrace{\underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0}\ \underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1}}^N \]</span>
-<em>until</em> a <span class="math inline">\(\fbox{1}\)</span>s is drawn, then its p.m.f. is given by
+<em>until</em> a <span class="math inline">\(\fbox{1}\)</span> is drawn, then its p.m.f. is given by
 <span class="math display" id="eq:geometric1">\[\begin{equation}
 f(x) = \dfrac{N_0^{x-1} \cdot N_1}{N^x}, x=1, 2, 3, \ldots
 \tag{14.1}
@@ -318,10 +327,13 @@ failed to end the round. In other words, all 6 of these rolls resulted in one of
 <p>Now, let’s derive the p.m.f. of the geometric distribution.</p>
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> There are <span class="math inline">\(N^x\)</span> ordered ways to choose <span class="math inline">\(x\)</span> tickets from <span class="math inline">\(N\)</span> with replacement. Recall from Lesson
-<a href="replacement.html#replacement">4</a> that when sampling with replacement, we must count ordered outcomes, since the
-unordered outcomes are not all equally likely.</p>
-<p>In order for the first <span class="math inline">\(\fbox{1}\)</span> to appear on the <span class="math inline">\(x\)</span>th draw, the first
+<p> <span class="proof"><em>Proof. </em></span> To calculate the p.m.f. at <span class="math inline">\(x\)</span>, we need to determine the probability that it takes exactly <span class="math inline">\(x\)</span> draws to get
+the first <span class="math inline">\(\fbox{1}\)</span>s.</p>
+<p>First, there are <span class="math inline">\(N^x\)</span> equally likely ways to draw <span class="math inline">\(x\)</span> tickets from <span class="math inline">\(N\)</span> with replacement, taking order into account.
+(We must count ordered outcomes
+because the unordered outcomes are not all equally likely. See Lesson <a href="replacement.html#replacement">4</a>.)</p>
+<p>Next, we count the outcomes where the first <span class="math inline">\(\fbox{1}\)</span> is on the <span class="math inline">\(x\)</span>th draw.
+In order for this to happen, the first
 <span class="math inline">\(x-1\)</span> draws must all be <span class="math inline">\(\fbox{0}\)</span>s and the <span class="math inline">\(x\)</span>th draw a <span class="math inline">\(\fbox{1}\)</span>:
 <span class="math display" id="eq:geometric-outcome">\[\begin{equation}
 \underbrace{\fbox{0}, \ldots, \fbox{0}}_{x-1}, \fbox{1}. 
@@ -372,8 +384,8 @@ can also be calculated by defining an appropriate geometric random variable.</p>
           </div>
         </div>
       </div>
-<a href="binomial.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="binomial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="negative-binomial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

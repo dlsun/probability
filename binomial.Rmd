@@ -138,19 +138,24 @@ P(X \geq 2) &= 1 - P(X \leq 1)  \\
 Now, let's derive the p.m.f. of the binomial distribution.
 
 ```{proof}
-There are $N^n$ ordered ways to choose $n$ tickets from $N$ with replacement. Recall from Lesson 
-\@ref(replacement) that when sampling with replacement, we must count ordered outcomes, since the 
-unordered outcomes are not all equally likely.
+To calculate the p.m.f. at $x$, we need to calculate the probability of getting exactly $x$ 
+$\fbox{1}$s in $n$ draws.
 
-Let's start by counting the number of outcomes that look like 
+First, there are $N^n$ ordered ways to draw $n$ tickets from $N$ with replacement. 
+(We must count ordered outcomes 
+because the unordered outcomes are not all equally likely. See Lesson \@ref(replacement).)
+
+Next, we count the outcomes that have exactly $x$ $\fbox{1}$s. We proceed in two steps:
+
+1. Count outcomes that look like 
 \begin{equation}
 \underbrace{\fbox{1}, \ldots, \fbox{1}}_{x}, \underbrace{\fbox{0}, \ldots, \fbox{0}}_{n-x}, 
 (\#eq:binomial-ordered)
 \end{equation}
-in this exact order. There are $N_1$ choices for the first $\fbox{1}$, $N_1$ choices for the second 
-$\fbox{1}$, and in fact, $N_1$ choices for all $x$ $\fbox{1}$s, since we 
+where the $x$ $\fbox{1}$s are drawn first. There are $N_1$ choices for the first $\fbox{1}$, 
+$N_1$ choices for the second $\fbox{1}$, and in fact, $N_1$ choices for each of the $x$ $\fbox{1}$s, since we 
 are drawing with replacement. Likewise, there 
-are $N_0$ choices for all $n-x$ $\fbox{0}$s. By the 
+are $N_0$ choices for each of the $n-x$ $\fbox{0}$s. By the 
 multiplication principle of counting (Theorem \@ref(thm:multiplication-principle)), there are 
 \begin{equation}
 N_1^x \cdot N_0^{n-x}. 
@@ -158,14 +163,14 @@ N_1^x \cdot N_0^{n-x}.
 \end{equation}
 ways to get an outcome like \@ref(eq:binomial-ordered), in that exact order.
 
-However, because we are counting ordered outcomes, we also need to account for the possibility that the 
+2. Account for the possibility that the 
 $\fbox{1}$s and $\fbox{0}$s were drawn in a different order than \@ref(eq:binomial-ordered). 
-There are $\binom{n}{x}$ ways to reorder the $\fbox{1}$s and $\fbox{0}$s, 
-each of which can be obtained in \@ref(eq:binomial-ordered-count) ways. So the total number of (ordered) ways 
-to get $x$ $\fbox{1}$s and $n-x$ $\fbox{0}$s is 
+There are $\binom{n}{x}$ ways to rearrange the $\fbox{1}$s and $\fbox{0}$s. 
+
+So the total number of (ordered) ways to get $x$ $\fbox{1}$s and $n-x$ $\fbox{0}$s is 
 \[ \binom{n}{x} \cdot N_1^x \cdot N_0^{n-x}.  \]
 
-So the p.m.f. can be written as 
+Dividing this by the total number of outcomes $N^x$ gives the p.m.f.:
 \[ f(x) = P(X = x) = \frac{\binom{n}{x} \cdot N_1^x \cdot N_0^{n-x}}{N^n}. \]
 
 To see that this formula is the same as \@ref(eq:binomial2), we write $N^n = N^x \cdot N^{n-x}$. 

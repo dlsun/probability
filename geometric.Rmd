@@ -15,7 +15,7 @@ But how do we use this to determine the probability that it takes more than 6 ro
 If a random variable can be described as the number of draws, _with replacement_, 
 from the box 
 \[ \overbrace{\underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0}\ \underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1}}^N \]
-_until_ a $\fbox{1}$s is drawn, then its p.m.f. is given by 
+_until_ a $\fbox{1}$ is drawn, then its p.m.f. is given by 
 \begin{equation}
 f(x) = \dfrac{N_0^{x-1} \cdot N_1}{N^x}, x=1, 2, 3, \ldots
 (\#eq:geometric1)
@@ -47,6 +47,8 @@ roll two dice, so we place $N=36$ tickets into the box. Only 9 of these outcomes
 the end of the round, so we label $N_1=9$ of these tickets as $\fbox{1}$; the other $N_0=27$ tickets 
 are labeled $\fbox{0}$.
 
+\[ \overbrace{\underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1=9}\ \underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0=27}}^{N=36} \]
+
 Now, the number of rolls until the end of the round is just the number of draws until a 
 $\fbox{1}$ is drawn. So the number of rolls follows the $\text{Geometric}(N_1=9, N_0=27)$ distribution.
  
@@ -74,7 +76,7 @@ in a few different ways:
 
    \begin{align*}
     P(X > 6) &= f(7) + f(8) + f(9) + ...  \\
-    &= \left( \frac{27}{36} \right)^6 \frac{9}{36} - \left( \frac{27}{36} \right)^7 \frac{9}{36} - \left( \frac{27}{36} \right)^8 \frac{9}{36} - \ldots  \\
+    &= \left( \frac{27}{36} \right)^6 \frac{9}{36} + \left( \frac{27}{36} \right)^7 \frac{9}{36} + \left( \frac{27}{36} \right)^8 \frac{9}{36} + \ldots  \\
     &= \frac{\left( \frac{27}{36} \right)^6 \frac{9}{36}}{ 1 - \frac{27}{36}} \\
     &\approx .178.
     \end{align*}
@@ -89,11 +91,15 @@ failed to end the round. In other words, all 6 of these rolls resulted in one of
 Now, let's derive the p.m.f. of the geometric distribution.
 
 ```{proof}
-There are $N^x$ ordered ways to choose $x$ tickets from $N$ with replacement. Recall from Lesson 
-\@ref(replacement) that when sampling with replacement, we must count ordered outcomes, since the 
-unordered outcomes are not all equally likely.
+To calculate the p.m.f. at $x$, we need to determine the probability that it takes exactly $x$ draws to get 
+the first $\fbox{1}$s. 
 
-In order for the first $\fbox{1}$ to appear on the $x$th draw, the first 
+First, there are $N^x$ equally likely ways to draw $x$ tickets from $N$ with replacement, taking order into account. 
+(We must count ordered outcomes 
+because the unordered outcomes are not all equally likely. See Lesson \@ref(replacement).)
+
+Next, we count the outcomes where the first $\fbox{1}$ is on the $x$th draw.
+In order for this to happen, the first 
 $x-1$ draws must all be $\fbox{0}$s and the $x$th draw a $\fbox{1}$:
 \begin{equation}
 \underbrace{\fbox{0}, \ldots, \fbox{0}}_{x-1}, \fbox{1}. 

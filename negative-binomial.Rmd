@@ -2,35 +2,35 @@
 
 ## Motivating Example {-}
 
-On the American roulette wheel, there are $38$ spaces: $18$ black, $18$ red, and $2$ green. 
-You've been playing roulette at the casino for a while now and decide to keep placing bets on red until you have won $3$ bets.
-What is the probability that you leave the casino after placing exactly 5 bets? 
+On a (American) roulette wheel, there are 38 spaces: 18 black, 18 red, and 2 green. 
+You've been at the casino for a while now and decide to leave after you have won 3 bets on red.
+What is the probability that you leave the casino after placing exactly 5 bets on red? 
 
 ## Theory {-}
 
 To answer the question posed at the beginning of the lesson, we need a distribution like the 
-geometric, except that it stops after $3$ $\fbox{1}$s have been drawn 
-(instead of after the first $\fbox{1}$). The negative binomial distribution is exactly what we need.
+geometric, except one that stops after $3$ $\fbox{1}$s have been drawn 
+(instead of after the first $\fbox{1}$). The negative binomial is that distribution.
 
 ```{theorem negbinom, name="Negative Binomial Distribution"}
 If a random variable can be described as the number of draws, _with replacement_, 
 from the box 
 \[ \overbrace{\underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0}\ \underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1}}^N \]
 _until_ $r$ $\fbox{1}$s have been drawn, then its p.m.f. is given by 
-\begin{equation}
-f(x) = \dfrac{\binom{x-1}{r-1} N_0^{x-r} \cdot N_1^r}{N^x}, x=r, r+1, r+2, \ldots
+\begin{align}
+f(x) &= \dfrac{\binom{x-1}{r-1} N_0^{x-r} \cdot N_1^r}{N^x}, &  x&=r, r+1, r+2, \ldots
 (\#eq:negbinom1)
-\end{equation}
+\end{align}
 where $N = N_1 + N_0$ is the number of tickets in the box.
 
 We say that the random variable has a $\text{NegativeBinomial}(r, N_1, N_0)$ distribution, and $r$, $N_1$, 
 $N_0$ are called **parameters** of the distribution.
 
 Equivalently, \@ref(eq:negbinom1) can be written as 
-\begin{equation}
-f(x) = \binom{x-1}{r-1} (1-p)^{x-r} p^r, x=r, r+1, r+2, \ldots,
+\begin{align}
+f(x) &= \binom{x-1}{r-1} (1-p)^{x-r} p^r, &  x &= r, r+1, r+2, \ldots,
 (\#eq:negbinom2)
-\end{equation}
+\end{align}
 where $p = N_1 / N$ is the proportion of $\fbox{1}$s in the box. So we can also say that 
 the random variable has a $\text{NegativeBinomial}(r, p)$ distribution, where $r$ and $p$ are the parameters.
 ```
@@ -52,14 +52,64 @@ $\fbox{1}$s represent the red spaces:
 The number of draws until we get $r=3$ $\fbox{1}$s corresponds to the number of bets we make until we have won 3 times.
 So the number of bets follows a $\text{NegativeBinomial}(r=3, N_1=18, N_0=20)$ distribution.
 
-Therefore, we can write down its p.m.f. using \@ref(eq:negbinom2):
+Therefore, we know its p.m.f. by \@ref(eq:negbinom2):
   \[ f(x) = \binom{x-1}{3-1} \left( \frac{20}{38} \right)^{x-3} \left( \frac{18}{38} \right)^3. \]
 
 To calculate the probability that we leave the casino after exactly 5 bets, we plug in $5$ for $x$:
 \[ f(5) = \binom{4}{2} \left( \frac{20}{38} \right)^2 \left( \frac{18}{38} \right)^3 \approx .1766. \]
 ```
 
-**TODO: Derivation**
+Now, let's derive the p.m.f. of the binomial distribution.
+
+```{proof}
+To calculate the p.m.f. at $x$, we need to determine the probability that it takes exactly $x$ draws to get 
+$r$ $\fbox{1}$s. 
+
+First, there are $N^x$ equally likely ways to draw $x$ tickets from $N$ with replacement, taking order into account. 
+(We must count ordered outcomes because the unordered outcomes are not all equally likely. See Lesson \@ref(replacement).)
+
+Next, we count the outcomes where the $r$th $\fbox{1}$ happens on the $x$th draw. We proceed in two steps:
+
+1. Count outcomes that look like 
+\begin{equation}
+\underbrace{\fbox{0}, \ldots, \fbox{0}}_{x-r}, \underbrace{\fbox{1}, \ldots, \fbox{1}}_{r}, 
+(\#eq:negbinom-ordered)
+\end{equation}
+where the $r$ $\fbox{1}$s are all at the end. There are $N_0$ choices for the first $\fbox{0}$, 
+$N_0$ choices for the second $\fbox{0}$, and in fact, $N_0$ choices for each of the $x-r$ $\fbox{0}$s, since we 
+are drawing with replacement. Likewise, there 
+are $N_1$ choices for each of the $r$ $\fbox{1}$s. By the 
+multiplication principle of counting (Theorem \@ref(thm:multiplication-principle)), there are 
+\begin{equation}
+N_0^{x-r} \cdot N_1^r. 
+(\#eq:negbinom-ordered-count)
+\end{equation}
+ways to get an outcome like \@ref(eq:negbinom-ordered), in that exact order.
+
+2. Account for the possibility that the 
+$\fbox{1}$s and $\fbox{0}$s were drawn in a different order than \@ref(eq:negbinom-ordered). 
+Unlike the binomial, we cannot rearrange the $\fbox{1}$s and 
+$\fbox{0}$s any order we like. With the negative binomial, the $x$th draw must be a $\fbox{1}$, since  
+we need the $r$th $\fbox{1}$ to come on the $x$th draw. Otherwise, we have 
+complete freedom to rearrange the remaining $r-1$ $\fbox{1}$s among the first $x-1$ draws. Therefore, there 
+are $\binom{x-1}{r-1}$ valid arrangements of the $\fbox{1}$s and $\fbox{0}$s where that the $r$th 
+$\fbox{1}$ is on the $x$th draw. 
+
+So the total number of (ordered) ways to get the $r$th $\fbox{1}$s on the $x$th draw is:
+\[ \binom{x-1}{r-1} \cdot N_0^{x-r} \cdot N_1^r. \]
+
+Dividing this by the total number of outcomes $N^x$ gives the p.m.f.:
+\[ f(x) = P(X = x) = \frac{\binom{x-1}{r-1} \cdot N_0^{x-r} \cdot N_1^r}{N^x}. \]
+
+To see that this formula is the same as \@ref(eq:negbinom2), we write $N^n = N^{x-r} \cdot N^{r}$. 
+Then, we have:
+\begin{align*}
+f(x) &= \binom{x-1}{r-1} \frac{N_0^{x-r} \cdot N_1^r}{N^x} \\
+&= \binom{x-1}{r-1} \left( \frac{N_0}{N} \right)^{x-r} \left( \frac{N_1}{N} \right)^{r} \\
+&= \binom{x-1}{r-1} (1 - p)^{x-r} p^r,
+\end{align*}
+where in the last line, we used the fact that $\frac{N_0}{N} = \frac{N - N_1}{N} = 1 - \frac{N_1}{N} = 1 - p$.
+```
 
 ### Visualizing the Distribution {-}
 
@@ -77,8 +127,8 @@ par(mfrow=c(1, 3))
 N1 <- 5
 N0 <- 15
 p <- N1 / (N0 + N1)
-plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
-     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.35),
+     main=TeX(paste("NegBinom$(r=", r, ", N_1=", N1, ", N_0=", N0, ")$")))
 for(x in xs) {
   lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
 } 
@@ -86,8 +136,8 @@ for(x in xs) {
 N1 <- 10
 N0 <- 10
 p <- N1 / (N0 + N1)
-plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
-     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.35),
+     main=TeX(paste("NegBinom$(r=", r, ", N_1=", N1, ", N_0=", N0, ")$")))
 for(x in xs) {
   lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
 } 
@@ -95,60 +145,60 @@ for(x in xs) {
 N1 <- 15
 N0 <- 5
 p <- N1 / (N0 + N1)
-plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
-     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.35),
+     main=TeX(paste("NegBinom$(r=", r, ", N_1=", N1, ", N_0=", N0, ")$")))
 for(x in xs) {
   lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
 } 
 ```
 
-Not surprisingly, as we increase the number of $\fbox{1}$s in the box, the fifth 
-$\fbox{1}$ is drawn sooner, so the probability mass shifts to the left.
+Not surprisingly, as we increase the number of $\fbox{1}$s in the box, the  
+$\fbox{1}$s are drawn sooner, so the $r=5$th $\fbox{1}$ happens earlier.
 
-**TODO: Other Graph**
+Next, we study the effect of increasing $r$ on the negative binomial distribution.
 
 ```{r negbinom-pmf-2, echo=FALSE, fig.show = "hold", fig.align = "default", fig.asp=0.5}
 library(latex2exp)
 
 xs <- 0:30
-r <- 5
+p <- 0.5
 
 par(mfrow=c(1, 3))
-N1 <- 5
-N0 <- 15
-p <- N1 / (N0 + N1)
-plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
-     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+r <- 5
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", xlim=c(5, 35),  ylim=c(0, 0.35),
+     main=TeX(paste("NegBinom$(r=", r, ", N_1=", 1, ", N_0=", 1, ")$")))
 for(x in xs) {
   lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
 } 
 
-N1 <- 10
-N0 <- 10
+r <- 10
 p <- N1 / (N0 + N1)
-plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
-     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", xlim=c(5, 35), ylim=c(0, 0.35),
+     main=TeX(paste("NegBinom$(r=", r, ", N_1=", 1, ", N_0=", 1, ")$")))
 for(x in xs) {
   lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
 } 
 
-N1 <- 15
-N0 <- 5
+r <- 20
 p <- N1 / (N0 + N1)
-plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
-     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", xlim=c(5, 35), ylim=c(0, 0.35),
+     main=TeX(paste("NegBinom$(r=", r, ", N_1=", 1, ", N_0=", 1, ")$")))
 for(x in xs) {
   lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
 } 
 ```
 
+Not surprisingly, when we require more $\fbox{1}$s by increasing $r$, the distribution shifts to the 
+right, indicating that it takes longer to achieve that goal.
 
-### Calculating Binomial Probabilities on the Computer {-}
 
-Calculating binomial probabilities by hand can be unwieldy when $n$ is large. 
-Fortunately, the binomial distribution is built into many software packages.
+### Calculating Negative Binomial Probabilities on the Computer {-}
 
-For example, suppose we want to solve the following problem.
+The negative binomial distribution is built into many software packages. However, 
+we have to check which definition the package is using.
+Some packages define a negative binomial random variable to be the number of $\fbox{0}$s 
+that were drawn, instead of the total number of draws.
+
 ```{example, name="Telemarketing"}
 Suppose a telemarketer has a 15% chance of making a sale on any given phone call. 
 He is required to make 10 successful sales before leaving for the day. 
@@ -163,30 +213,31 @@ First, we will set up a box model for _the number of calls_. We have a box with
   
 to represent the 15% chance of making a sale. We will draw from this box until we have 
 drawn 10 $\fbox{1}$s, representing the 10 successful calls. We will assume that his success on one 
-call is independent of his success on any other, so we draw _with replacement_. 
+call is independent of his success on any other call, so we make the draws _with replacement_. 
 
-Therefore, we know that the number of calls, which we will call $X$, 
-follows a $\text{NegativeBinomial}(r=51, N_1=15, N_0=85)$ distribution.
+This shows that the number of calls, which we will call $X$, 
+follows a $\text{NegativeBinomial}(r=10, N_1=15, N_0=85)$ distribution.
 
 The probability that he has to make more than 40 calls is $P(X > 40)$. To calculate 
 this directly, we would have to evaluate an infinite sum:
 \[ P(X > 40) = f(41) + f(42) + f(43) + \ldots. \]
 The complement rule makes this slightly more palatable:
 \[ P(X > 40) = 1 - P(X \leq 40) = 1 - f(40) - f(39) - \ldots - f(10), \]
-but this is still a calculation we do not want to do by hand.
+but this is still a calculation that would be unpleasant to do by hand.
 ```
-
 
 Here's how we would calculate the probability using the Python library [Symbulate](http://dlsun.github.io/symbulate). 
 We first specify the parameters of the negative binomial distribution. Note that Symbulate requires that the parameters 
 be $r$ and $p$, so we have to convert $N_1=15, N_0=85$ into $p = 0.15$. 
 
 Calculating the probability directly involves evaluating the p.m.f. at infinitely many values, so we look at the 
-complement. We can evaluate the p.m.f. at all of these values using the `.pmf()` metho and add the probabilities 
+complement. We can evaluate the p.m.f. at all of these values using the `.pmf()` method and add the probabilities 
 using `sum()`.
 ```{python}
 from symbulate import *
-probs = NegativeBinomial(r=10, p=0.15).pmf(range(10, 41)) # note that range(..., 41) does not include 41
+probs = NegativeBinomial(r=10, p=0.15).pmf(
+  range(10, 41) # range(..., 41) does not include 41
+)
 1 - sum(probs)
 ```
 
@@ -198,10 +249,9 @@ Alternatively, we could also calculate this using the c.d.f. and the complement 
 You can play around with the Python code in [this Colab notebook](https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/py/Calculating_NegBinom_Probabilities.ipynb). 
 
 It is also possible to do this calculation in R, a statistical programming language. 
-Note that R uses the names `size=` and `prob=` for $r$ and $p$, respectively. R also uses a different 
-convention for defining the negative binomial distribution; it considers the number of 
-$\fbox{0}$s that were drawn, rather than the total number of draws. So we have to subtract the $r=10$ $\fbox{1}$s from the 
-number of draws before passing in values to R.
+R defines the negative binomial distribution a bit differently; it only counts the number of 
+$\fbox{0}$s that were drawn, rather than the total number of draws. So we have to remember to 
+subtract the $r=10$ $\fbox{1}$s from the total number of draws before passing the values to `dnbinom` or `pnbinom`.
 ```{r}
 probs <- dnbinom((10:40) - 10 , size=10, prob=0.15)
 1 - sum(probs)
@@ -209,7 +259,7 @@ probs <- dnbinom((10:40) - 10 , size=10, prob=0.15)
 
 We can also use the c.d.f. function:
 ```{r}
-1 - pnbinom((10:40) - 10 , size=10, prob=0.15)
+1 - pnbinom(40 - 10, size=10, prob=0.15)
 ```
 
 You can play around with the R code in [this Colab notebook](https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/r/Calculating_NegBinom_Probabilities.ipynb). 
@@ -217,22 +267,22 @@ You can play around with the R code in [this Colab notebook](https://colab.resea
 
 ## Essential Practice {-}
 
-1. Complete the blank: The geometric distribution is a special case of the negative binomial distribution where $r = $ _____.
-2. Calculate the following probabilities. Which is larger?
+1. Complete the sentence: The geometric distribution is a special case of the negative binomial distribution where $r=$ _____.
+2. Calculate the following probabilities. 
 
     (A) You toss a coin 4 times. The probability that you get (exactly) 2 heads.
     
     (B) You toss a coin until you get 2 heads. The probability that it takes (exactly) 4 tosses.
     
-    Explain intuitively why the answer makes sense.
-3. In Major League Baseball's Home Run Derby, each contestant is allowed to keep swinging the bat until they have made 10 outs. (An out is 
-defined to be anything that is not a home run.) If Barry Bonds has a 70% chance of hitting a home run on any given swing, what is the 
+    Which is larger? Explain why the answer makes intuitive sense.
+3. In Major League Baseball's Home Run Derby, each contestant is allowed to keep swinging the bat until they have made 10 "outs". 
+(An "out" is anything that is not a home run.) If Barry Bonds has a 70% chance of hitting a home run on any given swing, what is the 
 probability that he hits at least 10 home runs before his turn is up?
 
 ## Additional Exercises {-}
 
-1. Your coach tells you that you cannot leave basketball practice until you have made at least $20$ free throws. If you free throw probability is $80\%$, find the probability that you are out of practice after taking an even amount of free throws.
-2. A medical researcher is recruiting 20 subjects for a study on an experimental drug for COVID-19. Each person that she interviews 
+1. A medical researcher is recruiting 20 subjects for a study on an experimental drug for COVID-19. Each person that she interviews 
 has a 60% chance of being eligible to participate in the study. What is the probability that she will have to interview more than 
 40 people?
+2. Your coach tells you that you cannot leave basketball practice until you have made at least $20$ free throws. If you free throw probability is $80\%$, find the probability that you are out of practice after taking an even amount of free throws.
 2. You have two coins. One coin is a fair coin with a $.5$ probability of landing on heads. The other coin is a biased coin with a $.25$ probability of landing on heads. You pick one of these two coins at random, and begin flipping until you get $5$ heads. It takes you $12$ flips in order to get your $5$ heads. What is the probability that the coin you picked was the fair coin? What is the probability you picked the biased coin?
