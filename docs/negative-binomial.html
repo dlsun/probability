@@ -257,7 +257,7 @@ What is the probability that you leave the casino after placing exactly 5 bets o
 <div id="theory-13" class="section level2 unnumbered">
 <h2>Theory</h2>
 <p>To answer the question posed at the beginning of the lesson, we need a distribution like the
-geometric, except one that stops after <span class="math inline">\(3\)</span> <span class="math inline">\(\fbox{1}\)</span>s have been drawn
+geometric, except that stops after <span class="math inline">\(3\)</span> <span class="math inline">\(\fbox{1}\)</span>s have been drawn
 (instead of after the first <span class="math inline">\(\fbox{1}\)</span>). The negative binomial is that distribution.</p>
 
 <div class="theorem">
@@ -277,16 +277,16 @@ Equivalently, <a href="negative-binomial.html#eq:negbinom1">(15.1)</a> can be wr
 f(x) &amp;= \binom{x-1}{r-1} (1-p)^{x-r} p^r, &amp;  x &amp;= r, r+1, r+2, \ldots,
 \tag{15.2}
 \end{align}\]</span>
-where <span class="math inline">\(p = N_1 / N\)</span> is the proportion of <span class="math inline">\(\fbox{1}\)</span>s in the box. So we can also say that
-the random variable has a <span class="math inline">\(\text{NegativeBinomial}(r, p)\)</span> distribution, where <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span> are the parameters.
+where <span class="math inline">\(p = N_1 / N\)</span> is the proportion of <span class="math inline">\(\fbox{1}\)</span>s in the box. So we can instead specify the distribution
+as <span class="math inline">\(\text{NegativeBinomial}(r, p)\)</span>, where <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span> are the parameters.
 </div>
 
 <p>Like the geometric distribution, there is no upper bound on the possible values of a negative binomial random variable.
-We might have to wait arbitrarily long to collect <span class="math inline">\(r\)</span> <span class="math inline">\(\fbox{1}\)</span>s. Also, notice that the minimum possible value of a
-negative binomial random variable is <span class="math inline">\(r\)</span>. This is intutive because you need to have drawn at least <span class="math inline">\(r\)</span> times before you
+We might have to wait arbitrarily long to collect <span class="math inline">\(r\)</span> <span class="math inline">\(\fbox{1}\)</span>s. Also, note that the minimum possible value of a
+negative binomial random variable is <span class="math inline">\(r\)</span>. This makes sense because you need to have drawn at least <span class="math inline">\(r\)</span> times before you
 can have <span class="math inline">\(r\)</span> <span class="math inline">\(\fbox{1}\)</span>s.</p>
 <p>We will derive the formulas <a href="negative-binomial.html#eq:negbinom1">(15.1)</a> and <a href="negative-binomial.html#eq:negbinom2">(15.2)</a> later in this lesson.
-For now, let’s see how these formulas can be used to solve problems.</p>
+For now, let’s see how these formulas can be applied to real problems.</p>
 
 <div class="example">
 <p><span id="exm:unnamed-chunk-48" class="example"><strong>Example 15.1  (Three Wins in Roulette)  </strong></span>There are 38 equally likely spaces on a roulette wheel, 18 of which are red. So we set up a box model where the
@@ -328,19 +328,19 @@ ways to get an outcome like <a href="negative-binomial.html#eq:negbinom-ordered"
 <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(\fbox{0}\)</span>s were drawn in a different order than <a href="negative-binomial.html#eq:negbinom-ordered">(15.3)</a>.
 Unlike the binomial, we cannot rearrange the <span class="math inline">\(\fbox{1}\)</span>s and
 <span class="math inline">\(\fbox{0}\)</span>s any order we like. With the negative binomial, the <span class="math inline">\(x\)</span>th draw must be a <span class="math inline">\(\fbox{1}\)</span>, since<br />
-we need the <span class="math inline">\(r\)</span>th <span class="math inline">\(\fbox{1}\)</span> to come on the <span class="math inline">\(x\)</span>th draw. Otherwise, we have
+we need the <span class="math inline">\(r\)</span>th <span class="math inline">\(\fbox{1}\)</span> to come on the <span class="math inline">\(x\)</span>th draw. Other than this last draw, we have
 complete freedom to rearrange the remaining <span class="math inline">\(r-1\)</span> <span class="math inline">\(\fbox{1}\)</span>s among the first <span class="math inline">\(x-1\)</span> draws. Therefore, there
 are <span class="math inline">\(\binom{x-1}{r-1}\)</span> valid arrangements of the <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(\fbox{0}\)</span>s where that the <span class="math inline">\(r\)</span>th
-<span class="math inline">\(\fbox{1}\)</span> is on the <span class="math inline">\(x\)</span>th draw.</p></li>
+<span class="math inline">\(\fbox{1}\)</span> comes on the <span class="math inline">\(x\)</span>th draw.</p></li>
 </ol>
 <p>So the total number of (ordered) ways to get the <span class="math inline">\(r\)</span>th <span class="math inline">\(\fbox{1}\)</span>s on the <span class="math inline">\(x\)</span>th draw is:
 <span class="math display">\[ \binom{x-1}{r-1} \cdot N_0^{x-r} \cdot N_1^r. \]</span></p>
-<p>Dividing this by the total number of outcomes <span class="math inline">\(N^x\)</span> gives the p.m.f.:
+<p>Dividing this by the total number of outcomes, <span class="math inline">\(N^x\)</span>, gives the p.m.f.:
 <span class="math display">\[ f(x) = P(X = x) = \frac{\binom{x-1}{r-1} \cdot N_0^{x-r} \cdot N_1^r}{N^x}. \]</span></p>
 To see that this formula is the same as <a href="negative-binomial.html#eq:negbinom2">(15.2)</a>, we write <span class="math inline">\(N^n = N^{x-r} \cdot N^{r}\)</span>.
 Then, we have:
 <span class="math display">\[\begin{align*}
-f(x) &amp;= \binom{x-1}{r-1} \frac{N_0^{x-r} \cdot N_1^r}{N^x} \\
+f(x) &amp;= \binom{x-1}{r-1} \frac{N_0^{x-r} \cdot N_1^r}{N^{x-r} \cdot N^{r}} \\
 &amp;= \binom{x-1}{r-1} \left( \frac{N_0}{N} \right)^{x-r} \left( \frac{N_1}{N} \right)^{r} \\
 &amp;= \binom{x-1}{r-1} (1 - p)^{x-r} p^r,
 \end{align*}\]</span>
@@ -353,7 +353,7 @@ where in the last line, we used the fact that <span class="math inline">\(\frac{
 <p>First, we fix the number of <span class="math inline">\(\fbox{1}\)</span>s at <span class="math inline">\(r=5\)</span> and vary the composition of the box.</p>
 <p><img src="bookdown-demo_files/figure-html/negbinom-pmf-1-1.png" width="672" /></p>
 <p>Not surprisingly, as we increase the number of <span class="math inline">\(\fbox{1}\)</span>s in the box, the<br />
-<span class="math inline">\(\fbox{1}\)</span>s are drawn sooner, so the <span class="math inline">\(r=5\)</span>th <span class="math inline">\(\fbox{1}\)</span> happens earlier.</p>
+<span class="math inline">\(\fbox{1}\)</span>s are drawn sooner, so the <span class="math inline">\(r=5\)</span>th <span class="math inline">\(\fbox{1}\)</span> comes after fewer draws.</p>
 <p>Next, we study the effect of increasing <span class="math inline">\(r\)</span> on the negative binomial distribution.</p>
 <p><img src="bookdown-demo_files/figure-html/negbinom-pmf-2-1.png" width="672" /></p>
 <p>Not surprisingly, when we require more <span class="math inline">\(\fbox{1}\)</span>s by increasing <span class="math inline">\(r\)</span>, the distribution shifts to the

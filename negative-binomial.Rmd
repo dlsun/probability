@@ -9,7 +9,7 @@ What is the probability that you leave the casino after placing exactly 5 bets o
 ## Theory {-}
 
 To answer the question posed at the beginning of the lesson, we need a distribution like the 
-geometric, except one that stops after $3$ $\fbox{1}$s have been drawn 
+geometric, except that stops after $3$ $\fbox{1}$s have been drawn 
 (instead of after the first $\fbox{1}$). The negative binomial is that distribution.
 
 ```{theorem negbinom, name="Negative Binomial Distribution"}
@@ -31,17 +31,17 @@ Equivalently, \@ref(eq:negbinom1) can be written as
 f(x) &= \binom{x-1}{r-1} (1-p)^{x-r} p^r, &  x &= r, r+1, r+2, \ldots,
 (\#eq:negbinom2)
 \end{align}
-where $p = N_1 / N$ is the proportion of $\fbox{1}$s in the box. So we can also say that 
-the random variable has a $\text{NegativeBinomial}(r, p)$ distribution, where $r$ and $p$ are the parameters.
+where $p = N_1 / N$ is the proportion of $\fbox{1}$s in the box. So we can instead specify the distribution 
+as $\text{NegativeBinomial}(r, p)$, where $r$ and $p$ are the parameters.
 ```
 
 Like the geometric distribution, there is no upper bound on the possible values of a negative binomial random variable. 
-We might have to wait arbitrarily long to collect $r$ $\fbox{1}$s. Also, notice that the minimum possible value of a
-negative binomial random variable is $r$. This is intutive because you need to have drawn at least $r$ times before you 
+We might have to wait arbitrarily long to collect $r$ $\fbox{1}$s. Also, note that the minimum possible value of a
+negative binomial random variable is $r$. This makes sense because you need to have drawn at least $r$ times before you 
 can have $r$ $\fbox{1}$s.
 
 We will derive the formulas \@ref(eq:negbinom1) and \@ref(eq:negbinom2) later in this lesson. 
-For now, let's see how these formulas can be used to solve problems.
+For now, let's see how these formulas can be applied to real problems.
 
 ```{example name="Three Wins in Roulette"}
 There are 38 equally likely spaces on a roulette wheel, 18 of which are red. So we set up a box model where the 
@@ -90,21 +90,21 @@ ways to get an outcome like \@ref(eq:negbinom-ordered), in that exact order.
 $\fbox{1}$s and $\fbox{0}$s were drawn in a different order than \@ref(eq:negbinom-ordered). 
 Unlike the binomial, we cannot rearrange the $\fbox{1}$s and 
 $\fbox{0}$s any order we like. With the negative binomial, the $x$th draw must be a $\fbox{1}$, since  
-we need the $r$th $\fbox{1}$ to come on the $x$th draw. Otherwise, we have 
+we need the $r$th $\fbox{1}$ to come on the $x$th draw. Other than this last draw, we have 
 complete freedom to rearrange the remaining $r-1$ $\fbox{1}$s among the first $x-1$ draws. Therefore, there 
 are $\binom{x-1}{r-1}$ valid arrangements of the $\fbox{1}$s and $\fbox{0}$s where that the $r$th 
-$\fbox{1}$ is on the $x$th draw. 
+$\fbox{1}$ comes on the $x$th draw. 
 
 So the total number of (ordered) ways to get the $r$th $\fbox{1}$s on the $x$th draw is:
 \[ \binom{x-1}{r-1} \cdot N_0^{x-r} \cdot N_1^r. \]
 
-Dividing this by the total number of outcomes $N^x$ gives the p.m.f.:
+Dividing this by the total number of outcomes, $N^x$, gives the p.m.f.:
 \[ f(x) = P(X = x) = \frac{\binom{x-1}{r-1} \cdot N_0^{x-r} \cdot N_1^r}{N^x}. \]
 
 To see that this formula is the same as \@ref(eq:negbinom2), we write $N^n = N^{x-r} \cdot N^{r}$. 
 Then, we have:
 \begin{align*}
-f(x) &= \binom{x-1}{r-1} \frac{N_0^{x-r} \cdot N_1^r}{N^x} \\
+f(x) &= \binom{x-1}{r-1} \frac{N_0^{x-r} \cdot N_1^r}{N^{x-r} \cdot N^{r}} \\
 &= \binom{x-1}{r-1} \left( \frac{N_0}{N} \right)^{x-r} \left( \frac{N_1}{N} \right)^{r} \\
 &= \binom{x-1}{r-1} (1 - p)^{x-r} p^r,
 \end{align*}
@@ -153,7 +153,7 @@ for(x in xs) {
 ```
 
 Not surprisingly, as we increase the number of $\fbox{1}$s in the box, the  
-$\fbox{1}$s are drawn sooner, so the $r=5$th $\fbox{1}$ happens earlier.
+$\fbox{1}$s are drawn sooner, so the $r=5$th $\fbox{1}$ comes after fewer draws.
 
 Next, we study the effect of increasing $r$ on the negative binomial distribution.
 

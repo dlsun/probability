@@ -276,13 +276,13 @@ Equivalently, <a href="geometric.html#eq:geometric1">(14.1)</a> can be written a
 f(x) = (1-p)^{x-1} p, x=1, 2, 3, \ldots,
 \tag{14.2}
 \end{equation}\]</span>
-where <span class="math inline">\(p = N_1 / N\)</span> is the proportion of <span class="math inline">\(\fbox{1}\)</span>s in the box. So we can also say that
-the random variable has a <span class="math inline">\(\text{Geometric}(p)\)</span> distribution, where <span class="math inline">\(p\)</span> is the parameter.
+where <span class="math inline">\(p = N_1 / N\)</span> is the proportion of <span class="math inline">\(\fbox{1}\)</span>s in the box. So we can instead specify
+the distribution as <span class="math inline">\(\text{Geometric}(p)\)</span>, where <span class="math inline">\(p\)</span> is the parameter.
 </div>
 
 <p>Note that in contrast to the hypergeometric and binomial distributions, there is no upper
-bound on the possible values of the geometric distribution. We could keep drawing <span class="math inline">\(\fbox{0}\)</span>s, so
-in theory, we might need to wait an arbitrarily long time to get a <span class="math inline">\(\fbox{1}\)</span>.</p>
+bound on the possible values of the geometric distribution. We could draw an unlimited number of <span class="math inline">\(\fbox{0}\)</span>s, so
+in theory, we might need to wait an arbitrarily long time for a <span class="math inline">\(\fbox{1}\)</span>.</p>
 <p>We will derive the formulas <a href="geometric.html#eq:geometric1">(14.1)</a> and <a href="geometric.html#eq:geometric2">(14.2)</a> later in this lesson.
 For now, let’s see how these formulas can be used to solve problems.</p>
 
@@ -318,7 +318,7 @@ in a few different ways:</p>
   &amp;\approx .178.
   \end{align*}\]</span>
 In the second-to-last line, we used the formula for an <a href="https://www.youtube.com/watch?v=-y1Ob0K63hc">infinite geometric series</a>:
-<span class="math display">\[ a + ar + ar^2 + ar^3 + \ldots = \frac{a}{1 - r}. \]</span></p></li>
+<span class="math display">\[ a + ar + ar^2 + ar^3 + \ldots = \frac{a}{1 - r}, |r| &lt; 1. \]</span></p></li>
 <li>Without using the geometric distribution at all. In order for the round to end after more than 6 rolls, the first 6 rolls must all have
 failed to end the round. In other words, all 6 of these rolls resulted in one of the other 27 outcomes. The probability of this is
 <span class="math display">\[ \frac{27^6}{36^6} \approx .178. \]</span>
@@ -328,7 +328,7 @@ failed to end the round. In other words, all 6 of these rolls resulted in one of
 
 <div class="proof">
 <p> <span class="proof"><em>Proof. </em></span> To calculate the p.m.f. at <span class="math inline">\(x\)</span>, we need to determine the probability that it takes exactly <span class="math inline">\(x\)</span> draws to get
-the first <span class="math inline">\(\fbox{1}\)</span>s.</p>
+the first <span class="math inline">\(\fbox{1}\)</span>.</p>
 <p>First, there are <span class="math inline">\(N^x\)</span> equally likely ways to draw <span class="math inline">\(x\)</span> tickets from <span class="math inline">\(N\)</span> with replacement, taking order into account.
 (We must count ordered outcomes
 because the unordered outcomes are not all equally likely. See Lesson <a href="replacement.html#replacement">4</a>.)</p>
@@ -344,13 +344,13 @@ The number of ways to do this is:
 \underbrace{N_0 \cdot \ldots \cdot N_0}_{x-1} \cdot N_1, 
 \tag{14.4}
 \end{equation}\]</span>
-since we are drawing with replacement (so the composition of the box stays the same between draws).</p>
+since we are drawing with replacement (so the composition of the box does not change from one draw to the next).</p>
 <p>Dividing this by the total number of outcomes, we obtain the p.m.f.
 <span class="math display">\[ f(x) = P(X = x) = \frac{N_0^{x-1} \cdot N_1}{N^x}. \]</span></p>
 To see that this formula is the same as <a href="geometric.html#eq:geometric2">(14.2)</a>, we write <span class="math inline">\(N^x = N^{x-1} \cdot N\)</span>.
 Then, we have:
 <span class="math display">\[\begin{align*}
-f(x) &amp;= \frac{N_0^{x-1} \cdot N_1}{N^x} \\
+f(x) &amp;= \frac{N_0^{x-1} \cdot N_1}{N^{x-1} \cdot N} \\
 &amp;= \left( \frac{N_0}{N} \right)^{x-1} \frac{N_1}{N} \\
 &amp;= (1 - p)^{x-1} p,
 \end{align*}\]</span>
@@ -362,7 +362,7 @@ where in the last line, we used the fact that <span class="math inline">\(\frac{
 <p>Let’s graph the geometric distribution for different values of <span class="math inline">\(N_1\)</span> and <span class="math inline">\(N_0\)</span>.</p>
 <p><img src="bookdown-demo_files/figure-html/geometric-pmf-1-1.png" width="672" /></p>
 <p>As the number of <span class="math inline">\(\fbox{1}\)</span>s in the box increases, we tend to draw a <span class="math inline">\(\fbox{1}\)</span> sooner, so
-not surprisingly, lower values of the geometric random variable become more probable.</p>
+not surprisingly, smaller values of the geometric random variable become more probable.</p>
 </div>
 </div>
 <div id="essential-practice-2" class="section level2 unnumbered">

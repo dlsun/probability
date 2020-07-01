@@ -30,13 +30,13 @@ Equivalently, \@ref(eq:geometric1) can be written as
 f(x) = (1-p)^{x-1} p, x=1, 2, 3, \ldots,
 (\#eq:geometric2)
 \end{equation}
-where $p = N_1 / N$ is the proportion of $\fbox{1}$s in the box. So we can also say that 
-the random variable has a $\text{Geometric}(p)$ distribution, where $p$ is the parameter.
+where $p = N_1 / N$ is the proportion of $\fbox{1}$s in the box. So we can instead specify 
+the distribution as $\text{Geometric}(p)$, where $p$ is the parameter.
 ```
 
 Note that in contrast to the hypergeometric and binomial distributions, there is no upper 
-bound on the possible values of the geometric distribution. We could keep drawing $\fbox{0}$s, so 
-in theory, we might need to wait an arbitrarily long time to get a $\fbox{1}$.
+bound on the possible values of the geometric distribution. We could draw an unlimited number of $\fbox{0}$s, so 
+in theory, we might need to wait an arbitrarily long time for a $\fbox{1}$.
 
 We will derive the formulas \@ref(eq:geometric1) and \@ref(eq:geometric2) later in this lesson. 
 For now, let's see how these formulas can be used to solve problems.
@@ -81,7 +81,7 @@ in a few different ways:
     &\approx .178.
     \end{align*}
     In the second-to-last line, we used the formula for an [infinite geometric series](https://www.youtube.com/watch?v=-y1Ob0K63hc):
-    \[ a + ar + ar^2 + ar^3 + \ldots = \frac{a}{1 - r}. \]
+    \[ a + ar + ar^2 + ar^3 + \ldots = \frac{a}{1 - r}, |r| < 1. \]
     
 - Without using the geometric distribution at all. In order for the round to end after more than 6 rolls, the first 6 rolls must all have 
 failed to end the round. In other words, all 6 of these rolls resulted in one of the other 27 outcomes. The probability of this is 
@@ -92,7 +92,7 @@ Now, let's derive the p.m.f. of the geometric distribution.
 
 ```{proof}
 To calculate the p.m.f. at $x$, we need to determine the probability that it takes exactly $x$ draws to get 
-the first $\fbox{1}$s. 
+the first $\fbox{1}$. 
 
 First, there are $N^x$ equally likely ways to draw $x$ tickets from $N$ with replacement, taking order into account. 
 (We must count ordered outcomes 
@@ -110,7 +110,7 @@ The number of ways to do this is:
 \underbrace{N_0 \cdot \ldots \cdot N_0}_{x-1} \cdot N_1, 
 (\#eq:geometric-count)
 \end{equation}
-since we are drawing with replacement (so the composition of the box stays the same between draws).
+since we are drawing with replacement (so the composition of the box does not change from one draw to the next).
  
 Dividing this by the total number of outcomes, we obtain the p.m.f.
 \[ f(x) = P(X = x) = \frac{N_0^{x-1} \cdot N_1}{N^x}. \]
@@ -118,7 +118,7 @@ Dividing this by the total number of outcomes, we obtain the p.m.f.
 To see that this formula is the same as \@ref(eq:geometric2), we write $N^x = N^{x-1} \cdot N$. 
 Then, we have:
 \begin{align*}
-f(x) &= \frac{N_0^{x-1} \cdot N_1}{N^x} \\
+f(x) &= \frac{N_0^{x-1} \cdot N_1}{N^{x-1} \cdot N} \\
 &= \left( \frac{N_0}{N} \right)^{x-1} \frac{N_1}{N} \\
 &= (1 - p)^{x-1} p,
 \end{align*}
@@ -160,7 +160,7 @@ for(x in 0:n) {
 ```
 
 As the number of $\fbox{1}$s in the box increases, we tend to draw a $\fbox{1}$ sooner, so 
-not surprisingly, lower values of the geometric random variable become more probable.
+not surprisingly, smaller values of the geometric random variable become more probable.
 
 ## Essential Practice {-}
 
