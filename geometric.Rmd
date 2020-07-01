@@ -11,6 +11,8 @@ But how do we use this to determine the probability that it takes more than 6 ro
 
 ## Theory {-}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-vvtrsS4rkA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{theorem geometric, name="Geometric Distribution"}
 If a random variable can be described as the number of draws, _with replacement_, 
 from the box 
