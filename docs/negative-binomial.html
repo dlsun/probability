@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 15 Negative Binomial Distribution | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 15 Negative Binomial Distribution | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 15 Negative Binomial Distribution | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-06-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="geometric.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="double-counting.html"><a href="double-counting.html"><i class="fa fa-check"></i><b>5</b> Double Counting</a><ul>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#motivating-example-4"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#theory-3"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#examples-4"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conditional.html"><a href="conditional.html"><i class="fa fa-check"></i><b>6</b> Conditional Probability</a><ul>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#theory-4"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#examples-5"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>7</b> Independence</a><ul>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#theory-5"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#examples-6"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#examples-7"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-8"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rv.html"><a href="rv.html"><i class="fa fa-check"></i><b>10</b> Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#motivating-example-9"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#theory-8"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#examples-9"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cdf.html"><a href="cdf.html"><i class="fa fa-check"></i><b>11</b> Cumulative Distribution Functions</a><ul>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#theory-9"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#examples-10"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="hypergeometric.html"><a href="hypergeometric.html"><i class="fa fa-check"></i><b>12</b> Hypergeometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#motivating-example-10"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-10"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#visualizing-the-distribution"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#calculating-hypergeometric-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Hypergeometric Probabilities on the Computer</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#another-formula-for-the-hypergeometric-distribution-optional"><i class="fa fa-check"></i>Another Formula for the Hypergeometric Distribution (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#additional-exercises-4"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>13</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#visualizing-the-distribution-1"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#additional-exercises-5"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="geometric.html"><a href="geometric.html"><i class="fa fa-check"></i><b>14</b> Geometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#motivating-example-12"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#theory-12"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#visualizing-the-distribution-2"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#essential-practice-2"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="negative-binomial.html"><a href="negative-binomial.html"><i class="fa fa-check"></i><b>15</b> Negative Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#motivating-example-13"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#theory-13"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#visualizing-the-distribution-3"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#calculating-binomial-probabilities-on-the-computer-1"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#essential-practice-3"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#additional-exercises-6"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="negative-binomial" class="section level1">
+<h1><span class="header-section-number">Lesson 15</span> Negative Binomial Distribution</h1>
+<div id="motivating-example-13" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>On the American roulette wheel, there are <span class="math inline">\(38\)</span> spaces: <span class="math inline">\(18\)</span> black, <span class="math inline">\(18\)</span> red, and <span class="math inline">\(2\)</span> green.
+You’ve been playing roulette at the casino for a while now and decide to keep placing bets on red until you have won <span class="math inline">\(3\)</span> bets.
+What is the probability that you leave the casino after placing exactly 5 bets?</p>
+</div>
+<div id="theory-13" class="section level2 unnumbered">
+<h2>Theory</h2>
+<p>To answer the question posed at the beginning of the lesson, we need a distribution like the
+geometric, except that it stops after <span class="math inline">\(3\)</span> <span class="math inline">\(\fbox{1}\)</span>s have been drawn
+(instead of after the first <span class="math inline">\(\fbox{1}\)</span>). The negative binomial distribution is exactly what we need.</p>
+
+<div class="theorem">
+<p><span id="thm:negbinom" class="theorem"><strong>Theorem 15.1  (Negative Binomial Distribution)  </strong></span>If a random variable can be described as the number of draws, <em>with replacement</em>,
+from the box
+<span class="math display">\[ \overbrace{\underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0}\ \underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1}}^N \]</span>
+<em>until</em> <span class="math inline">\(r\)</span> <span class="math inline">\(\fbox{1}\)</span>s have been drawn, then its p.m.f. is given by
+<span class="math display" id="eq:negbinom1">\[\begin{equation}
+f(x) = \dfrac{\binom{x-1}{r-1} N_0^{x-r} \cdot N_1^r}{N^x}, x=r, r+1, r+2, \ldots
+\tag{15.1}
+\end{equation}\]</span>
+where <span class="math inline">\(N = N_1 + N_0\)</span> is the number of tickets in the box.</p>
+<p>We say that the random variable has a <span class="math inline">\(\text{NegativeBinomial}(r, N_1, N_0)\)</span> distribution, and <span class="math inline">\(r\)</span>, <span class="math inline">\(N_1\)</span>,
+<span class="math inline">\(N_0\)</span> are called <strong>parameters</strong> of the distribution.</p>
+Equivalently, <a href="negative-binomial.html#eq:negbinom1">(15.1)</a> can be written as
+<span class="math display" id="eq:negbinom2">\[\begin{equation}
+f(x) = \binom{x-1}{r-1} (1-p)^{x-r} p^r, x=r, r+1, r+2, \ldots,
+\tag{15.2}
+\end{equation}\]</span>
+where <span class="math inline">\(p = N_1 / N\)</span> is the proportion of <span class="math inline">\(\fbox{1}\)</span>s in the box. So we can also say that
+the random variable has a <span class="math inline">\(\text{NegativeBinomial}(r, p)\)</span> distribution, where <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span> are the parameters.
+</div>
+
+<p>Like the geometric distribution, there is no upper bound on the possible values of a negative binomial random variable.
+We might have to wait arbitrarily long to collect <span class="math inline">\(r\)</span> <span class="math inline">\(\fbox{1}\)</span>s. Also, notice that the minimum possible value of a
+negative binomial random variable is <span class="math inline">\(r\)</span>. This is intutive because you need to have drawn at least <span class="math inline">\(r\)</span> times before you
+can have <span class="math inline">\(r\)</span> <span class="math inline">\(\fbox{1}\)</span>s.</p>
+<p>We will derive the formulas <a href="negative-binomial.html#eq:negbinom1">(15.1)</a> and <a href="negative-binomial.html#eq:negbinom2">(15.2)</a> later in this lesson.
+For now, let’s see how these formulas can be used to solve problems.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-48" class="example"><strong>Example 15.1  (Three Wins in Roulette)  </strong></span>There are 38 equally likely spaces on a roulette wheel, 18 of which are red. So we set up a box model where the
+<span class="math inline">\(\fbox{1}\)</span>s represent the red spaces:</p>
+<p><span class="math display">\[ \overbrace{\underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1=18}\ \underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0=20}}^{N=38} \]</span></p>
+<p>The number of draws until we get <span class="math inline">\(r=3\)</span> <span class="math inline">\(\fbox{1}\)</span>s corresponds to the number of bets we make until we have won 3 times.
+So the number of bets follows a <span class="math inline">\(\text{NegativeBinomial}(r=3, N_1=18, N_0=20)\)</span> distribution.</p>
+<p>Therefore, we can write down its p.m.f. using <a href="negative-binomial.html#eq:negbinom2">(15.2)</a>:
+<span class="math display">\[ f(x) = \binom{x-1}{3-1} \left( \frac{20}{38} \right)^{x-3} \left( \frac{18}{38} \right)^3. \]</span></p>
+To calculate the probability that we leave the casino after exactly 5 bets, we plug in <span class="math inline">\(5\)</span> for <span class="math inline">\(x\)</span>:
+<span class="math display">\[ f(5) = \binom{4}{2} \left( \frac{20}{38} \right)^2 \left( \frac{18}{38} \right)^3 \approx .1766. \]</span>
+</div>
+
+<p><strong>TODO: Derivation</strong></p>
+<div id="visualizing-the-distribution-3" class="section level3 unnumbered">
+<h3>Visualizing the Distribution</h3>
+<p>Let’s graph the negative binomial distribution for different values of <span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, and <span class="math inline">\(N_0\)</span>.</p>
+<p>First, we fix the number of <span class="math inline">\(\fbox{1}\)</span>s at <span class="math inline">\(r=5\)</span> and vary the composition of the box.</p>
+<p><img src="bookdown-demo_files/figure-html/negbinom-pmf-1-1.png" width="672" /></p>
+<p>Not surprisingly, as we increase the number of <span class="math inline">\(\fbox{1}\)</span>s in the box, the fifth
+<span class="math inline">\(\fbox{1}\)</span> is drawn sooner, so the probability mass shifts to the left.</p>
+<p><strong>TODO: Other Graph</strong></p>
+<p><img src="bookdown-demo_files/figure-html/negbinom-pmf-2-1.png" width="672" /></p>
+</div>
+<div id="calculating-binomial-probabilities-on-the-computer-1" class="section level3 unnumbered">
+<h3>Calculating Binomial Probabilities on the Computer</h3>
+<p>Calculating binomial probabilities by hand can be unwieldy when <span class="math inline">\(n\)</span> is large.
+Fortunately, the binomial distribution is built into many software packages.</p>
+For example, suppose we want to solve the following problem.
+
+<div class="example">
+<span id="exm:unnamed-chunk-49" class="example"><strong>Example 15.2  (Telemarketing)  </strong></span>Suppose a telemarketer has a 15% chance of making a sale on any given phone call.
+He is required to make 10 successful sales before leaving for the day.
+What is the probability that he needs to make more than 40 calls?
+</div>
+
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> First, we will set up a box model for <em>the number of calls</em>. We have a box with</p>
+<ul>
+<li><span class="math inline">\(N_0 = 85\)</span> tickets labeled <span class="math inline">\(\fbox{0}\)</span></li>
+<li><span class="math inline">\(N_1 = 15\)</span> tickets labeled <span class="math inline">\(\fbox{1}\)</span></li>
+</ul>
+<p>to represent the 15% chance of making a sale. We will draw from this box until we have
+drawn 10 <span class="math inline">\(\fbox{1}\)</span>s, representing the 10 successful calls. We will assume that his success on one
+call is independent of his success on any other, so we draw <em>with replacement</em>.</p>
+<p>Therefore, we know that the number of calls, which we will call <span class="math inline">\(X\)</span>,
+follows a <span class="math inline">\(\text{NegativeBinomial}(r=51, N_1=15, N_0=85)\)</span> distribution.</p>
+The probability that he has to make more than 40 calls is <span class="math inline">\(P(X &gt; 40)\)</span>. To calculate
+this directly, we would have to evaluate an infinite sum:
+<span class="math display">\[ P(X &gt; 40) = f(41) + f(42) + f(43) + \ldots. \]</span>
+The complement rule makes this slightly more palatable:
+<span class="math display">\[ P(X &gt; 40) = 1 - P(X \leq 40) = 1 - f(40) - f(39) - \ldots - f(10), \]</span>
+but this is still a calculation we do not want to do by hand.
+</div>
+
+<p>Here’s how we would calculate the probability using the Python library <a href="http://dlsun.github.io/symbulate">Symbulate</a>.
+We first specify the parameters of the negative binomial distribution. Note that Symbulate requires that the parameters
+be <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span>, so we have to convert <span class="math inline">\(N_1=15, N_0=85\)</span> into <span class="math inline">\(p = 0.15\)</span>.</p>
+<p>Calculating the probability directly involves evaluating the p.m.f. at infinitely many values, so we look at the
+complement. We can evaluate the p.m.f. at all of these values using the <code>.pmf()</code> metho and add the probabilities
+using <code>sum()</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">probs <span class="op">=</span> NegativeBinomial(r<span class="op">=</span><span class="dv">10</span>, p<span class="op">=</span><span class="fl">0.15</span>).pmf(<span class="bu">range</span>(<span class="dv">10</span>, <span class="dv">41</span>)) <span class="co"># note that range(..., 41) does not include 41</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="dv">1</span> <span class="op">-</span> <span class="bu">sum</span>(probs)</a></code></pre></div>
+<pre><code>## 0.9327797386121522</code></pre>
+<p>Alternatively, we could also calculate this using the c.d.f. and the complement rule:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span> NegativeBinomial(r<span class="op">=</span><span class="dv">10</span>, p<span class="op">=</span><span class="fl">0.15</span>).cdf(<span class="dv">40</span>)</a></code></pre></div>
+<pre><code>## 0.9327797386121518</code></pre>
+<p>You can play around with the Python code in <a href="https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/py/Calculating_NegBinom_Probabilities.ipynb">this Colab notebook</a>.</p>
+<p>It is also possible to do this calculation in R, a statistical programming language.
+Note that R uses the names <code>size=</code> and <code>prob=</code> for <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span>, respectively. R also uses a different
+convention for defining the negative binomial distribution; it considers the number of
+<span class="math inline">\(\fbox{0}\)</span>s that were drawn, rather than the total number of draws. So we have to subtract the <span class="math inline">\(r=10\)</span> <span class="math inline">\(\fbox{1}\)</span>s from the
+number of draws before passing in values to R.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">probs &lt;-<span class="st"> </span><span class="kw">dnbinom</span>((<span class="dv">10</span><span class="op">:</span><span class="dv">40</span>) <span class="op">-</span><span class="st"> </span><span class="dv">10</span> , <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">prob=</span><span class="fl">0.15</span>)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(probs)</a></code></pre></div>
+<pre><code>## [1] 0.9327797</code></pre>
+<p>We can also use the c.d.f. function:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnbinom</span>((<span class="dv">10</span><span class="op">:</span><span class="dv">40</span>) <span class="op">-</span><span class="st"> </span><span class="dv">10</span> , <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">prob=</span><span class="fl">0.15</span>)</a></code></pre></div>
+<pre><code>##  [1] 1.0000000 0.9999999 0.9999997 0.9999989 0.9999968 0.9999917 0.9999808
+##  [8] 0.9999596 0.9999214 0.9998565 0.9997516 0.9995895 0.9993484 0.9990016
+## [15] 0.9985174 0.9978587 0.9969840 0.9958468 0.9943970 0.9925808 0.9903424
+## [22] 0.9876243 0.9843688 0.9805187 0.9760190 0.9708174 0.9648655 0.9581200
+## [29] 0.9505434 0.9421046 0.9327797</code></pre>
+<p>You can play around with the R code in <a href="https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/r/Calculating_NegBinom_Probabilities.ipynb">this Colab notebook</a>.</p>
+</div>
+</div>
+<div id="essential-practice-3" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<ol style="list-style-type: decimal">
+<li>Complete the blank: The geometric distribution is a special case of the negative binomial distribution where $r = $ _____.</li>
+<li><p>Calculate the following probabilities. Which is larger?</p>
+<ol style="list-style-type: upper-alpha">
+<li><p>You toss a coin 4 times. The probability that you get (exactly) 2 heads.</p></li>
+<li><p>You toss a coin until you get 2 heads. The probability that it takes (exactly) 4 tosses.</p></li>
+</ol>
+Explain intuitively why the answer makes sense.</li>
+<li><p>In Major League Baseball’s Home Run Derby, each contestant is allowed to keep swinging the bat until they have made 10 outs. (An out is
+defined to be anything that is not a home run.) If Barry Bonds has a 70% chance of hitting a home run on any given swing, what is the
+probability that he hits at least 10 home runs before his turn is up?</p></li>
+</ol>
+</div>
+<div id="additional-exercises-6" class="section level2 unnumbered">
+<h2>Additional Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>Your coach tells you that you cannot leave basketball practice until you have made at least <span class="math inline">\(20\)</span> free throws. If you free throw probability is <span class="math inline">\(80\%\)</span>, find the probability that you are out of practice after taking an even amount of free throws.</li>
+<li>A medical researcher is recruiting 20 subjects for a study on an experimental drug for COVID-19. Each person that she interviews
+has a 60% chance of being eligible to participate in the study. What is the probability that she will have to interview more than
+40 people?</li>
+<li>You have two coins. One coin is a fair coin with a <span class="math inline">\(.5\)</span> probability of landing on heads. The other coin is a biased coin with a <span class="math inline">\(.25\)</span> probability of landing on heads. You pick one of these two coins at random, and begin flipping until you get <span class="math inline">\(5\)</span> heads. It takes you <span class="math inline">\(12\)</span> flips in order to get your <span class="math inline">\(5\)</span> heads. What is the probability that the coin you picked was the fair coin? What is the probability you picked the biased coin?</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="geometric.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/negative-binomial.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,100 +1,238 @@
-# Negative Binomial (and Geometric) Distributions {#negative-binomial}
+# Negative Binomial Distribution {#negative-binomial}
 
 ## Motivating Example {-}
 
-In an American roulette wheel, there are $38$ spaces. $18$ are black, $18$ are red, and $2$ are green. You've been playing roulette at the casino for a while now, and decide to make a few more bets. You decide that you will keep betting $\$1$ on red until you win $3$ of your bets. When you win a bet on a color, you get your original $\$1$ back, plus an additional $\$1$ for winning for a total of $\$2$. What are the odds that you place exactly $5$ bets before you leave the casino that night? What about exactly $10$ bets? 
-
-We can first see that each spin of the roulette wheel is a Bernoulli trial with $p=\dfrac{18}{38}$, which means that a set of $n$ spins is a Binomial trial with $p=\dfrac{18}{38}, n=n$. However, this situation is slightly different, because we do not have a fixed value for $n$. In this case, the number of successes $k$ is fixed, and the number of trials $n$ it takes to get $k$ successes is actually our random variable.
-
-Let's simulate this event and see the distribution of trials it takes to get $3$ successes.
-
-```{r}
-N <- 10000
-num_trials <- numeric(N)
-
-for (i in 1:N) {
-  wins <- 0
-  trials <- 0
-  while (wins < 3) {
-    wins <- wins + sample(0:1, 1, T, c(20/38, 18/38))
-    trials <- trials + 1
-  }
-  num_trials[i] <- trials
-}
-barplot(prop.table(table(num_trials)), main="Distribution of Number of Bets", xlab = "Number of Bets")
-```
-
-Above, we can see that the simulated probability of placing exactly $5$ bets is `r mean(num_trials == 5)`, and the probability of placing exactly $10$ bets is `r mean(num_trials == 10)`.
-
-Now let's find the exact probabilities. First, for $P(n=5)$, we know that $3$ of those $5$ trials were successes, which means that the other $2$ had to be failures. We can write this as 
-
-$$(\dfrac{18}{38})^3 \cdot (\dfrac{20}{38})^2$$
-
-However, we must also think of the ordering that these successes and failures can come in. The only requirement is that the last trial must be a success, since we will stop trials as soon as we hit the $3^{rd}$ success. This means that in this example, we need to find the number of ways to fit the $k-1 = 2$ other successes in the first $n-1 = 4$, which can be represented as $\binom{4}{2}$, so our final result becomes
-
-$$P(n=5) = \binom{4}{2} \cdot (\dfrac{18}{38})^3 \cdot (\dfrac{20}{38})^2 = 0.1766488$$
-
-which turns out to be very close to our simulated value above.
-
-For $P(n=10)$, we will do the same process, but now there are $3$ successes and $7$ failures, and we have to find the number of ways to fit the first $2$ successes in the first $9$ trials since we know the final trial is a success. This becomes $$P(n=10) = \binom{9}{2} \cdot (\dfrac{18}{38})^3 \cdot (\dfrac{20}{38})^7 = 0.04280495$$
-
-which is also very close to our simulated value.
+On the American roulette wheel, there are $38$ spaces: $18$ black, $18$ red, and $2$ green. 
+You've been playing roulette at the casino for a while now and decide to keep placing bets on red until you have won $3$ bets.
+What is the probability that you leave the casino after placing exactly 5 bets? 
 
 ## Theory {-}
 
-```{definition}
-The Negative Binomial distribution is defined as
+To answer the question posed at the beginning of the lesson, we need a distribution like the 
+geometric, except that it stops after $3$ $\fbox{1}$s have been drawn 
+(instead of after the first $\fbox{1}$). The negative binomial distribution is exactly what we need.
+
+```{theorem negbinom, name="Negative Binomial Distribution"}
+If a random variable can be described as the number of draws, _with replacement_, 
+from the box 
+\[ \overbrace{\underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0}\ \underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1}}^N \]
+_until_ $r$ $\fbox{1}$s have been drawn, then its p.m.f. is given by 
 \begin{equation}
-P(N=n) = \binom{n-1}{k-1}(p)^k(1-p)^{r}
-(\#eq:negativeBinomial)
+f(x) = \dfrac{\binom{x-1}{r-1} N_0^{x-r} \cdot N_1^r}{N^x}, x=r, r+1, r+2, \ldots
+(\#eq:negbinom1)
 \end{equation}
+where $N = N_1 + N_0$ is the number of tickets in the box.
+
+We say that the random variable has a $\text{NegativeBinomial}(r, N_1, N_0)$ distribution, and $r$, $N_1$, 
+$N_0$ are called **parameters** of the distribution.
+
+Equivalently, \@ref(eq:negbinom1) can be written as 
+\begin{equation}
+f(x) = \binom{x-1}{r-1} (1-p)^{x-r} p^r, x=r, r+1, r+2, \ldots,
+(\#eq:negbinom2)
+\end{equation}
+where $p = N_1 / N$ is the proportion of $\fbox{1}$s in the box. So we can also say that 
+the random variable has a $\text{NegativeBinomial}(r, p)$ distribution, where $r$ and $p$ are the parameters.
 ```
 
-Where $k$ is the number of successes, $r$ is the number of failures, $n=r+k$, and $p$ is the probability of success on a single trial.
+Like the geometric distribution, there is no upper bound on the possible values of a negative binomial random variable. 
+We might have to wait arbitrarily long to collect $r$ $\fbox{1}$s. Also, notice that the minimum possible value of a
+negative binomial random variable is $r$. This is intutive because you need to have drawn at least $r$ times before you 
+can have $r$ $\fbox{1}$s.
 
-```{definition}
-The special case where $k=1$ is called a Geometric distribution, and counts the number of trials needed to get the first success. The Geometric distribution is defined as
-\begin{equation}
-P(N=n) = (1-p)^{n-1}(p)
-(\#eq:geometric)
-\end{equation}
+We will derive the formulas \@ref(eq:negbinom1) and \@ref(eq:negbinom2) later in this lesson. 
+For now, let's see how these formulas can be used to solve problems.
+
+```{example name="Three Wins in Roulette"}
+There are 38 equally likely spaces on a roulette wheel, 18 of which are red. So we set up a box model where the 
+$\fbox{1}$s represent the red spaces:
+  
+  \[ \overbrace{\underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1=18}\ \underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0=20}}^{N=38} \]
+
+The number of draws until we get $r=3$ $\fbox{1}$s corresponds to the number of bets we make until we have won 3 times.
+So the number of bets follows a $\text{NegativeBinomial}(r=3, N_1=18, N_0=20)$ distribution.
+
+Therefore, we can write down its p.m.f. using \@ref(eq:negbinom2):
+  \[ f(x) = \binom{x-1}{3-1} \left( \frac{20}{38} \right)^{x-3} \left( \frac{18}{38} \right)^3. \]
+
+To calculate the probability that we leave the casino after exactly 5 bets, we plug in $5$ for $x$:
+\[ f(5) = \binom{4}{2} \left( \frac{20}{38} \right)^2 \left( \frac{18}{38} \right)^3 \approx .1766. \]
 ```
 
-Where $n$ is the number of trials and $p$ is the probability of success on a single trial.
+**TODO: Derivation**
 
-## Worked Examples {-}
+### Visualizing the Distribution {-}
 
-1. In European roulette, there are $18$ black spaces, $18$ red spaces, and only $1$ green space instead of $2$. How does this change our probabilities of getting your $3^{rd}$ win in exactly $5$ trials? $10$ trials?
+Let's graph the negative binomial distribution for different values of $n$, $N_1$, and $N_0$.
 
-Now, our equation becomes
+First, we fix the number of $\fbox{1}$s at $r=5$ and vary the composition of the box. 
 
-$$P(n = 5) = \binom{4}{2} \cdot (\dfrac{18}{37})^3 \cdot (\dfrac{19}{37})^2 = 0.182166$$
-and
+```{r negbinom-pmf-1, echo=FALSE, fig.show = "hold", fig.align = "default", fig.asp=0.5}
+library(latex2exp)
 
-$$P(n = 10) = \binom{9}{2} \cdot (\dfrac{18}{37})^3 \cdot (\dfrac{19}{37})^7 = 0.03902815$$
+xs <- 0:30
+r <- 5
 
-So the probability of winning your $3$ bets in exactly $5$ hands increases and the probability of winning your $3$ bets in exactly $10$ hands decreases.
+par(mfrow=c(1, 3))
+N1 <- 5
+N0 <- 15
+p <- N1 / (N0 + N1)
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in xs) {
+  lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
+} 
 
-------
+N1 <- 10
+N0 <- 10
+p <- N1 / (N0 + N1)
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in xs) {
+  lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
+} 
 
-2. Your coach tells you that you cannot leave basketball practice until you have made at least $20$ free throws. If you free throw probability is $80\%$, find the probability that you are out of practice after taking an even amount of free throws.
+N1 <- 15
+N0 <- 5
+p <- N1 / (N0 + N1)
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in xs) {
+  lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
+} 
+```
 
-We can sum up the Negative Binomial pdf for all even numbers to find this probability. 
+Not surprisingly, as we increase the number of $\fbox{1}$s in the box, the fifth 
+$\fbox{1}$ is drawn sooner, so the probability mass shifts to the left.
 
-$$P(n \text{ is even}) = \sum_{r=0}^{\infty} \binom{20+2r-1}{20-1}(.8)^{20}(1-.8)^{2r} \approx 0.5001504$$
+**TODO: Other Graph**
 
+```{r negbinom-pmf-2, echo=FALSE, fig.show = "hold", fig.align = "default", fig.asp=0.5}
+library(latex2exp)
+
+xs <- 0:30
+r <- 5
+
+par(mfrow=c(1, 3))
+N1 <- 5
+N0 <- 15
+p <- N1 / (N0 + N1)
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in xs) {
+  lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
+} 
+
+N1 <- 10
+N0 <- 10
+p <- N1 / (N0 + N1)
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in xs) {
+  lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
+} 
+
+N1 <- 15
+N0 <- 5
+p <- N1 / (N0 + N1)
+plot(xs + r, dnbinom(xs, r, p), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.5),
+     main=TeX(paste("NegBinom$(n=", n, ", N_1=", N1, ", N_0=", N0, ")$")))
+for(x in xs) {
+  lines(c(x+r, x+r), c(0, dnbinom(x, r, p)), lwd=2)
+} 
+```
+
+
+### Calculating Binomial Probabilities on the Computer {-}
+
+Calculating binomial probabilities by hand can be unwieldy when $n$ is large. 
+Fortunately, the binomial distribution is built into many software packages.
+
+For example, suppose we want to solve the following problem.
+```{example, name="Telemarketing"}
+Suppose a telemarketer has a 15% chance of making a sale on any given phone call. 
+He is required to make 10 successful sales before leaving for the day. 
+What is the probability that he needs to make more than 40 calls?
+```
+
+```{solution}
+First, we will set up a box model for _the number of calls_. We have a box with 
+
+- $N_0 = 85$ tickets labeled $\fbox{0}$
+- $N_1 = 15$ tickets labeled $\fbox{1}$
+  
+to represent the 15% chance of making a sale. We will draw from this box until we have 
+drawn 10 $\fbox{1}$s, representing the 10 successful calls. We will assume that his success on one 
+call is independent of his success on any other, so we draw _with replacement_. 
+
+Therefore, we know that the number of calls, which we will call $X$, 
+follows a $\text{NegativeBinomial}(r=51, N_1=15, N_0=85)$ distribution.
+
+The probability that he has to make more than 40 calls is $P(X > 40)$. To calculate 
+this directly, we would have to evaluate an infinite sum:
+\[ P(X > 40) = f(41) + f(42) + f(43) + \ldots. \]
+The complement rule makes this slightly more palatable:
+\[ P(X > 40) = 1 - P(X \leq 40) = 1 - f(40) - f(39) - \ldots - f(10), \]
+but this is still a calculation we do not want to do by hand.
+```
+
+
+Here's how we would calculate the probability using the Python library [Symbulate](http://dlsun.github.io/symbulate). 
+We first specify the parameters of the negative binomial distribution. Note that Symbulate requires that the parameters 
+be $r$ and $p$, so we have to convert $N_1=15, N_0=85$ into $p = 0.15$. 
+
+Calculating the probability directly involves evaluating the p.m.f. at infinitely many values, so we look at the 
+complement. We can evaluate the p.m.f. at all of these values using the `.pmf()` metho and add the probabilities 
+using `sum()`.
+```{python}
+from symbulate import *
+probs = NegativeBinomial(r=10, p=0.15).pmf(range(10, 41)) # note that range(..., 41) does not include 41
+1 - sum(probs)
+```
+
+Alternatively, we could also calculate this using the c.d.f. and the complement rule:
+```{python}
+1 - NegativeBinomial(r=10, p=0.15).cdf(40)
+```
+
+You can play around with the Python code in [this Colab notebook](https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/py/Calculating_NegBinom_Probabilities.ipynb). 
+
+It is also possible to do this calculation in R, a statistical programming language. 
+Note that R uses the names `size=` and `prob=` for $r$ and $p$, respectively. R also uses a different 
+convention for defining the negative binomial distribution; it considers the number of 
+$\fbox{0}$s that were drawn, rather than the total number of draws. So we have to subtract the $r=10$ $\fbox{1}$s from the 
+number of draws before passing in values to R.
 ```{r}
-sum(choose(20 + 2*(0:1000) - 1, 19)*(.8)^20*(.2)^(2*(0:1000)))
+probs <- dnbinom((10:40) - 10 , size=10, prob=0.15)
+1 - sum(probs)
 ```
 
-## Exercises {-}
+We can also use the c.d.f. function:
+```{r}
+1 - pnbinom((10:40) - 10 , size=10, prob=0.15)
+```
 
-1. You are in a home run derby and have a $70\%$ chance of hitting a home run on each pitch. To win the home run derby, you will need $15$ home runs. What is the probability that you complete the home run derby in exactly $20$ pitches?
+You can play around with the R code in [this Colab notebook](https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/r/Calculating_NegBinom_Probabilities.ipynb). 
 
-------
 
-2. Find the probability that you get $4$ heads out of $8$ flips of a fair coin. Then find the probability that you get your $4^{th}$ head on the $8^{th}$ flip. Are these probabilities the same? Why or why not?
+## Essential Practice {-}
 
-------
+1. Complete the blank: The geometric distribution is a special case of the negative binomial distribution where $r = $ _____.
+2. Calculate the following probabilities. Which is larger?
 
-3. You have two coins. One coin is a fair coin with a $.5$ probability of landing on heads. The other coin is a biased coin with a $.25$ probability of landing on heads. You pick one of these two coins at random, and begin flipping until you get $5$ heads. It takes you $12$ flips in order to get your $5$ heads. What is the probability that the coin you picked was the fair coin? What is the probability you picked the biased coin?
+    (A) You toss a coin 4 times. The probability that you get (exactly) 2 heads.
+    
+    (B) You toss a coin until you get 2 heads. The probability that it takes (exactly) 4 tosses.
+    
+    Explain intuitively why the answer makes sense.
+3. In Major League Baseball's Home Run Derby, each contestant is allowed to keep swinging the bat until they have made 10 outs. (An out is 
+defined to be anything that is not a home run.) If Barry Bonds has a 70% chance of hitting a home run on any given swing, what is the 
+probability that he hits at least 10 home runs before his turn is up?
+
+## Additional Exercises {-}
+
+1. Your coach tells you that you cannot leave basketball practice until you have made at least $20$ free throws. If you free throw probability is $80\%$, find the probability that you are out of practice after taking an even amount of free throws.
+2. A medical researcher is recruiting 20 subjects for a study on an experimental drug for COVID-19. Each person that she interviews 
+has a 60% chance of being eligible to participate in the study. What is the probability that she will have to interview more than 
+40 people?
+2. You have two coins. One coin is a fair coin with a $.5$ probability of landing on heads. The other coin is a biased coin with a $.25$ probability of landing on heads. You pick one of these two coins at random, and begin flipping until you get $5$ heads. It takes you $12$ flips in order to get your $5$ heads. What is the probability that the coin you picked was the fair coin? What is the probability you picked the biased coin?
