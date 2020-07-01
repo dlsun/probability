@@ -282,6 +282,7 @@ For now, let’s see how these formulas can be used to solve problems.</p>
 roll two dice, so we place <span class="math inline">\(N=36\)</span> tickets into the box. Only 9 of these outcomes results in
 the end of the round, so we label <span class="math inline">\(N_1=9\)</span> of these tickets as <span class="math inline">\(\fbox{1}\)</span>; the other <span class="math inline">\(N_0=27\)</span> tickets
 are labeled <span class="math inline">\(\fbox{0}\)</span>.</p>
+<p><span class="math display">\[ \overbrace{\underbrace{\fbox{1}\ \ldots \fbox{1}}_{N_1=9}\ \underbrace{\fbox{0}\ \ldots \fbox{0}}_{N_0=27}}^{N=36} \]</span></p>
 <p>Now, the number of rolls until the end of the round is just the number of draws until a
 <span class="math inline">\(\fbox{1}\)</span> is drawn. So the number of rolls follows the <span class="math inline">\(\text{Geometric}(N_1=9, N_0=27)\)</span> distribution.</p>
 <p>We can now write down its p.m.f. by plugging
@@ -303,7 +304,7 @@ in a few different ways:</p>
 <li><p>Directly, using the geometric distribution and the geometric series:</p>
 <p><span class="math display">\[\begin{align*}
   P(X &gt; 6) &amp;= f(7) + f(8) + f(9) + ...  \\
-  &amp;= \left( \frac{27}{36} \right)^6 \frac{9}{36} - \left( \frac{27}{36} \right)^7 \frac{9}{36} - \left( \frac{27}{36} \right)^8 \frac{9}{36} - \ldots  \\
+  &amp;= \left( \frac{27}{36} \right)^6 \frac{9}{36} + \left( \frac{27}{36} \right)^7 \frac{9}{36} + \left( \frac{27}{36} \right)^8 \frac{9}{36} + \ldots  \\
   &amp;= \frac{\left( \frac{27}{36} \right)^6 \frac{9}{36}}{ 1 - \frac{27}{36}} \\
   &amp;\approx .178.
   \end{align*}\]</span>
