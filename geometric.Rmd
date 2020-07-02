@@ -92,7 +92,7 @@ failed to end the round. In other words, all 6 of these rolls resulted in one of
 
 Now, let's derive the p.m.f. of the geometric distribution.
 
-```{proof}
+```{proof, name="Theorem \\@ref(thm:geometric)"}
 To calculate the p.m.f. at $x$, we need to determine the probability that it takes exactly $x$ draws to get 
 the first $\fbox{1}$. 
 

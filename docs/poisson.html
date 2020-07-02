@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-01" />
+<meta name="date" content="2020-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="negative-binomial.html"/>
-
+<link rel="next" href="poisson-process.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -235,6 +235,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#essential-practice-5"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="17" data-path="poisson-process.html"><a href="poisson-process.html"><i class="fa fa-check"></i><b>17</b> Poisson Process</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#motivating-example-15"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#theory-15"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#justification-for-the-poisson-process"><i class="fa fa-check"></i>Justification for the Poisson Process</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#essential-practice-6"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -318,14 +325,14 @@ A random variable with <a href="poisson.html#eq:poisson">(16.2)</a> as its p.m.f
 
 
 <div class="example">
-<span id="exm:unnamed-chunk-56" class="example"><strong>Example 16.1  </strong></span>In the motivating example, <span class="math inline">\(\mu = 1\)</span>, so <span class="math inline">\(f(0) = e^{-1} \frac{1^0}{0!} = e^{-1}\)</span>, which matches <a href="poisson.html#eq:poisson-example">(16.1)</a>.
+<span id="exm:unnamed-chunk-54" class="example"><strong>Example 16.1  </strong></span>In the motivating example, <span class="math inline">\(\mu = 1\)</span>, so <span class="math inline">\(f(0) = e^{-1} \frac{1^0}{0!} = e^{-1}\)</span>, which matches <a href="poisson.html#eq:poisson-example">(16.1)</a>.
 </div>
 
 <p>Even when the data does not originate from a binomial model, it is common to assume that count data follow a Poisson
 distribution. In the next example, we are explicitly told that the random variable follows a Poisson distribution.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-57" class="example"><strong>Example 16.2  (Database Queries)  </strong></span>The number of typos in a New York Times op-ed when it reaches the copy editor
+<span id="exm:unnamed-chunk-55" class="example"><strong>Example 16.2  (Database Queries)  </strong></span>The number of typos in a New York Times op-ed when it reaches the copy editor
 is a <span class="math inline">\(\text{Poisson}(\mu=4.6)\)</span> random variable.
 What is the probability that there are 2 or more typos in a randomly selected op-ed?
 </div>
@@ -380,7 +387,7 @@ the number of <span class="math inline">\(\fbox{1}\)</span>s that we draw.</p>
 <p>The Poisson distribution is built into many software packages.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-60" class="example"><strong>Example 16.3  (Disk Failures at a Data Center)  </strong></span>A data center has 10,000 disk drives. Suppose that a disk drive fails in a given day with
+<p><span id="exm:unnamed-chunk-58" class="example"><strong>Example 16.3  (Disk Failures at a Data Center)  </strong></span>A data center has 10,000 disk drives. Suppose that a disk drive fails in a given day with
 probability <span class="math inline">\(10^{-3}\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
 <li>What is the probability that there are 12 or more disk failures tomorrow?</li>
@@ -482,8 +489,8 @@ They get very different answers. What answers did they get, and why did the Pois
           </div>
         </div>
       </div>
-<a href="negative-binomial.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="negative-binomial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="poisson-process.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

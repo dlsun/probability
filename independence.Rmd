@@ -65,7 +65,7 @@ events are **independent**. In this case, whether the gambler wins on the 5th sp
 independent of the fact that he has lost each of the last 4 spins. The folk belief that one is 
 "due" for a win after a series of losses is plain wrong and is known as the **gambler's fallacy**.
 
-```{definition, name="Independence"}
+```{definition independence, name="Independence"}
 Two events $A$ and $B$ are said to be **independent** if the 
 \begin{equation}
 P(B | A) = P(B).
@@ -75,7 +75,7 @@ P(B | A) = P(B).
 
 The next result follows by applying the Multiplication Rule (\@ref(thm:multiplication-rule)) to 
 the definition of independence.
-```{theorem}
+```{theorem independence-mult}
 Two events $A$ and $B$ are independent if and only if their probabilities multiply:
 \begin{equation}
 P(A \textbf{ and } B) = P(A) P(B).

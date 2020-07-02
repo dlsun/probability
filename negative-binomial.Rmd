@@ -61,7 +61,7 @@ To calculate the probability that we leave the casino after exactly 5 bets, we p
 
 Now, let's derive the p.m.f. of the binomial distribution.
 
-```{proof}
+```{proof name="Theorem \\@ref(thm:negbinom)"}
 To calculate the p.m.f. at $x$, we need to determine the probability that it takes exactly $x$ draws to get 
 $r$ $\fbox{1}$s. 
 

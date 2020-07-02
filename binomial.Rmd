@@ -137,7 +137,7 @@ P(X \geq 2) &= 1 - P(X \leq 1)  \\
 
 Now, let's derive the p.m.f. of the binomial distribution.
 
-```{proof}
+```{proof name="Theorem \\@ref(thm:binomial)"}
 To calculate the p.m.f. at $x$, we need to calculate the probability of getting exactly $x$ 
 $\fbox{1}$s in $n$ draws.
 

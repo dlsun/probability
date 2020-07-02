@@ -196,7 +196,7 @@ Unfortunately for Alice, it does not seem promising that she will get the
 
 
 
-## Examples {-}
+## Essential Practice {-}
 
 1. Continuing with the example from the lesson, let $Y$ be the number of Jacks in the community cards. Calculate and graph the p.m.f. of $Y$.
 
@@ -208,3 +208,14 @@ Unfortunately for Alice, it does not seem promising that she will get the
 
 3. A fair coin is tossed 5 times. Let $Z$ be the number of heads. Calculate and graph the p.m.f. of $Z$. 
 Use the p.m.f. to calculate the probability of getting at least 2 heads.
+
+
+## Additional Exercises {-}
+
+1. In college basketball, when a player is fouled while not in the act of shooting and the opposing team is 
+"in the penalty," the player is awarded a "1 and 1." In the 1 and 1, the player is awarded one free throw, 
+and if that free throw goes in, the player is awarded a second free throw. Find the p.m.f. of $Y$, the 
+number of points scored in a 1 and 1 given that any free throw goes in with probability $0.7$, independent of any 
+other free throw.
+
+

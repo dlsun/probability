@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-01" />
+<meta name="date" content="2020-07-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -237,7 +237,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="17" data-path="poisson-process.html"><a href="poisson-process.html"><i class="fa fa-check"></i><b>17</b> Poisson Process</a><ul>
 <li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#motivating-example-15"><i class="fa fa-check"></i>Motivating Example</a></li>
-<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#theory-15"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#theory-15"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#justification-for-the-poisson-process"><i class="fa fa-check"></i>Justification for the Poisson Process</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#essential-practice-6"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -264,20 +266,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Lesson 17</span> Poisson Process</h1>
 <div id="motivating-example-15" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
-<p>A Geiger counter is a device used to measure radiation. Each time it detects a radioactive particle, it
-makes a clicking sound. In the figure below, the crosses represent times at which the Geiger counter
-hits the</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-68"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-68-1.png" alt="Radioactive Particles Reaching a Geiger Counter" width="60%" />
+<p>A Geiger counter is a device used for measuring radiation in the atmosphere. Each time it detects a radioactive particle,
+it makes a clicking sound. In the figure below, the orange points below indicate the times at which the Geiger counter
+detected a radioactive particle.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-66"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-66-1.png" alt="Radioactive Particles Reaching a Geiger Counter" width="60%" />
 <p class="caption">
 Figure 17.1: Radioactive Particles Reaching a Geiger Counter
 </p>
 </div>
-<p>The pattern of</p>
+<p>The radioactive particles hit the Geiger Counter at seemingly random and unpredictable times. In this
+lesson, we learn to make sense of the randomness.</p>
 </div>
 <div id="theory-15" class="section level2 unnumbered">
 <h2>Theory</h2>
-<p>A</p>
+<p>Radioactive particles are a classic example of a type of random process called the <strong>Poisson process</strong>.
+The Poisson process is used to model random events, called “<strong>arrivals</strong>”, over time.</p>
+
+<div class="definition">
+<p><span id="def:pp" class="definition"><strong>Definition 17.1  (Poisson Process)  </strong></span>A <strong>Poisson process of rate <span class="math inline">\(\lambda\)</span></strong> is characterized by the following properties:</p>
+<ol style="list-style-type: decimal">
+<li>The <em>number of arrivals in any interval <span class="math inline">\((t_0, t_1)\)</span></em> follows a Poisson distribution with <span class="math inline">\(\mu = \lambda (t_1 - t_0)\)</span>.
+That is, the parameter <span class="math inline">\(\mu\)</span> increases proportionally to the length of the interval.</li>
+<li>The numbers of arrivals in disjoint intervals are independent.
+</div></li>
+</ol>
+<p>These two properties allow us to calculate any probability of interest.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-67" class="example"><strong>Example 17.1  (Geiger Counter)  </strong></span>
+In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that the Geiger counter detects 3 or more particles in the
+next 4 seconds?</li>
+<li>What is the probability that the Geiger counter detects (exactly) 1 particle in the next second and
+3 or more in the next 4 seconds?
+</div></li>
+</ol>
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> 
+a. The number of particles arriving at the detector in the next 4 seconds, <span class="math inline">\(X\)</span>, follows a
+<span class="math inline">\(\text{Poisson}(\mu = 0.8 \cdot (4 - 0) = 3.2)\)</span> distribution by Property 1 (<a href="poisson-process.html#def:pp">17.1</a>). Therefore,
+the probability of detecting 3 or more particles is:
+<span class="math display">\[\begin{align*}
+P(X \geq 3) &amp;= 1 - P(X &lt; 3) \\
+&amp;= 1 - f(0) - f(1) - f(2) \\
+&amp;= 1 - e^{-3.2} \frac{3.2^0}{0!} - e^{-3.2} \frac{3.2^1}{1!} - e^{-3.2} \frac{3.2^2}{2!} \\
+&amp;\approx .6201
+\end{align*}\]</span>
+b. The joint probability
+<span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{3 or more particles in (0, 4)}) \]</span>
+can be rewritten as
+<span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{2 or more particles in (1, 4)}). \]</span>
+Now, <span class="math inline">\((0, 1)\)</span> and <span class="math inline">\((1, 4)\)</span> are disjoint intervals, so the number of particles arriving in
+<span class="math inline">\((0, 1)\)</span> is independent of the number of particles arriving in <span class="math inline">\((1, 4)\)</span> by Property 2 (<a href="poisson-process.html#def:pp">17.1</a>).
+Therefore, by Theorem <a href="independence.html#thm:independence-mult">7.1</a>, we can obtain their joint probability
+by multiplying their individual probabilities:
+<span class="math display">\[ P(\text{1 particle in (0, 1)}) \cdot P(\text{2 or more particles in (1, 4)}). \]</span></p>
+<p>Now, we know from Property 1 (<a href="poisson-process.html#def:pp">17.1</a>) that</p>
+<ul>
+<li>the number of particles in <span class="math inline">\((0, 1)\)</span> is a <span class="math inline">\(\text{Poisson}(\mu = 0.8)\)</span> random variable, and</li>
+<li>the number of particles in <span class="math inline">\((1, 4)\)</span> is a <span class="math inline">\(\text{Poisson}(\mu = 2.4)\)</span> random variable.</li>
+</ul>
+If we denote the p.m.f.s of these two random variables by <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>, respectively, then the probability is
+<span class="math display">\[ f_1(1) \cdot \left(1 - f_2(0) - f_2(1) \right) = e^{-0.8} \frac{0.8^1}{1!} \cdot \left( 1 - e^{-2.4} \frac{2.4^0}{0!} - e^{-2.4} \frac{2.4^1}{1!} \right) \approx .2486. \]</span>
+</div>
+
+<p>We can also calculate these probabilities with the aid of software:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">0</span>)).pmf(<span class="dv">1</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span>)).cdf(<span class="dv">1</span>))</a></code></pre></div>
+<pre><code>## 0.24858997647262118</code></pre>
+<div id="justification-for-the-poisson-process" class="section level3 unnumbered">
+<h3>Justification for the Poisson Process</h3>
+<p>Why does it make sense to assume that the number of arrivals on any interval
+follows a Poisson distribution? If we chop time up into tiny intervals of length <span class="math inline">\(\Delta t\)</span>,
+then the probability of an arrival on any one interval will be small—but there will be many such intervals.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-70"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-70-1.png" alt="Chopping Up Time in a Poisson Process" width="50%" />
+<p class="caption">
+Figure 17.2: Chopping Up Time in a Poisson Process
+</p>
+</div>
+<p>If we further assume that arrivals are independent across these tiny intervals, then
+the number of arrivals follows a binomial distribution, with large <span class="math inline">\(n\)</span> (because there are many intervals)
+and small <span class="math inline">\(p\)</span> (because an arrival is unlikely to fall exactly in that tiny interval).
+We saw in Theorem <a href="poisson.html#thm:poisson">16.1</a> that the Poisson distribution is a good approximation to the binomial
+when <span class="math inline">\(n\)</span> is large and <span class="math inline">\(p\)</span> is small.</p>
+</div>
 </div>
 <div id="essential-practice-6" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
@@ -285,16 +362,16 @@ Figure 17.1: Radioactive Particles Reaching a Geiger Counter
 <li><p>Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
 Assume packet arrivals meet the assumptions of a Poisson process.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Calculate the probability that exactly 15 packets arrive in the next 2 min.</li>
-<li>Calculate the probability that more than 60 packets arrive in the next 5 min.</li>
-<li>Calculate the probability that the next packet will arrive in within 15 s.</li>
+<li>Calculate the probability that exactly 15 packets arrive in the next 2 minutes.</li>
+<li>Calculate the probability that more than 60 packets arrive in the next 5 minutes.</li>
+<li>Calculate the probability that the next packet will arrive in within 15 seconds.</li>
 </ol></li>
 <li><p>Small aircraft arrive at San Luis Obispo airport according to a Poisson process at a rate of 6 per hour.</p>
 <ol style="list-style-type: lower-alpha">
 <li>What is the probability that exactly 5 small aircraft arrive in the first hour (after opening) and exactly 7 arrive
-in the next hour?</li>
+in the hour after that?</li>
 <li>What is the probability that fewer than 5 small aircraft arrive in the first hour and
-at least 10 arrive in the next hour?</li>
+at least 10 arrive in the hour after that?</li>
 <li>What is the probability that exactly 5 small aircraft arrive in the first hour and exactly 12 aircraft
 arrive in the first two hours?</li>
 </ol></li>

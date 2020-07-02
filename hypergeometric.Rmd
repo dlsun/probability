@@ -83,7 +83,7 @@ remember the formula!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/H1MKe3qmxYQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-```{proof}
+```{proof name="Theorem \\@ref(thm:hypergeometric)"}
 If we number each ticket $1, 2, \ldots, N$, then there are $\binom{N}{n}$ equally likely unordered outcomes. 
 Note that in this way of counting, the $\fbox{1}$s in the box are distinct. So drawing the first $\fbox{1}$ 
 in the box is not the same as drawing the second $\fbox{1}$ in the box.
