@@ -37,7 +37,7 @@ lesson, we learn to make sense of the randomness.
 
 ## Theory {-}
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2k7vgIk9Kwo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TgoUx88eSVE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Radioactive particles are a classic example of a type of random process called the **Poisson process**. 
 The Poisson process is used to model random events, called "**arrivals**", over time.
