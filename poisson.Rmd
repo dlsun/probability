@@ -2,99 +2,263 @@
 
 ## Motivating Example {-}
 
-In 1898, Ladislaus Bortkiewicz, a Russian economist and statistician, studied the distribution of $122$ men kicked to death by horses among ten Prussin army corps over $20$ years.  most years in most corps, no one dies from being kicked; in one corp in one year, four men were kicked to death. Does this mean something was amiss in this particular corp? Let's take a look at the data.
+You are in a room of \(n\) people (including yourself). Each person in the room has contributed $1 to a central pot, 
+so there is a total of $\(n\) in the pot. The money in the pot will be redistributed back to the people in the room, 
+in the following way: each dollar is equally likely to go to any one of the \(n\) people, independently of the other 
+dollars in the pot. This means that some people could get more than $1, while others end up with nothing.
 
+As $n\to\infty$, what is the probability that you end up with no money? There are two common schools of thought:
 
-```{r include=FALSE}
-library(tidyverse)
-library(vcd)
-```
+1. As $n\to\infty$, the number of dollars in the pot increases to infinity, so it seems that 
+the probability that you end up with at least one of those dollars should approach $1$, i.e., the probability 
+that you end up with no money approaches 0.
+2. As $n\to\infty$, the chance that you earn each dollar, $1/n$, decreases to 0, so it seems that 
+the probability that you end up with no money approaches 1.
 
-```{r}
-data("HorseKicks")
+Which school of thought is correct? As it turns out, both arguments are wrong. Let's see why.
 
-df <- as.tibble(HorseKicks)
+We can model the _number of dollars you get_ as the number of $\fbox{1}$s in $n$ draws, with replacement, from the box 
+\[ \overbrace{\fbox{1}\ \underbrace{\fbox{0}\ \ldots\ \fbox{0}}_{n-1}}^{n}. \]
+(Each ticket in the box represents a person in the room. Each draw represents a dollar, and you only get that dollar if your 
+name is drawn.)
 
-df <- df %>%
-  mutate(weighted_n = as.integer(nDeaths) * n) 
-  
-df
-```
+This is exactly the description of a $\text{Binomial}(n, p=\frac{1}{n})$ distribution. So the probability that you end up with 
+no money is 
+\begin{align*} 
+f(0) &= \binom{n}{0} \left( \frac{1}{n} \right)^{0} \left( 1 - \frac{1}{n} \right)^{n} \\
+&= \left(1 - \frac{1}{n} \right)^n.
+\end{align*}
+What is the limit of this probability as $n\to\infty$? Try plugging in some very large numbers for $n$ into the expression 
+above. You will see that the probability is nowhere near 0 or 1. But what is it approaching?
 
-
-```{r}
-data <- numeric(200)
-counter <- 1
-col <- 0
-for (num in HorseKicks){
-  for (j in 1:num){
-    data[counter] <- col
-    counter <- counter + 1
-  } 
-  col <- col + 1
-}
-
-hist(data, prob = T)
-lines(0:4, dpois(0:4, sum(df$weighted_n)/200), col = 'red')
-
-```
+This is a very famous limit in mathematics. In case you are not familiar with it, take the (natural) logarithm to bring the 
+$n$ down from the exponent, and apply L'Hôpital's Rule:
+\begin{align*}
+\lim_{n\to\infty} \log \left(1 - \frac{1}{n} \right)^n &= \lim_{n\to\infty} n \log \left(1 - \frac{1}{n} \right) & \text{(Property of logs: $\log b^a = a \log b$)} \\
+&= \lim_{x \to 0} \frac{\log \left(1 - x \right)}{x} & \text{(Let $x = 1/n$.)} \\
+&= \lim_{x \to 0} \frac{\frac{d}{dx} \log \left(1 - x \right)}{\frac{d}{dx} x} & \text{(L'Hôpital's Rule on $0/0$ indeterminate form)} \\
+&= \lim_{x \to 0} \frac{-\frac{1}{1 - x}}{1} & \text{(Remember your derivatives?)} \\
+&= -1. 
+\end{align*}
+Remember that $-1$ is the limit of the logarithm, so to obtain the limit of the original expression, we need to "undo" the 
+logarithm, i.e., exponentiate:
+\begin{equation}
+\lim_{n\to\infty} \left(1 - \frac{1}{n} \right)^n = e^{-1}.
+(\#eq:poisson-example)
+\end{equation}
+So the probability that you end up with no money approaches $1/e \approx 0.368$ as $n\to\infty$.
 
 ## Theory {-}
 
-The Poisson distribution is a very common model for count data. Unlike the other distributions we have studied so far, the Poisson model is often used without justification. 
-
-$$p[x] = e^{-\mu}\frac{\mu^x}{x!}$$
-
-```{r echo=FALSE}
-p_dat <- map_df(1:4, ~ tibble(
-  l = paste(.),
-  x = 0:20,
-  y = dpois(0:20, .)
-))
-
-# Build Normal distributions
-
-n_dat <- map_df(1:4, ~ tibble(
-  l = paste(.),
-  x = seq(0, 20, by = 0.001),
-  y = dnorm(seq(0, 20, by = 0.001), ., sqrt(.))
-))
-
-# Use ggplot2 to plot
-
-ggplot(n_dat, aes(x, y, color = factor(l, levels = 1:4))) +
-  geom_line() +
-  geom_point(data = p_dat, aes(x, y, color = factor(l, levels = 1:4))) +
-  labs(color = "Lambda:") +
-  theme_minimal()
-
+The motivating example above illustrates a general phenomenon. A binomial distribution with large $n$ and small $p$ can be 
+approximated by a p.m.f. involving the constant $e$. The next theorem makes this precise.
+```{theorem poisson, name="Poisson Distribution"}
+Let $X$ be a $\text{Binomial}(n, p=\frac{\mu}{n})$ random variable, where $\mu$ is a constant. Then, as $n\to\infty$, 
+the p.m.f. of $X$ approaches 
+\begin{align}
+f(x) &= e^{-\mu}\dfrac{\mu^x}{x!} & x&=0, 1, 2, ....
+(\#eq:poisson)
+\end{align}
+A random variable with \@ref(eq:poisson) as its p.m.f. is said to follow a $\text{Poisson}(\mu)$ distribution.
 ```
 
-One way to view the Poisson Distribution is an approximation to the Binomial when $n$ is large and $p$ is small. 
+```{example}
+In the motivating example, $\mu = 1$, so $f(0) = e^{-1} \frac{1^0}{0!} = e^{-1}$, which matches \@ref(eq:poisson-example).
+```
 
-$$\text{Binomial}(n,p) \approx \text{Poisson}(\mu = np)$$
+Even when the data does not originate from a binomial model, it is common to assume that count data follow a Poisson 
+distribution. In the next example, we are explicitly told that the random variable follows a Poisson distribution.
 
-Why might this explain the usefulness of the Poisson model for count data?
+```{example, name="Database Queries"}
+The number of typos in a New York Times op-ed when it reaches the copy editor 
+is a $\text{Poisson}(\mu=4.6)$ random variable. 
+What is the probability that there are 2 or more typos in a randomly selected op-ed?
+```
 
-Suppose we want a probability model for the number of typos in a New York Times article when it reaches the copy editor. 
-
-- Each article has many words (e.g., $n = 1000$).
-- There is a small probability that each word has a type (e.g., $p = .005$).
-
-Assuming that typos are independent, then the number of typos is $\text{Binomial}(n = 1000, p = .005)$. Or approximately $Poisson(\mu = 5)$. 
-
-One way to view the Poisson distribution is as an approximation to the Binomial when $n$ is large and $p$ is small.
-
-Let $p = \frac{\mu}{n}$ and observe what happens as $n \to \infty$:
-
+```{solution}
+Let $X$ be the number of typos in the op-ed. We want to know $P(X \geq 2)$. We could calculate this directly, but that 
+would involve summing the p.m.f. at infinitely many values. Instead, we use the Complement Rule (\@ref(thm:complement)):
 \begin{align*}
-  p[x] &= \binom{n}{x} p^x (1-p)^{n-x} \\
-  &= \binom{n}{x} (\frac{\mu}{n})^x (1 - \frac{\mu}{n})^{n-x} \\
-  &= \frac{n!}{x!(n-x)!n^x}\mu^x(1 - \frac{\mu}{n})^{n-x} \\
-  &= \frac{1}{x!} \mu^x e^{-\mu}
+P(X \geq 2) &= 1 - P(X < 2) \\
+&= 1 - f(0) - f(1) \\
+&= 1 - e^{-4.6} \frac{4.6^0}{0!} - e^{-4.6} \frac{4.6^1}{1!} \\
+&= 1 - e^{-4.6} - 4.6 e^{-4.6} \\
+&\approx .944.
 \end{align*}
+```
+
+Why might the Poisson distribution be a reasonable model for the number of typos?
+
+- Each op-ed has many words (e.g., $n = 1000$).
+- There is a small probability that each word has a typo (e.g., $p = .0046$).
+- If typos are independent across words, then the number of typos follows a binomial distribution.
+- Since $n$ is large and $p$ is small, this binomial distribution can be approximated by a $\text{Poisson}(\mu=np=4.6)$ distribution.
+
+However, all of this is conjecture. We are not told how many words the op-ed has, nor the probability that each 
+word has a typo. We simply assume that the number of typos follows a Poisson distribution. In practice, the Poisson 
+model is used for count data, even when there is no underlying binomial model.
+
+Finally, we include the proof of Theorem \@ref(thm:poisson) for completeness. This proof is not particularly 
+interesting or insightful, so you are not responsible for knowing it.
+
+```{proof, name="Theorem \\@ref(thm:poisson), optional"}
+Substitute $p = \frac{\mu}{n}$ into the binomial p.m.f. and observe what happens as $n \to \infty$:
+\begin{align*}
+  f(x) &= \binom{n}{x} (\frac{\mu}{n})^x (1 - \frac{\mu}{n})^{n-x}  \\
+  &= \frac{n!}{x!(n-x)!} \frac{\mu^x}{n^x}(1 - \frac{\mu}{n})^{n-x}  \\
+  &= \frac{n!}{(n-x)! n^x} \frac{\mu^x}{x!} (1 - \frac{\mu}{n})^{n-x} \\
+  &\to \frac{\mu^x}{x!} e^{-\mu}
+\end{align*}
+```
 
 
-## Worked Examples {-}
+### Visualizing the Distribution {-}
 
-## Exercises {-}
+Let's graph the Poisson distribution for different values of $\mu$.
+
+```{r poisson-pmf-1, echo=FALSE, fig.show = "hold", fig.align = "default", fig.asp=0.5}
+library(latex2exp)
+
+xs <- 0:20
+
+par(mfrow=c(1, 3))
+mu <- 0.9
+plot(xs, dpois(xs, mu), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.4),
+     main=TeX(paste("Poisson$(\\mu = ", mu, ")$")))
+for(x in xs) {
+  lines(c(x, x), c(0, dpois(x, mu)), lwd=2)
+} 
+
+mu <- 5.1
+plot(xs, dpois(xs, mu), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.4),
+     main=TeX(paste("Poisson$(\\mu = ", mu, ")$")))
+for(x in xs) {
+  lines(c(x, x), c(0, dpois(x, mu)), lwd=2)
+} 
+
+mu <- 10.2
+plot(xs, dpois(xs, mu), pch=19, xlab="x", ylab="f(x)", ylim=c(0, 0.4),
+     main=TeX(paste("Poisson$(\\mu = ", mu, ")$")))
+for(x in xs) {
+  lines(c(x, x), c(0, dpois(x, mu)), lwd=2)
+}
+```
+
+The probability mass shifts to the right as $\mu$ increases. This makes sense if we 
+interpret the Poisson distribution as an approximation to the binomial, where $\mu=np$. 
+To increase $\mu$, we must either increase $n$ or $p$, both of which tend to increase 
+the number of $\fbox{1}$s that we draw.
+
+### Calculating Poisson Probabilities on the Computer {-}
+
+The Poisson distribution is built into many software packages.
+
+```{example, name="Disk Failures at a Data Center"}
+A data center has 10,000 disk drives. Suppose that a disk drive fails in a given day with 
+probability $10^{-3}$.
+
+a. What is the probability that there are 12 or more disk failures tomorrow?
+b. How many spare disk drives should be available so that all failures in a day can be replaced with probability 99%?
+```
+
+```{solution}
+First, we will set up a box model for _the number of disk failures_. We have a box with 
+
+- $N_0 = 999$ tickets labeled $\fbox{0}$
+- $N_1 = 1$ tickets labeled $\fbox{1}$
+  
+to represent the $10^{-3}$ probability of failure. We will draw 10,000 tickets from this box, 
+with replacement, to represent whether each of the 10,000 disks fails.
+
+This shows that the number of failures, which we will call $X$, 
+follows a $\text{Binomial}(n=10^4, p=10^{-3})$ distribution.
+We can calculate the exact probabilities using this binomial distribution or 
+approximate probabilities using a $\text{Poisson}(\mu=np=10)$ distribution.
+
+Either way, we will want to calculate the probabilities at a computer. For example, 
+the quickest way to calculating $P(X \geq 12)$ still requires calculating 
+\[ 1 - f(0) - f(1) - f(2) - \ldots - f(11), \]
+which is not something we want to do by hand.
+```
+
+Here's how we would calculate the probability using the Python library [Symbulate](http://dlsun.github.io/symbulate). 
+```{python}
+from symbulate import *
+probs = Poisson(10).pmf(
+  range(12) # range(12) is [0, 1, 2, ..., 11]
+)
+1 - sum(probs)
+```
+
+Alternatively, we could also calculate this using the c.d.f. and the complement rule. This time, 
+let's compare the approximate answer that we get from the Poisson distribution with the 
+exact answer that we get from the binomial distribution.
+```{python}
+1 - Poisson(10).cdf(11), 1 - Binomial(n=10 ** 4, p=10 ** -3).cdf(11)
+```
+Very close indeed!
+
+The second question can be addressed by trial and error. We want to figure out the value $c$ such that 
+$F(c) = P(X \leq c) = .99$. From above, we already know that $F(11) \approx 0.70$, so we can start 
+trying values from $c=12$. The simple script below increases $x$ by $1$ until the c.d.f. crosses $.99$.
+```{python}
+x = 12
+while Poisson(10).cdf(x) < .99:
+  x += 1
+
+# print out the value of x and the probability
+x, Poisson(10).cdf(x)
+```
+
+You can play around with the Python code in [this Colab notebook](https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/py/Calculating_Poisson_Probabilities.ipynb). 
+
+It is also possible to do this calculation in R, a statistical programming language. 
+```{r}
+probs <- dpois(0:11, 10)
+1 - sum(probs)
+```
+
+We can also use the c.d.f. function:
+```{r}
+1 - ppois(11, 10)
+```
+
+The second question can be addressed by trial and error. We want to figure out the value $c$ such that 
+$F(c) = P(X \leq c) = .99$. From above, we already know that $F(11) \approx 0.70$, so we can start 
+trying values from $c=12$. The simple script below increases $x$ by $1$ until the c.d.f. crosses $.99$.
+```{r}
+x <- 12
+while(ppois(x, 10) < .99) {
+  x <- x + 1
+}
+  
+# print out the value of x and the probability
+c(x, ppois(x, 10))
+```
+
+You can play around with the R code in [this Colab notebook](https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/r/Calculating_Poisson_Probabilities.ipynb). 
+
+
+## Essential Practice {-}
+
+1. If you buy a lottery ticket in 50 lotteries, in each of which your chances of winning a prize of $1/100$, what 
+is the probability that you will win a prize:
+
+    a. at least once?
+    b. exactly twice?
+    c. at least twice?
+    
+    Calculate both the exact probabilities (using the binomial distribution) and the approximate probabilities 
+(using the Poisson distribution).
+
+2. The number of organisms in $V$ cubic meters of ballast water discharged from a ship follows a $\text{Poisson}(\mu=10 V)$. 
+(See "Counting at Low Concentrations: The Statistical Challenges of Verifying Ballast Water Discharge Standards", 
+_Ecological Applications_, 2013:339–351.)
+
+    a. What is the probability that one cubic meter of discharge contains at least 8 organisms?
+    b. For what amount of discharge would the probability of containing at least one organism be .999?
+
+3. Thelma calculates the exact probability of winning more than 50% of the time when she places 
+1000 bets on red in roulette. Louise calculates an approximate probability using the Poisson distribution. 
+They get very different answers. What answers did they get, and why did the Poisson approximation fail in this case?
+

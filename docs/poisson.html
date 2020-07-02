@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 10 Poisson Distribution | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 10 Poisson Distribution | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 10 Poisson Distribution | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-07-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="negative-binomial.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="double-counting.html"><a href="double-counting.html"><i class="fa fa-check"></i><b>5</b> Double Counting</a><ul>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#motivating-example-4"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#theory-3"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#examples-4"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="hypergeometric.html"><a href="hypergeometric.html"><i class="fa fa-check"></i><b>6</b> Hypergeometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-4"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#visualizing-the-distribution"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#calculating-hypergeometric-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Hypergeometric Probabilities on the Computer</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#another-formula-for-the-hypergeometric-distribution-optional"><i class="fa fa-check"></i>Another Formula for the Hypergeometric Distribution (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>7</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-5"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#visualizing-the-distribution-1"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="geometric.html"><a href="geometric.html"><i class="fa fa-check"></i><b>8</b> Geometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#theory-6"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#visualizing-the-distribution-2"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#essential-practice-2"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="negative-binomial.html"><a href="negative-binomial.html"><i class="fa fa-check"></i><b>9</b> Negative Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#motivating-example-8"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#theory-7"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#visualizing-the-distribution-3"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#calculating-negative-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Negative Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#essential-practice-3"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#additional-exercises-4"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="poisson.html"><a href="poisson.html"><i class="fa fa-check"></i><b>10</b> Poisson Distribution</a><ul>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#motivating-example-9"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#theory-8"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#visualizing-the-distribution-4"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#calculating-poisson-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Poisson Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#essential-practice-4"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#additional-exercises-5"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="poisson" class="section level1">
+<h1><span class="header-section-number">Lesson 10</span> Poisson Distribution</h1>
+<div id="motivating-example-9" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>You are in a room of <span class="math inline">\(n\)</span> people (including yourself). Each person in the room has contributed $1 to a central pot,
+so there is a total of $<span class="math inline">\(n\)</span> in the pot. The money in the pot will be redistributed back to the people in the room,
+in the following way: each dollar is equally likely to go to any one of the <span class="math inline">\(n\)</span> people, independently of the other
+dollars in the pot. This means that some people could get more than $1, while others end up with nothing.</p>
+<p>As <span class="math inline">\(n\to\infty\)</span>, what is the probability that you end up with no money? There are two common schools of thought:</p>
+<ol style="list-style-type: decimal">
+<li>As <span class="math inline">\(n\to\infty\)</span>, the number of dollars in the pot increases to infinity, so it seems that
+the probability that you end up with at least one of those dollars should approach <span class="math inline">\(1\)</span>, i.e., the probability
+that you end up with no money approaches 0.</li>
+<li>As <span class="math inline">\(n\to\infty\)</span>, the chance that you earn each dollar, <span class="math inline">\(1/n\)</span>, decreases to 0, so it seems that
+the probability that you end up with no money approaches 1.</li>
+</ol>
+<p>Which school of thought is correct? As it turns out, both arguments are wrong. Let’s see why.</p>
+<p>We can model the <em>number of dollars you get</em> as the number of <span class="math inline">\(\fbox{1}\)</span>s in <span class="math inline">\(n\)</span> draws, with replacement, from the box
+<span class="math display">\[ \overbrace{\fbox{1}\ \underbrace{\fbox{0}\ \ldots\ \fbox{0}}_{n-1}}^{n}. \]</span>
+(Each ticket in the box represents a person in the room. Each draw represents a dollar, and you only get that dollar if your
+name is drawn.)</p>
+<p>This is exactly the description of a <span class="math inline">\(\text{Binomial}(n, p=\frac{1}{n})\)</span> distribution. So the probability that you end up with
+no money is
+<span class="math display">\[\begin{align*} 
+f(0) &amp;= \binom{n}{0} \left( \frac{1}{n} \right)^{0} \left( 1 - \frac{1}{n} \right)^{n} \\
+&amp;= \left(1 - \frac{1}{n} \right)^n.
+\end{align*}\]</span>
+What is the limit of this probability as <span class="math inline">\(n\to\infty\)</span>? Try plugging in some very large numbers for <span class="math inline">\(n\)</span> into the expression
+above. You will see that the probability is nowhere near 0 or 1. But what is it approaching?</p>
+<p>This is a very famous limit in mathematics. In case you are not familiar with it, take the (natural) logarithm to bring the
+<span class="math inline">\(n\)</span> down from the exponent, and apply L’Hôpital’s Rule:
+<span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \log \left(1 - \frac{1}{n} \right)^n &amp;= \lim_{n\to\infty} n \log \left(1 - \frac{1}{n} \right) &amp; \text{(Property of logs: $\log b^a = a \log b$)} \\
+&amp;= \lim_{x \to 0} \frac{\log \left(1 - x \right)}{x} &amp; \text{(Let $x = 1/n$.)} \\
+&amp;= \lim_{x \to 0} \frac{\frac{d}{dx} \log \left(1 - x \right)}{\frac{d}{dx} x} &amp; \text{(L&#39;Hôpital&#39;s Rule on $0/0$ indeterminate form)} \\
+&amp;= \lim_{x \to 0} \frac{-\frac{1}{1 - x}}{1} &amp; \text{(Remember your derivatives?)} \\
+&amp;= -1. 
+\end{align*}\]</span>
+Remember that <span class="math inline">\(-1\)</span> is the limit of the logarithm, so to obtain the limit of the original expression, we need to “undo” the
+logarithm, i.e., exponentiate:
+<span class="math display" id="eq:poisson-example">\[\begin{equation}
+\lim_{n\to\infty} \left(1 - \frac{1}{n} \right)^n = e^{-1}.
+\tag{10.1}
+\end{equation}\]</span>
+So the probability that you end up with no money approaches <span class="math inline">\(1/e \approx 0.368\)</span> as <span class="math inline">\(n\to\infty\)</span>.</p>
+</div>
+<div id="theory-8" class="section level2 unnumbered">
+<h2>Theory</h2>
+The motivating example above illustrates a general phenomenon. A binomial distribution with large <span class="math inline">\(n\)</span> and small <span class="math inline">\(p\)</span> can be
+approximated by a p.m.f. involving the constant <span class="math inline">\(e\)</span>. The next theorem makes this precise.
+
+<div class="theorem">
+<span id="thm:poisson" class="theorem"><strong>Theorem 10.1  (Poisson Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Binomial}(n, p=\frac{\mu}{n})\)</span> random variable, where <span class="math inline">\(\mu\)</span> is a constant. Then, as <span class="math inline">\(n\to\infty\)</span>,
+the p.m.f. of <span class="math inline">\(X\)</span> approaches
+<span class="math display" id="eq:poisson">\[\begin{align}
+f(x) &amp;= e^{-\mu}\dfrac{\mu^x}{x!} &amp; x&amp;=0, 1, 2, ....
+\tag{10.2}
+\end{align}\]</span>
+A random variable with <a href="poisson.html#eq:poisson">(10.2)</a> as its p.m.f. is said to follow a <span class="math inline">\(\text{Poisson}(\mu)\)</span> distribution.
+</div>
+
+
+<div class="example">
+<span id="exm:unnamed-chunk-39" class="example"><strong>Example 10.1  </strong></span>In the motivating example, <span class="math inline">\(\mu = 1\)</span>, so <span class="math inline">\(f(0) = e^{-1} \frac{1^0}{0!} = e^{-1}\)</span>, which matches <a href="poisson.html#eq:poisson-example">(10.1)</a>.
+</div>
+
+<p>Even when the data does not originate from a binomial model, it is common to assume that count data follow a Poisson
+distribution. In the next example, we are explicitly told that the random variable follows a Poisson distribution.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-40" class="example"><strong>Example 10.2  (Database Queries)  </strong></span>The number of typos in a New York Times op-ed when it reaches the copy editor
+is a <span class="math inline">\(\text{Poisson}(\mu=4.6)\)</span> random variable.
+What is the probability that there are 2 or more typos in a randomly selected op-ed?
+</div>
+
+
+<div class="solution">
+ <span class="solution"><em>Solution. </em></span> Let <span class="math inline">\(X\)</span> be the number of typos in the op-ed. We want to know <span class="math inline">\(P(X \geq 2)\)</span>. We could calculate this directly, but that
+would involve summing the p.m.f. at infinitely many values. Instead, we use the Complement Rule (<a href="double-counting.html#thm:complement">5.2</a>):
+<span class="math display">\[\begin{align*}
+P(X \geq 2) &amp;= 1 - P(X &lt; 2) \\
+&amp;= 1 - f(0) - f(1) \\
+&amp;= 1 - e^{-4.6} \frac{4.6^0}{0!} - e^{-4.6} \frac{4.6^1}{1!} \\
+&amp;= 1 - e^{-4.6} - 4.6 e^{-4.6} \\
+&amp;\approx .944.
+\end{align*}\]</span>
+</div>
+
+<p>Why might the Poisson distribution be a reasonable model for the number of typos?</p>
+<ul>
+<li>Each op-ed has many words (e.g., <span class="math inline">\(n = 1000\)</span>).</li>
+<li>There is a small probability that each word has a typo (e.g., <span class="math inline">\(p = .0046\)</span>).</li>
+<li>If typos are independent across words, then the number of typos follows a binomial distribution.</li>
+<li>Since <span class="math inline">\(n\)</span> is large and <span class="math inline">\(p\)</span> is small, this binomial distribution can be approximated by a <span class="math inline">\(\text{Poisson}(\mu=np=4.6)\)</span> distribution.</li>
+</ul>
+<p>However, all of this is conjecture. We are not told how many words the op-ed has, nor the probability that each
+word has a typo. We simply assume that the number of typos follows a Poisson distribution. In practice, the Poisson
+model is used for count data, even when there is no underlying binomial model.</p>
+<p>Finally, we include the proof of Theorem <a href="poisson.html#thm:poisson">10.1</a> for completeness. This proof is not particularly
+interesting or insightful, so you are not responsible for knowing it.</p>
+
+<div class="proof">
+ <span class="proof"><em>Proof</em> (Theorem <a href="poisson.html#thm:poisson">10.1</a>, optional). </span> Substitute <span class="math inline">\(p = \frac{\mu}{n}\)</span> into the binomial p.m.f. and observe what happens as <span class="math inline">\(n \to \infty\)</span>:
+<span class="math display">\[\begin{align*}
+  f(x) &amp;= \binom{n}{x} (\frac{\mu}{n})^x (1 - \frac{\mu}{n})^{n-x}  \\
+  &amp;= \frac{n!}{x!(n-x)!} \frac{\mu^x}{n^x}(1 - \frac{\mu}{n})^{n-x}  \\
+  &amp;= \frac{n!}{(n-x)! n^x} \frac{\mu^x}{x!} (1 - \frac{\mu}{n})^{n-x} \\
+  &amp;\to \frac{\mu^x}{x!} e^{-\mu}
+\end{align*}\]</span>
+</div>
+
+<div id="visualizing-the-distribution-4" class="section level3 unnumbered">
+<h3>Visualizing the Distribution</h3>
+<p>Let’s graph the Poisson distribution for different values of <span class="math inline">\(\mu\)</span>.</p>
+<p><img src="bookdown-demo_files/figure-html/poisson-pmf-1-1.png" width="672" /></p>
+<p>The probability mass shifts to the right as <span class="math inline">\(\mu\)</span> increases. This makes sense if we
+interpret the Poisson distribution as an approximation to the binomial, where <span class="math inline">\(\mu=np\)</span>.
+To increase <span class="math inline">\(\mu\)</span>, we must either increase <span class="math inline">\(n\)</span> or <span class="math inline">\(p\)</span>, both of which tend to increase
+the number of <span class="math inline">\(\fbox{1}\)</span>s that we draw.</p>
+</div>
+<div id="calculating-poisson-probabilities-on-the-computer" class="section level3 unnumbered">
+<h3>Calculating Poisson Probabilities on the Computer</h3>
+<p>The Poisson distribution is built into many software packages.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-43" class="example"><strong>Example 10.3  (Disk Failures at a Data Center)  </strong></span>A data center has 10,000 disk drives. Suppose that a disk drive fails in a given day with
+probability <span class="math inline">\(10^{-3}\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that there are 12 or more disk failures tomorrow?</li>
+<li>How many spare disk drives should be available so that all failures in a day can be replaced with probability 99%?
+</div></li>
+</ol>
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> First, we will set up a box model for <em>the number of disk failures</em>. We have a box with</p>
+<ul>
+<li><span class="math inline">\(N_0 = 999\)</span> tickets labeled <span class="math inline">\(\fbox{0}\)</span></li>
+<li><span class="math inline">\(N_1 = 1\)</span> tickets labeled <span class="math inline">\(\fbox{1}\)</span></li>
+</ul>
+<p>to represent the <span class="math inline">\(10^{-3}\)</span> probability of failure. We will draw 10,000 tickets from this box,
+with replacement, to represent whether each of the 10,000 disks fails.</p>
+<p>This shows that the number of failures, which we will call <span class="math inline">\(X\)</span>,
+follows a <span class="math inline">\(\text{Binomial}(n=10^4, p=10^{-3})\)</span> distribution.
+We can calculate the exact probabilities using this binomial distribution or
+approximate probabilities using a <span class="math inline">\(\text{Poisson}(\mu=np=10)\)</span> distribution.</p>
+Either way, we will want to calculate the probabilities at a computer. For example,
+the quickest way to calculating <span class="math inline">\(P(X \geq 12)\)</span> still requires calculating
+<span class="math display">\[ 1 - f(0) - f(1) - f(2) - \ldots - f(11), \]</span>
+which is not something we want to do by hand.
+</div>
+
+<p>Here’s how we would calculate the probability using the Python library <a href="http://dlsun.github.io/symbulate">Symbulate</a>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">probs <span class="op">=</span> Poisson(<span class="dv">10</span>).pmf(</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">  <span class="bu">range</span>(<span class="dv">12</span>) <span class="co"># range(12) is [0, 1, 2, ..., 11]</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="dv">1</span> <span class="op">-</span> <span class="bu">sum</span>(probs)</a></code></pre></div>
+<pre><code>## 0.303223853696892</code></pre>
+<p>Alternatively, we could also calculate this using the c.d.f. and the complement rule. This time,
+let’s compare the approximate answer that we get from the Poisson distribution with the
+exact answer that we get from the binomial distribution.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span> Poisson(<span class="dv">10</span>).cdf(<span class="dv">11</span>), <span class="dv">1</span> <span class="op">-</span> Binomial(n<span class="op">=</span><span class="dv">10</span> <span class="op">**</span> <span class="dv">4</span>, p<span class="op">=</span><span class="dv">10</span> <span class="op">**</span> <span class="dv">-3</span>).cdf(<span class="dv">11</span>)</a></code></pre></div>
+<pre><code>## (0.30322385369689386, 0.30316693332735856)</code></pre>
+<p>The second question can be addressed by trial and error. We want to figure out the value <span class="math inline">\(c\)</span> such that
+<span class="math inline">\(F(c) = P(X \leq c) = .99\)</span>. From above, we already know that <span class="math inline">\(F(11) \approx 0.70\)</span>, so we can start
+trying values from <span class="math inline">\(c=12\)</span>. The simple script below increases <span class="math inline">\(x\)</span> by <span class="math inline">\(1\)</span> until the c.d.f. crosses <span class="math inline">\(.99\)</span>.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb33-1" data-line-number="1">x <span class="op">=</span> <span class="dv">12</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="cf">while</span> Poisson(<span class="dv">10</span>).cdf(x) <span class="op">&lt;</span> <span class="fl">.99</span>:</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">  x <span class="op">+=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="co"># print out the value of x and the probability</span></a>
+<a class="sourceLine" id="cb33-6" data-line-number="6">x, Poisson(<span class="dv">10</span>).cdf(x)</a></code></pre></div>
+<pre><code>## (18, 0.9928134953961456)</code></pre>
+<p>You can play around with the Python code in <a href="https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/py/Calculating_Poisson_Probabilities.ipynb">this Colab notebook</a>.</p>
+<p>It is also possible to do this calculation in R, a statistical programming language.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">probs &lt;-<span class="st"> </span><span class="kw">dpois</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">11</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(probs)</a></code></pre></div>
+<pre><code>## [1] 0.3032239</code></pre>
+<p>We can also use the c.d.f. function:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">ppois</span>(<span class="dv">11</span>, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1] 0.3032239</code></pre>
+<p>The second question can be addressed by trial and error. We want to figure out the value <span class="math inline">\(c\)</span> such that
+<span class="math inline">\(F(c) = P(X \leq c) = .99\)</span>. From above, we already know that <span class="math inline">\(F(11) \approx 0.70\)</span>, so we can start
+trying values from <span class="math inline">\(c=12\)</span>. The simple script below increases <span class="math inline">\(x\)</span> by <span class="math inline">\(1\)</span> until the c.d.f. crosses <span class="math inline">\(.99\)</span>.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="cf">while</span>(<span class="kw">ppois</span>(x, <span class="dv">10</span>) <span class="op">&lt;</span><span class="st"> </span><span class="fl">.99</span>) {</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">  x &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">  </a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="co"># print out the value of x and the probability</span></a>
+<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="kw">c</span>(x, <span class="kw">ppois</span>(x, <span class="dv">10</span>))</a></code></pre></div>
+<pre><code>## [1] 18.0000000  0.9928135</code></pre>
+<p>You can play around with the R code in <a href="https://colab.research.google.com/github/dlsun/probability/blob/master/colabs/r/Calculating_Poisson_Probabilities.ipynb">this Colab notebook</a>.</p>
+</div>
+</div>
+<div id="essential-practice-4" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<ol style="list-style-type: decimal">
+<li><p>If you buy a lottery ticket in 50 lotteries, in each of which your chances of winning a prize of <span class="math inline">\(1/100\)</span>, what
+is the probability that you will win a prize:</p>
+<ol style="list-style-type: lower-alpha">
+<li>at least once?</li>
+<li>exactly once?</li>
+<li>at least twice?</li>
+</ol>
+<p>Calculate both the exact probabilities (using the binomial distribution) and the approximate probabilities
+(using the Poisson distribution).</p></li>
+<li></li>
+</ol>
+</div>
+<div id="additional-exercises-5" class="section level2 unnumbered">
+<h2>Additional Exercises</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="negative-binomial.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/poisson.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
