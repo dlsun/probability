@@ -306,8 +306,9 @@ next 4 seconds?</li>
 </ol>
 
 <div class="solution">
-<p> <span class="solution"><em>Solution. </em></span> 
-a. The number of particles arriving at the detector in the next 4 seconds, <span class="math inline">\(X\)</span>, follows a
+<p> <span class="solution"><em>Solution. </em></span> .</p>
+<ol style="list-style-type: lower-alpha">
+<li>The number of particles arriving at the detector in the next 4 seconds, <span class="math inline">\(X\)</span>, follows a
 <span class="math inline">\(\text{Poisson}(\mu = 0.8 \cdot (4 - 0) = 3.2)\)</span> distribution by Property 1 (<a href="poisson-process.html#def:pp">17.1</a>). Therefore,
 the probability of detecting 3 or more particles is:
 <span class="math display">\[\begin{align*}
@@ -315,8 +316,8 @@ P(X \geq 3) &amp;= 1 - P(X &lt; 3) \\
 &amp;= 1 - f(0) - f(1) - f(2) \\
 &amp;= 1 - e^{-3.2} \frac{3.2^0}{0!} - e^{-3.2} \frac{3.2^1}{1!} - e^{-3.2} \frac{3.2^2}{2!} \\
 &amp;\approx .6201
-\end{align*}\]</span>
-b. The joint probability
+\end{align*}\]</span></li>
+<li><p>The joint probability
 <span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{3 or more particles in (0, 4)}) \]</span>
 can be rewritten as
 <span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{2 or more particles in (1, 4)}). \]</span>
@@ -332,8 +333,8 @@ by multiplying their individual probabilities:
 </ul>
 If we denote the p.m.f.s of these two random variables by <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>, respectively, then the probability is
 <span class="math display">\[ f_1(1) \cdot \left(1 - f_2(0) - f_2(1) \right) = e^{-0.8} \frac{0.8^1}{1!} \cdot \left( 1 - e^{-2.4} \frac{2.4^0}{0!} - e^{-2.4} \frac{2.4^1}{1!} \right) \approx .2486. \]</span>
-</div>
-
+</div></li>
+</ol>
 <p>We can also calculate these probabilities with the aid of software:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
 <a class="sourceLine" id="cb41-2" data-line-number="2">Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">0</span>)).pmf(<span class="dv">1</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span>)).cdf(<span class="dv">1</span>))</a></code></pre></div>
