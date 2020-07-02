@@ -251,11 +251,11 @@ is the probability that you will win a prize:
     Calculate both the exact probabilities (using the binomial distribution) and the approximate probabilities 
 (using the Poisson distribution).
 
-2. The number of organisms in $V$ cubic meters of ballast water discharged from a ship follows a $\text{Poisson}(\mu=10 V)$. 
-(See "Counting at Low Concentrations: The Statistical Challenges of Verifying Ballast Water Discharge Standards", 
-_Ecological Applications_, 2013:339–351.)
+2. The number of organisms in $V$ cubic meters of ballast water discharged from a ship follows a $\text{Poisson}(\mu=10 V)$
+distribution. (See "Counting at Low Concentrations: The Statistical Challenges of Verifying Ballast Water Discharge 
+Standards", _Ecological Applications_, 2013:339–351.)
 
-    a. What is the probability that one cubic meter of discharge contains at least 8 organisms?
+    a. What is the probability that there are at least 12 organisms in 1.5 cubic meters of discharge?
     b. For what amount of discharge would the probability of containing at least one organism be .999?
 
 3. Thelma calculates the exact probability of winning more than 50% of the time when she places 
