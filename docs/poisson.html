@@ -238,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17" data-path="poisson-process.html"><a href="poisson-process.html"><i class="fa fa-check"></i><b>17</b> Poisson Process</a><ul>
 <li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#motivating-example-15"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#theory-15"><i class="fa fa-check"></i>Theory</a><ul>
-<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#justification-for-the-poisson-process"><i class="fa fa-check"></i>Justification for the Poisson Process</a></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#why-poisson"><i class="fa fa-check"></i>Why Poisson?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#essential-practice-6"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
@@ -310,11 +310,12 @@ So the probability that you end up with no money approaches <span class="math in
 </div>
 <div id="theory-14" class="section level2 unnumbered">
 <h2>Theory</h2>
-The motivating example above illustrates a general phenomenon. A binomial distribution with large <span class="math inline">\(n\)</span> and small <span class="math inline">\(p\)</span> can be
-approximated by a p.m.f. involving the constant <span class="math inline">\(e\)</span>. The next theorem makes this precise.
+<p>The motivating example above illustrates a general phenomenon. A binomial distribution with large <span class="math inline">\(n\)</span> and small <span class="math inline">\(p\)</span> can be
+approximated by a p.m.f. involving the constant <span class="math inline">\(e\)</span>. The next theorem makes this precise.</p>
 
 <div class="theorem">
-<span id="thm:poisson" class="theorem"><strong>Theorem 16.1  (Poisson Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Binomial}(n, p=\frac{\mu}{n})\)</span> random variable, where <span class="math inline">\(\mu\)</span> is a constant. Then, as <span class="math inline">\(n\to\infty\)</span>,
+<span id="thm:poisson" class="theorem"><strong>Theorem 16.1  (Poisson Distribution)  </strong></span>
+Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Binomial}(n, p=\frac{\mu}{n})\)</span> random variable, where <span class="math inline">\(\mu\)</span> is a constant. Then, as <span class="math inline">\(n\to\infty\)</span>,
 the p.m.f. of <span class="math inline">\(X\)</span> approaches
 <span class="math display" id="eq:poisson">\[\begin{align}
 f(x) &amp;= e^{-\mu}\dfrac{\mu^x}{x!} &amp; x&amp;=0, 1, 2, ....
@@ -359,17 +360,17 @@ P(X \geq 2) &amp;= 1 - P(X &lt; 2) \\
 </ul>
 <p>However, all of this is conjecture. We are not told how many words the op-ed has, nor the probability that each
 word has a typo. We simply assume that the number of typos follows a Poisson distribution. In practice, the Poisson
-model is used for count data, even when there is no underlying binomial model.</p>
+model is often used for count data, even when there is no underlying binomial model.</p>
 <p>Finally, we include the proof of Theorem <a href="poisson.html#thm:poisson">16.1</a> for completeness. This proof is not particularly
-interesting or insightful, so you are not responsible for knowing it.</p>
+interesting or insightful, so you do not need to know it.</p>
 
 <div class="proof">
- <span class="proof"><em>Proof</em> (Theorem <a href="poisson.html#thm:poisson">16.1</a>, optional). </span> Substitute <span class="math inline">\(p = \frac{\mu}{n}\)</span> into the binomial p.m.f. and observe what happens as <span class="math inline">\(n \to \infty\)</span>:
+ <span class="proof"><em>Proof</em> (Theorem <a href="poisson.html#thm:poisson">16.1</a>, optional). </span> Substitute <span class="math inline">\(p = \frac{\mu}{n}\)</span> into the binomial p.m.f. and watch what happens as <span class="math inline">\(n \to \infty\)</span>:
 <span class="math display">\[\begin{align*}
   f(x) &amp;= \binom{n}{x} (\frac{\mu}{n})^x (1 - \frac{\mu}{n})^{n-x}  \\
-  &amp;= \frac{n!}{x!(n-x)!} \frac{\mu^x}{n^x}(1 - \frac{\mu}{n})^{n-x}  \\
-  &amp;= \frac{n!}{(n-x)! n^x} \frac{\mu^x}{x!} (1 - \frac{\mu}{n})^{n-x} \\
-  &amp;\to \frac{\mu^x}{x!} e^{-\mu}
+  &amp;= \frac{n!}{x!(n-x)!} \frac{\mu^x}{n^x} (1 - \frac{\mu}{n})^{n-x}  \\
+  &amp;= \frac{n!}{(n-x)! n^x} \cdot \frac{\mu^x}{x!} \cdot (1 - \frac{\mu}{n})^{n-x} \\
+  &amp;\to 1 \cdot \frac{\mu^x}{x!} \cdot e^{-\mu}
 \end{align*}\]</span>
 </div>
 
@@ -428,7 +429,8 @@ exact answer that we get from the binomial distribution.</p>
 <p>Very close indeed!</p>
 <p>The second question can be addressed by trial and error. We want to figure out the value <span class="math inline">\(c\)</span> such that
 <span class="math inline">\(F(c) = P(X \leq c) = .99\)</span>. From above, we already know that <span class="math inline">\(F(11) \approx 0.70\)</span>, so we can start
-trying values from <span class="math inline">\(c=12\)</span>. The simple script below increases <span class="math inline">\(x\)</span> by <span class="math inline">\(1\)</span> until the c.d.f. crosses <span class="math inline">\(.99\)</span>.</p>
+trying values from <span class="math inline">\(c=12\)</span>. The simple script below increases <span class="math inline">\(x\)</span> by <span class="math inline">\(1\)</span> until the
+cumulative probability crosses <span class="math inline">\(.99\)</span>.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb33-1" data-line-number="1">x <span class="op">=</span> <span class="dv">12</span></a>
 <a class="sourceLine" id="cb33-2" data-line-number="2"><span class="cf">while</span> Poisson(<span class="dv">10</span>).cdf(x) <span class="op">&lt;</span> <span class="fl">.99</span>:</a>
 <a class="sourceLine" id="cb33-3" data-line-number="3">  x <span class="op">+=</span> <span class="dv">1</span></a>

@@ -52,7 +52,9 @@ So the probability that you end up with no money approaches $1/e \approx 0.368$ 
 
 The motivating example above illustrates a general phenomenon. A binomial distribution with large $n$ and small $p$ can be 
 approximated by a p.m.f. involving the constant $e$. The next theorem makes this precise.
+
 ```{theorem poisson, name="Poisson Distribution"}
+
 Let $X$ be a $\text{Binomial}(n, p=\frac{\mu}{n})$ random variable, where $\mu$ is a constant. Then, as $n\to\infty$, 
 the p.m.f. of $X$ approaches 
 \begin{align}
@@ -96,18 +98,18 @@ Why might the Poisson distribution be a reasonable model for the number of typos
 
 However, all of this is conjecture. We are not told how many words the op-ed has, nor the probability that each 
 word has a typo. We simply assume that the number of typos follows a Poisson distribution. In practice, the Poisson 
-model is used for count data, even when there is no underlying binomial model.
+model is often used for count data, even when there is no underlying binomial model.
 
 Finally, we include the proof of Theorem \@ref(thm:poisson) for completeness. This proof is not particularly 
-interesting or insightful, so you are not responsible for knowing it.
+interesting or insightful, so you do not need to know it.
 
 ```{proof, name="Theorem \\@ref(thm:poisson), optional"}
-Substitute $p = \frac{\mu}{n}$ into the binomial p.m.f. and observe what happens as $n \to \infty$:
+Substitute $p = \frac{\mu}{n}$ into the binomial p.m.f. and watch what happens as $n \to \infty$:
 \begin{align*}
   f(x) &= \binom{n}{x} (\frac{\mu}{n})^x (1 - \frac{\mu}{n})^{n-x}  \\
-  &= \frac{n!}{x!(n-x)!} \frac{\mu^x}{n^x}(1 - \frac{\mu}{n})^{n-x}  \\
-  &= \frac{n!}{(n-x)! n^x} \frac{\mu^x}{x!} (1 - \frac{\mu}{n})^{n-x} \\
-  &\to \frac{\mu^x}{x!} e^{-\mu}
+  &= \frac{n!}{x!(n-x)!} \frac{\mu^x}{n^x} (1 - \frac{\mu}{n})^{n-x}  \\
+  &= \frac{n!}{(n-x)! n^x} \cdot \frac{\mu^x}{x!} \cdot (1 - \frac{\mu}{n})^{n-x} \\
+  &\to 1 \cdot \frac{\mu^x}{x!} \cdot e^{-\mu}
 \end{align*}
 ```
 
@@ -200,7 +202,8 @@ Very close indeed!
 
 The second question can be addressed by trial and error. We want to figure out the value $c$ such that 
 $F(c) = P(X \leq c) = .99$. From above, we already know that $F(11) \approx 0.70$, so we can start 
-trying values from $c=12$. The simple script below increases $x$ by $1$ until the c.d.f. crosses $.99$.
+trying values from $c=12$. The simple script below increases $x$ by $1$ until the 
+cumulative probability crosses $.99$.
 ```{python}
 x = 12
 while Poisson(10).cdf(x) < .99:

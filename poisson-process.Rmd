@@ -47,7 +47,7 @@ A **Poisson process of rate $\lambda$** is characterized by the following proper
 
 1. The _number of arrivals in any interval $(t_0, t_1)$_ follows a Poisson distribution with $\mu = \lambda (t_1 - t_0)$. 
 That is, the parameter $\mu$ increases proportionally to the length of the interval.
-2. The numbers of arrivals in disjoint intervals are independent.
+2. The numbers of arrivals in non-overlapping intervals are independent.
 ```
 
 These two properties allow us to calculate any probability of interest.
@@ -77,20 +77,21 @@ P(X \geq 3) &= 1 - P(X < 3) \\
 \end{align*}
 b. The joint probability
 \[ P(\text{1 particle in (0, 1)} \text{ AND } \text{3 or more particles in (0, 4)}) \]
-can be rewritten as 
+involves two events that are not independent. However, we can rewrite the joint probability 
+as:
 \[ P(\text{1 particle in (0, 1)} \text{ AND } \text{2 or more particles in (1, 4)}). \]
-Now, $(0, 1)$ and $(1, 4)$ are disjoint intervals, so the number of particles arriving in 
+Now, $(0, 1)$ and $(1, 4)$ are non-overlapping intervals, so the number of particles arriving in 
 $(0, 1)$ is independent of the number of particles arriving in $(1, 4)$ by Property 2 (\@ref(def:pp)). 
-Therefore, by Theorem \@ref(thm:independence-mult), we can obtain their joint probability 
+Therefore, by Theorem \@ref(thm:independence-mult), we obtain their joint probability 
 by multiplying their individual probabilities:
 \[ P(\text{1 particle in (0, 1)}) \cdot P(\text{2 or more particles in (1, 4)}). \]
 
     Now, we know from Property 1 (\@ref(def:pp)) that 
 
-    - the number of particles in $(0, 1)$ is a $\text{Poisson}(\mu = 0.8)$ random variable, and
-    - the number of particles in $(1, 4)$ is a $\text{Poisson}(\mu = 2.4)$ random variable.
+    - the number of particles in $(0, 1)$ follows a $\text{Poisson}(\mu = 0.8)$ distribution, and
+    - the number of particles in $(1, 4)$ follows a $\text{Poisson}(\mu = 2.4)$ distribution.
 
-    If we denote the p.m.f.s of these two random variables by $f_1$ and $f_2$, respectively, then the probability is 
+    If we represent the p.m.f.s of these two random variables by $f_1$ and $f_2$, respectively, then the probability is 
 \[ f_1(1) \cdot \left(1 - f_2(0) - f_2(1) \right) = e^{-0.8} \frac{0.8^1}{1!} \cdot \left( 1 - e^{-2.4} \frac{2.4^0}{0!} - e^{-2.4} \frac{2.4^1}{1!} \right) \approx .2486. \]
 ```
 
@@ -100,11 +101,11 @@ from symbulate import *
 Poisson(0.8 * (1 - 0)).pmf(1) * (1 - Poisson(0.8 * (4 - 1)).cdf(1))
 ```
 
-### Justification for the Poisson Process {-}
+### Why Poisson? {-}
 
 Why does it make sense to assume that the number of arrivals on any interval 
-follows a Poisson distribution? If we chop time up into tiny intervals of length $\Delta t$, 
-then the probability of an arrival on any one interval will be small---but there will be many such intervals.
+follows a Poisson distribution? If we chop time up into tiny segments of length $\Delta t$, 
+then the probability of an arrival on any one of these segments will be small---but there will be many such intervals.
 
 ```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', fig.cap="Chopping Up Time in a Poisson Process"}
 
@@ -151,11 +152,16 @@ then the probability of an arrival on any one interval will be small---but there
 \end{tikzpicture}
 ```
 
-If we further assume that arrivals are independent across these tiny intervals, then 
-the number of arrivals follows a binomial distribution, with large $n$ (because there are many intervals) 
-and small $p$ (because an arrival is unlikely to fall exactly in that tiny interval). 
+If we further assume that arrivals are independent across these tiny segments, then 
+the number of arrivals follows a binomial distribution, with large $n$ (because there are many segments) 
+and small $p$ (because an arrival is unlikely to fall exactly in any given segment). 
 We saw in Theorem \@ref(thm:poisson) that the Poisson distribution is a good approximation to the binomial 
 when $n$ is large and $p$ is small. 
+
+**Technical Detail:** In order for the number of arrivals to be binomial, each tiny segment must 
+contain either 1 arrival or none; there cannot be 2 or more arrivals in any segment. Usually, 
+if $\Delta t$ is so small that it is rare to get even 1 arrival in a segment, then it is 
+essentially impossible to get 2 arrivals.
 
 
 ## Essential Practice {-}

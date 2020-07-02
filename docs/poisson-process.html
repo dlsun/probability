@@ -238,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17" data-path="poisson-process.html"><a href="poisson-process.html"><i class="fa fa-check"></i><b>17</b> Poisson Process</a><ul>
 <li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#motivating-example-15"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#theory-15"><i class="fa fa-check"></i>Theory</a><ul>
-<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#justification-for-the-poisson-process"><i class="fa fa-check"></i>Justification for the Poisson Process</a></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#why-poisson"><i class="fa fa-check"></i>Why Poisson?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#essential-practice-6"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
@@ -290,7 +290,7 @@ The Poisson process is used to model random events, called “<strong>arrivals</
 <ol style="list-style-type: decimal">
 <li>The <em>number of arrivals in any interval <span class="math inline">\((t_0, t_1)\)</span></em> follows a Poisson distribution with <span class="math inline">\(\mu = \lambda (t_1 - t_0)\)</span>.
 That is, the parameter <span class="math inline">\(\mu\)</span> increases proportionally to the length of the interval.</li>
-<li>The numbers of arrivals in disjoint intervals are independent.
+<li>The numbers of arrivals in non-overlapping intervals are independent.
 </div></li>
 </ol>
 <p>These two properties allow us to calculate any probability of interest.</p>
@@ -321,19 +321,20 @@ P(X \geq 3) &amp;= 1 - P(X &lt; 3) \\
 \end{align*}\]</span></li>
 <li><p>The joint probability
 <span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{3 or more particles in (0, 4)}) \]</span>
-can be rewritten as
+involves two events that are not independent. However, we can rewrite the joint probability
+as:
 <span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{2 or more particles in (1, 4)}). \]</span>
-Now, <span class="math inline">\((0, 1)\)</span> and <span class="math inline">\((1, 4)\)</span> are disjoint intervals, so the number of particles arriving in
+Now, <span class="math inline">\((0, 1)\)</span> and <span class="math inline">\((1, 4)\)</span> are non-overlapping intervals, so the number of particles arriving in
 <span class="math inline">\((0, 1)\)</span> is independent of the number of particles arriving in <span class="math inline">\((1, 4)\)</span> by Property 2 (<a href="poisson-process.html#def:pp">17.1</a>).
-Therefore, by Theorem <a href="independence.html#thm:independence-mult">7.1</a>, we can obtain their joint probability
+Therefore, by Theorem <a href="independence.html#thm:independence-mult">7.1</a>, we obtain their joint probability
 by multiplying their individual probabilities:
 <span class="math display">\[ P(\text{1 particle in (0, 1)}) \cdot P(\text{2 or more particles in (1, 4)}). \]</span></p>
 <p>Now, we know from Property 1 (<a href="poisson-process.html#def:pp">17.1</a>) that</p>
 <ul>
-<li>the number of particles in <span class="math inline">\((0, 1)\)</span> is a <span class="math inline">\(\text{Poisson}(\mu = 0.8)\)</span> random variable, and</li>
-<li>the number of particles in <span class="math inline">\((1, 4)\)</span> is a <span class="math inline">\(\text{Poisson}(\mu = 2.4)\)</span> random variable.</li>
+<li>the number of particles in <span class="math inline">\((0, 1)\)</span> follows a <span class="math inline">\(\text{Poisson}(\mu = 0.8)\)</span> distribution, and</li>
+<li>the number of particles in <span class="math inline">\((1, 4)\)</span> follows a <span class="math inline">\(\text{Poisson}(\mu = 2.4)\)</span> distribution.</li>
 </ul>
-If we denote the p.m.f.s of these two random variables by <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>, respectively, then the probability is
+If we represent the p.m.f.s of these two random variables by <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>, respectively, then the probability is
 <span class="math display">\[ f_1(1) \cdot \left(1 - f_2(0) - f_2(1) \right) = e^{-0.8} \frac{0.8^1}{1!} \cdot \left( 1 - e^{-2.4} \frac{2.4^0}{0!} - e^{-2.4} \frac{2.4^1}{1!} \right) \approx .2486. \]</span>
 </div></li>
 </ol>
@@ -341,22 +342,26 @@ If we denote the p.m.f.s of these two random variables by <span class="math inli
 <div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
 <a class="sourceLine" id="cb41-2" data-line-number="2">Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">0</span>)).pmf(<span class="dv">1</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span>)).cdf(<span class="dv">1</span>))</a></code></pre></div>
 <pre><code>## 0.24858997647262118</code></pre>
-<div id="justification-for-the-poisson-process" class="section level3 unnumbered">
-<h3>Justification for the Poisson Process</h3>
+<div id="why-poisson" class="section level3 unnumbered">
+<h3>Why Poisson?</h3>
 <p>Why does it make sense to assume that the number of arrivals on any interval
-follows a Poisson distribution? If we chop time up into tiny intervals of length <span class="math inline">\(\Delta t\)</span>,
-then the probability of an arrival on any one interval will be small—but there will be many such intervals.</p>
+follows a Poisson distribution? If we chop time up into tiny segments of length <span class="math inline">\(\Delta t\)</span>,
+then the probability of an arrival on any one of these segments will be small—but there will be many such intervals.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-70"></span>
 <img src="bookdown-demo_files/figure-html/unnamed-chunk-70-1.png" alt="Chopping Up Time in a Poisson Process" width="50%" />
 <p class="caption">
 Figure 17.2: Chopping Up Time in a Poisson Process
 </p>
 </div>
-<p>If we further assume that arrivals are independent across these tiny intervals, then
-the number of arrivals follows a binomial distribution, with large <span class="math inline">\(n\)</span> (because there are many intervals)
-and small <span class="math inline">\(p\)</span> (because an arrival is unlikely to fall exactly in that tiny interval).
+<p>If we further assume that arrivals are independent across these tiny segments, then
+the number of arrivals follows a binomial distribution, with large <span class="math inline">\(n\)</span> (because there are many segments)
+and small <span class="math inline">\(p\)</span> (because an arrival is unlikely to fall exactly in any given segment).
 We saw in Theorem <a href="poisson.html#thm:poisson">16.1</a> that the Poisson distribution is a good approximation to the binomial
 when <span class="math inline">\(n\)</span> is large and <span class="math inline">\(p\)</span> is small.</p>
+<p><strong>Technical Detail:</strong> In order for the number of arrivals to be binomial, each tiny segment must
+contain either 1 arrival or none; there cannot be 2 or more arrivals in any segment. Usually,
+if <span class="math inline">\(\Delta t\)</span> is so small that it is rare to get even 1 arrival in a segment, then it is
+essentially impossible to get 2 arrivals.</p>
 </div>
 </div>
 <div id="essential-practice-6" class="section level2 unnumbered">
