@@ -1,0 +1,177 @@
+# Poisson Process {#poisson-process}
+
+## Motivating Example {-}
+
+A Geiger counter is a device used for measuring radiation in the atmosphere. Each time it detects a radioactive particle, 
+it makes a clicking sound. In the figure below, the orange points below indicate the times at which the Geiger counter 
+detected a radioactive particle.
+
+```{r, echo=FALSE, engine='tikz', out.width='60%', fig.ext='png', fig.align='center', fig.cap="Radioactive Particles Reaching a Geiger Counter"}
+
+\begin{tikzpicture}
+
+\node (origin1) at (-.125, 0) {};
+\node at (0, 0) {$|$};
+\node[below] at (0, -.2) {$0$};
+\node[right] (end1) at (6, 0) {$t$};
+
+\draw[->,thick] (origin1) -- (end1);
+\foreach \i in {1, ..., 5} {
+	\node at (\i, 0) {$|$};
+	\node[below] at (\i, -.2) {$\i$};
+}
+
+\fill[orange!50] (.57, 0) circle (1.5pt);
+\fill[orange!50] (.62, 0) circle (1.5pt);
+\fill[orange!50] (.945, 0) circle (1.5pt);
+\fill[orange!50] (1.61, 0) circle (1.5pt);
+\fill[orange!50] (2.28, 0) circle (1.5pt);
+\fill[orange!50] (3.24, 0) circle (1.5pt);
+\fill[orange!50] (4.49, 0) circle (1.5pt);
+\fill[orange!50] (4.61, 0) circle (1.5pt);
+\end{tikzpicture}
+```
+
+The radioactive particles hit the Geiger Counter at seemingly random and unpredictable times. In this 
+lesson, we learn to make sense of the randomness.
+
+## Theory {-}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2k7vgIk9Kwo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Radioactive particles are a classic example of a type of random process called the **Poisson process**. 
+The Poisson process is used to model random events, called "**arrivals**", over time.
+
+```{definition pp, name="Poisson Process"}
+A **Poisson process of rate $\lambda$** is characterized by the following properties:
+
+1. The _number of arrivals in any interval $(t_0, t_1)$_ follows a Poisson distribution with $\mu = \lambda (t_1 - t_0)$. 
+That is, the parameter $\mu$ increases proportionally to the length of the interval.
+2. The numbers of arrivals in disjoint intervals are independent.
+```
+
+These two properties allow us to calculate any probability of interest.
+
+```{example, name="Geiger Counter"}
+
+In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process 
+at a rate of $\lambda = 0.8$ particles per second. 
+
+a. What is the probability that the Geiger counter detects 3 or more particles in the 
+next 4 seconds?
+b. What is the probability that the Geiger counter detects (exactly) 1 particle in the next second and 
+3 or more in the next 4 seconds?
+```
+
+```{solution}
+.
+
+a. The number of particles arriving at the detector in the next 4 seconds, $X$, follows a 
+$\text{Poisson}(\mu = 0.8 \cdot (4 - 0) = 3.2)$ distribution by Property 1 (\@ref(def:pp)). Therefore,
+the probability of detecting 3 or more particles is:
+\begin{align*}
+P(X \geq 3) &= 1 - P(X < 3) \\
+&= 1 - f(0) - f(1) - f(2) \\
+&= 1 - e^{-3.2} \frac{3.2^0}{0!} - e^{-3.2} \frac{3.2^1}{1!} - e^{-3.2} \frac{3.2^2}{2!} \\
+&\approx .6201
+\end{align*}
+b. The joint probability
+\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{3 or more particles in (0, 4)}) \]
+can be rewritten as 
+\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{2 or more particles in (1, 4)}). \]
+Now, $(0, 1)$ and $(1, 4)$ are disjoint intervals, so the number of particles arriving in 
+$(0, 1)$ is independent of the number of particles arriving in $(1, 4)$ by Property 2 (\@ref(def:pp)). 
+Therefore, by Theorem \@ref(thm:independence-mult), we can obtain their joint probability 
+by multiplying their individual probabilities:
+\[ P(\text{1 particle in (0, 1)}) \cdot P(\text{2 or more particles in (1, 4)}). \]
+
+    Now, we know from Property 1 (\@ref(def:pp)) that 
+
+    - the number of particles in $(0, 1)$ is a $\text{Poisson}(\mu = 0.8)$ random variable, and
+    - the number of particles in $(1, 4)$ is a $\text{Poisson}(\mu = 2.4)$ random variable.
+
+    If we denote the p.m.f.s of these two random variables by $f_1$ and $f_2$, respectively, then the probability is 
+\[ f_1(1) \cdot \left(1 - f_2(0) - f_2(1) \right) = e^{-0.8} \frac{0.8^1}{1!} \cdot \left( 1 - e^{-2.4} \frac{2.4^0}{0!} - e^{-2.4} \frac{2.4^1}{1!} \right) \approx .2486. \]
+```
+
+We can also calculate these probabilities with the aid of software:
+```{python}
+from symbulate import *
+Poisson(0.8 * (1 - 0)).pmf(1) * (1 - Poisson(0.8 * (4 - 1)).cdf(1))
+```
+
+### Justification for the Poisson Process {-}
+
+Why does it make sense to assume that the number of arrivals on any interval 
+follows a Poisson distribution? If we chop time up into tiny intervals of length $\Delta t$, 
+then the probability of an arrival on any one interval will be small---but there will be many such intervals.
+
+```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', fig.cap="Chopping Up Time in a Poisson Process"}
+
+\begin{tikzpicture}
+
+\node (origin1) at (-.125, 1) {};
+\node at (0, 1) {$|$};
+\node[below] at (0, 0.8) {$0$};
+\node[right] (end1) at (3.5, 1) {$t$};
+
+\draw[->,thick] (origin1) -- (end1);
+\foreach \i in {0.4, 0.8, ..., 3.3} {
+	\draw[black!50] (\i, 0.9) -- (\i, 1.1);
+}
+
+\fill[orange!50] (.57, 1) circle (1.2pt);
+\fill[orange!50] (.62, 1) circle (1.2pt);
+\fill[orange!50] (.945, 1) circle (1.2pt);
+\fill[orange!50] (1.61, 1) circle (1.2pt);
+\fill[orange!50] (2.28, 1) circle (1.2pt);
+\fill[orange!50] (3.24, 1) circle (1.2pt);
+
+\draw[|-|] (1.2, 0.7) -- (1.6, 0.7) node [midway, below] {{\tiny $\Delta t$}};
+
+\node (origin1) at (-.125, 0) {};
+\node at (0, 0) {$|$};
+\node[below] at (0, -.2) {$0$};
+\node[right] (end1) at (3.5, 0) {$t$};
+
+\draw[->,thick] (origin1) -- (end1);
+\foreach \i in {0.2, 0.4, ..., 3.3} {
+	\draw[black!50] (\i, -0.1) -- (\i, 0.1);
+}
+
+\fill[orange!50] (.57, 0) circle (1.2pt);
+\fill[orange!50] (.62, 0) circle (1.2pt);
+\fill[orange!50] (.945, 0) circle (1.2pt);
+\fill[orange!50] (1.61, 0) circle (1.2pt);
+\fill[orange!50] (2.28, 0) circle (1.2pt);
+\fill[orange!50] (3.24, 0) circle (1.2pt);
+
+\draw[|-|] (1.2, -0.3) -- (1.4, -0.3) node [midway, below] {{\tiny $\Delta t$}};
+
+\end{tikzpicture}
+```
+
+If we further assume that arrivals are independent across these tiny intervals, then 
+the number of arrivals follows a binomial distribution, with large $n$ (because there are many intervals) 
+and small $p$ (because an arrival is unlikely to fall exactly in that tiny interval). 
+We saw in Theorem \@ref(thm:poisson) that the Poisson distribution is a good approximation to the binomial 
+when $n$ is large and $p$ is small. 
+
+
+## Essential Practice {-}
+
+1. Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
+Assume packet arrivals meet the assumptions of a Poisson process.
+
+    a. Calculate the probability that exactly 15 packets arrive in the next 2 minutes.
+    b. Calculate the probability that more than 60 packets arrive in the next 5 minutes.
+    c. Calculate the probability that the next packet will arrive in within 15 seconds.
+
+2. Small aircraft arrive at San Luis Obispo airport according to a Poisson process at a rate of 6 per hour.
+
+    a. What is the probability that exactly 5 small aircraft arrive in the first hour (after opening) and exactly 7 arrive 
+    in the hour after that?
+    b. What is the probability that fewer than 5 small aircraft arrive in the first hour and 
+    at least 10 arrive in the hour after that?
+    c. What is the probability that exactly 5 small aircraft arrive in the first hour and exactly 12 aircraft 
+    arrive in the first two hours?
