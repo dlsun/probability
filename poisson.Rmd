@@ -2,6 +2,8 @@
 
 ## Motivating Example {-}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yIPFA1sk5NA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 You are in a room of \(n\) people (including yourself). Each person in the room has contributed $1 to a central pot, 
 so there is a total of $\(n\) in the pot. The money in the pot will be redistributed back to the people in the room, 
 in the following way: each dollar is equally likely to go to any one of the \(n\) people, independently of the other 

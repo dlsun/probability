@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-02" />
+<meta name="date" content="2020-07-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -275,30 +275,7 @@ Does this make it more likely that he will win on the next spin?</p>
 We want to know the probability that the ball will land in a
 red pocket on the 5th spin, <em>given</em> that it did not land in a
 red pocket on any of the first 4 spins:
-<span class="math display">\[ P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}). \]</span>
-<!-- First, let's simulate this (conditional) probability: -->
-<!-- ```{r} -->
-<!-- # define the 38 possible outcomes on a roulette wheel -->
-<!-- # (18 red spaces, 18 black spaces, 0, and 00) -->
-<!-- roulette_wheel <- c(rep("red", 18), rep("black", 18), "0", "00") --></p>
-<!-- sims <- c() # initialize vector for storing the simulation outcomes -->
-<!-- # repeat 100000 times -->
-<!-- for (i in 1:100000) { -->
-<!--   # simulate 5 spins -->
-<!--   spins <- sample(roulette_wheel, size=5, replace=TRUE) -->
-<!--   # restrict to simulations where the first 4 spins were all not red -->
-<!--   if (all(spins[1:4] != "red")) { -->
-<!--     sims <- c(sims, spins[5]) # add outcome of 5th spin to simulation results -->
-<!--   } -->
-<!-- } -->
-<!-- # tabulate the simulation results -->
-<!-- results <- table(sims) -->
-<!-- results -->
-<!-- ``` -->
-<!-- The simulated probability is -->
-<!-- $3694 / 7741 \approx 0.477$, which -->
-<!-- does not seem different from the overall probability of a ball landing in a red pocket, -->
-<!-- $18 / 38 \approx 0.474$. -->
+<span class="math display">\[ P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}). \]</span></p>
 </div>
 <div id="theory-5" class="section level2 unnumbered">
 <h2>Theory</h2>
