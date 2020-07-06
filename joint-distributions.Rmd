@@ -1,137 +1,253 @@
-# Joint Distributions (#joint-discrete)
+# Joint Distributions {#joint-discrete}
 
 ## Motivating Example {-}
 
-Blackwell and Rao are playing are bored and decide to bet on some coins. They have $5$ coins in total and decide to Rao decides to bet on how many heads there are on the first $3$ coins tossed, let's call this $X$. Blackwell decides to bet on how many heads are on the last $3$ coins tossed, let's call this $Y$. Careful statisticians they are they decide that before venturing on putting any money down they want to see the probability distribution of $(X,Y)$, or in other words the pairs of $X$ and $Y$. The number of heads in the first $3$ tosses can be from $0-3$ and same for the number of heads for the last $3$ tosses. So $X \in \{0,1,2,3\}$ and $Y \in \{0,1,2,3\}$. So since $X$ and $Y$ can take up to $3$ values each then the amount of possible pairs is $3 \times 3 = 9$. We can visualize this in a joint distribution table like below.
+Xavier and Yolanda head to the roulette table at a casino. They both place bets on red on 3 spins of the roulette 
+wheel before Xavier has to leave. After Xavier leaves, Yolanda places bets on red on 2 more spins of the wheel. 
+Let $X$ be the number of bets that Xavier wins and $Y$ be the number that Yolanda wins.
 
-\[
-\begin{array}{c|cccc|l}
-_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
+We know that $X$ follows a $\text{Binomial}(n=3, p=\frac{18}{38})$ distribution so its p.m.f. is 
+\[ f(x) = \binom{3}{x} \left( \frac{18}{38} \right)^x \left(1 - \frac{18}{38} \right)^{3-x}, \]
+which we can write in tabular form as 
+\[ 
+\begin{array}{r|cccc}
+x & 0 & 1 & 2 & 3 \\
 \hline
-0 & p_{0,0} & p_{0,1} & p_{0,2} & p_{0,3} & \sum_{j=0}^{3}p_{0,j}\\
-1 & p_{1,0} & p_{1,1} & p_{1,2} & p_{1,3} & \sum_{j=0}^{3}p_{1,j} \\
-2 & p_{2,0} & p_{2,1} & p_{2,2} & p_{2,3} & \sum_{j=0}^{3}p_{2,j}\\
-3 & p_{3,0} & p_{3,1} & p_{3,2} & p_{3,3} & \sum_{j=0}^{3}p_{3,j}\\
-\hline
-& \sum_{i=0}^{3}p_{i,0} & \sum_{i=0}^{3}p_{i,1} & \sum_{i=0}^{3}p_{i,2} & \sum_{i=0}^{3}p_{i,3} & 1
-\end{array}
+f(x) & .1458 & .3936 & .3543 & .1063 \\
+\end{array}.
 \]
 
-Where each $p_{i,j}$ represents the probability, $P(X = i \cap Y = j)$. Take a minute to think of how you could solve for each $p_{i,j}$ yourselves. Think carefully about certain edge cases. 
-
-Rao thinks what if $X = 0$, so there were $0$ heads in the first $3$ tosses of  the $5$ coins, what would it mean for $Y = 3$, that there was $3$ heads in the last $3$ tosses of the $5$ coins. Clearly it would not be possible since $3$rd toss would have to be tails and so it could not be possible that the last $3$ tosses were all heads. So the probability of $(0,3)$ is 0, and by that same logic same for $(3,0)$. So clearly $X$ and $Y$ are not independent!
-
-\[
-\begin{array}{c|cccc|l}
-_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
+We also know that $Y$ follows a $\text{Binomial}(n=5, p=\frac{18}{38})$ distribution so its p.m.f. is 
+\[ 
+\begin{array}{r|cccc}
+y & 0 & 1 & 2 & 3 & 4 & 5\\
 \hline
-0 & p_{0,0} & p_{0,1} & p_{0,2} & 0 & \sum_{j=0}^{3}p_{0,j}\\
-1 & p_{1,0} & p_{1,1} & p_{1,2} & p_{1,3} & \sum_{j=0}^{3}p_{1,j} \\
-2 & p_{2,0} & p_{2,1} & p_{2,2} & p_{2,3} & \sum_{j=0}^{3}p_{2,j}\\
-3 & 0 & p_{3,1} & p_{3,2} & p_{3,3} & \sum_{j=0}^{3}p_{3,j}\\
-\hline
-& \sum_{i=0}^{3}p_{i,0} & \sum_{i=0}^{3}p_{i,1} & \sum_{i=0}^{3}p_{i,2} & \sum_{i=0}^{3}p_{i,3} & 1
-\end{array}
+f(y) & .0404 & .1817 & .3271 & .2944 & .1325 & .0238
+\end{array}.
 \]
 
-Now let's think about two other case that are also simple to calculate. What does $(0,0)$ mean? It means that that there were $0$ heads in the first $3$ and last $3$ tosses of the $5$ tosses. So there were $0$ heads in total. So that would mean the probability would $(1/2)^5$. What about $(3,3)$? It woudl mean that tehre were $3$ heads in the first $3$ and last $3$ tosses of the $5$ tosses. So there were $5$ heads in total. So that would mean the probability would be $(1/2)^5$.
+But this does not tell us how $X$ and $Y$ are related to each other. In fact, the two random variables have a 
+very distinctive relationship. For example, $Y$ must be greater than or equal to $X$, since Yolanda made the
+same three bets that Xavier did, plus two more. In this lesson, we will learn a way to describe the distribution 
+of two (or more) random variables.
 
-\[
-\begin{array}{c|cccc|l}
-_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
-\hline
-0 & (\frac{1}{2})^5 & p_{0,1} & p_{0,2} & 0 & \sum_{j=0}^{3}p_{0,j}\\
-1 & p_{1,0} & p_{1,1} & p_{1,2} & p_{1,3} & \sum_{j=0}^{3}p_{1,j} \\
-2 & p_{2,0} & p_{2,1} & p_{2,2} & p_{2,3} & \sum_{j=0}^{3}p_{2,j}\\
-3 & 0 & p_{3,1} & p_{3,2} & (\frac{1}{2})^5  & \sum_{j=0}^{3}p_{3,j}\\
-\hline
-& \sum_{i=0}^{3}p_{i,0} & \sum_{i=0}^{3}p_{i,1} & \sum_{i=0}^{3}p_{i,2} & \sum_{i=0}^{3}p_{i,3} & 1
-\end{array}
-\]
-
-Now let's get some more work done. Suppose $X=0$. That would mean that there were $0$ heads in the first $3$ tosses. That event has probability $(1/2)^3$. We know that $Y = 3$ is impossible when $X = 0$ but think about what distribution $Y$ would have given $X = 0$, especially knowing the fact that there are $2$ independent tosses we don't know about. So we would know that $Y = y | X = 0 \sim \text{Binomial}(n=2,p = 1/2)$. You can verify for yourself how this makes sense for our $(0,0)$ $(0,3)$ result. Think about the $X = 3$ case and use the same logic that we just used for that $X = 0$ case to verify our results below.
-
-\[
-\begin{array}{c|cccc|l}
-_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
-\hline
-0 & (\frac{1}{2})^5 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^{3}\cdot (\frac{1}{2})^2 & 0 & \frac{4}{32}\\
-1 & p_{1,0} & p_{1,1} & p_{1,2} & p_{1,3} & \sum_{j=0}^{3}p_{1,j} \\
-2 & p_{2,0} & p_{2,1} & p_{2,2} & p_{2,3} & \sum_{j=0}^{3}p_{2,j}\\
-3 & 0 & (\frac{1}{2})^3\cdot(\frac{1}{2})^2 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^5  & \frac{4}{32}\\
-\hline
-& \sum_{i=0}^{3}p_{i,0} & \sum_{i=0}^{3}p_{i,1} & \sum_{i=0}^{3}p_{i,2} & \sum_{i=0}^{3}p_{i,3} & 1
-\end{array}
-\]
-
-Now let's look at case $(1,1)$. Think about the sequences that make this pair come true. For example, we have $(1,0,0,1,0,0),(0,0,1,0,0),etc$. Notice that it may seem daunting to think about the $3$rd toss where $X$ and $Y$ interact. However think back to the lesson about Law of Total Probability. let $X_i = 1$ for $i \in 1,2,3,$ equal $1$ if the $i$th toss was a heads and $0$ if it was a tails.
-\[P(Y = 1|X = 1) = \sum_{i=1}^{3}P(Y = 1|X_i = 1)P(X_i = 1)\]
-So leveraging our multiplication proeprty we can find $P(X = 1 \cup Y = 1)$ by using $P(X = 1, Y = 1) = P(X = 1)P(Y=1|X=1)$. 
-
-What about the $(2,1)$ case? Now let's define random variable $X_{i,j}$ for parameters $i < j$, $i \in 1,2,3$, and $j \in 2,3$. Let $X_{i,j}$ equal to $1$ if the $ith$ and $jth$ toss were both heads, else $0$. So using the Law of Total Probability
-\[P(Y = 1| X = 2) = \sum_{i=1}^{3}\sum_{j=i+1}^{3}P(X_i = 1 \cap X_j = 1)P(Y = 1|X_{i,j} = 1)\]
-
-Think about the simple changes if $Y = 1$, $Y = 2$, and $Y = 3$. Verify the results in our table.
-
-\[
-\begin{array}{c|cccc|l}
-_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3\\
-\hline
-0 & (\frac{1}{2})^5 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^{3}\cdot (\frac{1}{2})^2 & 0 & \frac{4}{32}\\
-1 & \frac{2}{32} & \frac{5}{32} & \frac{4}{32} & \frac{1}{32} & \frac{12}{32} \\
-2 & \frac{1}{32} & \frac{4}{32} & \frac{5}{32} & \frac{2}{32} & \frac{12}{32}\\
-3 & 0 & (\frac{1}{2})^3\cdot(\frac{1}{2})^2 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^5  & \frac{4}{32}\\
-\hline
-& \frac{4}{32} & \frac{12}{32} & \frac{12}{32}& \frac{4}{32} & 1
-\end{array}
-\]
-
-Rao and Blackwell notice something amazing, that when we sum up the values in row $i$ we get $P(X = i)$ and that we sum up the values in column $j$ we get $P(Y = j)$ for $i \in 0,1,2,3,$ and $j \in 0,1,2,3$. This is true for every joint distribution table. Think about why this is true and how what each value in each box represents. Think about how we can decompose probabilites.
 
 ## Theory {-}
 
-In the discrete probability world many joint distributions can be represented with a joint distribution table. What conditions would be necesssary for us to be able to do this? $X$ and $Y$ must be only able to take on a finite amount of values. Otherwise, our table would be infinitely long! So for example if $X \sim \text{Poisson}(\mu)$ then our $X$ is in fact discrete but the amount of values it can take on is countably infinite. 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2W0Tsyacf7A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-What does our joint distribution table represent? Let's take a look back at our motivating example's table.
+```{definition}
+The joint distribution of two random variables $X$ and $Y$ is described by the **joint p.m.f.** 
+  \begin{equation}
+f(x, y) = P(X=x \text{ and } Y=y).
+  (\#eq:joint-pmf)
+\end{equation}
+```
 
-\[
-\begin{array}{c|cccc|l}
-_{\large X}\backslash^{\large Y} & 0 & 1 & 2 & 3 & P(X = i)\\
+```{example}
+Let's work out the joint p.m.f. of $X$, the number of bets that Xavier wins, and $Y$, 
+the number of bets that Yolanda wins. To do this, we will lay out the values of $f(x, y)$ in 
+a table, like the following.
+\begin{equation}
+\begin{array}{rr|cccc}
+  & 5 & f(0, 5) & f(1, 5) & f(2, 5) & f(3, 5) \\
+  & 4 & f(0, 4) & f(1, 4) & f(2, 4) & f(3, 4) \\
+y & 3 & f(0, 3) & f(1, 3) & f(2, 3) & f(3, 3) \\
+  & 2 & f(0, 2) & f(1, 2) & f(2, 2) & f(3, 2) \\
+  & 1 & f(0, 1) & f(1, 1) & f(2, 1) & f(3, 1) \\
+  & 0 & f(0, 0) & f(1, 0) & f(2, 0) & f(3, 0) \\
 \hline
-0 & (\frac{1}{2})^5 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^{3}\cdot (\frac{1}{2})^2 & 0 & \frac{4}{32}\\
-1 & \frac{2}{32} & \frac{5}{32} & \frac{4}{32} & \frac{1}{32} & \frac{12}{32} \\
-2 & \frac{1}{32} & \frac{4}{32} & \frac{5}{32} & \frac{2}{32} & \frac{12}{32}\\
-3 & 0 & (\frac{1}{2})^3\cdot(\frac{1}{2})^2 & (\frac{1}{2})^{3}\cdot (\binom{2}{1}(\frac{1}{2})(\frac{1}{2})) & (\frac{1}{2})^5  & \frac{4}{32}\\
-\hline
-P(y = j)& \frac{4}{32} & \frac{12}{32} & \frac{12}{32}& \frac{4}{32} & 1
+& & 0 & 1 & 2 & 3\\
+& &   & & x
 \end{array}
-\]
+(\#eq:joint-pmf-ex1)
+\end{equation}
 
-This table represents our _joint distribution_ of $(X,Y)$.
+First, we observe that it is impossible for Xavier to win more bets than Yolanda---since 
+Yolanda makes all the bets that Xavier does (plus two more). Therefore, we know that 
+$f(x,y) = 0$ if $x > y$. We also know that Yolanda can at most two more bets than 
+Xavier. So $f(x, y) = 0$ if $y > x + 2$. Therefore, we can fill in half of the entries in the table 
+with zeroes.
+\[ \begin{array}{rr|cccc}
+  & 5 & 0 & 0 & 0 & f(3, 5) \\
+  & 4 & 0 & 0 & f(2, 4) & f(3, 4) \\
+y & 3 & 0 & f(1, 3) & f(2, 3) & f(3, 3) \\
+  & 2 & f(0, 2) & f(1, 2) & f(2, 2) & 0 \\
+  & 1 & f(0, 1) & f(1, 1) & 0 & 0 \\
+  & 0 & f(0, 0) & 0 & 0 & 0 \\
+\hline
+& & 0 & 1 & 2 & 3\\
+& &   & & x
+\end{array} \]
 
-```{definition, echo=TRUE}
-Let $(X,Y)$ be a pair of discrete random variables. The __joint distribution__, $f_{X,Y}$ from $\mathbb{R}^2$ into $[0,1]$ is defined by $f(x,y) = P(X = x \cap Y = y)$.
+Let's calculate one of the non-zero joint probabilities:
+\[ f(2, 3) = P(X=2 \text{ and } Y=3). \]
+In order for Xavier to win twice and Yolanda to win 3 times, 
+there must have been 2 reds in the first 3 spins and 1 red in the 2 spins after that. 
+Because the first 3 spins and the next 2 spins are independent, we can multiply the two binomial probabilities:
+\begin{align*}
+f(2, 3) &= P(\text{2 reds in first 3 spins} \text{ and } \text{1 red in next 2 spins}) \\
+&= \binom{3}{2} \left( \frac{18}{38} \right)^2 \left( 1 - \frac{18}{38} \right)^{1} \cdot \binom{2}{1} \left( \frac{18}{38} \right)^1 \left( 1 - \frac{18}{38} \right)^{1} \\
+&\approx .1766
+\end{align*}
+
+As one more example, let's calculate 
+\[ f(1, 1) = P(X=1 \text{ and } Y=1). \]
+In order for Xavier and Yolanda to each win once, there must have been 1 red in the first 3 spins and 0 reds in the 
+next two. Since the first 3 spins and the next 2 spins are independent, we can multiply their probabilities:
+\begin{align*}
+f(1, 1) &= P(\text{1 red in first 3 spins} \text{ and } \text{0 reds in next 2 spins}) \\
+&= \binom{3}{1} \left( \frac{18}{38} \right)^1 \left( 1 - \frac{18}{38} \right)^2 \cdot \binom{2}{0} \left( \frac{18}{38} \right)^0 \left( 1 - \frac{18}{38} \right)^2 \\
+&\approx .1090
+\end{align*}
+
+
+The process for calculating the other probabilities in the table is the same. We look at what each event 
+$\{ X=x \text{ and } Y=y\}$ implies about the number of reds in the first 3 spins and the number of reds in the 
+next 2 spins; because the first 3 spins and the next 2 spins are independent, we can multiply their probabilities. 
+The completed table looks like this:
+\[ \begin{array}{rr|cccc}
+  & 5 & 0 & 0 & 0 & .0238 \\
+  & 4 & 0 & 0 & .0795 & .0530 \\
+y & 3 & 0 & .0883 & .1766 & .0294 \\
+  & 2 & .0327 & .1963 & .0981 & 0 \\
+  & 1 & .0726 & .1090 & 0 & 0 \\
+  & 0 & .0404 & 0 & 0 & 0 \\
+\hline
+& & 0 & 1 & 2 & 3\\
+& &   & & x
+\end{array} \]
+
+Notice that all of the probabilities in this table add up to $1.0$ (up to rounding error).
 ```
 
-Each value not in the last row and last column represents $P(X = i \cap Y = j)$. While the last column, the sum of the respective row, represents the _marginal distribution_ of $X$ and the last row, the sum of the respective column, represents the  _marginal distribution_ of $Y$. 
+```{example, name="Coin Tosses"}
+A fair coin is tossed 6 times. Let $X$ be the number of heads in the first 3 tosses. 
+Let $Y$ be the number of heads in the last 3 tosses. Calculate the joint p.m.f. of $X$ and $Y$, 
+and use it to calculate $P(X + Y \leq 2)$. 
+```
 
-```{definition, echo=TRUE}
-The __marginal distribution__ of $X$ is the pmf of $X$ but in the context of the probability model that gives the joint distribution of the pair $(X,Y)$.
+```{solution}
+The first 3 tosses and the next 3 tosses are independent. Therefore, we know that 
+\[ f(x, y) = P(X=x \text{ and } Y=y) = P(X=x) \cdot P(Y=y) \]
+for any value $x$ and $y$.
+
+Since $X$ and $Y$ are both $\text{Binomial}(n=3, N_1=1, N_0=1)$, we have a formula 
+for their p.m.f.s:
+\begin{align*} 
+P(X=x) &= \frac{\binom{3}{x}}{2^3} & P(Y=y) &= \frac{\binom{3}{y}}{2^3}.
+\end{align*}
+
+Therefore, we can write the joint p.m.f. as a formula:
+\[ f(x, y) = \frac{\binom{3}{x}}{2^3}\cdot \frac{\binom{3}{y}}{2^3}, 0 \leq x, y \leq 3. \]
+This is equivalent to writing the probabilities in a table:
+\[ \begin{array}{rr|cccc}
+  & 3 & .0156 & .0469 & .0469 & .0156 \\
+y & 2 & .0469 & .1406 & .1406 & .0469 \\
+  & 1 & .0469 & .1406 & .1406 & .0469 \\
+  & 0 & .0156 & .0469 & .0469 & .0156 \\
+\hline
+& & 0 & 1 & 2 & 3\\
+& &   & & x
+\end{array}. \]
+
+To use this joint p.m.f. to calculate $P(X + Y \leq 2)$, we 
+add up $f(x, y)$ for values $x$ and $y$ satisfying $x + y \leq 2$. 
+As a formula, we can express this as:
+\[ P(X + Y \leq 2) = \underset{x, y:\ x + y \leq 2}{\sum\sum} f(x, y). \]
+But it is easier to see what probabilities we need to add 
+in the table:
+\[ \begin{array}{rr|cccc}
+  & 3 & .0156 & .0469 & .0469 & .0156 \\
+y & 2 & \fbox{.0469} & .1406 & .1406 & .0469 \\
+  & 1 & \fbox{.0469} & \fbox{.1406} & .1406 & .0469 \\
+  & 0 & \fbox{.0156} & \fbox{.0469} & \fbox{.0469} & .0156 \\
+\hline
+& & 0 & 1 & 2 & 3\\
+& &   & & x
+\end{array}. \]
+The answer is:
+  \begin{align*}
+P(X + Y \leq 2) &= f(0, 0) + f(1, 0) + f(0, 1) + f(0, 2) + f(1, 1) + f(2, 0) \\
+&= .0156 + .0469 + .0469 + .0469 + .1406 + .0469 \\
+&= .3438.
+  \end{align*}
+
+Of course, we could have obtained this answer without deriving the joint p.m.f. of $X$ and $Y$. 
+The random variable $X + Y$ represents 
+  the number of heads in 6 tosses of a fair coin, which we know follows a binomial 
+  distribution. Therefore, we can calculate $P(X + Y \leq 2)$ using the c.d.f. of a 
+  binomial distribution:
+```{python}
+from symbulate import *
+Binomial(n=6, p=0.5).cdf(2)
+```
+We get the same answer.
+
+
+```{example, name="Chicken and the Egg"}
+The number of eggs laid by a hen, $N$, is a $\text{Poisson}(\mu)$ random variable. Each 
+egg hatches with probability $p$, independently of any other egg. Let $X$ be the number of 
+eggs that hatch into baby chickens. Find the joint p.m.f. of $N$ and $X$.
+```
+
+```{solution}
+First, observe that $N$ is a random variable that can take on values from $0$ and 
+$\infty$. We cannot possibly write down all of the probabilities in a table. We will 
+try to write the joint p.m.f. as a formula.
+
+We are interested in:
+\[ f(n, x) = P(N = n \text{ and } X = x). \]
+By the multiplication rule (Theorem \@ref(thm:multiplication-rule)), we have
+\[ P(N = n \text{ and } X = x) = P(N = n) P(X = x | N = n). \]
+
+Once we know how many eggs there are, then $X$ follows a binomial distribution. In other words, 
+given $\{ N = n \}$, $X$ is a $\text{Binomial}(n, p)$ random variable. Therefore, 
+\begin{align*} 
+P(N = n) P(X = x | N = n) &= e^{-\mu} \frac{\mu^n}{n!} \cdot \binom{n}{x} p^x (1-p)^{n-x} \\
+&= e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!}.
+\end{align*}
+This formula is only valid when $x \leq n$, since we cannot have more baby chickens than eggs. 
+So, we can specify the p.m.f. as 
+\[ f(n, x) = \begin{cases} e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!} & 0 \leq x \leq n < \infty \\
+   0 & \text{otherwise} \end{cases}. \]
 ```
 
 
+## Essential Practice {-}
 
-```{theorem, name="Marginal Distribution Formula"}
-Let $(X,Y)$ be a pair of discrete random variables with joint pmf $f_{x,y}(x,y)$. Let $\theta_X$ represent the values that $X$ can take on and $\theta_Y$ represent the values that $Y$ can take on. Then the marginal pmfs of $X$ and $Y$, $f_X(s) = P(X = x)$  and $f_Y(y) = P(Y = y)$ are given by 
-\[f_X(x) = \sum_{y \in \theta_Y}f_{X,Y}(x,y) \quad f_Y(y) = \sum_{x \in \theta_X}f_{X,Y}(x,y)\]
-```
+1. Two tickets are drawn from a box with $N_1$ $\fbox{1}$s and $N_0$ $\fbox{0}$s. Let $X$ be the number of 
+$\fbox{1}$s on the first draw and $Y$ be the number of $\fbox{1}$s on the second draw. (Note that $X$ and $Y$ 
+can only be 0 or 1.)
 
-We can see this clearly in our joint table since we get the marginal distribution of $X$ by summing down up the rows, values of $Y$. Likewise, we get the marginal distribution of $Y$ by summing down the columns, values of $X$.
+    a. Find the joint p.m.f. of $X$ and $Y$ when the draws are made with replacement.
+    b. Find the joint p.m.f. of $X$ and $Y$ when the draws are made without replacement.
+    
+    (You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)
 
-However, suppose that the values that $X$ and $Y$ can take on are not finite but discrete. Suppose $X$ and $Y$ are independent random variables both distributed by Poisson$(\lambda)$. So what would be the joint distribution of $(X,Y)$. We can just use the definition. So 
-\[f(x,y) = P(X = x, Y = y) - \frac{e^{-\lambda}\lambda^{x}}{x!} \cdot \frac{e^{-\lambda}\lambda^{y}}{y!}\]
+2. Two fair, six-sided dice are rolled. Let $S$ be the smaller of the numbers on the two dice. 
+Let $L$ be the larger of the numbers on the two dice. (Note: If doubles are rolled, then $S = L$.)
 
+    a. Find the joint p.m.f. of $S$ and $L$.
+    b. Use the joint p.m.f. to calculate $P(S + L = 2)$.
+    c. Repeat for $P(S + L = k)$, $k = 3, 4, 5, \ldots, 12$. Why does the answer make sense?
 
-## Worked Examples {-}
+3. A fair coin is tossed 3 times. Let $X$ be the number of heads in these three tosses. Let $Y$ be the 
+number of tails in these three tosses. Find the joint p.m.f. of $X$ and $Y$. 
+(You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)
 
-## Exercises {-}
+4. At a nuclear plant, radioactive particles hit a Geiger counter at a rate of 3.5 particles per second. 
+Let $X$ be the number of particles detected in the first 2 seconds. Let $Y$ be the number of particles 
+detected in the second after that (i.e., the third second). Find the joint p.m.f. of $X$ and $Y$.
+(You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)
+
+## Additional Exercises {-}
+
+1. A fair coin is tossed 4 times. Let $X$ be the number of heads in the _first_ three tosses. Let $Y$ be the 
+number of heads in the _last_ three tosses. Find the joint p.m.f. of $X$ and $Y$. 
+(_Hint:_ There are only $2^4 = 16$ equally likely outcomes when you toss 4 coins. If you are 
+unable to calculate the probabilities using rules we have learned, just list all the possible outcomes!)
+
+2. At a nuclear plant, radioactive particles hit a Geiger counter at a rate of 3.5 particles per second. 
+Let $X$ be the number of particles detected in the first 2 seconds. Let $Z$ be the number of particles 
+detected in the first 3 seconds. Find the joint p.m.f. of $X$ and $Z$.
