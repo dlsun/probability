@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 18 Joint Distributions | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 18 Joint Distributions | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 18 Joint Distributions | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-07-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="poisson-process.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="double-counting.html"><a href="double-counting.html"><i class="fa fa-check"></i><b>5</b> Double Counting</a><ul>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#motivating-example-4"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#theory-3"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#examples-4"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conditional.html"><a href="conditional.html"><i class="fa fa-check"></i><b>6</b> Conditional Probability</a><ul>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#theory-4"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#examples-5"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>7</b> Independence</a><ul>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#theory-5"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#examples-6"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#examples-7"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-8"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rv.html"><a href="rv.html"><i class="fa fa-check"></i><b>10</b> Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#motivating-example-9"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#theory-8"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#additional-exercises-4"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cdf.html"><a href="cdf.html"><i class="fa fa-check"></i><b>11</b> Cumulative Distribution Functions</a><ul>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#theory-9"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#examples-9"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="hypergeometric.html"><a href="hypergeometric.html"><i class="fa fa-check"></i><b>12</b> Hypergeometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#motivating-example-10"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-10"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#visualizing-the-distribution"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#calculating-hypergeometric-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Hypergeometric Probabilities on the Computer</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#another-formula-for-the-hypergeometric-distribution-optional"><i class="fa fa-check"></i>Another Formula for the Hypergeometric Distribution (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#additional-exercises-5"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>13</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#visualizing-the-distribution-1"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-2"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#additional-exercises-6"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="geometric.html"><a href="geometric.html"><i class="fa fa-check"></i><b>14</b> Geometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#motivating-example-12"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#theory-12"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#visualizing-the-distribution-2"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#essential-practice-3"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="negative-binomial.html"><a href="negative-binomial.html"><i class="fa fa-check"></i><b>15</b> Negative Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#motivating-example-13"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#theory-13"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#visualizing-the-distribution-3"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#calculating-negative-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Negative Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#essential-practice-4"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#additional-exercises-7"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="poisson.html"><a href="poisson.html"><i class="fa fa-check"></i><b>16</b> Poisson Distribution</a><ul>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#motivating-example-14"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#theory-14"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#visualizing-the-distribution-4"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#calculating-poisson-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Poisson Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#essential-practice-5"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="poisson-process.html"><a href="poisson-process.html"><i class="fa fa-check"></i><b>17</b> Poisson Process</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#motivating-example-15"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#theory-15"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#why-poisson"><i class="fa fa-check"></i>Why Poisson?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#essential-practice-6"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="joint-discrete.html"><a href="joint-discrete.html"><i class="fa fa-check"></i><b>18</b> Joint Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#motivating-example-16"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#theory-16"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#essential-practice-7"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#additional-exercises-8"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="joint-discrete" class="section level1">
+<h1><span class="header-section-number">Lesson 18</span> Joint Distributions</h1>
+<div id="motivating-example-16" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>Xavier and Yolanda head to the roulette table at a casino. They both place bets on red on 3 spins of the roulette
+wheel before Xavier has to leave. After Xavier leaves, Yolanda places bets on red on 2 more spins of the wheel.
+Let <span class="math inline">\(X\)</span> be the number of bets that Xavier wins and <span class="math inline">\(Y\)</span> be the number that Yolanda wins.</p>
+<p>We know that <span class="math inline">\(X\)</span> follows a <span class="math inline">\(\text{Binomial}(n=3, p=\frac{18}{38})\)</span> distribution so its p.m.f. is
+<span class="math display">\[ f(x) = \binom{3}{x} \left( \frac{18}{38} \right)^x \left(1 - \frac{18}{38} \right)^{3-x}, \]</span>
+which we can write in tabular form as
+<span class="math display">\[ 
+\begin{array}{r|cccc}
+x &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\
+\hline
+f(x) &amp; .1458 &amp; .3936 &amp; .3543 &amp; .1063 \\
+\end{array}.
+\]</span></p>
+<p>We also know that <span class="math inline">\(Y\)</span> follows a <span class="math inline">\(\text{Binomial}(n=5, p=\frac{18}{38})\)</span> distribution so its p.m.f. is
+<span class="math display">\[ 
+\begin{array}{r|cccc}
+y &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5\\
+\hline
+f(y) &amp; .0404 &amp; .1817 &amp; .3271 &amp; .2944 &amp; .1325 &amp; .0238
+\end{array}.
+\]</span></p>
+<p>But this does not tell us how <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are related to each other. In fact, the two random variables have a
+very distinctive relationship. For example, <span class="math inline">\(Y\)</span> must be greater than or equal to <span class="math inline">\(X\)</span>, since Yolanda made the
+same three bets that Xavier did, plus two more. In this lesson, we will learn a way to describe the distribution
+of two (or more) random variables.</p>
+</div>
+<div id="theory-16" class="section level2 unnumbered">
+<h2>Theory</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-71" class="definition"><strong>Definition 18.1  </strong></span>The joint distribution of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is described by the <strong>joint p.m.f.</strong>
+<span class="math display" id="eq:joint-pmf">\[\begin{equation}
+f(x, y) = P(X=x \text{ and } Y=y).
+  \tag{18.1}
+\end{equation}\]</span>
+</div>
+
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-72" class="example"><strong>Example 18.1  </strong></span>Let’s work out the joint p.m.f. of <span class="math inline">\(X\)</span>, the number of bets that Xavier wins, and <span class="math inline">\(Y\)</span>,
+the number of bets that Yolanda wins. To do this, we will lay out the values of <span class="math inline">\(f(x, y)\)</span> in
+a table, like the following.
+<span class="math display" id="eq:joint-pmf-ex1">\[\begin{equation}
+\begin{array}{rr|cccc}
+  &amp; 5 &amp; f(0, 5) &amp; f(1, 5) &amp; f(2, 5) &amp; f(3, 5) \\
+  &amp; 4 &amp; f(0, 4) &amp; f(1, 4) &amp; f(2, 4) &amp; f(3, 4) \\
+y &amp; 3 &amp; f(0, 3) &amp; f(1, 3) &amp; f(2, 3) &amp; f(3, 3) \\
+ &amp; 2 &amp; f(0, 2) &amp; f(1, 2) &amp; f(2, 2) &amp; f(3, 2) \\
+  &amp; 1 &amp; f(0, 1) &amp; f(1, 1) &amp; f(2, 1) &amp; f(3, 1) \\
+  &amp; 0 &amp; f(0, 0) &amp; f(1, 0) &amp; f(2, 0) &amp; f(3, 0) \\
+\hline
+&amp; &amp; 0 &amp; 1 &amp; 2 &amp; 3\\
+&amp; &amp;   &amp; &amp; x
+\end{array}
+\tag{18.2}
+\end{equation}\]</span></p>
+<p>First, we observe that it is impossible for Xavier to win more bets than Yolanda—since
+Yolanda makes all the bets that Xavier does (plus two more). Therefore, we know that
+<span class="math inline">\(f(x,y) = 0\)</span> if <span class="math inline">\(x &gt; y\)</span>. We also know that Yolanda can at most two more bets than
+Xavier. So <span class="math inline">\(f(x, y) = 0\)</span> if <span class="math inline">\(y &gt; x + 2\)</span>. Therefore, we can fill in half of the entries in the table
+with zeroes.
+<span class="math display">\[ \begin{array}{rr|cccc}
+  &amp; 5 &amp; 0 &amp; 0 &amp; 0 &amp; f(3, 5) \\
+  &amp; 4 &amp; 0 &amp; 0 &amp; f(2, 4) &amp; f(3, 4) \\
+y &amp; 3 &amp; 0 &amp; f(1, 3) &amp; f(2, 3) &amp; f(3, 3) \\
+  &amp; 2 &amp; f(0, 2) &amp; f(1, 2) &amp; f(2, 2) &amp; 0 \\
+  &amp; 1 &amp; f(0, 1) &amp; f(1, 1) &amp; 0 &amp; 0 \\
+  &amp; 0 &amp; f(0, 0) &amp; 0 &amp; 0 &amp; 0 \\
+\hline
+&amp; &amp; 0 &amp; 1 &amp; 2 &amp; 3\\
+&amp; &amp;   &amp; &amp; x
+\end{array} \]</span></p>
+<p>Let’s calculate one of the non-zero joint probabilities:
+<span class="math display">\[ f(2, 3) = P(X=2 \text{ and } Y=3). \]</span>
+In order for Xavier to win twice and Yolanda to win 3 times,
+there must have been 2 reds in the first 3 spins and 1 red in the 2 spins after that.
+Because the first 3 spins and the next 2 spins are independent, we can multiply the two binomial probabilities:
+<span class="math display">\[\begin{align*}
+f(2, 3) &amp;= P(\text{2 reds in first 3 spins} \text{ and } \text{1 red in next 2 spins}) \\
+&amp;= \binom{3}{2} \left( \frac{18}{38} \right)^2 \left( 1 - \frac{18}{38} \right)^{1} \cdot \binom{2}{1} \left( \frac{18}{38} \right)^1 \left( 1 - \frac{18}{38} \right)^{1} \\
+&amp;\approx .1766
+\end{align*}\]</span></p>
+<p>As one more example, let’s calculate
+<span class="math display">\[ f(1, 1) = P(X=1 \text{ and } Y=1). \]</span>
+In order for Xavier and Yolanda to each win once, there must have been 1 red in the first 3 spins and 0 reds in the
+next two. Since the first 3 spins and the next 2 spins are independent, we can multiply their probabilities:
+<span class="math display">\[\begin{align*}
+f(1, 1) &amp;= P(\text{1 red in first 3 spins} \text{ and } \text{0 reds in next 2 spins}) \\
+&amp;= \binom{3}{1} \left( \frac{18}{38} \right)^1 \left( 1 - \frac{18}{38} \right)^2 \cdot \binom{2}{0} \left( \frac{18}{38} \right)^0 \left( 1 - \frac{18}{38} \right)^2 \\
+&amp;\approx .1090
+\end{align*}\]</span></p>
+<p>The process for calculating the other probabilities in the table is the same. We look at what each event
+<span class="math inline">\(\{ X=x \text{ and } Y=y\}\)</span> implies about the number of reds in the first 3 spins and the number of reds in the
+next 2 spins; because the first 3 spins and the next 2 spins are independent, we can multiply their probabilities.
+The completed table looks like this:
+<span class="math display">\[ \begin{array}{rr|cccc}
+  &amp; 5 &amp; 0 &amp; 0 &amp; 0 &amp; .0238 \\
+  &amp; 4 &amp; 0 &amp; 0 &amp; .0795 &amp; .0530 \\
+y &amp; 3 &amp; 0 &amp; .0883 &amp; .1766 &amp; .0294 \\
+  &amp; 2 &amp; .0327 &amp; .1963 &amp; .0981 &amp; 0 \\
+  &amp; 1 &amp; .0726 &amp; .1090 &amp; 0 &amp; 0 \\
+  &amp; 0 &amp; .0404 &amp; 0 &amp; 0 &amp; 0 \\
+\hline
+&amp; &amp; 0 &amp; 1 &amp; 2 &amp; 3\\
+&amp; &amp;   &amp; &amp; x
+\end{array} \]</span></p>
+Notice that all of the probabilities in this table add up to <span class="math inline">\(1.0\)</span> (up to rounding error).
+</div>
+
+
+<div class="example">
+<span id="exm:unnamed-chunk-73" class="example"><strong>Example 18.2  (Coin Tosses)  </strong></span>A fair coin is tossed 6 times. Let <span class="math inline">\(X\)</span> be the number of heads in the first 3 tosses.
+Let <span class="math inline">\(Y\)</span> be the number of heads in the last 3 tosses. Calculate the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>,
+and use it to calculate <span class="math inline">\(P(X + Y \leq 2)\)</span>.
+</div>
+
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> The first 3 tosses and the next 3 tosses are independent. Therefore, we know that
+<span class="math display">\[ f(x, y) = P(X=x \text{ and } Y=y) = P(X=x) \cdot P(Y=y) \]</span>
+for any value <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>Since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are both <span class="math inline">\(\text{Binomial}(n=3, N_1=1, N_0=1)\)</span>, we have a formula
+for their p.m.f.s:
+<span class="math display">\[\begin{align*} 
+P(X=x) &amp;= \frac{\binom{3}{x}}{2^3} &amp; P(Y=y) &amp;= \frac{\binom{3}{y}}{2^3}.
+\end{align*}\]</span></p>
+<p>Therefore, we can write the joint p.m.f. as a formula:
+<span class="math display">\[ f(x, y) = \frac{\binom{3}{x}}{2^3}\cdot \frac{\binom{3}{y}}{2^3}, 0 \leq x, y \leq 3. \]</span>
+This is equivalent to writing the probabilities in a table:
+<span class="math display">\[ \begin{array}{rr|cccc}
+  &amp; 3 &amp; .0156 &amp; .0469 &amp; .0469 &amp; .0156 \\
+y &amp; 2 &amp; .0469 &amp; .1406 &amp; .1406 &amp; .0469 \\
+  &amp; 1 &amp; .0469 &amp; .1406 &amp; .1406 &amp; .0469 \\
+  &amp; 0 &amp; .0156 &amp; .0469 &amp; .0469 &amp; .0156 \\
+\hline
+&amp; &amp; 0 &amp; 1 &amp; 2 &amp; 3\\
+&amp; &amp;   &amp; &amp; x
+\end{array}. \]</span></p>
+<p>To use this joint p.m.f. to calculate <span class="math inline">\(P(X + Y \leq 2)\)</span>, we
+add up <span class="math inline">\(f(x, y)\)</span> for values <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> satisfying <span class="math inline">\(x + y \leq 2\)</span>.
+As a formula, we can express this as:
+<span class="math display">\[ P(X + Y \leq 2) = \underset{x, y:\ x + y \leq 2}{\sum\sum} f(x, y). \]</span>
+But it is easier to see what probabilities we need to add
+in the table:
+<span class="math display">\[ \begin{array}{rr|cccc}
+  &amp; 3 &amp; .0156 &amp; .0469 &amp; .0469 &amp; .0156 \\
+y &amp; 2 &amp; \fbox{.0469} &amp; .1406 &amp; .1406 &amp; .0469 \\
+  &amp; 1 &amp; \fbox{.0469} &amp; \fbox{.1406} &amp; .1406 &amp; .0469 \\
+  &amp; 0 &amp; \fbox{.0156} &amp; \fbox{.0469} &amp; \fbox{.0469} &amp; .0156 \\
+\hline
+&amp; &amp; 0 &amp; 1 &amp; 2 &amp; 3\\
+&amp; &amp;   &amp; &amp; x
+\end{array}. \]</span>
+The answer is:
+<span class="math display">\[\begin{align*}
+P(X + Y \leq 2) &amp;= f(0, 0) + f(1, 0) + f(0, 1) + f(0, 2) + f(1, 1) + f(2, 0) \\
+&amp;= .0156 + .0469 + .0469 + .0469 + .1406 + .0469 \\
+&amp;= .3438.
+  \end{align*}\]</span></p>
+Of course, we could have obtained this answer without deriving the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
+The random variable <span class="math inline">\(X + Y\)</span> represents
+the number of heads in 6 tosses of a fair coin, which we know follows a binomial
+distribution. Therefore, we can calculate <span class="math inline">\(P(X + Y \leq 2)\)</span> using the c.d.f. of a
+binomial distribution:
+</div>
+
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">Binomial(n<span class="op">=</span><span class="dv">6</span>, p<span class="op">=</span><span class="fl">0.5</span>).cdf(<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## 0.3437500000000001</code></pre>
+<p>We get the same answer.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-76" class="example"><strong>Example 18.3  (Chicken and the Egg)  </strong></span>The number of eggs laid by a hen, <span class="math inline">\(N\)</span>, is a <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variable. Each
+egg hatches with probability <span class="math inline">\(p\)</span>, independently of any other egg. Let <span class="math inline">\(X\)</span> be the number of
+eggs that hatch into baby chickens. Find the joint p.m.f. of <span class="math inline">\(N\)</span> and <span class="math inline">\(X\)</span>.
+</div>
+
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> First, observe that <span class="math inline">\(N\)</span> is a random variable that can take on values from <span class="math inline">\(0\)</span> and
+<span class="math inline">\(\infty\)</span>. We cannot possibly write down all of the probabilities in a table. We will
+try to write the joint p.m.f. as a formula.</p>
+<p>We are interested in:
+<span class="math display">\[ f(n, x) = P(N = n \text{ and } X = x). \]</span>
+By the multiplication rule (Theorem <a href="conditional.html#thm:multiplication-rule">6.1</a>), we have
+<span class="math display">\[ P(N = n \text{ and } X = x) = P(N = n) P(X = x | N = n). \]</span></p>
+Once we know how many eggs there are, then <span class="math inline">\(X\)</span> follows a binomial distribution. In other words,
+given <span class="math inline">\(\{ N = n \}\)</span>, <span class="math inline">\(X\)</span> is a <span class="math inline">\(\text{Binomial}(n, p)\)</span> random variable. Therefore,
+<span class="math display">\[\begin{align*} 
+P(N = n) P(X = x | N = n) &amp;= e^{-\mu} \frac{\mu^n}{n!} \cdot \binom{n}{x} p^x (1-p)^{n-x} \\
+&amp;= e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!}.
+\end{align*}\]</span>
+This formula is only valid when <span class="math inline">\(x \leq n\)</span>, since we cannot have more baby chickens than eggs.
+So, we can specify the p.m.f. as
+<span class="math display">\[ f(n, x) = \begin{cases} e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!} &amp; 0 \leq x \leq n &lt; \infty \\
+   0 &amp; \text{otherwise} \end{cases}. \]</span>
+</div>
+
+</div>
+<div id="essential-practice-7" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<ol style="list-style-type: decimal">
+<li><p>Two tickets are drawn from a box with <span class="math inline">\(N_1\)</span> <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(N_0\)</span> <span class="math inline">\(\fbox{0}\)</span>s. Let <span class="math inline">\(X\)</span> be the number of
+<span class="math inline">\(\fbox{1}\)</span>s on the first draw and <span class="math inline">\(Y\)</span> be the number of <span class="math inline">\(\fbox{1}\)</span>s on the second draw. (Note that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>
+can only be 0 or 1.)</p>
+<ol style="list-style-type: lower-alpha">
+<li>Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> when the draws are made with replacement.</li>
+<li>Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> when the draws are made without replacement.</li>
+</ol>
+<p>(You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)</p></li>
+<li><p>Two fair, six-sided dice are rolled. Let <span class="math inline">\(S\)</span> be the smaller of the numbers on the two dice.
+Let <span class="math inline">\(L\)</span> be the larger of the numbers on the two dice. (Note: If doubles are rolled, then <span class="math inline">\(S = L\)</span>.)</p>
+<ol style="list-style-type: lower-alpha">
+<li>Find the joint p.m.f. of <span class="math inline">\(S\)</span> and <span class="math inline">\(L\)</span>.</li>
+<li>Use the joint p.m.f. to calculate <span class="math inline">\(P(S + L = 2)\)</span>.</li>
+<li>Repeat for <span class="math inline">\(P(S + L = k)\)</span>, <span class="math inline">\(k = 3, 4, 5, \ldots, 12\)</span>. Why does the answer make sense?</li>
+</ol></li>
+<li><p>A fair coin is tossed 3 times. Let <span class="math inline">\(X\)</span> be the number of heads in these three tosses. Let <span class="math inline">\(Y\)</span> be the
+number of tails in these three tosses. Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
+(You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)</p></li>
+<li><p>At a nuclear plant, radioactive particles hit a Geiger counter at a rate of 3.5 particles per second.
+Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds. Let <span class="math inline">\(Y\)</span> be the number of particles
+detected in the second after that (i.e., the third second). Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
+(You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)</p></li>
+</ol>
+</div>
+<div id="additional-exercises-8" class="section level2 unnumbered">
+<h2>Additional Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>A fair coin is tossed 4 times. Let <span class="math inline">\(X\)</span> be the number of heads in the <em>first</em> three tosses. Let <span class="math inline">\(Y\)</span> be the
+number of heads in the <em>last</em> three tosses. Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
+(<em>Hint:</em> There are only <span class="math inline">\(2^4 = 16\)</span> equally likely outcomes when you toss 4 coins. If you are
+unable to calculate the probabilities using rules we have learned, just list all the possible outcomes!)</p></li>
+<li><p>At a nuclear plant, radioactive particles hit a Geiger counter at a rate of 3.5 particles per second.
+Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds. Let <span class="math inline">\(Z\)</span> be the number of particles
+detected in the first 3 seconds. Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="poisson-process.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/joint-distributions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
