@@ -304,7 +304,7 @@ of two (or more) random variables.</p>
 </iframe>
 
 <div class="definition">
-<span id="def:unnamed-chunk-71" class="definition"><strong>Definition 18.1  </strong></span>The joint distribution of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is described by the <strong>joint p.m.f.</strong>
+<span id="def:joint-discrete" class="definition"><strong>Definition 18.1  </strong></span>The joint distribution of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is described by the <strong>joint p.m.f.</strong>
 <span class="math display" id="eq:joint-pmf">\[\begin{equation}
 f(x, y) = P(X=x \text{ and } Y=y).
   \tag{18.1}
@@ -313,7 +313,7 @@ f(x, y) = P(X=x \text{ and } Y=y).
 
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-72" class="example"><strong>Example 18.1  </strong></span>Let’s work out the joint p.m.f. of <span class="math inline">\(X\)</span>, the number of bets that Xavier wins, and <span class="math inline">\(Y\)</span>,
+<p><span id="exm:unnamed-chunk-71" class="example"><strong>Example 18.1  </strong></span>Let’s work out the joint p.m.f. of <span class="math inline">\(X\)</span>, the number of bets that Xavier wins, and <span class="math inline">\(Y\)</span>,
 the number of bets that Yolanda wins. To do this, we will lay out the values of <span class="math inline">\(f(x, y)\)</span> in
 a table, like the following.
 <span class="math display" id="eq:joint-pmf-ex1">\[\begin{equation}
@@ -385,7 +385,7 @@ Notice that all of the probabilities in this table add up to <span class="math i
 
 
 <div class="example">
-<span id="exm:unnamed-chunk-73" class="example"><strong>Example 18.2  (Coin Tosses)  </strong></span>A fair coin is tossed 6 times. Let <span class="math inline">\(X\)</span> be the number of heads in the first 3 tosses.
+<span id="exm:unnamed-chunk-72" class="example"><strong>Example 18.2  (Coin Tosses)  </strong></span>A fair coin is tossed 6 times. Let <span class="math inline">\(X\)</span> be the number of heads in the first 3 tosses.
 Let <span class="math inline">\(Y\)</span> be the number of heads in the last 3 tosses. Calculate the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>,
 and use it to calculate <span class="math inline">\(P(X + Y \leq 2)\)</span>.
 </div>
@@ -446,7 +446,7 @@ binomial distribution:
 <p>We get the same answer.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-76" class="example"><strong>Example 18.3  (Chicken and the Egg)  </strong></span>The number of eggs laid by a hen, <span class="math inline">\(N\)</span>, is a <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variable. Each
+<span id="exm:chicken-egg" class="example"><strong>Example 18.3  (Chicken and the Egg)  </strong></span>The number of eggs laid by a hen, <span class="math inline">\(N\)</span>, is a <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variable. Each
 egg hatches with probability <span class="math inline">\(p\)</span>, independently of any other egg. Let <span class="math inline">\(X\)</span> be the number of
 eggs that hatch into baby chickens. Find the joint p.m.f. of <span class="math inline">\(N\)</span> and <span class="math inline">\(X\)</span>.
 </div>
@@ -494,9 +494,10 @@ Let <span class="math inline">\(L\)</span> be the larger of the numbers on the t
 <li><p>A fair coin is tossed 3 times. Let <span class="math inline">\(X\)</span> be the number of heads in these three tosses. Let <span class="math inline">\(Y\)</span> be the
 number of tails in these three tosses. Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
 (You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)</p></li>
-<li><p>At a nuclear plant, radioactive particles hit a Geiger counter at a rate of 3.5 particles per second.
-Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds. Let <span class="math inline">\(Y\)</span> be the number of particles
-detected in the second after that (i.e., the third second). Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
+<li><p>At a nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process
+with a rate of 3.5 particles per second. Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds.
+Let <span class="math inline">\(Y\)</span> be the number of particles detected in the second after that (i.e., the third second). Find the joint
+p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
 (You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)</p></li>
 </ol>
 </div>

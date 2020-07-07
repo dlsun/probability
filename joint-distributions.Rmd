@@ -36,7 +36,7 @@ of two (or more) random variables.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2W0Tsyacf7A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-```{definition}
+```{definition joint-discrete}
 The joint distribution of two random variables $X$ and $Y$ is described by the **joint p.m.f.** 
   \begin{equation}
 f(x, y) = P(X=x \text{ and } Y=y).
@@ -185,7 +185,7 @@ Binomial(n=6, p=0.5).cdf(2)
 We get the same answer.
 
 
-```{example, name="Chicken and the Egg"}
+```{example chicken-egg, name="Chicken and the Egg"}
 The number of eggs laid by a hen, $N$, is a $\text{Poisson}(\mu)$ random variable. Each 
 egg hatches with probability $p$, independently of any other egg. Let $X$ be the number of 
 eggs that hatch into baby chickens. Find the joint p.m.f. of $N$ and $X$.
@@ -236,9 +236,10 @@ Let $L$ be the larger of the numbers on the two dice. (Note: If doubles are roll
 number of tails in these three tosses. Find the joint p.m.f. of $X$ and $Y$. 
 (You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)
 
-4. At a nuclear plant, radioactive particles hit a Geiger counter at a rate of 3.5 particles per second. 
-Let $X$ be the number of particles detected in the first 2 seconds. Let $Y$ be the number of particles 
-detected in the second after that (i.e., the third second). Find the joint p.m.f. of $X$ and $Y$.
+4. At a nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
+with a rate of 3.5 particles per second. Let $X$ be the number of particles detected in the first 2 seconds. 
+Let $Y$ be the number of particles detected in the second after that (i.e., the third second). Find the joint 
+p.m.f. of $X$ and $Y$.
 (You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)
 
 ## Additional Exercises {-}
