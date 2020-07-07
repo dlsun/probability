@@ -1,0 +1,160 @@
+# Marginal Distributions {#marginal-discrete}
+
+## Motivating Example {-}
+
+In Lesson \@ref(joint-discrete), we found the joint distribution of $X$, the number of bets that Xavier wins, and 
+$Y$, the number of bets that Yolanda wins. If all we have is the joint distribution of $X$ and $Y$, can we recover the 
+distribution of $X$ alone?
+
+
+## Theory {-}
+
+Recall from Lesson \@ref(rv) that the p.m.f. of $X$ is defined to be $P(X = x)$ as a function of $x$. 
+To calculate a probaebility from a joint p.m.f., we sum over the relevant outcomes. 
+In this case, we need to sum the joint p.m.f. over all the possible values of $y$ for the 
+given $x$:
+\begin{equation} 
+P(X = x) = \sum_y f(x, y).
+(\#eq:marginal-x-example)
+\end{equation}
+
+If the joint p.m.f. is written out in table form, then \@ref(eq:marginal-x) corresponds to the _column sums_
+of the table, as illustrated in Figure \@ref(fig:marginal-x).
+```{r marginal-x, echo=FALSE, engine='tikz', out.width='80%', fig.ext='png', fig.align='center', fig.cap='Calculating the Marginal Distribution of $X$', engine.opts = list(template = "tikz_template.tex")}
+\begin{tabular}{ll|cccc|}
+ & & \textcolor{blue}{.1457} & \textcolor{blue}{.3936} & \textcolor{blue}{.3542} & \textcolor{blue}{.1062} \\
+\hline
+	\multirow{6}{*}{$y$} 
+	& $5$ & 0 &  0 &  \cellcolor{blue!30}0  & .0238 \\
+	& $4$ & 0 & 0 & \cellcolor{blue!30} .0795 & .0530 \\
+	& $3$ & 0 & .0883 & \cellcolor{blue!30}.1766 & .0294 \\
+	& $2$ & .0327 & .1963 & \cellcolor{blue!30}.0981 & 0 \\
+	& $1$ & .0726 & .1090 & \cellcolor{blue!30}0 & 0 \\
+	& $0$ & .0404 &  0 & \cellcolor{blue!30}0 &  0 \\
+	\hline
+	& & $0$ & $1$ & $2$ & $3$ \\
+	& & \multicolumn{4}{c|}{$x$} 
+	\end{tabular}
+```
+
+Notice how natural it was to write the column totals in the _margins_ of the table in Figure \@ref(fig:marginal-x). For this 
+reason, this collection of probabilities has come to be known as the **marginal distribution** of $X$.
+
+```{definition name="Marginal Distribution"}
+The **marginal p.m.f.** of $X$ refers to the p.m.f. of $X$ when it is calculated from the joint p.m.f. of $X$ and $Y$. 
+Specifically, the marginal p.m.f. $f_X$ can be calculated from the joint p.m.f. $f$ as follows:
+\begin{equation} 
+f_X(x) = \sum_y f(x, y).
+(\#eq:marginal-x)
+\end{equation}
+Notice that we use subscripts in $f_X$ to distinguish this function from the joint distribution $f$ and, later, the 
+marginal distribution of $Y$.
+```
+
+There is also a marginal distribution of $Y$. As you might expect, the marginal p.m.f. is 
+symbolized $f_Y$ and is calculated by summing over all the possible values of $X$:
+\begin{equation} 
+f_Y(y) = \sum_x f(x, y).
+(\#eq:marginal-y)
+\end{equation}
+On a table, the marginal distribution of $Y$ corresponds to the _row sums_ of the table,
+as illustrated in Figure \@ref(fig:marginal-y).
+
+```{r marginal-y, echo=FALSE, engine='tikz', out.width='80%', fig.ext='png', fig.align='center', fig.cap='Calculating the Marginal Distribution of $Y$', engine.opts = list(template = "tikz_template.tex")}
+\begin{tabular}{ll|cccc|l}
+\hline
+	\multirow{6}{*}{$y$} 
+	& $5$ & 0 &  0 &  0  & .0238 & \textcolor{red}{.0238} \\
+	& $4$ & \cellcolor{red!30}0 & \cellcolor{red!30}0 & \cellcolor{red!30}.0795 & \cellcolor{red!30}.0530 & \textcolor{red}{.1325} \\
+	& $3$ & 0 & .0883 & .1766 & .0294 & \textcolor{red}{.2943} \\
+	& $2$ & .0327 & .1963 & .0981 & 0 & \textcolor{red}{.3271} \\
+	& $1$ & .0726 & .1090 & 0 & 0 & \textcolor{red}{.1816} \\
+	& $0$ & .0404 &  0 & 0 &  0 & \textcolor{red}{.0404} \\
+	\hline
+	& & $0$ & $1$ & $2$ & $3$ \\
+	\multicolumn{2}{c}{} & \multicolumn{4}{c}{$x$} &
+	\end{tabular}
+```
+
+Remember that we know the distribution of $Y$. It is $\text{Binomial}(n=5, p=18/38)$. You 
+should verify that the marginal distribution we calculated in \@ref(fig:marginal-y) matches 
+that of a $\text{Binomial}(n=5, p=18/38)$ distribution.
+
+```{theorem, name="Joint Distribution of Independent Random Variables"}
+If $X$ and $Y$ are independent, then 
+\begin{equation}
+f(x, y) = f_X(x) \cdot f_Y(y)
+\end{equation}
+for every pair of values $x$ and $y$. But only if $X$ and $Y$ are independent!
+```
+
+```{proof}
+In Lesson \@ref(joint-discrete), we saw that the joint distribution is _defined_ to be 
+\[ f(x, y) = P(X = x \text{ and } Y=y). \]
+If $X$ and $Y$ are independent, then we can multiply the probabilities, by Theorem \@ref(thm:independence-mult):
+\[ P(X=x) \cdot P(Y=y). \]
+But $P(X=x)$ is just the marginal distribution of $X$ and $P(Y=y)$ the marginal distribution of $Y$. So this is 
+equal to:
+\[ f_X(x) \cdot f_Y(y) \]
+```
+
+
+Let's calculate another marginal distribution---this time from the formula representation of the joint p.m.f.
+
+```{example, name="Marginal Number of Chickens"}
+In Example \@ref(exm:chicken-egg), we found that the joint distribution of the number of eggs $N$ and the 
+number of baby chickens $X$ was
+\begin{equation}
+f(n, x) = \begin{cases} e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!} & 0 \leq x \leq n < \infty \\
+   0 & \text{otherwise}. \end{cases}
+(\#eq:chicken-egg)
+\end{equation}
+What is the marginal distribution of the number of baby chickens, $X$?
+```
+
+```{solution}
+By \@ref(eq:marginal-x), we need to sum the joint p.m.f. $f(n, x)$ over all the possible values of $N$. 
+In \@ref(eq:chicken-egg), we see that the joint p.m.f. is $0$ unless $n \geq x$. So we sum the 
+complicated expression in \@ref(eq:chicken-egg) for all $n$ from $x$ to $\infty$.
+\begin{align*}
+f_X(x) &= \sum_n f(n, x) \\
+&= \sum_{n=x}^\infty e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!} \\
+&= e^{-\mu} \frac{(\mu p)^x}{x!} \sum_{n=x}^\infty \frac{(\mu (1-p))^{n-x}}{(n-x)!} & \text{(pull out terms not depending on $n$)} \\
+&= e^{-\mu} \frac{(\mu p)^x}{x!} \sum_{m=0}^\infty \frac{\nu^m}{m!} & (m=n-x, \nu=\mu(1-p)) \\
+&= e^{-\mu} \frac{(\mu p)^x}{x!} e^{\nu} \underbrace{\sum_{m=0}^\infty e^{-\nu} \frac{\nu^m}{m!}}_{\text{sum of Poisson$(\nu)$ p.m.f.} = 1} & \text{(multiply by $e^{\nu} e^{-\nu} = 1$)} \\
+&= e^{-\mu + \mu(1-p)} \frac{(\mu p)^x}{x!} & (e^{-\mu + \nu}, \nu=\mu(1-p)) \\
+&= e^{-\mu p} \frac{(\mu p)^x}{x!}.
+\end{align*}
+This formula is valid for $x=0, 1, 2, \ldots$. We recognize this as the p.m.f. of a $\text{Poisson}(\mu p)$ distribution.
+```
+
+
+## Essential Practice {-}
+
+1. Let $X$ be the number of times a certain numerical control 
+machine will malfunction on a given day. Let $Y$ be the number of times 
+a technician is called on an emergency call. Their joint p.m.f. is given by 
+\[ \begin{array}{rr|cccc}
+  & 5 & 0 & .20 & .10  \\
+y & 3 & .05 & .10 & .35  \\
+  & 1 & .05 & .05 & .10 \\
+\hline
+& & 1 & 2 & 3\\
+& &  & x
+\end{array}. \]
+    a. Calculate the marginal distribution of $X$.
+    b. Calculate the marginal distribution of $Y$.
+    c. Are $X$ and $Y$ independent? How do you know?
+    
+2. Use the joint p.m.f. of the minimum and the maximum of two dice rolls that you calculated in 
+Lesson \@ref(joint-discrete) to find the p.m.f. of the maximum. Use this p.m.f. to 
+solve the "last banana" problem from Lesson \@ref(independence).
+
+3. Suppose two random variables $X$ and $Y$ both have marginal $\text{Binomial}(n=3, p=0.5)$ 
+distributions. In this exercise, you will see that there are many joint distributions that could 
+have those marginal distributions.
+    a. What is the joint p.m.f. if $X$ and $Y$ are independent?
+    b. Can you find at least 2 more joint p.m.f.s with the same marginal distributions?
+    (Hint: What happens if you define $X$ and $Y$ based on just 3 tosses of a coin? What about 4 tosses of a coin?)
+
+## Additional Exercises {-}
