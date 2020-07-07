@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-06" />
+<meta name="date" content="2020-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="poisson-process.html"/>
-
+<link rel="next" href="marginal-discrete.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -247,6 +247,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#theory-16"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#essential-practice-7"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#additional-exercises-8"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="marginal-discrete.html"><a href="marginal-discrete.html"><i class="fa fa-check"></i><b>19</b> Marginal Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#motivating-example-17"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#theory-17"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#essential-practice-8"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#additional-exercises-9"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="conditional-discrete.html"><a href="conditional-discrete.html"><i class="fa fa-check"></i><b>20</b> Conditional Distributions</a><ul>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#motivating-example-18"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#theory-18"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#essential-practice-9"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#additional-exercises-10"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -494,7 +506,7 @@ Let <span class="math inline">\(L\)</span> be the larger of the numbers on the t
 <li><p>A fair coin is tossed 3 times. Let <span class="math inline">\(X\)</span> be the number of heads in these three tosses. Let <span class="math inline">\(Y\)</span> be the
 number of tails in these three tosses. Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
 (You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)</p></li>
-<li><p>At a nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process
+<li><p>At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process
 with a rate of 3.5 particles per second. Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds.
 Let <span class="math inline">\(Y\)</span> be the number of particles detected in the second after that (i.e., the third second). Find the joint
 p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
@@ -508,7 +520,8 @@ p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\
 number of heads in the <em>last</em> three tosses. Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
 (<em>Hint:</em> There are only <span class="math inline">\(2^4 = 16\)</span> equally likely outcomes when you toss 4 coins. If you are
 unable to calculate the probabilities using rules we have learned, just list all the possible outcomes!)</p></li>
-<li><p>At a nuclear plant, radioactive particles hit a Geiger counter at a rate of 3.5 particles per second.
+<li><p>At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process
+with a rate of 3.5 particles per second.
 Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds. Let <span class="math inline">\(Z\)</span> be the number of particles
 detected in the first 3 seconds. Find the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span>.</p></li>
 </ol>
@@ -520,8 +533,8 @@ detected in the first 3 seconds. Find the joint p.m.f. of <span class="math inli
           </div>
         </div>
       </div>
-<a href="poisson-process.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="poisson-process.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="marginal-discrete.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

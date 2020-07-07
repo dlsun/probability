@@ -236,7 +236,7 @@ Let $L$ be the larger of the numbers on the two dice. (Note: If doubles are roll
 number of tails in these three tosses. Find the joint p.m.f. of $X$ and $Y$. 
 (You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)
 
-4. At a nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
+4. At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
 with a rate of 3.5 particles per second. Let $X$ be the number of particles detected in the first 2 seconds. 
 Let $Y$ be the number of particles detected in the second after that (i.e., the third second). Find the joint 
 p.m.f. of $X$ and $Y$.
@@ -249,6 +249,7 @@ number of heads in the _last_ three tosses. Find the joint p.m.f. of $X$ and $Y$
 (_Hint:_ There are only $2^4 = 16$ equally likely outcomes when you toss 4 coins. If you are 
 unable to calculate the probabilities using rules we have learned, just list all the possible outcomes!)
 
-2. At a nuclear plant, radioactive particles hit a Geiger counter at a rate of 3.5 particles per second. 
+2. At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
+with a rate of 3.5 particles per second. 
 Let $X$ be the number of particles detected in the first 2 seconds. Let $Z$ be the number of particles 
 detected in the first 3 seconds. Find the joint p.m.f. of $X$ and $Z$.
