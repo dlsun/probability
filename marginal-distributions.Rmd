@@ -9,7 +9,7 @@ distribution of $X$ alone?
 
 ## Theory {-}
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qzf5X103oZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cMgjahoMGrw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Recall from Lesson \@ref(rv) that the p.m.f. of $X$ is defined to be $P(X = x)$ as a function of $x$. 
 To calculate a probaebility from a joint p.m.f., we sum over the relevant outcomes. 
