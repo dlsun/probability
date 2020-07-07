@@ -44,7 +44,7 @@ reason, this collection of probabilities has come to be known as the **marginal 
 The **marginal p.m.f.** of $X$ refers to the p.m.f. of $X$ when it is calculated from the joint p.m.f. of $X$ and $Y$. 
 Specifically, the marginal p.m.f. $f_X$ can be calculated from the joint p.m.f. $f$ as follows:
 \begin{equation} 
-f_X(x) = \sum_y f(x, y).
+f_X(x) \overset{\text{def}}{=} P(X=x) = \sum_y f(x, y).
 (\#eq:marginal-x)
 \end{equation}
 Notice that we use subscripts in $f_X$ to distinguish this function from the joint distribution $f$ and, later, the 
@@ -54,7 +54,7 @@ marginal distribution of $Y$.
 There is also a marginal distribution of $Y$. As you might expect, the marginal p.m.f. is 
 symbolized $f_Y$ and is calculated by summing over all the possible values of $X$:
 \begin{equation} 
-f_Y(y) = \sum_x f(x, y).
+f_Y(y) \overset{\text{def}}{=} P(Y=y) \sum_x f(x, y).
 (\#eq:marginal-y)
 \end{equation}
 On a table, the marginal distribution of $Y$ corresponds to the _row sums_ of the table,
@@ -65,8 +65,8 @@ as illustrated in Figure \@ref(fig:marginal-y).
 \hline
 	\multirow{6}{*}{$y$} 
 	& $5$ & 0 &  0 &  0  & .0238 & \textcolor{red}{.0238} \\
-	& $4$ & \cellcolor{red!30}0 & \cellcolor{red!30}0 & \cellcolor{red!30}.0795 & \cellcolor{red!30}.0530 & \textcolor{red}{.1325} \\
-	& $3$ & 0 & .0883 & .1766 & .0294 & \textcolor{red}{.2943} \\
+	& $4$ & 0 & 0 & .0795 & .0530 & \textcolor{red}{.1325} \\
+	& $3$ & \cellcolor{red!30}0 & \cellcolor{red!30}.0883 & \cellcolor{red!30}.1766 & \cellcolor{red!30}.0294 & \textcolor{red}{.2943} \\
 	& $2$ & .0327 & .1963 & .0981 & 0 & \textcolor{red}{.3271} \\
 	& $1$ & .0726 & .1090 & 0 & 0 & \textcolor{red}{.1816} \\
 	& $0$ & .0404 &  0 & 0 &  0 & \textcolor{red}{.0404} \\
@@ -85,7 +85,7 @@ If $X$ and $Y$ are independent, then
 \begin{equation}
 f(x, y) = f_X(x) \cdot f_Y(y)
 \end{equation}
-for every pair of values $x$ and $y$. But only if $X$ and $Y$ are independent!
+for all values $x$ and $y$. But only if $X$ and $Y$ are independent!
 ```
 
 ```{proof}
@@ -146,8 +146,8 @@ y & 3 & .05 & .10 & .35  \\
     b. Calculate the marginal distribution of $Y$.
     c. Are $X$ and $Y$ independent? How do you know?
     
-2. Use the joint p.m.f. of the minimum and the maximum of two dice rolls that you calculated in 
-Lesson \@ref(joint-discrete) to find the p.m.f. of the maximum. Use this p.m.f. to 
+2. Use the joint p.m.f. of the smaller and the larger of two dice rolls that you calculated in 
+Lesson \@ref(joint-discrete) to find the p.m.f. of the larger number. Use this p.m.f. to 
 solve the "last banana" problem from Lesson \@ref(independence).
 
 3. Suppose two random variables $X$ and $Y$ both have marginal $\text{Binomial}(n=3, p=0.5)$ 
@@ -158,3 +158,11 @@ have those marginal distributions.
     (Hint: What happens if you define $X$ and $Y$ based on just 3 tosses of a coin? What about 4 tosses of a coin?)
 
 ## Additional Exercises {-}
+
+1. Two tickets are drawn _without replacement_ from a box with $N_1$ $\fbox{1}$s and $N_0$ $\fbox{0}$s. 
+Let $X$ be the number of $\fbox{1}$s on the first draw and $Y$ be the number of $\fbox{1}$s on the second draw. 
+It is clear that the first draw has a $\frac{N_1}{N}$ probability of being a $\fbox{1}$. But what about the 
+second draw?
+
+In Lesson \@ref(joint-discrete), you found the joint distribution of $X$ and $Y$. Use this joint p.m.f. to show 
+that the probability that the second draw is a $\fbox{1}$ is $\frac{N_1}{N}$.

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 19 Marginal Distributions | Introduction to Probability</title>
+  <title>Lesson 20 Conditional Distributions | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 19 Marginal Distributions | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 20 Conditional Distributions | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 19 Marginal Distributions | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 20 Conditional Distributions | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="joint-discrete.html"/>
-<link rel="next" href="conditional-discrete.html"/>
+<link rel="prev" href="marginal-discrete.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -280,115 +280,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="marginal-discrete" class="section level1">
-<h1><span class="header-section-number">Lesson 19</span> Marginal Distributions</h1>
-<div id="motivating-example-17" class="section level2 unnumbered">
+<div id="conditional-discrete" class="section level1">
+<h1><span class="header-section-number">Lesson 20</span> Conditional Distributions</h1>
+<div id="motivating-example-18" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
-<p>In Lesson <a href="joint-discrete.html#joint-discrete">18</a>, we found the joint distribution of <span class="math inline">\(X\)</span>, the number of bets that Xavier wins, and
-<span class="math inline">\(Y\)</span>, the number of bets that Yolanda wins. If all we have is the joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, can we recover the
-distribution of <span class="math inline">\(X\)</span> alone?</p>
+<p>Continuing with the example from Lessons <a href="joint-discrete.html#joint-discrete">18</a> and <a href="marginal-discrete.html#marginal-discrete">19</a>,
+suppose Xavier and Yolanda meet up later for coffee. Xavier has forgotten how many bets he won at roulette,
+but Yolanda clearly remembers that she won 3 bets. What information does this give Xavier about how many
+bets he won?</p>
+<p>First, if Yolanda won 3 bets, Xavier knows that he had to have won
+at least once, since Yolanda only made two more bets than he did.
+But he cannot be sure whether he won 1, 2, or 3 bets. All he can do is assign probabilities to
+these possible values based on the information he has been given.</p>
 </div>
-<div id="theory-17" class="section level2 unnumbered">
+<div id="theory-18" class="section level2 unnumbered">
 <h2>Theory</h2>
-<p>Recall from Lesson <a href="rv.html#rv">10</a> that the p.m.f. of <span class="math inline">\(X\)</span> is defined to be <span class="math inline">\(P(X = x)\)</span> as a function of <span class="math inline">\(x\)</span>.
-To calculate a probaebility from a joint p.m.f., we sum over the relevant outcomes.
-In this case, we need to sum the joint p.m.f. over all the possible values of <span class="math inline">\(y\)</span> for the
-given <span class="math inline">\(x\)</span>:
-<span class="math display" id="eq:marginal-x-example">\[\begin{equation} 
-P(X = x) = \sum_y f(x, y).
-\tag{19.1}
-\end{equation}\]</span></p>
-If the joint p.m.f. is written out in table form, then <a href="marginal-discrete.html#eq:marginal-x">(19.2)</a> corresponds to the <em>column sums</em>
-of the table, as illustrated in Figure <a href="marginal-discrete.html#fig:marginal-x">19.1</a>.
-<div class="figure" style="text-align: center"><span id="fig:marginal-x"></span>
-<img src="bookdown-demo_files/figure-html/marginal-x-1.png" alt="Calculating the Marginal Distribution of $X$" width="80%" />
-<p class="caption">
-Figure 19.1: Calculating the Marginal Distribution of <span class="math inline">\(X\)</span>
-</p>
-</div>
-<p>Notice how natural it was to write the column totals in the <em>margins</em> of the table in Figure <a href="marginal-discrete.html#fig:marginal-x">19.1</a>. For this
-reason, this collection of probabilities has come to be known as the <strong>marginal distribution</strong> of <span class="math inline">\(X\)</span>.</p>
+<p>Xavier wants to know the distribution of the random variable <span class="math inline">\(X\)</span>, given the information in another
+random variable <span class="math inline">\(Y\)</span>. This is called the <strong>conditional distribution</strong> of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span>.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-76" class="definition"><strong>Definition 19.1  (Marginal Distribution)  </strong></span>The <strong>marginal p.m.f.</strong> of <span class="math inline">\(X\)</span> refers to the p.m.f. of <span class="math inline">\(X\)</span> when it is calculated from the joint p.m.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
-Specifically, the marginal p.m.f. <span class="math inline">\(f_X\)</span> can be calculated from the joint p.m.f. <span class="math inline">\(f\)</span> as follows:
-<span class="math display" id="eq:marginal-x">\[\begin{equation} 
-f_X(x) \overset{\text{def}}{=} P(X=x) = \sum_y f(x, y).
-\tag{19.2}
+<span id="def:unnamed-chunk-81" class="definition"><strong>Definition 20.1  (Conditional Distribution)  </strong></span>The <strong>conditional p.m.f.</strong> of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span> is defined as
+<span class="math display" id="eq:conditional-x">\[\begin{equation}
+f_{X|Y}(x|y) \overset{\text{def}}{=} P(X = x | Y = y) = \frac{f(x, y)}{f_Y(y)}.
+\tag{20.1}
 \end{equation}\]</span>
-Notice that we use subscripts in <span class="math inline">\(f_X\)</span> to distinguish this function from the joint distribution <span class="math inline">\(f\)</span> and, later, the
-marginal distribution of <span class="math inline">\(Y\)</span>.
 </div>
 
-<p>There is also a marginal distribution of <span class="math inline">\(Y\)</span>. As you might expect, the marginal p.m.f. is
-symbolized <span class="math inline">\(f_Y\)</span> and is calculated by summing over all the possible values of <span class="math inline">\(X\)</span>:
-<span class="math display" id="eq:marginal-y">\[\begin{equation} 
-f_Y(y) \overset{\text{def}}{=} P(Y=y) \sum_x f(x, y).
-\tag{19.3}
-\end{equation}\]</span>
-On a table, the marginal distribution of <span class="math inline">\(Y\)</span> corresponds to the <em>row sums</em> of the table,
-as illustrated in Figure <a href="marginal-discrete.html#fig:marginal-y">19.2</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:marginal-y"></span>
-<img src="bookdown-demo_files/figure-html/marginal-y-1.png" alt="Calculating the Marginal Distribution of $Y$" width="80%" />
+<p>Visually, we are taking a row of the joint p.m.f. table and dividing the values by the total of that row.
+The process is illustrated in Figure <a href="conditional-discrete.html#fig:conditional-x">20.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:conditional-x"></span>
+<img src="bookdown-demo_files/figure-html/conditional-x-1.png" alt="Calculating the Conditional Distribution of $Y$" width="80%" />
 <p class="caption">
-Figure 19.2: Calculating the Marginal Distribution of <span class="math inline">\(Y\)</span>
+Figure 20.1: Calculating the Conditional Distribution of <span class="math inline">\(Y\)</span>
 </p>
 </div>
-<p>Remember that we know the distribution of <span class="math inline">\(Y\)</span>. It is <span class="math inline">\(\text{Binomial}(n=5, p=18/38)\)</span>. You
-should verify that the marginal distribution we calculated in <a href="marginal-discrete.html#fig:marginal-y">19.2</a> matches
-that of a <span class="math inline">\(\text{Binomial}(n=5, p=18/38)\)</span> distribution.</p>
-
-<div class="theorem">
-<span id="thm:unnamed-chunk-77" class="theorem"><strong>Theorem 19.1  (Joint Distribution of Independent Random Variables)  </strong></span>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then
-<span class="math display">\[\begin{equation}
-f(x, y) = f_X(x) \cdot f_Y(y)
-\end{equation}\]</span>
-for all values <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. But only if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent!
+<p>Notice that the probabilities add up to <span class="math inline">\(1.0\)</span>. This makes sense, since we have exhausted
+all the possible values that <span class="math inline">\(X\)</span> could be.</p>
+<p>Figure <a href="conditional-discrete.html#fig:conditional-pmf">20.2</a> provides another view of what is going on when we divide by the marginal
+p.m.f. of <span class="math inline">\(Y\)</span>. The probabilities in the joint p.m.f. <span class="math inline">\(f(x, y)\)</span> are correct relative to each other; the marginal
+p.m.f. <span class="math inline">\(f_{Y}(y)\)</span> is just a scaling factor to make the probabilities add up to <span class="math inline">\(1.0\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:conditional-pmf"></span>
+<img src="bookdown-demo_files/figure-html/conditional-pmf-1.png" alt="The joint distribution $f(x, 3)$ in red vs. the conditional distribution $f_{X|Y}(x|3)$ in black" width="80%" />
+<p class="caption">
+Figure 20.2: The joint distribution <span class="math inline">\(f(x, 3)\)</span> in red vs. the conditional distribution <span class="math inline">\(f_{X|Y}(x|3)\)</span> in black
+</p>
 </div>
-
-
-<div class="proof">
- <span class="proof"><em>Proof. </em></span> In Lesson <a href="joint-discrete.html#joint-discrete">18</a>, we saw that the joint distribution is <em>defined</em> to be
-<span class="math display">\[ f(x, y) = P(X = x \text{ and } Y=y). \]</span>
-If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then we can multiply the probabilities, by Theorem <a href="independence.html#thm:independence-mult">7.1</a>:
-<span class="math display">\[ P(X=x) \cdot P(Y=y). \]</span>
-But <span class="math inline">\(P(X=x)\)</span> is just the marginal distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(P(Y=y)\)</span> the marginal distribution of <span class="math inline">\(Y\)</span>. So this is
-equal to:
-<span class="math display">\[ f_X(x) \cdot f_Y(y) \]</span>
-</div>
-
-<p>Let’s calculate another marginal distribution—this time from the formula representation of the joint p.m.f.</p>
+<p>Let’s calculate another conditional distribution—this time using formulas, rather than tables.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-79" class="example"><strong>Example 19.1  (Marginal Number of Chickens)  </strong></span>In Example <a href="joint-discrete.html#exm:chicken-egg">18.3</a>, we found that the joint distribution of the number of eggs <span class="math inline">\(N\)</span> and the
-number of baby chickens <span class="math inline">\(X\)</span> was
-<span class="math display" id="eq:chicken-egg">\[\begin{equation}
-f(n, x) = \begin{cases} e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!} &amp; 0 \leq x \leq n &lt; \infty \\
-   0 &amp; \text{otherwise}. \end{cases}
-\tag{19.4}
-\end{equation}\]</span>
-What is the marginal distribution of the number of baby chickens, <span class="math inline">\(X\)</span>?
+<span id="exm:unnamed-chunk-82" class="example"><strong>Example 20.1  (Conditional Distributions of a Poisson Process)  </strong></span>In San Luis Obispo, radioactive particles hit a Geiger counter according to a Poisson process at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second. Suppose that 7 particles are detected in the first 5 seconds.
+What is the distribution of the number of particles that are detected in the first 3 seconds?
 </div>
 
 
 <div class="solution">
- <span class="solution"><em>Solution. </em></span> By <a href="marginal-discrete.html#eq:marginal-x">(19.2)</a>, we need to sum the joint p.m.f. <span class="math inline">\(f(n, x)\)</span> over all the possible values of <span class="math inline">\(N\)</span>.
-In <a href="marginal-discrete.html#eq:chicken-egg">(19.4)</a>, we see that the joint p.m.f. is <span class="math inline">\(0\)</span> unless <span class="math inline">\(n \geq x\)</span>. So we sum the
-complicated expression in <a href="marginal-discrete.html#eq:chicken-egg">(19.4)</a> for all <span class="math inline">\(n\)</span> from <span class="math inline">\(x\)</span> to <span class="math inline">\(\infty\)</span>.
-<span class="math display">\[\begin{align*}
-f_X(x) &amp;= \sum_n f(n, x) \\
-&amp;= \sum_{n=x}^\infty e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!} \\
-&amp;= e^{-\mu} \frac{(\mu p)^x}{x!} \sum_{n=x}^\infty \frac{(\mu (1-p))^{n-x}}{(n-x)!} &amp; \text{(pull out terms not depending on $n$)} \\
-&amp;= e^{-\mu} \frac{(\mu p)^x}{x!} \sum_{m=0}^\infty \frac{\nu^m}{m!} &amp; (m=n-x, \nu=\mu(1-p)) \\
-&amp;= e^{-\mu} \frac{(\mu p)^x}{x!} e^{\nu} \underbrace{\sum_{m=0}^\infty e^{-\nu} \frac{\nu^m}{m!}}_{\text{sum of Poisson$(\nu)$ p.m.f.} = 1} &amp; \text{(multiply by $e^{\nu} e^{-\nu} = 1$)} \\
-&amp;= e^{-\mu + \mu(1-p)} \frac{(\mu p)^x}{x!} &amp; (e^{-\mu + \nu}, \nu=\mu(1-p)) \\
-&amp;= e^{-\mu p} \frac{(\mu p)^x}{x!}.
-\end{align*}\]</span>
-This formula is valid for <span class="math inline">\(x=0, 1, 2, \ldots\)</span>. We recognize this as the p.m.f. of a <span class="math inline">\(\text{Poisson}(\mu p)\)</span> distribution.
+<p> <span class="solution"><em>Solution. </em></span> If we let <span class="math inline">\(X\)</span> be the number of particles in the first 3 seconds and
+<span class="math inline">\(Y\)</span> be the number of particles in the first 5 seconds, then we are interested in the conditional
+distribution
+<span class="math display">\[ f_{X|Y}(x | 7). \]</span></p>
+<p>From <a href="conditional-discrete.html#eq:conditional-x">(20.1)</a>, we know that this is
+<span class="math display">\[ f_{X|Y}(x | 7) = \frac{f(x, 7)}{f_Y(7)}. \]</span></p>
+<p>The marginal probability <span class="math inline">\(f_Y(7)\)</span> is easy to calculate. <span class="math inline">\(Y\)</span> is the number of arrivals on a <span class="math inline">\(5\)</span>-second interval,
+which we know follows a <span class="math inline">\(\text{Poisson}(\mu=5 \cdot 0.8)\)</span> distribution, by Property 1 of a Poisson Process
+(see Lesson <a href="poisson-process.html#poisson-process">17</a>). Therefore:
+<span class="math display">\[ f_Y(7) = e^{-5 \cdot 0.8} \frac{(5 \cdot 0.8)^7}{7!}. \]</span></p>
+<p>To calculate the joint probability <span class="math inline">\(f(x, 7)\)</span>, we first break the time interval <span class="math inline">\((0, 5)\)</span> into two
+non-overlapping intervals, <span class="math inline">\((0, 3)\)</span> and <span class="math inline">\((3, 5)\)</span>, as shown in Figure <a href="conditional-discrete.html#fig:poisson-process-conditional">20.3</a>.
+We know from Property 2 of a Poisson Process (see Lesson <a href="poisson-process.html#poisson-process">17</a>) that the numbers of arrivals on non-overlapping intervals are independent.
+Let’s represent the number of arrivals on <span class="math inline">\((3, 5)\)</span> by <span class="math inline">\(Z \overset{\text{def}}{=} Y - X\)</span> so that <span class="math inline">\(Z\)</span> is independent
+of <span class="math inline">\(X\)</span>.</p>
 </div>
 
+<div class="figure" style="text-align: center"><span id="fig:poisson-process-conditional"></span>
+<img src="bookdown-demo_files/figure-html/poisson-process-conditional-1.png" alt="Breaking up a Poisson Process" width="70%" />
+<p class="caption">
+Figure 20.3: Breaking up a Poisson Process
+</p>
 </div>
-<div id="essential-practice-8" class="section level2 unnumbered">
+<p>Now, we calculate the joint probability:
+<span class="math display">\[\begin{align*}
+f(x, 7) &amp;= P(X=x \text{ and } Y=7) \\
+&amp;= P(X=x \text{ and } Z=7-x) \\
+&amp;= P(X=x) \cdot P(Z=7-x) &amp; \text{(since $X$ and $Z$ are independent)} \\
+&amp;= e^{-(3 \cdot 0.8)} \frac{(3 \cdot 0.8)^x}{x!} \cdot e^{-(2 \cdot 0.8)} \frac{(2 \cdot 0.8)^{7-x}}{(7-x)!}
+\end{align*}\]</span></p>
+<p>Putting everything together, we find that the conditional distribution is:
+<span class="math display">\[\begin{align*}
+f_{X|Y}(x | 7) &amp;= \frac{f(x, 7)}{f_Y(7)} \\
+&amp;= \frac{e^{-(3 \cdot 0.8)} \frac{(3 \cdot 0.8)^x}{x!} \cdot e^{-(2 \cdot 0.8)} \frac{(2 \cdot 0.8)^{7-x}}{(7-x)!}}{e^{-5 \cdot 0.8} \frac{(5 \cdot 0.8)^7}{7!}} \\
+&amp;= \frac{7!}{x! (7-x)!} \frac{(3 \cdot 0.8)^x \cdot (2 \cdot 0.8)^{7-x}}{(5 \cdot 0.8)^7} \\
+&amp;= \frac{\binom{7}{x} 3^x \cdot 2^{7-x}}{5^7}
+\end{align*}\]</span></p>
+<p>This is just the p.m.f. of a <span class="math inline">\(\text{Binomial}(n=7, N_1=3, N_0=2)\)</span> distribution. The interpretation is this:
+given that there were 7 arrivals on the interval <span class="math inline">\((0, 5)\)</span>, each arrival has a <span class="math inline">\(p=3/5\)</span> chance of falling
+in the first 3 seconds, independently of the other arrivals.</p>
+</div>
+<div id="essential-practice-9" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
 <li>Let <span class="math inline">\(X\)</span> be the number of times a certain numerical control
@@ -403,33 +390,29 @@ y &amp; 3 &amp; .05 &amp; .10 &amp; .35  \\
 &amp; &amp;  &amp; x
 \end{array}. \]</span>
 <ol style="list-style-type: lower-alpha">
-<li>Calculate the marginal distribution of <span class="math inline">\(X\)</span>.</li>
-<li>Calculate the marginal distribution of <span class="math inline">\(Y\)</span>.</li>
-<li>Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent? How do you know?</li>
+<li>Calculate the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=3\)</span>.</li>
+<li>Calculate the conditional distribution of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X=2\)</span>.</li>
+<li>Is <span class="math inline">\(P(Y=3 | X=2)\)</span> the same as <span class="math inline">\(P(X=2 | Y=3)\)</span>?</li>
 </ol></li>
-<li><p>Use the joint p.m.f. of the smaller and the larger of two dice rolls that you calculated in
-Lesson <a href="joint-discrete.html#joint-discrete">18</a> to find the p.m.f. of the larger number. Use this p.m.f. to
-solve the “last banana” problem from Lesson <a href="independence.html#independence">7</a>.</p></li>
-<li>Suppose two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> both have marginal <span class="math inline">\(\text{Binomial}(n=3, p=0.5)\)</span>
-distributions. In this exercise, you will see that there are many joint distributions that could
-have those marginal distributions.
-<ol style="list-style-type: lower-alpha">
-<li>What is the joint p.m.f. if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent?</li>
-<li>Can you find at least 2 more joint p.m.f.s with the same marginal distributions?
-(Hint: What happens if you define <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> based on just 3 tosses of a coin? What about 4 tosses of a coin?)</li>
-</ol></li>
+<li><p>Small aircraft arrive at San Luis Obispo airport according to a Poisson process at a rate of 6 per hour.
+What is the probability that (exactly) 5 small aircraft arrived in the first hour, given that (exactly) 12 aircraft
+arrived in the first two hours? First calculate an appropriate conditional distribution; then, use this
+conditional distribution to answer the question.</p></li>
+<li><p>A fair coin is tossed 10 times. Let <span class="math inline">\(X\)</span> be the total number of heads in the 10 tosses.
+Let <span class="math inline">\(Y\)</span> be the number of heads in the first 6 tosses. Find the conditional distribution of
+<span class="math inline">\(Y\)</span>, given <span class="math inline">\(X = 7\)</span>. This is a named distribution we have learned. Which is it? Specify
+all parameters of this distribution.</p>
+<p>(<em>Hint:</em> In order to identify the named distribution, it is easier to work with formulas
+rather than tables.)</p></li>
 </ol>
 </div>
-<div id="additional-exercises-9" class="section level2 unnumbered">
+<div id="additional-exercises-10" class="section level2 unnumbered">
 <h2>Additional Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Two tickets are drawn <em>without replacement</em> from a box with <span class="math inline">\(N_1\)</span> <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(N_0\)</span> <span class="math inline">\(\fbox{0}\)</span>s.
-Let <span class="math inline">\(X\)</span> be the number of <span class="math inline">\(\fbox{1}\)</span>s on the first draw and <span class="math inline">\(Y\)</span> be the number of <span class="math inline">\(\fbox{1}\)</span>s on the second draw.
-It is clear that the first draw has a <span class="math inline">\(\frac{N_1}{N}\)</span> probability of being a <span class="math inline">\(\fbox{1}\)</span>. But what about the
-second draw?</li>
+<li>Use the joint p.m.f. of the smaller and the larger of two dice rolls that you calculated in
+Lesson <a href="joint-discrete.html#joint-discrete">18</a> to find the conditional distribution of the smaller number,
+given that the larger number was <span class="math inline">\(4\)</span>.</li>
 </ol>
-<p>In Lesson <a href="joint-discrete.html#joint-discrete">18</a>, you found the joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Use this joint p.m.f. to show
-that the probability that the second draw is a <span class="math inline">\(\fbox{1}\)</span> is <span class="math inline">\(\frac{N_1}{N}\)</span>.</p>
 
 </div>
 </div>
@@ -438,8 +421,8 @@ that the probability that the second draw is a <span class="math inline">\(\fbox
           </div>
         </div>
       </div>
-<a href="joint-discrete.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conditional-discrete.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="marginal-discrete.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -470,7 +453,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/marginal-distributions.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/conditional-distributions.Rmd",
 "text": "Edit"
 },
 "history": {
