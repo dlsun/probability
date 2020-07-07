@@ -28,7 +28,7 @@ f_{X|Y}(x|y) \overset{\text{def}}{=} P(X = x | Y = y) = \frac{f(x, y)}{f_Y(y)}.
 Visually, we are taking a row of the joint p.m.f. table and dividing the values by the total of that row. 
 The process is illustrated in Figure \@ref(fig:conditional-x).
 
-```{r conditional-x, echo=FALSE, engine='tikz', out.width='80%', fig.ext='png', fig.align='center', fig.cap='Calculating the Conditional Distribution of $Y$', engine.opts = list(template = "tikz_template.tex")}
+```{r conditional-x, echo=FALSE, engine='tikz', out.width='90%', fig.ext='png', fig.align='center', fig.cap='Calculating the Conditional Distribution of $Y$', engine.opts = list(template = "tikz_template.tex")}
 \begin{tabular}{ll|cccc|l}
 \hline
 	\multirow{6}{*}{$y$} 

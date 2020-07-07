@@ -22,7 +22,7 @@ P(X = x) = \sum_y f(x, y).
 
 If the joint p.m.f. is written out in table form, then \@ref(eq:marginal-x) corresponds to the _column sums_
 of the table, as illustrated in Figure \@ref(fig:marginal-x).
-```{r marginal-x, echo=FALSE, engine='tikz', out.width='80%', fig.ext='png', fig.align='center', fig.cap='Calculating the Marginal Distribution of $X$', engine.opts = list(template = "tikz_template.tex")}
+```{r marginal-x, echo=FALSE, engine='tikz', out.width='60%', fig.ext='png', fig.align='center', fig.cap='Calculating the Marginal Distribution of $X$', engine.opts = list(template = "tikz_template.tex")}
 \begin{tabular}{ll|cccc|}
  & & \textcolor{blue}{.1457} & \textcolor{blue}{.3936} & \textcolor{blue}{.3542} & \textcolor{blue}{.1062} \\
 \hline
@@ -53,16 +53,16 @@ Notice that we use subscripts in $f_X$ to distinguish this function from the joi
 marginal distribution of $Y$.
 ```
 
-There is also a marginal distribution of $Y$. As you might expect, the marginal p.m.f. is 
+There is also a marginal distribution of $Y$. As you might guess, the marginal p.m.f. is 
 symbolized $f_Y$ and is calculated by summing over all the possible values of $X$:
 \begin{equation} 
-f_Y(y) \overset{\text{def}}{=} P(Y=y) \sum_x f(x, y).
+f_Y(y) \overset{\text{def}}{=} P(Y=y) = \sum_x f(x, y).
 (\#eq:marginal-y)
 \end{equation}
 On a table, the marginal distribution of $Y$ corresponds to the _row sums_ of the table,
 as illustrated in Figure \@ref(fig:marginal-y).
 
-```{r marginal-y, echo=FALSE, engine='tikz', out.width='80%', fig.ext='png', fig.align='center', fig.cap='Calculating the Marginal Distribution of $Y$', engine.opts = list(template = "tikz_template.tex")}
+```{r marginal-y, echo=FALSE, engine='tikz', out.width='60%', fig.ext='png', fig.align='center', fig.cap='Calculating the Marginal Distribution of $Y$', engine.opts = list(template = "tikz_template.tex")}
 \begin{tabular}{ll|cccc|l}
 \hline
 	\multirow{6}{*}{$y$} 
