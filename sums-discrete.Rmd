@@ -16,7 +16,7 @@ which we can do by summing the joint p.m.f. over the appropriate values:
 
 For example, to calculate the _total_ number of bets that Xavier and Yolanda win, we 
 calculate $P(X + Y = t)$ for $t = 0, 1, 2, \ldots, 8$. The probabilities that we 
-would need to sum to calculate this for $t=4$ are highlighted in the joint p.m.f. table below:
+would need to sum for $t=4$ are highlighted in the joint p.m.f. table below:
 \[ \begin{array}{rr|cccc}
   & 5 & 0 & 0 & 0 & .0238 \\
   & 4 & \fbox{0} & 0 & .0795 & .0530 \\
@@ -29,8 +29,8 @@ y & 3 & 0 & \fbox{.0883} & .1766 & .0294 \\
 & &   & & x
 \end{array}. \]
 
-Notice that for a fixed value of $t$, $x$ determines the value of $y$ and vice versa. In particular, 
-$y = t - x$. So we can write \@ref(eq:sum-rv-discrete) as 
+For a fixed value of $t$, $x$ determines the value of $y$ (and vice versa). In particular, 
+$y = t - x$. So we can write \@ref(eq:sum-rv-discrete) as a sum over $x$:
 \begin{equation}
 f_T(t) = \sum_x f(x, t-x).
 (\#eq:sum-rv-general)
@@ -38,10 +38,21 @@ f_T(t) = \sum_x f(x, t-x).
 
 This is the general equation for the p.m.f. of the sum $T$. If the random variables are independent, 
 then we can actually say more.
+
 ```{theorem sum-independent, name="Sum of Independent Random Variables"}
 Let $X$ and $Y$ be independent random variables, 
 respectively. Then, the p.m.f. of $T = X + Y$ is the **convolution** of the p.m.f.s of $X$ and $Y$:
-  \[ f_T = f_X * f_Y \]
+  \begin{equation} f_T = f_X * f_Y.
+(\#eq:convolution)
+\end{equation}
+The convolution operator $*$ in \@ref(eq:convolution) is defined as follows:
+\[ f_T(t) = \sum_x f_X(x) \cdot f_Y(t-x). \]
+```
+
+```{proof}
+This follows from \@ref(eq:sum-rv-general), after observing that independence means that the joint distribution 
+is the product of the marginal distributions (Theorem \@ref(thm:joint-independent)):
+\[ f(x, t-x) = f_X(x) \cdot f_Y(t-x). \]
 ```
 
 ```{theorem sum-binomials, name="Sum of Independent Binomials"}
@@ -50,28 +61,65 @@ respectively. Then $T = X + Y$ follows a $\text{Binomial}(n + m, p)$ distributio
 ```
 
 ```{proof}
+We apply Theorem \@ref(thm:sum-independent) to binomial p.m.f.s.
+
 \begin{align*}
-f_T(t) &= \sum_{x=0}^m f_X(x) \cdot f_Y(t-x) \\
-&= \sum_{x=0}^m \binom{n}{x} p^x (1-p)^{n-x} \cdot \binom{m}{t-x} p^{t-x} (1-p)^{m-(t-x)} \\
-&=  \sum_{x=0}^m \binom{n}{x} \binom{m}{t-x} p^t (1-p)^{n+m-t} \\
+f_T(t) &= \sum_{x=0}^t f_X(x) \cdot f_Y(t-x) \\
+&= \sum_{x=0}^t \binom{n}{x} p^x (1-p)^{n-x} \cdot \binom{m}{t-x} p^{t-x} (1-p)^{m-(t-x)} \\
+&=  \sum_{x=0}^t \binom{n}{x} \binom{m}{t-x} p^t (1-p)^{n+m-t} \\
 &= \binom{n+m}{t} p^t (1-p)^{n+m-t},
 \end{align*}
 which is the p.m.f. of a $\text{Binomial}(n + m, p)$ random variable.
 
-Another way to see this is using a box model.
+In the last equality, we used the fact that
+\begin{equation} 
+\sum_{x=0}^t \binom{n}{x} \binom{m}{t-x} = \binom{n+m}{t}. 
+(\#eq:vandermonde)
+\end{equation}
+This equation is known as Vandermonde's identity. One way to see it is to observe 
+\[ \sum_{x=0}^t \frac{\binom{n}{x} \binom{m}{t-x}}{\binom{n+m}{t}} = 1, \]
+since we are summing the p.m.f. of a $\text{Hypergeometric}(t, n, m)$ random variable over 
+all of its possible values $0, 1, 2, \ldots, t$. Now, if we multiply both sides of this equality by 
+\[ \binom{n+m}{t}, \]
+we obtain Vandermonde's identity \@ref(eq:vandermonde).
+
+However, we can see that the sum of two independent binomials must be binomial another way. 
+$X$ represents the number of $\fbox{1}$s in $n$ draws with replacement from a box. 
+$Y$ represents the number of $\fbox{1}$s in $m$ _separate_ draws with replacement from the _same_ box: 
+
+- The draws must be _separate_ because we need $X$ to be independent of $Y$. 
+- We can use the _same_ box because $p$ (which corresponds to how many $\fbox{1}$s and $\fbox{0}$s there 
+                                         are in the box) is the same for $X$ and $Y$.
+
+Instead of drawing $m$ times for $X$ and $n$ times for $Y$, we could 
+simply draw $m+n$ times with replacement from this box. $X+Y$ is then the number of 
+$\fbox{1}$s in these $m+n$ draws and must also be binomial.
 ```
 
 ## Essential Practice {-}
 
-1. Let $X$ and $Y$ be independent $\text{Poisson}(\mu)$ and $\text{Poisson}(\mu)$ random variables. 
+1. Let $X$ and $Y$ be independent $\text{Poisson}(\mu)$ and $\text{Poisson}(\nu)$ random variables. 
 Use convolution to find the distribution of $X + Y$. (_Hint:_ It is a named distribution.) Then, 
-by making an analogy to a Poisson process, explain why this has to be the distribution of $X + Y$.
+by making an analogy to a Poisson process, explain why this must be the distribution of $X + Y$.
+
+    (The binomial theorem will come in handy: $\sum_{x=0}^n \binom{n}{x} a^x b^{n-x} = (a + b)^n$.)
 
 2. Let $X$ and $Y$ be independent $\text{Geometric}(p)$ random variables. Use convolution to 
 find the distribution of $X + Y$. (_Hint:_ It is a named distribution.) Then, by making an 
 analogy to a box model, explain why this has to be the distribution of $X + Y$.
 
 3. Give an example of two $\text{Binomial}(n=3, p=0.5)$ random variables $X$ and $Y$, 
-where $T = X + Y$ does not follow a $\text{Binomial}(n=6, p=0.5)$ distribution.
+where $T = X + Y$ does not follow a $\text{Binomial}(n=6, p=0.5)$ distribution. Why does this 
+not contradict Theorem \@ref(thm:sum-binomials)?
 
 
+## Additional Exercises {-}
+
+1. Let $X$ and $Y$ be independent random variables with the p.m.f. 
+
+| $x$   | 1  | 2  | 3  |  4 | 5  | 6  |
+|------:|:--:|:--:|:--:|:--:|:--:|:--:|
+|$f(x)$ | $1/6$ | $1/6$ | $1/6$ | $1/6$ | $1/6$ | $1/6$
+
+Use convolution to find the p.m.f. of $T = X + Y$. Why does the answer make sense? 
+(_Hint:_ $X$ and $Y$ represent the outcomes when you roll two fair dice.)

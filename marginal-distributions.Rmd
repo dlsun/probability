@@ -82,7 +82,7 @@ Remember that we know the distribution of $Y$. It is $\text{Binomial}(n=5, p=18/
 should verify that the marginal distribution we calculated in \@ref(fig:marginal-y) matches 
 that of a $\text{Binomial}(n=5, p=18/38)$ distribution.
 
-```{theorem, name="Joint Distribution of Independent Random Variables"}
+```{theorem joint-independent, name="Joint Distribution of Independent Random Variables"}
 If $X$ and $Y$ are independent, then 
 \begin{equation}
 f(x, y) = f_X(x) \cdot f_Y(y)

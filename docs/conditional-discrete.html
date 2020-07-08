@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-07" />
+<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="marginal-discrete.html"/>
-
+<link rel="next" href="sums-discrete.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -260,6 +260,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#essential-practice-9"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#additional-exercises-10"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="21" data-path="sums-discrete.html"><a href="sums-discrete.html"><i class="fa fa-check"></i><b>21</b> Sums of Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#theory-19"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#essential-practice-10"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#additional-exercises-11"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -299,7 +304,7 @@ these possible values based on the information he has been given.</p>
 random variable <span class="math inline">\(Y\)</span>. This is called the <strong>conditional distribution</strong> of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span>.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-81" class="definition"><strong>Definition 20.1  (Conditional Distribution)  </strong></span>The <strong>conditional p.m.f.</strong> of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span> is defined as
+<span id="def:unnamed-chunk-80" class="definition"><strong>Definition 20.1  (Conditional Distribution)  </strong></span>The <strong>conditional p.m.f.</strong> of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span> is defined as
 <span class="math display" id="eq:conditional-x">\[\begin{equation}
 f_{X|Y}(x|y) \overset{\text{def}}{=} P(X = x | Y = y) = \frac{f(x, y)}{f_Y(y)}.
 \tag{20.1}
@@ -328,7 +333,7 @@ Figure 20.2: The joint distribution <span class="math inline">\(f(x, 3)\)</span>
 <p>Let’s calculate another conditional distribution—this time using formulas, rather than tables.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-82" class="example"><strong>Example 20.1  (Conditional Distributions of a Poisson Process)  </strong></span>In San Luis Obispo, radioactive particles hit a Geiger counter according to a Poisson process at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second. Suppose that 7 particles are detected in the first 5 seconds.
+<span id="exm:unnamed-chunk-81" class="example"><strong>Example 20.1  (Conditional Distributions of a Poisson Process)  </strong></span>In San Luis Obispo, radioactive particles hit a Geiger counter according to a Poisson process at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second. Suppose that 7 particles are detected in the first 5 seconds.
 What is the distribution of the number of particles that are detected in the first 3 seconds?
 </div>
 
@@ -421,8 +426,8 @@ given that the larger number was <span class="math inline">\(4\)</span>.</li>
           </div>
         </div>
       </div>
-<a href="marginal-discrete.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="marginal-discrete.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sums-discrete.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

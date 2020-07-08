@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-07" />
+<meta name="date" content="2020-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -263,6 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21" data-path="sums-discrete.html"><a href="sums-discrete.html"><i class="fa fa-check"></i><b>21</b> Sums of Random Variables</a><ul>
 <li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#theory-19"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#essential-practice-10"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#additional-exercises-11"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -300,7 +301,7 @@ which we can do by summing the joint p.m.f. over the appropriate values:
 \end{equation}\]</span></p>
 <p>For example, to calculate the <em>total</em> number of bets that Xavier and Yolanda win, we
 calculate <span class="math inline">\(P(X + Y = t)\)</span> for <span class="math inline">\(t = 0, 1, 2, \ldots, 8\)</span>. The probabilities that we
-would need to sum to calculate this for <span class="math inline">\(t=4\)</span> are highlighted in the joint p.m.f. table below:
+would need to sum for <span class="math inline">\(t=4\)</span> are highlighted in the joint p.m.f. table below:
 <span class="math display">\[ \begin{array}{rr|cccc}
   &amp; 5 &amp; 0 &amp; 0 &amp; 0 &amp; .0238 \\
   &amp; 4 &amp; \fbox{0} &amp; 0 &amp; .0795 &amp; .0530 \\
@@ -312,19 +313,30 @@ y &amp; 3 &amp; 0 &amp; \fbox{.0883} &amp; .1766 &amp; .0294 \\
 &amp; &amp; 0 &amp; 1 &amp; 2 &amp; 3\\
 &amp; &amp;   &amp; &amp; x
 \end{array}. \]</span></p>
-<p>Notice that for a fixed value of <span class="math inline">\(t\)</span>, <span class="math inline">\(x\)</span> determines the value of <span class="math inline">\(y\)</span> and vice versa. In particular,
-<span class="math inline">\(y = t - x\)</span>. So we can write <a href="sums-discrete.html#eq:sum-rv-discrete">(21.1)</a> as
+<p>For a fixed value of <span class="math inline">\(t\)</span>, <span class="math inline">\(x\)</span> determines the value of <span class="math inline">\(y\)</span> (and vice versa). In particular,
+<span class="math inline">\(y = t - x\)</span>. So we can write <a href="sums-discrete.html#eq:sum-rv-discrete">(21.1)</a> as a sum over <span class="math inline">\(x\)</span>:
 <span class="math display" id="eq:sum-rv-general">\[\begin{equation}
 f_T(t) = \sum_x f(x, t-x).
 \tag{21.2}
 \end{equation}\]</span></p>
-This is the general equation for the p.m.f. of the sum <span class="math inline">\(T\)</span>. If the random variables are independent,
-then we can actually say more.
+<p>This is the general equation for the p.m.f. of the sum <span class="math inline">\(T\)</span>. If the random variables are independent,
+then we can actually say more.</p>
 
 <div class="theorem">
 <span id="thm:sum-independent" class="theorem"><strong>Theorem 21.1  (Sum of Independent Random Variables)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent random variables,
 respectively. Then, the p.m.f. of <span class="math inline">\(T = X + Y\)</span> is the <strong>convolution</strong> of the p.m.f.s of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>:
-<span class="math display">\[ f_T = f_X * f_Y \]</span>
+<span class="math display" id="eq:convolution">\[\begin{equation} f_T = f_X * f_Y.
+\tag{21.3}
+\end{equation}\]</span>
+The convolution operator <span class="math inline">\(*\)</span> in <a href="sums-discrete.html#eq:convolution">(21.3)</a> is defined as follows:
+<span class="math display">\[ f_T(t) = \sum_x f_X(x) \cdot f_Y(t-x). \]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> This follows from <a href="sums-discrete.html#eq:sum-rv-general">(21.2)</a>, after observing that independence means that the joint distribution
+is the product of the marginal distributions (Theorem <a href="marginal-discrete.html#thm:joint-independent">19.1</a>):
+<span class="math display">\[ f(x, t-x) = f_X(x) \cdot f_Y(t-x). \]</span>
 </div>
 
 
@@ -335,29 +347,85 @@ respectively. Then <span class="math inline">\(T = X + Y\)</span> follows a <spa
 
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> <span class="math display">\[\begin{align*}
-f_T(t) &amp;= \sum_{x=0}^m f_X(x) \cdot f_Y(t-x) \\
-&amp;= \sum_{x=0}^m \binom{n}{x} p^x (1-p)^{n-x} \cdot \binom{m}{t-x} p^{t-x} (1-p)^{m-(t-x)} \\
-&amp;=  \sum_{x=0}^m \binom{n}{x} \binom{m}{t-x} p^t (1-p)^{n+m-t} \\
+<p> <span class="proof"><em>Proof. </em></span> We apply Theorem <a href="sums-discrete.html#thm:sum-independent">21.1</a> to binomial p.m.f.s.</p>
+<p><span class="math display">\[\begin{align*}
+f_T(t) &amp;= \sum_{x=0}^t f_X(x) \cdot f_Y(t-x) \\
+&amp;= \sum_{x=0}^t \binom{n}{x} p^x (1-p)^{n-x} \cdot \binom{m}{t-x} p^{t-x} (1-p)^{m-(t-x)} \\
+&amp;=  \sum_{x=0}^t \binom{n}{x} \binom{m}{t-x} p^t (1-p)^{n+m-t} \\
 &amp;= \binom{n+m}{t} p^t (1-p)^{n+m-t},
 \end{align*}\]</span>
 which is the p.m.f. of a <span class="math inline">\(\text{Binomial}(n + m, p)\)</span> random variable.</p>
-Another way to see this is using a box model.
+<p>In the last equality, we used the fact that
+<span class="math display" id="eq:vandermonde">\[\begin{equation} 
+\sum_{x=0}^t \binom{n}{x} \binom{m}{t-x} = \binom{n+m}{t}. 
+\tag{21.4}
+\end{equation}\]</span>
+This equation is known as Vandermonde’s identity. One way to see it is to observe
+<span class="math display">\[ \sum_{x=0}^t \frac{\binom{n}{x} \binom{m}{t-x}}{\binom{n+m}{t}} = 1, \]</span>
+since we are summing the p.m.f. of a <span class="math inline">\(\text{Hypergeometric}(t, n, m)\)</span> random variable over
+all of its possible values <span class="math inline">\(0, 1, 2, \ldots, t\)</span>. Now, if we multiply both sides of this equality by
+<span class="math display">\[ \binom{n+m}{t}, \]</span>
+we obtain Vandermonde’s identity <a href="sums-discrete.html#eq:vandermonde">(21.4)</a>.</p>
+<p>However, we can see that the sum of two independent binomials must be binomial another way.
+<span class="math inline">\(X\)</span> represents the number of <span class="math inline">\(\fbox{1}\)</span>s in <span class="math inline">\(n\)</span> draws with replacement from a box.
+<span class="math inline">\(Y\)</span> represents the number of <span class="math inline">\(\fbox{1}\)</span>s in <span class="math inline">\(m\)</span> <em>separate</em> draws with replacement from the <em>same</em> box:</p>
+<ul>
+<li>The draws must be <em>separate</em> because we need <span class="math inline">\(X\)</span> to be independent of <span class="math inline">\(Y\)</span>.</li>
+<li>We can use the <em>same</em> box because <span class="math inline">\(p\)</span> (which corresponds to how many <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(\fbox{0}\)</span>s there
+are in the box) is the same for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</li>
+</ul>
+Instead of drawing <span class="math inline">\(m\)</span> times for <span class="math inline">\(X\)</span> and <span class="math inline">\(n\)</span> times for <span class="math inline">\(Y\)</span>, we could
+simply draw <span class="math inline">\(m+n\)</span> times with replacement from this box. <span class="math inline">\(X+Y\)</span> is then the number of
+<span class="math inline">\(\fbox{1}\)</span>s in these <span class="math inline">\(m+n\)</span> draws and must also be binomial.
 </div>
 
 </div>
 <div id="essential-practice-10" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <span class="math inline">\(\text{Poisson}(\mu)\)</span> and <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variables.
+<li><p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <span class="math inline">\(\text{Poisson}(\mu)\)</span> and <span class="math inline">\(\text{Poisson}(\nu)\)</span> random variables.
 Use convolution to find the distribution of <span class="math inline">\(X + Y\)</span>. (<em>Hint:</em> It is a named distribution.) Then,
-by making an analogy to a Poisson process, explain why this has to be the distribution of <span class="math inline">\(X + Y\)</span>.</p></li>
+by making an analogy to a Poisson process, explain why this must be the distribution of <span class="math inline">\(X + Y\)</span>.</p>
+<p>(The binomial theorem will come in handy: <span class="math inline">\(\sum_{x=0}^n \binom{n}{x} a^x b^{n-x} = (a + b)^n\)</span>.)</p></li>
 <li><p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <span class="math inline">\(\text{Geometric}(p)\)</span> random variables. Use convolution to
 find the distribution of <span class="math inline">\(X + Y\)</span>. (<em>Hint:</em> It is a named distribution.) Then, by making an
 analogy to a box model, explain why this has to be the distribution of <span class="math inline">\(X + Y\)</span>.</p></li>
 <li><p>Give an example of two <span class="math inline">\(\text{Binomial}(n=3, p=0.5)\)</span> random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>,
-where <span class="math inline">\(T = X + Y\)</span> does not follow a <span class="math inline">\(\text{Binomial}(n=6, p=0.5)\)</span> distribution.</p></li>
+where <span class="math inline">\(T = X + Y\)</span> does not follow a <span class="math inline">\(\text{Binomial}(n=6, p=0.5)\)</span> distribution. Why does this
+not contradict Theorem <a href="sums-discrete.html#thm:sum-binomials">21.2</a>?</p></li>
 </ol>
+</div>
+<div id="additional-exercises-11" class="section level2 unnumbered">
+<h2>Additional Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent random variables with the p.m.f.</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="right"><span class="math inline">\(x\)</span></th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><span class="math inline">\(f(x)\)</span></td>
+<td align="center"><span class="math inline">\(1/6\)</span></td>
+<td align="center"><span class="math inline">\(1/6\)</span></td>
+<td align="center"><span class="math inline">\(1/6\)</span></td>
+<td align="center"><span class="math inline">\(1/6\)</span></td>
+<td align="center"><span class="math inline">\(1/6\)</span></td>
+<td align="center"><span class="math inline">\(1/6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Use convolution to find the p.m.f. of <span class="math inline">\(T = X + Y\)</span>. Why does the answer make sense?
+(<em>Hint:</em> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> represent the outcomes when you roll two fair dice.)</p>
 
 </div>
 </div>
