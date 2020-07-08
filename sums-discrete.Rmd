@@ -1,0 +1,77 @@
+# Sums of Random Variables {#sums-discrete}
+  
+## Theory {-}
+
+Let $X$ and $Y$ be random variables. What is the distribution of their sum---that is, 
+the random variable $T = X + Y$?
+
+In principle, we already know how to calculate this. To determine the distribution of 
+$T$, we need to calculate 
+\[ f_T(t) \overset{\text{def}}{=} P(T = t) = P(X + Y = t), \]
+which we can do by summing the joint p.m.f. over the appropriate values:
+\begin{equation}
+\sum_{(x, y):\ x + y = t} f(x, y). 
+(\#eq:sum-rv-discrete)
+\end{equation}
+
+For example, to calculate the _total_ number of bets that Xavier and Yolanda win, we 
+calculate $P(X + Y = t)$ for $t = 0, 1, 2, \ldots, 8$. The probabilities that we 
+would need to sum to calculate this for $t=4$ are highlighted in the joint p.m.f. table below:
+\[ \begin{array}{rr|cccc}
+  & 5 & 0 & 0 & 0 & .0238 \\
+  & 4 & \fbox{0} & 0 & .0795 & .0530 \\
+y & 3 & 0 & \fbox{.0883} & .1766 & .0294 \\
+  & 2 & .0327 & .1963 & \fbox{.0981} & 0 \\
+  & 1 & .0726 & .1090 & 0 & \fbox{0} \\
+  & 0 & .0404 & 0 & 0 & 0 \\
+\hline
+& & 0 & 1 & 2 & 3\\
+& &   & & x
+\end{array}. \]
+
+Notice that for a fixed value of $t$, $x$ determines the value of $y$ and vice versa. In particular, 
+$y = t - x$. So we can write \@ref(eq:sum-rv-discrete) as 
+\begin{equation}
+f_T(t) = \sum_x f(x, t-x).
+(\#eq:sum-rv-general)
+\end{equation}
+
+This is the general equation for the p.m.f. of the sum $T$. If the random variables are independent, 
+then we can actually say more.
+```{theorem sum-independent, name="Sum of Independent Random Variables"}
+Let $X$ and $Y$ be independent random variables, 
+respectively. Then, the p.m.f. of $T = X + Y$ is the **convolution** of the p.m.f.s of $X$ and $Y$:
+  \[ f_T = f_X * f_Y \]
+```
+
+```{theorem sum-binomials, name="Sum of Independent Binomials"}
+Let $X$ and $Y$ be independent $\text{Binomial}(n, p)$ and $\text{Binomial}(m, p)$ random variables, 
+respectively. Then $T = X + Y$ follows a $\text{Binomial}(n + m, p)$ distribution.
+```
+
+```{proof}
+\begin{align*}
+f_T(t) &= \sum_{x=0}^m f_X(x) \cdot f_Y(t-x) \\
+&= \sum_{x=0}^m \binom{n}{x} p^x (1-p)^{n-x} \cdot \binom{m}{t-x} p^{t-x} (1-p)^{m-(t-x)} \\
+&=  \sum_{x=0}^m \binom{n}{x} \binom{m}{t-x} p^t (1-p)^{n+m-t} \\
+&= \binom{n+m}{t} p^t (1-p)^{n+m-t},
+\end{align*}
+which is the p.m.f. of a $\text{Binomial}(n + m, p)$ random variable.
+
+Another way to see this is using a box model.
+```
+
+## Essential Practice {-}
+
+1. Let $X$ and $Y$ be independent $\text{Poisson}(\mu)$ and $\text{Poisson}(\mu)$ random variables. 
+Use convolution to find the distribution of $X + Y$. (_Hint:_ It is a named distribution.) Then, 
+by making an analogy to a Poisson process, explain why this has to be the distribution of $X + Y$.
+
+2. Let $X$ and $Y$ be independent $\text{Geometric}(p)$ random variables. Use convolution to 
+find the distribution of $X + Y$. (_Hint:_ It is a named distribution.) Then, by making an 
+analogy to a box model, explain why this has to be the distribution of $X + Y$.
+
+3. Give an example of two $\text{Binomial}(n=3, p=0.5)$ random variables $X$ and $Y$, 
+where $T = X + Y$ does not follow a $\text{Binomial}(n=6, p=0.5)$ distribution.
+
+
