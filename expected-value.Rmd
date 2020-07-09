@@ -118,9 +118,9 @@ random variable.
   E[X] &= \sum_{x=0}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} \\
   &= \sum_{x=1}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n},
   \end{align*}
-  where the only thing we changed in going from the first line to the second was to start the sum at $x=1$ 
+  where the only change from line 1 to line 2 was to start the sum at $x=1$ 
     instead of $x=0$. (We can do this because the summand is 0 when $x=0$.) 
-  Now we use replace $x \cdot \binom{n}{x}$ using the identity \@ref(eq:committee-chair):
+  Next, we replace $x \cdot \binom{n}{x}$ using the identity \@ref(eq:committee-chair):
   \begin{align*}
   &= \sum_{x=1}^n n \binom{n-1}{x-1} \frac{N_1^x N_0^{n-x}}{N^n} \\
   &= n\sum_{x=1}^n \binom{n-1}{x-1} \frac{N_1^x N_0^{n-x}}{N^n} & (\text{pull $n$ outside the sum}) \\

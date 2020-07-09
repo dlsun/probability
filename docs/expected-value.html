@@ -396,9 +396,9 @@ random variable.
   E[X] &amp;= \sum_{x=0}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} \\
   &amp;= \sum_{x=1}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n},
   \end{align*}\]</span>
-where the only thing we changed in going from the first line to the second was to start the sum at <span class="math inline">\(x=1\)</span>
+where the only change from line 1 to line 2 was to start the sum at <span class="math inline">\(x=1\)</span>
 instead of <span class="math inline">\(x=0\)</span>. (We can do this because the summand is 0 when <span class="math inline">\(x=0\)</span>.)
-Now we use replace <span class="math inline">\(x \cdot \binom{n}{x}\)</span> using the identity <a href="box-models.html#eq:committee-chair">(3.2)</a>:
+Next, we replace <span class="math inline">\(x \cdot \binom{n}{x}\)</span> using the identity <a href="box-models.html#eq:committee-chair">(3.2)</a>:
 <span class="math display">\[\begin{align*}
   &amp;= \sum_{x=1}^n n \binom{n-1}{x-1} \frac{N_1^x N_0^{n-x}}{N^n} \\
   &amp;= n\sum_{x=1}^n \binom{n-1}{x-1} \frac{N_1^x N_0^{n-x}}{N^n} &amp; (\text{pull $n$ outside the sum}) \\
