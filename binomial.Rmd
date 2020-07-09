@@ -421,6 +421,10 @@ play 7 games.)
 
 ## Additional Exercises {-}
 
+1. In the carnival game chuck-a-luck, three dice are rolled. You can make a bet on a particular number (1, 2, 3, 4, 5, 6) showing up. The payout is 1 to 1 if that number shows on (exactly) one die, 2 to 1 if it shows on two dice, and 3 to 1 if it shows up on all three. (You lose your initial stake if your number does not show on any of the dice.) If you make a \$1 bet on the number three, what is the distribution 
+of the amount you win? (Hint: The random variable is not binomial but very closely related to a binomial. You can should 
+be able to write the p.m.f. as a table.)
+
 <!-- 1. You're a professional baseball player and your batting average is $.300$. Let's say that every game you get exactly $4$ at bats. Out of the $162$ games in a baseball season, what is the probability that you end your season with $70$ or more games with exactly $1$ hit? -->
 
 <!-- ------ -->

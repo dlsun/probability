@@ -1,0 +1,147 @@
+# Expected Value {#expected-value}
+
+## Motivating Example {-}
+
+A bet on a single number in roulette has a $1/38$ chance of success. 
+It is clear that we would need to win more than $1 for each 
+dollar we bet, to make it worthwhile to play this game. But what would a 
+fair amount be?
+  
+## Theory {-}
+
+So far in this class, we have described random variables by their p.m.f. or 
+c.d.f. These functions contain everything there is to know about the random variable. 
+However, the p.m.f. or c.d.f. is too much information in most applications. If we want to 
+summarize a random variable by a single number, the **expected value** is usually 
+the right choice.
+
+```{definition expected-value, name="Expected Value"}
+Let $X$ be a random variable with c.d.f. $f(x)$. Then, the **expected value** of $X$, symbolized 
+$E[X]$ is defined as 
+\begin{equation}
+E[X] \overset{\text{def}}{=} \sum_x x \cdot f(x).
+(\#eq:ev)
+\end{equation}
+```
+
+The expected value is a weighted average of the possible values of a random variable, where the 
+weights are the probabilities.
+
+How do we interpret the expected value? The next example explores this question.
+
+```{example, name="Betting on a Number in Roulette"}
+In roulette, betting on a single number pays 35-to-1. That is, for each $1 you bet, you win 
+$35 if the ball lands in that pocket. 
+
+If we let $X$ represent your net winnings (or losses) on this bet, its p.m.f. is 
+\[ \begin{array}{r|cc} x & -1 & 35 \\ \hline f(x) & 37/38 & 1/38 \end{array}. \]
+
+Now, let's calculate the expected value of this random variable.
+\[ E[X] = -1 \cdot \frac{37}{38} + 35 \cdot \frac{1}{38} = -0.053. \]
+
+How do we interpret the expected value of -0.053? It is not even possible for our net winnings to be
+-$0.053 on this bet, since our net winnings can only be
+-$1 or
+$35.
+Instead, this -$0.053 represents a _long-run average_. If we were to repeatedly make the same bet 
+at the roulette wheel, then we will win some and lose some. The amount that we win _per bet_ 
+will approach -$0.053 as we make more and more bets. This is illustrated in Figure \@ref(fig:ev-long-run).
+```
+
+```{r ev-long-run, echo=FALSE, fig.show = "hold", fig.align = "default", fig.asp=1.0, fig.cap="The first 50 bets were all losses, so the average winnings starts at -1. In the long run, it approaches the expected value of -.053, shown in red."}
+set.seed(3)
+n <- 10000
+x <- sample(c(-1, 35), size=n, prob=c(37, 1)/38, replace=T)
+plot(1:n, cumsum(x) / 1:n, xlab="Number of Bets", ylab="Average Winnings Per Bet", type="l", xlim=c(1, n))
+abline(a=-.053, b=0, col="red", lty=2)
+```
+
+Now let's answer the question posed in the lesson. Clearly, the casino's payout of 35-to-1 is still unfavorable to us. 
+But what would the payout need to be to make the game fair? In other words, the p.m.f. is 
+\[ \begin{array}{r|cc} x & -1 & c \\ \hline f(x) & 37/38 & 1/38 \end{array}, \]
+where $c$ is chosen to make the expected value 0: 
+\begin{equation}
+0 = E[X] = -1 \cdot \frac{37}{38} + c \cdot \frac{1}{38}.
+\end{equation}
+The value of $c$ satisfying this equation is $37. So this is the fair payout of the game. Not surprisingly, the 
+casino pays us less.
+
+We can also calculate expected value if we have a formula for the p.m.f. In the following example, we show how 
+to derive a formula for the expected value.
+
+```{example binomial-ev, name="Expected Value of a Binomial Random Variable"}
+The p.m.f. for a binomial random variable $X$ is 
+\[ f(x) = \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n}, x=0, 1, \ldots, n. \]
+Applying \@ref(eq:ev) to this p.m.f. and simplifying, we obtain a formula for the expected value of a binomial 
+random variable:
+  \begin{align*}
+  E[X] &= \sum_{x=0}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} \\
+  &= \sum_{x=1}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} & \text{(start sum at $x=1$, since first term is $0$)} \\
+  &= \sum_{x=1}^n x \cdot \frac{n!}{x! (n-x)!} \frac{N_1^x N_0^{n-x}}{N^n} & \text{(expand definition of binomial coefficient)} \\
+  &= \sum_{x=1}^n \frac{n!}{(x-1)! (n-x)!} \frac{N_1^x N_0^{n-x}}{N^n} & \text{(cancel $x$ with $x! = x \cdot (x-1)!$)} \\
+  &= \sum_{x'=0}^{n-1} \frac{n!}{x'! (n-1-x')!} \frac{N_1^{x' + 1} N_0^{n - 1 - x'}}{N^n} & (x' = x - 1) \\
+  &= n \frac{N_1}{N} \sum_{x'=0}^{n-1} \underbrace{\frac{(n-1)!}{x'! (n-1-x')!}}_{\binom{n-1}{x'}} \frac{N_1^{x'} N_0^{n - 1 - x'}}{N^{n-1}} & (\text{pull factors of $n$, $N_1$, $N$ outside the sum}) \\
+  &= n \frac{N_1}{N} 
+  \end{align*}
+  
+In the last equality, we used the fact that the expression inside the sum is the p.m.f. is a 
+$\text{Binomial}(n-1, N_1, N_0)$ random variable. Since we are summing over all the possible values of this 
+random variable ($0, 1, \ldots n-1$), the sum must equal 1.
+```
+
+Now, if we know that a random variable $X$ has a binomial distribution, we can use the formula 
+\[ E[X] = n\frac{N_1}{N} \]
+instead of calculating it from scratch using \@label(eq:ev) and the p.m.f. We can 
+derive formulas for the expected values of all of the named distributions in a similar way. 
+The formulas are provided in the table below.
+
+| Distribution of $X$  | $E[X]$  |
+|:------|:--:|
+| $\text{Binomial}(n, N_1, N_0)$ | $n \frac{N_1}{N}$ |
+| $\text{Hypergeometric}(n, N_1, N_0)$ | $n \frac{N_1}{N}$ |
+| $\text{Geometric}(p)$ | $\frac{1}{p}$ |
+| $\text{NegativeBinomial}(r, p)$ | $\frac{r}{p}$ |
+| $\text{Poisson}(\mu)$ | $\mu$ |
+
+If your random variable follows one of these named distributions, 
+then you can just look up its expected value in the table above. This is another 
+benefit of learning these named distributions!
+
+## Essential Practice {-}
+
+1. Show that the expected value of a $\text{Poisson}(\mu)$ random variable is $\mu$. (In other words, I am 
+asking you to derive the result in the table above. You should be able to follow Example \@ref(exm:binomial-ev) 
+closely, except using a $\text{Poisson}(\mu)$ p.m.f.)
+
+2. Let's calculate the expected winnings of some other roulette bets:
+
+    a. A bet on reds pays 1-to-1. Calculate your expected net winnings from this bet.
+    b. A "corner" bet is a bet that one of four numbers will come up. It pays 8-to-1. Calculate your expected net 
+    winnings from this bet.
+  
+    What do you notice about the expected winnings from the different bets?
+
+3. One minigame in _The Legend of Zelda: A Link to the Past_ invites you to open one of three 
+treasure chests and keep whatever prize is inside. (See the screenshot below.) 
+The treasure chests contain 1, 20, and 300 rupees, but the prizes are shuffled so you do not 
+which chest contains which prize. The game costs 100 rupees to play. Is this a game you want to 
+play?
+
+    ![](https://gamefaqs1.cbsistatic.com/faqs/32/77032-739.png)
+
+4. In the carnival game chuck-a-luck, three dice are rolled. You make a bet on a particular number (1, 2, 3, 4, 5, 6) showing up. The payout is 1 to 1 if that number shows on (exactly) one die, 2 to 1 if it shows on two dice, and 3 to 1 if it shows up on all three. (You lose your initial stake if your number does not show on any of the dice.) If you make a \$1 bet on the number three, what is your expected net winnings?
+
+4. Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
+Assume packet arrivals meet the assumptions of a Poisson process. How many arrivals would you expect to see 
+over a period of 5 minutes?
+
+## Additional Exercises {-}
+
+1. In craps, one of the most popular side bets is the "field". In a field bet, you are betting on a 2, 3, 4, 9, 10, 11, or 12 on the very next roll. The payout is 1 to 1, except if you roll "snake eyes" (double 1s) or "boxcars" (double 6s), in which case the payout is 2 to 1. Calculate your expected (net) winnings if you make a $1 bet on the field. (As you might expect, this is a negative number.) What would the payout for "snake eyes" and "boxcars" have to be to make this a fair game (i.e., so that your expected net winnings is zero)?
+
+2. Show that the expected value of a $\text{Hypergeometric}(n, N_1, N_0)$ random variable is $n \frac{N_1}{N}$, which 
+is the same as the expected value of a binomial random variable. (In other words, the expected value is the same, 
+whether you draw with or without replacement.)
+
+3. Show that the expected value of a $\text{NegativeBinomial}(r, p)$ random variable is $\frac{r}{p}$. Why does 
+this also imply that the expected value of a $\text{Geometric}(p)$ random variable is $1/p$?
