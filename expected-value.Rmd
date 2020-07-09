@@ -113,25 +113,26 @@ to derive a formula for the expected value.
 The p.m.f. for a binomial random variable $X$ is 
 \[ f(x) = \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n}, x=0, 1, \ldots, n. \]
 Applying \@ref(eq:ev) to this p.m.f. and simplifying, we obtain a formula for the expected value of a binomial 
-random variable:
+random variable.
   \begin{align*}
   E[X] &= \sum_{x=0}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} \\
-  &= \sum_{x=1}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} & \text{(start sum at $x=1$, since first term is $0$)} \\
-  &= \sum_{x=1}^n x \cdot \frac{n!}{x! (n-x)!} \frac{N_1^x N_0^{n-x}}{N^n} & \text{(expand definition of binomial coefficient)} \\
-  &= \sum_{x=1}^n \frac{n!}{(x-1)! (n-x)!} \frac{N_1^x N_0^{n-x}}{N^n} & \text{(cancel $x$ with $x! = x \cdot (x-1)!$)} \\
-  &= \sum_{x'=0}^{n-1} \frac{n!}{x'! (n-1-x')!} \frac{N_1^{x' + 1} N_0^{n - 1 - x'}}{N^n} & (x' = x - 1) \\
-  &= n \frac{N_1}{N} \sum_{x'=0}^{n-1} \underbrace{\frac{(n-1)!}{x'! (n-1-x')!}}_{\binom{n-1}{x'}} \frac{N_1^{x'} N_0^{n - 1 - x'}}{N^{n-1}} & (\text{pull factors of $n$, $N_1$, $N$ outside the sum}) \\
-  &= n \frac{N_1}{N} 
+  &= \sum_{x=1}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n},
   \end{align*}
-  
-In the last equality, we used the fact that the expression inside the sum is the p.m.f. is a 
-$\text{Binomial}(n-1, N_1, N_0)$ random variable. Since we are summing over all the possible values of this 
-random variable ($0, 1, \ldots, n-1$), the sum must equal 1.
+  where the only thing we changed in going from the first line to the second was to start the sum at $x=1$ 
+    instead of $x=0$. (We can do this because the summand is 0 when $x=0$.) 
+  Now we use replace $x \cdot \binom{n}{x}$ using the identity \@ref(eq:committee-chair):
+  \begin{align*}
+  &= \sum_{x=1}^n n \binom{n-1}{x-1} \frac{N_1^x N_0^{n-x}}{N^n} \\
+  &= n\sum_{x=1}^n \binom{n-1}{x-1} \frac{N_1^x N_0^{n-x}}{N^n} & (\text{pull $n$ outside the sum}) \\
+  &= n \sum_{x'=0}^{n-1} \binom{n-1}{x'} \frac{N_1^{x' + 1} N_0^{n - 1 - x'}}{N^n} & (\text{apply substitution $x' = x - 1$}) \\
+  &= n \frac{N_1}{N} \sum_{x'=0}^{n-1} \underbrace{\binom{n-1}{x'} \frac{N_1^{x'} N_0^{n - 1 - x'}}{N^{n-1}}}_{\text{p.m.f. of $\text{Binomial}(n-1, N_1, N_0)$}} & (\text{pull factors of $N_1$ and $N$ outside the sum}) \\
+  &= n \frac{N_1}{N} & (\text{sum of p.m.f. over all possible values is 1})
+  \end{align*}
 ```
 
 Now, if we know that a random variable $X$ has a binomial distribution, we can use the formula 
 \[ E[X] = n\frac{N_1}{N} \]
-instead of calculating it from scratch using \@label(eq:ev) and the p.m.f. We can 
+instead of calculating it from scratch using \@ref(eq:ev) and the p.m.f. We can 
 derive formulas for the expected values of all of the named distributions in a similar way. 
 The formulas are provided in the table below.
 

@@ -27,7 +27,7 @@ Can you do the same for the second bet?
 Pascal argued that we should pick the bet with the higher expected value, which is to believe in God.
 
 I present this only as an illustration of how expected value can be applied in surprising 
-contexts, not to convince you to believe or not to believe. I should mention that there have been 
+contexts, not to convince you to believe or not to believe. There have been 
 many philosophical objections to Pascal's wager. If you are interested, this video discusses 
 some of the debates around Pascal's wager. You can find many more discussions on Youtube.
 
@@ -38,8 +38,8 @@ some of the debates around Pascal's wager. You can find many more discussions on
 
 In the Pascal's Wager example, we dealt with random variables which could take on 
 values such as $\infty$ or $-\infty$. It is not surprising that the expected value 
-is infinite in this case. However, the expected value can be infinite, even if 
-the random variable is always finite.
+is infinite when infinity is a possible value. However, the expected value can be infinite, 
+even if the random variable is finite-valued. Let's look at an example.
 
 You are offered the following game at a carnival. 
 The game starts with $1 in a jar.
@@ -58,18 +58,18 @@ For example, if you toss the sequence HHHT, then you win $8 because:
 How much would you be willing to pay to play this game? 
 
 We have seen that the expected value represents the "fair value" of a game. 
-First, let's work out the p.m.f. of the amount you win, $W$. Fill in the first 
+First, let's work out the p.m.f. of the amount of money you win, $W$. Fill in the first 
 few probabilities of this p.m.f. table.
 \[ \begin{array}{rcccccc}
-w & 1 & 2 & . & . & . & \ldots  \\
+w & 1 & 2 & 4 & ? & ? & \ldots  \\
 \hline
-f(w) & 1/2 & 1/4 & . & . & . & \ldots \\
+f(w) & 1/2 & 1/4 & ? & ? & ? & \ldots \\
 \end{array}\]
 
 Now calculate $E[W]$ from the p.m.f. What does this suggest about how much 
-you should be willing to pay? This is a famous problem in probability called the 
+you should be willing to pay? This is a famous puzzle in probability called the 
 **St. Petersburg Paradox**.
 
-Here is a video discussing the St. Petersburg paradox:
+Here is a video discussing the St. Petersburg paradox.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dDl7g_2x74Q?start=369" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

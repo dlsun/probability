@@ -95,7 +95,10 @@ The number of ways to draw $n$ tickets from the box
 \[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{\(N\)}$}, \]
 when _order doesn't matter_, is symbolized $\binom{N}{n}$ (pronounced: "$N$ choose $n$") 
 and is equal to 
-\[ \binom{N}{n} = \frac{N!}{n! (N-n)!}. \]
+\begin{equation}
+\binom{N}{n} = \frac{N!}{n! (N-n)!}. 
+(\#eq:binom-coef)
+\end{equation}
 ```
 ```{proof}
 We know that any set of $n$ distinct objects can be reordered in $n!$ ways. 
@@ -111,6 +114,34 @@ for the unknown in this equation, we end up with:
 \binom{N}{n} \overset{\text{def}}{=} \left(\text{# ways when order doesn't matter}\right) &= \frac{\left(\text{# ways when order matters}\right)}{n!} \\
   &= \frac{N!}{n! (N-n)!}
 \end{align*}
+```
+
+```{example committee-chair, name="Commitee Chair Example"}
+How many different _chaired_ commitees of $k$ people can be formed from $m$ people? A "chaired committee" is a 
+committee where one person has been designated as chair. Two possible committees consisting of the same $k$ people are 
+considered different if they have different chairs.
+
+One way to form the chaired committee is to first choose the $k$ people, and then designate one of the $k$ people as chair. 
+By the multiplication principle (Theorem \@ref(thm:multiplication-principle)), there are 
+\[ \binom{m}{k} \cdot k \]
+ways to do this. (Note that we only care about who is on the committee, not the order in which they were selected to 
+                  be on the committee, so for the purposes of this problem, order does not matter.)
+
+Another way to form the chaired committee is to first choose one of the $m$ people to be chair, and then choose 
+the $k-1$ other members from the remaining $n-1$ people. There are 
+\[ m \cdot \binom{m-1}{k-1} \]
+ways to do this.
+
+Both answers are correct, so they must be equal to one another, yielding the useful combinatorial identity
+\begin{equation}
+k \binom{m}{k} = m \binom{m-1}{k-1}.
+(\#eq:committee-chair)
+\end{equation}
+The "story proof" (about the chaired committee) proves this identity. Of course, we could also prove this identity by 
+expanding the combinations using \@ref(eq:binom-coef) and simplifying. One of the Essential Practice 
+problems asks you to do this. However, this algebraic proof does not give much insight into _why_ the identity is 
+true. The story proof gives us the insight that will help us remember this identity in the future. We will use 
+this combinatorial identity many times throughout this book.
 ```
 
 Now, let's revisit the probability of a four-of-a-kind using combinations. If we ignore the order 
@@ -137,20 +168,25 @@ which matches the answer from before. Notice how much simpler $13 \cdot 48$ is, 
 with the mental gymnastics needed to account for the order. 
 
 
+## Essential Practice {-}
 
-## Examples {-}
-
-1. In Lesson \@ref(counting), you calculated the probability of a "flush of hearts" in poker by counting 
+1. Prove the identity \@ref(eq:committee-chair) by expanding the combinations using 
+\@ref(eq:binom-coef) and simplifying.
+2. Prove the identity 
+\[ \binom{m}{k} = \binom{m}{m-k} \] 
+in two ways: using a "story proof" (as in Example \@ref(exm:committee-chair)) and using algebra.
+3. Calculate $\binom{m}{1}$. Why does this answer make sense?
+4. In Lesson \@ref(counting), you calculated the probability of a "flush of hearts" in poker by counting 
 the possible hands. There, you took order into account. Repeat the calculation 
 by counting the possible hands where order does not matter.
-2. How many different 8-letter "words" can be formed by rearranging the letters in LALALAAA? 
+5. How many different 8-letter "words" can be formed by rearranging the letters in LALALAAA? 
 (**Hint:** Model this situation using $n=3$ draws from the box 
 $\fbox{\(\fbox{1}\ \fbox{2}\ \ldots\ \fbox{8}\)}$. The tickets that you 
 draw correspond to the _positions_ of the three Ls. So, for example, drawing 
 $\fbox{3}, \fbox{1}, \fbox{5}$ corresponds to the word LALALAAA. 
 You still need to figure out whether the draws should be made with replacement and whether you should 
 count different orderings of the same 3 tickets.)
-3. You toss a coin 60 times. Each toss results in two equally likely outcomes, heads or tails. 
+6. You toss a coin 60 times. Each toss results in two equally likely outcomes, heads or tails. 
 What is the probability that you get exactly 30 heads in the 60 tosses?
 (**Hint:** To count the number of ways of getting exactly 30 heads, you need to count the number of 
 ways of arranging 30 H and 30 Ts. The general strategy from the previous question may be helpful here.)
