@@ -1,0 +1,75 @@
+# Expected Value and Infinity {#ev-infinity}
+
+## Pascal's Wager {#pascals-wager}
+
+The mathematician Blaise Pascal (1623-1662) made an argument for why it was rational 
+to believe in God---at least the Judeo-Christian God. Pascal acknowledged that God may or 
+may not exist and assigned the probability $p > 0$ to God's existence. Then, he 
+considered the following bets:
+
+1. If you believe in God, and He exists, then your reward is infinite (i.e., eternal salvation). 
+If He does not exist, then your reward is some number $a$, which may be negative but finite.
+2. If you do not believe in God, and He exists, the your reward is negative infinity 
+(i.e., eternal damnation). If He does not exist, then your reward is some number $b$, which is 
+finite.
+
+Looking at the first bet (belief in God), Pascal calculated the expected reward $E[R]$ as follows. The p.m.f. of $R$ is 
+\[ \begin{array}{r|cc}
+r & a & \infty \\
+\hline
+f(r) & 1-p & p,
+\end{array} \]
+and the expected value of this bet is 
+\[ E[R] = a\cdot (1-p) + \infty \cdot p = \infty. \]
+
+Can you do the same for the second bet?
+
+Pascal argued that we should pick the bet with the higher expected value, which is to believe in God.
+
+I present this only as an illustration of how expected value can be applied in surprising 
+contexts, not to convince you to believe or not to believe. I should mention that there have been 
+many philosophical objections to Pascal's wager. If you are interested, this video discusses 
+some of the debates around Pascal's wager. You can find many more discussions on Youtube.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2F_LUFIeUk0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+## St. Petersburg Paradox {#st-petersburg}
+
+In the Pascal's Wager example, we dealt with random variables which could take on 
+values such as $\infty$ or $-\infty$. It is not surprising that the expected value 
+is infinite in this case. However, the expected value can be infinite, even if 
+the random variable is always finite.
+
+You are offered the following game at a carnival. 
+The game starts with $1 in a jar.
+You toss a coin repeatedly. Each time the coin lands heads,
+the amount of money in the jar is doubled. As soon as the 
+coin lands tails, you cash out whatever money is in the jar, and 
+the game ends.
+
+For example, if you toss the sequence HHHT, then you win $8 because:
+
+- After the first H, the amount in the jar is doubled to $2.
+- After the second H, the amount in the jar is doubled to $4.
+- After the third H, the amount in the jar is doubled to $8.
+- After the T, the game ends, and you win the $8 in the jar.
+
+How much would you be willing to pay to play this game? 
+
+We have seen that the expected value represents the "fair value" of a game. 
+First, let's work out the p.m.f. of the amount you win, $W$. Fill in the first 
+few probabilities of this p.m.f. table.
+\[ \begin{array}{rcccccc}
+w & 1 & 2 & . & . & . & \ldots  \\
+\hline
+f(w) & 1/2 & 1/4 & . & . & . & \ldots \\
+\end{array}\]
+
+Now calculate $E[W]$ from the p.m.f. What does this suggest about how much 
+you should be willing to pay? This is a famous problem in probability called the 
+**St. Petersburg Paradox**.
+
+Here is a video discussing the St. Petersburg paradox:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dDl7g_2x74Q?start=369" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

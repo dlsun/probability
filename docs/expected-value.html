@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-08" />
+<meta name="date" content="2020-07-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="sums-discrete.html"/>
-
+<link rel="next" href="ev-infinity.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -271,6 +271,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#essential-practice-11"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#additional-exercises-12"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="23" data-path="ev-infinity.html"><a href="ev-infinity.html"><i class="fa fa-check"></i><b>23</b> Expected Value and Infinity</a><ul>
+<li class="chapter" data-level="23.1" data-path="ev-infinity.html"><a href="ev-infinity.html#pascals-wager"><i class="fa fa-check"></i><b>23.1</b> Pascal’s Wager</a></li>
+<li class="chapter" data-level="23.2" data-path="ev-infinity.html"><a href="ev-infinity.html#st-petersburg"><i class="fa fa-check"></i><b>23.2</b> St. Petersburg Paradox</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -296,13 +300,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="motivating-example-19" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
 <p>A bet on a single number in roulette has a <span class="math inline">\(1/38\)</span> chance of success.
-It is clear that we would need to win more than $1 for each
-dollar we bet, to make it worthwhile to play this game. But what would a
-fair amount be?</p>
+We would not play this game if we were only offered a 1-to-1 payout on this bet—that
+is, a chance to win $1 for each
+$1 we wager. What would the payout have to be to make this game fair?</p>
 </div>
 <div id="theory-20" class="section level2 unnumbered">
 <h2>Theory</h2>
-<p>So far in this class, we have described random variables by their p.m.f. or
+<p>So far in this class, we have described random variables by their p.m.f. or their
 c.d.f. These functions contain everything there is to know about the random variable.
 However, the p.m.f. or c.d.f. is too much information in most applications. If we want to
 summarize a random variable by a single number, the <strong>expected value</strong> is usually
@@ -343,8 +347,36 @@ will approach -$0.053 as we make more and more bets. This is illustrated in Figu
 Figure 22.1: The first 50 bets were all losses, so the average winnings starts at -1. In the long run, it approaches the expected value of -.053, shown in red.
 </p>
 </div>
-<p>Now let’s answer the question posed in the lesson. Clearly, the casino’s payout of 35-to-1 is still unfavorable to us.
-But what would the payout need to be to make the game fair? In other words, the p.m.f. is
+The expected value can also be interpreted as the <em>center of mass</em>. If we imagine the p.m.f. as resting on a scale,
+then the expected value is the pivot point where the scale will perfectly balance.
+<div class="figure" style="text-align: center"><span id="fig:roulette-center-of-mass"></span>
+<img src="bookdown-demo_files/figure-html/roulette-center-of-mass-1.png" alt="Expected Value as Center of Mass" width="100%" />
+<p class="caption">
+Figure 22.2: Expected Value as Center of Mass
+</p>
+</div>
+
+<div class="theorem">
+<span id="thm:ev-as-center-of-mass" class="theorem"><strong>Theorem 22.1  (Expected Value as Center of Mass)  </strong></span>The expected value of a random variable <span class="math inline">\(X\)</span> with p.m.f. <span class="math inline">\(f(x)\)</span> is the center of mass of the p.m.f.
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> Each mass contributes torque around the pivot. Torque is mass times distance from the pivot. In order for the
+beam to balance at a pivot, the total torque around that pivot must be zero. We show that the total torque is zero
+when the pivot is chosen to be the expected value <span class="math inline">\(E[X]\)</span>.
+<span class="math display">\[\begin{align*} 
+\text{torque} &amp;= \sum \text{mass} \cdot (\text{distance from pivot}) \\ 
+&amp;= \sum_x f(x) \cdot (x - E[X]) \\
+&amp;= \underbrace{\sum_x f(x) \cdot x}_{E[X]} - \underbrace{\sum_x f(x)}_{1} \cdot E[X] \\
+&amp;= E[X] - E[X] \\
+&amp;= 0.
+\end{align*}\]</span>
+</div>
+
+<p>Now let’s answer the question posed at the beginning of the lesson. Although the casino’s payout of 35-to-1 is better
+than a 1-to-1 payout, it is still unfavorable to us. What would the payout need to be to make the game fair?
+In other words, we will let the p.m.f. be
 <span class="math display">\[ \begin{array}{r|cc} x &amp; -1 &amp; c \\ \hline f(x) &amp; 37/38 &amp; 1/38 \end{array}, \]</span>
 where <span class="math inline">\(c\)</span> is chosen to make the expected value 0:
 <span class="math display">\[\begin{equation}
@@ -371,7 +403,7 @@ random variable:
   \end{align*}\]</span></p>
 In the last equality, we used the fact that the expression inside the sum is the p.m.f. is a
 <span class="math inline">\(\text{Binomial}(n-1, N_1, N_0)\)</span> random variable. Since we are summing over all the possible values of this
-random variable (<span class="math inline">\(0, 1, \ldots n-1\)</span>), the sum must equal 1.
+random variable (<span class="math inline">\(0, 1, \ldots, n-1\)</span>), the sum must equal 1.
 </div>
 
 <p>Now, if we know that a random variable <span class="math inline">\(X\)</span> has a binomial distribution, we can use the formula
@@ -434,8 +466,8 @@ play?</p>
 <p><img src="https://gamefaqs1.cbsistatic.com/faqs/32/77032-739.png" /></p></li>
 <li><p>In the carnival game chuck-a-luck, three dice are rolled. You make a bet on a particular number (1, 2, 3, 4, 5, 6) showing up. The payout is 1 to 1 if that number shows on (exactly) one die, 2 to 1 if it shows on two dice, and 3 to 1 if it shows up on all three. (You lose your initial stake if your number does not show on any of the dice.) If you make a $1 bet on the number three, what is your expected net winnings?</p></li>
 <li><p>Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
-Assume packet arrivals meet the assumptions of a Poisson process. How many arrivals would you expect to see
-over a period of 5 minutes?</p></li>
+Assume packet arrivals meet the assumptions of a Poisson process.
+How many arrivals would you expect to see over a period of 5 minutes?</p></li>
 </ol>
 </div>
 <div id="additional-exercises-12" class="section level2 unnumbered">
@@ -456,8 +488,8 @@ this also imply that the expected value of a <span class="math inline">\(\text{G
           </div>
         </div>
       </div>
-<a href="sums-discrete.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="sums-discrete.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ev-infinity.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

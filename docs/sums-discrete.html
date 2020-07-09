@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-08" />
+<meta name="date" content="2020-07-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="conditional-discrete.html"/>
-
+<link rel="next" href="expected-value.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -265,6 +265,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#essential-practice-10"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#additional-exercises-11"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="22" data-path="expected-value.html"><a href="expected-value.html"><i class="fa fa-check"></i><b>22</b> Expected Value</a><ul>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#motivating-example-19"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#theory-20"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#essential-practice-11"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#additional-exercises-12"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="ev-infinity.html"><a href="ev-infinity.html"><i class="fa fa-check"></i><b>23</b> Expected Value and Infinity</a><ul>
+<li class="chapter" data-level="23.1" data-path="ev-infinity.html"><a href="ev-infinity.html#pascals-wager"><i class="fa fa-check"></i><b>23.1</b> Pascal’s Wager</a></li>
+<li class="chapter" data-level="23.2" data-path="ev-infinity.html"><a href="ev-infinity.html#st-petersburg"><i class="fa fa-check"></i><b>23.2</b> St. Petersburg Paradox</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -388,7 +398,8 @@ Use convolution to find the distribution of <span class="math inline">\(X + Y\)<
 by making an analogy to a Poisson process, explain why this must be the distribution of <span class="math inline">\(X + Y\)</span>.</p>
 <p>(The binomial theorem will come in handy: <span class="math inline">\(\sum_{x=0}^n \binom{n}{x} a^x b^{n-x} = (a + b)^n\)</span>.)</p></li>
 <li><p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <span class="math inline">\(\text{Geometric}(p)\)</span> random variables. Use convolution to
-find the distribution of <span class="math inline">\(X + Y\)</span>. (<em>Hint:</em> It is a named distribution.) Then, by making an
+find the distribution of <span class="math inline">\(X + Y\)</span>. (<em>Hint:</em> It is a named distribution. It may help to remember
+that <span class="math inline">\(\sum_{i=1}^m 1 = m = \binom{m}{1}\)</span>.) Then, by making an
 analogy to a box model, explain why this has to be the distribution of <span class="math inline">\(X + Y\)</span>.</p></li>
 <li><p>Give an example of two <span class="math inline">\(\text{Binomial}(n=3, p=0.5)\)</span> random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>,
 where <span class="math inline">\(T = X + Y\)</span> does not follow a <span class="math inline">\(\text{Binomial}(n=6, p=0.5)\)</span> distribution. Why does this
@@ -434,8 +445,8 @@ not contradict Theorem <a href="sums-discrete.html#thm:sum-binomials">21.2</a>?<
           </div>
         </div>
       </div>
-<a href="conditional-discrete.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="conditional-discrete.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="expected-value.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -3,13 +3,13 @@
 ## Motivating Example {-}
 
 A bet on a single number in roulette has a $1/38$ chance of success. 
-It is clear that we would need to win more than $1 for each 
-dollar we bet, to make it worthwhile to play this game. But what would a 
-fair amount be?
+We would not play this game if we were only offered a 1-to-1 payout on this bet---that 
+is, a chance to win $1 for each 
+$1 we wager. What would the payout have to be to make this game fair?
   
 ## Theory {-}
 
-So far in this class, we have described random variables by their p.m.f. or 
+So far in this class, we have described random variables by their p.m.f. or their 
 c.d.f. These functions contain everything there is to know about the random variable. 
 However, the p.m.f. or c.d.f. is too much information in most applications. If we want to 
 summarize a random variable by a single number, the **expected value** is usually 
@@ -56,8 +56,48 @@ plot(1:n, cumsum(x) / 1:n, xlab="Number of Bets", ylab="Average Winnings Per Bet
 abline(a=-.053, b=0, col="red", lty=2)
 ```
 
-Now let's answer the question posed in the lesson. Clearly, the casino's payout of 35-to-1 is still unfavorable to us. 
-But what would the payout need to be to make the game fair? In other words, the p.m.f. is 
+The expected value can also be interpreted as the _center of mass_. If we imagine the p.m.f. as resting on a scale, 
+then the expected value is the pivot point where the scale will perfectly balance.
+```{r roulette-center-of-mass, echo=FALSE, engine='tikz', out.width='100%', fig.ext='png', fig.align='center', fig.cap='Expected Value as Center of Mass', engine.opts = list(template = "tikz_template.tex")}
+	\begin{tikzpicture}[scale=.28]
+	
+		\draw [<->] (-2, 0) coordinate -- (37, 0) coordinate;
+
+    \fill[red!50] (-.8, -1.7) -- (-.1, 0) -- (.6, -1.7) -- cycle;
+    \node[anchor=north,red] at (-.1, -1.7) {EV};
+		
+		\foreach \x in {0, 3, ...,36}
+     			\draw (\x,.2) coordinate -- (\x,-.2) coordinate
+				node[anchor=north] {{\small $\x$}};
+		
+			\draw[ultra thick] (-1, 0) coordinate -- (-1, 9.736) coordinate;
+			\draw[ultra thick] (35, 0) coordinate -- (35, 0.5) coordinate;
+			
+			\draw[ultra thick] (25, 8) -- (28, 8);
+			\node[anchor=west] at (28, 8) {single number};
+	
+	\end{tikzpicture}
+```
+
+```{theorem ev-as-center-of-mass, name="Expected Value as Center of Mass"}
+The expected value of a random variable $X$ with p.m.f. $f(x)$ is the center of mass of the p.m.f.
+```
+```{proof}
+Each mass contributes torque around the pivot. Torque is mass times distance from the pivot. In order for the 
+beam to balance at a pivot, the total torque around that pivot must be zero. We show that the total torque is zero 
+when the pivot is chosen to be the expected value $E[X]$.
+\begin{align*} 
+\text{torque} &= \sum \text{mass} \cdot (\text{distance from pivot}) \\ 
+&= \sum_x f(x) \cdot (x - E[X]) \\
+&= \underbrace{\sum_x f(x) \cdot x}_{E[X]} - \underbrace{\sum_x f(x)}_{1} \cdot E[X] \\
+&= E[X] - E[X] \\
+&= 0.
+\end{align*}
+```
+
+Now let's answer the question posed at the beginning of the lesson. Although the casino's payout of 35-to-1 is better 
+than a 1-to-1 payout, it is still unfavorable to us. What would the payout need to be to make the game fair? 
+In other words, we will let the p.m.f. be
 \[ \begin{array}{r|cc} x & -1 & c \\ \hline f(x) & 37/38 & 1/38 \end{array}, \]
 where $c$ is chosen to make the expected value 0: 
 \begin{equation}
@@ -86,7 +126,7 @@ random variable:
   
 In the last equality, we used the fact that the expression inside the sum is the p.m.f. is a 
 $\text{Binomial}(n-1, N_1, N_0)$ random variable. Since we are summing over all the possible values of this 
-random variable ($0, 1, \ldots n-1$), the sum must equal 1.
+random variable ($0, 1, \ldots, n-1$), the sum must equal 1.
 ```
 
 Now, if we know that a random variable $X$ has a binomial distribution, we can use the formula 
@@ -131,9 +171,9 @@ play?
 
 4. In the carnival game chuck-a-luck, three dice are rolled. You make a bet on a particular number (1, 2, 3, 4, 5, 6) showing up. The payout is 1 to 1 if that number shows on (exactly) one die, 2 to 1 if it shows on two dice, and 3 to 1 if it shows up on all three. (You lose your initial stake if your number does not show on any of the dice.) If you make a \$1 bet on the number three, what is your expected net winnings?
 
-4. Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
-Assume packet arrivals meet the assumptions of a Poisson process. How many arrivals would you expect to see 
-over a period of 5 minutes?
+5. Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
+Assume packet arrivals meet the assumptions of a Poisson process. 
+How many arrivals would you expect to see over a period of 5 minutes?
 
 ## Additional Exercises {-}
 

@@ -105,7 +105,8 @@ by making an analogy to a Poisson process, explain why this must be the distribu
     (The binomial theorem will come in handy: $\sum_{x=0}^n \binom{n}{x} a^x b^{n-x} = (a + b)^n$.)
 
 2. Let $X$ and $Y$ be independent $\text{Geometric}(p)$ random variables. Use convolution to 
-find the distribution of $X + Y$. (_Hint:_ It is a named distribution.) Then, by making an 
+find the distribution of $X + Y$. (_Hint:_ It is a named distribution. It may help to remember 
+that $\sum_{i=1}^m 1 = m = \binom{m}{1}$.) Then, by making an 
 analogy to a box model, explain why this has to be the distribution of $X + Y$.
 
 3. Give an example of two $\text{Binomial}(n=3, p=0.5)$ random variables $X$ and $Y$, 
