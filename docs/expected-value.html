@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 22 Expected Value | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 22 Expected Value | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 22 Expected Value | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-07-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sums-discrete.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="double-counting.html"><a href="double-counting.html"><i class="fa fa-check"></i><b>5</b> Double Counting</a><ul>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#motivating-example-4"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#theory-3"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#examples-4"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conditional.html"><a href="conditional.html"><i class="fa fa-check"></i><b>6</b> Conditional Probability</a><ul>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#theory-4"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#examples-5"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>7</b> Independence</a><ul>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#theory-5"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#examples-6"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#examples-7"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-8"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rv.html"><a href="rv.html"><i class="fa fa-check"></i><b>10</b> Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#motivating-example-9"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#theory-8"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#additional-exercises-4"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cdf.html"><a href="cdf.html"><i class="fa fa-check"></i><b>11</b> Cumulative Distribution Functions</a><ul>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#theory-9"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#examples-9"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="hypergeometric.html"><a href="hypergeometric.html"><i class="fa fa-check"></i><b>12</b> Hypergeometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#motivating-example-10"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-10"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#visualizing-the-distribution"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#calculating-hypergeometric-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Hypergeometric Probabilities on the Computer</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#another-formula-for-the-hypergeometric-distribution-optional"><i class="fa fa-check"></i>Another Formula for the Hypergeometric Distribution (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#additional-exercises-5"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>13</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#visualizing-the-distribution-1"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-2"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#additional-exercises-6"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="geometric.html"><a href="geometric.html"><i class="fa fa-check"></i><b>14</b> Geometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#motivating-example-12"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#theory-12"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#visualizing-the-distribution-2"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#essential-practice-3"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="negative-binomial.html"><a href="negative-binomial.html"><i class="fa fa-check"></i><b>15</b> Negative Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#motivating-example-13"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#theory-13"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#visualizing-the-distribution-3"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#calculating-negative-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Negative Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#essential-practice-4"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#additional-exercises-7"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="poisson.html"><a href="poisson.html"><i class="fa fa-check"></i><b>16</b> Poisson Distribution</a><ul>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#motivating-example-14"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#theory-14"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#visualizing-the-distribution-4"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#calculating-poisson-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Poisson Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#essential-practice-5"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="poisson-process.html"><a href="poisson-process.html"><i class="fa fa-check"></i><b>17</b> Poisson Process</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#motivating-example-15"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#theory-15"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#why-poisson"><i class="fa fa-check"></i>Why Poisson?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#essential-practice-6"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="joint-discrete.html"><a href="joint-discrete.html"><i class="fa fa-check"></i><b>18</b> Joint Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#motivating-example-16"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#theory-16"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#essential-practice-7"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#additional-exercises-8"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="marginal-discrete.html"><a href="marginal-discrete.html"><i class="fa fa-check"></i><b>19</b> Marginal Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#motivating-example-17"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#theory-17"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#essential-practice-8"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#additional-exercises-9"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="conditional-discrete.html"><a href="conditional-discrete.html"><i class="fa fa-check"></i><b>20</b> Conditional Distributions</a><ul>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#motivating-example-18"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#theory-18"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#essential-practice-9"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#additional-exercises-10"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="sums-discrete.html"><a href="sums-discrete.html"><i class="fa fa-check"></i><b>21</b> Sums of Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#theory-19"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#essential-practice-10"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#additional-exercises-11"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="expected-value.html"><a href="expected-value.html"><i class="fa fa-check"></i><b>22</b> Expected Value</a><ul>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#motivating-example-19"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#theory-20"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#essential-practice-11"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#additional-exercises-12"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="expected-value" class="section level1">
+<h1><span class="header-section-number">Lesson 22</span> Expected Value</h1>
+<div id="motivating-example-19" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>A bet on a single number in roulette has a <span class="math inline">\(1/38\)</span> chance of success.
+It is clear that we would need to win more than $1 for each
+dollar we bet, to make it worthwhile to play this game. But what would a
+fair amount be?</p>
+</div>
+<div id="theory-20" class="section level2 unnumbered">
+<h2>Theory</h2>
+<p>So far in this class, we have described random variables by their p.m.f. or
+c.d.f. These functions contain everything there is to know about the random variable.
+However, the p.m.f. or c.d.f. is too much information in most applications. If we want to
+summarize a random variable by a single number, the <strong>expected value</strong> is usually
+the right choice.</p>
+
+<div class="definition">
+<span id="def:expected-value" class="definition"><strong>Definition 22.1  (Expected Value)  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable with c.d.f. <span class="math inline">\(f(x)\)</span>. Then, the <strong>expected value</strong> of <span class="math inline">\(X\)</span>, symbolized
+<span class="math inline">\(E[X]\)</span> is defined as
+<span class="math display" id="eq:ev">\[\begin{equation}
+E[X] \overset{\text{def}}{=} \sum_x x \cdot f(x).
+\tag{22.1}
+\end{equation}\]</span>
+</div>
+
+<p>The expected value is a weighted average of the possible values of a random variable, where the
+weights are the probabilities.</p>
+<p>How do we interpret the expected value? The next example explores this question.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-85" class="example"><strong>Example 22.1  (Betting on a Number in Roulette)  </strong></span>In roulette, betting on a single number pays 35-to-1. That is, for each $1 you bet, you win
+$35 if the ball lands in that pocket.</p>
+<p>If we let <span class="math inline">\(X\)</span> represent your net winnings (or losses) on this bet, its p.m.f. is
+<span class="math display">\[ \begin{array}{r|cc} x &amp; -1 &amp; 35 \\ \hline f(x) &amp; 37/38 &amp; 1/38 \end{array}. \]</span></p>
+<p>Now, let’s calculate the expected value of this random variable.
+<span class="math display">\[ E[X] = -1 \cdot \frac{37}{38} + 35 \cdot \frac{1}{38} = -0.053. \]</span></p>
+How do we interpret the expected value of -0.053? It is not even possible for our net winnings to be
+-$0.053 on this bet, since our net winnings can only be
+-$1 or
+$35.
+Instead, this -$0.053 represents a <em>long-run average</em>. If we were to repeatedly make the same bet
+at the roulette wheel, then we will win some and lose some. The amount that we win <em>per bet</em>
+will approach -$0.053 as we make more and more bets. This is illustrated in Figure <a href="expected-value.html#fig:ev-long-run">22.1</a>.
+</div>
+
+<div class="figure"><span id="fig:ev-long-run"></span>
+<img src="bookdown-demo_files/figure-html/ev-long-run-1.png" alt="The first 50 bets were all losses, so the average winnings starts at -1. In the long run, it approaches the expected value of -.053, shown in red." width="672" />
+<p class="caption">
+Figure 22.1: The first 50 bets were all losses, so the average winnings starts at -1. In the long run, it approaches the expected value of -.053, shown in red.
+</p>
+</div>
+<p>Now let’s answer the question posed in the lesson. Clearly, the casino’s payout of 35-to-1 is still unfavorable to us.
+But what would the payout need to be to make the game fair? In other words, the p.m.f. is
+<span class="math display">\[ \begin{array}{r|cc} x &amp; -1 &amp; c \\ \hline f(x) &amp; 37/38 &amp; 1/38 \end{array}, \]</span>
+where <span class="math inline">\(c\)</span> is chosen to make the expected value 0:
+<span class="math display">\[\begin{equation}
+0 = E[X] = -1 \cdot \frac{37}{38} + c \cdot \frac{1}{38}.
+\end{equation}\]</span>
+The value of <span class="math inline">\(c\)</span> satisfying this equation is $37. So this is the fair payout of the game. Not surprisingly, the
+casino pays us less.</p>
+<p>We can also calculate expected value if we have a formula for the p.m.f. In the following example, we show how
+to derive a formula for the expected value.</p>
+
+<div class="example">
+<p><span id="exm:binomial-ev" class="example"><strong>Example 22.2  (Expected Value of a Binomial Random Variable)  </strong></span>The p.m.f. for a binomial random variable <span class="math inline">\(X\)</span> is
+<span class="math display">\[ f(x) = \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n}, x=0, 1, \ldots, n. \]</span>
+Applying <a href="expected-value.html#eq:ev">(22.1)</a> to this p.m.f. and simplifying, we obtain a formula for the expected value of a binomial
+random variable:
+<span class="math display">\[\begin{align*}
+  E[X] &amp;= \sum_{x=0}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} \\
+  &amp;= \sum_{x=1}^n x \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} &amp; \text{(start sum at $x=1$, since first term is $0$)} \\
+  &amp;= \sum_{x=1}^n x \cdot \frac{n!}{x! (n-x)!} \frac{N_1^x N_0^{n-x}}{N^n} &amp; \text{(expand definition of binomial coefficient)} \\
+  &amp;= \sum_{x=1}^n \frac{n!}{(x-1)! (n-x)!} \frac{N_1^x N_0^{n-x}}{N^n} &amp; \text{(cancel $x$ with $x! = x \cdot (x-1)!$)} \\
+  &amp;= \sum_{x&#39;=0}^{n-1} \frac{n!}{x&#39;! (n-1-x&#39;)!} \frac{N_1^{x&#39; + 1} N_0^{n - 1 - x&#39;}}{N^n} &amp; (x&#39; = x - 1) \\
+  &amp;= n \frac{N_1}{N} \sum_{x&#39;=0}^{n-1} \underbrace{\frac{(n-1)!}{x&#39;! (n-1-x&#39;)!}}_{\binom{n-1}{x&#39;}} \frac{N_1^{x&#39;} N_0^{n - 1 - x&#39;}}{N^{n-1}} &amp; (\text{pull factors of $n$, $N_1$, $N$ outside the sum}) \\
+  &amp;= n \frac{N_1}{N} 
+  \end{align*}\]</span></p>
+In the last equality, we used the fact that the expression inside the sum is the p.m.f. is a
+<span class="math inline">\(\text{Binomial}(n-1, N_1, N_0)\)</span> random variable. Since we are summing over all the possible values of this
+random variable (<span class="math inline">\(0, 1, \ldots n-1\)</span>), the sum must equal 1.
+</div>
+
+<p>Now, if we know that a random variable <span class="math inline">\(X\)</span> has a binomial distribution, we can use the formula
+<span class="math display">\[ E[X] = n\frac{N_1}{N} \]</span>
+instead of calculating it from scratch using @label(eq:ev) and the p.m.f. We can
+derive formulas for the expected values of all of the named distributions in a similar way.
+The formulas are provided in the table below.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Distribution of <span class="math inline">\(X\)</span></th>
+<th align="center"><span class="math inline">\(E[X]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N_1}{N}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\text{Hypergeometric}(n, N_1, N_0)\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N_1}{N}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{Geometric}(p)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{p}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\text{NegativeBinomial}(r, p)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r}{p}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{Poisson}(\mu)\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>If your random variable follows one of these named distributions,
+then you can just look up its expected value in the table above. This is another
+benefit of learning these named distributions!</p>
+</div>
+<div id="essential-practice-11" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<ol style="list-style-type: decimal">
+<li><p>Show that the expected value of a <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variable is <span class="math inline">\(\mu\)</span>. (In other words, I am
+asking you to derive the result in the table above. You should be able to follow Example <a href="expected-value.html#exm:binomial-ev">22.2</a>
+closely, except using a <span class="math inline">\(\text{Poisson}(\mu)\)</span> p.m.f.)</p></li>
+<li><p>Let’s calculate the expected winnings of some other roulette bets:</p>
+<ol style="list-style-type: lower-alpha">
+<li>A bet on reds pays 1-to-1. Calculate your expected net winnings from this bet.</li>
+<li>A “corner” bet is a bet that one of four numbers will come up. It pays 8-to-1. Calculate your expected net
+winnings from this bet.</li>
+</ol>
+<p>What do you notice about the expected winnings from the different bets?</p></li>
+<li><p>One minigame in <em>The Legend of Zelda: A Link to the Past</em> invites you to open one of three
+treasure chests and keep whatever prize is inside. (See the screenshot below.)
+The treasure chests contain 1, 20, and 300 rupees, but the prizes are shuffled so you do not
+which chest contains which prize. The game costs 100 rupees to play. Is this a game you want to
+play?</p>
+<p><img src="https://gamefaqs1.cbsistatic.com/faqs/32/77032-739.png" /></p></li>
+<li><p>In the carnival game chuck-a-luck, three dice are rolled. You make a bet on a particular number (1, 2, 3, 4, 5, 6) showing up. The payout is 1 to 1 if that number shows on (exactly) one die, 2 to 1 if it shows on two dice, and 3 to 1 if it shows up on all three. (You lose your initial stake if your number does not show on any of the dice.) If you make a $1 bet on the number three, what is your expected net winnings?</p></li>
+<li><p>Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
+Assume packet arrivals meet the assumptions of a Poisson process. How many arrivals would you expect to see
+over a period of 5 minutes?</p></li>
+</ol>
+</div>
+<div id="additional-exercises-12" class="section level2 unnumbered">
+<h2>Additional Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>In craps, one of the most popular side bets is the “field”. In a field bet, you are betting on a 2, 3, 4, 9, 10, 11, or 12 on the very next roll. The payout is 1 to 1, except if you roll “snake eyes” (double 1s) or “boxcars” (double 6s), in which case the payout is 2 to 1. Calculate your expected (net) winnings if you make a $1 bet on the field. (As you might expect, this is a negative number.) What would the payout for “snake eyes” and “boxcars” have to be to make this a fair game (i.e., so that your expected net winnings is zero)?</p></li>
+<li><p>Show that the expected value of a <span class="math inline">\(\text{Hypergeometric}(n, N_1, N_0)\)</span> random variable is <span class="math inline">\(n \frac{N_1}{N}\)</span>, which
+is the same as the expected value of a binomial random variable. (In other words, the expected value is the same,
+whether you draw with or without replacement.)</p></li>
+<li><p>Show that the expected value of a <span class="math inline">\(\text{NegativeBinomial}(r, p)\)</span> random variable is <span class="math inline">\(\frac{r}{p}\)</span>. Why does
+this also imply that the expected value of a <span class="math inline">\(\text{Geometric}(p)\)</span> random variable is <span class="math inline">\(1/p\)</span>?</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sums-discrete.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/expected-value.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
