@@ -109,6 +109,8 @@ casino pays us less.
 We can also calculate expected value if we have a formula for the p.m.f. In the following example, we show how 
 to derive a formula for the expected value.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/54ntnmRn9sI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{example binomial-ev, name="Expected Value of a Binomial Random Variable"}
 The p.m.f. for a binomial random variable $X$ is 
 \[ f(x) = \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n}, x=0, 1, \ldots, n. \]
