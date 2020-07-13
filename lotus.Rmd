@@ -1,0 +1,92 @@
+# LOTUS {#lotus}
+
+## Motivating Example {-}
+
+In Lesson \@ref(ev-infinity)
+
+## Theory {-}
+
+In this lesson, we will learn how to calculate expected values of _functions_ of random variables. 
+That is, we will calculate expected values of the form $E[g(X)]$. There are two ways to do this:
+
+1. Calculate the p.m.f. of $Y = g(X)$, then calculcate $E[Y]$ from the usual formula \@ref(eq:ev).
+2. Use the **Law of the Unconscious Statistician** (LOTUS), described below.
+
+```{theorem lotus, name="LOTUS"}
+Let $X$ be a random variable with c.d.f. $f_X(x)$. Define $Y = g(X)$ for some function $g$. Then, 
+$E[Y] = E[g(X)]$ is 
+\begin{equation}
+E[g(X)] = \sum_x g(x) \cdot f_X(x).
+(\#eq:lotus)
+\end{equation}
+```
+
+Theorem \@ref{thm:lotus} allows us to calculate the expected value of $Y = g(X)$, without first 
+finding its distribution. Instead, we can just use the known distribution of $X$. 
+
+The result is called the "Law of the Unconscious Statistician" because it is so 
+intuitive that people apply the theorem without even thinking about it. 
+Remember that $E[g(X)]$ represents the "average" value of $g(X)$. To calculate the average value 
+of $g(X)$, it is intuitive that we take a weighted average of the possible values $g(x)$, where the
+weights are the probabilities $f_X(x)$.
+
+Let's first do an example where the Law of the 
+
+Now let's look at the problem in the lesson.
+
+```{example, name="St. Petersburg Paradox Revisited"}
+In Lesson \@ref(ev-infinity)
+
+
+```
+
+
+Here is an example of LOTUS applied to a p.m.f. in formula form. This particular expected value 
+may seem somewhat arbitrary, but it will come in handy later.
+
+```{example binomial-lotus, name="Expected Value of a Binomial Random Variable"}
+Let $X$ be a $\text{Binomial}(n, N_1, N_0)$ random variable. In Example \@ref(exm:binomial-ev), 
+we showed that $E[X] = n \frac{N_1}{N}$. Now, we calculate $E[X(X-1)]$ by applying LOTUS 
+\@ref(eq:lotus) to the binomial p.m.f. 
+\[ f(x) = \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n}, x=0, 1, \ldots, n. \]
+  \begin{align*}
+  E[X(X-1)] &= \sum_{x=0}^n x (x-1) \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n} \\
+  &= \sum_{x=2}^n x(x-1) \cdot \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n},
+  \end{align*}
+  where the only change from line 1 to line 2 was to start the sum at $x=2$ 
+    instead of $x=0$. (We can do this because the summand is 0 when $x=0$ and $x=1$.
+                       Try plugging in $x=0$ and $x=1$ if you do not see this.) 
+  Next, we replace $x(x-1) \cdot \binom{n}{x}$.
+  \begin{align*}
+  &= \sum_{x=2}^n n (n-1) \binom{n-2}{x-2} \frac{N_1^x N_0^{n-x}}{N^n} \\
+  &= n(n-1)\sum_{x=2}^n \binom{n-2}{x-2} \frac{N_1^x N_0^{n-x}}{N^n} & (\text{pull $n(n-1)$ outside the sum}) \\
+  &= n(n-1) \sum_{x'=0}^{n-2} \binom{n-2}{x'} \frac{N_1^{x' + 2} N_0^{n - 2 - x'}}{N^n} & (\text{apply substitution $x' = x - 2$}) \\
+  &= n(n-1) \frac{N_1^2}{N^2} \sum_{x'=0}^{n-2} \underbrace{\binom{n-2}{x'} \frac{N_1^{x'} N_0^{n - 2 - x'}}{N^{n-2}}}_{\text{p.m.f. of $\text{Binomial}(n-2, N_1, N_0)$}} & (\text{pull factors of $N_1$ and $N$ outside the sum}) \\
+  &= n(n-1) \frac{N_1^2}{N^2} & (\text{sum of p.m.f. over all possible values is 1})
+  \end{align*}
+```
+
+## Essential Practice {-}
+
+1. Suppose we generate a random length $L$ (in inches) from the p.m.f. 
+
+| $\ell$ | 1 | 2 | 3 |
+|--:|:-:|:-:|:-:|
+|$f(\ell)$|.2| .5| .3
+
+and draw a square with that sidelength. Calculate $E[L]^2$ and $E[L^2]$. 
+Are they the same? Which one represents the expected area of the square we drew?
+
+2. Let $X$ be a $\text{Poisson}(\mu)$ random variable. Calculate $E[X(X-1)]$.
+
+3. Let $X$ be a $\text{Geometric}(p)$ random variable. Let $t$ be a constant. Calculate 
+$M(t) = E[e^{tX}]$ as a function of $t$. Statisticians call this the 
+**moment generating function** of $X$, while engineers may recognize this function as the 
+**Laplace transform** of the p.m.f. of $X$.
+
+
+## Additional Exercises {-}
+
+1. Let $X$ be a $\text{Hypergeometric}(n, N_1, N_0)$ random variable. Calculate $E[X(X-1)]$.
+
+2. Let $X$ be a $\text{Poisson}(\mu)$ random variable for $0 < \mu < 1$. Calculate $E[X!]$.
