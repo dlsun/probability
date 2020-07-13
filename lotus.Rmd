@@ -73,6 +73,8 @@ which matches answer we got in Lesson \@ref(ev-infinity).
 Here is a more complex application of LOTUS. This particular expected value 
 may seem unmotivated, but it will come in handy later when we talk about variance.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jxAPRL8iO3k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{example binomial-lotus}
 Let $X$ be a $\text{Binomial}(n, N_1, N_0)$ random variable. In Example \@ref(exm:binomial-ev), 
 we showed that $E[X] = n \frac{N_1}{N}$. Now, we calculate $E[X(X-1)]$ by applying LOTUS 
