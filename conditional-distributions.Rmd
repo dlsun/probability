@@ -36,7 +36,7 @@ The process is illustrated in Figure \@ref(fig:conditional-x).
 	& $4$ & 0 & 0 & .0795 & .0530 & \\
 	& $3$ & \cellcolor{red!30}0 & \cellcolor{red!30}.0883 & \cellcolor{red!30}.1766 & \cellcolor{red!30}.0294 & \textcolor{red}{.2943} \\
 	& $2$ & .0327 & .1963 & .0981 & 0 & \\
-	& $1$ & .0726 & .1090 & 0 & 0 & \\
+	& $1$ & .0727 & .1090 & 0 & 0 & \\
 	& $0$ & .0404 &  0 & 0 &  0 & \\
 	\hline
 	& & $0$ & $1$ & $2$ & $3$ \\

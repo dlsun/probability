@@ -31,7 +31,7 @@ of the table, as illustrated in Figure \@ref(fig:marginal-x).
 	& $4$ & 0 & 0 & \cellcolor{blue!30} .0795 & .0530 \\
 	& $3$ & 0 & .0883 & \cellcolor{blue!30}.1766 & .0294 \\
 	& $2$ & .0327 & .1963 & \cellcolor{blue!30}.0981 & 0 \\
-	& $1$ & .0726 & .1090 & \cellcolor{blue!30}0 & 0 \\
+	& $1$ & .0727 & .1090 & \cellcolor{blue!30}0 & 0 \\
 	& $0$ & .0404 &  0 & \cellcolor{blue!30}0 &  0 \\
 	\hline
 	& & $0$ & $1$ & $2$ & $3$ \\
@@ -70,7 +70,7 @@ as illustrated in Figure \@ref(fig:marginal-y).
 	& $4$ & 0 & 0 & .0795 & .0530 & \textcolor{red}{.1325} \\
 	& $3$ & \cellcolor{red!30}0 & \cellcolor{red!30}.0883 & \cellcolor{red!30}.1766 & \cellcolor{red!30}.0294 & \textcolor{red}{.2943} \\
 	& $2$ & .0327 & .1963 & .0981 & 0 & \textcolor{red}{.3271} \\
-	& $1$ & .0726 & .1090 & 0 & 0 & \textcolor{red}{.1816} \\
+	& $1$ & .0727 & .1090 & 0 & 0 & \textcolor{red}{.1817} \\
 	& $0$ & .0404 &  0 & 0 &  0 & \textcolor{red}{.0404} \\
 	\hline
 	& & $0$ & $1$ & $2$ & $3$ \\
@@ -103,15 +103,15 @@ equal to:
 
 Let's calculate another marginal distribution---this time from the formula representation of the joint p.m.f.
 
-```{example, name="Marginal Number of Chickens"}
+```{example, name="Marginal Number of Chicks"}
 In Example \@ref(exm:chicken-egg), we found that the joint distribution of the number of eggs $N$ and the 
-number of baby chickens $X$ was
+number of chicks $X$ was
 \begin{equation}
 f(n, x) = \begin{cases} e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!} & 0 \leq x \leq n < \infty \\
-   0 & \text{otherwise}. \end{cases}
+   0 & \text{otherwise} \end{cases}.
 (\#eq:chicken-egg)
 \end{equation}
-What is the marginal distribution of the number of baby chickens, $X$?
+What is the marginal distribution of the number of chicks, $X$?
 ```
 
 ```{solution}

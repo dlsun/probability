@@ -190,3 +190,9 @@ count different orderings of the same 3 tickets.)
 What is the probability that you get exactly 30 heads in the 60 tosses?
 (**Hint:** To count the number of ways of getting exactly 30 heads, you need to count the number of 
 ways of arranging 30 H and 30 Ts. The general strategy from the previous question may be helpful here.)
+
+## Additional Practice {-}
+
+1. Use a story proof to show that 
+\[ x(x-1) \binom{n}{x} = n (n-1) \binom{n-2}{x-2}. \] 
+(_Hint:_ Consider selecting a committee with a chair and a vice-chair.)

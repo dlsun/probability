@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-11" />
+<meta name="date" content="2020-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#additional-practice"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
 <li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
@@ -275,6 +276,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23.1" data-path="ev-infinity.html"><a href="ev-infinity.html#pascals-wager"><i class="fa fa-check"></i><b>23.1</b> Pascal’s Wager</a></li>
 <li class="chapter" data-level="23.2" data-path="ev-infinity.html"><a href="ev-infinity.html#st-petersburg"><i class="fa fa-check"></i><b>23.2</b> St. Petersburg Paradox</a></li>
 </ul></li>
+<li class="chapter" data-level="24" data-path="lotus.html"><a href="lotus.html"><i class="fa fa-check"></i><b>24</b> LOTUS</a><ul>
+<li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#motivating-example-20"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#theory-21"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#essential-practice-13"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#additional-exercises-13"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="lotus2d.html"><a href="lotus2d.html"><i class="fa fa-check"></i><b>25</b> 2D LOTUS</a><ul>
+<li class="chapter" data-level="" data-path="lotus2d.html"><a href="lotus2d.html#theory-22"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lotus2d.html"><a href="lotus2d.html#essential-practice-14"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -377,14 +388,14 @@ equal to:
 <p>Let’s calculate another marginal distribution—this time from the formula representation of the joint p.m.f.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-78" class="example"><strong>Example 19.1  (Marginal Number of Chickens)  </strong></span>In Example <a href="joint-discrete.html#exm:chicken-egg">18.3</a>, we found that the joint distribution of the number of eggs <span class="math inline">\(N\)</span> and the
-number of baby chickens <span class="math inline">\(X\)</span> was
+<span id="exm:unnamed-chunk-78" class="example"><strong>Example 19.1  (Marginal Number of Chicks)  </strong></span>In Example <a href="joint-discrete.html#exm:chicken-egg">18.3</a>, we found that the joint distribution of the number of eggs <span class="math inline">\(N\)</span> and the
+number of chicks <span class="math inline">\(X\)</span> was
 <span class="math display" id="eq:chicken-egg">\[\begin{equation}
 f(n, x) = \begin{cases} e^{-\mu} \frac{(\mu p)^x}{x!} \frac{(\mu (1-p))^{n-x}}{(n-x)!} &amp; 0 \leq x \leq n &lt; \infty \\
-   0 &amp; \text{otherwise}. \end{cases}
+   0 &amp; \text{otherwise} \end{cases}.
 \tag{19.4}
 \end{equation}\]</span>
-What is the marginal distribution of the number of baby chickens, <span class="math inline">\(X\)</span>?
+What is the marginal distribution of the number of chicks, <span class="math inline">\(X\)</span>?
 </div>
 
 

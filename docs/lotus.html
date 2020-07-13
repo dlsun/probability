@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-12" />
+<meta name="date" content="2020-07-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="ev-infinity.html"/>
-
+<link rel="next" href="lotus2d.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -148,6 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#additional-practice"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
 <li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
@@ -281,6 +282,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#essential-practice-13"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#additional-exercises-13"><i class="fa fa-check"></i>Additional Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="25" data-path="lotus2d.html"><a href="lotus2d.html"><i class="fa fa-check"></i><b>25</b> 2D LOTUS</a><ul>
+<li class="chapter" data-level="" data-path="lotus2d.html"><a href="lotus2d.html#theory-22"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lotus2d.html"><a href="lotus2d.html#essential-practice-14"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -305,19 +310,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Lesson 24</span> LOTUS</h1>
 <div id="motivating-example-20" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
-<p>In Lesson <a href="ev-infinity.html#ev-infinity">23</a></p>
+<p>In Lesson <a href="ev-infinity.html#ev-infinity">23</a>, we analyzed the St. Petersburg Paradox. There, we calculated the expected
+amount we win, <span class="math inline">\(E[W]\)</span>, by first deriving the p.m.f. of <span class="math inline">\(W\)</span>.</p>
+<p>However, we know that the amount we win, <span class="math inline">\(W\)</span>, is related to the number of tosses, <span class="math inline">\(N\)</span>, by
+<span class="math display">\[ W = 2^{N-1}. \]</span>
+Furthermore, we know that <span class="math inline">\(N\)</span> follows a <span class="math inline">\(\text{Geometric}(p=1/2)\)</span> distribution. Can we calculate
+the expected amount we win, <span class="math inline">\(E[W] = E[2^{N-1}]\)</span>, from the p.m.f. of <span class="math inline">\(N\)</span>, without deriving
+the p.m.f. of <span class="math inline">\(W\)</span>?</p>
 </div>
 <div id="theory-21" class="section level2 unnumbered">
 <h2>Theory</h2>
 <p>In this lesson, we will learn how to calculate expected values of <em>functions</em> of random variables.
 That is, we will calculate expected values of the form <span class="math inline">\(E[g(X)]\)</span>. There are two ways to do this:</p>
 <ol style="list-style-type: decimal">
-<li>Calculate the p.m.f. of <span class="math inline">\(Y = g(X)\)</span>, then calculcate <span class="math inline">\(E[Y]\)</span> from the usual formula <a href="expected-value.html#eq:ev">(22.1)</a>.</li>
+<li>Calculate the p.m.f. of <span class="math inline">\(Y = g(X)\)</span>, then calculate <span class="math inline">\(E[Y]\)</span> from the usual formula <a href="expected-value.html#eq:ev">(22.1)</a>.</li>
 <li>Use the <strong>Law of the Unconscious Statistician</strong> (LOTUS), described below.</li>
 </ol>
 
 <div class="theorem">
-<span id="thm:lotus" class="theorem"><strong>Theorem 24.1  (LOTUS)  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable with c.d.f. <span class="math inline">\(f_X(x)\)</span>. Define <span class="math inline">\(Y = g(X)\)</span> for some function <span class="math inline">\(g\)</span>. Then,
+<span id="thm:lotus" class="theorem"><strong>Theorem 24.1  (LOTUS)  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable with p.m.f. <span class="math inline">\(f_X(x)\)</span>. Define <span class="math inline">\(Y = g(X)\)</span> for some function <span class="math inline">\(g\)</span>. Then,
 <span class="math inline">\(E[Y] = E[g(X)]\)</span> is
 <span class="math display" id="eq:lotus">\[\begin{equation}
 E[g(X)] = \sum_x g(x) \cdot f_X(x).
@@ -325,25 +336,64 @@ E[g(X)] = \sum_x g(x) \cdot f_X(x).
 \end{equation}\]</span>
 </div>
 
-<p>Theorem @ref{thm:lotus} allows us to calculate the expected value of <span class="math inline">\(Y = g(X)\)</span>, without first
+<p>Theorem <a href="lotus.html#thm:lotus">24.1</a> allows us to calculate the expected value of <span class="math inline">\(Y = g(X)\)</span>, without first
 finding its distribution. Instead, we can just use the known distribution of <span class="math inline">\(X\)</span>.</p>
-<p>The result is called the “Law of the Unconscious Statistician” because it is so
-intuitive that people apply the theorem without even thinking about it.
-Remember that <span class="math inline">\(E[g(X)]\)</span> represents the “average” value of <span class="math inline">\(g(X)\)</span>. To calculate the average value
-of <span class="math inline">\(g(X)\)</span>, it is intuitive that we take a weighted average of the possible values <span class="math inline">\(g(x)\)</span>, where the
-weights are the probabilities <span class="math inline">\(f_X(x)\)</span>.</p>
-<p>Let’s first do an example where the Law of the</p>
-<p>Now let’s look at the problem in the lesson.</p>
+<p>This result is called the “Law of the Unconscious Statistician” because many people intuitively
+assume it is true. Remember that <span class="math inline">\(E[g(X)]\)</span> represents the “average” value
+of <span class="math inline">\(g(X)\)</span>. To calculate the average value of <span class="math inline">\(g(X)\)</span>, it makes sense to take a weighted average of the
+possible values <span class="math inline">\(g(x)\)</span>, where the weights are the probabilities <span class="math inline">\(f_X(x)\)</span>.</p>
+Let’s start with a simple example where <span class="math inline">\(E[g(X)]\)</span> is easy to calculate, to understand why LOTUS works.
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-87" class="example"><strong>Example 24.1  (St. Petersburg Paradox Revisited)  </strong></span>In Lesson <a href="ev-infinity.html#ev-infinity">23</a></p>
+<p><span id="exm:unnamed-chunk-87" class="example"><strong>Example 24.1  </strong></span>We toss a fair coin twice. Let <span class="math inline">\(X\)</span> be the number of heads. Then, the p.m.f. of <span class="math inline">\(X\)</span> is</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right"><span class="math inline">\(x\)</span></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><span class="math inline">\(f(x)\)</span></td>
+<td align="center">.25</td>
+<td align="center">.50</td>
+<td align="center">.25</td>
+</tr>
+</tbody>
+</table>
+<p>What is <span class="math inline">\(E[X^3]\)</span>? Clearly, the only possible values of <span class="math inline">\(X^3\)</span> are <span class="math inline">\(0^3\)</span>, <span class="math inline">\(1^3\)</span>, and <span class="math inline">\(2^3\)</span>.
+Their probabilities are just the probabilities of <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, and <span class="math inline">\(2\)</span>.
+Therefore, it is
+<span class="math display">\[ E[X^3] = 0^3 \cdot .25 + 1^3 \cdot .50 + 2^3 \cdot .25 = 2.5. \]</span></p>
+Note that this is quite different from <span class="math inline">\(E[X]^3 = 1^3 = 1\)</span>.
+In general, <span class="math inline">\(E[g(X)] \neq g(E[X])\)</span>. In the first case, you have to use LOTUS.
+In the second case, you first calculate <span class="math inline">\(E[X]\)</span>, then apply the function
+<span class="math inline">\(g\)</span> to the result.
 </div>
 
-<p>Here is an example of LOTUS applied to a p.m.f. in formula form. This particular expected value
-may seem somewhat arbitrary, but it will come in handy later.</p>
+<p>Now let’s look at the question posed at the beginning of the lesson.</p>
 
 <div class="example">
-<span id="exm:binomial-lotus" class="example"><strong>Example 24.2  (Expected Value of a Binomial Random Variable)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span> random variable. In Example <a href="expected-value.html#exm:binomial-ev">22.2</a>,
+<span id="exm:unnamed-chunk-88" class="example"><strong>Example 24.2  (St. Petersburg Paradox Revisited)  </strong></span>We know that the p.m.f. of <span class="math inline">\(N\)</span>, a <span class="math inline">\(\text{Geometric}(p=0.5)\)</span> random variable, is
+<span class="math display">\[ f_N(n) = (1-0.5)^{n-1} 0.5 = 0.5^n. \]</span>
+By LOTUS,
+<span class="math display">\[\begin{align*}
+E[2^{N-1}] &amp;= \sum_{n=1}^\infty 2^{n-1} \cdot (0.5)^n \\
+&amp;= \sum_{n=1}^\infty (0.5) \\
+&amp;= 0.5 + 0.5 + 0.5 + \ldots \\
+&amp;= \infty,
+\end{align*}\]</span>
+which matches answer we got in Lesson <a href="ev-infinity.html#ev-infinity">23</a>.
+</div>
+
+<p>Here is a more complex application of LOTUS. This particular expected value
+may seem unmotivated, but it will come in handy later when we talk about variance.</p>
+
+<div class="example">
+<p><span id="exm:binomial-lotus" class="example"><strong>Example 24.3  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span> random variable. In Example <a href="expected-value.html#exm:binomial-ev">22.2</a>,
 we showed that <span class="math inline">\(E[X] = n \frac{N_1}{N}\)</span>. Now, we calculate <span class="math inline">\(E[X(X-1)]\)</span> by applying LOTUS
 <a href="lotus.html#eq:lotus">(24.1)</a> to the binomial p.m.f.
 <span class="math display">\[ f(x) = \binom{n}{x} \frac{N_1^x N_0^{n-x}}{N^n}, x=0, 1, \ldots, n. \]</span>
@@ -353,8 +403,17 @@ we showed that <span class="math inline">\(E[X] = n \frac{N_1}{N}\)</span>. Now,
   \end{align*}\]</span>
 where the only change from line 1 to line 2 was to start the sum at <span class="math inline">\(x=2\)</span>
 instead of <span class="math inline">\(x=0\)</span>. (We can do this because the summand is 0 when <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=1\)</span>.
-Try plugging in <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=1\)</span> if you do not see this.)
-Next, we replace <span class="math inline">\(x(x-1) \cdot \binom{n}{x}\)</span>.
+Try plugging in <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=1\)</span> if you do not see this.)</p>
+<p>Next, we replace <span class="math inline">\(x(x-1) \cdot \binom{n}{x}\)</span> using the combinatorial identity
+<span class="math display">\[ x(x-1) \binom{n}{x} = n (n-1) \binom{n-2}{x-2}. \]</span>
+Here is a story proof ot this identity: imagining selecting a committee of <span class="math inline">\(x\)</span> people from <span class="math inline">\(n\)</span>, where
+one person is the chair and another person is the vice-chair. We can either:</p>
+<ol style="list-style-type: decimal">
+<li>select the committee first (<span class="math inline">\(\binom{n}{x}\)</span>) and then select the chair and vice-chair (<span class="math inline">\(x(x-1)\)</span>), or</li>
+<li>select the chair and vice-chair first (<span class="math inline">\(n(n-1)\)</span>) and then select the rest of the committee (<span class="math inline">\(\binom{n-2}{x-2}\)</span>).</li>
+</ol>
+<p>Since these are two equivalent methods of selecting a committee with a chair and a vice-chair, the two
+expressions must be equal.</p>
 <span class="math display">\[\begin{align*}
   &amp;= \sum_{x=2}^n n (n-1) \binom{n-2}{x-2} \frac{N_1^x N_0^{n-x}}{N^n} \\
   &amp;= n(n-1)\sum_{x=2}^n \binom{n-2}{x-2} \frac{N_1^x N_0^{n-x}}{N^n} &amp; (\text{pull $n(n-1)$ outside the sum}) \\
@@ -368,8 +427,7 @@ Next, we replace <span class="math inline">\(x(x-1) \cdot \binom{n}{x}\)</span>.
 <div id="essential-practice-13" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li>Suppose we generate a random length <span class="math inline">\(L\)</span> (in inches) from the p.m.f.</li>
-</ol>
+<li><p>Suppose we generate a random length <span class="math inline">\(L\)</span> (in inches) from the p.m.f.</p>
 <table>
 <thead>
 <tr class="header">
@@ -389,18 +447,23 @@ Next, we replace <span class="math inline">\(x(x-1) \cdot \binom{n}{x}\)</span>.
 </tbody>
 </table>
 <p>and draw a square with that sidelength. Calculate <span class="math inline">\(E[L]^2\)</span> and <span class="math inline">\(E[L^2]\)</span>.
-Are they the same? Which one represents the expected area of the square we drew?</p>
-<ol start="2" style="list-style-type: decimal">
+Are they the same? Which one represents the expected area of the square we drew?</p></li>
 <li><p>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variable. Calculate <span class="math inline">\(E[X(X-1)]\)</span>.</p></li>
 <li><p>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Geometric}(p)\)</span> random variable. Let <span class="math inline">\(t\)</span> be a constant. Calculate
 <span class="math inline">\(M(t) = E[e^{tX}]\)</span> as a function of <span class="math inline">\(t\)</span>. Statisticians call this the
-<strong>moment generating function</strong> of <span class="math inline">\(X\)</span>, while engineers may recognize this function as the
-<strong>Laplace transform</strong> of the p.m.f. of <span class="math inline">\(X\)</span>.</p></li>
+<em>moment generating function</em> of <span class="math inline">\(X\)</span>, while engineers may recognize this function as the
+<em>Laplace transform</em> of the p.m.f. of <span class="math inline">\(X\)</span>.</p></li>
 </ol>
 </div>
 <div id="additional-exercises-13" class="section level2 unnumbered">
 <h2>Additional Exercises</h2>
 <ol style="list-style-type: decimal">
+<li><p>Another resolution to the St. Petersburg Paradox is to consider expected
+utility <span class="math inline">\(U\)</span> rather than expected wealth <span class="math inline">\(W\)</span>. (“Utility” is the term that economists use for “happiness”.)
+Because of diminishing marginal utility, the first million dollars is worth more than the next million dollars.
+One way to model diminishing marginal utility is to assume that <span class="math inline">\(U = \log(W)\)</span>.
+Show that the expected utility of the St. Petersburg game is finite, even though the expected winnings
+is infinite.</p></li>
 <li><p>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Hypergeometric}(n, N_1, N_0)\)</span> random variable. Calculate <span class="math inline">\(E[X(X-1)]\)</span>.</p></li>
 <li><p>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variable for <span class="math inline">\(0 &lt; \mu &lt; 1\)</span>. Calculate <span class="math inline">\(E[X!]\)</span>.</p></li>
 </ol>
@@ -412,8 +475,8 @@ Are they the same? Which one represents the expected area of the square we drew?
           </div>
         </div>
       </div>
-<a href="ev-infinity.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="ev-infinity.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lotus2d.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

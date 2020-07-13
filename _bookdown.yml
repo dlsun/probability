@@ -4,10 +4,11 @@ language:
     chapter_name: "Lesson "
 delete_merged_file: true
 rmd_files: [
-  "index.Rmd", "counting.Rmd", "factorial.Rmd", "box-models.Rmd", "replacement.Rmd", "double-counting.Rmd",
+  "index.Rmd",
+  "counting.Rmd", "factorial.Rmd", "box-models.Rmd", "replacement.Rmd", "double-counting.Rmd",
   "conditional.Rmd", "independence.Rmd", "total-probability.Rmd", "bayes.Rmd", "random-variables.Rmd", "cdf.Rmd",
   "hypergeometric.Rmd", "binomial.Rmd", "geometric.Rmd", "negative-binomial.Rmd", "poisson.Rmd",
   "poisson-process.Rmd", "joint-distributions.Rmd", "marginal-distributions.Rmd", "conditional-distributions.Rmd",
-  "sums-discrete.Rmd"
+  "sums-discrete.Rmd", "expected-value.Rmd", "ev-infinity.Rmd", "lotus.Rmd", "lotus2d.Rmd"
 ]
 output_dir: "docs"

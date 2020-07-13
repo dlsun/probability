@@ -111,7 +111,7 @@ The completed table looks like this:
   & 4 & 0 & 0 & .0795 & .0530 \\
 y & 3 & 0 & .0883 & .1766 & .0294 \\
   & 2 & .0327 & .1963 & .0981 & 0 \\
-  & 1 & .0726 & .1090 & 0 & 0 \\
+  & 1 & .0727 & .1090 & 0 & 0 \\
   & 0 & .0404 & 0 & 0 & 0 \\
 \hline
 & & 0 & 1 & 2 & 3\\
@@ -238,7 +238,7 @@ number of tails in these three tosses. Find the joint p.m.f. of $X$ and $Y$.
 
 4. At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
 with a rate of 3.5 particles per second. Let $X$ be the number of particles detected in the first 2 seconds. 
-Let $Y$ be the number of particles detected in the second after that (i.e., the third second). Find the joint 
+Let $Y$ be the number of particles detected in the second after that (i.e., the 3rd second). Find the joint 
 p.m.f. of $X$ and $Y$.
 (You may specify the joint p.m.f. as a table or a formula, whichever is more convenient for you.)
 

@@ -44,18 +44,19 @@ Applying 2D LOTUS to the function $g(x, y) = y-x$, we can calculate $E[g(X, Y)] 
 In the sum below, we will omit outcomes with probability 0.
 \begin{align*}
 E[Y - X] &= \sum_x \sum_y (y - x) f(x, y) \\
-&= (0 - 0) .0404 + (1 - 0) .0727 + (1 - 1) .1090 \\
+&\approx (0 - 0) .0404 + (1 - 0) .0727 + (1 - 1) .1090 \\
 &\ \ \ + (2 - 0) .0327 + (2 - 1) .1963 + (2 - 2) .0981 \\
 &\ \ \ + (3 - 1) .0883 + (3 - 2) .1766 + (3 - 3) .0294 \\
 &\ \ \ + (4 - 2) .0795 + (4 - 3) .0530 + (5 - 3) .0238 \\
 &= .947.
 \end{align*}
 
-Of course, there is another way to calculate this expected value. $Y - X$ is just the number of 
-wins in the last two bets. We know that this follows a $\text{Binomial}(n=2, p=18/38)$ distribution, 
-so from Lesson \@ref(expected-value), we know its expected value must be $np = 2 \frac{18}{38} \approx .947$.
+Of course, there is an easier to calculate this particular expected value. $Y - X$ is just the number of 
+wins in the last two bets, which follows a $\text{Binomial}(n=2, p=18/38)$ distribution. 
+From Lesson \@ref(expected-value), we know that the expected value of a binomial is 
+$np = 2 (18/38) \approx .947$, which matches the answer above.
 
-We can also calculate $E[XY]$ in the same way, by applying 2D LOTUS to the function $g(x, y) = xy$.
+We can calculate $E[XY]$ in the same way, by applying 2D LOTUS to the function $g(x, y) = xy$.
 \begin{align*}
 E[XY] &= \sum_x \sum_y xy f(x, y) \\
 &= (0 \cdot 0) .0404 + (1 \cdot 0) .0727 + (1 \cdot 1) .1090 \\
@@ -81,7 +82,7 @@ can only be 0 or 1.)
 second die. Calculate $E[\max(X, Y)]$, the expected value of the _larger_ of the two numbers. There are 
 several ways you can do this. You should try to do this by applying 2D LOTUS to the joint distribution of 
 $X$ and $Y$, which is extremely simple. To check your answer, you can use the p.m.f. of 
-$L = \max(X, Y)$ that you derived in Lesson \@(ref:marginal-discrete).
+$L = \max(X, Y)$ that you derived in Lesson \@ref(marginal-discrete).
 
 3. Consider the following three scenarios:
 

@@ -148,6 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#additional-practice"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
 <li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
@@ -329,7 +330,7 @@ given by the <em>joint</em> p.m.f. We use these probabilities to weight the poss
 Lesson <a href="joint-discrete.html#joint-discrete">18</a>.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-88" class="example"><strong>Example 25.1  (Xavier and Yolanda Revisited)  </strong></span>In Lesson <a href="joint-discrete.html#joint-discrete">18</a>, we showed that the joint distribution of the
+<p><span id="exm:unnamed-chunk-89" class="example"><strong>Example 25.1  (Xavier and Yolanda Revisited)  </strong></span>In Lesson <a href="joint-discrete.html#joint-discrete">18</a>, we showed that the joint distribution of the
 number of times Xavier and Yolanda win is
 <span class="math display">\[ \begin{array}{rr|cccc}
   &amp; 5 &amp; 0 &amp; 0 &amp; 0 &amp; .0238 \\
@@ -348,16 +349,17 @@ compared to Xavier, as well as <span class="math inline">\(E[XY]\)</span>, the e
 In the sum below, we will omit outcomes with probability 0.
 <span class="math display">\[\begin{align*}
 E[Y - X] &amp;= \sum_x \sum_y (y - x) f(x, y) \\
-&amp;= (0 - 0) .0404 + (1 - 0) .0727 + (1 - 1) .1090 \\
+&amp;\approx (0 - 0) .0404 + (1 - 0) .0727 + (1 - 1) .1090 \\
 &amp;\ \ \ + (2 - 0) .0327 + (2 - 1) .1963 + (2 - 2) .0981 \\
 &amp;\ \ \ + (3 - 1) .0883 + (3 - 2) .1766 + (3 - 3) .0294 \\
 &amp;\ \ \ + (4 - 2) .0795 + (4 - 3) .0530 + (5 - 3) .0238 \\
 &amp;= .947.
 \end{align*}\]</span></p>
-<p>Of course, there is another way to calculate this expected value. <span class="math inline">\(Y - X\)</span> is just the number of
-wins in the last two bets. We know that this follows a <span class="math inline">\(\text{Binomial}(n=2, p=18/38)\)</span> distribution,
-so from Lesson <a href="expected-value.html#expected-value">22</a>, we know its expected value must be <span class="math inline">\(np = 2 \frac{18}{38} \approx .947\)</span>.</p>
-We can also calculate <span class="math inline">\(E[XY]\)</span> in the same way, by applying 2D LOTUS to the function <span class="math inline">\(g(x, y) = xy\)</span>.
+<p>Of course, there is an easier to calculate this particular expected value. <span class="math inline">\(Y - X\)</span> is just the number of
+wins in the last two bets, which follows a <span class="math inline">\(\text{Binomial}(n=2, p=18/38)\)</span> distribution.
+From Lesson <a href="expected-value.html#expected-value">22</a>, we know that the expected value of a binomial is
+<span class="math inline">\(np = 2 (18/38) \approx .947\)</span>, which matches the answer above.</p>
+We can calculate <span class="math inline">\(E[XY]\)</span> in the same way, by applying 2D LOTUS to the function <span class="math inline">\(g(x, y) = xy\)</span>.
 <span class="math display">\[\begin{align*}
 E[XY] &amp;= \sum_x \sum_y xy f(x, y) \\
 &amp;= (0 \cdot 0) .0404 + (1 \cdot 0) .0727 + (1 \cdot 1) .1090 \\
@@ -384,7 +386,7 @@ can only be 0 or 1.)</p>
 second die. Calculate <span class="math inline">\(E[\max(X, Y)]\)</span>, the expected value of the <em>larger</em> of the two numbers. There are
 several ways you can do this. You should try to do this by applying 2D LOTUS to the joint distribution of
 <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, which is extremely simple. To check your answer, you can use the p.m.f. of
-<span class="math inline">\(L = \max(X, Y)\)</span> that you derived in Lesson @(ref:marginal-discrete).</p></li>
+<span class="math inline">\(L = \max(X, Y)\)</span> that you derived in Lesson <a href="marginal-discrete.html#marginal-discrete">19</a>.</p></li>
 <li><p>Consider the following three scenarios:</p>
 <ul>
 <li>A fair coin is tossed 3 times. <span class="math inline">\(X\)</span> is the number of heads and <span class="math inline">\(Y\)</span> is the number of tails.</li>
