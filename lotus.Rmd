@@ -2,7 +2,7 @@
 
 ## Motivating Example {-}
 
-In Lesson \@ref(ev-infinity)
+In Lesson \@ref(ev-infinity), we 
 
 ## Theory {-}
 
@@ -13,7 +13,7 @@ That is, we will calculate expected values of the form $E[g(X)]$. There are two 
 2. Use the **Law of the Unconscious Statistician** (LOTUS), described below.
 
 ```{theorem lotus, name="LOTUS"}
-Let $X$ be a random variable with c.d.f. $f_X(x)$. Define $Y = g(X)$ for some function $g$. Then, 
+Let $X$ be a random variable with p.m.f. $f_X(x)$. Define $Y = g(X)$ for some function $g$. Then, 
 $E[Y] = E[g(X)]$ is 
 \begin{equation}
 E[g(X)] = \sum_x g(x) \cdot f_X(x).
@@ -70,12 +70,12 @@ we showed that $E[X] = n \frac{N_1}{N}$. Now, we calculate $E[X(X-1)]$ by applyi
 
 1. Suppose we generate a random length $L$ (in inches) from the p.m.f. 
 
-| $\ell$ | 1 | 2 | 3 |
-|--:|:-:|:-:|:-:|
-|$f(\ell)$|.2| .5| .3
+    | $\ell$ | 1 | 2 | 3 |
+    |--:|:-:|:-:|:-:|
+    |$f(\ell)$|.2| .5| .3
 
-and draw a square with that sidelength. Calculate $E[L]^2$ and $E[L^2]$. 
-Are they the same? Which one represents the expected area of the square we drew?
+    and draw a square with that sidelength. Calculate $E[L]^2$ and $E[L^2]$. 
+    Are they the same? Which one represents the expected area of the square we drew?
 
 2. Let $X$ be a $\text{Poisson}(\mu)$ random variable. Calculate $E[X(X-1)]$.
 

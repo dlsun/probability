@@ -1,0 +1,97 @@
+# 2D LOTUS {#lotus2d}
+
+
+## Theory {-}
+
+In this lesson, we calculate the expected value of a function of 
+_two_ random variables, $E[g(X, Y)]$. For example, 
+$E[X + Y]$ and $E[XY]$ are all examples of expected values that 
+involve more than one random variable.
+
+```{theorem lotus2d, name="2D LOTUS"}
+Let $X$ and $Y$ be random variables with joint p.m.f. $f(x, y)$. Let $g$ be some function. Then,
+\begin{equation}
+E[g(X, Y)] = \sum_x \sum_y g(x, y) \cdot f(x, y).
+(\#eq:lotus2d)
+\end{equation}
+```
+
+Again, the result is intuitive. Now that there are _two_ random variables, the probabilities are 
+given by the _joint_ p.m.f. We use these probabilities to weight the possible values of
+$g(X, Y)$.
+
+Let's apply Theorem \@ref(thm:lotus2d) to the Xavier and Yolanda example from 
+Lesson \@ref(joint-discrete). 
+
+```{example, name="Xavier and Yolanda Revisited"}
+In Lesson \@ref(joint-discrete), we showed that the joint distribution of the 
+number of times Xavier and Yolanda win is 
+\[ \begin{array}{rr|cccc}
+  & 5 & 0 & 0 & 0 & .0238 \\
+  & 4 & 0 & 0 & .0795 & .0530 \\
+y & 3 & 0 & .0883 & .1766 & .0294 \\
+  & 2 & .0327 & .1963 & .0981 & 0 \\
+  & 1 & .0727 & .1090 & 0 & 0 \\
+  & 0 & .0404 & 0 & 0 & 0 \\
+\hline
+& & 0 & 1 & 2 & 3\\
+& &   & & x
+\end{array}. \]
+Let's calculate $E[Y - X]$, the expected number of _additional_ times that Yolanda wins, 
+compared to Xavier, as well as $E[XY]$, the expected product of the number of times they win.
+
+Applying 2D LOTUS to the function $g(x, y) = y-x$, we can calculate $E[g(X, Y)] = E[Y - X]$. 
+In the sum below, we will omit outcomes with probability 0.
+\begin{align*}
+E[Y - X] &= \sum_x \sum_y (y - x) f(x, y) \\
+&= (0 - 0) .0404 + (1 - 0) .0727 + (1 - 1) .1090 \\
+&\ \ \ + (2 - 0) .0327 + (2 - 1) .1963 + (2 - 2) .0981 \\
+&\ \ \ + (3 - 1) .0883 + (3 - 2) .1766 + (3 - 3) .0294 \\
+&\ \ \ + (4 - 2) .0795 + (4 - 3) .0530 + (5 - 3) .0238 \\
+&= .947.
+\end{align*}
+
+Of course, there is another way to calculate this expected value. $Y - X$ is just the number of 
+wins in the last two bets. We know that this follows a $\text{Binomial}(n=2, p=18/38)$ distribution, 
+so from Lesson \@ref(expected-value), we know its expected value must be $np = 2 \frac{18}{38} \approx .947$.
+
+We can also calculate $E[XY]$ in the same way, by applying 2D LOTUS to the function $g(x, y) = xy$.
+\begin{align*}
+E[XY] &= \sum_x \sum_y xy f(x, y) \\
+&= (0 \cdot 0) .0404 + (1 \cdot 0) .0727 + (1 \cdot 1) .1090 \\
+&\ \ \ + (2 \cdot 0) .0327 + (2 \cdot 1) .1963 + (2 \cdot 2) .0981 \\
+&\ \ \ + (3 \cdot 1) .0883 + (3 \cdot 2) .1766 + (3 \cdot 3) .0294 \\
+&\ \ \ + (4 \cdot 2) .0795 + (4 \cdot 3) .0530 + (5 \cdot 3) .0238 \\
+&= 4.11.
+\end{align*}
+```
+
+## Essential Practice {-}
+
+1.  Two tickets are drawn from a box with $N_1$ $\fbox{1}$s and $N_0$ $\fbox{0}$s. Let $X$ be the number of 
+$\fbox{1}$s on the first draw and $Y$ be the number of $\fbox{1}$s on the second draw. (Note that $X$ and $Y$ 
+can only be 0 or 1.)
+
+    a. Calculate $E[XY]$ when the draws are made with replacement.
+    b. Calculate $E[XY]$ when the draws are made without replacement.
+    
+    (Hint: You worked out the joint p.m.f. of $X$ and $Y$ in Lesson \@ref(joint-discrete). Use it!)
+
+2. You roll two fair, six-sided dice. Let $X$ be the number on the first die. Let $Y$ be the number on the 
+second die. Calculate $E[\max(X, Y)]$, the expected value of the _larger_ of the two numbers. There are 
+several ways you can do this. You should try to do this by applying 2D LOTUS to the joint distribution of 
+$X$ and $Y$, which is extremely simple. To check your answer, you can use the p.m.f. of 
+$L = \max(X, Y)$ that you derived in Lesson \@(ref:marginal-discrete).
+
+3. Consider the following three scenarios:
+
+    - A fair coin is tossed 3 times. $X$ is the number of heads and $Y$ is the number of tails.
+    - A fair coin is tossed 4 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
+    - A fair coin is tossed 6 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
+    
+    In all three scenarios, $X$ and $Y$ are both marginally $\text{Binomial}(n=3, p=1/2)$. However, they have 
+    different joint distributions. In Lessons \@ref(joint-discrete) and \@ref(marginal-discrete), you 
+    worked out the joint p.m.f.s.
+    
+    Calculate $E[X + Y]$ and $E[XY]$ for each of the scenarios. Does $E[X + Y]$ change, depending on the 
+    joint distribution? What about $E[XY]$?
