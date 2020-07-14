@@ -430,7 +430,7 @@ of simpler random variables:
 where <span class="math inline">\(Y_i\)</span> represents the outcome of the <span class="math inline">\(i\)</span>th draw from the box. So <span class="math inline">\(Y_i\)</span> equals <span class="math inline">\(1\)</span> with probability
 <span class="math inline">\(N_1/N\)</span> and is <span class="math inline">\(0\)</span> otherwise. Its p.m.f. is about as simple as it gets:
 <span class="math display">\[\begin{equation}
-\begin{array}{rll}
+\begin{array}{rcc}
 y &amp; 0 &amp; 1 \\
 \hline
 f(y) &amp; N_0/N &amp; N_1/N
@@ -477,8 +477,8 @@ connecting the two tickets in the diagram above.</p>
 <span class="math display">\[ X(X-1) = \sum_{i=1}^n \sum_{j\neq i} Y_{ij}. \]</span>
 Now, by linearity:
 <span class="math display">\[ E[X(X-1)] = \sum_{i=1}^n \sum_{j\neq i} E[Y_{ij}]. \]</span>
-But <span class="math inline">\(E[Y_{ij}]\)</span> is simplyl the probability that tickets <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are both <span class="math inline">\(\fbox{1}\)</span>s.
-This probability is <span class="math inline">\(E[Y_{ij}] = \frac{N_1^2}{N^2}\)</span>. Therefore,
+But <span class="math inline">\(E[Y_{ij}]\)</span> is simply the probability that tickets <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are both <span class="math inline">\(\fbox{1}\)</span>s.
+This probability is <span class="math inline">\(E[Y_{ij}] = \frac{N_1^2}{N^2}\)</span>. Since there are <span class="math inline">\(n(n-1)\)</span> <span class="math inline">\(Y_{ij}\)</span>s,
 <span class="math display">\[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N^2}, \]</span>
 which matches the answer we got in Lesson <a href="lotus.html#lotus">24</a> by more tedious means.</p>
 </div>

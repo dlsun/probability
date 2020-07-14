@@ -122,7 +122,7 @@ of simpler random variables:
 where $Y_i$ represents the outcome of the $i$th draw from the box. So $Y_i$ equals $1$ with probability 
 $N_1/N$ and is $0$ otherwise. Its p.m.f. is about as simple as it gets:
 \begin{equation}
-\begin{array}{rll}
+\begin{array}{rcc}
 y & 0 & 1 \\
 \hline
 f(y) & N_0/N & N_1/N
@@ -197,8 +197,8 @@ Since $X(X-1)$ is the number of red arrows, we have
 \[ X(X-1) = \sum_{i=1}^n \sum_{j\neq i} Y_{ij}. \]
 Now, by linearity:
 \[ E[X(X-1)] = \sum_{i=1}^n \sum_{j\neq i} E[Y_{ij}]. \]
-But $E[Y_{ij}]$ is simplyl the probability that tickets $i$ and $j$ are both $\fbox{1}$s. 
-This probability is $E[Y_{ij}] = \frac{N_1^2}{N^2}$. Therefore, 
+But $E[Y_{ij}]$ is simply the probability that tickets $i$ and $j$ are both $\fbox{1}$s. 
+This probability is $E[Y_{ij}] = \frac{N_1^2}{N^2}$. Since there are $n(n-1)$ $Y_{ij}$s, 
 \[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N^2}, \]
 which matches the answer we got in Lesson \@ref(lotus) by more tedious means.
 
