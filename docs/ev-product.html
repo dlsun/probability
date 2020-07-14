@@ -351,27 +351,27 @@ Now, <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)<
 <span class="math display">\[\begin{align*}
 E[XY] &amp;= E[X(X + Z)] &amp; \text{(by the representation above)} \\
 &amp;= E[X^2 + XZ] &amp; \text{(expand expression inside expected value)}  \\
-&amp;= E[X^2] + E[XZ] &amp; \text{(by linearity of expectation)} \\
-&amp;= E[X^2] + E[X]E[Z] &amp; \text{(by independence of $X$ and $Z$)}
+&amp;= E[X^2] + E[XZ] &amp; \text{(linearity of expectation)} \\
+&amp;= E[X^2] + E[X]E[Z] &amp; \text{(by independence of $X$ and $Z$ and \ref{eq:ev-product})}
 \end{align*}\]</span></p>
-<p>Now, we know that <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are binomial, so there is a simple formula for their expected value:
+<p>Now, <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are binomial, so there is a simple formula for their expected value:
 <span class="math display">\[\begin{align*}
 E[X] &amp;= n\frac{N_1}{N} = 3\frac{18}{38} \\
 E[Z] &amp;= n\frac{N_1}{N} = 2\frac{18}{38}.
-\end{align*}\]</span></p>
-<p>The only difficult part is calculating <span class="math inline">\(E[X^2]\)</span>. However, we already showed in
-Lessons <a href="lotus.html#lotus">24</a> and <a href="linearity.html#linearity">26</a> that
+\end{align*}\]</span>
+The only non-trivial part is calculating <span class="math inline">\(E[X^2]\)</span>. However, we showed in
+Lessons <a href="lotus.html#lotus">24</a> and <a href="linearity.html#linearity">26</a> that for a binomial random variable <span class="math inline">\(X\)</span>,
 <span class="math display">\[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N_0^2}. \]</span>
 Since <span class="math inline">\(E[X(X-1)] = E[X^2 - X] = E[X^2] - E[X]\)</span>, we can solve for <span class="math inline">\(E[X^2]\)</span>:
 <span class="math display">\[\begin{align*}
 E[X^2] &amp;= E[X(X-1)] + E[X] \\
 &amp;= n(n-1) \frac{N_1^2}{N_0^2} + n\frac{N_1}{N}
 \end{align*}\]</span>
-In our particular example,
+For the number of bets that Xavier wins,
 <span class="math display">\[ E[X^2] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38}. \]</span></p>
 Putting it all together, we get
 <span class="math display">\[ E[XY] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38} + \left( 3\frac{18}{38} \right) \left( 2\frac{18}{38} \right) \approx 4.11, \]</span>
-which matches what we got in Lesson <a href="lotus2d.html#lotus2d">25</a>.
+which matches the answer from Lesson <a href="lotus2d.html#lotus2d">25</a>.
 </div>
 
 </div>
@@ -388,9 +388,10 @@ which matches what we got in Lesson <a href="lotus2d.html#lotus2d">25</a>.
 <span class="math inline">\(E[XY]\)</span> was different. In light of Theorems <a href="linearity.html#thm:linearity">26.2</a> and <a href="ev-product.html#thm:ev-product">27.1</a>, explain why
 this makes sense.</p></li>
 <li><p>Two fair dice are rolled. Let <span class="math inline">\(X\)</span> be the outcome of the first die. Let <span class="math inline">\(Y\)</span> be the outcome of the
-second die. Calculate the expected ratio between the outcomes of the two dice, <span class="math inline">\(\displaystyle E[X / Y]\)</span>.
+second die. Calculate the expected ratio between the numbers on the two dice, <span class="math inline">\(\displaystyle E[X / Y]\)</span>.
 (You can use Theorem <a href="ev-product.html#thm:ev-product">27.1</a>, since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent. However,
-be careful because <span class="math inline">\(E[X / Y] \neq E[X] / E[Y]\)</span>.)</p></li>
+be careful because <span class="math inline">\(E[X / Y] \neq E[X] / E[Y]\)</span>.)</p>
+<p>What is <span class="math inline">\(E[Y / X]\)</span>? Why does this seem paradoxical?</p></li>
 <li><p>At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process
 with a rate of 3.5 particles per second. Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds.
 Let <span class="math inline">\(Y\)</span> be the number of particles detected in the second after that (i.e., the 3rd second). Find <span class="math inline">\(E[XY]\)</span>.</p></li>

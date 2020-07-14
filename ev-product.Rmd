@@ -16,7 +16,6 @@ E[g(X)h(Y)] = E[g(X)] E[h(Y)].
 \end{equation}
 ```
 
-
 ```{example, name="Xavier and Yolanda Revisited"}
 In Lesson \@ref(lotus2d), we calculated $E[XY]$, the expected product of the 
 numbers of times that Xavier and Yolanda win. There, we used 2D LOTUS. 
@@ -37,30 +36,29 @@ Therefore,
 \begin{align*}
 E[XY] &= E[X(X + Z)] & \text{(by the representation above)} \\
 &= E[X^2 + XZ] & \text{(expand expression inside expected value)}  \\
-&= E[X^2] + E[XZ] & \text{(by linearity of expectation)} \\
-&= E[X^2] + E[X]E[Z] & \text{(by independence of $X$ and $Z$)}
+&= E[X^2] + E[XZ] & \text{(linearity of expectation)} \\
+&= E[X^2] + E[X]E[Z] & \text{(by independence of $X$ and $Z$ and \ref{eq:ev-product})}
 \end{align*}
 
-Now, we know that $X$ and $Z$ are binomial, so there is a simple formula for their expected value:
+Now, $X$ and $Z$ are binomial, so there is a simple formula for their expected value:
 \begin{align*}
 E[X] &= n\frac{N_1}{N} = 3\frac{18}{38} \\
 E[Z] &= n\frac{N_1}{N} = 2\frac{18}{38}.
 \end{align*}
-
-The only difficult part is calculating $E[X^2]$. However, we already showed in 
-Lessons \@ref(lotus) and \@ref(linearity) that 
+The only non-trivial part is calculating $E[X^2]$. However, we showed in 
+Lessons \@ref(lotus) and \@ref(linearity) that for a binomial random variable $X$, 
 \[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N_0^2}. \]
 Since $E[X(X-1)] = E[X^2 - X] = E[X^2] - E[X]$, we can solve for $E[X^2]$:
 \begin{align*}
 E[X^2] &= E[X(X-1)] + E[X] \\
 &= n(n-1) \frac{N_1^2}{N_0^2} + n\frac{N_1}{N}
 \end{align*}
-In our particular example, 
+For the number of bets that Xavier wins,
 \[ E[X^2] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38}. \]
 
 Putting it all together, we get 
 \[ E[XY] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38} + \left( 3\frac{18}{38} \right) \left( 2\frac{18}{38} \right) \approx 4.11, \]
-which matches what we got in Lesson \@ref(lotus2d).
+which matches the answer from Lesson \@ref(lotus2d).
 ```
 
 ## Essential Practice {-}
@@ -77,9 +75,11 @@ which matches what we got in Lesson \@ref(lotus2d).
     this makes sense.
     
 2. Two fair dice are rolled. Let $X$ be the outcome of the first die. Let $Y$ be the outcome of the 
-second die. Calculate the expected ratio between the outcomes of the two dice, $\displaystyle E[X / Y]$.
+second die. Calculate the expected ratio between the numbers on the two dice, $\displaystyle E[X / Y]$.
 (You can use Theorem \@ref(thm:ev-product), since $X$ and $Y$ are independent. However, 
-be careful because $E[X / Y] \neq E[X] / E[Y]$.) 
+be careful because $E[X / Y] \neq E[X] / E[Y]$.)
+
+    What is $E[Y / X]$? Why does this seem paradoxical?
 
 3. At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
 with a rate of 3.5 particles per second. Let $X$ be the number of particles detected in the first 2 seconds. 
