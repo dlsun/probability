@@ -137,8 +137,8 @@ use linearity of expectation.)
 
 3. A group of 60 people are comparing their birthdays (as usual, assume that their
 birthdays are independent, all 365 days are equally likely, etc.). Find the expected number of days
-in the year on which at least two of these people were born. (_Hint:_ Write this complicated random variable as a 
-sum of $0/1$ random variables, and use linearity of expectation.)
+in the year on which at least two of these people were born. (_Hint:_ Express this complicated random variable as 
+a sum of $0/1$ random variables, and use linearity of expectation.)
 
 ## Additional Practice {-}
 

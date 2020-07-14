@@ -1,0 +1,45 @@
+# Expected Value of a Product {#ev-product}
+
+
+## Theory {-}
+
+
+```{theorem ev-product, name="Expected Value of a Product"}
+If $X$ and $Y$ are _independent_ random variables, then 
+\begin{equation}
+E[XY] = E[X] E[Y].
+(\#eq:ev-product)
+\end{equation}
+In fact, if $X$ and $Y$ are independent, then for any functions $g$ and $h$,
+\begin{equation}
+E[g(X)h(Y)] = E[g(X)] E[h(Y)].
+(\#eq:ev-product-general)
+\end{equation}
+```
+
+
+```{example, name="Xavier and Yolanda Revisited"}
+$E[XY]$
+```
+
+## Essential Practice {-}
+
+
+1. Consider the following three scenarios:
+
+    - A fair coin is tossed 3 times. $X$ is the number of heads and $Y$ is the number of tails.
+    - A fair coin is tossed 4 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
+    - A fair coin is tossed 6 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
+    
+    In Lesson \@ref(lotus2d), you showed that $E[X + Y]$ was the same for all three scenarios, but 
+    $E[XY]$ was different. In light of Theorems \@ref(thm:linearity) and \@ref(thm:ev-product), explain why 
+    this makes sense.
+    
+2. Two fair dice are rolled. Let $X$ be the outcome of the first die. Let $Y$ be the outcome of the 
+second die. Calculate the expected ratio between the outcomes of the two dice, $\displaystyle E[X / Y]$.
+(You can use Theorem \@ref(thm:ev-product), since $X$ and $Y$ are independent. However, 
+be careful because $E[X / Y] \neq E[X] / E[Y]$.) 
+
+3. At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
+with a rate of 3.5 particles per second. Let $X$ be the number of particles detected in the first 2 seconds. 
+Let $Y$ be the number of particles detected in the second after that (i.e., the 3rd second). Find $E[XY]$.
