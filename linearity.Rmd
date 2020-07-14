@@ -1,0 +1,162 @@
+# Linearity of Expectation {#linearity}
+
+## Motivation {-}
+
+
+
+
+## Theory {-}
+
+In this lesson, we learn a shortcut for calculating expected values of the form 
+\[ E[aX + bY]. \]
+In general, evaluating expected values of _functions_ of random variables 
+requires LOTUS. But when the function is linear, we can break up the expected 
+value into more manageable parts.
+
+```{theorem ev-constant, name="Adding or Multiplying a Constant"}
+Let $X$ be a random variable and $a, b$ be constants. Then,
+\begin{align}
+E[aX] &= aE[X] (\#eq:ev-multiply) \\
+E[X + b] &= E[X] + b (\#eq:ev-add)
+\end{align}
+```
+
+```{proof}
+Since $aX$ and $X+b$ are technically functions of $X$, we use 
+LOTUS \@ref(eq:lotus). 
+  \begin{align*}
+E[aX] &= \sum_x ax f(x) & \text{(LOTUS)} \\
+&= a \sum_x x f(x) & \text{(factor constant outside the sum)} \\
+&= a E[X] & \text{(definition of expected value)}. \\
+E[X+b] &= \sum_x (x + b) f(x) & \text{(LOTUS)} \\
+&= \sum_x x f(x) + \sum_x b f(x) & \text{(break $(x + b) f(x)$ into $xf(x) + bf(x)$)} \\
+&= \sum_x x f(x) + b\sum_x f(x) & \text{(factor constant outside the sum)} \\
+&= E[X] + b & \text{(definitions of expected value, p.m.f.)}.
+\end{align*}
+```
+
+Here is an example illustrating how Theorem \@ref(thm:ev-constant) can be used.
+
+```{example, name="Expected Values in Roulette"}
+In roulette, betting on a single number pays 35-to-1. That is, for each $1 you bet, you win 
+$35 if the ball lands in that pocket. 
+
+If we let $X$ represent your net winnings (or losses) on this bet, its p.m.f. is 
+\[ \begin{array}{r|cc} x & -1 & 35 \\ \hline f_X(x) & 37/38 & 1/38 \end{array}. \]
+
+In Lesson \@ref(expected-value), we calculated $E[X]$ directly. Here is another way 
+we can calculate it using Theorem \@ref(thm:ev-constant). Let us define a new random variable 
+$W$, which takes on the values 0 and 1 with the same probabilities: 
+\[ \begin{array}{r|cc} w & 0 & 1 \\ \hline f_W(w) & 37/38 & 1/38 \end{array}. \]
+We can think of $W$ as an _indicator_ variable for whether or not we win. 
+It is easy to see that $E[W] = 1/38$. (One way is to just use the formula. Another is 
+to note that $W$ is a $\text{Binomial}(n=1, p=1/38)$ random variable, so $E[W] = np = 1/38$.)
+
+Now, the amount we win, $X$, is related to this indicator variable, $W$, by:
+\[ X = 36 W - 1. \]
+(Verify that $X$ takes on the values $35$ and $-1$ with the correct probabilities.)
+Now, by Theorem \@ref(thm:ev-constant), the expected value is 
+\[ E[X] = E[36W - 1] = 36 E[W] - 1 = 36 \left( \frac{1}{38} \right) - 1 = -\frac{2}{38}, \]
+which matches what we got in Lesson \@ref(expected-value).
+```
+
+The next result is even more useful.
+
+
+```{theorem linearity, name="Linearity of Expectation"}
+Let $X$ and $Y$ be random variables. Then, _no matter what their joint distribution is_, 
+\begin{equation}
+E[X+Y] = E[X] + E[Y].
+(\#eq:linearity)
+\end{equation}
+```
+
+```{proof}
+Since $E[X + Y]$ involves two random variables, we have to evaluate the expectation 
+using 2D LOTUS \@ref(eq:lotus2d), with $g(x, y) = x + y$. Suppose 
+that the joint distribution of $X$ and $Y$ is $f(x, y)$. Then:
+  \begin{align*}
+E[X + Y] &= \sum_x \sum_y (x + y) f(x, y) & \text{(2D LOTUS)} \\
+&= \sum_x \sum_y x f(x, y) + \sum_x \sum_y y f(x, y) & \text{(break $(x + y) f(x, y)$ into $x f(x, y) + y f(x, y)$)} \\
+&= \sum_x x \sum_y f(x, y) + \sum_y y \sum_x f(x, y) & \text{(move term outside the inner sum)} \\
+&= \sum_x x f_X(x) + \sum_y y f_Y(y) & \text{(definition of marginal distribution)} \\
+&= E[X] + E[Y] & \text{(definition of expected value)}.
+\end{align*}
+
+```
+
+
+In other words, linearity of expectation says that you only need to know the 
+marginal distributions of $X$ and $Y$ to calculate $E[X + Y]$. Their joint distribution 
+is irrelevant. 
+
+Let's apply this to the Xavier and Yolanda problem from Lesson \@ref(joint-discrete).
+
+```{example, name="Xavier and Yolanda Revisited"}
+Xavier and Yolanda head to the roulette table at a casino. They both place bets on red on 3 spins of the roulette 
+wheel before Xavier has to leave. After Xavier leaves, Yolanda places bets on red on 2 more spins of the wheel. 
+Let $X$ be the number of bets that Xavier wins and $Y$ be the number that Yolanda wins.
+
+In Lesson \@ref(lotus2d), we calculated $E[Y - X]$, the expected number of _additional_ times that Yolanda wins, 
+by applying 2D LOTUS to the joint p.m.f. of $X$ and $Y$. The calculation was tedious.
+
+In this lesson, we see how linearity of expectation allows us to avoid tedious calculations. First, 
+by \@ref(eq:ev-multiply) and \@ref(eq:linearity), we see that:
+\[ E[Y - X] = E[Y] + E[-1 \cdot X] = E[Y] + (-1) E[X] = E[Y] - E[X]. \]
+We know that $Y$ is $\text{Binomial}(n=5, N_1=18, N_0=20)$ and $X$ is $\text{Binomial}(n=3, N_1=18, N_0=20)$. 
+$X$ and $Y$ are definitely not independent, since three of Yolanda's bets are identical to Xavier's. 
+But linearity of expectation says that to calculate $E[Y - X]$, it does not matter how $X$ and $Y$ are 
+related to each other; we only need their marginal distributions. 
+
+From Lesson \@ref(expected-value), we know the expected value of a binomial random variable is $n\frac{N_1}{N}$, so 
+\[ E[Y - X] = E[Y] - E[X] = 5\frac{18}{38} - 3\frac{18}{38} = 2\frac{18}{38} \approx .947, \]
+which matches the answer we got in Lesson \@ref(lotus2d) by applying 2D LOTUS.
+```
+
+Linearity allows us to calculate the expected values of complicated random variables 
+by breaking them into simpler random variables. 
+
+```{example, name="Expected Value of the Binomial and Hypergeometric Distributions"}
+In Lesson \@ref(expected-value), we showed that the expected values of the binomial and hypergeometric 
+distributions are the same: $n\frac{N_1}{N}$. But the proofs we gave were tedious and did not give any insight 
+into why this is true.
+```
+
+## Essential Practice {-}
+
+1. Each year, as part of a “Secret Santa” tradition, a group of 4 friends write their names on slips of papers and place 
+the slips into a hat. Each member of the group draws a name at random from the hat and must by a gift for that person. Of course, it is possible that they draw their own name, in which case they buy a gift for themselves. 
+What is the expected number of people who draw their own name? (_Hint:_ Express this complicated 
+random variable as a sum of $0/1$ random variables, and use linearity of expectation.)
+
+2. McDonald's decides to give a Pokemon toy with every Happy Meal. Each time you buy a Happy Meal, you are equally 
+likely to get any one of the 6 types of Pokemon. What is the _expected_ number of Happy Meals that you have to buy 
+until you "catch 'em all"? 
+(_Hint:_ Express this complicated random variable as a sum of geometric random variables, and 
+use linearity of expectation.)
+
+3. A group of 60 people are comparing their birthdays (as usual, assume that their
+birthdays are independent, all 365 days are equally likely, etc.). Find the expected number of days
+in the year on which at least two of these people were born. (_Hint:_ Write this complicated random variable as a 
+sum of $0/1$ random variables, and use linearity of expectation.)
+
+## Additional Practice {-}
+
+1. A hash table is a commonly used data structure in computer science, allowing
+for fast information retrieval. For example, suppose we want to store some
+people's phone numbers. Assume that no two of the people have the same
+name. For each name $x$, a hash function $h$ is used, where $h(x)$ is the location
+to store x's phone number. After such a table has been computed, to look up
+$x$'s phone number one just recomputes $h(x)$ and then looks up what is stored
+in that location.
+
+    Typically, $h$ is chosen to be (pseudo)random.  Suppose there are 100 people,
+with each person's phone number stored in a random location (independently),
+represented by an integer between 1 and 1000. It then might happen that one
+location has more than one phone number stored there, if two different people
+$x$ and $y$ end up with the same random location for their information to be
+stored.
+
+    Find the expected number of locations with no phone numbers stored, the
+expected number with exactly one phone number, and the expected number
+with more than one phone number.
