@@ -3,7 +3,6 @@
 
 ## Theory {-}
 
-
 ```{theorem ev-product, name="Expected Value of a Product"}
 If $X$ and $Y$ are _independent_ random variables, then 
 \begin{equation}
@@ -19,7 +18,49 @@ E[g(X)h(Y)] = E[g(X)] E[h(Y)].
 
 
 ```{example, name="Xavier and Yolanda Revisited"}
-$E[XY]$
+In Lesson \@ref(lotus2d), we calculated $E[XY]$, the expected product of the 
+numbers of times that Xavier and Yolanda win. There, we used 2D LOTUS. 
+Now, let's repeat the calculation using Theorem \@ref(thm:ev-product).
+
+You might be tempted to multiply $E[X]$ and $E[Y]$. However, this is wrong 
+because $X$ and $Y$ are not independent. Every time Xavier wins, Yolanda 
+also wins. So we cannot apply Theorem \@ref(thm:ev-product) directly. 
+
+We can express the number of times Yolanda wins as:
+\[ Y = X + Z, \]
+where $Z$ is the number of wins in the last two spins of the roulette wheel. 
+Now, $X$ and $Z$ are independent. Furthermore, we know that 
+$X$ is $\text{Binomial}(n=3, N_1=18, N_0=20)$, and $Y$ is 
+$\text{Binomial}(n=2, N_1=18, N_0=20)$.
+
+Therefore, 
+\begin{align*}
+E[XY] &= E[X(X + Z)] & \text{(by the representation above)} \\
+&= E[X^2 + XZ] & \text{(expand expression inside expected value)}  \\
+&= E[X^2] + E[XZ] & \text{(by linearity of expectation)} \\
+&= E[X^2] + E[X]E[Z] & \text{(by independence of $X$ and $Z$)}
+\end{align*}
+
+Now, we know that $X$ and $Z$ are binomial, so there is a simple formula for their expected value:
+\begin{align*}
+E[X] &= n\frac{N_1}{N} = 3\frac{18}{38} \\
+E[Z] &= n\frac{N_1}{N} = 2\frac{18}{38}.
+\end{align*}
+
+The only difficult part is calculating $E[X^2]$. However, we already showed in 
+Lessons \@ref(lotus) and \@ref(linearity) that 
+\[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N_0^2}. \]
+Since $E[X(X-1)] = E[X^2 - X] = E[X^2] - E[X]$, we can solve for $E[X^2]$:
+\begin{align*}
+E[X^2] &= E[X(X-1)] + E[X] \\
+&= n(n-1) \frac{N_1^2}{N_0^2} + n\frac{N_1}{N}
+\end{align*}
+In our particular example, 
+\[ E[X^2] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38}. \]
+
+Putting it all together, we get 
+\[ E[XY] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38} + \left( 3\frac{18}{38} \right) \left( 2\frac{18}{38} \right) \approx 4.11, \]
+which matches what we got in Lesson \@ref(lotus2d).
 ```
 
 ## Essential Practice {-}

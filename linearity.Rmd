@@ -1,10 +1,5 @@
 # Linearity of Expectation {#linearity}
 
-## Motivation {-}
-
-
-
-
 ## Theory {-}
 
 In this lesson, we learn a shortcut for calculating expected values of the form 
@@ -119,8 +114,94 @@ by breaking them into simpler random variables.
 ```{example, name="Expected Value of the Binomial and Hypergeometric Distributions"}
 In Lesson \@ref(expected-value), we showed that the expected values of the binomial and hypergeometric 
 distributions are the same: $n\frac{N_1}{N}$. But the proofs we gave were tedious and did not give any insight 
-into why this is true.
+into why this formula is true. Let's prove this formula using linearity of expectation.
+
+If $X$ is a $\text{Binomial}(n, N_1, N_0)$ random variable, then we can break $X$ down into the sum 
+of simpler random variables:
+\[ X = Y_1 + Y_2 + \ldots + Y_n, \]
+where $Y_i$ represents the outcome of the $i$th draw from the box. So $Y_i$ equals $1$ with probability 
+$N_1/N$ and is $0$ otherwise. Its p.m.f. is about as simple as it gets:
+\begin{equation}
+\begin{array}{rll}
+y & 0 & 1 \\
+\hline
+f(y) & N_0/N & N_1/N
+\end{array}. 
+\label{eq:bernoulli_pmf}
+\end{equation}
+
+By linearity of expectation:
+\[ E[X] = E[Y_1] + E[Y_2] + \ldots + E[Y_n]. \]
+We have taken a complicated random variable $X$ and broken it down into simpler random variables 
+$Y_i$, whose expected value is trivial to calculate:
+\[ E[Y_i] = 0 \cdot \frac{N_0}{N} + 1 \cdot \frac{N_1}{N} = \frac{N_1}{N}.  \]
+Therefore, 
+\[ E[X] = \underbrace{\frac{N_1}{N} + \frac{N_1}{N} + \ldots + \frac{N_1}{N}}_{\text{$n$ terms}} = n \frac{N_1}{N}. \]
+
+What if $X$ is a $\text{Hypergeometric}(n, N_1, N_0)$ random variable? We can break $X$ down in exactly the same way, as 
+sum of the outcomes of each draw:
+\[ X = Y_1 + Y_2 + \ldots + Y_n, \]
+except that now the $Y_i$s are not independent. However, each $Y_i$ still represents a random draw from a box with 
+$N_1$ $\fbox{1}$s and $N_0$ $\fbox{0}$s, so $Y_i$ equals 1 with probability $N_1/N$, just as before.  
+Also, linearity of expectation does not care whether or not the random variables are independent. So the expected value of the 
+hypergeometric is also:
+\[ E[X] = \underbrace{\frac{N_1}{N} + \frac{N_1}{N} + \ldots + \frac{N_1}{N}}_{\text{$n$ terms}} = n \frac{N_1}{N}. \]
 ```
+
+Here is a particularly clever application of linearity.
+
+```{example}
+Let $X$ be a $\text{Binomial}(n, N_1, N_0)$ random variable. What is $E[X(X-1)]$? 
+In Lesson \@ref(lotus), we calculated this expected value using LOTUS. Here is a
+way to calculate it using linearity.
+
+Remember that $X$ represents the number of $\fbox{1}$s in our sample. 
+The random variable $X(X-1)$ then represents the number of (ordered) ways to choose 
+two tickets from the $\fbox{1}$s in our sample. In the diagram below, 
+$n=4$ and $X=3$. Each arrow represents one of the $n(n-1) = 12$ ways to choose 
+two tickets from the $n$ tickets in the sample. The red arrows represent
+the $X(X-1) = 6$ ways of choosing two tickets among the $\fbox{1}$s. 
+
+```{r, echo=FALSE, engine='tikz', out.width='60%', fig.align='center'}
+\begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0}]
+\node[red] (a) at (0, 0) {$\fbox{1}$};
+\node (b) at (1, 0) {$\fbox{0}$};
+\node[red] (c) at (2, 0) {$\fbox{1}$};
+\node[red] (d) at (3, 0) {$\fbox{1}$};
+
+\node[above right of=d] (n) {$n=4$};
+\node[below right of=d,red] (X) {$X=3$};
+
+\draw (a) edge[red, ->,bend right] (c);
+\draw (a) edge[red, ->,bend right] (d);
+\draw (c) edge[red, ->,bend right] (d);
+\draw (c) edge[red, ->,bend left,out=45,in=135] (a);
+\draw (d) edge[red, ->,bend left,out=45,in=135] (a);
+\draw (d) edge[red, ->,bend left,out=45,in=135] (c);
+
+\draw (a) edge[gray,->,bend left] (b);
+\draw (b) edge[gray,->,bend left] (c);
+\draw (b) edge[gray,->,bend left] (d);
+\draw (b) edge[gray,->,bend right,out=315,in=225] (a);
+\draw (c) edge[gray,->,bend left,out=315,in=225] (b);
+\draw (d) edge[gray,->,bend left,out=315,in=225] (b);
+\end{tikzpicture}
+```
+
+Let's define an indicator variable $Y_{ij}, i\neq j$ for each of the $n(n-1)$ 
+ways of choosing two tickets from our sample. Let $Y_{ij}$ be 1 if tickets $i$ and $j$ 
+are both $\fbox{1}$s. In other words, $Y_{ij} = 1$ if and only if there is a red arrow 
+connecting the two tickets in the diagram above.
+
+Since $X(X-1)$ is the number of red arrows, we have 
+\[ X(X-1) = \sum_{i=1}^n \sum_{j\neq i} Y_{ij}. \]
+Now, by linearity:
+\[ E[X(X-1)] = \sum_{i=1}^n \sum_{j\neq i} E[Y_{ij}]. \]
+But $E[Y_{ij}]$ is simplyl the probability that tickets $i$ and $j$ are both $\fbox{1}$s. 
+This probability is $E[Y_{ij}] = \frac{N_1^2}{N^2}$. Therefore, 
+\[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N^2}, \]
+which matches the answer we got in Lesson \@ref(lotus) by more tedious means.
+
 
 ## Essential Practice {-}
 

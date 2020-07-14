@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-13" />
+<meta name="date" content="2020-07-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -287,7 +287,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lotus2d.html"><a href="lotus2d.html#essential-practice-14"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="26" data-path="linearity.html"><a href="linearity.html"><i class="fa fa-check"></i><b>26</b> Linearity of Expectation</a><ul>
-<li class="chapter" data-level="" data-path="linearity.html"><a href="linearity.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="linearity.html"><a href="linearity.html#theory-23"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="linearity.html"><a href="linearity.html#essential-practice-15"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="linearity.html"><a href="linearity.html#additional-practice-1"><i class="fa fa-check"></i>Additional Practice</a></li>
@@ -336,7 +335,43 @@ E[g(X)h(Y)] = E[g(X)] E[h(Y)].
 
 
 <div class="example">
-<span id="exm:unnamed-chunk-95" class="example"><strong>Example 27.1  (Xavier and Yolanda Revisited)  </strong></span><span class="math inline">\(E[XY]\)</span>
+<p><span id="exm:unnamed-chunk-97" class="example"><strong>Example 27.1  (Xavier and Yolanda Revisited)  </strong></span>In Lesson <a href="lotus2d.html#lotus2d">25</a>, we calculated <span class="math inline">\(E[XY]\)</span>, the expected product of the
+numbers of times that Xavier and Yolanda win. There, we used 2D LOTUS.
+Now, let’s repeat the calculation using Theorem <a href="ev-product.html#thm:ev-product">27.1</a>.</p>
+<p>You might be tempted to multiply <span class="math inline">\(E[X]\)</span> and <span class="math inline">\(E[Y]\)</span>. However, this is wrong
+because <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are not independent. Every time Xavier wins, Yolanda
+also wins. So we cannot apply Theorem <a href="ev-product.html#thm:ev-product">27.1</a> directly.</p>
+<p>We can express the number of times Yolanda wins as:
+<span class="math display">\[ Y = X + Z, \]</span>
+where <span class="math inline">\(Z\)</span> is the number of wins in the last two spins of the roulette wheel.
+Now, <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are independent. Furthermore, we know that
+<span class="math inline">\(X\)</span> is <span class="math inline">\(\text{Binomial}(n=3, N_1=18, N_0=20)\)</span>, and <span class="math inline">\(Y\)</span> is
+<span class="math inline">\(\text{Binomial}(n=2, N_1=18, N_0=20)\)</span>.</p>
+<p>Therefore,
+<span class="math display">\[\begin{align*}
+E[XY] &amp;= E[X(X + Z)] &amp; \text{(by the representation above)} \\
+&amp;= E[X^2 + XZ] &amp; \text{(expand expression inside expected value)}  \\
+&amp;= E[X^2] + E[XZ] &amp; \text{(by linearity of expectation)} \\
+&amp;= E[X^2] + E[X]E[Z] &amp; \text{(by independence of $X$ and $Z$)}
+\end{align*}\]</span></p>
+<p>Now, we know that <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are binomial, so there is a simple formula for their expected value:
+<span class="math display">\[\begin{align*}
+E[X] &amp;= n\frac{N_1}{N} = 3\frac{18}{38} \\
+E[Z] &amp;= n\frac{N_1}{N} = 2\frac{18}{38}.
+\end{align*}\]</span></p>
+<p>The only difficult part is calculating <span class="math inline">\(E[X^2]\)</span>. However, we already showed in
+Lessons <a href="lotus.html#lotus">24</a> and <a href="linearity.html#linearity">26</a> that
+<span class="math display">\[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N_0^2}. \]</span>
+Since <span class="math inline">\(E[X(X-1)] = E[X^2 - X] = E[X^2] - E[X]\)</span>, we can solve for <span class="math inline">\(E[X^2]\)</span>:
+<span class="math display">\[\begin{align*}
+E[X^2] &amp;= E[X(X-1)] + E[X] \\
+&amp;= n(n-1) \frac{N_1^2}{N_0^2} + n\frac{N_1}{N}
+\end{align*}\]</span>
+In our particular example,
+<span class="math display">\[ E[X^2] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38}. \]</span></p>
+Putting it all together, we get
+<span class="math display">\[ E[XY] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38} + \left( 3\frac{18}{38} \right) \left( 2\frac{18}{38} \right) \approx 4.11, \]</span>
+which matches what we got in Lesson <a href="lotus2d.html#lotus2d">25</a>.
 </div>
 
 </div>
