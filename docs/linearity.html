@@ -457,8 +457,8 @@ hypergeometric is also:
 <p>Here is a particularly clever application of linearity.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-95" class="example"><strong>Example 26.4  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span> random variable. What is <span class="math inline">\(E[X(X-1)]\)</span>?
-In Lesson <a href="lotus.html#lotus">24</a>, we calculated this expected value using LOTUS. Here is a
+<p><span id="exm:binomial-lotus-2" class="example"><strong>Example 26.4  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span> random variable. What is <span class="math inline">\(E[X(X-1)]\)</span>?
+In Example <a href="lotus.html#exm:binomial-lotus">24.3</a>, we calculated this expected value using LOTUS. Here is a
 way to calculate it using linearity.</p>
 <p>Remember that <span class="math inline">\(X\)</span> represents the number of <span class="math inline">\(\fbox{1}\)</span>s in our sample.
 The random variable <span class="math inline">\(X(X-1)\)</span> then represents the number of (ordered) ways to choose
@@ -468,7 +468,7 @@ two tickets from the <span class="math inline">\(n\)</span> tickets in the sampl
 the <span class="math inline">\(X(X-1) = 6\)</span> ways of choosing two tickets among the <span class="math inline">\(\fbox{1}\)</span>s.</p>
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-96-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Let’s define an indicator variable <span class="math inline">\(Y_{ij}, i\neq j\)</span> for each of the <span class="math inline">\(n(n-1)\)</span>
 ways of choosing two tickets from our sample. Let <span class="math inline">\(Y_{ij}\)</span> be 1 if tickets <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>
 are both <span class="math inline">\(\fbox{1}\)</span>s. In other words, <span class="math inline">\(Y_{ij} = 1\)</span> if and only if there is a red arrow

@@ -335,7 +335,7 @@ E[g(X)h(Y)] = E[g(X)] E[h(Y)].
 
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-97" class="example"><strong>Example 27.1  (Xavier and Yolanda Revisited)  </strong></span>In Lesson <a href="lotus2d.html#lotus2d">25</a>, we calculated <span class="math inline">\(E[XY]\)</span>, the expected product of the
+<p><span id="exm:unnamed-chunk-96" class="example"><strong>Example 27.1  (Xavier and Yolanda Revisited)  </strong></span>In Lesson <a href="lotus2d.html#lotus2d">25</a>, we calculated <span class="math inline">\(E[XY]\)</span>, the expected product of the
 numbers of times that Xavier and Yolanda win. There, we used 2D LOTUS.
 Now, let’s repeat the calculation using Theorem <a href="ev-product.html#thm:ev-product">27.1</a>.</p>
 <p>You might be tempted to multiply <span class="math inline">\(E[X]\)</span> and <span class="math inline">\(E[Y]\)</span>. However, this is wrong
@@ -360,12 +360,12 @@ E[X] &amp;= n\frac{N_1}{N} = 3\frac{18}{38} \\
 E[Z] &amp;= n\frac{N_1}{N} = 2\frac{18}{38}.
 \end{align*}\]</span>
 The only non-trivial part is calculating <span class="math inline">\(E[X^2]\)</span>. However, we showed in
-Lessons <a href="lotus.html#lotus">24</a> and <a href="linearity.html#linearity">26</a> that for a binomial random variable <span class="math inline">\(X\)</span>,
-<span class="math display">\[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N_0^2}. \]</span>
+Examples <a href="lotus.html#exm:binomial-lotus">24.3</a> and <a href="linearity.html#exm:binomial-lotus-2">26.4</a> that for a binomial random variable <span class="math inline">\(X\)</span>,
+<span class="math display">\[ E[X(X-1)] = n(n-1) \frac{N_1^2}{N^2}. \]</span>
 Since <span class="math inline">\(E[X(X-1)] = E[X^2 - X] = E[X^2] - E[X]\)</span>, we can solve for <span class="math inline">\(E[X^2]\)</span>:
 <span class="math display">\[\begin{align*}
 E[X^2] &amp;= E[X(X-1)] + E[X] \\
-&amp;= n(n-1) \frac{N_1^2}{N_0^2} + n\frac{N_1}{N}
+&amp;= n(n-1) \frac{N_1^2}{N^2} + n\frac{N_1}{N}
 \end{align*}\]</span>
 For the number of bets that Xavier wins,
 <span class="math display">\[ E[X^2] = 3(2)\frac{18^2}{38^2} + 3\frac{18}{38}. \]</span></p>
