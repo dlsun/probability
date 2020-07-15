@@ -64,12 +64,12 @@ The payout from a bet on a single number, $X$, has p.m.f.
 We have already seen that $E[X] = -\frac{2}{38}$. Its variance is:
 \begin{align*}
 \text{Var}[X] &= E[(X - -\frac{2}{38})^2] & \text{(plug in known value of $E[X]$)} \\
-&= (35 - -\frac{2}{38})^2 \cdot \frac{37}{38} + (-1 - -\frac{2}{38})^2 \cdot \frac{1}{38} & \text{(LOTUS)}\\
-&= 1196.38
+&= (35 - -\frac{2}{38})^2 \cdot \frac{1}{38} + (-1 - -\frac{2}{38})^2 \cdot \frac{37}{38} & \text{(LOTUS)}\\
+&= 33.21
 \end{align*}
 
 The payout from a bet on a single number, $Y$, has p.m.f.
-\[ \begin{array}{r|cc} y & -1 & 35 \\ \hline f(y) & 37/38 & 1/38 \end{array}. \]
+\[ \begin{array}{r|cc} y & -1 & 1 \\ \hline f(y) & 20/38 & 18/38 \end{array}. \]
 We have already seen that $E[Y] = -\frac{2}{38}$. Its variance is:
 \begin{align*}
 \text{Var}[Y] &= E[(Y - -\frac{2}{38})^2] & \text{(plug in known value of $E[Y]$)} \\
@@ -81,7 +81,7 @@ We see that the variances of these bets are very different, even though their ex
 ```
 
 You might be surprised that the variance of a bet on a single number is so large. This is because 
-variance is in _squared_ units. That is, the variance of a bet on a single number is 1196.38 dollars _squared_. 
+variance is in _squared_ units. That is, the variance of a bet on a single number is 33.21 dollars _squared_. 
 Because squared units are often uninterpretable (what exactly is a "squared dollar"?), it is customary to report the 
 square root of the variance, a number called the **standard deviation**.
 
@@ -94,9 +94,9 @@ is from its center.
 
 ```{example, name="Roulette SDs"}
 We showed above that the variance of a 
-\[ \text{Var}[X] = 1196.38. \]
+\[ \text{Var}[X] = 33.21. \]
 The standard deviation is 
-\[ \text{SD}[X] = \sqrt{\text{Var}[X]} = \sqrt{1196.38} = \$34.59. \]
+\[ \text{SD}[X] = \sqrt{\text{Var}[X]} = \sqrt{33.21} = \$5.76. \]
 This standard deviation is in units of dollars, just like the random variable $X$.
 ```
 

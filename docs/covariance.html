@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-14" />
+<meta name="date" content="2020-07-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -330,6 +330,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Lesson 29</span> Covariance</h1>
 <div id="theory-26" class="section level2 unnumbered">
 <h2>Theory</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MpnOmEAb0uM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>The covariance measures the relationship between two random variables.</p>
 
 <div class="definition">
@@ -351,10 +353,20 @@ When <span class="math inline">\(X\)</span> is high, <span class="math inline">\
 This does not mean that they are independent, just that they do not consistently move
 together.</li>
 </ul>
-<p>For calculations, it is often easier to use the following “shortcut formula” for the variance.</p>
+By comparing the definitions of variance <a href="variance.html#eq:var">(28.1)</a> and covariance <a href="covariance.html#eq:cov">(29.1)</a>,
+we have the following obvious, but important, relationship between variance and covariance.
 
 <div class="theorem">
-<span id="thm:cov-shortcut" class="theorem"><strong>Theorem 29.1  (Shortcut Formula for Covariance)  </strong></span>The covariance can also be computed as:
+<span id="thm:cov-var" class="theorem"><strong>Theorem 29.1  (Relationship between Variance and Covariance)  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable. Then:
+<span class="math display">\[\begin{equation}
+\text{Var}[X] = \text{Cov}[X, X].
+\end{equation}\]</span>
+</div>
+
+<p>For calculations, it is often easier to use the following “shortcut formula” for the covariance.</p>
+
+<div class="theorem">
+<span id="thm:cov-shortcut" class="theorem"><strong>Theorem 29.2  (Shortcut Formula for Covariance)  </strong></span>The covariance can also be computed as:
 <span class="math display" id="eq:cov-shortcut">\[\begin{equation}
 \text{Cov}[X, Y] = E[XY] - E[X]E[Y].
 \tag{29.2}
@@ -388,7 +400,7 @@ This covariance is positive, which makes sense—since the more Xavier wins, the
 Finally, we note that if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then their covariance is zero.
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-102" class="theorem"><strong>Theorem 29.2  (Independence Implies Zero Covariance)  </strong></span>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(\text{Cov}[X, Y] = 0\)</span>.
+<span id="thm:unnamed-chunk-102" class="theorem"><strong>Theorem 29.3  (Independence Implies Zero Covariance)  </strong></span>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(\text{Cov}[X, Y] = 0\)</span>.
 </div>
 
 
@@ -403,7 +415,7 @@ Finally, we note that if <span class="math inline">\(X\)</span> and <span class=
 
 <p>However, the converse is not true.
 It is possible for the covariance to be 0, even when the random variables are not independent.
-Do the Essential Practice below to see an example!</p>
+An example of such a distibution can be found in the Essential Practice below.</p>
 </div>
 <div id="essential-practice-18" class="section level2 unnumbered">
 <h2>Essential Practice</h2>

@@ -3,6 +3,8 @@
   
 ## Theory {-}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MpnOmEAb0uM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 The covariance measures the relationship between two random variables.
 
 ```{definition covariance, name="Covariance"}
@@ -24,7 +26,16 @@ When $X$ is high, $Y$ tends to be low.
 This does not mean that they are independent, just that they do not consistently move 
 together.
 
-For calculations, it is often easier to use the following "shortcut formula" for the variance.
+By comparing the definitions of variance \@ref(eq:var) and covariance \@ref(eq:cov), 
+we have the following obvious, but important, relationship between variance and covariance.
+```{theorem cov-var, name="Relationship between Variance and Covariance"}
+Let $X$ be a random variable. Then:
+\begin{equation}
+\text{Var}[X] = \text{Cov}[X, X].
+\end{equation}
+```
+
+For calculations, it is often easier to use the following "shortcut formula" for the covariance.
 
 ```{theorem cov-shortcut, name="Shortcut Formula for Covariance"}
 The covariance can also be computed as:
@@ -75,7 +86,8 @@ We use the shortcut formula \@ref(eq:cov-shortcut) and Theorem \@ref(thm:ev-prod
 
 However, the converse is not true. 
 It is possible for the covariance to be 0, even when the random variables are not independent. 
-Do the Essential Practice below to see an example!
+An example of such a distibution can be found in the Essential Practice below.
+
 
 ## Essential Practice {-}
 

@@ -364,11 +364,11 @@ that two random variables can have the same center but very different distributi
 We have already seen that <span class="math inline">\(E[X] = -\frac{2}{38}\)</span>. Its variance is:
 <span class="math display">\[\begin{align*}
 \text{Var}[X] &amp;= E[(X - -\frac{2}{38})^2] &amp; \text{(plug in known value of $E[X]$)} \\
-&amp;= (35 - -\frac{2}{38})^2 \cdot \frac{37}{38} + (-1 - -\frac{2}{38})^2 \cdot \frac{1}{38} &amp; \text{(LOTUS)}\\
-&amp;= 1196.38
+&amp;= (35 - -\frac{2}{38})^2 \cdot \frac{1}{38} + (-1 - -\frac{2}{38})^2 \cdot \frac{37}{38} &amp; \text{(LOTUS)}\\
+&amp;= 33.21
 \end{align*}\]</span></p>
 <p>The payout from a bet on a single number, <span class="math inline">\(Y\)</span>, has p.m.f.
-<span class="math display">\[ \begin{array}{r|cc} y &amp; -1 &amp; 35 \\ \hline f(y) &amp; 37/38 &amp; 1/38 \end{array}. \]</span>
+<span class="math display">\[ \begin{array}{r|cc} y &amp; -1 &amp; 1 \\ \hline f(y) &amp; 20/38 &amp; 18/38 \end{array}. \]</span>
 We have already seen that <span class="math inline">\(E[Y] = -\frac{2}{38}\)</span>. Its variance is:
 <span class="math display">\[\begin{align*}
 \text{Var}[Y] &amp;= E[(Y - -\frac{2}{38})^2] &amp; \text{(plug in known value of $E[Y]$)} \\
@@ -379,7 +379,7 @@ We see that the variances of these bets are very different, even though their ex
 </div>
 
 <p>You might be surprised that the variance of a bet on a single number is so large. This is because
-variance is in <em>squared</em> units. That is, the variance of a bet on a single number is 1196.38 dollars <em>squared</em>.
+variance is in <em>squared</em> units. That is, the variance of a bet on a single number is 33.21 dollars <em>squared</em>.
 Because squared units are often uninterpretable (what exactly is a “squared dollar”?), it is customary to report the
 square root of the variance, a number called the <strong>standard deviation</strong>.</p>
 
@@ -393,9 +393,9 @@ is from its center.
 
 <div class="example">
 <span id="exm:unnamed-chunk-99" class="example"><strong>Example 28.2  (Roulette SDs)  </strong></span>We showed above that the variance of a
-<span class="math display">\[ \text{Var}[X] = 1196.38. \]</span>
+<span class="math display">\[ \text{Var}[X] = 33.21. \]</span>
 The standard deviation is
-<span class="math display">\[ \text{SD}[X] = \sqrt{\text{Var}[X]} = \sqrt{1196.38} = \$34.59. \]</span>
+<span class="math display">\[ \text{SD}[X] = \sqrt{\text{Var}[X]} = \sqrt{33.21} = \$5.76. \]</span>
 This standard deviation is in units of dollars, just like the random variable <span class="math inline">\(X\)</span>.
 </div>
 
