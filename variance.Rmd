@@ -26,8 +26,8 @@ same expected payoff. That is, their p.m.f.s have the same center of mass.
 			\draw[ultra thick] (25, 8) -- (28, 8);
 			\node[anchor=west] at (28, 8) {single number};
 			
-			\draw[ultra thick] (25, 7) -- (28, 7);
-			\node[anchor=west] at (28, 7) {reds};
+			\draw[red,ultra thick] (25, 7) -- (28, 7);
+			\node[red,anchor=west] at (28, 7) {reds};
 	
 	\end{tikzpicture}
 ```
