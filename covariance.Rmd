@@ -38,7 +38,7 @@ The covariance can also be computed as:
 \text{Cov}[X, Y] &= E[(X - E[X])(Y - E[Y])] & \text{(definition of covariance)} \\
 &= E[XY - X E[Y] - E[X] Y + E[X]E[Y]] & \text{(expand expression inside expectation)}\\
 &= E[XY] -E[X] E[Y] - E[X] E[Y] + E[X]E[Y] & \text{(linearity of expectation)} \\
-&= E[XY] - E[XY] & \text{(simplify)}
+&= E[XY] - E[X]E[Y] & \text{(simplify)}
 \end{align*}
 ```
 
@@ -60,7 +60,7 @@ Therefore, the covariance is
 This covariance is positive, which makes sense---since the more Xavier wins, the more Yolanda wins. 
 ```
 
-If $X$ and $Y$ are independent, then their covariance is zero.
+Finally, we note that if $X$ and $Y$ are independent, then their covariance is zero.
 ```{theorem, name="Independence Implies Zero Covariance"}
 If $X$ and $Y$ are independent, then $\text{Cov}[X, Y] = 0$.
 ```
@@ -73,12 +73,13 @@ We use the shortcut formula \@ref(eq:cov-shortcut) and Theorem \@ref(thm:ev-prod
 \end{align*}
 ```
 
-However, it is possible for the covariance to be 0, even when the random variables are not independent. 
-Do the Essential Practice below!
+However, the converse is not true. 
+It is possible for the covariance to be 0, even when the random variables are not independent. 
+Do the Essential Practice below to see an example!
 
 ## Essential Practice {-}
 
-1. Suppose $X$ and $Y$ have joint p.m.f. 
+1. Suppose $X$ and $Y$ are random variables with joint p.m.f. 
 \[ \begin{array}{rr|ccc}
 y & 1 & .3 &  0 & .3 \\
   & 0 &  0 & .4 &  0 \\

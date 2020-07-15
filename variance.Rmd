@@ -181,7 +181,7 @@ the standard deviation of your _net_ winnings?
 
 4. Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
 Assume packet arrivals meet the assumptions of a Poisson process. What is the standard deviation of the 
-number of arrivals you expect to see over an 5-minute period?
+number of arrivals you expect to see over a 5-minute period?
 
 ## Additional Practice {-}
 

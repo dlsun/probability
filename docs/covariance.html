@@ -367,7 +367,7 @@ together.</li>
 \text{Cov}[X, Y] &amp;= E[(X - E[X])(Y - E[Y])] &amp; \text{(definition of covariance)} \\
 &amp;= E[XY - X E[Y] - E[X] Y + E[X]E[Y]] &amp; \text{(expand expression inside expectation)}\\
 &amp;= E[XY] -E[X] E[Y] - E[X] E[Y] + E[X]E[Y] &amp; \text{(linearity of expectation)} \\
-&amp;= E[XY] - E[XY] &amp; \text{(simplify)}
+&amp;= E[XY] - E[X]E[Y] &amp; \text{(simplify)}
 \end{align*}\]</span>
 </div>
 
@@ -385,7 +385,7 @@ already know this, we would have to calculate it (usually by 2D LOTUS).</p>
 This covariance is positive, which makes sense—since the more Xavier wins, the more Yolanda wins.
 </div>
 
-If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then their covariance is zero.
+Finally, we note that if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then their covariance is zero.
 
 <div class="theorem">
 <span id="thm:unnamed-chunk-102" class="theorem"><strong>Theorem 29.2  (Independence Implies Zero Covariance)  </strong></span>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(\text{Cov}[X, Y] = 0\)</span>.
@@ -401,13 +401,14 @@ If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</s
 \end{align*}\]</span>
 </div>
 
-<p>However, it is possible for the covariance to be 0, even when the random variables are not independent.
-Do the Essential Practice below!</p>
+<p>However, the converse is not true.
+It is possible for the covariance to be 0, even when the random variables are not independent.
+Do the Essential Practice below to see an example!</p>
 </div>
 <div id="essential-practice-18" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have joint p.m.f.
+<li><p>Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables with joint p.m.f.
 <span class="math display">\[ \begin{array}{rr|ccc}
 y &amp; 1 &amp; .3 &amp;  0 &amp; .3 \\
   &amp; 0 &amp;  0 &amp; .4 &amp;  0 \\
