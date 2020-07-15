@@ -1,0 +1,113 @@
+# Covariance {#covariance}
+
+  
+## Theory {-}
+
+The covariance measures the relationship between two random variables.
+
+```{definition covariance, name="Covariance"}
+Let $X$ and $Y$ be random variables. Then, the **covariance** of $X$ and $Y$, symbolized 
+$\text{Cov}[X, Y]$ is defined as 
+\begin{equation}
+\text{Cov}[X, Y] \overset{\text{def}}{=} E[(X - E[X])(Y - E[Y])].
+(\#eq:cov)
+\end{equation}
+```
+
+The _sign_ of the covariance is most meaningful:
+
+- If $\text{Cov}[X, Y] > 0$, then $X$ and $Y$ tend to move together. When $X$ is high, 
+$Y$ tends to also be high.
+- If $\text{Cov}[X, Y] < 0$, then $X$ and $Y$ tend to move in opposite directions. 
+When $X$ is high, $Y$ tends to be low.
+- If $\text{Cov}[X, Y] = 0$, then $X$ and $Y$ do not consistently move together. 
+This does not mean that they are independent, just that they do not consistently move 
+together.
+
+For calculations, it is often easier to use the following "shortcut formula" for the variance.
+
+```{theorem cov-shortcut, name="Shortcut Formula for Covariance"}
+The covariance can also be computed as:
+\begin{equation}
+\text{Cov}[X, Y] = E[XY] - E[X]E[Y].
+(\#eq:cov-shortcut)
+\end{equation}
+```
+```{proof}
+\begin{align*}
+\text{Cov}[X, Y] &= E[(X - E[X])(Y - E[Y])] & \text{(definition of covariance)} \\
+&= E[XY - X E[Y] - E[X] Y + E[X]E[Y]] & \text{(expand expression inside expectation)}\\
+&= E[XY] -E[X] E[Y] - E[X] E[Y] + E[X]E[Y] & \text{(linearity of expectation)} \\
+&= E[XY] - E[XY] & \text{(simplify)}
+\end{align*}
+```
+
+Here is an example where we use the shortcut formula.
+
+```{example roulette-cov, name="Roulette Covariance"}
+Let's calculate the covariance between the number of bets that Xavier wins, $X$, and 
+the number of bets that Yolanda wins, $Y$. 
+
+We calculated $E[XY] \approx 4.11$ in Lessons \@ref(lotus2d) and \@ref(ev-product). But if we did not 
+already know this, we would have to calculate it (usually by 2D LOTUS).
+
+Since $X$ and $Y$ are binomial, we also know their expected values are 
+$E[X] = 3\frac{18}{38}$ and $E[Y] = 5\frac{18}{38}$.
+
+Therefore, the covariance is 
+\[ \text{Cov}[X, Y] = E[XY] - E[X]E[Y] = 4.11 - 3\frac{18}{38} \cdot 5\frac{18}{38} = .744. \]
+
+This covariance is positive, which makes sense---since the more Xavier wins, the more Yolanda wins. 
+```
+
+If $X$ and $Y$ are independent, then their covariance is zero.
+```{theorem, name="Independence Implies Zero Covariance"}
+If $X$ and $Y$ are independent, then $\text{Cov}[X, Y] = 0$.
+```
+```{proof}
+We use the shortcut formula \@ref(eq:cov-shortcut) and Theorem \@ref(thm:ev-product). 
+\begin{align*}
+\text{Cov}[X, Y] &= E[XY] - E[X]E[Y] \\
+&= E[X]E[Y] - E[X]E[Y] \\
+&= 0
+\end{align*}
+```
+
+However, it is possible for the covariance to be 0, even when the random variables are not independent. 
+Do the Essential Practice below!
+
+## Essential Practice {-}
+
+1. Suppose $X$ and $Y$ have joint p.m.f. 
+\[ \begin{array}{rr|ccc}
+y & 1 & .3 &  0 & .3 \\
+  & 0 &  0 & .4 &  0 \\
+\hline
+  & & 0 & 1 & 2 \\
+  & & & x  \\
+\end{array}. \]
+Are $X$ and $Y$ independent? What is $\text{Cov}[X, Y]$?
+
+2. Two tickets are drawn from a box with $N_1$ $\fbox{1}$s and $N_0$ $\fbox{0}$s. Let $X$ be the number of 
+$\fbox{1}$s on the first draw and $Y$ be the number of $\fbox{1}$s on the second draw. (Note that $X$ and $Y$ 
+can only be 0 or 1.)
+
+    a. Calculate $\text{Cov}[X, Y]$ when the draws are made with replacement.
+    b. Calculate $\text{Cov}[X, Y]$ when the draws are made without replacement.
+    
+    (Hint: You worked out $E[XY]$ in Lesson \@ref(lotus2d). Use it!)
+
+3. At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
+with a rate of 3.5 particles per second. Let $X$ be the number of particles detected in the first 2 seconds. 
+Let $Y$ be the number of particles detected in the second after that (i.e., the 3rd second). 
+Calculate $\text{Cov}[X, Y]$.
+
+## Additional Practice {-}
+
+1. Consider the following three scenarios:
+
+    - A fair coin is tossed 3 times. $X$ is the number of heads and $Y$ is the number of tails.
+    - A fair coin is tossed 4 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
+    - A fair coin is tossed 6 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
+    
+    Calculate $\text{Cov}[X, Y]$ for each of these three scenarios. Interpret the sign of the covariance.

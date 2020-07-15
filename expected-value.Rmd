@@ -172,7 +172,8 @@ play?
 
     ![](https://gamefaqs1.cbsistatic.com/faqs/32/77032-739.png)
 
-4. In the carnival game chuck-a-luck, three dice are rolled. You make a bet on a particular number (1, 2, 3, 4, 5, 6) showing up. The payout is 1 to 1 if that number shows on (exactly) one die, 2 to 1 if it shows on two dice, and 3 to 1 if it shows up on all three. (You lose your initial stake if your number does not show on any of the dice.) If you make a \$1 bet on the number three, what is your expected net winnings?
+4. In the carnival game chuck-a-luck, three dice are rolled. You make a bet on a particular number (1, 2, 3, 4, 5, 6) showing up. The payout is 1 to 1 if that number shows on (exactly) one die, 2 to 1 if it shows on two dice, and 3 to 1 if it shows up on all three. (You lose your initial stake if your number does not show on any of the dice.) If you make a \$1 bet on the number three, what is your expected 
+_net_ winnings?
 
 5. Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
 Assume packet arrivals meet the assumptions of a Poisson process. 

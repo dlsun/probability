@@ -150,9 +150,9 @@ hypergeometric is also:
 
 Here is a particularly clever application of linearity.
 
-```{example}
+```{example binomial-lotus-2}
 Let $X$ be a $\text{Binomial}(n, N_1, N_0)$ random variable. What is $E[X(X-1)]$? 
-In Lesson \@ref(lotus), we calculated this expected value using LOTUS. Here is a
+In Example \@ref(exm:binomial-lotus), we calculated this expected value using LOTUS. Here is a
 way to calculate it using linearity.
 
 Remember that $X$ represents the number of $\fbox{1}$s in our sample. 
@@ -241,3 +241,6 @@ stored.
     Find the expected number of locations with no phone numbers stored, the
 expected number with exactly one phone number, and the expected number
 with more than one phone number.
+
+2. Calculate $E[X(X-1)]$ for a $\text{Hypergeometric}(n, N_1, N_0)$ random variable 
+$X$ using linearity. (Hint: Follow Example \@ref(exm:binomial-lotus-2).)
