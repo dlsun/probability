@@ -29,7 +29,7 @@ We can express the number of times Yolanda wins as:
 \[ Y = X + Z, \]
 where $Z$ is the number of wins in the last two spins of the roulette wheel. 
 Now, $X$ and $Z$ are independent. Furthermore, we know that 
-$X$ is $\text{Binomial}(n=3, N_1=18, N_0=20)$, and $Y$ is 
+$X$ is $\text{Binomial}(n=3, N_1=18, N_0=20)$, and $Z$ is 
 $\text{Binomial}(n=2, N_1=18, N_0=20)$.
 
 Therefore, 
