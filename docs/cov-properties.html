@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-15" />
+<meta name="date" content="2020-07-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -307,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#additional-practice-3"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="cov-properties.html"><a href="cov-properties.html"><i class="fa fa-check"></i><b>30</b> Properties of Covariance</a><ul>
-<li class="chapter" data-level="30.1" data-path="cov-properties.html"><a href="cov-properties.html#optional-video"><i class="fa fa-check"></i><b>30.1</b> Optional Video</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#optional-video"><i class="fa fa-check"></i>Optional Video</a></li>
 <li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#theory-27"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#essential-practice-19"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#additional-practice-4"><i class="fa fa-check"></i>Additional Practice</a></li>
@@ -334,8 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="cov-properties" class="section level1">
 <h1><span class="header-section-number">Lesson 30</span> Properties of Covariance</h1>
-<div id="optional-video" class="section level2">
-<h2><span class="header-section-number">30.1</span> Optional Video</h2>
+<div id="optional-video" class="section level2 unnumbered">
+<h2>Optional Video</h2>
 <p>This is an old video of mine. I’m including it in case it is helpful, but you do not
 need to watch it.</p>
 <iframe src="https://player.vimeo.com/video/297982855" width="888" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
@@ -445,7 +445,7 @@ by Property 1:
 <span class="math display">\[\begin{align*}
 &amp;= \text{Cov}[Y_1, Y_1] + \text{Cov}[Y_2, Y_2] + \ldots + \text{Cov}[Y_n, Y_n] \\
 &amp;= \text{Var}[Y_1] + \text{Var}[Y_2] + \ldots + \text{Cov}[Y_n] \\
-&amp;= \frac{N_1}{N} + \frac{N_1}{N} + \ldots + \frac{N_1}{N} \\
+&amp;= \frac{N_1}{N} \frac{N_0}{N} + \frac{N_1}{N} \frac{N_0}{N} + \ldots + \frac{N_1}{N} \frac{N_0}{N} \\
 &amp;= n \frac{N_1}{N} \frac{N_0}{N}.
 \end{align*}\]</span></p>
 This derivation gives insight into why the variance of a binomial distribution is <span class="math inline">\(n \frac{N_1}{N} \frac{N_0}{N}\)</span>.
@@ -490,15 +490,16 @@ that of the corresponding binomial. This makes sense because the draws are made 
 replacement in the hypergeometric distribution. Each time we draw a <span class="math inline">\(\fbox{1}\)</span>, we are less likely to
 draw a <span class="math inline">\(\fbox{1}\)</span> again (and more likely to draw a <span class="math inline">\(\fbox{0}\)</span>). As a result, the number of <span class="math inline">\(\fbox{1}\)</span>s is
 more likely to be somewhere near the middle in the hypergeometric distribution, so the variance will be
-smaller.</p>
-The factor <span class="math inline">\(\left(1 - \frac{n-1}{N-1}\right)\)</span> is called the <strong>finite population correction</strong>.
-If we have a box with infinitely many tickets, then drawing <em>without</em> replacement is essentially
-the same as drawing <em>with</em> replacement. Thus, in the limit as <span class="math inline">\(N \to \infty\)</span>, the
-hypergeometric distribution is the binomial distribution, and the finite population correction
-disappears. The finite population correction is only necessary because our boxes only have a
-finite number of tickets.
+smaller. The figure below compares the p.m.f.s of the two distributions.</p>
 </div>
 
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p>The factor <span class="math inline">\(\left(1 - \frac{n-1}{N-1}\right)\)</span> is called the <strong>finite population correction</strong>.
+If our box had infinitely many tickets, then drawing <em>without</em> replacement is essentially
+the same as drawing <em>with</em> replacement. Thus, in the limit as <span class="math inline">\(N \to \infty\)</span>, the
+hypergeometric distribution is the binomial distribution, and the finite population correction
+disappears. The finite population correction is only necessary because our boxes only contain a
+finite number of tickets.</p>
 </div>
 <div id="essential-practice-19" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
@@ -547,11 +548,11 @@ are indicator random variables that only take on the values 0 or 1.)</li>
 <p>McDonald’s decides to give a Pokemon toy with every Happy Meal. Each time you buy a Happy Meal, you are equally likely to get any one of the 6 types of Pokemon. Let <span class="math inline">\(X\)</span> be the number of Happy Meals you have to buy until you “catch ’em all”.</p>
 </blockquote>
 <p>In that lesson, you calculated <span class="math inline">\(E[X]\)</span> using linearity of expectation. Now, use properties of
-covariance to calculate <span class="math inline">\(\text{Var}[X]\)</span>?</p></li>
+covariance to calculate <span class="math inline">\(\text{Var}[X]\)</span>.</p></li>
 <li><p>At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process
 with a rate of 3.5 particles per second. Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds.
 Let <span class="math inline">\(Z\)</span> be the number of particles detected in the first 3 seconds. Find <span class="math inline">\(\text{Cov}[X, Z]\)</span>.</p>
-<p>Hint: Note that <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are <em>not</em> independent. However, you should be able to express <span class="math inline">\(Z = X + Y\)</span>, where
+<p>Hint: Note that <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are <em>not</em> independent. However, you should be able to write <span class="math inline">\(Z = X + Y\)</span>, where
 <span class="math inline">\(Y\)</span> is a random variable that is independent of <span class="math inline">\(X\)</span>.</p></li>
 </ol>
 

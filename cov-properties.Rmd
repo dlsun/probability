@@ -1,6 +1,6 @@
 # Properties of Covariance {#cov-properties}
 
-## Optional Video
+## Optional Video {-}
 
 This is an old video of mine. I'm including it in case it is helpful, but you do not 
 need to watch it.
@@ -172,15 +172,35 @@ that of the corresponding binomial. This makes sense because the draws are made 
 replacement in the hypergeometric distribution. Each time we draw a $\fbox{1}$, we are less likely to 
 draw a $\fbox{1}$ again (and more likely to draw a $\fbox{0}$). As a result, the number of $\fbox{1}$s is 
 more likely to be somewhere near the middle in the hypergeometric distribution, so the variance will be 
-smaller.
+smaller. The figure below compares the p.m.f.s of the two distributions.
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+library(latex2exp)
+
+n <- 10
+N <- 20
+plot(0:n + 0.05, dhyper(0:n, N/2, N/2, n), pch=19, col="blue",
+     xlab="x", ylab="f(x)", 
+     main=TeX("n=10, N_1=10, N_0=10"))
+for(x in 0:n) {
+  lines(c(x, x) + 0.05, c(0, dhyper(x, N/2, N/2, n)), lwd=2, col="blue")
+}
+
+points(0:n - 0.05, dbinom(0:n, n, n/N), pch=19, col="red")
+for(x in 0:n) {
+  lines(c(x, x) - 0.05, c(0, dbinom(x, n, n/N)), lwd=2, col="red")
+} 
+
+legend(6.8, 0.35, c("Hypergeometric", "Binomial"), lwd=2, col=c("blue", "red"))
+```
 
 The factor $\left(1 - \frac{n-1}{N-1}\right)$ is called the **finite population correction**. 
-If we have a box with infinitely many tickets, then drawing _without_ replacement is essentially 
+If our box had infinitely many tickets, then drawing _without_ replacement is essentially 
 the same as drawing _with_ replacement. Thus, in the limit as $N \to \infty$, the 
 hypergeometric distribution is the binomial distribution, and the finite population correction 
-disappears. The finite population correction is only necessary because our boxes only have a 
+disappears. The finite population correction is only necessary because our boxes only contain a 
 finite number of tickets.
-```
+
 
 
 ## Essential Practice {-}
@@ -233,11 +253,11 @@ Examples \@ref(exm:roulette-ev) and \@ref(exm:roulette-var).
     > McDonald's decides to give a Pokemon toy with every Happy Meal. Each time you buy a Happy Meal, you are equally likely to get any one of the 6 types of Pokemon. Let $X$ be the number of Happy Meals you have to buy until you "catch 'em all".
 
     In that lesson, you calculated $E[X]$ using linearity of expectation. Now, use properties of 
-covariance to calculate $\text{Var}[X]$?
+covariance to calculate $\text{Var}[X]$.
 
 2. At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process 
 with a rate of 3.5 particles per second. Let $X$ be the number of particles detected in the first 2 seconds. 
 Let $Z$ be the number of particles detected in the first 3 seconds. Find $\text{Cov}[X, Z]$.
 
-    Hint: Note that $X$ and $Z$ are _not_ independent. However, you should be able to express $Z = X + Y$, where 
+    Hint: Note that $X$ and $Z$ are _not_ independent. However, you should be able to write $Z = X + Y$, where 
     $Y$ is a random variable that is independent of $X$.
