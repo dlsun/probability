@@ -79,6 +79,10 @@ $\text{Cov}[S, D]$?
 	&= \text{Var}[X] - \text{Var}[Y] \\
 	&= 0.
 \end{align*}
+In the second-to-last line, we used the fact that $X$ and $Y$ both represent the outcome when  
+a fair, six-sided die is rolled. So they must have the same distribution and the same variance. 
+You could calculate $\text{Var}[X]$ and $\text{Var}[Y]$ if you'd like (they turn out to be about 2.917), 
+but it is not necessary in this example because we know they will cancel.
 	
 Even though their covariance is zero, $S$ and $D$ are not independent! Think about it: if we are given that the 
 sum was $S = 12$, we must have rolled two ⚅s. In other words, we know $D = 0$. Since one random variable 
@@ -122,7 +126,7 @@ are zero. That leaves just terms of the form $\text{Cov}[Y_i, Y_i]$, which is eq
   by Property 1:
   \begin{align*}
 &= \text{Cov}[Y_1, Y_1] + \text{Cov}[Y_2, Y_2] + \ldots + \text{Cov}[Y_n, Y_n] \\
-&= \text{Var}[Y_1] + \text{Var}[Y_2] + \ldots + \text{Cov}[Y_n] \\
+&= \text{Var}[Y_1] + \text{Var}[Y_2] + \ldots + \text{Var}[Y_n] \\
 &= \frac{N_1}{N} \frac{N_0}{N} + \frac{N_1}{N} \frac{N_0}{N} + \ldots + \frac{N_1}{N} \frac{N_0}{N} \\
 &= n \frac{N_1}{N} \frac{N_0}{N}.
 \end{align*}

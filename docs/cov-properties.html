@@ -403,7 +403,11 @@ Let <span class="math inline">\(Y\)</span> be the number on the second die.</p>
     &amp;= \text{Var}[X]\ \ \ \ \ - \text{Cov}[X, Y]\ \ \ \ + \text{Cov}[X, Y] - \text{Var}[Y] \\
     &amp;= \text{Var}[X] - \text{Var}[Y] \\
     &amp;= 0.
-\end{align*}\]</span></p>
+\end{align*}\]</span>
+In the second-to-last line, we used the fact that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> both represent the outcome when<br />
+a fair, six-sided die is rolled. So they must have the same distribution and the same variance.
+You could calculate <span class="math inline">\(\text{Var}[X]\)</span> and <span class="math inline">\(\text{Var}[Y]\)</span> if you’d like (they turn out to be about 2.917),
+but it is not necessary in this example because we know they will cancel.</p>
 Even though their covariance is zero, <span class="math inline">\(S\)</span> and <span class="math inline">\(D\)</span> are not independent! Think about it: if we are given that the
 sum was <span class="math inline">\(S = 12\)</span>, we must have rolled two ⚅s. In other words, we know <span class="math inline">\(D = 0\)</span>. Since one random variable
 gives us information about the other, they are not independent.
@@ -444,7 +448,7 @@ are zero. That leaves just terms of the form <span class="math inline">\(\text{C
 by Property 1:
 <span class="math display">\[\begin{align*}
 &amp;= \text{Cov}[Y_1, Y_1] + \text{Cov}[Y_2, Y_2] + \ldots + \text{Cov}[Y_n, Y_n] \\
-&amp;= \text{Var}[Y_1] + \text{Var}[Y_2] + \ldots + \text{Cov}[Y_n] \\
+&amp;= \text{Var}[Y_1] + \text{Var}[Y_2] + \ldots + \text{Var}[Y_n] \\
 &amp;= \frac{N_1}{N} \frac{N_0}{N} + \frac{N_1}{N} \frac{N_0}{N} + \ldots + \frac{N_1}{N} \frac{N_0}{N} \\
 &amp;= n \frac{N_1}{N} \frac{N_0}{N}.
 \end{align*}\]</span></p>
