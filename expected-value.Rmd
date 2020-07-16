@@ -29,7 +29,7 @@ weights are the probabilities.
 
 How do we interpret the expected value? The next example explores this question.
 
-```{example, name="Betting on a Number in Roulette"}
+```{example roulette-ev, name="Betting on a Number in Roulette"}
 In roulette, betting on a single number pays 35-to-1. That is, for each $1 you bet, you win 
 $35 if the ball lands in that pocket. 
 

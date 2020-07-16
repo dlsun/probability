@@ -58,7 +58,7 @@ $\text{Var}[X]$ is defined as
 
 In general, the variance \@ref(eq:var) has to be computed using LOTUS.
 
-```{example, name="Roulette Variances"}
+```{example roulette-var, name="Roulette Variances"}
 The payout from a bet on a single number, $X$, has p.m.f.
 \[ \begin{array}{r|cc} x & -1 & 35 \\ \hline f(x) & 37/38 & 1/38 \end{array}. \]
 We have already seen that $E[X] = -\frac{2}{38}$. Its variance is:

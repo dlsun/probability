@@ -306,6 +306,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#essential-practice-18"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#additional-practice-3"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="30" data-path="cov-properties.html"><a href="cov-properties.html"><i class="fa fa-check"></i><b>30</b> Properties of Covariance</a><ul>
+<li class="chapter" data-level="30.1" data-path="cov-properties.html"><a href="cov-properties.html#optional-video"><i class="fa fa-check"></i><b>30.1</b> Optional Video</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#theory-27"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#essential-practice-19"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#additional-practice-4"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -362,7 +368,7 @@ E[X+b] &amp;= \sum_x (x + b) f(x) &amp; \text{(LOTUS)} \\
 <p>Here is an example illustrating how Theorem <a href="linearity.html#thm:ev-constant">26.1</a> can be used.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-91" class="example"><strong>Example 26.1  (Expected Values in Roulette)  </strong></span>In roulette, betting on a single number pays 35-to-1. That is, for each $1 you bet, you win
+<p><span id="exm:unnamed-chunk-90" class="example"><strong>Example 26.1  (Expected Values in Roulette)  </strong></span>In roulette, betting on a single number pays 35-to-1. That is, for each $1 you bet, you win
 $35 if the ball lands in that pocket.</p>
 <p>If we let <span class="math inline">\(X\)</span> represent your net winnings (or losses) on this bet, its p.m.f. is
 <span class="math display">\[ \begin{array}{r|cc} x &amp; -1 &amp; 35 \\ \hline f_X(x) &amp; 37/38 &amp; 1/38 \end{array}. \]</span></p>
@@ -411,7 +417,7 @@ is irrelevant.</p>
 <p>Let’s apply this to the Xavier and Yolanda problem from Lesson <a href="joint-discrete.html#joint-discrete">18</a>.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-93" class="example"><strong>Example 26.2  (Xavier and Yolanda Revisited)  </strong></span>Xavier and Yolanda head to the roulette table at a casino. They both place bets on red on 3 spins of the roulette
+<p><span id="exm:unnamed-chunk-92" class="example"><strong>Example 26.2  (Xavier and Yolanda Revisited)  </strong></span>Xavier and Yolanda head to the roulette table at a casino. They both place bets on red on 3 spins of the roulette
 wheel before Xavier has to leave. After Xavier leaves, Yolanda places bets on red on 2 more spins of the wheel.
 Let <span class="math inline">\(X\)</span> be the number of bets that Xavier wins and <span class="math inline">\(Y\)</span> be the number that Yolanda wins.</p>
 <p>In Lesson <a href="lotus2d.html#lotus2d">25</a>, we calculated <span class="math inline">\(E[Y - X]\)</span>, the expected number of <em>additional</em> times that Yolanda wins,
@@ -432,7 +438,7 @@ which matches the answer we got in Lesson <a href="lotus2d.html#lotus2d">25</a> 
 by breaking them into simpler random variables.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-94" class="example"><strong>Example 26.3  (Expected Value of the Binomial and Hypergeometric Distributions)  </strong></span>In Lesson <a href="expected-value.html#expected-value">22</a>, we showed that the expected values of the binomial and hypergeometric
+<p><span id="exm:binomial-ev-linearity" class="example"><strong>Example 26.3  (Expected Value of the Binomial and Hypergeometric Distributions)  </strong></span>In Lesson <a href="expected-value.html#expected-value">22</a>, we showed that the expected values of the binomial and hypergeometric
 distributions are the same: <span class="math inline">\(n\frac{N_1}{N}\)</span>. But the proofs we gave were tedious and did not give any insight
 into why this formula is true. Let’s prove this formula using linearity of expectation.</p>
 <p>If <span class="math inline">\(X\)</span> is a <span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span> random variable, then we can break <span class="math inline">\(X\)</span> down into the sum
@@ -465,7 +471,7 @@ hypergeometric is also:
 <span class="math display">\[ E[X] = \underbrace{\frac{N_1}{N} + \frac{N_1}{N} + \ldots + \frac{N_1}{N}}_{\text{$n$ terms}} = n \frac{N_1}{N}. \]</span>
 </div>
 
-<p>Here is a particularly clever application of linearity.</p>
+<p>Here is a clever application of linearity.</p>
 
 <div class="example">
 <p><span id="exm:binomial-lotus-2" class="example"><strong>Example 26.4  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span> random variable. What is <span class="math inline">\(E[X(X-1)]\)</span>?
@@ -479,7 +485,7 @@ two tickets from the <span class="math inline">\(n\)</span> tickets in the sampl
 the <span class="math inline">\(X(X-1) = 6\)</span> ways of choosing two tickets among the <span class="math inline">\(\fbox{1}\)</span>s.</p>
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Let’s define an indicator variable <span class="math inline">\(Y_{ij}, i\neq j\)</span> for each of the <span class="math inline">\(n(n-1)\)</span>
 ways of choosing two tickets from our sample. Let <span class="math inline">\(Y_{ij}\)</span> be 1 if tickets <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>
 are both <span class="math inline">\(\fbox{1}\)</span>s. In other words, <span class="math inline">\(Y_{ij} = 1\)</span> if and only if there is a red arrow
@@ -498,17 +504,17 @@ which matches the answer we got in Lesson <a href="lotus.html#lotus">24</a> by m
 <ol style="list-style-type: decimal">
 <li><p>Each year, as part of a “Secret Santa” tradition, a group of 4 friends write their names on slips of papers and place
 the slips into a hat. Each member of the group draws a name at random from the hat and must by a gift for that person. Of course, it is possible that they draw their own name, in which case they buy a gift for themselves.
-What is the expected number of people who draw their own name? (<em>Hint:</em> Express this complicated
-random variable as a sum of <span class="math inline">\(0/1\)</span> random variables, and use linearity of expectation.)</p></li>
+What is the expected number of people who draw their own name?</p>
+<p><em>Hint:</em> Express this complicated random variable as a sum of indicator random variables (i.e., that only take on the values 0 or 1), and use linearity of expectation.</p></li>
 <li><p>McDonald’s decides to give a Pokemon toy with every Happy Meal. Each time you buy a Happy Meal, you are equally
 likely to get any one of the 6 types of Pokemon. What is the <em>expected</em> number of Happy Meals that you have to buy
-until you “catch ’em all”?
-(<em>Hint:</em> Express this complicated random variable as a sum of geometric random variables, and
-use linearity of expectation.)</p></li>
+until you “catch ’em all”?</p>
+<p><em>Hint:</em> Express this complicated random variable as a sum of geometric random variables, and
+use linearity of expectation.</p></li>
 <li><p>A group of 60 people are comparing their birthdays (as usual, assume that their
 birthdays are independent, all 365 days are equally likely, etc.). Find the expected number of days
-in the year on which at least two of these people were born. (<em>Hint:</em> Express this complicated random variable as
-a sum of <span class="math inline">\(0/1\)</span> random variables, and use linearity of expectation.)</p></li>
+in the year on which at least two of these people were born.</p>
+<p><em>Hint:</em> Express this complicated random variable as a sum of indicator random variables, and use linearity of expectation.</p></li>
 </ol>
 </div>
 <div id="additional-practice-1" class="section level2 unnumbered">

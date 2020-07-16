@@ -28,7 +28,7 @@ together.
 
 By comparing the definitions of variance \@ref(eq:var) and covariance \@ref(eq:cov), 
 we have the following obvious, but important, relationship between variance and covariance.
-```{theorem cov-var, name="Relationship between Variance and Covariance"}
+```{theorem cov-var, name="Covariance-Variance Relationship"}
 Let $X$ be a random variable. Then:
 \begin{equation}
 \text{Var}[X] = \text{Cov}[X, X].

@@ -307,6 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#additional-practice-3"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="cov-properties.html"><a href="cov-properties.html"><i class="fa fa-check"></i><b>30</b> Properties of Covariance</a><ul>
+<li class="chapter" data-level="30.1" data-path="cov-properties.html"><a href="cov-properties.html#optional-video"><i class="fa fa-check"></i><b>30.1</b> Optional Video</a></li>
 <li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#theory-27"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#essential-practice-19"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#additional-practice-4"><i class="fa fa-check"></i>Additional Practice</a></li>
@@ -333,6 +334,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="cov-properties" class="section level1">
 <h1><span class="header-section-number">Lesson 30</span> Properties of Covariance</h1>
+<div id="optional-video" class="section level2">
+<h2><span class="header-section-number">30.1</span> Optional Video</h2>
+<p>This is an old video of mine. I’m including it in case it is helpful, but you do not
+need to watch it.</p>
+<iframe src="https://player.vimeo.com/video/297982855" width="888" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+</iframe>
+</div>
 <div id="theory-27" class="section level2 unnumbered">
 <h2>Theory</h2>
 <p>Calculating variance and covariance, even from the shortcut formulas
@@ -355,22 +363,9 @@ in this lesson will simplify the calculation of variances and covariances.</p>
 </div></li>
 </ol>
 <p>These properties follow immediately from the definition of covariance <a href="covariance.html#eq:cov">(29.1)</a>, so we omit their proofs.</p>
-By combining the properties, we can derive new properties.
 
 <div class="example">
-<p><span id="exm:cov-distributive" class="example"><strong>Example 30.1  </strong></span>Let <span class="math inline">\(X, Y, Z, W\)</span> be random variables. Then, by applying the distributive property twice:
-<span class="math display">\[\begin{align*}
-\text{Cov}[X + Y, Z + W] &amp;= \text{Cov}[X, Z+W] + \text{Cov}[Y, Z+W] \\
-&amp;= \text{Cov}[X, Z] + \text{Cov}[X, W] + \text{Cov}[Y, Z] + \text{Cov}[Y, W] 
-\end{align*}\]</span></p>
-The result should remind you of FOILing from your high school algebra class, i.e.,
-<span class="math display">\[ (x + y)(z + w) = xz + xw + yz + yw. \]</span>
-That is because multiplication also has a “distributive property”, just like covariance.
-</div>
-
-
-<div class="example">
-<p><span id="exm:var-constant" class="example"><strong>Example 30.2  </strong></span>How does the variance change, when we multiply the random variable by a constant <span class="math inline">\(a\)</span>?
+<p><span id="exm:var-constant" class="example"><strong>Example 30.1  </strong></span>How does the variance change, when we multiply the random variable by a constant <span class="math inline">\(a\)</span>?
 We answer this question using properties of covariance:
 <span class="math display">\[\begin{align*}
 \text{Var}[aX] &amp;= \text{Cov}[aX, aX] &amp; \text{(Covariance-Variance Relationship)} \\
@@ -380,10 +375,24 @@ We answer this question using properties of covariance:
 It makes sense that the variance should scale by <span class="math inline">\(a^2\)</span>, since the variance is in <em>squared</em> units.
 </div>
 
-Here is a neat application of the properties of covariance.
+By combining the properties, we can derive new properties.
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-102" class="example"><strong>Example 30.3  (Covariance between the Sum and the Difference)  </strong></span>
+<p><span id="exm:cov-distributive" class="example"><strong>Example 30.2  </strong></span>Let <span class="math inline">\(X, Y, Z, W\)</span> be random variables. Then, by applying the distributive property twice:
+<span class="math display">\[\begin{align*}
+\text{Cov}[X + Y, Z + W] &amp;= \text{Cov}[X, Z+W] + \text{Cov}[Y, Z+W] \\
+&amp;= \text{Cov}[X, Z] + \text{Cov}[X, W] + \text{Cov}[Y, Z] + \text{Cov}[Y, W] 
+\end{align*}\]</span></p>
+The result should remind you of FOILing from your high school algebra class, i.e.,
+<span class="math display">\[ (x + y)(z + w) = xz + xw + yz + yw. \]</span>
+That is because multiplication also has a “distributive property”, just like covariance.
+</div>
+
+<p>Here is a cute application of the properties of covariance that emphasizes the point that
+two variables can have zero covariance without being independent.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-101" class="example"><strong>Example 30.3  (Covariance between the Sum and the Difference)  </strong></span>
 Two fair six-sided dice are rolled. Let <span class="math inline">\(X\)</span> be the number on the first die.
 Let <span class="math inline">\(Y\)</span> be the number on the second die.</p>
 <p>If <span class="math inline">\(S = X + Y\)</span> is their sum and <span class="math inline">\(D = X - Y\)</span> is their difference, what is
@@ -397,7 +406,97 @@ Let <span class="math inline">\(Y\)</span> be the number on the second die.</p>
 \end{align*}\]</span></p>
 Even though their covariance is zero, <span class="math inline">\(S\)</span> and <span class="math inline">\(D\)</span> are not independent! Think about it: if we are given that the
 sum was <span class="math inline">\(S = 12\)</span>, we must have rolled two ⚅s. In other words, we know <span class="math inline">\(D = 0\)</span>. Since one random variable
-gives us information about the other, they cannot be independent.
+gives us information about the other, they are not independent.
+</div>
+
+<p>Here is yet another illustration of the power of these properties, to derive the formula
+for the variance of the binomial distribution. Compare the simplicity
+of this derivation with Example <a href="variance.html#exm:binomial-var">28.3</a>.</p>
+
+<div class="example">
+<p><span id="exm:binom-var-simple" class="example"><strong>Example 30.4  (Variance of the Binomial Distribution)  </strong></span>In Example <a href="linearity.html#exm:binomial-ev-linearity">26.3</a>, we argued that a
+<span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span> random variable <span class="math inline">\(X\)</span> could be broken down as the sum
+of simpler random variables:
+<span class="math display">\[ X = Y_1 + Y_2 + \ldots + Y_n, \]</span>
+where <span class="math inline">\(Y_i\)</span> represents the outcome of the <span class="math inline">\(i\)</span>th draw from the box. Since the
+draws are made with replacement, the <span class="math inline">\(Y_i\)</span>s are independent.</p>
+<p>The distribution of each <span class="math inline">\(Y_i\)</span> is
+<span class="math display">\[ \begin{array}{r|cc}
+  y &amp; 0 &amp; 1 \\
+  \hline
+  f(y) &amp; \frac{N_0}{N} &amp; \frac{N_1}{N}
+\end{array}.  \]</span>
+It is not hard to calculate that <span class="math inline">\(E[Y_i] = \frac{N_1}{N}\)</span> and
+<span class="math display">\[\begin{align*} 
+\text{Var}[Y_i] &amp;= E[Y_i^2] - E[Y_i]^2 \\
+&amp;= \left(0^2 \cdot \frac{N_0}{N} + 1^2 \cdot \frac{N_1}{N}\right) - \left(\frac{N_1}{N} \right)^2 \\
+&amp;= \frac{N_1}{N} \frac{N_0}{N}.
+\end{align*}\]</span></p>
+<p>Now, we will use properties of covariance to express <span class="math inline">\(\text{Var}[X]\)</span> in terms of <span class="math inline">\(\text{Var}[Y_i]\)</span>, which
+we calculated above:
+<span class="math display">\[\begin{align*}
+\text{Var}[X] &amp;= \text{Cov}[X, X] \\
+&amp;= \text{Cov}[Y_1 + Y_2 + \ldots + Y_n, Y_1 + Y_2 + \ldots Y_n] \\
+&amp;= \text{Cov}[Y_1, Y_1] + \text{Cov}[Y_1, Y_2] + \ldots + \text{Cov}[Y_n, Y_n]
+\end{align*}\]</span>
+Because the <span class="math inline">\(Y_i\)</span>s are independent, all covariances of the form <span class="math inline">\(\text{Cov}[Y_i, Y_j]\)</span> for <span class="math inline">\(i \neq j\)</span>
+are zero. That leaves just terms of the form <span class="math inline">\(\text{Cov}[Y_i, Y_i]\)</span>, which is equivalent to <span class="math inline">\(\text{Var}[Y_i]\)</span>
+by Property 1:
+<span class="math display">\[\begin{align*}
+&amp;= \text{Cov}[Y_1, Y_1] + \text{Cov}[Y_2, Y_2] + \ldots + \text{Cov}[Y_n, Y_n] \\
+&amp;= \text{Var}[Y_1] + \text{Var}[Y_2] + \ldots + \text{Cov}[Y_n] \\
+&amp;= \frac{N_1}{N} + \frac{N_1}{N} + \ldots + \frac{N_1}{N} \\
+&amp;= n \frac{N_1}{N} \frac{N_0}{N}.
+\end{align*}\]</span></p>
+This derivation gives insight into why the variance of a binomial distribution is <span class="math inline">\(n \frac{N_1}{N} \frac{N_0}{N}\)</span>.
+The variance of each draw is <span class="math inline">\(\frac{N_1}{N} \frac{N_0}{N}\)</span>, and the variance goes up by <span class="math inline">\(n\)</span> for the <span class="math inline">\(n\)</span>
+independent draws.
+</div>
+
+<p>It is instructive to compare this derivation with the one for the hypergeometric distribution.</p>
+
+<div class="example">
+<p><span id="exm:hypergeometric-var-simple" class="example"><strong>Example 30.5  (Variance of the Hypergeometric Distribution)  </strong></span>In Example <a href="linearity.html#exm:binomial-ev-linearity">26.3</a>, we saw that a
+<span class="math inline">\(\text{Hypergeometric}(n, N_1, N_0)\)</span> random variable <span class="math inline">\(X\)</span> can be broken down
+in exactly the same way as a binomial random variable:
+<span class="math display">\[ X = Y_1 + Y_2 + \ldots + Y_n, \]</span>
+where <span class="math inline">\(Y_i\)</span> represents the outcome of the <span class="math inline">\(i\)</span>th draw from the box. However, since the
+draws are made <em>without</em> replacement, the <span class="math inline">\(Y_i\)</span>s are no longer independent.
+(Knowing that one draw was a <span class="math inline">\(\fbox{1}\)</span> makes it less likely for another draw to be a
+<span class="math inline">\(\fbox{1}\)</span>.)</p>
+<p>Each <span class="math inline">\(Y_i\)</span> still has expected value <span class="math inline">\(E[Y_i] = \frac{N_1}{N}\)</span> and variance
+<span class="math inline">\(\text{Var}[Y_i] = \frac{N_1}{N} \frac{N_0}{N}\)</span>. But now we also need to consider
+the covariance between two different draws, since the draws are not independent.
+You calculated the covariance between two draws without replacement in Lesson <a href="covariance.html#covariance">29</a>.
+It is <span class="math inline">\(\text{Cov}[Y_i, Y_j] = -\frac{1}{N-1} \frac{N_1}{N} \frac{N_0}{N}\)</span>.</p>
+<p>Now, we will use properties of covariance to express <span class="math inline">\(\text{Var}[X]\)</span> in terms of <span class="math inline">\(\text{Var}[Y_i]\)</span> and
+<span class="math inline">\(\text{Cov}[Y_i, Y_j]\)</span>, which we calculated above:
+<span class="math display">\[\begin{align*}
+\text{Var}[X] &amp;= \text{Cov}[X, X] \\
+&amp;= \text{Cov}[Y_1 + Y_2 + \ldots + Y_n, Y_1 + Y_2 + \ldots Y_n] \\
+&amp;= \text{Cov}[Y_1, Y_1] + \text{Cov}[Y_1, Y_2] + \ldots + \text{Cov}[Y_n, Y_n]
+\end{align*}\]</span>
+We have <span class="math inline">\(n\)</span> terms of the form <span class="math inline">\(\text{Cov}[Y_i, Y_i] = \text{Var}[Y_i]\)</span> and <span class="math inline">\(n(n-1)\)</span> terms of the form
+<span class="math inline">\(\text{Cov}[Y_i, Y_j]\)</span> for <span class="math inline">\(i\neq j\)</span>.
+<span class="math display">\[\begin{align*}
+&amp;= n\text{Var}[Y_i] + n(n-1)\text{Cov}[Y_i, Y_j] \\
+&amp;= n \frac{N_1}{N} \frac{N_0}{N} - n(n-1) \frac{1}{N-1} \frac{N_1}{N} \frac{N_0}{N} \\
+&amp;= n \frac{N_1}{N} \frac{N_0}{N} \left(1 - \frac{n-1}{N-1}\right)
+\end{align*}\]</span></p>
+<p>Notice that the variance of the hypergeometric is same as the variance of the
+corresponding binomial, except for the factor <span class="math inline">\(\left(1 - \frac{n-1}{N-1}\right)\)</span>.
+This factor is less than 1, so the variance of the hypergeometric is always less than
+that of the corresponding binomial. This makes sense because the draws are made <em>without</em>
+replacement in the hypergeometric distribution. Each time we draw a <span class="math inline">\(\fbox{1}\)</span>, we are less likely to
+draw a <span class="math inline">\(\fbox{1}\)</span> again (and more likely to draw a <span class="math inline">\(\fbox{0}\)</span>). As a result, the number of <span class="math inline">\(\fbox{1}\)</span>s is
+more likely to be somewhere near the middle in the hypergeometric distribution, so the variance will be
+smaller.</p>
+The factor <span class="math inline">\(\left(1 - \frac{n-1}{N-1}\right)\)</span> is called the <strong>finite population correction</strong>.
+If we have a box with infinitely many tickets, then drawing <em>without</em> replacement is essentially
+the same as drawing <em>with</em> replacement. Thus, in the limit as <span class="math inline">\(N \to \infty\)</span>, the
+hypergeometric distribution is the binomial distribution, and the finite population correction
+disappears. The finite population correction is only necessary because our boxes only have a
+finite number of tickets.
 </div>
 
 </div>
@@ -426,12 +525,16 @@ Which one represents…</p>
 <p><em>Hint 1:</em> For the first scenario, write <span class="math inline">\(Y\)</span> as a function of <span class="math inline">\(X\)</span>.</p>
 <p><em>Hint 2:</em> For the second scenario, write <span class="math inline">\(X = A + B\)</span> and <span class="math inline">\(Y = B + C\)</span>, where <span class="math inline">\(A, B, C\)</span> are independent
 random variables.</p></li>
-<li><p><em>(This problem is challenging, but you will learn a lot by doing it.)</em></p>
+<li><p><em>(This problem is challenging but rewarding.)</em></p>
 <p>A poker hand (5 cards) is dealt off the top of a well-shuffled deck of 52 cards. Let <span class="math inline">\(X\)</span> be the number of diamonds in the hand. Let <span class="math inline">\(Y\)</span> be the number of hearts in the hand.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Do you think <span class="math inline">\(\text{Cov}[X, Y]\)</span> is positive, negative, or zero? Explain.</li>
 <li>Let <span class="math inline">\(D_i (i=1, ..., 5)\)</span> be a random variable that is <span class="math inline">\(1\)</span> if the <span class="math inline">\(i\)</span>th card is a diamond and <span class="math inline">\(0\)</span> otherwise. What is <span class="math inline">\(E[D_i]\)</span>?</li>
-<li>Let <span class="math inline">\(H_i (i=1, ..., 5)\)</span> be a random variable that is <span class="math inline">\(1\)</span> if the <span class="math inline">\(i\)</span>th card is a heart and <span class="math inline">\(0\)</span> otherwise. Of course, <span class="math inline">\(E[H_i]\)</span> is the same as <span class="math inline">\(E[D_i]\)</span>, since there are the same number of hearts as diamonds in a 52-card deck. What is <span class="math inline">\(\text{Cov}[D_i, H_i]\)</span>? What is <span class="math inline">\(\text{Cov}[D_i, H_j]\)</span>, when <span class="math inline">\(i \neq j\)</span>?</li>
+<li>Let <span class="math inline">\(H_i (i=1, ..., 5)\)</span> be a random variable that is <span class="math inline">\(1\)</span> if the <span class="math inline">\(i\)</span>th card is a heart and <span class="math inline">\(0\)</span> otherwise. Of course, <span class="math inline">\(E[H_i]\)</span> is the same as <span class="math inline">\(E[D_i]\)</span>, since there are the same number of hearts as diamonds in a 52-card deck. What is <span class="math inline">\(\text{Cov}[D_i, H_i]\)</span>? What is <span class="math inline">\(\text{Cov}[D_i, H_j]\)</span>, when <span class="math inline">\(i \neq j\)</span>? (Keep in mind that <span class="math inline">\(D_i\)</span> and <span class="math inline">\(H_i\)</span>
+are indicator random variables that only take on the values 0 or 1.)</li>
+</ol>
+<p><em>Hint:</em> Make a table for the joint p.m.f. There are only 4 possible outcomes.</p>
+<ol start="4" style="list-style-type: lower-alpha">
 <li>Use your answers to parts b and c (and the properties of covariance, of course) to calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span>.</li>
 </ol></li>
 </ol>
@@ -445,6 +548,11 @@ random variables.</p></li>
 </blockquote>
 <p>In that lesson, you calculated <span class="math inline">\(E[X]\)</span> using linearity of expectation. Now, use properties of
 covariance to calculate <span class="math inline">\(\text{Var}[X]\)</span>?</p></li>
+<li><p>At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process
+with a rate of 3.5 particles per second. Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds.
+Let <span class="math inline">\(Z\)</span> be the number of particles detected in the first 3 seconds. Find <span class="math inline">\(\text{Cov}[X, Z]\)</span>.</p>
+<p>Hint: Note that <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are <em>not</em> independent. However, you should be able to express <span class="math inline">\(Z = X + Y\)</span>, where
+<span class="math inline">\(Y\)</span> is a random variable that is independent of <span class="math inline">\(X\)</span>.</p></li>
 </ol>
 
 </div>

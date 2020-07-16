@@ -111,7 +111,7 @@ which matches the answer we got in Lesson \@ref(lotus2d) by applying 2D LOTUS.
 Linearity allows us to calculate the expected values of complicated random variables 
 by breaking them into simpler random variables. 
 
-```{example, name="Expected Value of the Binomial and Hypergeometric Distributions"}
+```{example binomial-ev-linearity, name="Expected Value of the Binomial and Hypergeometric Distributions"}
 In Lesson \@ref(expected-value), we showed that the expected values of the binomial and hypergeometric 
 distributions are the same: $n\frac{N_1}{N}$. But the proofs we gave were tedious and did not give any insight 
 into why this formula is true. Let's prove this formula using linearity of expectation.
@@ -148,7 +148,7 @@ hypergeometric is also:
 \[ E[X] = \underbrace{\frac{N_1}{N} + \frac{N_1}{N} + \ldots + \frac{N_1}{N}}_{\text{$n$ terms}} = n \frac{N_1}{N}. \]
 ```
 
-Here is a particularly clever application of linearity.
+Here is a clever application of linearity.
 
 ```{example binomial-lotus-2}
 Let $X$ be a $\text{Binomial}(n, N_1, N_0)$ random variable. What is $E[X(X-1)]$? 
@@ -207,19 +207,22 @@ which matches the answer we got in Lesson \@ref(lotus) by more tedious means.
 
 1. Each year, as part of a “Secret Santa” tradition, a group of 4 friends write their names on slips of papers and place 
 the slips into a hat. Each member of the group draws a name at random from the hat and must by a gift for that person. Of course, it is possible that they draw their own name, in which case they buy a gift for themselves. 
-What is the expected number of people who draw their own name? (_Hint:_ Express this complicated 
-random variable as a sum of $0/1$ random variables, and use linearity of expectation.)
+What is the expected number of people who draw their own name? 
+
+    _Hint:_ Express this complicated random variable as a sum of indicator random variables (i.e., that only take on the values 0 or 1), and use linearity of expectation.
 
 2. McDonald's decides to give a Pokemon toy with every Happy Meal. Each time you buy a Happy Meal, you are equally 
 likely to get any one of the 6 types of Pokemon. What is the _expected_ number of Happy Meals that you have to buy 
 until you "catch 'em all"? 
-(_Hint:_ Express this complicated random variable as a sum of geometric random variables, and 
-use linearity of expectation.)
+
+    _Hint:_ Express this complicated random variable as a sum of geometric random variables, and 
+use linearity of expectation.
 
 3. A group of 60 people are comparing their birthdays (as usual, assume that their
 birthdays are independent, all 365 days are equally likely, etc.). Find the expected number of days
-in the year on which at least two of these people were born. (_Hint:_ Express this complicated random variable as 
-a sum of $0/1$ random variables, and use linearity of expectation.)
+in the year on which at least two of these people were born. 
+
+    _Hint:_ Express this complicated random variable as a sum of indicator random variables, and use linearity of expectation.
 
 ## Additional Practice {-}
 

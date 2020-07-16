@@ -306,6 +306,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#essential-practice-18"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#additional-practice-3"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="30" data-path="cov-properties.html"><a href="cov-properties.html"><i class="fa fa-check"></i><b>30</b> Properties of Covariance</a><ul>
+<li class="chapter" data-level="30.1" data-path="cov-properties.html"><a href="cov-properties.html#optional-video"><i class="fa fa-check"></i><b>30.1</b> Optional Video</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#theory-27"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#essential-practice-19"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#additional-practice-4"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -332,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Motivating Example</h2>
 <p>In Lesson <a href="expected-value.html#expected-value">22</a>, you showed that in roulette, every bet has exactly the
 same expected payoff. That is, their p.m.f.s have the same center of mass.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-97-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Does that mean that all bets are alike? No! A bet on a single number
 is riskier because you have a small chance (<span class="math inline">\(1/38\)</span>) of making a lot of money ($35).
 A bet on reds, on the other hand, is smaller risk and smaller reward. How do we quantify
@@ -359,7 +365,7 @@ that two random variables can have the same center but very different distributi
 <p>In general, the variance <a href="variance.html#eq:var">(28.1)</a> has to be computed using LOTUS.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-98" class="example"><strong>Example 28.1  (Roulette Variances)  </strong></span>The payout from a bet on a single number, <span class="math inline">\(X\)</span>, has p.m.f.
+<p><span id="exm:roulette-var" class="example"><strong>Example 28.1  (Roulette Variances)  </strong></span>The payout from a bet on a single number, <span class="math inline">\(X\)</span>, has p.m.f.
 <span class="math display">\[ \begin{array}{r|cc} x &amp; -1 &amp; 35 \\ \hline f(x) &amp; 37/38 &amp; 1/38 \end{array}. \]</span>
 We have already seen that <span class="math inline">\(E[X] = -\frac{2}{38}\)</span>. Its variance is:
 <span class="math display">\[\begin{align*}
@@ -392,7 +398,7 @@ is from its center.
 
 
 <div class="example">
-<span id="exm:unnamed-chunk-99" class="example"><strong>Example 28.2  (Roulette SDs)  </strong></span>We showed above that the variance of a
+<span id="exm:unnamed-chunk-96" class="example"><strong>Example 28.2  (Roulette SDs)  </strong></span>We showed above that the variance of a
 <span class="math display">\[ \text{Var}[X] = 33.21. \]</span>
 The standard deviation is
 <span class="math display">\[ \text{SD}[X] = \sqrt{\text{Var}[X]} = \sqrt{33.21} = \$5.76. \]</span>
