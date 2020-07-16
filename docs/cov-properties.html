@@ -517,7 +517,7 @@ Examples <a href="expected-value.html#exm:roulette-ev">22.1</a> and <a href="var
 Which one represents…</p>
 <ol style="list-style-type: lower-alpha">
 <li>…your net winnings if you bet $1 on that number on each of 10 spins of the roulette wheel?</li>
-<li>…your net winnings if you bet $10 on a single spin of the roulette wheel?</li>
+<li>…your net winnings if you bet $10 on that number on a single spin of the roulette wheel?</li>
 </ol>
 <p>Now, calculate <span class="math inline">\(E[X]\)</span>, <span class="math inline">\(E[Y]\)</span>, <span class="math inline">\(\text{Var}[X]\)</span>, and <span class="math inline">\(\text{Var}[Y]\)</span>. How do they compare?</p></li>
 <li><p>Consider the following three scenarios:</p>
@@ -526,7 +526,8 @@ Which one represents…</p>
 <li>A fair coin is tossed 4 times. <span class="math inline">\(X\)</span> is the number of heads in the first 3 tosses, <span class="math inline">\(Y\)</span> is the number of heads in the last 3 tosses.</li>
 <li>A fair coin is tossed 6 times. <span class="math inline">\(X\)</span> is the number of heads in the first 3 tosses, <span class="math inline">\(Y\)</span> is the number of heads in the last 3 tosses.</li>
 </ul>
-<p>Use properties of covariance to calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span> for each of these three scenarios.</p>
+<p>Use properties of covariance to calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span> for each of these three scenarios. You should
+not need to use LOTUS or the shortcut formula for covariance.</p>
 <p><em>Hint 1:</em> For the first scenario, write <span class="math inline">\(Y\)</span> as a function of <span class="math inline">\(X\)</span>.</p>
 <p><em>Hint 2:</em> For the second scenario, write <span class="math inline">\(X = A + B\)</span> and <span class="math inline">\(Y = B + C\)</span>, where <span class="math inline">\(A, B, C\)</span> are independent
 random variables.</p></li>
@@ -535,12 +536,10 @@ random variables.</p></li>
 <ol style="list-style-type: lower-alpha">
 <li>Do you think <span class="math inline">\(\text{Cov}[X, Y]\)</span> is positive, negative, or zero? Explain.</li>
 <li>Let <span class="math inline">\(D_i (i=1, ..., 5)\)</span> be a random variable that is <span class="math inline">\(1\)</span> if the <span class="math inline">\(i\)</span>th card is a diamond and <span class="math inline">\(0\)</span> otherwise. What is <span class="math inline">\(E[D_i]\)</span>?</li>
-<li>Let <span class="math inline">\(H_i (i=1, ..., 5)\)</span> be a random variable that is <span class="math inline">\(1\)</span> if the <span class="math inline">\(i\)</span>th card is a heart and <span class="math inline">\(0\)</span> otherwise. Of course, <span class="math inline">\(E[H_i]\)</span> is the same as <span class="math inline">\(E[D_i]\)</span>, since there are the same number of hearts as diamonds in a 52-card deck. What is <span class="math inline">\(\text{Cov}[D_i, H_i]\)</span>? What is <span class="math inline">\(\text{Cov}[D_i, H_j]\)</span>, when <span class="math inline">\(i \neq j\)</span>? (Keep in mind that <span class="math inline">\(D_i\)</span> and <span class="math inline">\(H_i\)</span>
-are indicator random variables that only take on the values 0 or 1.)</li>
-</ol>
-<p><em>Hint:</em> Make a table for the joint p.m.f. There are only 4 possible outcomes.</p>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Use your answers to parts b and c (and the properties of covariance, of course) to calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span>.</li>
+<li><p>Let <span class="math inline">\(H_i (i=1, ..., 5)\)</span> be a random variable that is <span class="math inline">\(1\)</span> if the <span class="math inline">\(i\)</span>th card is a heart and <span class="math inline">\(0\)</span> otherwise. Of course, <span class="math inline">\(E[H_i]\)</span> is the same as <span class="math inline">\(E[D_i]\)</span>, since there are the same number of hearts as diamonds in a 52-card deck. What is <span class="math inline">\(\text{Cov}[D_i, H_i]\)</span>? What is <span class="math inline">\(\text{Cov}[D_i, H_j]\)</span>, when <span class="math inline">\(i \neq j\)</span>? (Keep in mind that <span class="math inline">\(D_i\)</span> and <span class="math inline">\(H_i\)</span>
+are indicator random variables that only take on the values 0 or 1.)</p>
+<p><em>Hint:</em> Make a table for the joint p.m.f. There are only 4 possible outcomes.</p></li>
+<li><p>Use your answers to parts b and c (and the properties of covariance, of course) to calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span>.</p></li>
 </ol></li>
 </ol>
 </div>

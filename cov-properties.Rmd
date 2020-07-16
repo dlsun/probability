@@ -220,7 +220,7 @@ Examples \@ref(exm:roulette-ev) and \@ref(exm:roulette-var).
     Which one represents...
 
     a. ...your net winnings if you bet $1 on that number on each of 10 spins of the roulette wheel?
-    b. ...your net winnings if you bet $10 on a single spin of the roulette wheel?
+    b. ...your net winnings if you bet $10 on that number on a single spin of the roulette wheel?
 
     Now, calculate $E[X]$, $E[Y]$, $\text{Var}[X]$, and $\text{Var}[Y]$. How do they compare?
     
@@ -230,7 +230,8 @@ Examples \@ref(exm:roulette-ev) and \@ref(exm:roulette-var).
     - A fair coin is tossed 4 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
     - A fair coin is tossed 6 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
     
-    Use properties of covariance to calculate $\text{Cov}[X, Y]$ for each of these three scenarios. 
+    Use properties of covariance to calculate $\text{Cov}[X, Y]$ for each of these three scenarios. You should 
+    not need to use LOTUS or the shortcut formula for covariance.
     
     _Hint 1:_ For the first scenario, write $Y$ as a function of $X$.
     
@@ -246,7 +247,7 @@ Examples \@ref(exm:roulette-ev) and \@ref(exm:roulette-var).
     c. Let $H_i (i=1, ..., 5)$ be a random variable that is $1$ if the $i$th card is a heart and $0$ otherwise. Of course, $E[H_i]$ is the same as $E[D_i]$, since there are the same number of hearts as diamonds in a 52-card deck. What is $\text{Cov}[D_i, H_i]$? What is $\text{Cov}[D_i, H_j]$, when $i \neq j$? (Keep in mind that $D_i$ and $H_i$ 
     are indicator random variables that only take on the values 0 or 1.)
     
-    _Hint:_ Make a table for the joint p.m.f. There are only 4 possible outcomes.
+        _Hint:_ Make a table for the joint p.m.f. There are only 4 possible outcomes.
     
     d. Use your answers to parts b and c (and the properties of covariance, of course) to calculate $\text{Cov}[X, Y]$.
 
