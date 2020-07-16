@@ -123,7 +123,7 @@ are zero. That leaves just terms of the form $\text{Cov}[Y_i, Y_i]$, which is eq
   \begin{align*}
 &= \text{Cov}[Y_1, Y_1] + \text{Cov}[Y_2, Y_2] + \ldots + \text{Cov}[Y_n, Y_n] \\
 &= \text{Var}[Y_1] + \text{Var}[Y_2] + \ldots + \text{Cov}[Y_n] \\
-&= \frac{N_1}{N} + \frac{N_1}{N} + \ldots + \frac{N_1}{N} \\
+&= \frac{N_1}{N} \frac{N_0}{N} + \frac{N_1}{N} \frac{N_0}{N} + \ldots + \frac{N_1}{N} \frac{N_0}{N} \\
 &= n \frac{N_1}{N} \frac{N_0}{N}.
 \end{align*}
 
