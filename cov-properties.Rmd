@@ -1,0 +1,127 @@
+# Properties of Covariance {#cov-properties}
+
+## Theory {-}
+
+Calculating variance and covariance, even from the shortcut formulas 
+\@ref(eq:var-shortcut) and \@ref(eq:cov-shortcut), is tedious. Just as 
+linearity simplified the calculation of expected values, the properties we learn 
+in this lesson will simplify the calculation of variances and covariances.
+
+```{theorem cov-properties, name="Properties of Covariance"}
+Let $X, Y, Z$ be random variables, and let $c$ be a constant. Then:
+
+  1. Covariance-Variance Relationship: $\displaystyle\text{Var}[X] = \text{Cov}[X, X]$ (This was also Theorem \@ref(thm:cov-var).)
+  2. Pulling Out Constants: 
+    
+        $\displaystyle\text{Cov}[cX, Y] = c \cdot \text{Cov}[X, Y]$
+    
+        $\displaystyle\text{Cov}[X, cY] = c \cdot \text{Cov}[X, Y]$
+    
+  3. Distributive Property: 
+    
+        $\displaystyle\text{Cov}[X + Y, Z] = \text{Cov}[X, Z] + \text{Cov}[Y, Z]$
+    
+        $\displaystyle\text{Cov}[X, Y + Z] = \text{Cov}[X, Y] + \text{Cov}[X, Z]$
+    
+  4. Symmetry: $\displaystyle\text{Cov}[X, Y] = \text{Cov}[Y, X]$
+  5. Constants cannot covary: $\displaystyle\text{Cov}[X, c] = 0$.
+```
+
+These properties follow immediately from the definition of covariance \@ref(eq:cov), so we omit their proofs.
+
+By combining the properties, we can derive new properties.
+```{example cov-distributive}
+Let $X, Y, Z, W$ be random variables. Then, by applying the distributive property twice:
+\begin{align*}
+\text{Cov}[X + Y, Z + W] &= \text{Cov}[X, Z+W] + \text{Cov}[Y, Z+W] \\
+&= \text{Cov}[X, Z] + \text{Cov}[X, W] + \text{Cov}[Y, Z] + \text{Cov}[Y, W] 
+\end{align*}
+
+The result should remind you of FOILing from your high school algebra class, i.e.,
+\[ (x + y)(z + w) = xz + xw + yz + yw. \]
+That is because multiplication also has a "distributive property", just like covariance.
+```
+
+```{example var-constant}
+How does the variance change, when we multiply the random variable by a constant $a$? 
+  We answer this question using properties of covariance:
+\begin{align*}
+\text{Var}[aX] &= \text{Cov}[aX, aX] & \text{(Covariance-Variance Relationship)} \\
+&= a \cdot a \cdot \text{Cov}[X, X] & \text{(Pulling Out Constants)} \\
+&= a^2 \text{Var}[X] & \text{(Covariance-Variance Relationship)}
+\end{align*}
+
+It makes sense that the variance should scale by $a^2$, since the variance is in _squared_ units.
+```
+
+Here is a neat application of the properties of covariance.
+```{example name="Covariance between the Sum and the Difference"}
+
+Two fair six-sided dice are rolled. Let $X$ be the number on the first die. 
+Let $Y$ be the number on the second die.
+	
+If $S = X + Y$ is their sum and $D = X - Y$ is their difference, what is 
+$\text{Cov}[S, D]$?
+	  
+\begin{align*}
+\text{Cov}[S, D] &= \text{Cov}[X + Y, X - Y] \\
+	&= \text{Cov}[X, X] + \text{Cov}[X, -Y] + \text{Cov}[Y, X] + \text{Cov}[Y, -Y] \\
+	&= \text{Var}[X]\ \ \ \ \ - \text{Cov}[X, Y]\ \ \ \ + \text{Cov}[X, Y] - \text{Var}[Y] \\
+	&= \text{Var}[X] - \text{Var}[Y] \\
+	&= 0.
+\end{align*}
+	
+Even though their covariance is zero, $S$ and $D$ are not independent! Think about it: if we are given that the 
+sum was $S = 12$, we must have rolled two ⚅s. In other words, we know $D = 0$. Since one random variable 
+gives us information about the other, they cannot be independent.
+```
+
+
+
+## Essential Practice {-}
+
+1. Let \(W_1\) be your net winnings on a single spin of a roulette wheel when you bet $1 on a single number. 
+This bet pays 35 to 1, meaning that for each dollar you bet, you win $35 if the ball lands on that number and 
+lose $1 otherwise. We calculated the p.m.f., expected value, and variance of \(W_1\) in 
+Examples \@ref(exm:roulette-ev) and \@ref(exm:roulette-var).
+
+    Let \(W_1, W_2, ..., W_{10}\) be independent random variables with the same distribution as \(W_1\). 
+
+    Consider the random variables \(X = 10 W_1 \) and \(Y = W_1 + W_2 + ... + W_{10}\). 
+    Which one represents...
+
+    a. ...your net winnings if you bet $1 on that number on each of 10 spins of the roulette wheel?
+    b. ...your net winnings if you bet $10 on a single spin of the roulette wheel?
+
+    Now, calculate $E[X]$, $E[Y]$, $\text{Var}[X]$, and $\text{Var}[Y]$. How do they compare?
+    
+2. Consider the following three scenarios:
+
+    - A fair coin is tossed 3 times. $X$ is the number of heads and $Y$ is the number of tails.
+    - A fair coin is tossed 4 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
+    - A fair coin is tossed 6 times. $X$ is the number of heads in the first 3 tosses, $Y$ is the number of heads in the last 3 tosses.
+    
+    Use properties of covariance to calculate $\text{Cov}[X, Y]$ for each of these three scenarios. 
+    
+    _Hint 1:_ For the first scenario, write $Y$ as a function of $X$.
+    
+    _Hint 2:_ For the second scenario, write $X = A + B$ and $Y = B + C$, where $A, B, C$ are independent 
+    random variables.
+    
+3. _(This problem is challenging, but you will learn a lot by doing it.)_ 
+
+    A poker hand (5 cards) is dealt off the top of a well-shuffled deck of 52 cards. Let $X$ be the number of diamonds in the hand. Let $Y$ be the number of hearts in the hand.
+
+    a. Do you think $\text{Cov}[X, Y]$ is positive, negative, or zero? Explain.
+    b. Let $D_i (i=1, ..., 5)$ be a random variable that is $1$ if the $i$th card is a diamond and $0$ otherwise. What is $E[D_i]$?
+    c. Let $H_i (i=1, ..., 5)$ be a random variable that is $1$ if the $i$th card is a heart and $0$ otherwise. Of course, $E[H_i]$ is the same as $E[D_i]$, since there are the same number of hearts as diamonds in a 52-card deck. What is $\text{Cov}[D_i, H_i]$? What is $\text{Cov}[D_i, H_j]$, when $i \neq j$?
+    d. Use your answers to parts b and c (and the properties of covariance, of course) to calculate $\text{Cov}[X, Y]$.
+
+## Additional Practice {-}
+
+1. Recall the coupon collector problem from Lesson \@ref(linearity):
+
+    > McDonald's decides to give a Pokemon toy with every Happy Meal. Each time you buy a Happy Meal, you are equally likely to get any one of the 6 types of Pokemon. Let $X$ be the number of Happy Meals you have to buy until you "catch 'em all".
+
+    In that lesson, you calculated $E[X]$ using linearity of expectation. Now, use properties of 
+covariance to calculate $\text{Var}[X]$?
