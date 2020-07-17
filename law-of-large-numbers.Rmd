@@ -121,7 +121,9 @@ It turns out that they have a different understanding of what the law says...
 
     Who is right: Rosencrantz or Guildenstern? Calculate the variance of 
     \[ \text{number of heads in $n$ tosses} - \text{number of tails in $n$ tosses} \]
-    as a function of $n$. What does this tell you about Guildenstern's argument?
+    as a function of $n$. In light of this calculation, do you agree with Guildenstern 
+    that the difference between the number of heads and the number of tails 
+    approaches 0 as the number of tosses increases?
 
 2. Rosencrantz and Guildenstern are tossing a coin. The coin has landed heads 
 85 times in a row. They discuss the probability that the next toss is heads.
@@ -139,6 +141,7 @@ It turns out that they have a different understanding of what the law says...
     from the 85 heads in a row. How can we get back to 50\% tails if the coin is not 
     more likely now to land tails?
     
-    How would you answer Rosencrantz's question? Why does the Law of Large Numbers not 
-    contradict the gambler's fallacy?
+    Of course, Guildenstern is right. The coin is not more likely to land 
+    tails. But how would you answer Rosencrantz's question? Why does the Law of Large 
+    Numbers not contradict the gambler's fallacy?
   
