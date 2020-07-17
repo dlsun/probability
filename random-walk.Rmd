@@ -1,0 +1,61 @@
+# Random Walk {#random-walk}
+
+## Theory {-}
+
+The **random walk** (also known as the "drunkard's walk") is an example of a 
+random process evolving over time, like the 
+Poisson process (Lesson \@ref(poisson-process)).
+
+The setup for the random walk is as follows. 
+A drunk man is stumbling home from a bar. Because of his inebriated state, 
+each step he takes is equally likely to be one step forward or one step backward, 
+independent of any other step.
+
+In other words, the $i$th step is a random variable $Z_i$, with p.m.f. 
+
+\[ \begin{array}{r|cc}
+z & -1 & 1 \\
+\hline
+f(z) & 0.5 & 0.5
+\end{array} \]
+
+and the $Z_i$s are independent.
+
+The drunkard's position after $n$ steps is 
+$$ X_n = Z_1 + Z_2 + \ldots + Z_n. $$
+(We assume that he starts at the origin $X_0 = 0$.)
+
+Shown below are three possible realizations of the random walk. A realization of a 
+random process over time is called a _sample path_. We plot the three sample 
+paths below, each of which shows the position of the drunkard $X_n$ as a function of $n$. 
+Although all three sample paths start at 0 at $n=0$, they diverge very quickly.
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+set.seed(1)
+
+i <- 19
+plot(NULL, xaxt="n", yaxt="n",
+     xlim=c(0,22), ylim=c(-10, 10), 
+     xlab="", ylab="", bty="n")
+axis(1, pos=0, at=c(0, 5, 10, 15, 20), labels=c("", 5, 10, 15, 20))
+axis(2, pos=0)
+mtext(expression("X"[n]), side=2, line=1, at=0)
+text(x=21, y=0, "n")
+for(col in c("blue", "orange", "green")) {
+  x <- cumsum(sample(c(-1, 1), 20, replace=T))
+  points(0:20, c(0, x), pch=i, col=col)
+  lines(0:20, c(0, x), pch=i, col=col)
+  i <- i - 1
+}
+```
+
+
+
+## Essential Practice {-}
+
+Answer the following questions about the random walk. You should use linearity of expectation and 
+properties of covariance as much as possible.
+
+1. What is the distribution of $X_2$, the drunkard's position after just $2$ steps? (This is not a named distribution. Just make a table showing the possible values and their probabilities.)
+2. Calculate $E[Z_i]$ and $\text{Var}[Z_i]$.
+3. Calculate $E[X_3]$ and $\text{Var}[X_3]$.
+5. Consider $X_3$ and $X_5$. Do you think their covariance is positive, negative, or zero? Calculate $\text{Cov}[X_3, X_5]$.

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 4 Sampling With Replacement | Introduction to Probability</title>
+  <title>Lesson 32 Law of Large Numbers | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 4 Sampling With Replacement | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 32 Law of Large Numbers | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 4 Sampling With Replacement | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 32 Law of Large Numbers | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="box-models.html"/>
-<link rel="next" href="double-counting.html"/>
+<link rel="prev" href="random-walk.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -341,136 +341,115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="replacement" class="section level1">
-<h1><span class="header-section-number">Lesson 4</span> Sampling With Replacement</h1>
-<div id="motivating-example-3" class="section level2 unnumbered">
+<div id="lln" class="section level1">
+<h1><span class="header-section-number">Lesson 32</span> Law of Large Numbers</h1>
+<div id="motivating-example-22" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
-<p>Recall Galileo’s problem from Lesson <a href="counting.html#counting">1</a>. He wanted to know whether
-a sum of 9 or a sum of 10 was more likely when 3 dice are rolled. In fact,
-Galileo’s peers reasoned that the two events should be equally likely,
-since there are six ways to get a sum of 9</p>
-<p><span class="math display">\[\begin{align*}
-3 + 3 + 3 &amp; &amp; 2 + 3 + 4 &amp; &amp; 2 + 2 + 5 &amp; &amp; 1 + 4 + 4 &amp; &amp; 1 + 3 + 5 &amp; &amp; 1 + 2 + 6
-\end{align*}\]</span></p>
-<p>and also six ways to get a sum of 10:</p>
-<p><span class="math display">\[\begin{align*}
-3 + 3 + 4
- &amp; &amp; 2 + 4 + 4
- &amp; &amp; 2 + 3 + 5
- &amp; &amp; 2 + 2 + 6
- &amp; &amp; 1 + 4 + 5
- &amp; &amp; 1 + 3 + 6
-\end{align*}\]</span></p>
-<p>But gamblers of the day knew better. From experience, they knew that
-a sum of 10 was more likely than a sum of 9. But where did Galileo’s
-peers go wrong in their reasoning?</p>
+<p>So far, we have seen that that casino games like roulette have
+negative expected value (for the player). But we have also seen that
+there is a lot of variance. How can casinos be sure that they
+will not lose all of their money to players in a stroke of bad luck?</p>
+<p>The answer lies in the Law of Large Numbers. In the long-run, as a
+player makes more and more negative expected value bets, it is a
+virtual certainty that the player will lose money.</p>
 </div>
-<div id="discussion" class="section level2 unnumbered">
-<h2>Discussion</h2>
-<p>Recall from Lesson <a href="box-models.html#box-models">3</a> that the three rolls of a die can be
-modeled as <span class="math inline">\(n=3\)</span> draws <em>with replacement</em> from the box
-<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{6}$}. \]</span>
-Galileo’s peers showed that there are 6 ways to get a sum of 9
-<em>if you ignore the order in which the tickets were drawn</em>.
-(Notice that they included 2 + 3 + 5, but not 3 + 5 + 2 and other orderings of the same three rolls.)
-They also showed that there are 6 ways to get a sum of 10. Why does this not
-guarantee the probabilities of the two events are the same?</p>
-<p>Notice that this case (draws with replacement, order doesn’t matter) is one that
-we have not studied yet.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="right"></th>
-<th align="center">with replacement</th>
-<th align="center">without replacement</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">order matters</td>
-<td align="center"><span class="math inline">\(N^n\)</span></td>
-<td align="center"><span class="math inline">\(\frac{N!}{(N-n)!}\)</span></td>
-</tr>
-<tr class="even">
-<td align="right">order doesn’t matter</td>
-<td align="center">???</td>
-<td align="center"><span class="math inline">\(\binom{N}{n} = \frac{N!}{n!(N-n)!}\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>To settle the question, let’s go back to counting ordered outcomes.</p>
-<ul>
-<li>The outcome <span class="math inline">\(2 + 3 + 4\)</span> corresponds to <span class="math inline">\(3! = 6\)</span> outcomes, when you account for the possible orderings:
-<ul>
-<li><span class="math inline">\(2 + 3 + 4\)</span></li>
-<li><span class="math inline">\(2 + 4 + 3\)</span></li>
-<li><span class="math inline">\(3 + 2 + 4\)</span></li>
-<li><span class="math inline">\(3 + 4 + 2\)</span></li>
-<li><span class="math inline">\(4 + 2 + 3\)</span></li>
-<li><span class="math inline">\(4 + 3 + 2\)</span></li>
-</ul></li>
-<li>On the other hand, the outcome <span class="math inline">\(2 + 2 + 5\)</span> can only be reordered <span class="math inline">\(3\)</span> different ways:
-<ul>
-<li><span class="math inline">\(2 + 2 + 5\)</span></li>
-<li><span class="math inline">\(2 + 5 + 2\)</span></li>
-<li><span class="math inline">\(5 + 2 + 2\)</span></li>
-</ul></li>
-<li>And the outcome <span class="math inline">\(3 + 3 + 3\)</span> only has one possible ordering.</li>
-</ul>
-<p>In other words, when we draw with replacement, the same ticket can be drawn more than once, and
-repetitions reduce the number of ways that tickets can be reordered. The problem with
-simply counting the number of outcomes is that the 6 outcomes
+<div id="theory-29" class="section level2 unnumbered">
+<h2>Theory</h2>
+<p>Suppose we make the same bet repeatedly. Let <span class="math inline">\(X_i\)</span> be our
+net winnings from bet <span class="math inline">\(i\)</span>. Then <span class="math inline">\(X_1, X_2, X_3, \ldots\)</span> are independent,
+and furthermore, they are identically distributed (since the bets are the same).
+We say that <span class="math inline">\(X_1, X_2, X_3, \ldots\)</span> are <strong>i.i.d.</strong> (which is short for
+“independent and identically distributed”).</p>
+
+<div class="theorem">
+<span id="thm:lln" class="theorem"><strong>Theorem 32.1  (Law of Large Numbers)  </strong></span>Let <span class="math inline">\(X_1, X_2, X_3, \ldots\)</span> be i.i.d. random variables.
+Then, the average of the random variables approaches the expected value:
+<span class="math display" id="eq:lln">\[\begin{equation}
+\frac{X_1 + X_2 + \ldots + X_n}{n} \to E[X_1]
+\tag{32.1}
+\end{equation}\]</span>
+as <span class="math inline">\(n\to\infty\)</span>.
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> Here is a heuristic proof. We calculate the expected value and the variance of
+<span class="math display">\[ \bar X_n \overset{\text{def}}{=} \frac{X_1 + X_2 + \ldots + X_n}{n}. \]</span></p>
+<p>The expected value is:
 <span class="math display">\[\begin{align*}
-3 + 3 + 3 &amp; &amp; 2 + 3 + 4 &amp; &amp; 2 + 2 + 5 &amp; &amp; 1 + 4 + 4 &amp; &amp; 1 + 3 + 5 &amp; &amp; 1 + 2 + 6
-\end{align*}\]</span>
-are not all equally likely. <span class="math inline">\(2 + 3 + 4\)</span> is twice as likely as <span class="math inline">\(2 + 2 + 5\)</span> and
-six times as likely as <span class="math inline">\(3 + 3 + 3\)</span>. When draws are made with replacement, only ordered outcomes
-are equally likely.</p>
-This was Galileo’s insight. When he took into account the number of possible orderings associated
-with each unordered outcome:
-<span class="math display">\[\begin{array}{rr}
-\hline
-\text{Unordered Outcome} &amp; \text{Possible Orderings} \\
-\hline
-3 + 3 + 3 &amp; \text{1 way}\  \\
-2 + 3 + 4 &amp; \text{6 ways} \\
-2 + 2 + 5 &amp; \text{3 ways} \\ 
-1 + 4 + 4 &amp; \text{3 ways} \\
-1 + 3 + 5 &amp; \text{6 ways} \\
-1 + 2 + 6 &amp; + \text{6 ways} \\
-\hline
- &amp; \text{25 ways}
-\end{array}\]</span>
-<p>he found that the probability of a 9 was actually
-<span class="math display">\[ \frac{25}{216}. \]</span>
-(Remember that there are <span class="math inline">\(6^3 = 216\)</span> equally likely outcomes when order matters.)</p>
-<p>Repeating the calculation for the probability of a 10, Galileo showed that the two
-probabilities were indeed different.</p>
+E[\bar X_n] &amp;= E\left[ \frac{X_1 + X_2 + \ldots + X_n}{n} \right] \\
+&amp;= \frac{1}{n} E[X_1 + X_2 + \ldots + X_n] \\
+&amp;= \frac{1}{n} (E[X_1] + E[X_2] + \ldots + E[X_n]) \\
+&amp;= \frac{1}{n} nE[X_1] \\
+&amp;= E[X_1].
+\end{align*}\]</span></p>
+<p>The variance is:
+<span class="math display">\[\begin{align*}
+\text{Var}[\bar X_n] &amp;= \text{Var}\left[ \frac{X_1 + X_2 + \ldots + X_n}{n} \right] \\
+&amp;= \frac{1}{n^2} \text{Var}\left[ X_1 + X_2 + \ldots + X_n \right] \\
+&amp;= \frac{1}{n^2} (\text{Var}[X_1] + \text{Var}[X_2] + \ldots + \text{Var}[X_n]) \\
+&amp;= \frac{1}{n^2} n \text{Var}[X_1] \\
+&amp;= \frac{\text{Var}[X_1]}{n}.
+\end{align*}\]</span></p>
+So we see that as <span class="math inline">\(n\to\infty\)</span>, the expected value is fixed at <span class="math inline">\(E[X_1]\)</span>, and the
+variance approaches <span class="math inline">\(0\)</span>. A random variable with zero variance is a constant. Therefore,
+in the limit, the random variable <span class="math inline">\(\bar X_n\)</span> approaches the constant <span class="math inline">\(E[X_1]\)</span>.
 </div>
-<div id="examples-2" class="section level2 unnumbered">
-<h2>Examples</h2>
-<ol style="list-style-type: decimal">
-<li>Here’s a different illustration of the fact that not all unordered outcomes are
-equally likely when draws are made with replacement. In the Pick 3 Lotto, a winning number is
-chosen between 000 to 999. Contestants win if the digits in their chosen number matches
-the winning number, <em>in any order</em>.
-<ol style="list-style-type: lower-alpha">
-<li>What is your chance of winning if you bet on 053?</li>
-<li>What is your chance of winning if you bet on 055?</li>
-<li>What is your chance of winning if you bet on 555?</li>
-</ol></li>
-<li>Complete the solution to Galileo’s problem. What is the probability that the sum is 10
-when 3 fair dice are rolled? How does this compare with the probability that the sum is 9?</li>
-</ol>
+
+<p>To appreciate the Law of Large Numbers, consider betting on reds in roulette, a
+bet with an expected value of -$0.05, represented by a red dashed line in the figure below.
+There are many possible ways it could turn out; three sample paths are shown below.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>There is a lot of uncertainty about how much you will make (on average) in the first
+200 bets, but by the time we have made 1000 bets, there is not much uncertainty at all.
+We are guaranteed to lose money in the long run. The game of chance involves very little
+chance, especially when you are a large casino, which handles millions of such bets every year.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-106" class="example"><strong>Example 32.1  </strong></span>
 </div>
-<div id="bonus-material" class="section level2 unnumbered">
-<h2>Bonus Material</h2>
-<p>You will rarely need to
-count the <em>unordered</em> ways that <span class="math inline">\(n\)</span> tickets can be drawn <em>with replacement</em>, since the
-unordered outcomes are not equally likely. However, in case you are curious how this
-can be calculated, the following video explains how. This video is completely optional!</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UTCScjoPymA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</div>
+<div id="essential-practice-21" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<p>These questions make reference to the opening scene from the Tom Stoppard play
+<em>Rosencrantz and Guildenstern are Dead</em> (a retelling of Shakespeare’s <em>Hamlet</em>).
+You do not need to watch the scene to answer these questions, but I’ve included it just for fun.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C_TfdNAXOwE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
+<ol style="list-style-type: decimal">
+<li><p>Rosencrantz and Guildenstern have just learned the Law of Large Numbers.
+It turns out that they have a different understanding of what the law says…</p>
+<p><strong>Guildenstern:</strong> The Law of Large Numbers says that in the long run,
+the coin will land heads as often as it lands tails.</p>
+<p><strong>Rosencrantz:</strong> I don’t think that’s what it says. The Law of Large Numbers says that
+the fraction of heads will get closer and closer to 1/2, which is the expected value of
+each toss.</p>
+<p><strong>Guildenstern:</strong> Isn’t that the same as what I said?</p>
+<p><strong>Rosencrantz:</strong> No, you said, “The coin will land heads as often as it lands tails,”
+which implies that the difference between the <em>number</em> of heads and the <em>number</em> of tails
+will get smaller as we toss the coin more and more. I don’t think the number of heads
+will be close to the number of tails.</p>
+<p><strong>Guildenstern:</strong> If the fraction of heads is close to 1/2, then the
+<em>number</em> of heads must be close to the <em>number</em> of tails. How could it be otherwise?</p>
+<p>Who is right: Rosencrantz or Guildenstern? Calculate the variance of
+<span class="math display">\[ \text{number of heads in $n$ tosses} - \text{number of tails in $n$ tosses} \]</span>
+as a function of <span class="math inline">\(n\)</span>. What does this tell you about Guildenstern’s argument?</p></li>
+<li><p>Rosencrantz and Guildenstern are tossing a coin. The coin has landed heads
+85 times in a row. They discuss the probability that the next toss is heads.</p>
+<p><strong>Rosencrantz:</strong> We are due for tails! We have had so many heads that the next toss
+<em>has</em> to be more likely to land tails.</p>
+<p><strong>Guildenstern:</strong> Not so fast. Didn’t we call this the “gambler’s fallacy”
+in Lesson <a href="independence.html#independence">7</a>?
+The coin tosses are independent, so each toss is still equally likely to land
+heads or tails, regardless of past experience.</p>
+<p><strong>Rosencrantz:</strong> But what about the Law of Large Numbers? It says that
+we have to end up with 50% tails eventually. We are in a deep hole
+from the 85 heads in a row. How can we get back to 50% tails if the coin is not
+more likely now to land tails?</p>
+<p>How would you answer Rosencrantz’s question? Why does the Law of Large Numbers not
+contradict the gambler’s fallacy?</p></li>
+</ol>
 
 </div>
 </div>
@@ -479,8 +458,8 @@ can be calculated, the following video explains how. This video is completely op
           </div>
         </div>
       </div>
-<a href="box-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="double-counting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="random-walk.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -511,7 +490,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/replacement.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/law-of-large-numbers.Rmd",
 "text": "Edit"
 },
 "history": {
