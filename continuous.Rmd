@@ -136,6 +136,12 @@ is equal to $x$ (because for a continuous random variable, that probability is
 always equal to 0).
 ```
 
+The following video presents an alternative perspective on the p.d.f. It gives 
+more insight into what a "probability density" is. It also reinforces 
+the message that $P(X = x) = 0$ for any continuous random variable $X$.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6Osba2KLTuk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{example geiger-pdf, name="The PDF of the First Arrival"}
 Continuing with Example \@ref(exm:geiger-cdf), the c.d.f. was calculated to be 
 \[ F(t) = \begin{cases} 1 - e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. \]
@@ -144,7 +150,7 @@ Taking the derivative, we have
 f(t) = F'(t) = \begin{cases} 0.8 e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. 
 (\#eq:geiger-pdf)
 \end{equation}
-Figure \@ref(t-pdf-graph) below shows the p.d.f., along with the c.d.f. Since the p.d.f. is the 
+Figure \@ref(fig:t-pdf-graph) below shows the p.d.f., along with the c.d.f. Since the p.d.f. is the 
 derivative of the c.d.f., it is the slope of the c.d.f. at a given value of $t$. The 
 steeper the c.d.f., the higher the p.d.f.
 

@@ -10,6 +10,7 @@ rmd_files: [
   "hypergeometric.Rmd", "binomial.Rmd", "geometric.Rmd", "negative-binomial.Rmd", "poisson.Rmd",
   "poisson-process.Rmd", "joint-distributions.Rmd", "marginal-distributions.Rmd", "conditional-distributions.Rmd",
   "sums-discrete.Rmd", "expected-value.Rmd", "ev-infinity.Rmd", "lotus.Rmd", "lotus2d.Rmd", "linearity.Rmd", "ev-product.Rmd",
-  "variance.Rmd", "covariance.Rmd", "cov-properties.Rmd", "random-walk.Rmd", "law-of-large-numbers.Rmd"
+  "variance.Rmd", "covariance.Rmd", "cov-properties.Rmd", "random-walk.Rmd", "law-of-large-numbers.Rmd",
+  "continuous.Rmd"
 ]
 output_dir: "docs"
