@@ -2,14 +2,17 @@
 
 ## Theory {-}
 
-The p.m.f. (\@ref(def:pmf-function)) is one way to describe a random variable, but 
+The p.m.f. \@ref(def:pmf-function) is one way to describe a random variable, but 
 it is not the only way. The **cumulative distribution function** is a different 
 representation that contains the same information as the p.m.f.
 
 ```{definition cdf-function, name="Cumulative Distribution Function"}
 The **cumulative distribution function** (c.d.f.) is a function that returns the probability 
 that a random variable is _less than or equal_ to a particular value:
-\[ F(x) = P(X \leq x). \]
+\begin{equation} 
+F(x) \overset{\text{def}}{=} P(X \leq x). 
+(\#eq:cdf)
+\end{equation}
 It is called "cumulative" because it includes all the probability up to (and including) $x$.
 ```
 
@@ -43,8 +46,9 @@ we accumulate more and more probability.
 The properties of the c.d.f. become clearer on a graph, like the one below. 
 Because the random variable $X$ cannot take on decimal values, the c.d.f. of $X$ does not change 
 between integers, giving it its step-function appearance.
+```
 
-```{r cdf-graph, echo=FALSE, fig.show = "hold", fig.align = "default"}
+```{r cdf-graph, echo=FALSE, fig.show = "hold", fig.align = "default", fig.cap="Graph of a cumulative distribution function"}
 plot(0:5, phyper(0:5, 11, 37, 5), pch=19, xlab="x", ylab="F(x)", xlim=c(-0.5, 5.5), ylim=c(-0.05, 1.05))
 points(0:5, phyper(-1:4, 11, 37, 5), xlab="x", ylab="f(x)")
 lines(c(-1, 0), c(0, 0), lwd=2)
@@ -55,8 +59,6 @@ for(x in 0:5) {
 ```
 
 Note that the c.d.f. $F(x)$ can be evaluated at all values $x$, not just at integer values. 
-
-```
 
 ```{example, name="Using the C.D.F."}
 Some probabilities are easier to calculate using the c.d.f. than using the p.m.f. 

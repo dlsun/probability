@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-19" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -262,6 +324,7 @@
 <li class="chapter" data-level="33" data-path="continuous.html"><a href="continuous.html"><i class="fa fa-check"></i><b>33</b> Continuous Random Variables</a><ul>
 <li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#motivating-example-23"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#theory-30"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#optional-video-1"><i class="fa fa-check"></i>Optional Video</a></li>
 <li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#essential-practice-22"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -288,19 +351,18 @@
 <h1><span class="header-section-number">Lesson 33</span> Continuous Random Variables</h1>
 <div id="motivating-example-23" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
-<p>In a Poisson process, <em>the number of arrivals</em> on any interval is
+<p>In a Poisson process, <em>the number of arrivals</em> in any interval is
 a random variable that follows a Poisson distribution.
 But what about <em>the time of the first arrival</em>? This is also
-a random variable, but it is a different kind of random variable.
+a random variable, but of a different kind.
 The time of the first arrival does not have to be an integer. It
-can happen at <span class="math inline">\(1.2\)</span> seconds, <span class="math inline">\(2.173\)</span> seconds, <span class="math inline">\(\sqrt{2}\)</span> seconds, or
-<span class="math inline">\(\pi\)</span> seconds. In fact, any real number from <span class="math inline">\(0\)</span> to <span class="math inline">\(\infty\)</span> is a
-possible outcome of this random variable. As we will see in this lesson,
-this has massive consequences for the random variable.</p>
-<p>Suppose radioactive particles hit a Geiger counter at a rate of
-<span class="math inline">\(\lambda = 0.8\)</span> particles per second. We use <span class="math inline">\(T\)</span> to denote the time
-of the first arrival—that is, the time that the first particle
-hits the Geiger counter. We can calculate probabilities involving <span class="math inline">\(T\)</span>.
+can equal <span class="math inline">\(1.2\)</span> seconds, <span class="math inline">\(2.173\)</span> seconds, <span class="math inline">\(\sqrt{2}\)</span> seconds, or
+even <span class="math inline">\(\pi\)</span> seconds. In fact, any real number from <span class="math inline">\(0\)</span> to <span class="math inline">\(\infty\)</span> is a
+possible value of this random variable.</p>
+<p>To be concrete, suppose radioactive particles hit a Geiger counter
+according to a Poisson process with a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second.
+We will represent the time of the first arrival—that is, the time that the first particle
+hits the Geiger counter—by <span class="math inline">\(T\)</span>. We can calculate probabilities involving <span class="math inline">\(T\)</span>.
 For example, we can calculate the probability that the first particle
 arrives after 2 seconds by rewriting this event in terms of the
 number of arrivals on an interval:
@@ -322,14 +384,18 @@ P(T &gt; 3) = e^{-0.8 \cdot 3} \frac{(0.8 \cdot 3)^0}{0!} = e^{-2.4} \approx .09
 \end{equation}\]</span>
 So we see that
 <span class="math display">\[ P(2 &lt; T &lt; 3) = e^{-1.6} - e^{-2.4} \approx .111. \]</span></p>
-<p>We calculated two specific probabilities, but what about the distribution of <span class="math inline">\(T\)</span>?
-Here are some questions we will answer in this lesson:
-- What is the c.d.f. of <span class="math inline">\(T\)</span>?
-- Does <span class="math inline">\(T\)</span> have a p.m.f.?</p>
+<p>Although we can calculate specific probabilities involving <span class="math inline">\(T\)</span>, how do we
+describe its distribution? In particular:</p>
+<ul>
+<li>What is its c.d.f.?</li>
+<li>Does it have a p.m.f.?</li>
+</ul>
+<p>We will answer these questions in this lesson and more.</p>
 </div>
 <div id="theory-30" class="section level2 unnumbered">
 <h2>Theory</h2>
-First, let’s calculate the c.d.f. of <span class="math inline">\(T\)</span>.
+First, we calculate the c.d.f. of <span class="math inline">\(T\)</span>, which is straightforward from its
+definition <a href="cdf.html#eq:cdf">(11.1)</a>.
 
 <div class="example">
 <p><span id="exm:geiger-cdf" class="example"><strong>Example 33.1  (The CDF of the First Arrival)  </strong></span>Remember that the c.d.f. is defined as <span class="math inline">\(F(t) = P(T \leq t)\)</span> as a function of <span class="math inline">\(t\)</span>.
@@ -338,31 +404,31 @@ First, we use the complement rule:
 Now, we calculate <span class="math inline">\(P(T &gt; t)\)</span>, in much the same way that we calculated <span class="math inline">\(P(T &gt; 2)\)</span>
 in <a href="continuous.html#eq:t-gt-2">(33.1)</a> and <span class="math inline">\(P(T &gt; 3)\)</span> in <a href="continuous.html#eq:t-gt-3">(33.2)</a>:
 <span class="math display">\[ P(T &gt; t) = e^{- 0.8 \cdot t} \frac{(0.8 \cdot t)^0}{0!} = e^{-0.8 t}. \]</span>
-This formula works for <span class="math inline">\(t \geq 0\)</span>. Since times cannot be negative, we have
-the following formula for <span class="math inline">\(t &lt; 0\)</span>:
-<span class="math display">\[ P(T &gt; t) = 1 \]</span></p>
+This formula works for <span class="math inline">\(t \geq 0\)</span>. Since times are positive, we know that
+<span class="math display">\[ P(T &gt; t) = 1 \]</span>
+for <span class="math inline">\(t &lt; 0\)</span>.</p>
 Putting everything together, the c.d.f. of <span class="math inline">\(T\)</span> is
 <span class="math display">\[ F(t) = 1 - P(T &gt; t) = \begin{cases} 1 - e^{-0.8 t} &amp; t \geq 0 \\ 0 &amp; t &lt; 0 \end{cases}. \]</span>
 This function is graphed below.
 </div>
 
-<div class="figure"><span id="fig:t-cdf-graph"></span>
+<div class="figure" style="text-align: center"><span id="fig:t-cdf-graph"></span>
 <img src="bookdown-demo_files/figure-html/t-cdf-graph-1.png" alt="CDF of the First Arrival" width="672" />
 <p class="caption">
 Figure 33.1: CDF of the First Arrival
 </p>
 </div>
 <p>Notice how different this c.d.f. is, compared with the ones we graphed in
-Lesson <a href="cdf.html#cdf">11</a>. In Figure <a href="#fig:cdf-graph"><strong>??</strong></a>, the c.d.f. was a
-step function, with a jump at each possible value. By contrast, the
-c.d.f. above is continuous. This is the main distinction between the
+Lesson <a href="cdf.html#cdf">11</a>. In Figure <a href="cdf.html#fig:cdf-graph">11.1</a>, the c.d.f. was a
+step function, with a jump at each possible value of the random variable.
+By contrast, the c.d.f. above is continuous. This is the main distinction between the
 kinds of random variables we were studying before, which are called
 <strong>discrete random variables</strong>, and the kinds of
 random variables we study in this lesson, which are called
 <strong>continuous random variables</strong>.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-1" class="definition"><strong>Definition 33.1  (Continuous Random Variable)  </strong></span>A random variable is called <strong>continuous</strong> if its c.d.f. is a
+<span id="def:unnamed-chunk-107" class="definition"><strong>Definition 33.1  (Continuous Random Variable)  </strong></span>A random variable is called <strong>continuous</strong> if its c.d.f. is a
 continuous function.
 </div>
 
@@ -372,15 +438,15 @@ probability that the random variable is <em>equal to</em> <span class="math inli
 variables do not have a p.m.f. because the probability of any exact outcome is zero.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-2" class="example"><strong>Example 33.2  (Probability of an Exact Outcome)  </strong></span>Continuing with Example <a href="continuous.html#exm:geiger-cdf">33.1</a>, what is the probability that the
-first particle hits the Geiger counter at <em>exactly</em> 2 seconds
-(that is, 2.0000000… seconds)?</p>
+<p><span id="exm:unnamed-chunk-108" class="example"><strong>Example 33.2  (Probability of a Single Outcome)  </strong></span>Continuing with Example <a href="continuous.html#exm:geiger-cdf">33.1</a>, what is the probability that the
+first particle hits the Geiger counter at <em>exactly</em> 2 seconds—that is,
+<span class="math inline">\(P(T = 2.00000...)\)</span>?</p>
 <p>First, consider the probability that the first arrival is in the
 interval <span class="math inline">\((2 - \epsilon, 2 + \epsilon)\)</span>, where <span class="math inline">\(\epsilon\)</span> is a small
 positive number. No matter how small an <span class="math inline">\(\epsilon\)</span> we choose, this
 probability will always be greater than the probability that the
 first arrival happens at <em>exactly</em> 2 seconds, since this interval includes 2 seconds,
-as well as other outcomes. (For example, if <span class="math inline">\(\epsilon = 0.05\)</span>, then this interval would
+as well as some other outcomes. (For example, if <span class="math inline">\(\epsilon = 0.05\)</span>, then this interval would
 also include the possibility that the first arrival happens at 1.98 seconds or
 2.01 seconds.)</p>
 <p>The number of arrivals on the interval <span class="math inline">\((2 - \epsilon, 2 + \epsilon)\)</span> is a
@@ -417,13 +483,15 @@ Taking the derivative, we have
 f(t) = F&#39;(t) = \begin{cases} 0.8 e^{-0.8 t} &amp; t \geq 0 \\ 0 &amp; t &lt; 0 \end{cases}. 
 \tag{33.3}
 \end{equation}\]</span>
-This p.d.f. is graphed below.</p>
+Figure <a href="#t-pdf-graph"><strong>??</strong></a> below shows the p.d.f., along with the c.d.f. Since the p.d.f. is the
+derivative of the c.d.f., it is the slope of the c.d.f. at a given value of <span class="math inline">\(t\)</span>. The
+steeper the c.d.f., the higher the p.d.f.</p>
 </div>
 
-<div class="figure"><span id="fig:t-pdf-graph"></span>
-<img src="bookdown-demo_files/figure-html/t-pdf-graph-1.png" alt="PDF of the First Arrival" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:t-pdf-graph"></span>
+<img src="bookdown-demo_files/figure-html/t-pdf-graph-1.png" alt="PDF from the CDF" width="672" />
 <p class="caption">
-Figure 33.2: PDF of the First Arrival
+Figure 33.2: PDF from the CDF
 </p>
 </div>
 <p>This p.d.f. tells us that the first arrival is more likely to happen sooner,
@@ -442,14 +510,19 @@ represent probabilities.</p>
 <div class="proof">
  <span class="proof"><em>Proof. </em></span> Let <span class="math inline">\(F(x)\)</span> be the c.d.f. of <span class="math inline">\(X\)</span>. Then, we know that
 <span class="math display">\[ P(a &lt; X \leq b) = P(X \leq b) - P(X \leq a) = F(b) - F(a). \]</span>
-By the <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#Second_part">Fundamental Theorem of Calculus</a>,
+Since <span class="math inline">\(f = F&#39;\)</span>, the <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#Second_part">Fundamental Theorem of Calculus</a> says that
 <span class="math display">\[ F(b) - F(a) = \int_a^b f(x)\,dx. \]</span>
 </div>
 
-<p>Let’s recalculate the probabilities using the p.d.f. <a href="continuous.html#eq:geiger-pdf">(33.3)</a>.</p>
+<p>Theorem <a href="continuous.html#thm:calculating-probs-pdf">33.1</a> says that probabilities correspond to
+<em>areas</em> under the p.d.f. This is another way to see that the probability of any single outcome
+must be 0. The probability that <span class="math inline">\(X = x\)</span> would be the integral from <span class="math inline">\(x\)</span> to <span class="math inline">\(x\)</span>; since
+there is no area under the curve at <span class="math inline">\(x\)</span>, this probability must be 0.</p>
+<p>Let’s recalculate the probabilities from the Motivating Example,
+now using the p.d.f. <a href="continuous.html#eq:geiger-pdf">(33.3)</a>.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-4" class="example"><strong>Example 33.4  (Calculating Probabilities Using the PDF)  </strong></span>We know that the p.d.f. of the first arrival, <span class="math inline">\(T\)</span>, is
+<p><span id="exm:unnamed-chunk-110" class="example"><strong>Example 33.4  (Calculating Probabilities Using the PDF)  </strong></span>We know that the p.d.f. of the first arrival, <span class="math inline">\(T\)</span>, is
 <span class="math display">\[ f(t) = \begin{cases} 0.8 e^{-0.8 t} &amp; t \geq 0 \\ 0 &amp; t &lt; 0 \end{cases}. \]</span>
 To calculate probabilities using Theorem <a href="continuous.html#thm:calculating-probs-pdf">33.1</a>, we
 integrate the p.d.f.</p>
@@ -461,34 +534,51 @@ and the probability that the first arrival happens after 2 seconds is
 The areas that these probabilities represent are shown on the graphs below.
 </div>
 
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" alt="PDF of the First Arrival" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-111"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-111-1.png" alt="PDF of the First Arrival" width="672" />
 <p class="caption">
 Figure 33.3: PDF of the First Arrival
 </p>
 </div>
 <p>What about the probability that the first arrival happens before 3 seconds?
-Technically, we integrate the p.d.f. from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(3\)</span>. However, <span class="math inline">\(f(t) = 0\)</span>
+Technically, we should integrate the p.d.f. from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(3\)</span>. However, <span class="math inline">\(f(t) = 0\)</span>
 for <span class="math inline">\(-\infty &lt; t &lt; 0\)</span>, so we effectively integrate the p.d.f. from <span class="math inline">\(0\)</span> to <span class="math inline">\(3\)</span>:
-<span class="math display">\[ P(T &lt; 3) = \int_{-\infty}^3 f(t)\,dt = \int_0^3 0.8 e^{-0.8 t}\,dt = .909. \]</span>
-```</p>
-<p>So far, we saw that we take the derivative of the c.d.f. to get the p.d.f. Likewise, if we
-have the p.d.f., we can take its integral to get the p.d.f.
+<span class="math display">\[ P(T &lt; 3) = \int_{-\infty}^3 f(t)\,dt = \int_0^3 0.8 e^{-0.8 t}\,dt = .909. \]</span></p>
+<p>So far, we saw that we take the derivative of the c.d.f. to get the p.d.f.
+We can also go in reverse: if we have the p.d.f., we can take its integral to get the c.d.f.
 <span class="math display" id="eq:pdf-to-cdf">\[\begin{equation}
 F(x) = \int_{-\infty}^x f(t)\,dt.
 \tag{33.4}
 \end{equation}\]</span></p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-6" class="example"><strong>Example 33.5  ((Re)deriving the CDF of the First Arrival)  </strong></span>Suppose we only had the p.d.f. of the first arrival <span class="math inline">\(T\)</span>:
+<p><span id="exm:unnamed-chunk-112" class="example"><strong>Example 33.5  ((Re)deriving the CDF of the First Arrival)  </strong></span>Suppose we only knew the p.d.f. of the first arrival <span class="math inline">\(T\)</span>:
 <span class="math display">\[ f(t) = \begin{cases} 0.8 e^{-0.8 t} &amp; t \geq 0 \\ 0 &amp; t &lt; 0 \end{cases}. \]</span></p>
-To get the c.d.f., we would integrate. Since the p.d.f. is 0 when <span class="math inline">\(t &lt; 0\)</span>, the integral
-effectively starts from <span class="math inline">\(t=0\)</span>.
+To calculate the c.d.f. at <span class="math inline">\(x\)</span>, we integrate the p.d.f. up to <span class="math inline">\(x\)</span>. Since the p.d.f.
+is 0 when <span class="math inline">\(t &lt; 0\)</span>, the integral effectively starts from <span class="math inline">\(t=0\)</span>.
 <span class="math display">\[ F(x) = \int_{-\infty}^x f(t)\,dt = \int_0^x 0.8 e^{-0.8 t}\,dt = 1 - e^{-0.8 x}. \]</span>
-(This integral can be calculated using the <span class="math inline">\(u\)</span>-substitution <span class="math inline">\(u=0.8 t\)</span>, or <a href="https://www.wolframalpha.com/input/?i=integrate+0.8*exp%28-0.8*t%29+from+t%3D0+to+x">using
+(This integral can be calculated using the <span class="math inline">\(u\)</span>-substitution <span class="math inline">\(u=-0.8 t\)</span>, or <a href="https://www.wolframalpha.com/input/?i=integrate+0.8*exp%28-0.8*t%29+from+t%3D0+to+x">using
 Wolfram Alpha</a>.)
 </div>
 
+<p>Figure <a href="continuous.html#fig:pdf-to-cdf">33.4</a> below illustrates how areas under the p.d.f. translate to
+values of the c.d.f.</p>
+<div class="figure" style="text-align: center"><span id="fig:pdf-to-cdf"></span>
+<img src="bookdown-demo_files/figure-html/pdf-to-cdf-1.png" alt="CDF from the PDF" width="672" />
+<p class="caption">
+Figure 33.4: CDF from the PDF
+</p>
+</div>
+</div>
+<div id="optional-video-1" class="section level2 unnumbered">
+<h2>Optional Video</h2>
+<p>This video (not my own) does an excellent job explaining the mechanics of
+calculations involving p.d.f.s and c.d.f.s. If you felt that you understood the material
+above well enough to do the Essential Practice below, you probably do not need to watch this video.
+Do not get too caught up in the calculus; remember that you can always use
+<a href="http://www.wolframalpha.com">Wolfram Alpha</a> to compute any integrals or derivatives.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EPm7FdajBvc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 </div>
 <div id="essential-practice-22" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
@@ -523,7 +613,7 @@ random variable <span class="math inline">\(X\)</span> whose cumulative distribu
 <span class="math display">\[ F(x) = \begin{cases} 0 &amp; x &lt; 0 \\ x^3 / 216 &amp; 0 \leq x \leq 6 \\ 1 &amp; x &gt; 6 \end{cases}. \]</span></p>
 <ol style="list-style-type: lower-alpha">
 <li>Determine the p.d.f. Sketch a graph.</li>
-<li>Calculate the probability that the trucker travels more than 5 miles in a day. (You should
+<li>Calculate the probability that the trucker travels more than 500 miles in a day. (You should
 be able to calculate this in at least 2 ways: directly from the c.d.f. and using the p.d.f.
 that you calculated in the previous part.)</li>
 <li>Calculate the probability that the trucker travels exactly 200 miles in a day.</li>

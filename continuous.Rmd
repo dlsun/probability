@@ -2,20 +2,19 @@
 
 ## Motivating Example {-}
 
-In a Poisson process, _the number of arrivals_ on any interval is 
+In a Poisson process, _the number of arrivals_ in any interval is 
 a random variable that follows a Poisson distribution. 
 But what about _the time of the first arrival_? This is also 
-a random variable, but it is a different kind of random variable. 
+a random variable, but of a different kind. 
 The time of the first arrival does not have to be an integer. It 
-can happen at $1.2$ seconds, $2.173$ seconds, $\sqrt{2}$ seconds, or 
-$\pi$ seconds. In fact, any real number from $0$ to $\infty$ is a 
-possible outcome of this random variable. As we will see in this lesson, 
-this has massive consequences for the random variable.
+can equal $1.2$ seconds, $2.173$ seconds, $\sqrt{2}$ seconds, or 
+even $\pi$ seconds. In fact, any real number from $0$ to $\infty$ is a 
+possible value of this random variable.
 
-Suppose radioactive particles hit a Geiger counter at a rate of 
-$\lambda = 0.8$ particles per second. We use $T$ to denote the time 
-of the first arrival---that is, the time that the first particle 
-hits the Geiger counter. We can calculate probabilities involving $T$. 
+To be concrete, suppose radioactive particles hit a Geiger counter 
+according to a Poisson process with a rate of $\lambda = 0.8$ particles per second. 
+We will represent the time of the first arrival---that is, the time that the first particle 
+hits the Geiger counter---by $T$. We can calculate probabilities involving $T$. 
 For example, we can calculate the probability that the first particle 
 arrives after 2 seconds by rewriting this event in terms of the 
 number of arrivals on an interval:
@@ -39,14 +38,18 @@ P(T > 3) = e^{-0.8 \cdot 3} \frac{(0.8 \cdot 3)^0}{0!} = e^{-2.4} \approx .091.
 So we see that 
 \[ P(2 < T < 3) = e^{-1.6} - e^{-2.4} \approx .111. \]
 
-We calculated two specific probabilities, but what about the distribution of $T$?
-Here are some questions we will answer in this lesson:
-- What is the c.d.f. of $T$?
-- Does $T$ have a p.m.f.?
+Although we can calculate specific probabilities involving $T$, how do we 
+describe its distribution? In particular:
+
+- What is its c.d.f.?
+- Does it have a p.m.f.?
+
+We will answer these questions in this lesson and more.
 
 ## Theory {-}
 
-First, let's calculate the c.d.f. of $T$. 
+First, we calculate the c.d.f. of $T$, which is straightforward from its 
+definition \@ref(eq:cdf).
 ```{example geiger-cdf, name="The CDF of the First Arrival"}
 Remember that the c.d.f. is defined as $F(t) = P(T \leq t)$ as a function of $t$. 
 First, we use the complement rule:
@@ -54,28 +57,30 @@ First, we use the complement rule:
 Now, we calculate $P(T > t)$, in much the same way that we calculated $P(T > 2)$ 
   in \@ref(eq:t-gt-2) and $P(T > 3)$ in \@ref(eq:t-gt-3):
 \[ P(T > t) = e^{- 0.8 \cdot t} \frac{(0.8 \cdot t)^0}{0!} = e^{-0.8 t}. \]
-This formula works for $t \geq 0$. Since times cannot be negative, we have 
-the following formula for $t < 0$:
+This formula works for $t \geq 0$. Since times are positive, we know that 
 \[ P(T > t) = 1 \]
+for $t < 0$.
 
 Putting everything together, the c.d.f. of $T$ is 
 \[ F(t) = 1 - P(T > t) = \begin{cases} 1 - e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. \]
 This function is graphed below.
-```{r t-cdf-graph, echo=FALSE, fig.show = "hold", fig.align = "default",fig.cap="CDF of the First Arrival"}
+```{r t-cdf-graph, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="CDF of the First Arrival"}
+par(mgp=c(1, 1, 0))
+
 t <- seq(0, 5.5, by=0.01)
-plot(t, 1 - exp(-0.8 * t), type="l", lwd=3, col="orange",
+plot(t, 1 - exp(-0.8 * t), type="l", lwd=3, col="red",
      xaxt="n", yaxt="n", bty="n",
      xlab="t", ylab="Cumulative Distribution Function F(t)", 
      xlim=c(-0.5, 5.5), ylim=c(-0.05, 1.05))
-lines(c(-0.5, 0), c(0, 0), lwd=3, col="orange")
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="red")
 axis(1, pos=0)
 axis(2, pos=0)
 ```
 
 Notice how different this c.d.f. is, compared with the ones we graphed in 
 Lesson \@ref(cdf). In Figure \@ref(fig:cdf-graph), the c.d.f. was a 
-step function, with a jump at each possible value. By contrast, the 
-c.d.f. above is continuous. This is the main distinction between the 
+step function, with a jump at each possible value of the random variable. 
+By contrast, the c.d.f. above is continuous. This is the main distinction between the 
 kinds of random variables we were studying before, which are called 
 **discrete random variables**, and the kinds of 
 random variables we study in this lesson, which are called 
@@ -91,17 +96,17 @@ distribution by graphing its p.m.f. Recall that the p.m.f. specified the
 probability that the random variable is _equal to_ $x$. Continuous random 
 variables do not have a p.m.f. because the probability of any exact outcome is zero.
 
-```{example, name="Probability of an Exact Outcome"}
+```{example, name="Probability of a Single Outcome"}
 Continuing with Example \@ref(exm:geiger-cdf), what is the probability that the 
-first particle hits the Geiger counter at _exactly_ 2 seconds 
-(that is, 2.0000000... seconds)?
+first particle hits the Geiger counter at _exactly_ 2 seconds---that is,
+$P(T = 2.00000...)$?
 
 First, consider the probability that the first arrival is in the 
 interval $(2 - \epsilon, 2 + \epsilon)$, where $\epsilon$ is a small 
 positive number. No matter how small an $\epsilon$ we choose, this 
 probability will always be greater than the probability that the 
 first arrival happens at _exactly_ 2 seconds, since this interval includes 2 seconds, 
-as well as other outcomes. (For example, if $\epsilon = 0.05$, then this interval would 
+as well as some other outcomes. (For example, if $\epsilon = 0.05$, then this interval would 
 also include the possibility that the first arrival happens at 1.98 seconds or 
 2.01 seconds.) 
 
@@ -139,9 +144,13 @@ Taking the derivative, we have
 f(t) = F'(t) = \begin{cases} 0.8 e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. 
 (\#eq:geiger-pdf)
 \end{equation}
-This p.d.f. is graphed below.
+Figure \@ref(t-pdf-graph) below shows the p.d.f., along with the c.d.f. Since the p.d.f. is the 
+derivative of the c.d.f., it is the slope of the c.d.f. at a given value of $t$. The 
+steeper the c.d.f., the higher the p.d.f.
 
-```{r t-pdf-graph, echo=FALSE, fig.show = "hold", fig.align = "default",fig.cap="PDF of the First Arrival"}
+```{r t-pdf-graph, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="PDF from the CDF", fig.asp=1.2}
+par(mfrow=c(2, 1), mgp=c(1, 1, 0))
+
 t <- seq(0, 5.5, by=0.01)
 plot(t, 0.8 * exp(-0.8 * t), type="l", lwd=3, col="blue", 
      xaxt="n", yaxt="n", bty="n",
@@ -150,6 +159,19 @@ plot(t, 0.8 * exp(-0.8 * t), type="l", lwd=3, col="blue",
 axis(1, pos=0)
 axis(2, pos=0)
 lines(c(-0.5, 0), c(0, 0), lwd=3, col="blue")
+lines(c(1.5, 1.5), c(0, 0.8 * exp(-0.8 * 1.5)), lty=2)
+lines(c(0, 1.5), rep(0.8 * exp(-0.8 * 1.5), 2), lty=2)
+points(1.5, 0.8 * exp(-0.8 * 1.5), pch=19, col="blue")
+
+plot(t, 1 - exp(-0.8 * t), type="l", lwd=3, col="red",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="t", ylab="Cumulative Distribution Function F(t)", 
+     xlim=c(-0.5, 5.5), ylim=c(-0.05, 1.05))
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="red")
+abline(-1.5 * 0.8 * exp(-0.8 * 1.5) + 1 - exp(-0.8 * 1.5), 0.8 * exp(-0.8 * 1.5), col="blue")
+lines(c(1.5, 1.5), c(0, 1 - exp(-0.8 * 1.5)), lty=2)
+axis(1, pos=0)
+axis(2, pos=0)
 ```
 
 This p.d.f. tells us that the first arrival is more likely to happen sooner, 
@@ -166,11 +188,17 @@ Let $X$ be a continuous random variable with p.d.f. $f(x)$. Then:
 ```{proof}
 Let $F(x)$ be the c.d.f. of $X$. Then, we know that 
 \[ P(a < X \leq b) = P(X \leq b) - P(X \leq a) = F(b) - F(a). \]
-By the [Fundamental Theorem of Calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#Second_part), 
+Since $f = F'$, the [Fundamental Theorem of Calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#Second_part) says that 
 \[ F(b) - F(a) = \int_a^b f(x)\,dx. \]
 ```
 
-Let's recalculate the probabilities using the p.d.f. \@ref(eq:geiger-pdf).
+Theorem \@ref(thm:calculating-probs-pdf) says that probabilities correspond to 
+_areas_ under the p.d.f. This is another way to see that the probability of any single outcome 
+must be 0. The probability that $X = x$ would be the integral from $x$ to $x$; since 
+there is no area under the curve at $x$, this probability must be 0.
+
+Let's recalculate the probabilities from the Motivating Example, 
+now using the p.d.f. \@ref(eq:geiger-pdf). 
 
 ```{example, name="Calculating Probabilities Using the PDF"}
 We know that the p.d.f. of the first arrival, $T$, is 
@@ -184,8 +212,9 @@ is:
 and the probability that the first arrival happens after 2 seconds is 
 \[ P(T > 2) = \int_2^\infty f(t)\,dt = \int_2^\infty 0.8 e^{-0.8 t}\,dt = .202.\]
 The areas that these probabilities represent are shown on the graphs below.
-```{r, echo=FALSE, fig.show = "hold", fig.align = "default",fig.cap="PDF of the First Arrival", fig.asp=1.2}
-par(mfrow=c(2, 1))
+```{r, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="PDF of the First Arrival", fig.asp=1.2}
+par(mfrow=c(2, 1), mgp=c(1, 1, 0))
+
 t <- seq(0, 5.5, by=0.01)
 plot(t, 0.8 * exp(-0.8 * t), type="l", lwd=3, col="blue",
      main="P(2 < T < 3)",
@@ -210,30 +239,68 @@ polygon(c(2, range, 5.5), c(0, 0.8 * exp(-0.8 * range), 0),
         border=NA, col=rgb(1, 0, 0, 0.5))
 lines(c(-0.5, 0), c(0, 0), lwd=3, col="blue")
 ```
-
 What about the probability that the first arrival happens before 3 seconds? 
-Technically, we integrate the p.d.f. from $-\infty$ to $3$. However, $f(t) = 0$ 
+Technically, we should integrate the p.d.f. from $-\infty$ to $3$. However, $f(t) = 0$ 
 for $-\infty < t < 0$, so we effectively integrate the p.d.f. from $0$ to $3$:
 \[ P(T < 3) = \int_{-\infty}^3 f(t)\,dt = \int_0^3 0.8 e^{-0.8 t}\,dt = .909. \]
-```
 
-So far, we saw that we take the derivative of the c.d.f. to get the p.d.f. Likewise, if we 
-have the p.d.f., we can take its integral to get the p.d.f.
+So far, we saw that we take the derivative of the c.d.f. to get the p.d.f. 
+We can also go in reverse: if we have the p.d.f., we can take its integral to get the c.d.f.
 \begin{equation}
 F(x) = \int_{-\infty}^x f(t)\,dt.
 (\#eq:pdf-to-cdf)
 \end{equation}
 
 ```{example, name="(Re)deriving the CDF of the First Arrival"}
-Suppose we only had the p.d.f. of the first arrival $T$:
+Suppose we only knew the p.d.f. of the first arrival $T$:
 \[ f(t) = \begin{cases} 0.8 e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. \]
 
-To get the c.d.f., we would integrate. Since the p.d.f. is 0 when $t < 0$, the integral 
-effectively starts from $t=0$.
+To calculate the c.d.f. at $x$, we integrate the p.d.f. up to $x$. Since the p.d.f. 
+is 0 when $t < 0$, the integral effectively starts from $t=0$.
 \[ F(x) = \int_{-\infty}^x f(t)\,dt = \int_0^x 0.8 e^{-0.8 t}\,dt = 1 - e^{-0.8 x}. \]
-(This integral can be calculated using the $u$-substitution $u=0.8 t$, or [using 
+(This integral can be calculated using the $u$-substitution $u=-0.8 t$, or [using 
 Wolfram Alpha](https://www.wolframalpha.com/input/?i=integrate+0.8*exp%28-0.8*t%29+from+t%3D0+to+x).)
 ```
+
+Figure \@ref(fig:pdf-to-cdf) below illustrates how areas under the p.d.f. translate to 
+values of the c.d.f.
+
+```{r pdf-to-cdf, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="CDF from the PDF", fig.asp=1.2}
+par(mfrow=c(2, 1), mgp=c(1, 1, 0))
+
+t <- seq(0, 5.5, by=0.01)
+plot(t, 0.8 * exp(-0.8 * t), type="l", lwd=3, col="blue",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="t", ylab="Probability Density Function f(t)", 
+     xlim=c(-0.5, 5.5), ylim=c(-0.05, 0.81))
+axis(1, pos=0)
+axis(2, pos=0)
+range <- seq(0, 1.5, by=0.01)
+polygon(c(0, range, 1.5), c(0, 0.8 * exp(-0.8 * range), 0), 
+        border=NA, col=rgb(1, 0, 0, 0.5))
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="blue")
+
+plot(t, 1 - exp(-0.8 * t), type="l", lwd=3, col="red",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="t", ylab="Cumulative Distribution Function F(t)", 
+     xlim=c(-0.5, 5.5), ylim=c(-0.05, 1.05))
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="red")
+lines(c(1.5, 1.5), c(0, 1 - exp(-0.8 * 1.5)), lty=2)
+lines(c(0, 1.5), rep(1 - exp(-0.8 * 1.5), 2), lty=2)
+points(1.5, 1 - exp(-0.8 * 1.5), col="red", pch=19)
+axis(1, pos=0)
+axis(2, pos=0)
+```
+
+## Optional Video {-}
+
+This video (not my own) does an excellent job explaining the mechanics of 
+calculations involving p.d.f.s and c.d.f.s. If you felt that you understood the material 
+above well enough to do the Essential Practice below, you probably do not need to watch this video. 
+Do not get too caught up in the calculus; remember that you can always use 
+[Wolfram Alpha](http://www.wolframalpha.com) to compute any integrals or derivatives.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EPm7FdajBvc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## Essential Practice {-}
@@ -269,7 +336,7 @@ random variable $X$ whose cumulative distribution function (c.d.f.) is given by:
 \[ F(x) = \begin{cases} 0 & x < 0 \\ x^3 / 216 & 0 \leq x \leq 6 \\ 1 & x > 6 \end{cases}. \]
 
     a. Determine the p.d.f. Sketch a graph.
-    b. Calculate the probability that the trucker travels more than 5 miles in a day. (You should 
+    b. Calculate the probability that the trucker travels more than 500 miles in a day. (You should 
     be able to calculate this in at least 2 ways: directly from the c.d.f. and using the p.d.f. 
     that you calculated in the previous part.)
     c. Calculate the probability that the trucker travels exactly 200 miles in a day.

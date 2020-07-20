@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-17" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,6 +321,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lln.html"><a href="lln.html#theory-29"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="lln.html"><a href="lln.html#essential-practice-21"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="33" data-path="continuous.html"><a href="continuous.html"><i class="fa fa-check"></i><b>33</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#motivating-example-23"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#theory-30"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#optional-video-1"><i class="fa fa-check"></i>Optional Video</a></li>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#essential-practice-22"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -345,14 +351,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Lesson 11</span> Cumulative Distribution Functions</h1>
 <div id="theory-9" class="section level2 unnumbered">
 <h2>Theory</h2>
-<p>The p.m.f. (<a href="rv.html#def:pmf-function">10.1</a>) is one way to describe a random variable, but
+<p>The p.m.f. <a href="rv.html#def:pmf-function">10.1</a> is one way to describe a random variable, but
 it is not the only way. The <strong>cumulative distribution function</strong> is a different
 representation that contains the same information as the p.m.f.</p>
 
 <div class="definition">
 <span id="def:cdf-function" class="definition"><strong>Definition 11.1  (Cumulative Distribution Function)  </strong></span>The <strong>cumulative distribution function</strong> (c.d.f.) is a function that returns the probability
 that a random variable is <em>less than or equal</em> to a particular value:
-<span class="math display">\[ F(x) = P(X \leq x). \]</span>
+<span class="math display" id="eq:cdf">\[\begin{equation} 
+F(x) \overset{\text{def}}{=} P(X \leq x). 
+\tag{11.1}
+\end{equation}\]</span>
 It is called “cumulative” because it includes all the probability up to (and including) <span class="math inline">\(x\)</span>.
 </div>
 
@@ -385,14 +394,18 @@ we accumulate more and more probability.
 </ul>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-21" class="example"><strong>Example 11.2  (Graphing the C.D.F.)  </strong></span>The properties of the c.d.f. become clearer on a graph, like the one below.
+<span id="exm:unnamed-chunk-21" class="example"><strong>Example 11.2  (Graphing the C.D.F.)  </strong></span>The properties of the c.d.f. become clearer on a graph, like the one below.
 Because the random variable <span class="math inline">\(X\)</span> cannot take on decimal values, the c.d.f. of <span class="math inline">\(X\)</span> does not change
-between integers, giving it its step-function appearance.</p>
+between integers, giving it its step-function appearance.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/cdf-graph-1.png" width="672" /></p>
+<div class="figure"><span id="fig:cdf-graph"></span>
+<img src="bookdown-demo_files/figure-html/cdf-graph-1.png" alt="Graph of a cumulative distribution function" width="672" />
+<p class="caption">
+Figure 11.1: Graph of a cumulative distribution function
+</p>
+</div>
 <p>Note that the c.d.f. <span class="math inline">\(F(x)\)</span> can be evaluated at all values <span class="math inline">\(x\)</span>, not just at integer values.</p>
-<p>```</p>
 
 <div class="example">
 <p><span id="exm:unnamed-chunk-22" class="example"><strong>Example 11.3  (Using the C.D.F.)  </strong></span>Some probabilities are easier to calculate using the c.d.f. than using the p.m.f.

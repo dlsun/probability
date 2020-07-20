@@ -48,8 +48,6 @@ for(col in c("blue", "orange", "green")) {
 }
 ```
 
-
-
 ## Essential Practice {-}
 
 Answer the following questions about the random walk. You should use linearity of expectation and 
