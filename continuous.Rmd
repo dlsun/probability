@@ -1,0 +1,285 @@
+# Continuous Random Variables {#continuous}
+
+## Motivating Example {-}
+
+In a Poisson process, _the number of arrivals_ on any interval is 
+a random variable that follows a Poisson distribution. 
+But what about _the time of the first arrival_? This is also 
+a random variable, but it is a different kind of random variable. 
+The time of the first arrival does not have to be an integer. It 
+can happen at $1.2$ seconds, $2.173$ seconds, $\sqrt{2}$ seconds, or 
+$\pi$ seconds. In fact, any real number from $0$ to $\infty$ is a 
+possible outcome of this random variable. As we will see in this lesson, 
+this has massive consequences for the random variable.
+
+Suppose radioactive particles hit a Geiger counter at a rate of 
+$\lambda = 0.8$ particles per second. We use $T$ to denote the time 
+of the first arrival---that is, the time that the first particle 
+hits the Geiger counter. We can calculate probabilities involving $T$. 
+For example, we can calculate the probability that the first particle 
+arrives after 2 seconds by rewriting this event in terms of the 
+number of arrivals on an interval:
+\[ P(T > 2) = P(\text{0 particles between 0 and 2 seconds})  \]
+We know that the number of particles between 0 and 2 seconds 
+follows a $\text{Poisson}(\mu=0.8 \cdot 2)$ distribution, so we 
+just need to evaluate the p.m.f. at $x=0$:
+\begin{equation} 
+P(T > 2) = e^{-0.8 \cdot 2} \frac{(0.8 \cdot 2)^0}{0!} = e^{-1.6} \approx .202. 
+(\#eq:t-gt-2)
+\end{equation}
+
+We can also calculate the probability that the first arrival happens between 
+$2$ and $3$ seconds, as:
+\[ P(2 < T < 3) = P(T > 2) - P(T > 3). \]
+We calculate $P(T > 3)$ in much the same way as we calculated $P(T > 2)$ above:
+\begin{equation}
+P(T > 3) = e^{-0.8 \cdot 3} \frac{(0.8 \cdot 3)^0}{0!} = e^{-2.4} \approx .091. 
+(\#eq:t-gt-3)
+\end{equation}
+So we see that 
+\[ P(2 < T < 3) = e^{-1.6} - e^{-2.4} \approx .111. \]
+
+We calculated two specific probabilities, but what about the distribution of $T$?
+Here are some questions we will answer in this lesson:
+- What is the c.d.f. of $T$?
+- Does $T$ have a p.m.f.?
+
+## Theory {-}
+
+First, let's calculate the c.d.f. of $T$. 
+```{example geiger-cdf, name="The CDF of the First Arrival"}
+Remember that the c.d.f. is defined as $F(t) = P(T \leq t)$ as a function of $t$. 
+First, we use the complement rule:
+\[ F(t) = P(T \leq t) = 1 - P(T > t). \]
+Now, we calculate $P(T > t)$, in much the same way that we calculated $P(T > 2)$ 
+  in \@ref(eq:t-gt-2) and $P(T > 3)$ in \@ref(eq:t-gt-3):
+\[ P(T > t) = e^{- 0.8 \cdot t} \frac{(0.8 \cdot t)^0}{0!} = e^{-0.8 t}. \]
+This formula works for $t \geq 0$. Since times cannot be negative, we have 
+the following formula for $t < 0$:
+\[ P(T > t) = 1 \]
+
+Putting everything together, the c.d.f. of $T$ is 
+\[ F(t) = 1 - P(T > t) = \begin{cases} 1 - e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. \]
+This function is graphed below.
+```{r t-cdf-graph, echo=FALSE, fig.show = "hold", fig.align = "default",fig.cap="CDF of the First Arrival"}
+t <- seq(0, 5.5, by=0.01)
+plot(t, 1 - exp(-0.8 * t), type="l", lwd=3, col="orange",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="t", ylab="Cumulative Distribution Function F(t)", 
+     xlim=c(-0.5, 5.5), ylim=c(-0.05, 1.05))
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="orange")
+axis(1, pos=0)
+axis(2, pos=0)
+```
+
+Notice how different this c.d.f. is, compared with the ones we graphed in 
+Lesson \@ref(cdf). In Figure \@ref(fig:cdf-graph), the c.d.f. was a 
+step function, with a jump at each possible value. By contrast, the 
+c.d.f. above is continuous. This is the main distinction between the 
+kinds of random variables we were studying before, which are called 
+**discrete random variables**, and the kinds of 
+random variables we study in this lesson, which are called 
+**continuous random variables**.
+
+```{definition, name="Continuous Random Variable"}
+A random variable is called **continuous** if its c.d.f. is a 
+continuous function.
+```
+
+With discrete random variables, we can visualize the shape of the 
+distribution by graphing its p.m.f. Recall that the p.m.f. specified the 
+probability that the random variable is _equal to_ $x$. Continuous random 
+variables do not have a p.m.f. because the probability of any exact outcome is zero.
+
+```{example, name="Probability of an Exact Outcome"}
+Continuing with Example \@ref(exm:geiger-cdf), what is the probability that the 
+first particle hits the Geiger counter at _exactly_ 2 seconds 
+(that is, 2.0000000... seconds)?
+
+First, consider the probability that the first arrival is in the 
+interval $(2 - \epsilon, 2 + \epsilon)$, where $\epsilon$ is a small 
+positive number. No matter how small an $\epsilon$ we choose, this 
+probability will always be greater than the probability that the 
+first arrival happens at _exactly_ 2 seconds, since this interval includes 2 seconds, 
+as well as other outcomes. (For example, if $\epsilon = 0.05$, then this interval would 
+also include the possibility that the first arrival happens at 1.98 seconds or 
+2.01 seconds.) 
+
+The number of arrivals on the interval $(2 - \epsilon, 2 + \epsilon)$ is a 
+Poisson random variable with parameter $\mu = 0.8 \cdot 2\epsilon$. Therefore, 
+the probability that there are no arrivals on the interval is:
+\begin{align*}
+P(\text{at least 1 arrival on interval}) &= 1 - P(\text{no arrivals on interval}) \\
+&= 1 - e^{-0.8 \cdot 2\epsilon} \frac{(0.8 \cdot 2 \epsilon)^0}{0!} \\
+&= 1 - e^{-1.6 \epsilon}.
+\end{align*}
+But $\epsilon$ can be arbitrarily small. As $\epsilon \to 0$, this probability approaches 0. 
+
+Therefore, the probability that the first arrival happens at _exactly_ 2 seconds is zero.
+```
+
+Because the probability of every outcome in a continuous random variable is zero, 
+continuous random variables cannot be described by their p.m.f. Instead, they are 
+described by a similar function called the **probability density function**.
+
+```{definition pdf, name="Probability Density Function"}
+The **probability density function** (or p.d.f.) of a continuous random variable 
+is defined to be the derivative of the c.d.f.
+\[ f(x) \overset{\text{def}}{=} F'(x). \]
+The values of $f(x)$ do not represent the probability that the random variable 
+is equal to $x$ (because for a continuous random variable, that probability is 
+always equal to 0).
+```
+
+```{example geiger-pdf, name="The PDF of the First Arrival"}
+Continuing with Example \@ref(exm:geiger-cdf), the c.d.f. was calculated to be 
+\[ F(t) = \begin{cases} 1 - e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. \]
+Taking the derivative, we have 
+\begin{equation}
+f(t) = F'(t) = \begin{cases} 0.8 e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. 
+(\#eq:geiger-pdf)
+\end{equation}
+This p.d.f. is graphed below.
+
+```{r t-pdf-graph, echo=FALSE, fig.show = "hold", fig.align = "default",fig.cap="PDF of the First Arrival"}
+t <- seq(0, 5.5, by=0.01)
+plot(t, 0.8 * exp(-0.8 * t), type="l", lwd=3, col="blue", 
+     xaxt="n", yaxt="n", bty="n",
+     xlab="t", ylab="Probability Density Function f(t)", 
+     xlim=c(-0.5, 5.5), ylim=c(-0.05, 0.81))
+axis(1, pos=0)
+axis(2, pos=0)
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="blue")
+```
+
+This p.d.f. tells us that the first arrival is more likely to happen sooner, 
+rather than later. However, the values of the p.d.f. are not easy to interpret. 
+They do not represent probabilities, but rather probability _densities_. 
+
+If the values of the p.d.f. do not represent probabilities, how do we calculate 
+probabilities using the p.d.f.? It turns out that _areas under the p.d.f._ 
+represent probabilities.
+
+```{theorem calculating-probs-pdf, name="Calculating Probabilities Using the PDF"}
+Let $X$ be a continuous random variable with p.d.f. $f(x)$. Then:
+\[ P(a < X \leq b) = \int_a^b f(x)\,dx. \]
+```{proof}
+Let $F(x)$ be the c.d.f. of $X$. Then, we know that 
+\[ P(a < X \leq b) = P(X \leq b) - P(X \leq a) = F(b) - F(a). \]
+By the [Fundamental Theorem of Calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#Second_part), 
+\[ F(b) - F(a) = \int_a^b f(x)\,dx. \]
+```
+
+Let's recalculate the probabilities using the p.d.f. \@ref(eq:geiger-pdf).
+
+```{example, name="Calculating Probabilities Using the PDF"}
+We know that the p.d.f. of the first arrival, $T$, is 
+\[ f(t) = \begin{cases} 0.8 e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. \]
+To calculate probabilities using Theorem \@ref(thm:calculating-probs-pdf), we 
+integrate the p.d.f. 
+
+For example, the probability that the first arrival happens between 2 and 3 seconds 
+is:
+\[ P(2 < T < 3) = \int_2^3 f(t)\,dt = \int_2^3 0.8 e^{-0.8 t}\,dt = .111, \]
+and the probability that the first arrival happens after 2 seconds is 
+\[ P(T > 2) = \int_2^\infty f(t)\,dt = \int_2^\infty 0.8 e^{-0.8 t}\,dt = .202.\]
+The areas that these probabilities represent are shown on the graphs below.
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default",fig.cap="PDF of the First Arrival", fig.asp=1.2}
+par(mfrow=c(2, 1))
+t <- seq(0, 5.5, by=0.01)
+plot(t, 0.8 * exp(-0.8 * t), type="l", lwd=3, col="blue",
+     main="P(2 < T < 3)",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="t", ylab="Probability Density Function f(t)", 
+     xlim=c(-0.5, 5.5), ylim=c(-0.05, 0.81))
+axis(1, pos=0)
+axis(2, pos=0)
+range <- seq(2, 3, by=0.01)
+polygon(c(2, range, 3), c(0, 0.8 * exp(-0.8 * range), 0), 
+        border=NA, col=rgb(1, 0, 0, 0.5))
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="blue")
+
+plot(t, 0.8 * exp(-0.8 * t), type="l", lwd=3, col="blue",
+     main="P(T > 2)",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="t", ylab="Probability Density Function f(t)", xlim=c(-0.5, 5.5), ylim=c(-0.05, 0.81))
+axis(1, pos=0)
+axis(2, pos=0)
+range <- seq(2, 5.5, by=0.01)
+polygon(c(2, range, 5.5), c(0, 0.8 * exp(-0.8 * range), 0), 
+        border=NA, col=rgb(1, 0, 0, 0.5))
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="blue")
+```
+
+What about the probability that the first arrival happens before 3 seconds? 
+Technically, we integrate the p.d.f. from $-\infty$ to $3$. However, $f(t) = 0$ 
+for $-\infty < t < 0$, so we effectively integrate the p.d.f. from $0$ to $3$:
+\[ P(T < 3) = \int_{-\infty}^3 f(t)\,dt = \int_0^3 0.8 e^{-0.8 t}\,dt = .909. \]
+```
+
+So far, we saw that we take the derivative of the c.d.f. to get the p.d.f. Likewise, if we 
+have the p.d.f., we can take its integral to get the p.d.f.
+\begin{equation}
+F(x) = \int_{-\infty}^x f(t)\,dt.
+(\#eq:pdf-to-cdf)
+\end{equation}
+
+```{example, name="(Re)deriving the CDF of the First Arrival"}
+Suppose we only had the p.d.f. of the first arrival $T$:
+\[ f(t) = \begin{cases} 0.8 e^{-0.8 t} & t \geq 0 \\ 0 & t < 0 \end{cases}. \]
+
+To get the c.d.f., we would integrate. Since the p.d.f. is 0 when $t < 0$, the integral 
+effectively starts from $t=0$.
+\[ F(x) = \int_{-\infty}^x f(t)\,dt = \int_0^x 0.8 e^{-0.8 t}\,dt = 1 - e^{-0.8 x}. \]
+(This integral can be calculated using the $u$-substitution $u=0.8 t$, or [using 
+Wolfram Alpha](https://www.wolframalpha.com/input/?i=integrate+0.8*exp%28-0.8*t%29+from+t%3D0+to+x).)
+```
+
+
+## Essential Practice {-}
+
+1. Packets arrive at a certain node on the university’s intranet at 10 packets per minute, on average.
+Assume packet arrivals meet the assumptions of a Poisson process.
+
+    a. What is the p.d.f. of $T$, the time of the first arrival?
+    b. What is the probability that the first arrival happens between 10 seconds and 30 seconds? 
+    (Note that the rate in the problem is given in _minutes_.)
+
+2. Two Cal Poly students, Ferris and Cameron, are frequently late to class. Cal Poly 
+classes start at 10 minutes past the hour mark.
+
+    Let $X$ be the time (in minutes) that Ferris arrives at class after the hour mark. The p.d.f. 
+    of $X$ is 
+    \[ f_X(x) = \begin{cases} \frac{1}{60} & 0 \leq x < 60 \\ 0 & \text{otherwise} \end{cases}.  \]
+    Let $Y$ be the time (in minutes) that Cameron arrives at class after the hour mark. The p.d.f. 
+    of $Y$ is 
+    \[ f_Y(y) = \begin{cases} \frac{60 - y}{1800} & 0 \leq y < 60 \\ 0 & \text{otherwise} \end{cases}.  \]
+
+    a. Sketch a graph of the two p.d.f.s. Without doing any calculations, who is more likely to arrive 
+    on time (i.e., within the first 10 minutes of the hour)?
+    b. Determine the c.d.f.s of $X$ and $Y$. 
+    c. Calculate the probability that Ferris arrives on time. You should be able to calculate 
+    this probability in three ways: (1) finding the area under the p.d.f. using geometry, (2) 
+    finding the area under the p.d.f. using calculus, and (3) using the c.d.f.
+    d. Calculate the probability that Cameron arrives on time. You should also be able to calculate 
+    this probability in three ways.
+
+3. The distance (in hundreds of miles) driven by a trucker in one day is a continuous
+random variable $X$ whose cumulative distribution function (c.d.f.) is given by: 
+\[ F(x) = \begin{cases} 0 & x < 0 \\ x^3 / 216 & 0 \leq x \leq 6 \\ 1 & x > 6 \end{cases}. \]
+
+    a. Determine the p.d.f. Sketch a graph.
+    b. Calculate the probability that the trucker travels more than 5 miles in a day. (You should 
+    be able to calculate this in at least 2 ways: directly from the c.d.f. and using the p.d.f. 
+    that you calculated in the previous part.)
+    c. Calculate the probability that the trucker travels exactly 200 miles in a day.
+    
+4. Let $T$ be how late that a professor lets her class out (in minutes). 
+(If $T$ is negative, then she finishes the class early.) The p.d.f. of $T$ is 
+\[ f(t) = \begin{cases} c(2 + t) & -2 < t < 0 \\ c(2 - t) & 0 \leq t < 2 \\ 0 & \text{otherwise} \end{cases}, \]
+where $c$ is a constant.
+
+    a. Determine the value of $c$ necessary to make this a proper p.d.f. (_Hint:_ What does the 
+    total probability have to be?) Sketch the p.d.f.
+    b. Calculate the probability that the professor finishes between 1 minute early and 
+    30 seconds late, i.e., $P(-1 < T < 0.5)$.
