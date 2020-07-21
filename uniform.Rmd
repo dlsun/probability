@@ -1,6 +1,6 @@
 # Uniform Distribution {#uniform}
 
-## Motivating Example {-}
+## Motivation {-}
 
 How do we model a random variable that is equally likely to take on any real 
 number between $a$ and $b$? 

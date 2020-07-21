@@ -11,6 +11,6 @@ rmd_files: [
   "poisson-process.Rmd", "joint-distributions.Rmd", "marginal-distributions.Rmd", "conditional-distributions.Rmd",
   "sums-discrete.Rmd", "expected-value.Rmd", "ev-infinity.Rmd", "lotus.Rmd", "lotus2d.Rmd", "linearity.Rmd", "ev-product.Rmd",
   "variance.Rmd", "covariance.Rmd", "cov-properties.Rmd", "random-walk.Rmd", "law-of-large-numbers.Rmd",
-  "continuous.Rmd"
+  "continuous.Rmd", "uniform.Rmd", "exponential.Rmd"
 ]
 output_dir: "docs"
