@@ -1,0 +1,122 @@
+# Exponential Distribution {#exponential}
+
+## Motivation {-}
+
+The exponential distribution is commonly used to model time: the time between arrivals, 
+the time until a component fails. We have already encountered several examples of exponential 
+random variables---the time of the first arrival in a Poisson process follows an 
+exponential distribution.
+
+## Theory {-}
+
+```{definition exponential, name="Exponential Distribution"}
+A random variable $X$ is said to follow a $\text{Exponential}(\lambda)$ distribution if 
+its p.d.f. is 
+\begin{equation}
+f(x) = \begin{cases} \lambda e^{-\lambda x} & x \geq 0 \\ 0 & \text{otherwise} \end{cases},
+(\#eq:exponential-pdf)
+\end{equation}
+or equivalently, if its c.d.f. is 
+\begin{equation}
+F(x) = \begin{cases} 1 - e^{-\lambda x} & x \geq 0 \\ 0 & \text{otherwise} \end{cases}. 
+(\#eq:exponential-cdf)
+\end{equation}
+```
+The p.d.f. and c.d.f., for three different values of $\lambda$, are graphed below.
+
+```{r expo-graph, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="PDF and CDF of the Exponential Distribution", fig.asp=1.2}
+par(mfrow=c(2, 1), mgp=c(1, 1, 0))
+
+t <- seq(0, 5.5, by=0.01)
+plot(t, 0.5 * exp(-0.5 * t), type="l", lwd=3, col="blue", 
+     xaxt="n", yaxt="n", bty="n",
+     xlab="x", ylab="Probability Density Function f(x)", 
+     xlim=c(-0.5, 5.5), ylim=c(-0.05, 1.55))
+axis(1, pos=0)
+axis(2, pos=0)
+lines(t, exp(-t), type="l", lwd=3, col="red")
+lines(t, 1.5 * exp(-1.5 * t), type="l", lwd=3, col="orange")
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="blue")
+lines(c(-0.5, 0), c(0, 0), lwd=2, col="red")
+lines(c(-0.5, 0), c(0, 0), lwd=1, col="orange")
+legend(4, 1.5, 
+       c(expression(paste(lambda, " = 0.5")), expression(paste(lambda, " = 1.0")), expression(paste(lambda, " = 1.5"))),
+       lwd=3, col=c("blue", "red", "orange"))
+
+plot(t, 1 - exp(-0.5 * t), type="l", lwd=3, col="blue",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="x", ylab="Cumulative Distribution Function F(x)", 
+     xlim=c(-0.5, 5.5), ylim=c(-0.05, 1.05))
+lines(t, 1 - exp(-t), type="l", lwd=3, col="red")
+lines(t, 1 - exp(-1.5 * t), type="l", lwd=3, col="orange")
+axis(1, pos=0)
+axis(2, pos=0)
+lines(c(-0.5, 0), c(0, 0), lwd=3, col="blue")
+lines(c(-0.5, 0), c(0, 0), lwd=2, col="red")
+lines(c(-0.5, 0), c(0, 0), lwd=1, col="orange")
+legend(4, 0.5, 
+       c(expression(paste(lambda, " = 0.5")), expression(paste(lambda, " = 1.0")), expression(paste(lambda, " = 1.5"))),
+       lwd=3, col=c("blue", "red", "orange"))
+```
+
+First, we show that the first arrival time in a Poisson process follows an 
+exponential distribution. These calculations are essentially the same as the ones 
+we did in Lesson \@ref(continuous).
+```{theorem first-arrival, name="First Arrival Time in a Poisson Process"}
+The time of the first arrival in a Poisson process of rate $\lambda$ is an 
+$\text{Exponential}(\lambda)$ random variable. 
+```
+
+```{proof}
+Let $T$ be the time of the first arrival. Then, for $t > 0$, the c.d.f. of $T$ is 
+\begin{align*}
+F(t) &= P(T \leq t) \\
+&= 1 - P(T > t) \\
+&= 1 - P(\text{0 arrivals in $[0, t]$}) \\
+&= 1 - e^{- \lambda t} \frac{(\lambda t)^0}{0!} \\
+&= 1 - e^{-\lambda t}.
+\end{align*}
+This is the c.d.f. of an $\text{Exponential}(\lambda)$ random variable, as we derived above.
+```
+
+```{theorem interarrival, name="Interarrival Times in a Poisson Process"}
+The times between arrivals (called **interarrival times**) in a Poisson process of rate $\lambda$ 
+are independent $\text{Exponential}(\lambda)$ random variables. 
+```
+
+
+```{example, name="Lifetime of a Lightbulb"}
+
+```
+
+```{theorem memoryless, name="Memoryless Property of the Exponential Distribution"}
+\[ P(X > s + t | X > s) = P(X > t) \]
+```
+
+```{example, name="Memorylessness and the Poisson Process"}
+
+```
+
+
+## Essential Practice {-}
+
+1. Let $X$ denote the distance (in meters) that an animal moves from its birth site to the first 
+territorial vacancy it encounters. Suppose that for banner-tailed kangaroo rats, $X$ has an exponential
+distribution with parameter $\lambda = .01386$ (as suggested in the article "Competition and Dispersal
+from Multiple Nests," Ecology, 1997: 873–883).
+
+    What is the probability that the distance is...
+
+    a. at most 100 m? 
+    b. at most 200 m? 
+    c. between 100 and 200 m?
+
+2. Small aircraft arrive at San Luis Obispo airport according to a Poisson process at a rate of 6 per hour. What is the probability that more than 15 minutes elapse between when the second and third 
+planes land?
+
+3. A post office has 2 clerks. Alice enters the post office while 2 other customers, Bob
+and Claire, are being served by the 2 clerks. She is next in line. Assume that the time
+a clerk spends serving a customer (in minutes) follows an $\text{Exponential}(\lambda=0.2)$ 
+distribution. What is the probability that Alice is the last of the 3 customers to be done being
+served? (Hint: This can be answered without any calculations, by thinking about 
+the memoryless property.)
