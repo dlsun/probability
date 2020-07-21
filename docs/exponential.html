@@ -472,6 +472,9 @@ Alternatively, we could have used the c.d.f. of <span class="math inline">\(X\)<
 can also use software to calculate these probabilities for us. Open up this notebook in
 Colab and play around with it.</p>
 <script src="https://gist.github.com/dlsun/bd5d8d3520706eee3526691fd967a02e.js"></script>
+<p>The exponential distribution has a surprising property called the <strong>memoryless property</strong>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aRJIMPUdvOw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
 <div class="theorem">
 <span id="thm:memoryless" class="theorem"><strong>Theorem 35.3  (Memoryless Property of the Exponential Distribution)  </strong></span>An exponential random variable <span class="math inline">\(X\)</span> has the <strong>memoryless property</strong>. That is, for any
@@ -536,9 +539,10 @@ rate of 6 per hour.</p>
 second planes land?</li>
 <li>What is the probability that it takes more than 15 minutes elapse before the first plane lands
 <em>and</em> more than 15 minutes elapse between when the first and second planes land?</li>
-<li>What is the probability that more than 30 minutes elapse before the first two planes land?
+<li>What is the probability that more than 30 minutes elapse before two planes have landed?
 Why is the answer different than your answer to part c? (<em>Hint:</em> You can calculate this
-using properties of a Poisson process.)</li>
+using properties of a Poisson process. Rewrite the event in terms of the number of planes that
+land in the interval <span class="math inline">\((0, 30)\)</span>.)</li>
 </ol></li>
 <li><p>A post office has 2 clerks. Alice enters the post office while 2 other customers, Bob
 and Claire, are being served by the 2 clerks. She is next in line. Assume that the time
