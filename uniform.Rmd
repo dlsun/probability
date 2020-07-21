@@ -83,6 +83,6 @@ What is the probability the left segment is more than twice as long as the right
     (Hint: Assume the length of the stick is 1. Let $X$ be the point at which the stick is 
     broken, and observe that $X$ is the length of the left segment.)
 
-2. You inflate a spherical balloon in a single breath. If the amount of air you exhale in a 
+2. You inflate a spherical balloon in a single breath. If the volume of air you exhale in a 
 single breath (in cubic inches) is $\text{Uniform}(a=36\pi, b=288\pi)$ random variable, what 
 is the probability that the radius of the balloon is less than 5 inches?

@@ -86,7 +86,8 @@ F(t) &= P(T \leq t) \\
 &= 1 - e^{- \lambda t} \frac{(\lambda t)^0}{0!} \\
 &= 1 - e^{-\lambda t}.
 \end{align*}
-This is the c.d.f. of an $\text{Exponential}(\lambda)$ random variable, as we derived above.
+This is the c.d.f. of an $\text{Exponential}(\lambda)$ random variable, as 
+shown in \@ref(eq:exponential-cdf).
 ```
 
 In fact, the time between any two arrivals in a Poisson process follows the same distribution.
