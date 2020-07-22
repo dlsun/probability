@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-21" />
+<meta name="date" content="2020-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -279,6 +279,7 @@
 <li class="chapter" data-level="" data-path="transformations.html"><a href="transformations.html#motivating-example-25"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="transformations.html"><a href="transformations.html#theory-33"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="transformations.html"><a href="transformations.html#essential-practice-25"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="transformations.html"><a href="transformations.html#additional-practice-5"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -304,41 +305,133 @@
 <h1><span class="header-section-number">Lesson 36</span> Transformations</h1>
 <div id="motivating-example-25" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
+<p>You buy fencing for a square enclosure. The length of fencing that you buy is uniformly distributed between
+0 and 4 meters. What is the distribution of the <em>area</em> of the enclosure?</p>
+<p>Most people realize that the area must be between 0 and 1 square meters,
+since the length of each side must be between 0 and 1 meters, and
+the square of a number between 0 and 1 is also between 0 and 1. But how likely
+are the values in between?</p>
 </div>
 <div id="theory-33" class="section level2 unnumbered">
 <h2>Theory</h2>
-<p>In this lesson, we discuss how to calculate the distribution of <span class="math inline">\(Y = g(X)\)</span>.</p>
+<p>We can formalize the above example as follows. The length of fencing, <span class="math inline">\(L\)</span>, is a
+<span class="math inline">\(\text{Uniform}(a=0, b=4)\)</span> random variable, and we are interested in the
+distribution of <span class="math inline">\(A = (L/4)^2\)</span>.</p>
+<p>This is a special case of a more general problem. We have a random variable <span class="math inline">\(X\)</span>
+whose distribution we know, and we want to find the distribution of <span class="math inline">\(Y = g(X)\)</span>,
+a transformation of <span class="math inline">\(X\)</span>. The strategy for these problems is this:</p>
 <ol style="list-style-type: decimal">
-<li>Calculate the c.d.f. of <span class="math inline">\(Y\)</span>.</li>
+<li>Find the c.d.f. of <span class="math inline">\(Y\)</span>.</li>
 <li>Take the derivative to obtain the p.d.f.</li>
 </ol>
 
+<div class="example">
+<p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 36.1  </strong></span>Let’s apply this strategy to the example at the beginning of the lesson.</p>
+<p>First, we find the c.d.f. of <span class="math inline">\(A\)</span>, the area of the enclosure. We write out the definition
+of the c.d.f., express <span class="math inline">\(A\)</span> in terms of <span class="math inline">\(L\)</span>, and rearrange the expression to make
+the probability easy to calculate.
+<span class="math display">\[\begin{align*}
+F_A(x) &amp;= P(A \leq x) \\
+&amp;= P\left((L/4)^2 \leq x\right) \\
+&amp;= \begin{cases} 0 &amp; x &lt; 0 \\ P(L \leq 4 \sqrt{x}) &amp; x \geq 0 \end{cases} \\
+&amp;= \begin{cases} 0 &amp; x &lt; 0 \\ \sqrt{x} &amp; 0 \leq x \leq 1 \\ 1 &amp; x &gt; 1 \end{cases}.
+\end{align*}\]</span></p>
+<p>Now we take the derivative to get the p.d.f.
+<span class="math display">\[ f_A(x) = F&#39;_A(x) = \begin{cases} \frac{1}{2\sqrt{x}} &amp; 0 \leq x \leq 1 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
+We graph the p.d.f.s of <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span> below.</p>
+</div>
+
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" alt="Distributions of $L$ and $A$" width="672" />
+<p class="caption">
+Figure 36.1: Distributions of <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span>
+</p>
+</div>
+<p>Now, we derive formulas for the two most common types of transformations:
+shifting by a constant and scaling by a constant.</p>
+
 <div class="theorem">
-<span id="thm:unnamed-chunk-1" class="theorem"><strong>Theorem 36.1  (Scale Transformation)  </strong></span>The p.d.f. of <span class="math inline">\(Y = aX\)</span> for <span class="math inline">\(a &gt; 0\)</span> is
-<span class="math display">\[ f_Y(y) = \frac{1}{a} f_X(\frac{y}{a}). \]</span>
+<span id="thm:shift-transform" class="theorem"><strong>Theorem 36.1  (Shift Transformation)  </strong></span>Let <span class="math inline">\(X\)</span> be a continuous random variable with p.d.f. <span class="math inline">\(f_X\)</span>.
+The p.d.f. of <span class="math inline">\(Y = X + b\)</span> is
+<span class="math display" id="eq:shift-transform">\[\begin{equation}
+f_Y(y) = f_X(y - b). 
+\tag{36.1}
+\end{equation}\]</span>
 </div>
 
 
-<div class="theorem">
-<span id="thm:unnamed-chunk-2" class="theorem"><strong>Theorem 36.2  (Shift Transformation)  </strong></span>The p.d.f. of <span class="math inline">\(Y = X + b\)</span> is
-<span class="math display">\[ f_Y(y) = f_X(y - b). \]</span>
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> We can express the c.d.f. of <span class="math inline">\(Y\)</span> in terms of the c.d.f. of <span class="math inline">\(X\)</span>:
+<span class="math display">\[\begin{align*}
+F_Y(y) &amp;= P(Y \leq y) \\
+&amp;= P(X + b \leq y) \\
+&amp;= P(X \leq y - b) \\
+&amp;= F_X(y - b).
+\end{align*}\]</span></p>
+<p>Taking the derivative, we see that the p.d.f. is
+<span class="math display">\[ f_Y(y) = F&#39;_Y(y) = f_X(y - b). \]</span></p>
+The figure below illustrates a hypothetical p.d.f. for a random variable <span class="math inline">\(X\)</span> and the
+corresponding p.d.f. for the shifted random variable <span class="math inline">\(Y = X + 1\)</span>. Notice how the p.d.f.
+is exactly the same, except shifted to the right by 1, as we would expect.
 </div>
 
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" alt="Example of a Shift Transformation" width="672" />
+<p class="caption">
+Figure 36.2: Example of a Shift Transformation
+</p>
+</div>
+
+<div class="theorem">
+<span id="thm:scale-transform" class="theorem"><strong>Theorem 36.2  (Scale Transformation)  </strong></span>Let <span class="math inline">\(X\)</span> be a continuous random variable with p.d.f. <span class="math inline">\(f_X\)</span>.
+The p.d.f. of <span class="math inline">\(Y = aX\)</span>, where <span class="math inline">\(a &gt; 0\)</span> is a constant, is
+<span class="math display" id="eq:scale-transform">\[\begin{equation} 
+f_Y(y) = \frac{1}{a} f_X(\frac{y}{a}).
+\tag{36.2}
+\end{equation}\]</span>
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> We can express the c.d.f. of <span class="math inline">\(Y\)</span> in terms of the c.d.f. of <span class="math inline">\(X\)</span>:
+<span class="math display">\[\begin{align*}
+F_Y(y) &amp;= P(Y \leq y) \\
+&amp;= P(aX \leq y) \\
+&amp;= P(X \leq \frac{y}{a}) \\
+&amp;= F_X(\frac{y}{a}).
+\end{align*}\]</span></p>
+<p>Taking the derivative (don’t forget the chain rule!), we see that the p.d.f. is
+<span class="math display">\[ f_Y(y) = F&#39;_Y(y) = \frac{1}{a} f_X(\frac{y}{a}). \]</span></p>
+The figure below illustrates a hypothetical p.d.f. for a random variable <span class="math inline">\(X\)</span> and the
+corresponding p.d.f. for the scaled random variable <span class="math inline">\(Y = 2X\)</span>. Notice that the p.d.f.
+is the same shape, just wider and shorter.
+</div>
+
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" alt="Example of a Scale Transformation" width="672" />
+<p class="caption">
+Figure 36.3: Example of a Scale Transformation
+</p>
+</div>
+<p>The factor of <span class="math inline">\(\frac{1}{a}\)</span> on the inside in
+<a href="transformations.html#eq:scale-transform">(36.2)</a> is what makes the p.d.f. wider, and the factor of <span class="math inline">\(\frac{1}{a}\)</span> on the
+outside is what makes it shorter. It is necessary to make the p.d.f. shorter if we make it
+wider, since the total area under a p.d.f. must always be 1.</p>
 </div>
 <div id="essential-practice-25" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>The radius of a circle (in inches) is chosen from an
-<span class="math inline">\(\text{Exponential}(\lambda=1.5)\)</span> distribution. Find the
-p.d.f. of the <em>area</em> of the circle.</p></li>
+<li><p>You inflate a spherical balloon in a single breath. If the volume of air you exhale in a
+single breath (in cubic inches) is <span class="math inline">\(\text{Uniform}(a=36\pi, b=288\pi)\)</span> random variable, what
+is the p.d.f. of the radius of the balloon (in inches)?</p></li>
 <li><p>The lifetime of a lightbulb (in hours) follows an
 <span class="math inline">\(\text{Exponential}(\lambda=\frac{1}{1200})\)</span> distribution.
 Find the p.d.f. of the lifetime of the lightbulb in <em>days</em>
 (assuming the lightbulb is on 24 hours per day).</p></li>
 <li><p>A lighthouse on a shore is shining light toward the ocean at a
-random angle <span class="math inline">\(U\)</span> (measured in radians), where
-<span class="math display">\[ U \sim \text{Uniform}(a=-\frac{\pi}{2}, b=\frac{\pi}{2}). \]</span>
-Consider a line which is parallel to the shore and 1 mile away from the
+random angle <span class="math inline">\(U\)</span> (measured in radians), where <span class="math inline">\(U\)</span> follows a
+<span class="math inline">\(\text{Uniform}(a=-\frac{\pi}{2}, b=\frac{\pi}{2})\)</span> distribution.</p>
+<p>Consider a line which is parallel to the shore and 1 mile away from the
 shore, as illustrated below. An angle of 0 would mean the ray of
 light is perpendicular to the shore, while an angle of <span class="math inline">\(\pi/2\)</span>
 would mean the ray is along the shore, shining to the right
@@ -348,6 +441,14 @@ from the perspective of the figure.</p>
 line’s origin is the point on the line that is closest to the
 lighthouse. Find the p.d.f. of <span class="math inline">\(X\)</span>.</p>
 <p>(<em>Hint:</em> Use trigonometry to write <span class="math inline">\(X\)</span> as a function of <span class="math inline">\(U\)</span>.)</p></li>
+</ol>
+</div>
+<div id="additional-practice-5" class="section level2 unnumbered">
+<h2>Additional Practice</h2>
+<ol style="list-style-type: decimal">
+<li>The radius of a circle (in inches) is chosen from an
+<span class="math inline">\(\text{Exponential}(\lambda=1.5)\)</span> distribution. Find the
+p.d.f. of the <em>area</em> of the circle.</li>
 </ol>
 
 </div>

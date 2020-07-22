@@ -6,8 +6,8 @@ In Fishtown, buses do not operate on a fixed schedule. Instead, they
 arrive according to a Poisson process at a rate of one per 10 minutes. 
 How long would you have to wait if you show up at a bus stop at an arbitrary time? 
 
-Most people guess that they would have to wait about 5 minutes, since they 
-generally show up some time after the previous bus has already left.
+Most people guess that they would have to wait about 5 minutes, since usually 
+you will show up at the bus stop in between bus arrivals.
 Surprisingly, the answer is that you have to wait just as long 
 as if you had arrived right when the previous bus was leaving! We will 
 see why at the end of this lesson.
@@ -169,7 +169,7 @@ The memoryless property has some surprising consequences. The example presented
 at the beginning of the lesson is one of them.
 
 ```{example, name="The Waiting Time Paradox"}
-If buses arrive at a bus stop according to a Poisson process at a rate of 
+If buses in Fishtown arrive at a bus stop according to a Poisson process at a rate of 
 one per 10 minutes (i.e., $\lambda = 0.1$ arrivals per minute), how long do 
 you have to wait before the next bus arrives?
   
