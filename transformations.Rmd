@@ -22,8 +22,10 @@ both $L$ and $A$.
 
 <script src="https://gist.github.com/dlsun/952e02f66b471c7f368c74755b05b8a3.js"></script>
 
-In the simulation above, $L$ is (not surprisingly) equally likely to take on
-all values between 0 and 4. The distribution of $A$ is more interesting. It is much 
+In the simulation above, $L$ is equally likely to take on
+all values between 0 and 4. This is not surprising because $L$ was defined to be this way 
+(a uniform distribution between 0 and 4). 
+The distribution of $A$ is more interesting. It is much 
 more concentrated toward the lower values than the higher values. In hindsight, 
 this makes sense because $(L / 4)$ is a number between 0 and 1, and numbers between 0 
 and 1 get smaller when we square them.
@@ -35,6 +37,8 @@ $Y = g(X)$, a transformation of $X$. The strategy for these problems is this:
 1. Calculate the c.d.f. of $Y$ (by rewriting the event in terms of $X$ and using the known distribution of $X$).
 2. Take the derivative to obtain the p.d.f. of $Y$ (by Definition \@ref(def:pdf)).
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/avr6r81o60Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{example}
 Let's apply this strategy to the example at the beginning of the lesson.
 
@@ -44,7 +48,7 @@ the probability easy to calculate.
 \begin{align*}
 F_A(x) &= P(A \leq x) \\
 &= P\left((L/4)^2 \leq x\right) \\
-&= \begin{cases} 0 & x < 0 \\ P(L \leq 4 \sqrt{x}) & x \geq 0 \end{cases} \\
+&= P(L \leq 4 \sqrt{x}) & \text{(if $x \geq 0$)} \\
 &= \begin{cases} 0 & x < 0 \\ \sqrt{x} & 0 \leq x \leq 1 \\ 1 & x > 1 \end{cases}.
 \end{align*}
 

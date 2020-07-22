@@ -397,6 +397,8 @@ We have a random variable <span class="math inline">\(X\)</span> whose distribut
 <li>Calculate the c.d.f. of <span class="math inline">\(Y\)</span> (by rewriting the event in terms of <span class="math inline">\(X\)</span> and using the known distribution of <span class="math inline">\(X\)</span>).</li>
 <li>Take the derivative to obtain the p.d.f. of <span class="math inline">\(Y\)</span> (by Definition <a href="continuous.html#def:pdf">33.2</a>).</li>
 </ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/avr6r81o60Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
 <div class="example">
 <p><span id="exm:unnamed-chunk-120" class="example"><strong>Example 36.1  </strong></span>Let’s apply this strategy to the example at the beginning of the lesson.</p>
@@ -406,7 +408,7 @@ the probability easy to calculate.
 <span class="math display">\[\begin{align*}
 F_A(x) &amp;= P(A \leq x) \\
 &amp;= P\left((L/4)^2 \leq x\right) \\
-&amp;= \begin{cases} 0 &amp; x &lt; 0 \\ P(L \leq 4 \sqrt{x}) &amp; x \geq 0 \end{cases} \\
+&amp;= P(L \leq 4 \sqrt{x}) &amp; \text{(if $x \geq 0$)} \\
 &amp;= \begin{cases} 0 &amp; x &lt; 0 \\ \sqrt{x} &amp; 0 \leq x \leq 1 \\ 1 &amp; x &gt; 1 \end{cases}.
 \end{align*}\]</span></p>
 <p>Now we take the derivative to get the p.d.f.
