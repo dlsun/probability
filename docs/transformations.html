@@ -52,6 +52,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -321,8 +383,10 @@ distribution of <span class="math inline">\(A = (L/4)^2\)</span>.</p>
 uniform random variable <span class="math inline">\(L\)</span>, defines <span class="math inline">\(A = (L / 4)^2\)</span>, and displays 10000 simulations of
 both <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span>.</p>
 <script src="https://gist.github.com/dlsun/952e02f66b471c7f368c74755b05b8a3.js"></script>
-<p>In the simulation above, <span class="math inline">\(L\)</span> is (not surprisingly) equally likely to take on
-all values between 0 and 4. The distribution of <span class="math inline">\(A\)</span> is more interesting. It is much
+<p>In the simulation above, <span class="math inline">\(L\)</span> is equally likely to take on
+all values between 0 and 4. This is not surprising because <span class="math inline">\(L\)</span> was defined to be this way
+(a uniform distribution between 0 and 4).
+The distribution of <span class="math inline">\(A\)</span> is more interesting. It is much
 more concentrated toward the lower values than the higher values. In hindsight,
 this makes sense because <span class="math inline">\((L / 4)\)</span> is a number between 0 and 1, and numbers between 0
 and 1 get smaller when we square them.</p>
@@ -331,11 +395,11 @@ We have a random variable <span class="math inline">\(X\)</span> whose distribut
 <span class="math inline">\(Y = g(X)\)</span>, a transformation of <span class="math inline">\(X\)</span>. The strategy for these problems is this:</p>
 <ol style="list-style-type: decimal">
 <li>Calculate the c.d.f. of <span class="math inline">\(Y\)</span> (by rewriting the event in terms of <span class="math inline">\(X\)</span> and using the known distribution of <span class="math inline">\(X\)</span>).</li>
-<li>Take the derivative to obtain the p.d.f. of <span class="math inline">\(Y\)</span> (by Definition <a href="#def:pdf"><strong>??</strong></a>).</li>
+<li>Take the derivative to obtain the p.d.f. of <span class="math inline">\(Y\)</span> (by Definition <a href="continuous.html#def:pdf">33.2</a>).</li>
 </ol>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 36.1  </strong></span>Let’s apply this strategy to the example at the beginning of the lesson.</p>
+<p><span id="exm:unnamed-chunk-120" class="example"><strong>Example 36.1  </strong></span>Let’s apply this strategy to the example at the beginning of the lesson.</p>
 <p>First, we find the c.d.f. of <span class="math inline">\(A\)</span>, the area of the enclosure. We write out the definition
 of the c.d.f., express <span class="math inline">\(A\)</span> in terms of <span class="math inline">\(L\)</span>, and rearrange the expression to make
 the probability easy to calculate.
@@ -350,8 +414,8 @@ F_A(x) &amp;= P(A \leq x) \\
 <p>We graph the p.d.f.s of <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span> below. Compare these with our simulations above.</p>
 </div>
 
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" alt="Distributions of $L$ and $A$" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-121"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-121-1.png" alt="Distributions of $L$ and $A$" width="672" />
 <p class="caption">
 Figure 36.1: Distributions of <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span>
 </p>
@@ -384,8 +448,8 @@ corresponding p.d.f. for the shifted random variable <span class="math inline">\
 is exactly the same, except shifted to the right by 1, as we would expect.
 </div>
 
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" alt="Example of a Shift Transformation" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-123"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-123-1.png" alt="Example of a Shift Transformation" width="672" />
 <p class="caption">
 Figure 36.2: Example of a Shift Transformation
 </p>
@@ -416,8 +480,8 @@ corresponding p.d.f. for the scaled random variable <span class="math inline">\(
 is the same shape, just wider and shorter.
 </div>
 
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" alt="Example of a Scale Transformation" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-125"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-125-1.png" alt="Example of a Scale Transformation" width="672" />
 <p class="caption">
 Figure 36.3: Example of a Scale Transformation
 </p>
