@@ -317,12 +317,21 @@ are the values in between?</p>
 <p>We can formalize the above example as follows. The length of fencing, <span class="math inline">\(L\)</span>, is a
 <span class="math inline">\(\text{Uniform}(a=0, b=4)\)</span> random variable, and we are interested in the
 distribution of <span class="math inline">\(A = (L/4)^2\)</span>.</p>
-<p>This is a special case of a more general problem. We have a random variable <span class="math inline">\(X\)</span>
-whose distribution we know, and we want to find the distribution of <span class="math inline">\(Y = g(X)\)</span>,
-a transformation of <span class="math inline">\(X\)</span>. The strategy for these problems is this:</p>
+<p>First, let’s simulate the distribution of <span class="math inline">\(A\)</span>. The Colab below begins with a
+uniform random variable <span class="math inline">\(L\)</span>, defines <span class="math inline">\(A = (L / 4)^2\)</span>, and displays 10000 simulations of
+both <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span>.</p>
+<script src="https://gist.github.com/dlsun/952e02f66b471c7f368c74755b05b8a3.js"></script>
+<p>In the simulation above, <span class="math inline">\(L\)</span> is (not surprisingly) equally likely to take on
+all values between 0 and 4. The distribution of <span class="math inline">\(A\)</span> is more interesting. It is much
+more concentrated toward the lower values than the higher values. In hindsight,
+this makes sense because <span class="math inline">\((L / 4)\)</span> is a number between 0 and 1, and numbers between 0
+and 1 get smaller when we square them.</p>
+<p>How do we derive the p.d.f. of <span class="math inline">\(A\)</span>? This is a special case of a more general problem.
+We have a random variable <span class="math inline">\(X\)</span> whose distribution we know, and we want to find the distribution of
+<span class="math inline">\(Y = g(X)\)</span>, a transformation of <span class="math inline">\(X\)</span>. The strategy for these problems is this:</p>
 <ol style="list-style-type: decimal">
-<li>Find the c.d.f. of <span class="math inline">\(Y\)</span>.</li>
-<li>Take the derivative to obtain the p.d.f.</li>
+<li>Calculate the c.d.f. of <span class="math inline">\(Y\)</span> (by rewriting the event in terms of <span class="math inline">\(X\)</span> and using the known distribution of <span class="math inline">\(X\)</span>).</li>
+<li>Take the derivative to obtain the p.d.f. of <span class="math inline">\(Y\)</span> (by Definition <a href="#def:pdf"><strong>??</strong></a>).</li>
 </ol>
 
 <div class="example">
@@ -337,8 +346,8 @@ F_A(x) &amp;= P(A \leq x) \\
 &amp;= \begin{cases} 0 &amp; x &lt; 0 \\ \sqrt{x} &amp; 0 \leq x \leq 1 \\ 1 &amp; x &gt; 1 \end{cases}.
 \end{align*}\]</span></p>
 <p>Now we take the derivative to get the p.d.f.
-<span class="math display">\[ f_A(x) = F&#39;_A(x) = \begin{cases} \frac{1}{2\sqrt{x}} &amp; 0 \leq x \leq 1 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
-We graph the p.d.f.s of <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span> below.</p>
+<span class="math display">\[ f_A(x) = \frac{d}{dx} F_A(x) = \begin{cases} \frac{1}{2\sqrt{x}} &amp; 0 \leq x \leq 1 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span></p>
+<p>We graph the p.d.f.s of <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span> below. Compare these with our simulations above.</p>
 </div>
 
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
@@ -369,7 +378,7 @@ F_Y(y) &amp;= P(Y \leq y) \\
 &amp;= F_X(y - b).
 \end{align*}\]</span></p>
 <p>Taking the derivative, we see that the p.d.f. is
-<span class="math display">\[ f_Y(y) = F&#39;_Y(y) = f_X(y - b). \]</span></p>
+<span class="math display">\[ f_Y(y) = \frac{d}{dy} F_Y(y) = f_X(y - b). \]</span></p>
 The figure below illustrates a hypothetical p.d.f. for a random variable <span class="math inline">\(X\)</span> and the
 corresponding p.d.f. for the shifted random variable <span class="math inline">\(Y = X + 1\)</span>. Notice how the p.d.f.
 is exactly the same, except shifted to the right by 1, as we would expect.
@@ -401,7 +410,7 @@ F_Y(y) &amp;= P(Y \leq y) \\
 &amp;= F_X(\frac{y}{a}).
 \end{align*}\]</span></p>
 <p>Taking the derivative (don’t forget the chain rule!), we see that the p.d.f. is
-<span class="math display">\[ f_Y(y) = F&#39;_Y(y) = \frac{1}{a} f_X(\frac{y}{a}). \]</span></p>
+<span class="math display">\[ f_Y(y) = \frac{d}{dy} F_Y(y) = \frac{1}{a} f_X(\frac{y}{a}). \]</span></p>
 The figure below illustrates a hypothetical p.d.f. for a random variable <span class="math inline">\(X\)</span> and the
 corresponding p.d.f. for the scaled random variable <span class="math inline">\(Y = 2X\)</span>. Notice that the p.d.f.
 is the same shape, just wider and shorter.

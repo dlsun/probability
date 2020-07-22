@@ -16,12 +16,24 @@ We can formalize the above example as follows. The length of fencing, $L$, is a
 $\text{Uniform}(a=0, b=4)$ random variable, and we are interested in the 
 distribution of $A = (L/4)^2$.
 
-This is a special case of a more general problem. We have a random variable $X$ 
-whose distribution we know, and we want to find the distribution of $Y = g(X)$, 
-a transformation of $X$. The strategy for these problems is this:
+First, let's simulate the distribution of $A$. The Colab below begins with a 
+uniform random variable $L$, defines $A = (L / 4)^2$, and displays 10000 simulations of 
+both $L$ and $A$.
 
-1. Find the c.d.f. of $Y$. 
-2. Take the derivative to obtain the p.d.f.
+<script src="https://gist.github.com/dlsun/952e02f66b471c7f368c74755b05b8a3.js"></script>
+
+In the simulation above, $L$ is (not surprisingly) equally likely to take on
+all values between 0 and 4. The distribution of $A$ is more interesting. It is much 
+more concentrated toward the lower values than the higher values. In hindsight, 
+this makes sense because $(L / 4)$ is a number between 0 and 1, and numbers between 0 
+and 1 get smaller when we square them.
+
+How do we derive the p.d.f. of $A$? This is a special case of a more general problem. 
+We have a random variable $X$ whose distribution we know, and we want to find the distribution of 
+$Y = g(X)$, a transformation of $X$. The strategy for these problems is this:
+
+1. Calculate the c.d.f. of $Y$ (by rewriting the event in terms of $X$ and using the known distribution of $X$).
+2. Take the derivative to obtain the p.d.f. of $Y$ (by Definition \@ref(def:pdf)).
 
 ```{example}
 Let's apply this strategy to the example at the beginning of the lesson.
@@ -37,9 +49,9 @@ F_A(x) &= P(A \leq x) \\
 \end{align*}
 
 Now we take the derivative to get the p.d.f.
-\[ f_A(x) = F'_A(x) = \begin{cases} \frac{1}{2\sqrt{x}} & 0 \leq x \leq 1 \\ 0 & \text{otherwise} \end{cases}. \]
-We graph the p.d.f.s of $L$ and $A$ below.
+\[ f_A(x) = \frac{d}{dx} F_A(x) = \begin{cases} \frac{1}{2\sqrt{x}} & 0 \leq x \leq 1 \\ 0 & \text{otherwise} \end{cases}. \]
 
+We graph the p.d.f.s of $L$ and $A$ below. Compare these with our simulations above.
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="Distributions of $L$ and $A$", fig.asp=0.6}
 par(mgp=c(1, 1, 0))
@@ -85,7 +97,7 @@ F_Y(y) &= P(Y \leq y) \\
 \end{align*}
 
 Taking the derivative, we see that the p.d.f. is 
-\[ f_Y(y) = F'_Y(y) = f_X(y - b). \]
+\[ f_Y(y) = \frac{d}{dy} F_Y(y) = f_X(y - b). \]
 
 The figure below illustrates a hypothetical p.d.f. for a random variable $X$ and the 
 corresponding p.d.f. for the shifted random variable $Y = X + 1$. Notice how the p.d.f. 
@@ -130,7 +142,7 @@ F_Y(y) &= P(Y \leq y) \\
 \end{align*}
 
 Taking the derivative (don't forget the chain rule!), we see that the p.d.f. is 
-\[ f_Y(y) = F'_Y(y) = \frac{1}{a} f_X(\frac{y}{a}). \]
+\[ f_Y(y) = \frac{d}{dy} F_Y(y) = \frac{1}{a} f_X(\frac{y}{a}). \]
 
 The figure below illustrates a hypothetical p.d.f. for a random variable $X$ and the 
 corresponding p.d.f. for the scaled random variable $Y = 2X$. Notice that the p.d.f. 
