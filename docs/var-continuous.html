@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-22" />
+<meta name="date" content="2020-07-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,10 +380,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Lesson 39</span> Variance of Continuous Random Variables</h1>
 <div id="theory-36" class="section level2 unnumbered">
 <h2>Theory</h2>
-The definition of the variance for continuous random variables is exactly the
-same as the definition for discrete random variables, except the expected
-values are now computed with integrals and p.d.f.s (as in Lessons
-<a href="ev-continuous.html#ev-continuous">37</a> and <a href="lotus-continuous.html#lotus-continuous">38</a>) instead of sums and p.m.f.s.
+The variance is defined for continuous random variables in exactly the
+same way as for discrete random variables, except the expected
+values are now computed with integrals and p.d.f.s, as in Lessons
+<a href="ev-continuous.html#ev-continuous">37</a> and <a href="lotus-continuous.html#lotus-continuous">38</a>, instead of sums and p.m.f.s.
 
 <div class="definition">
 <span id="def:var-continuous" class="definition"><strong>Definition 39.1  (Variance)  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable. Then, the <strong>variance</strong> of <span class="math inline">\(X\)</span>, symbolized
@@ -394,7 +394,7 @@ values are now computed with integrals and p.d.f.s (as in Lessons
 \end{equation}\]</span>
 </div>
 
-<p>The “shortcut formula” also works for continuous random variables.</p>
+The “shortcut formula” also works for continuous random variables.
 
 <div class="theorem">
 <span id="thm:var-shortcut-continuous" class="theorem"><strong>Theorem 39.1  (Shortcut Formula for Variance)  </strong></span>The variance can also be computed as:
@@ -403,13 +403,15 @@ values are now computed with integrals and p.d.f.s (as in Lessons
 \end{equation}\]</span>
 </div>
 
-<p>The stanard deviation is also defined in the same way, as the square root of the variance,
-to make the units come out right.
+<p>The standard deviation is also defined in the same way, as the square root of the variance,
+as a way to correct the units of variance..
 <span class="math display">\[ \text{SD}[X] = \sqrt{\text{Var}[X]}. \]</span></p>
-<p>Here is an example where we use the shortcut formula.</p>
+<p>Here are two examples where we use the shortcut formula.</p>
 
 <div class="example">
-<span id="exm:uniform-var" class="example"><strong>Example 39.1  (Variance of the Uniform Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Uniform}(a, b)\)</span> random variable.
+<span id="exm:uniform-var" class="example"><strong>Example 39.1  (Variance of the Uniform Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Uniform}(a, b)\)</span> random variable. We calculated
+<span class="math inline">\(E[X]\)</span> in Example <a href="ev-continuous.html#exm:ev-unif">37.1</a> and <span class="math inline">\(E[X^2]\)</span> in Example <a href="lotus-continuous.html#exm:ev-unif-sq">38.1</a>, so
+most of the work has already been done.
 <span class="math display">\[\begin{align*}
 \text{Var}[X] &amp;= E[X^2] - E[X]^2 \\
 &amp;= \frac{b^3 - a^3}{3(b-a)} - \left( \frac{a + b}{2} \right)^2 \\
@@ -419,7 +421,9 @@ to make the units come out right.
 
 
 <div class="example">
-<span id="exm:exponential-var" class="example"><strong>Example 39.2  (Variance of the Exponential Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variable.
+<span id="exm:exponential-var" class="example"><strong>Example 39.2  (Variance of the Exponential Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variable. We calculated
+<span class="math inline">\(E[X]\)</span> in Example <a href="ev-continuous.html#exm:ev-expo">37.2</a> and <span class="math inline">\(E[X^2]\)</span> in Example <a href="lotus-continuous.html#exm:ev-expo-sq">38.2</a>, so
+most of the work has already been done.
 <span class="math display">\[\begin{align*}
 \text{Var}[X] &amp;= E[X^2] - E[X]^2 \\
 &amp;= \frac{2}{\lambda^2} - \left( \frac{1}{\lambda} \right)^2 \\

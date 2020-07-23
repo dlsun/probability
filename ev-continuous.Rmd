@@ -2,6 +2,8 @@
   
 ## Theory {-}
 
+<iframe width="888" height="500" src="https://www.youtube.com/embed/VOPvZGLwlgU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{definition, name="Expected Value of a Continuous Random Variable"}
 Let $X$ be a continuous random variable with p.d.f. $f(x)$. Then, the 
 expected value of $X$ is defined as 
@@ -14,7 +16,7 @@ Compare this definition with the definition of expected value for a discrete ran
 variable \@ref(eq:ev). We simply replaced the p.m.f. by the p.d.f. and 
 the sum by an integral.
 
-```{example, name="Expected Value of the Uniform Distribution"}
+```{example ev-unif, name="Expected Value of the Uniform Distribution"}
 Let $X$ be a $\text{Uniform}(a, b)$ random variable. What is $E[X]$?
   
 First, the p.d.f. is 
@@ -34,7 +36,7 @@ point where the p.d.f. would balance, if we put it on a scale.
 ```{r ev-continuous, echo=FALSE, engine='tikz', out.width='70%', fig.ext='png', fig.align='center', fig.cap='Expected Value of the Uniform Distribution', engine.opts = list(template = "tikz_template.tex")}
 	\begin{tikzpicture}
 	
-		\draw [<->] (-2, 0) coordinate -- (2, 0) coordinate;
+		\draw [gray,<->] (-2, 0) coordinate -- (2, 0) coordinate;
 
     \fill[red!50] (-.3, -0.5) -- (0, 0) -- (.3, -0.5) -- cycle;
     \node[anchor=north,red] at (0, -0.5) {$\frac{a + b}{2}$};
@@ -42,12 +44,12 @@ point where the p.d.f. would balance, if we put it on a scale.
     \node[anchor=north] at (-1, 0) {$a$};
     \node[anchor=north] at (1, 0) {$b$};
 		
-			\draw[ultra thick,blue] (-2, 0) coordinate -- (-1, 0) coordinate -- (-1, 1) coordinate -- (1, 1) coordinate -- (1, 0) coordinate -- (2, 0) coordinate;
+			\draw[thick] (-2, 0) coordinate -- (-1, 0) coordinate -- (-1, 1) coordinate -- (1, 1) coordinate -- (1, 0) coordinate -- (2, 0) coordinate;
 	
 	\end{tikzpicture}
 ```
 
-```{example, name="Expected Value and Median of the Exponential Distribution"}
+```{example ev-expo, name="Expected Value and Median of the Exponential Distribution"}
 Let $X$ be an $\text{Exponential}(\lambda)$ random variable. What is $E[X]$? Does the 
 random variable have an equal chance of being above as below the expected value?
   
@@ -75,6 +77,27 @@ Calculating the probability in terms of $m$, we have
 \[ 0.5 = P(X < m) = \int_0^m \lambda e^{-\lambda x}\,dx = 1 - e^{-\lambda m}. \]
 Solving for $m$, we see that the median is $-\log(0.5) / \lambda$. (Note: $\log$ here is the natural logarithm, 
                                                                     base $e$.)
+```{r, echo=FALSE, engine='tikz', out.width='70%', fig.ext='png', fig.align='center', fig.cap='Mean vs. Median of the Exponential Distribution', engine.opts = list(template = "tikz_template.tex")}
+	\begin{tikzpicture}
+  
+    
+    \draw[red!50,dashed,thick] (1, 0) -- (1, 2);
+    \fill[red!50] (.8, -0.4) -- (1, 0) -- (1.2, -0.4) -- cycle;
+    \node[anchor=east,red,rotate=90] at (1.01, -0.4) {$E[X]$};
+    
+    \fill [blue!40,smooth,samples=50,domain=0:.693] (0, 0) -- plot(\x,{2*exp(-(\x))}) -- (.693, 0);
+    \draw[blue!40,dashed,thick] (.693, 0) -- (.693, 2);
+    \node[anchor=east,blue,rotate=90] at (.65, 0) {median};
+    \node[blue] at (0.33, 0.65) {{\small 50\%}};
+
+		\draw [gray,->] (-0.1, 0) coordinate -- (3.5, 0) coordinate;
+    \draw [gray,->] (0, -0.1) coordinate -- (0, 2.1) coordinate;
+    \node[anchor=north] at (3.5, 0) {$x$};
+    \node[anchor=east] at (0, 1.8) {$f(x)$};
+    \draw [thick,smooth,samples=100,domain=0:3.5] plot(\x,{2*exp(-(\x))});
+    
+	  
+	\end{tikzpicture}
 ```
 
 

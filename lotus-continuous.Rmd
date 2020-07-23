@@ -14,13 +14,16 @@ Compare this definition with LOTUS for a discrete random
 variable \@ref(eq:lotus). We simply replaced the p.m.f. by the p.d.f. and 
 the sum by an integral.
 
-```{example, name="Expected Value of the Square of a Uniform"}
+```{example ev-unif-sq, name="Expected Value of the Square of a Uniform"}
 Suppose the current (in Amperes) flowing through a 1-ohm resistor is a $\text{Uniform}(a, b)$ 
   random variable $I$ for $a, b > 0$. The power dissipated by this resistor is 
 $X = I^2$. What is the expected power dissipated by the resistor?
 
-There are two ways to calculate this. The longer way is to first derive the p.d.f. of the area, $X = I^2$, 
-using the methods of Lesson \@ref(transformations).
+There are two ways to calculate this. 
+
+**Method 1 (The Long Way)** We can first derive the p.d.f. of the power, $X = I^2$, 
+using the methods of Lesson \@ref(transformations) and then calculate the expected value 
+from the definition \@ref(eq:ev-continuous).
 \begin{align*}
 F_X(x) &= P(X \leq x) \\
 &= P(I^2 \leq x) \\
@@ -29,25 +32,33 @@ F_X(x) &= P(X \leq x) \\
 f_X(x) &= \frac{d}{dx} F_X(x) \\
 &= \begin{cases} \frac{1}{2(b-a)\sqrt{x}} & a^2 \leq x \leq b^2 \\ 0 & \text{otherwise} \end{cases}
 \end{align*}
-Now we calculate the expected value by integrating the p.d.f. over all the possible values of the 
-random variable:
+Now that we have the p.d.f., we calculate the expected value using the \@ref(eq:ev-continuous). Note the 
+limits of integration:
 \[ E[X] = \int_{a^2}^{b^2} x \cdot \frac{1}{2(b-a)\sqrt{x}}\,dx = \frac{b^3 - a^3}{3(b-a)}. \]
 
-We can save time by using LOTUS. LOTUS allows to calculate the expected value of $X$ 
-  without working out the p.d.f. of $X$. All we need is the p.d.f. of $I$.
+We can save time using LOTUS. LOTUS allows to calculate the expected value of $X$ 
+  without working out the p.d.f. of $X$. All we need is the p.d.f. of $I$, which we already know 
+and is simple.
 \[ E[X] = E[I^2] = \int_a^b i^2 \cdot \frac{1}{b-a}\,di = \frac{x^{3}}{3} \frac{1}{b-a} \big|_a^b = \frac{b^3 - a^3}{3(b-a)}. \]
-Notice that we did not use the fact that $a, b \geq 0$ at all in this calculation, so this formula is 
+In fact, we did not use the fact that $a, b \geq 0$ at all in this calculation, so this formula is 
 valid for all uniform distributions, not just uniform distributions on positive values.
 ```
 
-```{example, name="Expected Value of the Square of an Exponential"}
+```{example ev-expo-sq, name="Expected Value of the Square of an Exponential"}
 Continuing with the previous example, suppose that the current is an $\text{Exponential}(\lambda)$ 
   random variable $I$. What is the expected power dissipated by the resistor?
   
-Again, we can use LOTUS. This is another exercise in integration by parts. We omit most of the details.
+Again, we will use LOTUS. This is another exercise in integration by parts. We omit most of the details.
 \[ E[I^2] = \int_0^\infty i^2 \cdot \lambda e^{-\lambda i}\,di = \frac{2}{\lambda^2}. \]
 ```
 
+```{example, name="Expected Value of a Cosine"}
+Let $\Theta$ be a random angle, from a $\text{Uniform}(-\pi, \pi)$ distribution. Then, the p.d.f. 
+of $\Theta$ is 
+\[ f(\theta) = \begin{cases} \frac{1}{\pi - (-\pi)} & -\pi \leq x \leq \pi \\ 0 & \text{otherwise} \end{cases},  \]
+and the expected value of the cosine is:
+\[ E[\cos(\Theta)] = \int_{-\pi}^\pi \cos(\theta)\cdot \frac{1}{\pi - (-\pi)} = 0. \]
+```
 
 ## Essential Practice {-}
 

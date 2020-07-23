@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-22" />
+<meta name="date" content="2020-07-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="ev-continuous.html"/>
-
+<link rel="next" href="var-continuous.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -351,6 +351,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lotus-continuous.html"><a href="lotus-continuous.html#theory-35"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="lotus-continuous.html"><a href="lotus-continuous.html#essential-practice-27"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="39" data-path="var-continuous.html"><a href="var-continuous.html"><i class="fa fa-check"></i><b>39</b> Variance of Continuous Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#theory-36"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#essential-practice-28"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#additional-practice-6"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -377,7 +382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Theory</h2>
 
 <div class="definition">
-<span id="def:unnamed-chunk-129" class="definition"><strong>Definition 38.1  (LOTUS a Continuous Random Variable)  </strong></span>Let <span class="math inline">\(X\)</span> be a continuous random variable with p.d.f. <span class="math inline">\(f(x)\)</span>. Then, the
+<span id="def:unnamed-chunk-128" class="definition"><strong>Definition 38.1  (LOTUS a Continuous Random Variable)  </strong></span>Let <span class="math inline">\(X\)</span> be a continuous random variable with p.d.f. <span class="math inline">\(f(x)\)</span>. Then, the
 expected value of <span class="math inline">\(g(X)\)</span> is
 <span class="math display" id="eq:lotus-continuous">\[\begin{equation}
 E[g(X)] = \int_{-\infty}^\infty g(x) \cdot f(x)\,dx.
@@ -390,11 +395,13 @@ variable <a href="lotus.html#eq:lotus">(24.1)</a>. We simply replaced the p.m.f.
 the sum by an integral.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-130" class="example"><strong>Example 38.1  (Expected Value of the Square of a Uniform)  </strong></span>Suppose the current (in Amperes) flowing through a 1-ohm resistor is a <span class="math inline">\(\text{Uniform}(a, b)\)</span>
+<p><span id="exm:ev-unif-sq" class="example"><strong>Example 38.1  (Expected Value of the Square of a Uniform)  </strong></span>Suppose the current (in Amperes) flowing through a 1-ohm resistor is a <span class="math inline">\(\text{Uniform}(a, b)\)</span>
 random variable <span class="math inline">\(I\)</span> for <span class="math inline">\(a, b &gt; 0\)</span>. The power dissipated by this resistor is
 <span class="math inline">\(X = I^2\)</span>. What is the expected power dissipated by the resistor?</p>
-<p>There are two ways to calculate this. The longer way is to first derive the p.d.f. of the area, <span class="math inline">\(X = I^2\)</span>,
-using the methods of Lesson <a href="transformations.html#transformations">36</a>.
+<p>There are two ways to calculate this.</p>
+<p><strong>Method 1 (The Long Way)</strong> We can first derive the p.d.f. of the power, <span class="math inline">\(X = I^2\)</span>,
+using the methods of Lesson <a href="transformations.html#transformations">36</a> and then calculate the expected value
+from the definition <a href="ev-continuous.html#eq:ev-continuous">(37.1)</a>.
 <span class="math display">\[\begin{align*}
 F_X(x) &amp;= P(X \leq x) \\
 &amp;= P(I^2 \leq x) \\
@@ -403,22 +410,32 @@ F_X(x) &amp;= P(X \leq x) \\
 f_X(x) &amp;= \frac{d}{dx} F_X(x) \\
 &amp;= \begin{cases} \frac{1}{2(b-a)\sqrt{x}} &amp; a^2 \leq x \leq b^2 \\ 0 &amp; \text{otherwise} \end{cases}
 \end{align*}\]</span>
-Now we calculate the expected value by integrating the p.d.f. over all the possible values of the
-random variable:
+Now that we have the p.d.f., we calculate the expected value using the <a href="ev-continuous.html#eq:ev-continuous">(37.1)</a>. Note the
+limits of integration:
 <span class="math display">\[ E[X] = \int_{a^2}^{b^2} x \cdot \frac{1}{2(b-a)\sqrt{x}}\,dx = \frac{b^3 - a^3}{3(b-a)}. \]</span></p>
-We can save time by using LOTUS. LOTUS allows to calculate the expected value of <span class="math inline">\(X\)</span>
-without working out the p.d.f. of <span class="math inline">\(X\)</span>. All we need is the p.d.f. of <span class="math inline">\(I\)</span>.
+We can save time using LOTUS. LOTUS allows to calculate the expected value of <span class="math inline">\(X\)</span>
+without working out the p.d.f. of <span class="math inline">\(X\)</span>. All we need is the p.d.f. of <span class="math inline">\(I\)</span>, which we already know
+and is simple.
 <span class="math display">\[ E[X] = E[I^2] = \int_a^b i^2 \cdot \frac{1}{b-a}\,di = \frac{x^{3}}{3} \frac{1}{b-a} \big|_a^b = \frac{b^3 - a^3}{3(b-a)}. \]</span>
-Notice that we did not use the fact that <span class="math inline">\(a, b \geq 0\)</span> at all in this calculation, so this formula is
+In fact, we did not use the fact that <span class="math inline">\(a, b \geq 0\)</span> at all in this calculation, so this formula is
 valid for all uniform distributions, not just uniform distributions on positive values.
 </div>
 
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-131" class="example"><strong>Example 38.2  (Expected Value of the Square of an Exponential)  </strong></span>Continuing with the previous example, suppose that the current is an <span class="math inline">\(\text{Exponential}(\lambda)\)</span>
+<p><span id="exm:ev-expo-sq" class="example"><strong>Example 38.2  (Expected Value of the Square of an Exponential)  </strong></span>Continuing with the previous example, suppose that the current is an <span class="math inline">\(\text{Exponential}(\lambda)\)</span>
 random variable <span class="math inline">\(I\)</span>. What is the expected power dissipated by the resistor?</p>
-Again, we can use LOTUS. This is another exercise in integration by parts. We omit most of the details.
+Again, we will use LOTUS. This is another exercise in integration by parts. We omit most of the details.
 <span class="math display">\[ E[I^2] = \int_0^\infty i^2 \cdot \lambda e^{-\lambda i}\,di = \frac{2}{\lambda^2}. \]</span>
+</div>
+
+
+<div class="example">
+<span id="exm:unnamed-chunk-129" class="example"><strong>Example 38.3  (Expected Value of a Cosine)  </strong></span>Let <span class="math inline">\(\Theta\)</span> be a random angle, from a <span class="math inline">\(\text{Uniform}(-\pi, \pi)\)</span> distribution. Then, the p.d.f.
+of <span class="math inline">\(\Theta\)</span> is
+<span class="math display">\[ f(\theta) = \begin{cases} \frac{1}{\pi - (-\pi)} &amp; -\pi \leq x \leq \pi \\ 0 &amp; \text{otherwise} \end{cases},  \]</span>
+and the expected value of the cosine is:
+<span class="math display">\[ E[\cos(\Theta)] = \int_{-\pi}^\pi \cos(\theta)\cdot \frac{1}{\pi - (-\pi)} = 0. \]</span>
 </div>
 
 </div>
@@ -444,8 +461,8 @@ to make a 1500-mile trip, so <span class="math inline">\(D = 15 / X\)</span>. Ca
           </div>
         </div>
       </div>
-<a href="ev-continuous.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="ev-continuous.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="var-continuous.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -2,10 +2,10 @@
   
 ## Theory {-}
 
-The definition of the variance for continuous random variables is exactly the 
-same as the definition for discrete random variables, except the expected 
-values are now computed with integrals and p.d.f.s (as in Lessons 
-\@ref(ev-continuous) and \@ref(lotus-continuous)) instead of sums and p.m.f.s.
+The variance is defined for continuous random variables in exactly the 
+same way as for discrete random variables, except the expected 
+values are now computed with integrals and p.d.f.s, as in Lessons 
+\@ref(ev-continuous) and \@ref(lotus-continuous), instead of sums and p.m.f.s.
 ```{definition var-continuous, name="Variance"}
 Let $X$ be a random variable. Then, the **variance** of $X$, symbolized 
 $\text{Var}[X]$ is defined as 
@@ -16,7 +16,6 @@ $\text{Var}[X]$ is defined as
 ```
 
 The "shortcut formula" also works for continuous random variables.
-
 ```{theorem var-shortcut-continuous, name="Shortcut Formula for Variance"}
 The variance can also be computed as:
 \begin{equation}
@@ -24,14 +23,16 @@ The variance can also be computed as:
 \end{equation}
 ```
 
-The stanard deviation is also defined in the same way, as the square root of the variance, 
-to make the units come out right.
+The standard deviation is also defined in the same way, as the square root of the variance, 
+as a way to correct the units of variance..
 \[ \text{SD}[X] = \sqrt{\text{Var}[X]}. \]
 
-Here is an example where we use the shortcut formula.
+Here are two examples where we use the shortcut formula.
 
 ```{example uniform-var, name="Variance of the Uniform Distribution"}
-Let $X$ be a $\text{Uniform}(a, b)$ random variable. 
+Let $X$ be a $\text{Uniform}(a, b)$ random variable. We calculated 
+$E[X]$ in Example \@ref(exm:ev-unif) and $E[X^2]$ in Example \@ref(exm:ev-unif-sq), so 
+most of the work has already been done.
 \begin{align*}
 \text{Var}[X] &= E[X^2] - E[X]^2 \\
 &= \frac{b^3 - a^3}{3(b-a)} - \left( \frac{a + b}{2} \right)^2 \\
@@ -40,7 +41,9 @@ Let $X$ be a $\text{Uniform}(a, b)$ random variable.
 ```
 
 ```{example exponential-var, name="Variance of the Exponential Distribution"}
-Let $X$ be a $\text{Exponential}(\lambda)$ random variable. 
+Let $X$ be a $\text{Exponential}(\lambda)$ random variable. We calculated 
+$E[X]$ in Example \@ref(exm:ev-expo) and $E[X^2]$ in Example \@ref(exm:ev-expo-sq), so 
+most of the work has already been done.
 \begin{align*}
 \text{Var}[X] &= E[X^2] - E[X]^2 \\
 &= \frac{2}{\lambda^2} - \left( \frac{1}{\lambda} \right)^2 \\

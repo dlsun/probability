@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-22" />
+<meta name="date" content="2020-07-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="transformations.html"/>
-
+<link rel="next" href="lotus-continuous.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -347,6 +347,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ev-continuous.html"><a href="ev-continuous.html#theory-34"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="ev-continuous.html"><a href="ev-continuous.html#essential-practice-26"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="38" data-path="lotus-continuous.html"><a href="lotus-continuous.html"><i class="fa fa-check"></i><b>38</b> LOTUS for Continuous Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="lotus-continuous.html"><a href="lotus-continuous.html#theory-35"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lotus-continuous.html"><a href="lotus-continuous.html#essential-practice-27"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="var-continuous.html"><a href="var-continuous.html"><i class="fa fa-check"></i><b>39</b> Variance of Continuous Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#theory-36"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#essential-practice-28"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#additional-practice-6"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -371,6 +380,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Lesson 37</span> Expected Value of Continuous Random Variables</h1>
 <div id="theory-34" class="section level2 unnumbered">
 <h2>Theory</h2>
+<iframe width="888" height="500" src="https://www.youtube.com/embed/VOPvZGLwlgU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
 <div class="definition">
 <span id="def:unnamed-chunk-126" class="definition"><strong>Definition 37.1  (Expected Value of a Continuous Random Variable)  </strong></span>Let <span class="math inline">\(X\)</span> be a continuous random variable with p.d.f. <span class="math inline">\(f(x)\)</span>. Then, the
@@ -386,7 +397,7 @@ variable <a href="expected-value.html#eq:ev">(22.1)</a>. We simply replaced the 
 the sum by an integral.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-127" class="example"><strong>Example 37.1  (Expected Value of the Uniform Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Uniform}(a, b)\)</span> random variable. What is <span class="math inline">\(E[X]\)</span>?</p>
+<p><span id="exm:ev-unif" class="example"><strong>Example 37.1  (Expected Value of the Uniform Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Uniform}(a, b)\)</span> random variable. What is <span class="math inline">\(E[X]\)</span>?</p>
 <p>First, the p.d.f. is
 <span class="math display">\[ f(x) = \begin{cases} \frac{1}{b-a} &amp; a \leq x \leq b \\ 0 &amp; \text{otherwise} \end{cases}, \]</span>
 which is non-zero only between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. So, even though <a href="ev-continuous.html#eq:ev-continuous">(37.1)</a> says we should
@@ -409,7 +420,7 @@ Figure 37.1: Expected Value of the Uniform Distribution
 </div>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-128" class="example"><strong>Example 37.2  (Expected Value and Median of the Exponential Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be an <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variable. What is <span class="math inline">\(E[X]\)</span>? Does the
+<p><span id="exm:ev-expo" class="example"><strong>Example 37.2  (Expected Value and Median of the Exponential Distribution)  </strong></span>Let <span class="math inline">\(X\)</span> be an <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variable. What is <span class="math inline">\(E[X]\)</span>? Does the
 random variable have an equal chance of being above as below the expected value?</p>
 <p>First, we calculate the expected value using <a href="ev-continuous.html#eq:ev-continuous">(37.1)</a> and the
 p.d.f. of the exponential distribution <a href="exponential.html#eq:exponential-pdf">(35.1)</a>. This is an
@@ -434,6 +445,12 @@ Solving for <span class="math inline">\(m\)</span>, we see that the median is <s
 base <span class="math inline">\(e\)</span>.)
 </div>
 
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-127"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-127-1.png" alt="Mean vs. Median of the Exponential Distribution" width="70%" />
+<p class="caption">
+Figure 37.2: Mean vs. Median of the Exponential Distribution
+</p>
+</div>
 </div>
 <div id="essential-practice-26" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
@@ -463,8 +480,8 @@ What is the manufacturer’s expected profit per item?</li>
           </div>
         </div>
       </div>
-<a href="transformations.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="transformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lotus-continuous.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
