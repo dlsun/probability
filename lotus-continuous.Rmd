@@ -2,7 +2,7 @@
   
 ## Theory {-}
 
-```{definition, name="LOTUS a Continuous Random Variable"}
+```{theorem, name="LOTUS for a Continuous Random Variable"}
 Let $X$ be a continuous random variable with p.d.f. $f(x)$. Then, the 
 expected value of $g(X)$ is 
 \begin{equation}
@@ -36,10 +36,10 @@ Now that we have the p.d.f., we calculate the expected value using the \@ref(eq:
 limits of integration:
 \[ E[X] = \int_{a^2}^{b^2} x \cdot \frac{1}{2(b-a)\sqrt{x}}\,dx = \frac{b^3 - a^3}{3(b-a)}. \]
 
-We can save time using LOTUS. LOTUS allows to calculate the expected value of $X$ 
-  without working out the p.d.f. of $X$. All we need is the p.d.f. of $I$, which we already know 
-and is simple.
-\[ E[X] = E[I^2] = \int_a^b i^2 \cdot \frac{1}{b-a}\,di = \frac{x^{3}}{3} \frac{1}{b-a} \big|_a^b = \frac{b^3 - a^3}{3(b-a)}. \]
+**Method 2 (Using LOTUS)** LOTUS allows us to calculate the expected value of $X$ 
+  without working out the p.d.f. of $X$. All we need is the p.d.f. of $I$, which we 
+already have and is simple.
+\[ E[X] = E[I^2] = \int_a^b i^2 \cdot \frac{1}{b-a}\,di = \frac{i^{3}}{3} \frac{1}{b-a} \big|_a^b = \frac{b^3 - a^3}{3(b-a)}. \]
 In fact, we did not use the fact that $a, b \geq 0$ at all in this calculation, so this formula is 
 valid for all uniform distributions, not just uniform distributions on positive values.
 ```
