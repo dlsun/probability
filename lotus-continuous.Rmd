@@ -67,7 +67,7 @@ single breath (in cubic inches) is $\text{Uniform}(a=36\pi, b=288\pi)$ random va
 is the expected radius of the balloon (in inches)? 
 
     (Use LOTUS, but feel free to check 
-your answer using the p.d.f. you derived in Lesson \@ref(ev-continuous).)
+your answer using the p.d.f. you derived in Lesson \@ref(transformations).)
 
 2. The distance (in hundreds of miles) driven by a trucker in one day is a continuous
 random variable $X$ whose cumulative distribution function (c.d.f.) is given by: 

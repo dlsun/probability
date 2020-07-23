@@ -2,7 +2,7 @@
   
 ## Theory {-}
 
-<iframe width="888" height="500" src="https://www.youtube.com/embed/VOPvZGLwlgU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hpGoz6-4CC8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ```{definition, name="Expected Value of a Continuous Random Variable"}
 Let $X$ be a continuous random variable with p.d.f. $f(x)$. Then, the 
