@@ -16,7 +16,7 @@ summarize a random variable by a single number, the **expected value** is usuall
 the right choice.
 
 ```{definition expected-value, name="Expected Value"}
-Let $X$ be a random variable with c.d.f. $f(x)$. Then, the **expected value** of $X$, symbolized 
+Let $X$ be a random variable with p.m.f. $f(x)$. Then, the **expected value** of $X$, symbolized 
 $E[X]$ is defined as 
 \begin{equation}
 E[X] \overset{\text{def}}{=} \sum_x x \cdot f(x).
