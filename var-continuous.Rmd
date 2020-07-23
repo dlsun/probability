@@ -65,7 +65,7 @@ random variable $X$ whose cumulative distribution function (c.d.f.) is given by:
 2. Small aircraft arrive at San Luis Obispo airport according to a Poisson process at a 
 rate of 6 per hour. 
 
-    a. What is the expected value and standard deviation of the time between two arrivals?
+    a. What is the expected value and standard deviation of the time between two arrivals (in hours)?
     b. What is the probability that the time between two arrivals will be more than 1 
     standard deviation above the mean (i.e., expected value)?
     
