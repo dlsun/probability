@@ -1,0 +1,78 @@
+# Variance of Continuous Random Variables {#var-continuous}
+  
+## Theory {-}
+
+The definition of the variance for continuous random variables is exactly the 
+same as the definition for discrete random variables, except the expected 
+values are now computed with integrals and p.d.f.s (as in Lessons 
+\@ref(ev-continuous) and \@ref(lotus-continuous)) instead of sums and p.m.f.s.
+```{definition var-continuous, name="Variance"}
+Let $X$ be a random variable. Then, the **variance** of $X$, symbolized 
+$\text{Var}[X]$ is defined as 
+\begin{equation}
+\text{Var}[X] \overset{\text{def}}{=} E[(X - E[X])^2].
+(\#eq:var-continuous)
+\end{equation}
+```
+
+The "shortcut formula" also works for continuous random variables.
+
+```{theorem var-shortcut-continuous, name="Shortcut Formula for Variance"}
+The variance can also be computed as:
+\begin{equation}
+\text{Var}[X] = E[X^2] - E[X]^2.
+\end{equation}
+```
+
+The stanard deviation is also defined in the same way, as the square root of the variance, 
+to make the units come out right.
+\[ \text{SD}[X] = \sqrt{\text{Var}[X]}. \]
+
+Here is an example where we use the shortcut formula.
+
+```{example uniform-var, name="Variance of the Uniform Distribution"}
+Let $X$ be a $\text{Uniform}(a, b)$ random variable. 
+\begin{align*}
+\text{Var}[X] &= E[X^2] - E[X]^2 \\
+&= \frac{b^3 - a^3}{3(b-a)} - \left( \frac{a + b}{2} \right)^2 \\
+&= \frac{(b-a)^2}{12}
+\end{align*}
+```
+
+```{example exponential-var, name="Variance of the Exponential Distribution"}
+Let $X$ be a $\text{Exponential}(\lambda)$ random variable. 
+\begin{align*}
+\text{Var}[X] &= E[X^2] - E[X]^2 \\
+&= \frac{2}{\lambda^2} - \left( \frac{1}{\lambda} \right)^2 \\
+&= \frac{1}{\lambda^2}
+\end{align*}
+```
+
+
+## Essential Practice {-}
+
+1. The distance (in hundreds of miles) driven by a trucker in one day is a continuous
+random variable $X$ whose cumulative distribution function (c.d.f.) is given by: 
+\[ F(x) = \begin{cases} 0 & x < 0 \\ x^3 / 216 & 0 \leq x \leq 6 \\ 1 & x > 6 \end{cases}. \]
+
+    a. Calculate the standard deviation of $X$.
+    b. What is the probability that $X$ is within 1 standard deviation of the mean 
+    (i.e., expected value)?
+    
+2. Small aircraft arrive at San Luis Obispo airport according to a Poisson process at a 
+rate of 6 per hour. 
+
+    a. What is the expected value and standard deviation of the time between two arrivals?
+    b. What is the probability that the time between two arrivals will be more than 1 
+    standard deviation above the mean (i.e., expected value)?
+    
+    
+## Additional Practice {-}
+
+1. The article "Modeling Sediment and Water Column Interactions for Hydrophobic Pollutants"
+(Water Res., 1984: 1169–1174) suggests the uniform distribution on the interval $[7.5, 20]$ as a
+model for depth (cm) of the bioturbation layer in sediment in a certain region.
+
+    a. What are the mean and variance of depth?
+    b. What is the probability that the observed depth is within 1 standard deviation of the 
+    expected value?
