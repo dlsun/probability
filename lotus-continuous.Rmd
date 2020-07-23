@@ -22,8 +22,7 @@ $X = I^2$. What is the expected power dissipated by the resistor?
 There are two ways to calculate this. 
 
 **Method 1 (The Long Way)** We can first derive the p.d.f. of the power, $X = I^2$, 
-using the methods of Lesson \@ref(transformations) and then calculate the expected value 
-from the definition \@ref(eq:ev-continuous).
+using the methods of Lesson \@ref(transformations).
 \begin{align*}
 F_X(x) &= P(X \leq x) \\
 &= P(I^2 \leq x) \\
@@ -32,23 +31,24 @@ F_X(x) &= P(X \leq x) \\
 f_X(x) &= \frac{d}{dx} F_X(x) \\
 &= \begin{cases} \frac{1}{2(b-a)\sqrt{x}} & a^2 \leq x \leq b^2 \\ 0 & \text{otherwise} \end{cases}
 \end{align*}
-Now that we have the p.d.f., we calculate the expected value using the \@ref(eq:ev-continuous). Note the 
+Now that we have the p.d.f., we calculate the expected value using the definition \@ref(eq:ev-continuous). Note the 
 limits of integration:
 \[ E[X] = \int_{a^2}^{b^2} x \cdot \frac{1}{2(b-a)\sqrt{x}}\,dx = \frac{b^3 - a^3}{3(b-a)}. \]
 
 **Method 2 (Using LOTUS)** LOTUS allows us to calculate the expected value of $X$ 
   without working out the p.d.f. of $X$. All we need is the p.d.f. of $I$, which we 
 already have and is simple.
-\[ E[X] = E[I^2] = \int_a^b i^2 \cdot \frac{1}{b-a}\,di = \frac{i^{3}}{3} \frac{1}{b-a} \big|_a^b = \frac{b^3 - a^3}{3(b-a)}. \]
-In fact, we did not use the fact that $a, b \geq 0$ at all in this calculation, so this formula is 
+\[ E[X] = E[I^2] = \int_a^b i^2 \cdot \frac{1}{b-a}\,di = \frac{i^{3}}{3} \frac{1}{b-a} \Big|_a^b = \frac{b^3 - a^3}{3(b-a)}. \]
+In fact, we did not use the fact that $a, b > 0$ at all in this calculation, so this formula is 
 valid for all uniform distributions, not just uniform distributions on positive values.
 ```
 
 ```{example ev-expo-sq, name="Expected Value of the Square of an Exponential"}
-Continuing with the previous example, suppose that the current is an $\text{Exponential}(\lambda)$ 
-  random variable $I$. What is the expected power dissipated by the resistor?
+Continuing with the previous example, suppose that the current $I$ instead follows an $\text{Exponential}(\lambda)$ 
+distribution. What is the expected power dissipated by the resistor?
   
-Again, we will use LOTUS. This is another exercise in integration by parts. We omit most of the details.
+Again, we will use LOTUS. This is an unpleasant exercise in integration by parts. We 
+simply set up the integral and [use software to evaluate the integral](https://www.wolframalpha.com/input/?i=integrate+i%5E2+*+lambda+*+exp%28-lambda+*+i%29+from+i%3D0+to+infinity).
 \[ E[I^2] = \int_0^\infty i^2 \cdot \lambda e^{-\lambda i}\,di = \frac{2}{\lambda^2}. \]
 ```
 
@@ -57,7 +57,12 @@ Let $\Theta$ be a random angle, from a $\text{Uniform}(-\pi, \pi)$ distribution.
 of $\Theta$ is 
 \[ f(\theta) = \begin{cases} \frac{1}{\pi - (-\pi)} & -\pi \leq x \leq \pi \\ 0 & \text{otherwise} \end{cases},  \]
 and the expected value of the cosine is:
-\[ E[\cos(\Theta)] = \int_{-\pi}^\pi \cos(\theta)\cdot \frac{1}{\pi - (-\pi)} = 0. \]
+\begin{align*}
+E[\cos(\Theta)] &= \int_{-\pi}^\pi \cos(\theta)\cdot \frac{1}{\pi - (-\pi)}\,d\theta \\
+&= \frac{1}{2\pi} \sin\theta \Big|_{-\pi}^\pi \\
+&= \frac{1}{2\pi} (0 - 0) \\
+&= 0.
+\end{align*}
 ```
 
 ## Essential Practice {-}
