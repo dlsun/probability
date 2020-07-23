@@ -427,8 +427,8 @@ p.d.f. of the exponential distribution <a href="exponential.html#eq:exponential-
 exercise in integration by parts.
 <span class="math display">\[\begin{align*}
 E[X] &amp;= \int_0^\infty x \cdot \lambda e^{-\lambda x} \,dx \\
-&amp;=  -x e^{-\lambda x} \big|_0^\infty - \int_0^\infty -e^{-\lambda x}\,dx \\
-&amp;= \ (-0 + 0) -  \underbrace{\frac{1}{\lambda} e^{-\lambda x} \big|_0^\infty}_{0 - \frac{1}{\lambda}} \\
+&amp;=  -x e^{-\lambda x} \Big|_0^\infty - \int_0^\infty -e^{-\lambda x}\,dx \\
+&amp;= \ (-0 + 0) -  \underbrace{\frac{1}{\lambda} e^{-\lambda x} \Big|_0^\infty}_{0 - \frac{1}{\lambda}} \\
 &amp;= \frac{1}{\lambda}
 \end{align*}\]</span></p>
 <p>Now, let’s calculate the probability that the random variable is below expected value.
@@ -437,8 +437,8 @@ The random variable does not have an 50/50 chance of being above or below its ex
 <p>The value that a random variable has an equal chance of being above or below is called its <strong>median</strong>. To
 calculate the median, we have to solve for <span class="math inline">\(m\)</span> such that
 <span class="math display">\[ P(X &lt; m) = 0.5. \]</span>
-(Equivalently, we could solve <span class="math inline">\(P(X &gt; m) = 0.5\)</span>. It also doesn’t matter whether we use <span class="math inline">\(&lt;\)</span> or <span class="math inline">\(\leq\)</span>, since this is a
-continuous random variable, and <span class="math inline">\(P(X = m) = 0\)</span>.)</p>
+(Equivalently, we could solve <span class="math inline">\(P(X &gt; m) = 0.5\)</span>. It also doesn’t matter whether we use
+<span class="math inline">\(&lt;\)</span> or <span class="math inline">\(\leq\)</span>, since this is a continuous random variable, so <span class="math inline">\(P(X = m) = 0\)</span>.)</p>
 Calculating the probability in terms of <span class="math inline">\(m\)</span>, we have
 <span class="math display">\[ 0.5 = P(X &lt; m) = \int_0^m \lambda e^{-\lambda x}\,dx = 1 - e^{-\lambda m}. \]</span>
 Solving for <span class="math inline">\(m\)</span>, we see that the median is <span class="math inline">\(-\log(0.5) / \lambda\)</span>. (Note: <span class="math inline">\(\log\)</span> here is the natural logarithm,

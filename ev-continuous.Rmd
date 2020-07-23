@@ -58,8 +58,8 @@ p.d.f. of the exponential distribution \@ref(eq:exponential-pdf). This is an
 exercise in integration by parts.
 \begin{align*}
 E[X] &= \int_0^\infty x \cdot \lambda e^{-\lambda x} \,dx \\
-&=  -x e^{-\lambda x} \big|_0^\infty - \int_0^\infty -e^{-\lambda x}\,dx \\
-&= \ (-0 + 0) -  \underbrace{\frac{1}{\lambda} e^{-\lambda x} \big|_0^\infty}_{0 - \frac{1}{\lambda}} \\
+&=  -x e^{-\lambda x} \Big|_0^\infty - \int_0^\infty -e^{-\lambda x}\,dx \\
+&= \ (-0 + 0) -  \underbrace{\frac{1}{\lambda} e^{-\lambda x} \Big|_0^\infty}_{0 - \frac{1}{\lambda}} \\
 &= \frac{1}{\lambda}
 \end{align*}
 
@@ -70,8 +70,8 @@ The random variable does not have an 50/50 chance of being above or below its ex
 The value that a random variable has an equal chance of being above or below is called its **median**. To 
 calculate the median, we have to solve for $m$ such that 
 \[ P(X < m) = 0.5. \]
-(Equivalently, we could solve $P(X > m) = 0.5$. It also doesn't matter whether we use $<$ or $\leq$, since this is a 
-continuous random variable, and $P(X = m) = 0$.)
+(Equivalently, we could solve $P(X > m) = 0.5$. It also doesn't matter whether we use 
+$<$ or $\leq$, since this is a continuous random variable, so $P(X = m) = 0$.)
 
 Calculating the probability in terms of $m$, we have 
 \[ 0.5 = P(X < m) = \int_0^m \lambda e^{-\lambda x}\,dx = 1 - e^{-\lambda m}. \]
