@@ -1,0 +1,131 @@
+# Normal Distribution {#normal}
+
+The normal distribution is the most important distribution in all of probability and statistics. 
+We will see why in a few lessons. For now, just take it on faith.
+
+The normal distribution goes by other names:
+- Gaussian distribution (especially common in engineering)
+- the bell curve
+
+We will discuss the normal distribution in two stages:
+1. First, we will discuss the standard normal distribution.
+2. Then, we will discuss the general normal distribution, which has the same shape as the 
+standard normal distribution, but with a different center and scale.
+
+## Standard Normal Distribution {-}
+
+```{definition standard-normal, name="Standard Normal Distribution"}
+A random variable $Z$ is said to follow a standard normal distribution if 
+its p.d.f. is 
+\begin{equation}
+f(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2 / 2}.
+(\#eq:normal-pdf)
+\end{equation}
+The p.d.f. is non-zero for all real numbers $-\infty < z < \infty$. It is conventional to use the 
+letter $Z$ for a standard normal random variable.
+
+The c.d.f. of the standard normal distribution is 
+\begin{equation}
+\Phi(x) \overset{def}{=} \int_{-\infty}^x f(t)\,dt. 
+(\#eq:normal-cdf)
+\end{equation}
+Note that it is conventional to use the Greek letter $\Phi$ ("phi") for the standard normal c.d.f., instead of $F$. 
+There is no closed-form formula for $\Phi$, so we often leave our answers in terms of $\Phi$. If a numerical 
+value is required, we have a few options:
+  
+  - We can use numerical integration.
+  - We can use software that has the distribution built in.
+  - We can use tables, like [this one](http://www.z-table.com/).
+```
+
+```{r standard-normal-graph, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="PDF and CDF of the Standard Normal Distribution", fig.asp=1.2}
+par(mfrow=c(2, 1), mgp=c(1, 1, 0))
+
+t <- seq(-3.5, 3.5, by=0.01)
+plot(t, dnorm(t), type="l", lwd=3, col="blue", 
+     xaxt="n", yaxt="n", bty="n",
+     xlab="z", ylab="Probability Density Function f(z)", 
+     xlim=c(-3.5, 3.5), ylim=c(-0.05, 0.7))
+axis(1, pos=0)
+axis(2, pos=0)
+
+plot(t, pnorm(t), type="l", lwd=3, col="blue",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="x", ylab="Cumulative Distribution Function F(x)", 
+     xlim=c(-3.5, 3.5), ylim=c(-0.05, 1.05))
+axis(1, pos=0)
+axis(2, pos=0)
+```
+
+```{r normal-graph, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="PDF and CDF of the Normal Distribution", fig.asp=1.2}
+par(mfrow=c(2, 1), mgp=c(1, 1, 0))
+
+t <- seq(-3.5, 3.5, by=0.01)
+plot(t, dnorm(t), type="l", lwd=3, col="blue", 
+     xaxt="n", yaxt="n", bty="n",
+     xlab="x", ylab="Probability Density Function f(x)", 
+     xlim=c(-3.5, 3.5), ylim=c(-0.05, 0.7))
+axis(1, pos=0)
+axis(2, pos=0)
+lines(t, dnorm(t, 2, 0.5), type="l", lwd=3, col="red")
+lines(t, dnorm(t, 0, 2), type="l", lwd=3, col="orange")
+#legend(4, 1.5, 
+#       c(expression(paste(lambda, " = 0.5")), expression(paste(lambda, " = 1.0")), expression(paste(lambda, " = 1.5"))),
+#       lwd=3, col=c("blue", "red", "orange"))
+
+plot(t, pnorm(t), type="l", lwd=3, col="blue",
+     xaxt="n", yaxt="n", bty="n",
+     xlab="x", ylab="Cumulative Distribution Function F(x)", 
+     xlim=c(-3.5, 3.5), ylim=c(-0.05, 1.05))
+lines(t, pnorm(t, 2, 0.5), type="l", lwd=3, col="red")
+lines(t, pnorm(t, 0, 2), type="l", lwd=3, col="orange")
+axis(1, pos=0)
+axis(2, pos=0)
+
+#legend(4, 0.5, 
+#       c(expression(paste(lambda, " = 0.5")), expression(paste(lambda, " = 1.0")), expression(paste(lambda, " = 1.5"))),
+#       lwd=3, col=c("blue", "red", "orange"))
+```
+
+
+
+## Essential Practice {-}
+
+1. Based on extensive data from an urban freeway near Toronto, Canada, "it is assumed that free
+speeds can best be represented by a normal distribution" ("Impact of Driver Compliance on the
+Safety and Operational Impacts of Freeway Variable Speed Limit Systems," _J. of Transp. Engr._,
+2011: 260–268). The mean and standard deviation reported in the article were 119 km/h and
+13.1 km/h, respectively.
+
+    a. What is the probability that the speed of a randomly selected vehicle is between 100 and
+120 km/h?
+    b. What speed characterizes the fastest 10% of all speeds?
+    c. If five vehicles are randomly and independently selected, what is the probability that at
+least one car is traveling under the posted speed limit of 100 km/h?
+
+2. Daily highs in San Luis Obispo in August are approximately normally distributed with a mean of 
+$76.9^\circ\textrm{F}$. The temperature exceeds 100 degrees Fahrenheit on about 1.5% 
+of August days.
+
+    a. What can you say about the standard deviation?
+    b. Suppose the mean increases by 2 degrees Fahrenheit. By what _factor_ will the 
+    percentage of 100-degree days increase?
+    
+3. Suppose that the wrapper of a certain candy bar lists its weight as 2.13 ounces. Naturally, the
+weights of individual bars vary somewhat. Suppose that the actual weights of these candy bars
+vary according to a normal distribution with mean $\mu = 2.20$ ounces and standard deviation 
+$\sigma = 0.04$ ounces.
+
+    a. What proportion of candy bars weigh less than the advertised weight?
+    b. If the weights of candy bar are independent, what is the expected number of candy bars 
+    before you encounter one that weights less than the advertised weight?
+    c. If the manufacturer decides that it’s unacceptable to have so many candy bars weigh less than
+the advertised weight, they might want to adjust the production process so that only 1 candy bar
+in 1000 weighs less than advertised. What should the mean of the actual weights be (assuming
+that the standard deviation of the weights remains 0.04 ounces)? Is this more or less than before?
+Why does this makes sense?
+    d. If the manufacturer does not want to add weight to the candy bars (because this costs money),
+an alternative is to adjust the SD of the weights in the production process. If the mean weight
+remains at 2.20 ounces but only 1 candy bar in 1000 weighs less than the advertised weight, how
+small does the standard deviation of the weights need to be? Is this smaller or larger than
+before? Why does this makes sense?
