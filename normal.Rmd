@@ -1,42 +1,52 @@
 # Normal Distribution {#normal}
 
-The normal distribution is the most important distribution in all of probability and statistics. 
-We will see why in a few lessons. For now, just take it on faith.
+## Motivation {-}
 
-The normal distribution goes by other names:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sScArppyv_g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+The normal distribution is the most important distribution in all of probability and statistics. 
+It is ubiquitous in the real world, as the above video demonstrates. 
+
+The normal distribution goes by a few other names:
+
 - Gaussian distribution (especially common in engineering)
-- the bell curve
+- the bell curve (in everyday life)
 
 We will discuss the normal distribution in two stages:
+
 1. First, we will discuss the standard normal distribution.
 2. Then, we will discuss the general normal distribution, which has the same shape as the 
 standard normal distribution, but with a different center and scale.
 
 ## Standard Normal Distribution {-}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hhuvWCDgkEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{definition standard-normal, name="Standard Normal Distribution"}
 A random variable $Z$ is said to follow a standard normal distribution if 
 its p.d.f. is 
 \begin{equation}
 f(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2 / 2}.
-(\#eq:normal-pdf)
+(\#eq:standard-normal-pdf)
 \end{equation}
 The p.d.f. is non-zero for all real numbers $-\infty < z < \infty$. It is conventional to use the 
 letter $Z$ for a standard normal random variable.
 
 The c.d.f. of the standard normal distribution is 
 \begin{equation}
-\Phi(x) \overset{def}{=} \int_{-\infty}^x f(t)\,dt. 
-(\#eq:normal-cdf)
+\Phi(x) \overset{\text{def}}{=} \int_{-\infty}^x f(t)\,dt. 
+(\#eq:standard-normal-cdf)
 \end{equation}
 Note that it is conventional to use the Greek letter $\Phi$ ("phi") for the standard normal c.d.f., instead of $F$. 
 There is no closed-form formula for $\Phi$, so we often leave our answers in terms of $\Phi$. If a numerical 
 value is required, we have a few options:
   
   - We can use numerical integration.
-  - We can use software that has the distribution built in.
-  - We can use tables, like [this one](http://www.z-table.com/).
+  - We can use software that calculates normal probabilities.
+  - We can use tables of the normal c.d.f., like [this one](https://web.calpoly.edu/~dsun09/tables/normal_cdf_table.pdf).
 ```
+
+The figure below shows the p.d.f. and c.d.f. of a standard normal distribution.
 
 ```{r standard-normal-graph, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="PDF and CDF of the Standard Normal Distribution", fig.asp=1.2}
 par(mfrow=c(2, 1), mgp=c(1, 1, 0))
@@ -45,7 +55,8 @@ t <- seq(-3.5, 3.5, by=0.01)
 plot(t, dnorm(t), type="l", lwd=3, col="blue", 
      xaxt="n", yaxt="n", bty="n",
      xlab="z", ylab="Probability Density Function f(z)", 
-     xlim=c(-3.5, 3.5), ylim=c(-0.05, 0.7))
+     xlim=c(-3.5, 3.5), ylim=c(-0.05, 0.45))
+polygon(c(-3.5, t[t <= 0.5], 0.5), c(0, dnorm(t[t <= 0.5]), 0), col=rgb(1, 0, 0, .5), border=NA)
 axis(1, pos=0)
 axis(2, pos=0)
 
@@ -55,38 +66,131 @@ plot(t, pnorm(t), type="l", lwd=3, col="blue",
      xlim=c(-3.5, 3.5), ylim=c(-0.05, 1.05))
 axis(1, pos=0)
 axis(2, pos=0)
+lines(c(0.5, 0.5, 0), c(0, pnorm(0.5), pnorm(0.5)), lty=2, col=rgb(1, 0, 0))
+points(0.5, pnorm(0.5), col=rgb(1, 0, 0, .5), pch=19)
 ```
+
+The Colab below shows how to use software to calculate probabilities involving a standard normal distribution.
+
+<script src="https://gist.github.com/dlsun/d3d113724f70143fbe004dfc555533b5.js"></script>
+
+```{theorem, name="Expected Value and Variance of the Standard Normal"}
+Let $Z$ be a standard normal random variable. Then:
+  \begin{align*}
+E[Z] &= 0 & \text{Var}[Z] &= 1
+\end{align*}
+
+```{proof}
+\begin{align*}
+E[Z] &= \int_{-\infty}^\infty z \cdot \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \\
+&= -\frac{1}{\sqrt{2\pi}} e^{-z^2/2} \Big|_{-\infty}^\infty \\
+&= (-0 + 0) \\
+&= 0 \\
+\text{Var}[Z] &= E[Z^2] - E[Z]^2 \\
+&= \int_{-\infty}^\infty z^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-z^2/2} - 0^2 \\
+&= 1
+\end{align*}
+```
+
+
+## (General) Normal Distribution {-}
+
+```{definition normal, name="Normal Distribution"}
+A random variable $X$ is said to follow a $\text{Normal}(\mu, \sigma)$ 
+  distribution if it can be expressed as 
+\begin{equation}
+X = \mu + \sigma Z, 
+(\#eq:loc-scale-normal)
+\end{equation}
+where $Z$ is a standard normal random variable. 
+
+Its p.d.f. is 
+\begin{equation}
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2} ( x - \mu)^2}. 
+(\#eq:normal-pdf)
+\end{equation}
+To derive this, apply Theorems \@ref(thm:scale-transform) and 
+\@ref(thm:shift-transform) to \@ref(eq:standard-normal-pdf).
+However, we will rarely use this p.d.f. Instead, we typically use the 
+representation \@ref(eq:loc-scale-normal) to convert the distribution 
+to a standard normal before doing any calculations.
+
+Note that the standard normal distribution is the $\text{Normal}(\mu=0, \sigma=1)$ distribution.
+```
+
+Shown below are the p.d.f.s and c.d.f.s of normal distributions for different values of 
+$\mu$ and $\sigma$. Notice that $\mu$ controls where the bell is centered, while $\sigma$ 
+controls how wide it is.
 
 ```{r normal-graph, echo=FALSE, fig.show = "hold", fig.align = "center",fig.cap="PDF and CDF of the Normal Distribution", fig.asp=1.2}
 par(mfrow=c(2, 1), mgp=c(1, 1, 0))
 
-t <- seq(-3.5, 3.5, by=0.01)
+t <- seq(-4.5, 4.5, by=0.01)
 plot(t, dnorm(t), type="l", lwd=3, col="blue", 
      xaxt="n", yaxt="n", bty="n",
      xlab="x", ylab="Probability Density Function f(x)", 
-     xlim=c(-3.5, 3.5), ylim=c(-0.05, 0.7))
+     xlim=c(-4.5, 4.5), ylim=c(-0.05, 0.8))
 axis(1, pos=0)
 axis(2, pos=0)
 lines(t, dnorm(t, 2, 0.5), type="l", lwd=3, col="red")
 lines(t, dnorm(t, 0, 2), type="l", lwd=3, col="orange")
-#legend(4, 1.5, 
-#       c(expression(paste(lambda, " = 0.5")), expression(paste(lambda, " = 1.0")), expression(paste(lambda, " = 1.5"))),
-#       lwd=3, col=c("blue", "red", "orange"))
+legend(-4, 0.8, 
+       c(expression(paste(mu, " = 0, ", sigma, " = 1")),
+         expression(paste(mu, " = 2, ", sigma, " = 0.5")), 
+         expression(paste(mu, " = 0, ", sigma, " = 2"))),
+       lwd=3, col=c("blue", "red", "orange"))
 
 plot(t, pnorm(t), type="l", lwd=3, col="blue",
      xaxt="n", yaxt="n", bty="n",
      xlab="x", ylab="Cumulative Distribution Function F(x)", 
-     xlim=c(-3.5, 3.5), ylim=c(-0.05, 1.05))
+     xlim=c(-4.5, 4.5), ylim=c(-0.05, 1.05))
 lines(t, pnorm(t, 2, 0.5), type="l", lwd=3, col="red")
 lines(t, pnorm(t, 0, 2), type="l", lwd=3, col="orange")
 axis(1, pos=0)
 axis(2, pos=0)
-
-#legend(4, 0.5, 
-#       c(expression(paste(lambda, " = 0.5")), expression(paste(lambda, " = 1.0")), expression(paste(lambda, " = 1.5"))),
-#       lwd=3, col=c("blue", "red", "orange"))
+legend(-4, 1, 
+       c(expression(paste(mu, " = 0, ", sigma, " = 1")),
+         expression(paste(mu, " = 2, ", sigma, " = 0.5")), 
+         expression(paste(mu, " = 0, ", sigma, " = 2"))),
+       lwd=3, col=c("blue", "red", "orange"))
 ```
 
+Note that \@ref(eq:loc-scale-normal) implies that for a normal random variable,
+\begin{equation}
+Z = \frac{X - \mu}{\sigma}
+(\#eq:standardize)
+\end{equation}
+follows a standard normal distribution. This process is known as **standardization**. 
+So to calculate probabilities for a normal random variable, we can standardize the 
+random variable so that it follows a _standard_ normal distribution and calculate 
+probabilities from the standard normal distribution.
+
+The next theorem formally establishes that $\mu$ controls the center and 
+$\sigma$ the spread of the normal distribution.
+
+```{theorem, name="Expected Value and Variance of the Normal"}
+Let $X$ be a $\text{Normal}(\mu, \sigma)$ random variable. Then:
+  \begin{align*}
+E[X] &= \mu & \text{Var}[X] &= \sigma^2
+\end{align*}
+so that $\mu$ and $\sigma$ represent the mean and standard deviation, respectively.
+```{proof}
+The result follows by the representation \@ref(eq:loc-scale-normal) and 
+properties of expected value and variance:
+\begin{align*}
+E[X] &= E[\mu + \sigma Z] \\
+&= \mu + \sigma E[Z] \\
+&= \mu \\
+\text{Var}[X] &= \text{Var}[\mu + \sigma Z] \\
+&= \sigma^2 \text{Var}[Z] \\
+&= \sigma^2
+\end{align*}
+```
+
+The case study below shows how to calculate probabilities from a normal distribution, 
+using a combination of algebra and software.
+
+<script src="https://gist.github.com/dlsun/6da723d1b80742172f8440c89df87246.js"></script>
 
 
 ## Essential Practice {-}
@@ -129,3 +233,9 @@ an alternative is to adjust the SD of the weights in the production process. If 
 remains at 2.20 ounces but only 1 candy bar in 1000 weighs less than the advertised weight, how
 small does the standard deviation of the weights need to be? Is this smaller or larger than
 before? Why does this makes sense?
+
+4. Let $Z$ be a standard normal random variable. Derive the p.d.f. of $X = e^Z$. Sketch this p.d.f. 
+
+    (This distribution has a name: the log-normal distribution. This is a popular distribution for modeling 
+    random variables with long right tails, such as income. Hopefully, you can appreciate this if you sketch 
+    the p.d.f.)

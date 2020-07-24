@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-23" />
+<meta name="date" content="2020-07-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -357,7 +357,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#additional-practice-6"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="40" data-path="normal.html"><a href="normal.html"><i class="fa fa-check"></i><b>40</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#motivation-1"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#standard-normal-distribution"><i class="fa fa-check"></i>Standard Normal Distribution</a></li>
+<li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -382,30 +384,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="normal" class="section level1">
 <h1><span class="header-section-number">Lesson 40</span> Normal Distribution</h1>
+<div id="motivation-1" class="section level2 unnumbered">
+<h2>Motivation</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sScArppyv_g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>The normal distribution is the most important distribution in all of probability and statistics.
-We will see why in a few lessons. For now, just take it on faith.</p>
-<p>The normal distribution goes by other names:
-- Gaussian distribution (especially common in engineering)
-- the bell curve</p>
-<p>We will discuss the normal distribution in two stages:
-1. First, we will discuss the standard normal distribution.
-2. Then, we will discuss the general normal distribution, which has the same shape as the
-standard normal distribution, but with a different center and scale.</p>
+It is ubiquitous in the real world, as the above video demonstrates.</p>
+<p>The normal distribution goes by a few other names:</p>
+<ul>
+<li>Gaussian distribution (especially common in engineering)</li>
+<li>the bell curve (in everyday life)</li>
+</ul>
+<p>We will discuss the normal distribution in two stages:</p>
+<ol style="list-style-type: decimal">
+<li>First, we will discuss the standard normal distribution.</li>
+<li>Then, we will discuss the general normal distribution, which has the same shape as the
+standard normal distribution, but with a different center and scale.</li>
+</ol>
+</div>
 <div id="standard-normal-distribution" class="section level2 unnumbered">
 <h2>Standard Normal Distribution</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hhuvWCDgkEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
 <div class="definition">
 <p><span id="def:standard-normal" class="definition"><strong>Definition 40.1  (Standard Normal Distribution)  </strong></span>A random variable <span class="math inline">\(Z\)</span> is said to follow a standard normal distribution if
 its p.d.f. is
-<span class="math display" id="eq:normal-pdf">\[\begin{equation}
+<span class="math display" id="eq:standard-normal-pdf">\[\begin{equation}
 f(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2 / 2}.
 \tag{40.1}
 \end{equation}\]</span>
 The p.d.f. is non-zero for all real numbers <span class="math inline">\(-\infty &lt; z &lt; \infty\)</span>. It is conventional to use the
 letter <span class="math inline">\(Z\)</span> for a standard normal random variable.</p>
 <p>The c.d.f. of the standard normal distribution is
-<span class="math display" id="eq:normal-cdf">\[\begin{equation}
-\Phi(x) \overset{def}{=} \int_{-\infty}^x f(t)\,dt. 
+<span class="math display" id="eq:standard-normal-cdf">\[\begin{equation}
+\Phi(x) \overset{\text{def}}{=} \int_{-\infty}^x f(t)\,dt. 
 \tag{40.2}
 \end{equation}\]</span>
 Note that it is conventional to use the Greek letter <span class="math inline">\(\Phi\)</span> (“phi”) for the standard normal c.d.f., instead of <span class="math inline">\(F\)</span>.
@@ -413,22 +426,111 @@ There is no closed-form formula for <span class="math inline">\(\Phi\)</span>, s
 value is required, we have a few options:</p>
 <ul>
 <li>We can use numerical integration.</li>
-<li>We can use software that has the distribution built in.</li>
-<li>We can use tables, like <a href="http://www.z-table.com/">this one</a>.
+<li>We can use software that calculates normal probabilities.</li>
+<li>We can use tables of the normal c.d.f., like <a href="https://web.calpoly.edu/~dsun09/tables/normal_cdf_table.pdf">this one</a>.
 </div></li>
 </ul>
+<p>The figure below shows the p.d.f. and c.d.f. of a standard normal distribution.</p>
 <div class="figure" style="text-align: center"><span id="fig:standard-normal-graph"></span>
 <img src="bookdown-demo_files/figure-html/standard-normal-graph-1.png" alt="PDF and CDF of the Standard Normal Distribution" width="672" />
 <p class="caption">
 Figure 40.1: PDF and CDF of the Standard Normal Distribution
 </p>
 </div>
+<p>The Colab below shows how to use software to calculate probabilities involving a standard normal distribution.</p>
+<script src="https://gist.github.com/dlsun/d3d113724f70143fbe004dfc555533b5.js"></script>
+
+<div class="theorem">
+<p><span id="thm:unnamed-chunk-130" class="theorem"><strong>Theorem 40.1  (Expected Value and Variance of the Standard Normal)  </strong></span>Let <span class="math inline">\(Z\)</span> be a standard normal random variable. Then:
+<span class="math display">\[\begin{align*}
+E[Z] &amp;= 0 &amp; \text{Var}[Z] &amp;= 1
+\end{align*}\]</span></p>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> <span class="math display">\[\begin{align*}
+E[Z] &amp;= \int_{-\infty}^\infty z \cdot \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \\
+&amp;= -\frac{1}{\sqrt{2\pi}} e^{-z^2/2} \Big|_{-\infty}^\infty \\
+&amp;= (-0 + 0) \\
+&amp;= 0 \\
+\text{Var}[Z] &amp;= E[Z^2] - E[Z]^2 \\
+&amp;= \int_{-\infty}^\infty z^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-z^2/2} - 0^2 \\
+&amp;= 1
+\end{align*}\]</span>
+</div>
+
+</div>
+<div id="general-normal-distribution" class="section level2 unnumbered">
+<h2>(General) Normal Distribution</h2>
+
+<div class="definition">
+<p><span id="def:normal" class="definition"><strong>Definition 40.2  (Normal Distribution)  </strong></span>A random variable <span class="math inline">\(X\)</span> is said to follow a <span class="math inline">\(\text{Normal}(\mu, \sigma)\)</span>
+distribution if it can be expressed as
+<span class="math display" id="eq:loc-scale-normal">\[\begin{equation}
+X = \mu + \sigma Z, 
+\tag{40.3}
+\end{equation}\]</span>
+where <span class="math inline">\(Z\)</span> is a standard normal random variable.</p>
+<p>Its p.d.f. is
+<span class="math display" id="eq:normal-pdf">\[\begin{equation}
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2} ( x - \mu)^2}. 
+\tag{40.4}
+\end{equation}\]</span>
+To derive this, apply Theorems <a href="transformations.html#thm:scale-transform">36.2</a> and
+<a href="transformations.html#thm:shift-transform">36.1</a> to <a href="normal.html#eq:standard-normal-pdf">(40.1)</a>.
+However, we will rarely use this p.d.f. Instead, we typically use the
+representation <a href="normal.html#eq:loc-scale-normal">(40.3)</a> to convert the distribution
+to a standard normal before doing any calculations.</p>
+Note that the standard normal distribution is the <span class="math inline">\(\text{Normal}(\mu=0, \sigma=1)\)</span> distribution.
+</div>
+
+<p>Shown below are the p.d.f.s and c.d.f.s of normal distributions for different values of
+<span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Notice that <span class="math inline">\(\mu\)</span> controls where the bell is centered, while <span class="math inline">\(\sigma\)</span>
+controls how wide it is.</p>
 <div class="figure" style="text-align: center"><span id="fig:normal-graph"></span>
 <img src="bookdown-demo_files/figure-html/normal-graph-1.png" alt="PDF and CDF of the Normal Distribution" width="672" />
 <p class="caption">
 Figure 40.2: PDF and CDF of the Normal Distribution
 </p>
 </div>
+<p>Note that <a href="normal.html#eq:loc-scale-normal">(40.3)</a> implies that for a normal random variable,
+<span class="math display" id="eq:standardize">\[\begin{equation}
+Z = \frac{X - \mu}{\sigma}
+\tag{40.5}
+\end{equation}\]</span>
+follows a standard normal distribution. This process is known as <strong>standardization</strong>.
+So to calculate probabilities for a normal random variable, we can standardize the
+random variable so that it follows a <em>standard</em> normal distribution and calculate
+probabilities from the standard normal distribution.</p>
+<p>The next theorem formally establishes that <span class="math inline">\(\mu\)</span> controls the center and
+<span class="math inline">\(\sigma\)</span> the spread of the normal distribution.</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-132" class="theorem"><strong>Theorem 40.2  (Expected Value and Variance of the Normal)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Normal}(\mu, \sigma)\)</span> random variable. Then:
+<span class="math display">\[\begin{align*}
+E[X] &amp;= \mu &amp; \text{Var}[X] &amp;= \sigma^2
+\end{align*}\]</span>
+so that <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> represent the mean and standard deviation, respectively.
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> The result follows by the representation <a href="normal.html#eq:loc-scale-normal">(40.3)</a> and
+properties of expected value and variance:
+<span class="math display">\[\begin{align*}
+E[X] &amp;= E[\mu + \sigma Z] \\
+&amp;= \mu + \sigma E[Z] \\
+&amp;= \mu \\
+\text{Var}[X] &amp;= \text{Var}[\mu + \sigma Z] \\
+&amp;= \sigma^2 \text{Var}[Z] \\
+&amp;= \sigma^2
+\end{align*}\]</span>
+</div>
+
+<p>The case study below shows how to calculate probabilities from a normal distribution,
+using a combination of algebra and software.</p>
+<script src="https://gist.github.com/dlsun/6da723d1b80742172f8440c89df87246.js"></script>
 </div>
 <div id="essential-practice-29" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
@@ -472,6 +574,10 @@ remains at 2.20 ounces but only 1 candy bar in 1000 weighs less than the adverti
 small does the standard deviation of the weights need to be? Is this smaller or larger than
 before? Why does this makes sense?</li>
 </ol></li>
+<li><p>Let <span class="math inline">\(Z\)</span> be a standard normal random variable. Derive the p.d.f. of <span class="math inline">\(X = e^Z\)</span>. Sketch this p.d.f.</p>
+<p>(This distribution has a name: the log-normal distribution. This is a popular distribution for modeling
+random variables with long right tails, such as income. Hopefully, you can appreciate this if you sketch
+the p.d.f.)</p></li>
 </ol>
 
 </div>
