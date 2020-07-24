@@ -95,6 +95,8 @@ E[Z] &= \int_{-\infty}^\infty z \cdot \frac{1}{\sqrt{2\pi}} e^{-z^2/2} \\
 
 ## (General) Normal Distribution {-}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3cwUA7D6v5g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ```{definition normal, name="Normal Distribution"}
 A random variable $X$ is said to follow a $\text{Normal}(\mu, \sigma)$ 
   distribution if it can be expressed as 
@@ -161,9 +163,9 @@ Z = \frac{X - \mu}{\sigma}
 (\#eq:standardize)
 \end{equation}
 follows a standard normal distribution. This process is known as **standardization**. 
-So to calculate probabilities for a normal random variable, we can standardize the 
-random variable so that it follows a _standard_ normal distribution and calculate 
-probabilities from the standard normal distribution.
+So to calculate probabilities for a normal random variable, we standardize it so 
+that it follows a _standard_ normal distribution and calculate 
+probabilities using the standard normal.
 
 The next theorem formally establishes that $\mu$ controls the center and 
 $\sigma$ the spread of the normal distribution.
