@@ -109,11 +109,11 @@ Its p.d.f. is
 f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2} ( x - \mu)^2}. 
 (\#eq:normal-pdf)
 \end{equation}
-To derive this, apply Theorems \@ref(thm:scale-transform) and 
-\@ref(thm:shift-transform) to \@ref(eq:standard-normal-pdf).
-However, we will rarely use this p.d.f. Instead, we typically use the 
-representation \@ref(eq:loc-scale-normal) to convert the distribution 
-to a standard normal before doing any calculations.
+To derive this, apply Theorems \@ref(thm:shift-transform) and 
+\@ref(thm:scale-transform) to \@ref(eq:standard-normal-pdf).
+However, we almost never use this p.d.f. for calculations. 
+Instead, we typically use the representation \@ref(eq:loc-scale-normal) 
+to convert the distribution to a standard normal before doing any calculations.
 
 Note that the standard normal distribution is the $\text{Normal}(\mu=0, \sigma=1)$ distribution.
 ```
