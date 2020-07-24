@@ -108,7 +108,7 @@ where $Z$ is a standard normal random variable.
 
 Its p.d.f. is 
 \begin{equation}
-f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2} ( x - \mu)^2}. 
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-( x - \mu)^2 / 2 \sigma^2}. 
 (\#eq:normal-pdf)
 \end{equation}
 To derive this, apply Theorems \@ref(thm:shift-transform) and 
