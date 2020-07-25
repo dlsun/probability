@@ -216,8 +216,11 @@ $76.9^\circ\textrm{F}$. The temperature exceeds 100 degrees Fahrenheit on about 
 of August days.
 
     a. What can you say about the standard deviation?
-    b. Suppose the mean increases by 2 degrees Fahrenheit. By what _factor_ will the 
+    b. Suppose the mean increases by 2 degrees Fahrenheit. By what (multiplicative) _factor_ will the 
     percentage of 100-degree days increase?
+    
+        (The moral of this exercise is: small changes in the mean can have massive effects on 
+        the tail probabilities.)
     
 3. Suppose that the wrapper of a certain candy bar lists its weight as 2.13 ounces. Naturally, the
 weights of individual bars vary somewhat. Suppose that the actual weights of these candy bars
@@ -226,7 +229,7 @@ $\sigma = 0.04$ ounces.
 
     a. What proportion of candy bars weigh less than the advertised weight?
     b. If the weights of candy bar are independent, what is the expected number of candy bars 
-    before you encounter one that weights less than the advertised weight?
+    before you encounter one that weighs less than the advertised weight?
     c. If the manufacturer decides that it’s unacceptable to have so many candy bars weigh less than
 the advertised weight, they might want to adjust the production process so that only 1 candy bar
 in 1000 weighs less than advertised. What should the mean of the actual weights be (assuming
@@ -238,7 +241,12 @@ remains at 2.20 ounces but only 1 candy bar in 1000 weighs less than the adverti
 small does the standard deviation of the weights need to be? Is this smaller or larger than
 before? Why does this makes sense?
 
-4. Let $Z$ be a standard normal random variable. Derive the p.d.f. of $X = e^Z$. Sketch this p.d.f. 
+4. Let $Z$ be a standard normal random variable. Derive the p.d.f. of $X = e^Z$. Sketch this p.d.f.
+
+    _Hint:_ This is a transformation, so you can use the method of Lesson \@ref(transformations). 
+    When calculating the c.d.f., leave your answer in terms of $\Phi$, the c.d.f. of the standard normal 
+    distribution. It does not have a closed-form expression, but you know its derivative. (The derivative 
+    of any c.d.f. is its p.d.f.)
 
     (This distribution has a name: the log-normal distribution. This is a popular distribution for modeling 
     random variables with long right tails, such as income. Hopefully, you can appreciate this if you sketch 
