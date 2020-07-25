@@ -157,18 +157,8 @@ legend(-4, 1,
        lwd=3, col=c("blue", "red", "orange"))
 ```
 
-Note that \@ref(eq:loc-scale-normal) implies that for a normal random variable,
-\begin{equation}
-Z = \frac{X - \mu}{\sigma}
-(\#eq:standardize)
-\end{equation}
-follows a standard normal distribution. This process is known as **standardization**. 
-So to calculate probabilities for a normal random variable, we standardize it so 
-that it follows a _standard_ normal distribution and calculate 
-probabilities using the standard normal.
-
-The next theorem formally establishes that $\mu$ controls the center and 
-$\sigma$ the spread of the normal distribution.
+The next theorem shows that $\mu$ and 
+$\sigma$ can be interpreted as the center and spread, respectively.
 
 ```{theorem, name="Expected Value and Variance of the Normal"}
 Let $X$ be a $\text{Normal}(\mu, \sigma)$ random variable. Then:
@@ -188,6 +178,18 @@ E[X] &= E[\mu + \sigma Z] \\
 &= \sigma^2
 \end{align*}
 ```
+
+By inverting \@ref(eq:loc-scale-normal), we see that 
+\begin{equation}
+Z = \frac{X - \mu}{\sigma}
+(\#eq:standardize)
+\end{equation}
+follows a standard normal distribution. The process of converting a (general) 
+normal random variable into a standard normal is known as **standardization**. 
+One strategy for calculating probabilities from a normal distribution is to standardize 
+and calculate the corresponding probability from the standard normal distribution.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SPo7jcqvBtU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 The case study below shows how to calculate probabilities from a normal distribution, 
 using a combination of algebra and software.

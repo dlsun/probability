@@ -496,17 +496,8 @@ controls how wide it is.</p>
 Figure 40.2: PDF and CDF of the Normal Distribution
 </p>
 </div>
-<p>Note that <a href="normal.html#eq:loc-scale-normal">(40.3)</a> implies that for a normal random variable,
-<span class="math display" id="eq:standardize">\[\begin{equation}
-Z = \frac{X - \mu}{\sigma}
-\tag{40.5}
-\end{equation}\]</span>
-follows a standard normal distribution. This process is known as <strong>standardization</strong>.
-So to calculate probabilities for a normal random variable, we standardize it so
-that it follows a <em>standard</em> normal distribution and calculate
-probabilities using the standard normal.</p>
-<p>The next theorem formally establishes that <span class="math inline">\(\mu\)</span> controls the center and
-<span class="math inline">\(\sigma\)</span> the spread of the normal distribution.</p>
+<p>The next theorem shows that <span class="math inline">\(\mu\)</span> and
+<span class="math inline">\(\sigma\)</span> can be interpreted as the center and spread, respectively.</p>
 
 <div class="theorem">
 <span id="thm:unnamed-chunk-132" class="theorem"><strong>Theorem 40.2  (Expected Value and Variance of the Normal)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Normal}(\mu, \sigma)\)</span> random variable. Then:
@@ -530,6 +521,17 @@ E[X] &amp;= E[\mu + \sigma Z] \\
 \end{align*}\]</span>
 </div>
 
+<p>By inverting <a href="normal.html#eq:loc-scale-normal">(40.3)</a>, we see that
+<span class="math display" id="eq:standardize">\[\begin{equation}
+Z = \frac{X - \mu}{\sigma}
+\tag{40.5}
+\end{equation}\]</span>
+follows a standard normal distribution. The process of converting a (general)
+normal random variable into a standard normal is known as <strong>standardization</strong>.
+One strategy for calculating probabilities from a normal distribution is to standardize
+and calculate the corresponding probability from the standard normal distribution.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SPo7jcqvBtU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>The case study below shows how to calculate probabilities from a normal distribution,
 using a combination of algebra and software.</p>
 <script src="https://gist.github.com/dlsun/6da723d1b80742172f8440c89df87246.js"></script>
