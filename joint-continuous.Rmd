@@ -1,0 +1,162 @@
+# Joint Continuous Distributions {#joint-continuous}
+
+
+## Theory {-}
+
+```{definition joint-continuous}
+The joint distribution of two continuous random variables $X$ and $Y$ 
+  is described by their **joint p.d.f.** 
+  \begin{equation}
+f(x, y).
+  (\#eq:joint-pdf)
+\end{equation}
+  The joint p.d.f. is a surface over the $xy$-plane. To calculate probabilities, we 
+  calculate double integrals
+  \begin{equation}
+  P((X, Y) \in B) = \underset{B}{\iint} f(x, y)\,dy\,dx.
+  \end{equation}
+  In other words, _volumes_ under the joint p.d.f. surface represent probabilities.
+```
+
+```{r, echo=FALSE, engine='tikz', out.width='70%', fig.ext='png', fig.align='center', fig.cap="Joint Distributions of Continuous Random Variables", engine.opts = list(template = "tikz_template.tex")}
+	\begin{tikzpicture}[scale=.9]
+	
+	\node (o) at (0.5, 0) {};
+	\node[anchor=east] (x) at (-0.5, -1) {$x$};
+	\node[anchor=west] (y) at (5, 0) {$y$};
+	\node[anchor=east] (p) at (0.5, 3.6) {$f(x, y)$};
+	
+	\draw[->] (0.5, 0) -- (-0.5, -1);
+	\draw[->] (0.5, 0) -- (5, 0);
+	\draw[->] (0.5, 0) -- (0.5, 3.6);
+	
+	\draw [fill=gray!50,fill opacity=0.7] plot [smooth cycle] coordinates {(4, 1) (2, 1.5) (0, 1) (0.5, 2) (1.5, 3) (3.5, 3.3) (5.5, 2.7) (4.8, 2)}; 
+	
+	\node[red] at (3.2, -0.7) {$B$};
+	\draw [red,fill=red!50,fill opacity=0.5] (1.5, -0.8) -- (2, -0.3) -- (3, -0.3) -- (2.5, -0.8) -- cycle;
+	
+	\draw [color=red,fill=red!50,fill opacity=0.3] (1.5, -0.8) -- (1.5, 2) -- (2.5, 2) -- (2.5, -0.8);
+	\draw [color=red,fill=red!50,fill opacity=0.3] (2.5, 2) -- (2.5, -0.8) -- (3, -0.3) -- (3, 2.5);
+	\draw [red] (2, -0.3) -- (2, 2.5);
+  \draw [color=red,fill=red!50,fill opacity=0.5] (1.5, 2) -- (2, 2.5) -- (3, 2.5) -- (2.5, 2) -- cycle;
+	
+	\node [red,anchor=east] (label) at (-0.4, 0.3) {$P((X, Y) \in B)$};
+	\draw [red,->,snake=snake] (label) -- (1.8, 0.7);
+	
+	\end{tikzpicture}
+```
+
+Let's look at some examples.
+
+```{example, name="Joint Distribution of the First and Second Arrival Times"}
+In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process 
+at a rate of $\lambda = 0.8$ particles per second. The time $X$ that the first particle is detected
+  and the time $Y$ that the second particle is detected can be shown to have the joint p.d.f.:
+  \[ f(x, y) = \begin{cases} 0.64 e^{-0.8 y} & 0 < x < y \\ 0 & \text{otherwise} \end{cases}.  \]
+  This p.d.f. is non-zero when $0 < x < y$. The region where the p.d.f. is non-zero is known as the 
+  **support** of the distribution.
+  
+  First, let's note the following features of this p.d.f. 
+  
+  - The joint p.d.f. $f(x, y) = 0$ when $x > y$. 
+  This makes sense physically. By definition, it is impossible for the first particle 
+  to be detected _after_ the second particle. So the probability of this must be 0.
+  - The joint p.d.f. depends on both $x$ and $y$. Although the expression $0.64 e^{-0.8 y}$ only depends on 
+  $y$, the support $0 < x < y$ makes this a function of both $x$ and $y$.
+  
+  Let's calculate the probability that _both_ arrivals happen between 1 and 2 seconds. That is, 
+  we want to calculate $P(1 < X < 2 \text{ and } 1 < Y < 2)$. We can obtain this probability 
+  by integrating over the region where the square $[1, 2] \times [1, 2]$ overlaps with the support 
+  of the distribution. We can determine this by sketching a bird's eye view of the $xy$-plane.
+  
+```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
+  \begin{tikzpicture}[scale=3]
+
+\draw[->] (-.2, 0) -- (1.3, 0);
+\draw[->] (0, -.2) -- (0, 1.3);
+\draw (1, -.04) -- (1, .04);
+\draw (0.5, -.04) -- (0.5, .04);
+\draw (-.04, 0.5) -- (.04, 0.5);
+\draw (-.04, 1) -- (.04, 1);
+
+\node[anchor=west] at (1.3, 0) {$x$};
+\node[anchor=south] at (0, 1.3) {$y$};
+
+\node[anchor=east] at (0, 1) {$2$};
+\node[anchor=north] at (1, -.04) {$2$};
+\node[anchor=north] at (0.5, -.04) {$1$};
+\node[anchor=east] at (0, 0.5) {$1$};
+
+\node[anchor=west,orange] at (0.05, 1.1) {$y > x$};
+\fill [orange,fill opacity=.3] (0, 0) -- (1.2, 1.2) -- (0, 1.2);
+
+\draw[orange,dashed,<->] (-.2, -.2) -- (1.3, 1.3);
+\node[orange,rotate=45] at (1.15, 1.05) {$x = y$};
+
+\fill [blue,fill opacity=.3] (.5, .5) -- (.5, 1) -- (1, 1) -- (1, .5) -- cycle;
+
+\draw [dotted] (0.7, 0) -- (0.7, 0.7);
+\fill [gray] (0.69, 0.7) rectangle (0.71, 1);
+\node [anchor=north] at (0.7, 0) {$x$};
+\draw [dotted] (0, 0.7) -- (0.7, 0.7);
+\draw [dotted] (0, 1) -- (0.7, 1);
+\node [anchor=east] at (0, 0.7) {$x$};
+
+\end{tikzpicture}
+```
+  
+  From this picture, we see what the limits of integration should be. As $x$ ranges from 1 to 2, 
+  $y$ ranges from $x$ to 2. 
+  
+  \begin{align*}
+  P(1 < X < 2 \text{ and } 1 < Y < 2) &= \int_1^2 \int_x^2 0.64 e^{-0.8 y}\,dy\,dx \\
+  &\approx .0859.
+  \end{align*}
+  
+  Once we set up the double integral, we evaluated the integral using [Wolfram Alpha](https://www.wolframalpha.com/input/?i=integrate+e%5E%28-0.8+y%29+from+x%3D1+to+2+and+y%3Dx+to+2). 
+  You are encouraged to use software to evaluate integrals. However, software does not 
+  help you translate the real world problem into the integral you need to set up. That, for now, 
+  still has to be done by a human!
+
+
+Sometimes, the geometry is simple enough that we can calculate the volume without 
+doing integrals.
+```{example, name="Joint Uniform Distribution"}
+Two insurers provide bids on an insurance policy to a large company. The bids must be between 2000 and 2200. The company decides to accept the lower bid if the two bids differ by 20 or more. Otherwise the company will consider the two bids further.
+
+Suppose the two bids $X$ and $Y$ have joint p.d.f. 
+\[ f(x, y) = \begin{cases} \frac{1}{40000} & 2000 < x, y < 2200 \\ 0 & \text{otherwise} \end{cases}. \]
+Calculate the probability that the company considers the two bids further.
+```{solution}
+.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/r9U9jISQAGc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+```
+
+## Essential Practice {-}
+
+1. Alice and Bob meet for lunch every day at a random time between 12 and 1. 
+Bob always arrives after Alice, but otherwise, they are equally likely to arrive at any time. 
+The joint p.d.f. of $X$, the time Alice arrives (in minutes after 12 P.M.),
+and $Y$, the time Bob arrives (in minutes after 12 P.M.), is given by
+\[ f(x, y) = \begin{cases} c & 0 \leq x < y \leq 60 \\ 0 & \text{otherwise} \end{cases}, \]
+where $c$ is a constant.
+
+    a. Sketch a birds-eye view of the joint p.d.f. Because the p.d.f. is constant, you should be 
+    able to calculate all probabilities using geometry, rather than integration.
+    b. Determine the value of $c$.
+    c. Calculate the probability that Bob arrives more than 25\% later than 
+    $P(Y > 1.25 X)$. (Sketch a picture of this region.)
+
+2. Suppose $X$ and $Y$ are continuous random variables with joint p.d.f. $f(x, y)$. What is $P(X = Y)$ 
+and why?
+
+## Additional Practice {-}
+
+1. A company produces cans of mixed nuts containing 
+almonds, cashews, and peanuts. Each 
+can is exactly 1 lb, but the amount of each type of nut is 
+random. The joint p.d.f. of $X$, the amount of almonds, and $Y$, 
+the amount of cashews, is 
+\[ f(x, y) = \begin{cases} 24xy & 0 \leq x \leq 1, 0 \leq y \leq 1, x + y \leq 1 \\ 0 & \textrm{otherwise} \end{cases}. \]
+Find the probability that there are more almonds than cashews.

@@ -1,0 +1,119 @@
+# Marginal Continuous Distributions {#marginal-continuous}
+
+## Motivating Example {-}
+
+In Lesson \@ref(normal), we saw that there is no closed-form expression for the antiderivative
+\[ \int ce^{-z^2/2}\,dz, \]
+where $c$ is a constant. 
+The definite integral must be computed numerically. This means that we can compute the integral to 
+any precision we like, but exact values are, in general, impossible. 
+
+How, then, do we know that the constant $c$ must be $1 / \sqrt{2\pi}$ in order for the total probability 
+to be one? That is, 
+\begin{equation} 
+\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\,dz = 1.
+(\#eq:gaussian-integral)
+\end{equation}
+Using numerical integration, we might be able to figure out that $c \approx .3989423$ (as 
+many decimal places as desired), but how did someone figure out that this was $1 / \sqrt{2\pi}$ exactly? 
+It turns out that the definite integral \@ref(eq:gaussian-integral) can be evaluated exactly, but it 
+requires looking at joint distributions.
+
+## Theory {-}
+
+The definition for the marginal p.d.f. mirrors the definition of the marginal p.m.f. for 
+discrete distributions \@ref(def:marginal-discrete).
+```{definition marginal-continuous, name="Marginal Distribution"}
+Suppose we have the joint p.d.f. $f(x, y)$ of two continuous random variables $X$ and $Y$. 
+The marginal p.d.f. of $X$ is the p.d.f. of $X$ alone and is obtained by _integrating_ 
+the joint p.d.f. over all the values of $Y$.
+\begin{equation}
+f_X(x) = \int_{-\infty}^\infty f(x, y)\,dy
+(\#eq:marginal-x-continuous)
+\end{equation}
+Likewise, the marginal p.d.f. of $Y$ is the p.d.f. of $Y$ alone and is obtained by _integrating_ 
+the joint p.d.f. over all the values of $X$.
+\begin{equation}
+f_Y(y) = \int_{-\infty}^\infty f(x, y)\,dx.
+(\#eq:marginal-y-continuous)
+\end{equation}
+```
+
+If $X$ and $Y$ are independent, then their joint p.d.f. is the product of their 
+marginal p.d.f.s, just like it was for discrete random variables (Theorem \@ref(thm:joint-independent)):
+
+```{theorem joint-pdf-independent, name="Joint Distribution of Independent Random Variables"}
+If $X$ and $Y$ are independent, then 
+\begin{equation}
+f(x, y) = f_X(x) \cdot f_Y(y)
+\end{equation}
+for all values $x$ and $y$. But only if $X$ and $Y$ are independent!
+```
+
+In the following examples, we construct the joint p.d.f. of two independent random variables $X$ and $Y$ 
+using Theorem \@ref(thm:joint-pdf-independent) and integrate the joint p.d.f. to obtain probabilities.
+
+```{example, name="Symmetry of Continuous Random Variables"}
+Let $X$ and $Y$ be independent $\text{Exponential}(\lambda)$ random variables. What is $P(X > Y)$?
+
+\begin{align*}
+P(X > Y) &= \int_0^\infty \int_0^x \lambda^2 e^{-\lambda x - \lambda y}\,dy\,dx \\
+&= \int_0^\infty \lambda e^{-\lambda x} \underbrace{\int_0^x \lambda e^{-\lambda y}\,dy}_{1 - e^{-\lambda x}}\,dx \\
+&= \int_0^\infty \lambda e^{-\lambda x} (1 - e^{-\lambda x})\,dx \\
+&= \int_0^1 u\,du & \text{(using $u=1-e^{-\lambda x}$)} \\
+&= \frac{1}{2}.
+\end{align*}
+
+In hindsight, the probability _has_ to be $1/2$ by symmetry. We know that either $X > Y$ or $X < Y$, 
+since the probability that $X = Y$ is zero. Because $X$ and $Y$ are independent with the 
+same distribution, there is no reason for one to be preferred over another, so 
+$P(X > Y) = P(X < Y) = \frac{1}{2}$.
+```
+
+The last example answers the question posed at the beginning of this lesson.
+
+```{example, name="The Gaussian Integral"}
+The p.d.f. of a standard normal random variable $Z$ is 
+\[ f(z) = c e^{-z^2/2},  \]
+where $c$ is a constant to make the p.d.f. integrate to 1.
+
+Surprisingly, the easiest way to determine $c$ is to define 
+_two_ independent standard normal random variables $X$ and $Y$,
+and use the fact that their _joint_ p.d.f. must integrate to 1. 
+By Theorem \@ref(thm:joint-pdf-independent), the joint p.d.f. of $X$ and $Y$ is 
+\[ f(x, y) = ce^{-x^2 /2} \cdot ce^{-y^2 / 2} = c^2 e^{-(x^2 + y^2) / 2}. \]
+We know from Lesson \@ref(joint-continuous) that the total volume under any joint p.d.f. must be 1:
+\[ 1 = \int_{-\infty}^\infty \int_{-\infty}^\infty f(x, y)\,dx\,dy = \int_{-\infty}^\infty \int_{-\infty}^\infty c^2 e^{-(x^2 + y^2) / 2}\,dx\,dy. \]
+Surprisingly, this double integral can be evaluated (even though the single integral could not). To evaluate the 
+double integral, we convert to [polar coordinates](https://tutorial.math.lamar.edu/classes/calciii/DIPolarCoords.aspx), using the substitutions $r^2 = x^2 + y^2$ and $dx\,dy = r\,dr\,d\theta$:
+\begin{align*} 
+c^2 \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-(x^2 + y^2) / 2}\,dx\,dy &= c^2 \int_{0}^{2\pi} \int_{0}^\infty e^{-r^2 / 2} r\,dr\,d\theta \\
+&= c^2 \int_0^{2\pi} \underbrace{\int_0^\infty e^{-u}\,du}_{1} \,d\theta \\
+&= c^2 (2\pi). 
+\end{align*}
+Setting this equal to 1, we see that $c^2 = \frac{1}{2\pi}$. In other words, $c = \frac{1}{\sqrt{2\pi}}$.
+```
+
+## Essential Practice {-}
+
+1. Let $X$ and $Y$ be continuous random variables with joint p.d.f.
+\[ f(x, y) = \begin{cases} 
+\frac{1}{12} (1 + \frac{1}{18}(x - 2)(2y - 3)) & 0 < x < 4, 0 < y < 3 \\
+0 & \text{otherwise}
+\end{cases}. \]
+
+    a. Find the marginal p.d.f.s of $X$ and $Y$. Are these named distributions? (Feel free to 
+    set up and the integral and use Wolfram Alpha to do the rest.)
+    b. Are $X$ and $Y$ independent? (_Hint:_ According to Theorem \@ref(thm:joint-pdf-independent), 
+    what would their joint p.d.f. have to be if they were independent?)
+
+2. Each day, two Cal Poly students, Xavier and Yolanda, arrive independently at The Avenue at a 
+random time between noon and 1 p.m. Let $X$ be the time that Xavier arrives (in minutes after 12 p.m.) 
+and $Y$ be the time that Yolanda arrives (in minutes after 12 p.m.). $X$ and $Y$ are independent 
+$\text{Uniform}(a=0, b=60)$ random variables.
+    a. What is the joint p.d.f. of $X$ and $Y$? Sketch a bird's-eye view of the joint p.d.f.
+    b. If both Xavier and Yolanda take 15 minutes to eat their lunch (after they arrive), what is the 
+    probability that they are able to meet up? (_Hint:_ Sketch the region of times $(x, y)$ 
+    that correspond to Xavier and Yolanda meeting up. You can 
+    calculate this probability by geometry, without using integration.)
+    c. What is the probability that Xavier arrives after Yolanda?
