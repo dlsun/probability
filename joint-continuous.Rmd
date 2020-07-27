@@ -215,8 +215,8 @@ where $c$ is a constant.
     a. Sketch a birds-eye view of the joint p.d.f. Because the p.d.f. is constant, you should be 
     able to calculate all probabilities using geometry, rather than integration.
     b. Determine the value of $c$ that makes this a valid joint p.d.f.
-    c. Calculate the probability that Bob arrives more than 25\% later than 
-    $P(Y > 1.25 X)$. (Sketch a picture of this region.)
+    c. Calculate the probability that Bob arrives more than 25\% later than Alice. That is, what is
+    $P(Y > 1.25 X)$? (Sketch a picture of this region.)
 
 2. Suppose $X$ and $Y$ are continuous random variables with joint p.d.f. $f(x, y)$. What is $P(X = Y)$ 
 and why?
