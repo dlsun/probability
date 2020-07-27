@@ -157,4 +157,4 @@ $\text{Uniform}(a=0, b=60)$ random variables.
     probability that they are able to meet up? (_Hint:_ Sketch the region of times $(x, y)$ 
     that correspond to Xavier and Yolanda meeting up. You can 
     calculate this probability by geometry, without using integration.)
-    c. What is the probability that Xavier arrives after Yolanda?
+    c. What is the probability that Xavier arrives after Yolanda arrives?
