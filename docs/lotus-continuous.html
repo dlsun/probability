@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-24" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -362,6 +362,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="marginal-continuous.html"><a href="marginal-continuous.html"><i class="fa fa-check"></i><b>42</b> Marginal Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#motivating-example-26"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#theory-38"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#essential-practice-31"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -388,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Theory</h2>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-128" class="theorem"><strong>Theorem 38.1  (LOTUS for a Continuous Random Variable)  </strong></span>Let <span class="math inline">\(X\)</span> be a continuous random variable with p.d.f. <span class="math inline">\(f(x)\)</span>. Then, the
+<span id="thm:unnamed-chunk-127" class="theorem"><strong>Theorem 38.1  (LOTUS for a Continuous Random Variable)  </strong></span>Let <span class="math inline">\(X\)</span> be a continuous random variable with p.d.f. <span class="math inline">\(f(x)\)</span>. Then, the
 expected value of <span class="math inline">\(g(X)\)</span> is
 <span class="math display" id="eq:lotus-continuous">\[\begin{equation}
 E[g(X)] = \int_{-\infty}^\infty g(x) \cdot f(x)\,dx.
@@ -437,7 +448,7 @@ simply set up the integral and <a href="https://www.wolframalpha.com/input/?i=in
 
 
 <div class="example">
-<span id="exm:unnamed-chunk-129" class="example"><strong>Example 38.3  (Expected Value of a Cosine)  </strong></span>Let <span class="math inline">\(\Theta\)</span> be a random angle, from a <span class="math inline">\(\text{Uniform}(-\pi, \pi)\)</span> distribution. Then, the p.d.f.
+<span id="exm:unnamed-chunk-128" class="example"><strong>Example 38.3  (Expected Value of a Cosine)  </strong></span>Let <span class="math inline">\(\Theta\)</span> be a random angle, from a <span class="math inline">\(\text{Uniform}(-\pi, \pi)\)</span> distribution. Then, the p.d.f.
 of <span class="math inline">\(\Theta\)</span> is
 <span class="math display">\[ f(\theta) = \begin{cases} \frac{1}{\pi - (-\pi)} &amp; -\pi \leq x \leq \pi \\ 0 &amp; \text{otherwise} \end{cases},  \]</span>
 and the expected value of the cosine is:

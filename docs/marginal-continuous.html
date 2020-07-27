@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-26" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -297,11 +359,14 @@
 <li class="chapter" data-level="40" data-path="normal.html"><a href="normal.html"><i class="fa fa-check"></i><b>40</b> Normal Distribution</a><ul>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#motivation-1"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#standard-normal-distribution"><i class="fa fa-check"></i>Standard Normal Distribution</a></li>
+<li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="42" data-path="marginal-continuous.html"><a href="marginal-continuous.html"><i class="fa fa-check"></i><b>42</b> Marginal Continuous Distributions</a><ul>
 <li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#motivating-example-26"><i class="fa fa-check"></i>Motivating Example</a></li>
@@ -332,26 +397,27 @@
 <h1><span class="header-section-number">Lesson 42</span> Marginal Continuous Distributions</h1>
 <div id="motivating-example-26" class="section level2 unnumbered">
 <h2>Motivating Example</h2>
-<p>In Lesson <a href="normal.html#normal">40</a>, we saw that there is no closed-form expression for the antiderivative
+<p>In Lesson <a href="normal.html#normal">40</a> on the normal distribution, we saw that there is no closed-form expression for the
+antiderivative
 <span class="math display">\[ \int ce^{-z^2/2}\,dz, \]</span>
 where <span class="math inline">\(c\)</span> is a constant.
 The definite integral must be computed numerically. This means that we can compute the integral to
 any precision we like, but exact values are, in general, impossible.</p>
-<p>How, then, do we know that the constant <span class="math inline">\(c\)</span> must be <span class="math inline">\(1 / \sqrt{2\pi}\)</span> in order for the total probability
-to be one? That is,
+<p>How, then, can we be sure that the constant <span class="math inline">\(c\)</span> must be <span class="math inline">\(1 / \sqrt{2\pi}\)</span> for the total probability
+to be 1? That is,
 <span class="math display" id="eq:gaussian-integral">\[\begin{equation} 
 \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\,dz = 1.
 \tag{42.1}
 \end{equation}\]</span>
-Using numerical integration, we might be able to figure out that <span class="math inline">\(c \approx .3989423\)</span> (as
-many decimal places as desired), but how did someone figure out that this was <span class="math inline">\(1 / \sqrt{2\pi}\)</span> exactly?
-It turns out that the definite integral <a href="marginal-continuous.html#eq:gaussian-integral">(42.1)</a> can be evaluated exactly, but it
-requires looking at joint distributions.</p>
+Using numerical integration, we might be able to figure out that <span class="math inline">\(c \approx .3989423\)</span> (or as
+many decimal places as desired), but how do we know it is <span class="math inline">\(1 / \sqrt{2\pi}\)</span> exactly?</p>
+<p>It turns out that the definite integral <a href="marginal-continuous.html#eq:gaussian-integral">(42.1)</a> can be evaluated exactly, but to see this,
+we need to use joint distributions.</p>
 </div>
 <div id="theory-38" class="section level2 unnumbered">
 <h2>Theory</h2>
 The definition for the marginal p.d.f. mirrors the definition of the marginal p.m.f. for
-discrete distributions <a href="#def:marginal-discrete"><strong>??</strong></a>.
+discrete distributions <a href="marginal-discrete.html#def:marginal-discrete">19.1</a>.
 
 <div class="definition">
 <span id="def:marginal-continuous" class="definition"><strong>Definition 42.1  (Marginal Distribution)  </strong></span>Suppose we have the joint p.d.f. <span class="math inline">\(f(x, y)\)</span> of two continuous random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
@@ -370,7 +436,7 @@ f_Y(y) = \int_{-\infty}^\infty f(x, y)\,dx.
 </div>
 
 <p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then their joint p.d.f. is the product of their
-marginal p.d.f.s, just like it was for discrete random variables (Theorem <a href="#thm:joint-independent"><strong>??</strong></a>):</p>
+marginal p.d.f.s, just like it was for discrete random variables (Theorem <a href="marginal-discrete.html#thm:joint-independent">19.1</a>):</p>
 
 <div class="theorem">
 <span id="thm:joint-pdf-independent" class="theorem"><strong>Theorem 42.1  (Joint Distribution of Independent Random Variables)  </strong></span>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then
@@ -381,27 +447,40 @@ for all values <span class="math inline">\(x\)</span> and <span class="math inli
 </div>
 
 <p>In the following examples, we construct the joint p.d.f. of two independent random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>
-using Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a> and integrate the joint p.d.f. to obtain probabilities.</p>
+using Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a>. Then, we integrate the joint p.d.f. to obtain probabilities,
+as usual.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 42.1  (Symmetry of Continuous Random Variables)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variables. What is <span class="math inline">\(P(X &gt; Y)\)</span>?</p>
-<p><span class="math display">\[\begin{align*}
-P(X &gt; Y) &amp;= \int_0^\infty \int_0^x \lambda^2 e^{-\lambda x - \lambda y}\,dy\,dx \\
-&amp;= \int_0^\infty \lambda e^{-\lambda x} \underbrace{\int_0^x \lambda e^{-\lambda y}\,dy}_{1 - e^{-\lambda x}}\,dx \\
-&amp;= \int_0^\infty \lambda e^{-\lambda x} (1 - e^{-\lambda x})\,dx \\
-&amp;= \int_0^1 u\,du &amp; \text{(using $u=1-e^{-\lambda x}$)} \\
-&amp;= \frac{1}{2}.
-\end{align*}\]</span></p>
-In hindsight, the probability <em>has</em> to be <span class="math inline">\(1/2\)</span> by symmetry. We know that either <span class="math inline">\(X &gt; Y\)</span> or <span class="math inline">\(X &lt; Y\)</span>,
-since the probability that <span class="math inline">\(X = Y\)</span> is zero. Because <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent with the
-same distribution, there is no reason for one to be preferred over another, so
-<span class="math inline">\(P(X &gt; Y) = P(X &lt; Y) = \frac{1}{2}\)</span>.
+<p><span id="exm:unnamed-chunk-138" class="example"><strong>Example 42.1  (Symmetry of Continuous Random Variables)  </strong></span>The lifetimes of two lightbulbs, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, are independent <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variables.
+What is the probability the second lightbulb lasts longer than the first, <span class="math inline">\(P(Y &gt; X)\)</span>?</p>
+First, we write down the joint p.d.f. using Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a>:
+<span class="math display">\[ f(x, y) = \begin{cases} \lambda e^{-\lambda x} \cdot \lambda e^{-\lambda y} &amp; x, y \geq 0 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
+Now, we just need to integrate this p.d.f. over the region where <span class="math inline">\(y &gt; x\)</span>. We sketch a bird’s-eye view below.
 </div>
 
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-139-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Now we integrate over the above region:
+<span class="math display">\[\begin{align*}
+P(Y &gt; X) &amp;= \int_0^\infty \int_x^\infty \lambda^2 e^{-\lambda x - \lambda y}\,dy\,dx \\
+&amp;= \int_0^\infty \lambda e^{-\lambda x} \underbrace{\int_x^\infty \lambda e^{-\lambda y}\,dy}_{e^{-\lambda x}}\,dx \\
+&amp;= \int_0^\infty \lambda e^{-\lambda x} e^{-\lambda x}\,dx \\
+&amp;= \int_0^\infty \lambda e^{-2\lambda x}\,dx \\
+&amp;= \frac{1}{2}.
+\end{align*}\]</span>
+(One way to see the last equality is to recognize <span class="math inline">\(f(x) = 2 \lambda e^{-2\lambda x}; x &gt; 0\)</span> as the p.d.f. of an
+<span class="math inline">\(\text{Exponential}(2\lambda)\)</span> distribution, so we multiply and divide by <span class="math inline">\(2\)</span> to make the integrand match
+this p.d.f., which then must integrate to 1.)</p>
+<p>In hindsight, the probability <em>has</em> to be <span class="math inline">\(1/2\)</span> by symmetry. We know that either <span class="math inline">\(X &gt; Y\)</span> or <span class="math inline">\(X &lt; Y\)</span>,
+since the probability that <span class="math inline">\(X = Y\)</span> (i.e., the two lightbulbs have <em>exactly</em> the same lifetime) is zero.
+Because <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent with the same distribution, there is no reason for one to be preferred
+over another, so <span class="math inline">\(P(X &gt; Y) = P(X &lt; Y) = \frac{1}{2}\)</span>.
+In fact, by the exact same argument, this is true for <em>all</em> independent and identically distributed (i.i.d.)
+continuous random variables with a joint p.d.f.
+```</p>
 <p>The last example answers the question posed at the beginning of this lesson.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-2" class="example"><strong>Example 42.2  (The Gaussian Integral)  </strong></span>The p.d.f. of a standard normal random variable <span class="math inline">\(Z\)</span> is
+<p><span id="exm:unnamed-chunk-140" class="example"><strong>Example 42.2  (The Gaussian Integral)  </strong></span>The p.d.f. of a standard normal random variable <span class="math inline">\(Z\)</span> is
 <span class="math display">\[ f(z) = c e^{-z^2/2},  \]</span>
 where <span class="math inline">\(c\)</span> is a constant to make the p.d.f. integrate to 1.</p>
 Surprisingly, the easiest way to determine <span class="math inline">\(c\)</span> is to define
@@ -415,7 +494,7 @@ Surprisingly, this double integral can be evaluated (even though the single inte
 double integral, we convert to <a href="https://tutorial.math.lamar.edu/classes/calciii/DIPolarCoords.aspx">polar coordinates</a>, using the substitutions <span class="math inline">\(r^2 = x^2 + y^2\)</span> and <span class="math inline">\(dx\,dy = r\,dr\,d\theta\)</span>:
 <span class="math display">\[\begin{align*} 
 c^2 \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-(x^2 + y^2) / 2}\,dx\,dy &amp;= c^2 \int_{0}^{2\pi} \int_{0}^\infty e^{-r^2 / 2} r\,dr\,d\theta \\
-&amp;= c^2 \int_0^{2\pi} \underbrace{\int_0^\infty e^{-u}\,du}_{1} \,d\theta \\
+&amp;= c^2 \int_0^{2\pi} \underbrace{\int_0^\infty e^{-u}\,du}_{1} \,d\theta &amp; \text{(using $u=r^2/2$)} \\
 &amp;= c^2 (2\pi). 
 \end{align*}\]</span>
 Setting this equal to 1, we see that <span class="math inline">\(c^2 = \frac{1}{2\pi}\)</span>. In other words, <span class="math inline">\(c = \frac{1}{\sqrt{2\pi}}\)</span>.

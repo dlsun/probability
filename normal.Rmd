@@ -228,9 +228,9 @@ vary according to a normal distribution with mean $\mu = 2.20$ ounces and standa
 $\sigma = 0.04$ ounces.
 
     a. What proportion of candy bars weigh less than the advertised weight?
-    b. If the weights of candy bar are independent, what is the expected number of candy bars 
+    b. If the weights of candy bars are independent, what is the expected number of candy bars 
     before you encounter one that weighs less than the advertised weight?
-    c. If the manufacturer decides that it’s unacceptable to have so many candy bars weigh less than
+    c. If the manufacturer decides that it's unacceptable to have so many candy bars weigh less than
 the advertised weight, they might want to adjust the production process so that only 1 candy bar
 in 1000 weighs less than advertised. What should the mean of the actual weights be (assuming
 that the standard deviation of the weights remains 0.04 ounces)? Is this more or less than before?
@@ -245,8 +245,8 @@ before? Why does this makes sense?
 
     _Hint:_ This is a transformation, so you can use the method of Lesson \@ref(transformations). 
     When calculating the c.d.f., leave your answer in terms of $\Phi$, the c.d.f. of the standard normal 
-    distribution. It does not have a closed-form expression, but you know its derivative. (The derivative 
-    of any c.d.f. is its p.d.f.)
+    distribution. It does not have a closed-form expression, but you know its derivative. (What is the 
+    derivative of any c.d.f.?)
 
     (This distribution has a name: the log-normal distribution. This is a popular distribution for modeling 
     random variables with long right tails, such as income. Hopefully, you can appreciate this if you sketch 

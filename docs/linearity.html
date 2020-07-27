@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-24" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -362,6 +362,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="marginal-continuous.html"><a href="marginal-continuous.html"><i class="fa fa-check"></i><b>42</b> Marginal Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#motivating-example-26"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#theory-38"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#essential-practice-31"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -418,7 +429,7 @@ E[X+b] &amp;= \sum_x (x + b) f(x) &amp; \text{(LOTUS)} \\
 <p>Here is an example illustrating how Theorem <a href="linearity.html#thm:ev-constant">26.1</a> can be used.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-90" class="example"><strong>Example 26.1  (Expected Values in Roulette)  </strong></span>In roulette, betting on a single number pays 35-to-1. That is, for each $1 you bet, you win
+<p><span id="exm:unnamed-chunk-89" class="example"><strong>Example 26.1  (Expected Values in Roulette)  </strong></span>In roulette, betting on a single number pays 35-to-1. That is, for each $1 you bet, you win
 $35 if the ball lands in that pocket.</p>
 <p>If we let <span class="math inline">\(X\)</span> represent your net winnings (or losses) on this bet, its p.m.f. is
 <span class="math display">\[ \begin{array}{r|cc} x &amp; -1 &amp; 35 \\ \hline f_X(x) &amp; 37/38 &amp; 1/38 \end{array}. \]</span></p>
@@ -467,7 +478,7 @@ is irrelevant.</p>
 <p>Let’s apply this to the Xavier and Yolanda problem from Lesson <a href="joint-discrete.html#joint-discrete">18</a>.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-92" class="example"><strong>Example 26.2  (Xavier and Yolanda Revisited)  </strong></span>Xavier and Yolanda head to the roulette table at a casino. They both place bets on red on 3 spins of the roulette
+<p><span id="exm:unnamed-chunk-91" class="example"><strong>Example 26.2  (Xavier and Yolanda Revisited)  </strong></span>Xavier and Yolanda head to the roulette table at a casino. They both place bets on red on 3 spins of the roulette
 wheel before Xavier has to leave. After Xavier leaves, Yolanda places bets on red on 2 more spins of the wheel.
 Let <span class="math inline">\(X\)</span> be the number of bets that Xavier wins and <span class="math inline">\(Y\)</span> be the number that Yolanda wins.</p>
 <p>In Lesson <a href="lotus2d.html#lotus2d">25</a>, we calculated <span class="math inline">\(E[Y - X]\)</span>, the expected number of <em>additional</em> times that Yolanda wins,
@@ -535,7 +546,7 @@ two tickets from the <span class="math inline">\(n\)</span> tickets in the sampl
 the <span class="math inline">\(X(X-1) = 6\)</span> ways of choosing two tickets among the <span class="math inline">\(\fbox{1}\)</span>s.</p>
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-92-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Let’s define an indicator variable <span class="math inline">\(Y_{ij}, i\neq j\)</span> for each of the <span class="math inline">\(n(n-1)\)</span>
 ways of choosing two tickets from our sample. Let <span class="math inline">\(Y_{ij}\)</span> be 1 if tickets <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>
 are both <span class="math inline">\(\fbox{1}\)</span>s. In other words, <span class="math inline">\(Y_{ij} = 1\)</span> if and only if there is a red arrow

@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-24" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -362,6 +362,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="marginal-continuous.html"><a href="marginal-continuous.html"><i class="fa fa-check"></i><b>42</b> Marginal Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#motivating-example-26"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#theory-38"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#essential-practice-31"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -401,7 +412,7 @@ these possible values based on the information he has been given.</p>
 random variable <span class="math inline">\(Y\)</span>. This is called the <strong>conditional distribution</strong> of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span>.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-80" class="definition"><strong>Definition 20.1  (Conditional Distribution)  </strong></span>The <strong>conditional p.m.f.</strong> of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span> is defined as
+<span id="def:unnamed-chunk-79" class="definition"><strong>Definition 20.1  (Conditional Distribution)  </strong></span>The <strong>conditional p.m.f.</strong> of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span> is defined as
 <span class="math display" id="eq:conditional-x">\[\begin{equation}
 f_{X|Y}(x|y) \overset{\text{def}}{=} P(X = x | Y = y) = \frac{f(x, y)}{f_Y(y)}.
 \tag{20.1}
@@ -430,7 +441,7 @@ Figure 20.2: The joint distribution <span class="math inline">\(f(x, 3)\)</span>
 <p>Let’s calculate another conditional distribution—this time using formulas, rather than tables.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-81" class="example"><strong>Example 20.1  (Conditional Distributions of a Poisson Process)  </strong></span>In San Luis Obispo, radioactive particles hit a Geiger counter according to a Poisson process at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second. Suppose that 7 particles are detected in the first 5 seconds.
+<span id="exm:unnamed-chunk-80" class="example"><strong>Example 20.1  (Conditional Distributions of a Poisson Process)  </strong></span>In San Luis Obispo, radioactive particles hit a Geiger counter according to a Poisson process at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second. Suppose that 7 particles are detected in the first 5 seconds.
 What is the distribution of the number of particles that are detected in the first 3 seconds?
 </div>
 

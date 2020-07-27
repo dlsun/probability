@@ -2,27 +2,30 @@
 
 ## Motivating Example {-}
 
-In Lesson \@ref(normal), we saw that there is no closed-form expression for the antiderivative
+In Lesson \@ref(normal) on the normal distribution, we saw that there is no closed-form expression for the 
+antiderivative 
 \[ \int ce^{-z^2/2}\,dz, \]
 where $c$ is a constant. 
 The definite integral must be computed numerically. This means that we can compute the integral to 
 any precision we like, but exact values are, in general, impossible. 
 
-How, then, do we know that the constant $c$ must be $1 / \sqrt{2\pi}$ in order for the total probability 
-to be one? That is, 
+How, then, can we be sure that the constant $c$ must be $1 / \sqrt{2\pi}$ for the total probability 
+to be 1? That is, 
 \begin{equation} 
 \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\,dz = 1.
 (\#eq:gaussian-integral)
 \end{equation}
-Using numerical integration, we might be able to figure out that $c \approx .3989423$ (as 
-many decimal places as desired), but how did someone figure out that this was $1 / \sqrt{2\pi}$ exactly? 
-It turns out that the definite integral \@ref(eq:gaussian-integral) can be evaluated exactly, but it 
-requires looking at joint distributions.
+Using numerical integration, we might be able to figure out that $c \approx .3989423$ (or as 
+many decimal places as desired), but how do we know it is $1 / \sqrt{2\pi}$ exactly? 
+
+It turns out that the definite integral \@ref(eq:gaussian-integral) can be evaluated exactly, but to see this,
+we need to use joint distributions.
 
 ## Theory {-}
 
 The definition for the marginal p.d.f. mirrors the definition of the marginal p.m.f. for 
-discrete distributions \@ref(def:marginal-discrete).
+discrete distributions \@ref(def:marginal-discrete), except with sums replaced by 
+integrals and the joint p.m.f. replaced by the joint p.d.f.
 ```{definition marginal-continuous, name="Marginal Distribution"}
 Suppose we have the joint p.d.f. $f(x, y)$ of two continuous random variables $X$ and $Y$. 
 The marginal p.d.f. of $X$ is the p.d.f. of $X$ alone and is obtained by _integrating_ 
@@ -51,23 +54,61 @@ for all values $x$ and $y$. But only if $X$ and $Y$ are independent!
 ```
 
 In the following examples, we construct the joint p.d.f. of two independent random variables $X$ and $Y$ 
-using Theorem \@ref(thm:joint-pdf-independent) and integrate the joint p.d.f. to obtain probabilities.
+using Theorem \@ref(thm:joint-pdf-independent). Then, we integrate the joint p.d.f. to obtain probabilities, 
+as usual.
 
 ```{example, name="Symmetry of Continuous Random Variables"}
-Let $X$ and $Y$ be independent $\text{Exponential}(\lambda)$ random variables. What is $P(X > Y)$?
+The lifetimes of two lightbulbs, $X$ and $Y$, are independent $\text{Exponential}(\lambda)$ random variables. 
+What is the probability the second lightbulb lasts longer than the first, $P(Y > X)$?
 
+First, we write down the joint p.d.f. using Theorem \@ref(thm:joint-pdf-independent):
+\[ f(x, y) = \begin{cases} \lambda e^{-\lambda x} \cdot \lambda e^{-\lambda y} & x, y \geq 0 \\ 0 & \text{otherwise} \end{cases}. \]
+Now, we just need to integrate this p.d.f. over the region where $y > x$. We sketch a bird's-eye view below.
+```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
+  \begin{tikzpicture}[scale=3]
+
+\draw[->] (-.2, 0) -- (1.3, 0);
+\draw[->] (0, -.2) -- (0, 1.3);
+\draw (1, -.04) -- (1, .04);
+\draw (0.5, -.04) -- (0.5, .04);
+\draw (-.04, 0.5) -- (.04, 0.5);
+\draw (-.04, 1) -- (.04, 1);
+
+\node[anchor=west] at (1.3, 0) {$x$};
+\node[anchor=south] at (0, 1.3) {$y$};
+
+\node[anchor=east] at (0, 1) {$2$};
+\node[anchor=north] at (1, -.04) {$2$};
+\node[anchor=north] at (0.5, -.04) {$1$};
+\node[anchor=east] at (0, 0.5) {$1$};
+
+\node[anchor=west,blue] at (0.05, 1.1) {$y > x$};
+\fill [blue,fill opacity=.3] (0, 0) -- (1.2, 1.2) -- (0, 1.2);
+
+\draw[blue,dashed,<->] (-.2, -.2) -- (1.3, 1.3);
+\node[blue,rotate=45] at (1.15, 1.05) {$x = y$};
+
+\end{tikzpicture}
+```
+
+Now we integrate over the above region:
 \begin{align*}
-P(X > Y) &= \int_0^\infty \int_0^x \lambda^2 e^{-\lambda x - \lambda y}\,dy\,dx \\
-&= \int_0^\infty \lambda e^{-\lambda x} \underbrace{\int_0^x \lambda e^{-\lambda y}\,dy}_{1 - e^{-\lambda x}}\,dx \\
-&= \int_0^\infty \lambda e^{-\lambda x} (1 - e^{-\lambda x})\,dx \\
-&= \int_0^1 u\,du & \text{(using $u=1-e^{-\lambda x}$)} \\
+P(Y > X) &= \int_0^\infty \int_x^\infty \lambda^2 e^{-\lambda x - \lambda y}\,dy\,dx \\
+&= \int_0^\infty \lambda e^{-\lambda x} \underbrace{\int_x^\infty \lambda e^{-\lambda y}\,dy}_{e^{-\lambda x}}\,dx \\
+&= \int_0^\infty \lambda e^{-\lambda x} e^{-\lambda x}\,dx \\
+&= \int_0^\infty \lambda e^{-2\lambda x}\,dx \\
 &= \frac{1}{2}.
 \end{align*}
+(One way to see the last equality is to recognize $f(x) = 2 \lambda e^{-2\lambda x}; x > 0$ as the p.d.f. of an 
+$\text{Exponential}(2\lambda)$ distribution, so we multiply and divide by $2$ to make the integrand match 
+this p.d.f., which then must integrate to 1.)
 
 In hindsight, the probability _has_ to be $1/2$ by symmetry. We know that either $X > Y$ or $X < Y$, 
-since the probability that $X = Y$ is zero. Because $X$ and $Y$ are independent with the 
-same distribution, there is no reason for one to be preferred over another, so 
-$P(X > Y) = P(X < Y) = \frac{1}{2}$.
+since the probability that $X = Y$ (i.e., the two lightbulbs have _exactly_ the same lifetime) is zero. 
+Because $X$ and $Y$ are independent with the same distribution, there is no reason for one to be preferred 
+over another, so $P(X > Y) = P(X < Y) = \frac{1}{2}$.
+In fact, by the exact same argument, this is true for _all_ independent and identically distributed (i.i.d.) 
+continuous random variables with a joint p.d.f.
 ```
 
 The last example answers the question posed at the beginning of this lesson.
@@ -88,7 +129,7 @@ Surprisingly, this double integral can be evaluated (even though the single inte
 double integral, we convert to [polar coordinates](https://tutorial.math.lamar.edu/classes/calciii/DIPolarCoords.aspx), using the substitutions $r^2 = x^2 + y^2$ and $dx\,dy = r\,dr\,d\theta$:
 \begin{align*} 
 c^2 \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-(x^2 + y^2) / 2}\,dx\,dy &= c^2 \int_{0}^{2\pi} \int_{0}^\infty e^{-r^2 / 2} r\,dr\,d\theta \\
-&= c^2 \int_0^{2\pi} \underbrace{\int_0^\infty e^{-u}\,du}_{1} \,d\theta \\
+&= c^2 \int_0^{2\pi} \underbrace{\int_0^\infty e^{-u}\,du}_{1} \,d\theta & \text{(using $u=r^2/2$)} \\
 &= c^2 (2\pi). 
 \end{align*}
 Setting this equal to 1, we see that $c^2 = \frac{1}{2\pi}$. In other words, $c = \frac{1}{\sqrt{2\pi}}$.

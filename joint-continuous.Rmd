@@ -10,14 +10,13 @@ The joint distribution of two continuous random variables $X$ and $Y$
 f(x, y).
   (\#eq:joint-pdf)
 \end{equation}
-  The joint p.d.f. is a surface over the $xy$-plane. To calculate probabilities, we 
-  calculate double integrals
+  The joint p.d.f. is a surface over the $xy$-plane. To calculate the probability of an event $B$, we 
+  integrate this joint p.d.f. over $B$:
   \begin{equation}
   P((X, Y) \in B) = \underset{B}{\iint} f(x, y)\,dy\,dx.
+  (\#eq:double-integral)
   \end{equation}
   In other words, _volumes_ under the joint p.d.f. surface represent probabilities.
-```
-
 ```{r, echo=FALSE, engine='tikz', out.width='70%', fig.ext='png', fig.align='center', fig.cap="Joint Distributions of Continuous Random Variables", engine.opts = list(template = "tikz_template.tex")}
 	\begin{tikzpicture}[scale=.9]
 	
@@ -30,25 +29,44 @@ f(x, y).
 	\draw[->] (0.5, 0) -- (5, 0);
 	\draw[->] (0.5, 0) -- (0.5, 3.6);
 	
-	\draw [fill=gray!50,fill opacity=0.7] plot [smooth cycle] coordinates {(4, 1) (2, 1.5) (0, 1) (0.5, 2) (1.5, 3) (3.5, 3.3) (5.5, 2.7) (4.8, 2)}; 
+	\draw [color=red,fill=red!50,fill opacity=0.7] plot [smooth cycle] coordinates {(4, 1) (2, 1.5) (0, 1) (0.5, 2) (1.5, 3) (3.5, 3.3) (5.5, 2.7) (4.8, 2)}; 
 	
-	\node[red] at (3.2, -0.7) {$B$};
-	\draw [red,fill=red!50,fill opacity=0.5] (1.5, -0.8) -- (2, -0.3) -- (3, -0.3) -- (2.5, -0.8) -- cycle;
+	\node[blue] at (3.2, -0.7) {$B$};
+	\draw [blue,fill=blue!50,fill opacity=0.5] (1.5, -0.8) -- (2, -0.3) -- (3, -0.3) -- cycle;
 	
-	\draw [color=red,fill=red!50,fill opacity=0.3] (1.5, -0.8) -- (1.5, 2) -- (2.5, 2) -- (2.5, -0.8);
-	\draw [color=red,fill=red!50,fill opacity=0.3] (2.5, 2) -- (2.5, -0.8) -- (3, -0.3) -- (3, 2.5);
-	\draw [red] (2, -0.3) -- (2, 2.5);
-  \draw [color=red,fill=red!50,fill opacity=0.5] (1.5, 2) -- (2, 2.5) -- (3, 2.5) -- (2.5, 2) -- cycle;
+	\draw [color=blue,fill=blue!50,fill opacity=0.3] (1.5, -0.8) -- (1.5, 2) -- (3, 2.5) -- (3, -0.3);
+	\draw [blue] (2, -0.3) -- (2, 2.5);
+  \draw [color=blue,fill=blue!50,fill opacity=0.5] (1.5, 2) -- (2, 2.5) -- (3, 2.5) -- cycle;
 	
-	\node [red,anchor=east] (label) at (-0.4, 0.3) {$P((X, Y) \in B)$};
-	\draw [red,->,snake=snake] (label) -- (1.8, 0.7);
+	\node [blue,anchor=east] (label) at (-0.4, 0.3) {$P((X, Y) \in B)$};
+	\draw [blue,->] (label) -- (1.8, 0.7);
 	
 	\end{tikzpicture}
 ```
 
-Let's look at some examples.
+The hardest part of calculating \@ref(eq:double-integral) is setting up the limits of integration. So we will 
+often draw a bird's-eye view of the $xy$-plane, ignoring the surface, to help us determine the limits of integration.
+```{r, echo=FALSE, engine='tikz', out.width='40%', fig.ext='png', fig.align='center', fig.cap="Bird's Eye View of the Event Above", engine.opts = list(template = "tikz_template.tex")}
+  \begin{tikzpicture}[scale=3]
 
-```{example, name="Joint Distribution of the First and Second Arrival Times"}
+\draw[->] (-.1, 0) -- (1.2, 0);
+\draw[->] (0, -.1) -- (0, 1.2);
+
+\node[anchor=north] at (1.2, 0) {$x$};
+\node[anchor=east] at (0, 1.2) {$y$};
+
+\draw [blue,fill=blue,fill opacity=.3] (.5, .5) -- (.5, 1) -- (1, .5) -- cycle;
+\node[blue] at (1.1, .5) {$B$};
+
+\end{tikzpicture}
+```
+
+That's all there is to the theory. The only way to get good at this is to brush up on your 
+multivariable calculus and do many, many examples.
+
+## Worked Examples {-}
+
+```{example pp-joint-first-second, name="Joint Distribution of the First and Second Arrival Times"}
 In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process 
 at a rate of $\lambda = 0.8$ particles per second. The time $X$ that the first particle is detected
   and the time $Y$ that the second particle is detected can be shown to have the joint p.d.f.:
@@ -66,8 +84,8 @@ at a rate of $\lambda = 0.8$ particles per second. The time $X$ that the first p
   
   Let's calculate the probability that _both_ arrivals happen between 1 and 2 seconds. That is, 
   we want to calculate $P(1 < X < 2 \text{ and } 1 < Y < 2)$. We can obtain this probability 
-  by integrating over the region where the square $[1, 2] \times [1, 2]$ overlaps with the support 
-  of the distribution. We can determine this by sketching a bird's eye view of the $xy$-plane.
+  by integrating this p.d.f. over the square $[1, 2] \times [1, 2]$, shaded in blue in the 
+  bird's-eye view below.
   
 ```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
   \begin{tikzpicture}[scale=3]
@@ -87,11 +105,11 @@ at a rate of $\lambda = 0.8$ particles per second. The time $X$ that the first p
 \node[anchor=north] at (0.5, -.04) {$1$};
 \node[anchor=east] at (0, 0.5) {$1$};
 
-\node[anchor=west,orange] at (0.05, 1.1) {$y > x$};
-\fill [orange,fill opacity=.3] (0, 0) -- (1.2, 1.2) -- (0, 1.2);
+\node[anchor=west,red] at (0.05, 1.1) {$y > x$};
+\fill [red,fill opacity=.3] (0, 0) -- (1.2, 1.2) -- (0, 1.2);
 
-\draw[orange,dashed,<->] (-.2, -.2) -- (1.3, 1.3);
-\node[orange,rotate=45] at (1.15, 1.05) {$x = y$};
+\draw[red,dashed,<->] (-.2, -.2) -- (1.3, 1.3);
+\node[red,rotate=45] at (1.15, 1.05) {$x = y$};
 
 \fill [blue,fill opacity=.3] (.5, .5) -- (.5, 1) -- (1, 1) -- (1, .5) -- cycle;
 
@@ -104,38 +122,90 @@ at a rate of $\lambda = 0.8$ particles per second. The time $X$ that the first p
 
 \end{tikzpicture}
 ```
-  
-  From this picture, we see what the limits of integration should be. As $x$ ranges from 1 to 2, 
-  $y$ ranges from $x$ to 2. 
-  
+
+  Since the p.d.f. is zero, except on the support $\{ y > x \}$ (shaded in red in the figure above), 
+  we can just integrate the p.d.f. on the _overlap_ between the blue square and the red support.
+  The figure helps us determine the limits of integration. As $x$ ranges from 1 to 2, 
+  $y$ needs to range from $x$ to 2, if we want to cover the entire triangle where the square and support overlap.
   \begin{align*}
   P(1 < X < 2 \text{ and } 1 < Y < 2) &= \int_1^2 \int_x^2 0.64 e^{-0.8 y}\,dy\,dx \\
   &\approx .0859.
   \end{align*}
   
-  Once we set up the double integral, we evaluated the integral using [Wolfram Alpha](https://www.wolframalpha.com/input/?i=integrate+e%5E%28-0.8+y%29+from+x%3D1+to+2+and+y%3Dx+to+2). 
+  After setting up the double integral, the integral was evaluated using [Wolfram Alpha](https://www.wolframalpha.com/input/?i=integrate+e%5E%28-0.8+y%29+from+x%3D1+to+2+and+y%3Dx+to+2). 
   You are encouraged to use software to evaluate integrals. However, software does not 
-  help you translate the real world problem into the integral you need to set up. That, for now, 
+  translate the real world problem into the integral you need to set up. That, for now, 
   still has to be done by a human!
 
-
 Sometimes, the geometry is simple enough that we can calculate the volume without 
-doing integrals.
-```{example, name="Joint Uniform Distribution"}
-Two insurers provide bids on an insurance policy to a large company. The bids must be between 2000 and 2200. The company decides to accept the lower bid if the two bids differ by 20 or more. Otherwise the company will consider the two bids further.
+integrals.
 
-Suppose the two bids $X$ and $Y$ have joint p.d.f. 
-\[ f(x, y) = \begin{cases} \frac{1}{40000} & 2000 < x, y < 2200 \\ 0 & \text{otherwise} \end{cases}. \]
-Calculate the probability that the company considers the two bids further.
+```{example actuarial-joint, name="Actuarial Example"}
+Two insurers provide bids on an insurance policy to a large company. The bids must be between 2000 and 2200. The company decides to accept the lower bid if the two bids differ by 20 or more. Otherwise, the company will consider the two bids further.
+
+Suppose the two bids $X$ and $Y$ are equally likely to be any of the allowable bids. That is, their joint p.d.f. 
+\[ f(x, y) = \begin{cases} c & 2000 < x, y < 2200 \\ 0 & \text{otherwise} \end{cases}, \]
+where $c$ is a constant. What is the probability that the company considers the two bids further?
 ```{solution}
-.
+First, we sketch a bird's eye view of the joint p.d.f. The support of the distribution is the 
+red square. The surface is a constant height above the square, so the total volume under it is 
+\[ (\text{area of base}) \cdot (\text{height of surface}) = \underbrace{(2200 - 2000)^2}_{40000} \cdot c. \]
+We know that the the total volume must be 1, which means that 
+\[ c = \frac{1}{40000}. \]
+```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
+  \begin{tikzpicture}[scale=3]
+
+\draw[->] (-.2, 0) -- (1.3, 0);
+\draw[->] (0, -.2) -- (0, 1.3);
+\draw (1, -.04) -- (1, .04);
+\draw (0.5, -.04) -- (0.5, .04);
+\draw (-.04, 0.5) -- (.04, 0.5);
+\draw (-.04, 1) -- (.04, 1);
+
+\node[anchor=west] at (1.3, 0) {$x$};
+\node[anchor=south] at (0, 1.3) {$y$};
+
+\node[anchor=east] at (0, 1) {$2200$};
+\node[anchor=north] at (1, -.04) {$2200$};
+\node[anchor=north] at (0.5, -.04) {$2000$};
+\node[anchor=east] at (0, 0.5) {$2000$};
+
+\node[anchor=west,blue,rotate=45] at (.05, .05) {{\small $|x - y| < 20$}};
+\fill [blue,fill opacity=.3] (0, 0) -- (0, .1) -- (1.1, 1.2) -- (1.2, 1.1) -- (.1, 0) -- cycle;
+
+\fill [red,fill opacity=.3] (.5, .5) -- (.5, 1) -- (1, 1) -- (1, .5) -- cycle;
+
+\end{tikzpicture}
+```
+Now, the company will consider the bids further if $X$ is within 20 of $Y$. That is, we want to 
+calculate $P(|X - Y| < 20)$. Shaded in blue above are all points $(x, y)$ where $|x - y| < 20$. 
+To calculate $P(| X - Y | < 20)$, we need to calculate 
+the volume under the p.d.f. above the blue event. Since the blue event is nothing 
+and the red support. This region is an irregular hexagon.
+
+But because the height of the p.d.f. is a constant $c = \frac{1}{40000}$, this volume is just 
+\[ (\text{area of hexagon}) \cdot (\text{height of surface}) = (\text{area of hexagon}) \cdot \frac{1}{40000}. \]
+
+There are many ways to calculate the area of the hexagon, but the easiest is to take the area of the entire 
+square, minus the area of the two triangles on either side. Each triangle has a base of 180 and a height of 180, so 
+its area is $\frac{1}{2} 180^2$.
+\[  (\text{area of hexagon})  = (\text{area of square}) - 2(\text{area of triangle}) = 200^2 - 2(\frac{1}{2} 180^2) = 7600. \]
+
+So the probability is 
+\[ P(|X - Y| < 20) = 7600 \cdot \frac{1}{40000} = .19. \]
+
+The video below explains this problem.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/r9U9jISQAGc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-```
+
+In general, if the joint p.d.f. is constant on its support, as in Example \@ref(exm:actuarial-joint), then 
+the it is easier to calculate probabilities using geometry rather than calculus. 
+However, if the joint p.d.f. is not constant, as in Example \@ref(exm:pp-joint-first-second), then calculus is necessary.
+
 
 ## Essential Practice {-}
 
-1. Alice and Bob meet for lunch every day at a random time between 12 and 1. 
+1. Alice and Bob meet for lunch every day at a random time between noon and 1 P.M. 
 Bob always arrives after Alice, but otherwise, they are equally likely to arrive at any time. 
 The joint p.d.f. of $X$, the time Alice arrives (in minutes after 12 P.M.),
 and $Y$, the time Bob arrives (in minutes after 12 P.M.), is given by
@@ -144,7 +214,7 @@ where $c$ is a constant.
 
     a. Sketch a birds-eye view of the joint p.d.f. Because the p.d.f. is constant, you should be 
     able to calculate all probabilities using geometry, rather than integration.
-    b. Determine the value of $c$.
+    b. Determine the value of $c$ that makes this a valid joint p.d.f.
     c. Calculate the probability that Bob arrives more than 25\% later than 
     $P(Y > 1.25 X)$. (Sketch a picture of this region.)
 
@@ -153,10 +223,19 @@ and why?
 
 ## Additional Practice {-}
 
-1. A company produces cans of mixed nuts containing 
+1. An ecologist selects a point inside a circular sampling region according to a uniform distribution.
+Let $X$ be the $x$-coordinate of the point selected and $Y$ be the $y$-coordinate of the point selected. If
+the circle is centered at $(0, 0)$ and has radius $r$, then the joint pdf of $X$ and $Y$ is
+\[ f(x, y) = \begin{cases} c & x^2 + y^2 \leq r^2 \\ 0 & \text{otherwise} \end{cases}. \]
+    a. Determine the value of $c$ that makes this a valid joint p.d.f.
+    b. What is the probability that the selected point is within $r/2$ of the center of the circular 
+    region? (_Hint:_ Use geometry.)
+    c. What is the probability that _both_ $X$ and $Y$ differ from 0 by at most $r/2$?
+
+2. A company produces cans of mixed nuts containing 
 almonds, cashews, and peanuts. Each 
 can is exactly 1 lb, but the amount of each type of nut is 
 random. The joint p.d.f. of $X$, the amount of almonds, and $Y$, 
 the amount of cashews, is 
 \[ f(x, y) = \begin{cases} 24xy & 0 \leq x \leq 1, 0 \leq y \leq 1, x + y \leq 1 \\ 0 & \textrm{otherwise} \end{cases}. \]
-Find the probability that there are more almonds than cashews.
+Show that the probability there are more almonds than cashews is $0.5$.

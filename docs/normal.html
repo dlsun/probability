@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-24" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="var-continuous.html"/>
-
+<link rel="next" href="joint-continuous.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -362,6 +362,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="marginal-continuous.html"><a href="marginal-continuous.html"><i class="fa fa-check"></i><b>42</b> Marginal Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#motivating-example-26"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#theory-38"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#essential-practice-31"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -441,7 +452,7 @@ Figure 40.1: PDF and CDF of the Standard Normal Distribution
 <script src="https://gist.github.com/dlsun/d3d113724f70143fbe004dfc555533b5.js"></script>
 
 <div class="theorem">
-<p><span id="thm:unnamed-chunk-130" class="theorem"><strong>Theorem 40.1  (Expected Value and Variance of the Standard Normal)  </strong></span>Let <span class="math inline">\(Z\)</span> be a standard normal random variable. Then:
+<p><span id="thm:unnamed-chunk-129" class="theorem"><strong>Theorem 40.1  (Expected Value and Variance of the Standard Normal)  </strong></span>Let <span class="math inline">\(Z\)</span> be a standard normal random variable. Then:
 <span class="math display">\[\begin{align*}
 E[Z] &amp;= 0 &amp; \text{Var}[Z] &amp;= 1
 \end{align*}\]</span></p>
@@ -500,7 +511,7 @@ Figure 40.2: PDF and CDF of the Normal Distribution
 <span class="math inline">\(\sigma\)</span> can be interpreted as the center and spread, respectively.</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-132" class="theorem"><strong>Theorem 40.2  (Expected Value and Variance of the Normal)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Normal}(\mu, \sigma)\)</span> random variable. Then:
+<span id="thm:unnamed-chunk-131" class="theorem"><strong>Theorem 40.2  (Expected Value and Variance of the Normal)  </strong></span>Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(\text{Normal}(\mu, \sigma)\)</span> random variable. Then:
 <span class="math display">\[\begin{align*}
 E[X] &amp;= \mu &amp; \text{Var}[X] &amp;= \sigma^2
 \end{align*}\]</span>
@@ -567,7 +578,7 @@ vary according to a normal distribution with mean <span class="math inline">\(\m
 <span class="math inline">\(\sigma = 0.04\)</span> ounces.</p>
 <ol style="list-style-type: lower-alpha">
 <li>What proportion of candy bars weigh less than the advertised weight?</li>
-<li>If the weights of candy bar are independent, what is the expected number of candy bars
+<li>If the weights of candy bars are independent, what is the expected number of candy bars
 before you encounter one that weighs less than the advertised weight?</li>
 <li>If the manufacturer decides that it’s unacceptable to have so many candy bars weigh less than
 the advertised weight, they might want to adjust the production process so that only 1 candy bar
@@ -583,8 +594,8 @@ before? Why does this makes sense?</li>
 <li><p>Let <span class="math inline">\(Z\)</span> be a standard normal random variable. Derive the p.d.f. of <span class="math inline">\(X = e^Z\)</span>. Sketch this p.d.f.</p>
 <p><em>Hint:</em> This is a transformation, so you can use the method of Lesson <a href="transformations.html#transformations">36</a>.
 When calculating the c.d.f., leave your answer in terms of <span class="math inline">\(\Phi\)</span>, the c.d.f. of the standard normal
-distribution. It does not have a closed-form expression, but you know its derivative. (The derivative
-of any c.d.f. is its p.d.f.)</p>
+distribution. It does not have a closed-form expression, but you know its derivative. (What is the
+derivative of any c.d.f.?)</p>
 <p>(This distribution has a name: the log-normal distribution. This is a popular distribution for modeling
 random variables with long right tails, such as income. Hopefully, you can appreciate this if you sketch
 the p.d.f.)</p></li>
@@ -597,8 +608,8 @@ the p.d.f.)</p></li>
           </div>
         </div>
       </div>
-<a href="var-continuous.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="var-continuous.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="joint-continuous.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

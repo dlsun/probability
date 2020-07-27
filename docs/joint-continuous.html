@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-26" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -301,6 +301,7 @@
 </ul></li>
 <li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
@@ -341,10 +342,11 @@ is described by their <strong>joint p.d.f.</strong>
 f(x, y).
   \tag{41.1}
 \end{equation}\]</span>
-The joint p.d.f. is a surface over the <span class="math inline">\(xy\)</span>-plane. To calculate probabilities, we
-calculate double integrals
-<span class="math display">\[\begin{equation}
+The joint p.d.f. is a surface over the <span class="math inline">\(xy\)</span>-plane. To calculate the probability of an event <span class="math inline">\(B\)</span>, we
+integrate this joint p.d.f. over <span class="math inline">\(B\)</span>:
+<span class="math display" id="eq:double-integral">\[\begin{equation}
   P((X, Y) \in B) = \underset{B}{\iint} f(x, y)\,dy\,dx.
+  \tag{41.2}
   \end{equation}\]</span>
 In other words, <em>volumes</em> under the joint p.d.f. surface represent probabilities.
 </div>
@@ -355,10 +357,22 @@ In other words, <em>volumes</em> under the joint p.d.f. surface represent probab
 Figure 41.1: Joint Distributions of Continuous Random Variables
 </p>
 </div>
-<p>Let’s look at some examples.</p>
+The hardest part of calculating <a href="joint-continuous.html#eq:double-integral">(41.2)</a> is setting up the limits of integration. So we will
+often draw a bird’s-eye view of the <span class="math inline">\(xy\)</span>-plane, ignoring the surface, to help us determine the limits of integration.
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" alt="Bird's Eye View of the Event Above" width="40%" />
+<p class="caption">
+Figure 41.2: Bird’s Eye View of the Event Above
+</p>
+</div>
+<p>That’s all there is to the theory. The only way to get good at this is to brush up on your
+multivariable calculus and do many, many examples.</p>
+</div>
+<div id="worked-examples" class="section level2 unnumbered">
+<h2>Worked Examples</h2>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-2" class="example"><strong>Example 41.1  (Joint Distribution of the First and Second Arrival Times)  </strong></span>In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process
+<p><span id="exm:pp-joint-first-second" class="example"><strong>Example 41.1  (Joint Distribution of the First and Second Arrival Times)  </strong></span>In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process
 at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second. The time <span class="math inline">\(X\)</span> that the first particle is detected
 and the time <span class="math inline">\(Y\)</span> that the second particle is detected can be shown to have the joint p.d.f.:
 <span class="math display">\[ f(x, y) = \begin{cases} 0.64 e^{-0.8 y} &amp; 0 &lt; x &lt; y \\ 0 &amp; \text{otherwise} \end{cases}.  \]</span>
@@ -374,43 +388,67 @@ to be detected <em>after</em> the second particle. So the probability of this mu
 </ul>
 Let’s calculate the probability that <em>both</em> arrivals happen between 1 and 2 seconds. That is,
 we want to calculate <span class="math inline">\(P(1 &lt; X &lt; 2 \text{ and } 1 &lt; Y &lt; 2)\)</span>. We can obtain this probability
-by integrating over the region where the square <span class="math inline">\([1, 2] \times [1, 2]\)</span> overlaps with the support
-of the distribution. We can determine this by sketching a bird’s eye view of the <span class="math inline">\(xy\)</span>-plane.
+by integrating this p.d.f. over the square <span class="math inline">\([1, 2] \times [1, 2]\)</span>, shaded in blue in the
+bird’s-eye view below.
 </div>
 
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>From this picture, we see what the limits of integration should be. As <span class="math inline">\(x\)</span> ranges from 1 to 2,
-<span class="math inline">\(y\)</span> ranges from <span class="math inline">\(x\)</span> to 2.</p>
-<p><span class="math display">\[\begin{align*}
+<p>Since the p.d.f. is zero, except on the support <span class="math inline">\(\{ y &gt; x \}\)</span> (shaded in red in the figure above),
+we can just integrate the p.d.f. on the <em>overlap</em> between the blue square and the red support.
+The figure helps us determine the limits of integration. As <span class="math inline">\(x\)</span> ranges from 1 to 2,
+<span class="math inline">\(y\)</span> needs to range from <span class="math inline">\(x\)</span> to 2, if we want to cover the entire triangle where the square and support overlap.
+<span class="math display">\[\begin{align*}
   P(1 &lt; X &lt; 2 \text{ and } 1 &lt; Y &lt; 2) &amp;= \int_1^2 \int_x^2 0.64 e^{-0.8 y}\,dy\,dx \\
   &amp;\approx .0859.
   \end{align*}\]</span></p>
-<p>Once we set up the double integral, we evaluated the integral using <a href="https://www.wolframalpha.com/input/?i=integrate+e%5E%28-0.8+y%29+from+x%3D1+to+2+and+y%3Dx+to+2">Wolfram Alpha</a>.
+<p>After setting up the double integral, the integral was evaluated using <a href="https://www.wolframalpha.com/input/?i=integrate+e%5E%28-0.8+y%29+from+x%3D1+to+2+and+y%3Dx+to+2">Wolfram Alpha</a>.
 You are encouraged to use software to evaluate integrals. However, software does not
-help you translate the real world problem into the integral you need to set up. That, for now,
+translate the real world problem into the integral you need to set up. That, for now,
 still has to be done by a human!</p>
-Sometimes, the geometry is simple enough that we can calculate the volume without
-doing integrals.
+<p>Sometimes, the geometry is simple enough that we can calculate the volume without
+integrals.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-4" class="example"><strong>Example 41.2  (Joint Uniform Distribution)  </strong></span>Two insurers provide bids on an insurance policy to a large company. The bids must be between 2000 and 2200. The company decides to accept the lower bid if the two bids differ by 20 or more. Otherwise the company will consider the two bids further.</p>
-Suppose the two bids <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have joint p.d.f.
-<span class="math display">\[ f(x, y) = \begin{cases} \frac{1}{40000} &amp; 2000 &lt; x, y &lt; 2200 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
-Calculate the probability that the company considers the two bids further.
+<p><span id="exm:actuarial-joint" class="example"><strong>Example 41.2  (Actuarial Example)  </strong></span>Two insurers provide bids on an insurance policy to a large company. The bids must be between 2000 and 2200. The company decides to accept the lower bid if the two bids differ by 20 or more. Otherwise, the company will consider the two bids further.</p>
+Suppose the two bids <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are equally likely to be any of the allowable bids. That is, their joint p.d.f.
+<span class="math display">\[ f(x, y) = \begin{cases} c &amp; 2000 &lt; x, y &lt; 2200 \\ 0 &amp; \text{otherwise} \end{cases}, \]</span>
+where <span class="math inline">\(c\)</span> is a constant. What is the probability that the company considers the two bids further?
 </div>
 
 
 <div class="solution">
-<p> <span class="solution"><em>Solution. </em></span> .</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/r9U9jISQAGc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+ <span class="solution"><em>Solution. </em></span> First, we sketch a bird’s eye view of the joint p.d.f. The support of the distribution is the
+red square. The surface is a constant height above the square, so the total volume under it is
+<span class="math display">\[ (\text{area of base}) \cdot (\text{height of surface}) = \underbrace{(2200 - 2000)^2}_{40000} \cdot c. \]</span>
+We know that the the total volume must be 1, which means that
+<span class="math display">\[ c = \frac{1}{40000}. \]</span>
 </div>
 
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" />
+Now, the company will consider the bids further if <span class="math inline">\(X\)</span> is within 20 of <span class="math inline">\(Y\)</span>. That is, we want to
+calculate <span class="math inline">\(P(|X - Y| &lt; 20)\)</span>. Shaded in blue above are all points <span class="math inline">\((x, y)\)</span> where <span class="math inline">\(|x - y| &lt; 20\)</span>.
+To calculate <span class="math inline">\(P(| X - Y | &lt; 20)\)</span>, we need to calculate
+the volume under the p.d.f. above the blue event. Since the blue event is nothing
+and the red support. This region is an irregular hexagon.</p>
+<p>But because the height of the p.d.f. is a constant <span class="math inline">\(c = \frac{1}{40000}\)</span>, this volume is just
+<span class="math display">\[ (\text{area of hexagon}) \cdot (\text{height of surface}) = (\text{area of hexagon}) \cdot \frac{1}{40000}. \]</span></p>
+<p>There are many ways to calculate the area of the hexagon, but the easiest is to take the area of the entire
+square, minus the area of the two triangles on either side. Each triangle has a base of 180 and a height of 180, so
+its area is <span class="math inline">\(\frac{1}{2} 180^2\)</span>.
+<span class="math display">\[  (\text{area of hexagon})  = (\text{area of square}) - 2(\text{area of triangle}) = 200^2 - 2(\frac{1}{2} 180^2) = 7600. \]</span></p>
+<p>So the probability is
+<span class="math display">\[ P(|X - Y| &lt; 20) = 7600 \cdot \frac{1}{40000} = .19. \]</span></p>
+<p>The video below explains this problem.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/r9U9jISQAGc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>In general, if the joint p.d.f. is constant on its support, as in Example <a href="joint-continuous.html#exm:actuarial-joint">41.2</a>, then
+the it is easier to calculate probabilities using geometry rather than calculus.
+However, if the joint p.d.f. is not constant, as in Example <a href="joint-continuous.html#exm:pp-joint-first-second">41.1</a>, then calculus is necessary.</p>
 </div>
 <div id="essential-practice-30" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>Alice and Bob meet for lunch every day at a random time between 12 and 1.
+<li><p>Alice and Bob meet for lunch every day at a random time between noon and 1 P.M.
 Bob always arrives after Alice, but otherwise, they are equally likely to arrive at any time.
 The joint p.d.f. of <span class="math inline">\(X\)</span>, the time Alice arrives (in minutes after 12 P.M.),
 and <span class="math inline">\(Y\)</span>, the time Bob arrives (in minutes after 12 P.M.), is given by
@@ -419,7 +457,7 @@ where <span class="math inline">\(c\)</span> is a constant.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Sketch a birds-eye view of the joint p.d.f. Because the p.d.f. is constant, you should be
 able to calculate all probabilities using geometry, rather than integration.</li>
-<li>Determine the value of <span class="math inline">\(c\)</span>.</li>
+<li>Determine the value of <span class="math inline">\(c\)</span> that makes this a valid joint p.d.f.</li>
 <li>Calculate the probability that Bob arrives more than 25% later than
 <span class="math inline">\(P(Y &gt; 1.25 X)\)</span>. (Sketch a picture of this region.)</li>
 </ol></li>
@@ -430,13 +468,23 @@ and why?</p></li>
 <div id="additional-practice-7" class="section level2 unnumbered">
 <h2>Additional Practice</h2>
 <ol style="list-style-type: decimal">
+<li>An ecologist selects a point inside a circular sampling region according to a uniform distribution.
+Let <span class="math inline">\(X\)</span> be the <span class="math inline">\(x\)</span>-coordinate of the point selected and <span class="math inline">\(Y\)</span> be the <span class="math inline">\(y\)</span>-coordinate of the point selected. If
+the circle is centered at <span class="math inline">\((0, 0)\)</span> and has radius <span class="math inline">\(r\)</span>, then the joint pdf of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is
+<span class="math display">\[ f(x, y) = \begin{cases} c &amp; x^2 + y^2 \leq r^2 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
+<ol style="list-style-type: lower-alpha">
+<li>Determine the value of <span class="math inline">\(c\)</span> that makes this a valid joint p.d.f.</li>
+<li>What is the probability that the selected point is within <span class="math inline">\(r/2\)</span> of the center of the circular
+region? (<em>Hint:</em> Use geometry.)</li>
+<li>What is the probability that <em>both</em> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> differ from 0 by at most <span class="math inline">\(r/2\)</span>?</li>
+</ol></li>
 <li>A company produces cans of mixed nuts containing
 almonds, cashews, and peanuts. Each
 can is exactly 1 lb, but the amount of each type of nut is
 random. The joint p.d.f. of <span class="math inline">\(X\)</span>, the amount of almonds, and <span class="math inline">\(Y\)</span>,
 the amount of cashews, is
 <span class="math display">\[ f(x, y) = \begin{cases} 24xy &amp; 0 \leq x \leq 1, 0 \leq y \leq 1, x + y \leq 1 \\ 0 &amp; \textrm{otherwise} \end{cases}. \]</span>
-Find the probability that there are more almonds than cashews.</li>
+Show that the probability there are more almonds than cashews is <span class="math inline">\(0.5\)</span>.</li>
 </ol>
 
 </div>

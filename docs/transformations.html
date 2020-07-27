@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-24" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -362,6 +362,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="marginal-continuous.html"><a href="marginal-continuous.html"><i class="fa fa-check"></i><b>42</b> Marginal Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#motivating-example-26"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#theory-38"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#essential-practice-31"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -420,7 +431,7 @@ We have a random variable <span class="math inline">\(X\)</span> whose distribut
 </iframe>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-120" class="example"><strong>Example 36.1  </strong></span>Let’s apply this strategy to the example at the beginning of the lesson.</p>
+<p><span id="exm:unnamed-chunk-119" class="example"><strong>Example 36.1  </strong></span>Let’s apply this strategy to the example at the beginning of the lesson.</p>
 <p>First, we find the c.d.f. of <span class="math inline">\(A\)</span>, the area of the enclosure. We write out the definition
 of the c.d.f., express <span class="math inline">\(A\)</span> in terms of <span class="math inline">\(L\)</span>, and rearrange the expression to make
 the probability easy to calculate.
@@ -435,8 +446,8 @@ F_A(x) &amp;= P(A \leq x) \\
 <p>We graph the p.d.f.s of <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span> below. Compare these with our simulations above.</p>
 </div>
 
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-121"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-121-1.png" alt="Distributions of $L$ and $A$" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-120"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-120-1.png" alt="Distributions of $L$ and $A$" width="672" />
 <p class="caption">
 Figure 36.1: Distributions of <span class="math inline">\(L\)</span> and <span class="math inline">\(A\)</span>
 </p>
@@ -469,8 +480,8 @@ corresponding p.d.f. for the shifted random variable <span class="math inline">\
 is exactly the same, except shifted to the right by 1, as we would expect.
 </div>
 
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-123"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-123-1.png" alt="Example of a Shift Transformation" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-122"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-122-1.png" alt="Example of a Shift Transformation" width="672" />
 <p class="caption">
 Figure 36.2: Example of a Shift Transformation
 </p>
@@ -501,8 +512,8 @@ corresponding p.d.f. for the scaled random variable <span class="math inline">\(
 is the same shape, just wider and shorter.
 </div>
 
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-125"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-125-1.png" alt="Example of a Scale Transformation" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-124"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-124-1.png" alt="Example of a Scale Transformation" width="672" />
 <p class="caption">
 Figure 36.3: Example of a Scale Transformation
 </p>

@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-24" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -362,6 +362,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="marginal-continuous.html"><a href="marginal-continuous.html"><i class="fa fa-check"></i><b>42</b> Marginal Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#motivating-example-26"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#theory-38"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#essential-practice-31"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -479,7 +490,7 @@ is independent of <span class="math inline">\(T_1\)</span> and <span class="math
 nothing to do with a Poisson process, as the next example illustrates.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-116" class="example"><strong>Example 35.1  (Lifetime of a Lightbulb)  </strong></span>The lifetime of a lightbulb (in years) is an <span class="math inline">\(\text{Exponential}(\lambda=0.3)\)</span>
+<span id="exm:unnamed-chunk-115" class="example"><strong>Example 35.1  (Lifetime of a Lightbulb)  </strong></span>The lifetime of a lightbulb (in years) is an <span class="math inline">\(\text{Exponential}(\lambda=0.3)\)</span>
 random variable. What is the probability that the lightbulb lasts between
 1 and 5 years?
 </div>
@@ -527,7 +538,7 @@ P(X &gt; s + t | X &gt; s) &amp;= \frac{P(X &gt; s + t \text{ and } X &gt; s)}{P
 at the beginning of the lesson is one of them.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-119" class="example"><strong>Example 35.2  (The Waiting Time Paradox)  </strong></span>If buses in Fishtown arrive at a bus stop according to a Poisson process at a rate of
+<p><span id="exm:unnamed-chunk-118" class="example"><strong>Example 35.2  (The Waiting Time Paradox)  </strong></span>If buses in Fishtown arrive at a bus stop according to a Poisson process at a rate of
 one per 10 minutes (i.e., <span class="math inline">\(\lambda = 0.1\)</span> arrivals per minute), how long do
 you have to wait before the next bus arrives?</p>
 <p>We know from Theorem <a href="exponential.html#thm:interarrival">35.2</a> that the time <span class="math inline">\(X\)</span>, between when the previous bus
