@@ -42,7 +42,7 @@ of the table, as illustrated in Figure \@ref(fig:marginal-x).
 Notice how natural it was to write the column totals in the _margins_ of the table in Figure \@ref(fig:marginal-x). For this 
 reason, this collection of probabilities has come to be known as the **marginal distribution** of $X$.
 
-```{definition name="Marginal Distribution"}
+```{definition marginal-discrete, name="Marginal Distribution"}
 The **marginal p.m.f.** of $X$ refers to the p.m.f. of $X$ when it is calculated from the joint p.m.f. of $X$ and $Y$. 
 Specifically, the marginal p.m.f. $f_X$ can be calculated from the joint p.m.f. $f$ as follows:
 \begin{equation} 
