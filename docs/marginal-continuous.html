@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 42 Marginal Continuous Distributions | Introduction to Probability</title>
+  <meta name="description" content="Introduction to probability textbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 42 Marginal Continuous Distributions | Introduction to Probability" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to probability textbook." />
+  <meta name="github-repo" content="dlsun/probability" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 42 Marginal Continuous Distributions | Introduction to Probability" />
+  
+  <meta name="twitter:description" content="Introduction to probability textbook." />
+  
+
+<meta name="author" content="Dennis Sun" />
+
+
+<meta name="date" content="2020-07-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="joint-continuous.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Probability</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#additional-exercises"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="factorial.html"><a href="factorial.html"><i class="fa fa-check"></i><b>2</b> The Factorial</a><ul>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#motivating-example-1"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#theory-1"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#examples-1"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="factorial.html"><a href="factorial.html#additional-exercises-1"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="box-models.html"><a href="box-models.html"><i class="fa fa-check"></i><b>3</b> Box Models and Combinations</a><ul>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#motivating-example-2"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#theory-2"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#essential-practice"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="box-models.html"><a href="box-models.html#additional-practice"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="replacement.html"><a href="replacement.html"><i class="fa fa-check"></i><b>4</b> Sampling With Replacement</a><ul>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#motivating-example-3"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#discussion"><i class="fa fa-check"></i>Discussion</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#examples-2"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="replacement.html"><a href="replacement.html#bonus-material"><i class="fa fa-check"></i>Bonus Material</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="double-counting.html"><a href="double-counting.html"><i class="fa fa-check"></i><b>5</b> Double Counting</a><ul>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#motivating-example-4"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#theory-3"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="double-counting.html"><a href="double-counting.html#examples-3"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="conditional.html"><a href="conditional.html"><i class="fa fa-check"></i><b>6</b> Conditional Probability</a><ul>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#motivating-example-5"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#theory-4"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#examples-4"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="conditional.html"><a href="conditional.html#additional-exercises-2"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="independence.html"><a href="independence.html"><i class="fa fa-check"></i><b>7</b> Independence</a><ul>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#motivating-example-6"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#theory-5"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#examples-5"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="independence.html"><a href="independence.html#additional-exercises-3"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ltp.html"><a href="ltp.html"><i class="fa fa-check"></i><b>8</b> Law of Total Probability</a><ul>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#motivating-example-7"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#theory-6"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ltp.html"><a href="ltp.html#examples-6"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Bayes’ Theorem</a><ul>
+<li class="chapter" data-level="9.1" data-path="bayes.html"><a href="bayes.html#motivating-example-8"><i class="fa fa-check"></i><b>9.1</b> Motivating Example</a></li>
+<li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
+<li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-7"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="rv.html"><a href="rv.html"><i class="fa fa-check"></i><b>10</b> Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#motivating-example-9"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#theory-8"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#essential-practice-1"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#additional-exercises-4"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cdf.html"><a href="cdf.html"><i class="fa fa-check"></i><b>11</b> Cumulative Distribution Functions</a><ul>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#theory-9"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cdf.html"><a href="cdf.html#examples-8"><i class="fa fa-check"></i>Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="hypergeometric.html"><a href="hypergeometric.html"><i class="fa fa-check"></i><b>12</b> Hypergeometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#motivating-example-10"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#theory-10"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#visualizing-the-distribution"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#calculating-hypergeometric-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Hypergeometric Probabilities on the Computer</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#another-formula-for-the-hypergeometric-distribution-optional"><i class="fa fa-check"></i>Another Formula for the Hypergeometric Distribution (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#essential-practice-2"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="hypergeometric.html"><a href="hypergeometric.html#additional-exercises-5"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="binomial.html"><a href="binomial.html"><i class="fa fa-check"></i><b>13</b> Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#motivating-example-11"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#theory-11"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#visualizing-the-distribution-1"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#calculating-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#essential-practice-3"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="binomial.html"><a href="binomial.html#additional-exercises-6"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="geometric.html"><a href="geometric.html"><i class="fa fa-check"></i><b>14</b> Geometric Distribution</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#motivating-example-12"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#theory-12"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#visualizing-the-distribution-2"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geometric.html"><a href="geometric.html#essential-practice-4"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="negative-binomial.html"><a href="negative-binomial.html"><i class="fa fa-check"></i><b>15</b> Negative Binomial Distribution</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#motivating-example-13"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#theory-13"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#visualizing-the-distribution-3"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#calculating-negative-binomial-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Negative Binomial Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#essential-practice-5"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="negative-binomial.html"><a href="negative-binomial.html#additional-exercises-7"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="poisson.html"><a href="poisson.html"><i class="fa fa-check"></i><b>16</b> Poisson Distribution</a><ul>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#motivating-example-14"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#theory-14"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#visualizing-the-distribution-4"><i class="fa fa-check"></i>Visualizing the Distribution</a></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#calculating-poisson-probabilities-on-the-computer"><i class="fa fa-check"></i>Calculating Poisson Probabilities on the Computer</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="poisson.html"><a href="poisson.html#essential-practice-6"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="poisson-process.html"><a href="poisson-process.html"><i class="fa fa-check"></i><b>17</b> Poisson Process</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#motivating-example-15"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#theory-15"><i class="fa fa-check"></i>Theory</a><ul>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#why-poisson"><i class="fa fa-check"></i>Why Poisson?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="poisson-process.html"><a href="poisson-process.html#essential-practice-7"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="joint-discrete.html"><a href="joint-discrete.html"><i class="fa fa-check"></i><b>18</b> Joint Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#motivating-example-16"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#theory-16"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#essential-practice-8"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="joint-discrete.html"><a href="joint-discrete.html#additional-exercises-8"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="marginal-discrete.html"><a href="marginal-discrete.html"><i class="fa fa-check"></i><b>19</b> Marginal Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#motivating-example-17"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#theory-17"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#essential-practice-9"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="marginal-discrete.html"><a href="marginal-discrete.html#additional-exercises-9"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="conditional-discrete.html"><a href="conditional-discrete.html"><i class="fa fa-check"></i><b>20</b> Conditional Distributions</a><ul>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#motivating-example-18"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#theory-18"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#essential-practice-10"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="conditional-discrete.html"><a href="conditional-discrete.html#additional-exercises-10"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="sums-discrete.html"><a href="sums-discrete.html"><i class="fa fa-check"></i><b>21</b> Sums of Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#theory-19"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#essential-practice-11"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="sums-discrete.html"><a href="sums-discrete.html#additional-exercises-11"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="expected-value.html"><a href="expected-value.html"><i class="fa fa-check"></i><b>22</b> Expected Value</a><ul>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#motivating-example-19"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#theory-20"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#essential-practice-12"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="expected-value.html"><a href="expected-value.html#additional-exercises-12"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="ev-infinity.html"><a href="ev-infinity.html"><i class="fa fa-check"></i><b>23</b> Expected Value and Infinity</a><ul>
+<li class="chapter" data-level="23.1" data-path="ev-infinity.html"><a href="ev-infinity.html#pascals-wager"><i class="fa fa-check"></i><b>23.1</b> Pascal’s Wager</a></li>
+<li class="chapter" data-level="23.2" data-path="ev-infinity.html"><a href="ev-infinity.html#st-petersburg"><i class="fa fa-check"></i><b>23.2</b> St. Petersburg Paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="lotus.html"><a href="lotus.html"><i class="fa fa-check"></i><b>24</b> LOTUS</a><ul>
+<li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#motivating-example-20"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#theory-21"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#essential-practice-13"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="lotus.html"><a href="lotus.html#additional-exercises-13"><i class="fa fa-check"></i>Additional Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="lotus2d.html"><a href="lotus2d.html"><i class="fa fa-check"></i><b>25</b> 2D LOTUS</a><ul>
+<li class="chapter" data-level="" data-path="lotus2d.html"><a href="lotus2d.html#theory-22"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lotus2d.html"><a href="lotus2d.html#essential-practice-14"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="linearity.html"><a href="linearity.html"><i class="fa fa-check"></i><b>26</b> Linearity of Expectation</a><ul>
+<li class="chapter" data-level="" data-path="linearity.html"><a href="linearity.html#theory-23"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="linearity.html"><a href="linearity.html#essential-practice-15"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="linearity.html"><a href="linearity.html#additional-practice-1"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="ev-product.html"><a href="ev-product.html"><i class="fa fa-check"></i><b>27</b> Expected Value of a Product</a><ul>
+<li class="chapter" data-level="" data-path="ev-product.html"><a href="ev-product.html#theory-24"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ev-product.html"><a href="ev-product.html#essential-practice-16"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="variance.html"><a href="variance.html"><i class="fa fa-check"></i><b>28</b> Variance</a><ul>
+<li class="chapter" data-level="" data-path="variance.html"><a href="variance.html#motivating-example-21"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="variance.html"><a href="variance.html#theory-25"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="variance.html"><a href="variance.html#essential-practice-17"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="variance.html"><a href="variance.html#additional-practice-2"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="covariance.html"><a href="covariance.html"><i class="fa fa-check"></i><b>29</b> Covariance</a><ul>
+<li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#theory-26"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#essential-practice-18"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="covariance.html"><a href="covariance.html#additional-practice-3"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="cov-properties.html"><a href="cov-properties.html"><i class="fa fa-check"></i><b>30</b> Properties of Covariance</a><ul>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#optional-video"><i class="fa fa-check"></i>Optional Video</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#theory-27"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#essential-practice-19"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="cov-properties.html"><a href="cov-properties.html#additional-practice-4"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="random-walk.html"><a href="random-walk.html"><i class="fa fa-check"></i><b>31</b> Random Walk</a><ul>
+<li class="chapter" data-level="" data-path="random-walk.html"><a href="random-walk.html#theory-28"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="random-walk.html"><a href="random-walk.html#essential-practice-20"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="lln.html"><a href="lln.html"><i class="fa fa-check"></i><b>32</b> Law of Large Numbers</a><ul>
+<li class="chapter" data-level="" data-path="lln.html"><a href="lln.html#motivating-example-22"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="lln.html"><a href="lln.html#theory-29"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lln.html"><a href="lln.html#essential-practice-21"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="continuous.html"><a href="continuous.html"><i class="fa fa-check"></i><b>33</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#motivating-example-23"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#theory-30"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#optional-video-1"><i class="fa fa-check"></i>Optional Video</a></li>
+<li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#essential-practice-22"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="uniform.html"><a href="uniform.html"><i class="fa fa-check"></i><b>34</b> Uniform Distribution</a><ul>
+<li class="chapter" data-level="" data-path="uniform.html"><a href="uniform.html#motivation"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="uniform.html"><a href="uniform.html#theory-31"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="uniform.html"><a href="uniform.html#essential-practice-23"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="exponential.html"><a href="exponential.html"><i class="fa fa-check"></i><b>35</b> Exponential Distribution</a><ul>
+<li class="chapter" data-level="" data-path="exponential.html"><a href="exponential.html#motivating-example-24"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="exponential.html"><a href="exponential.html#theory-32"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="exponential.html"><a href="exponential.html#essential-practice-24"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>36</b> Transformations</a><ul>
+<li class="chapter" data-level="" data-path="transformations.html"><a href="transformations.html#motivating-example-25"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="transformations.html"><a href="transformations.html#theory-33"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="transformations.html"><a href="transformations.html#essential-practice-25"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="transformations.html"><a href="transformations.html#additional-practice-5"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="ev-continuous.html"><a href="ev-continuous.html"><i class="fa fa-check"></i><b>37</b> Expected Value of Continuous Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="ev-continuous.html"><a href="ev-continuous.html#theory-34"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="ev-continuous.html"><a href="ev-continuous.html#essential-practice-26"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="lotus-continuous.html"><a href="lotus-continuous.html"><i class="fa fa-check"></i><b>38</b> LOTUS for Continuous Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="lotus-continuous.html"><a href="lotus-continuous.html#theory-35"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lotus-continuous.html"><a href="lotus-continuous.html#essential-practice-27"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="var-continuous.html"><a href="var-continuous.html"><i class="fa fa-check"></i><b>39</b> Variance of Continuous Random Variables</a><ul>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#theory-36"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#essential-practice-28"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="var-continuous.html"><a href="var-continuous.html#additional-practice-6"><i class="fa fa-check"></i>Additional Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="normal.html"><a href="normal.html"><i class="fa fa-check"></i><b>40</b> Normal Distribution</a><ul>
+<li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#motivation-1"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#standard-normal-distribution"><i class="fa fa-check"></i>Standard Normal Distribution</a></li>
+<li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="marginal-continuous.html"><a href="marginal-continuous.html"><i class="fa fa-check"></i><b>42</b> Marginal Continuous Distributions</a><ul>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#motivating-example-26"><i class="fa fa-check"></i>Motivating Example</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#theory-38"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="marginal-continuous.html"><a href="marginal-continuous.html#essential-practice-31"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Probability</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="marginal-continuous" class="section level1">
+<h1><span class="header-section-number">Lesson 42</span> Marginal Continuous Distributions</h1>
+<div id="motivating-example-26" class="section level2 unnumbered">
+<h2>Motivating Example</h2>
+<p>In Lesson <a href="normal.html#normal">40</a>, we saw that there is no closed-form expression for the antiderivative
+<span class="math display">\[ \int ce^{-z^2/2}\,dz, \]</span>
+where <span class="math inline">\(c\)</span> is a constant.
+The definite integral must be computed numerically. This means that we can compute the integral to
+any precision we like, but exact values are, in general, impossible.</p>
+<p>How, then, do we know that the constant <span class="math inline">\(c\)</span> must be <span class="math inline">\(1 / \sqrt{2\pi}\)</span> in order for the total probability
+to be one? That is,
+<span class="math display" id="eq:gaussian-integral">\[\begin{equation} 
+\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}} e^{-z^2/2}\,dz = 1.
+\tag{42.1}
+\end{equation}\]</span>
+Using numerical integration, we might be able to figure out that <span class="math inline">\(c \approx .3989423\)</span> (as
+many decimal places as desired), but how did someone figure out that this was <span class="math inline">\(1 / \sqrt{2\pi}\)</span> exactly?
+It turns out that the definite integral <a href="marginal-continuous.html#eq:gaussian-integral">(42.1)</a> can be evaluated exactly, but it
+requires looking at joint distributions.</p>
+</div>
+<div id="theory-38" class="section level2 unnumbered">
+<h2>Theory</h2>
+The definition for the marginal p.d.f. mirrors the definition of the marginal p.m.f. for
+discrete distributions <a href="#def:marginal-discrete"><strong>??</strong></a>.
+
+<div class="definition">
+<span id="def:marginal-continuous" class="definition"><strong>Definition 42.1  (Marginal Distribution)  </strong></span>Suppose we have the joint p.d.f. <span class="math inline">\(f(x, y)\)</span> of two continuous random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
+The marginal p.d.f. of <span class="math inline">\(X\)</span> is the p.d.f. of <span class="math inline">\(X\)</span> alone and is obtained by <em>integrating</em>
+the joint p.d.f. over all the values of <span class="math inline">\(Y\)</span>.
+<span class="math display" id="eq:marginal-x-continuous">\[\begin{equation}
+f_X(x) = \int_{-\infty}^\infty f(x, y)\,dy
+\tag{42.2}
+\end{equation}\]</span>
+Likewise, the marginal p.d.f. of <span class="math inline">\(Y\)</span> is the p.d.f. of <span class="math inline">\(Y\)</span> alone and is obtained by <em>integrating</em>
+the joint p.d.f. over all the values of <span class="math inline">\(X\)</span>.
+<span class="math display" id="eq:marginal-y-continuous">\[\begin{equation}
+f_Y(y) = \int_{-\infty}^\infty f(x, y)\,dx.
+\tag{42.3}
+\end{equation}\]</span>
+</div>
+
+<p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then their joint p.d.f. is the product of their
+marginal p.d.f.s, just like it was for discrete random variables (Theorem <a href="#thm:joint-independent"><strong>??</strong></a>):</p>
+
+<div class="theorem">
+<span id="thm:joint-pdf-independent" class="theorem"><strong>Theorem 42.1  (Joint Distribution of Independent Random Variables)  </strong></span>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then
+<span class="math display">\[\begin{equation}
+f(x, y) = f_X(x) \cdot f_Y(y)
+\end{equation}\]</span>
+for all values <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. But only if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent!
+</div>
+
+<p>In the following examples, we construct the joint p.d.f. of two independent random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>
+using Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a> and integrate the joint p.d.f. to obtain probabilities.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 42.1  (Symmetry of Continuous Random Variables)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variables. What is <span class="math inline">\(P(X &gt; Y)\)</span>?</p>
+<p><span class="math display">\[\begin{align*}
+P(X &gt; Y) &amp;= \int_0^\infty \int_0^x \lambda^2 e^{-\lambda x - \lambda y}\,dy\,dx \\
+&amp;= \int_0^\infty \lambda e^{-\lambda x} \underbrace{\int_0^x \lambda e^{-\lambda y}\,dy}_{1 - e^{-\lambda x}}\,dx \\
+&amp;= \int_0^\infty \lambda e^{-\lambda x} (1 - e^{-\lambda x})\,dx \\
+&amp;= \int_0^1 u\,du &amp; \text{(using $u=1-e^{-\lambda x}$)} \\
+&amp;= \frac{1}{2}.
+\end{align*}\]</span></p>
+In hindsight, the probability <em>has</em> to be <span class="math inline">\(1/2\)</span> by symmetry. We know that either <span class="math inline">\(X &gt; Y\)</span> or <span class="math inline">\(X &lt; Y\)</span>,
+since the probability that <span class="math inline">\(X = Y\)</span> is zero. Because <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent with the
+same distribution, there is no reason for one to be preferred over another, so
+<span class="math inline">\(P(X &gt; Y) = P(X &lt; Y) = \frac{1}{2}\)</span>.
+</div>
+
+<p>The last example answers the question posed at the beginning of this lesson.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-2" class="example"><strong>Example 42.2  (The Gaussian Integral)  </strong></span>The p.d.f. of a standard normal random variable <span class="math inline">\(Z\)</span> is
+<span class="math display">\[ f(z) = c e^{-z^2/2},  \]</span>
+where <span class="math inline">\(c\)</span> is a constant to make the p.d.f. integrate to 1.</p>
+Surprisingly, the easiest way to determine <span class="math inline">\(c\)</span> is to define
+<em>two</em> independent standard normal random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>,
+and use the fact that their <em>joint</em> p.d.f. must integrate to 1.
+By Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a>, the joint p.d.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is
+<span class="math display">\[ f(x, y) = ce^{-x^2 /2} \cdot ce^{-y^2 / 2} = c^2 e^{-(x^2 + y^2) / 2}. \]</span>
+We know from Lesson <a href="joint-continuous.html#joint-continuous">41</a> that the total volume under any joint p.d.f. must be 1:
+<span class="math display">\[ 1 = \int_{-\infty}^\infty \int_{-\infty}^\infty f(x, y)\,dx\,dy = \int_{-\infty}^\infty \int_{-\infty}^\infty c^2 e^{-(x^2 + y^2) / 2}\,dx\,dy. \]</span>
+Surprisingly, this double integral can be evaluated (even though the single integral could not). To evaluate the
+double integral, we convert to <a href="https://tutorial.math.lamar.edu/classes/calciii/DIPolarCoords.aspx">polar coordinates</a>, using the substitutions <span class="math inline">\(r^2 = x^2 + y^2\)</span> and <span class="math inline">\(dx\,dy = r\,dr\,d\theta\)</span>:
+<span class="math display">\[\begin{align*} 
+c^2 \int_{-\infty}^\infty \int_{-\infty}^\infty e^{-(x^2 + y^2) / 2}\,dx\,dy &amp;= c^2 \int_{0}^{2\pi} \int_{0}^\infty e^{-r^2 / 2} r\,dr\,d\theta \\
+&amp;= c^2 \int_0^{2\pi} \underbrace{\int_0^\infty e^{-u}\,du}_{1} \,d\theta \\
+&amp;= c^2 (2\pi). 
+\end{align*}\]</span>
+Setting this equal to 1, we see that <span class="math inline">\(c^2 = \frac{1}{2\pi}\)</span>. In other words, <span class="math inline">\(c = \frac{1}{\sqrt{2\pi}}\)</span>.
+</div>
+
+</div>
+<div id="essential-practice-31" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<ol style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be continuous random variables with joint p.d.f.
+<span class="math display">\[ f(x, y) = \begin{cases} 
+\frac{1}{12} (1 + \frac{1}{18}(x - 2)(2y - 3)) &amp; 0 &lt; x &lt; 4, 0 &lt; y &lt; 3 \\
+0 &amp; \text{otherwise}
+\end{cases}. \]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li>Find the marginal p.d.f.s of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Are these named distributions? (Feel free to
+set up and the integral and use Wolfram Alpha to do the rest.)</li>
+<li>Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent? (<em>Hint:</em> According to Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a>,
+what would their joint p.d.f. have to be if they were independent?)</li>
+</ol></li>
+<li>Each day, two Cal Poly students, Xavier and Yolanda, arrive independently at The Avenue at a
+random time between noon and 1 p.m. Let <span class="math inline">\(X\)</span> be the time that Xavier arrives (in minutes after 12 p.m.)
+and <span class="math inline">\(Y\)</span> be the time that Yolanda arrives (in minutes after 12 p.m.). <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent
+<span class="math inline">\(\text{Uniform}(a=0, b=60)\)</span> random variables.
+<ol style="list-style-type: lower-alpha">
+<li>What is the joint p.d.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>? Sketch a bird’s-eye view of the joint p.d.f.</li>
+<li>If both Xavier and Yolanda take 15 minutes to eat their lunch (after they arrive), what is the
+probability that they are able to meet up? (<em>Hint:</em> Sketch the region of times <span class="math inline">\((x, y)\)</span>
+that correspond to Xavier and Yolanda meeting up. You can
+calculate this probability by geometry, without using integration.)</li>
+<li>What is the probability that Xavier arrives after Yolanda?</li>
+</ol></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="joint-continuous.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/dlsun/probability/edit/master/marginal-continuous.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
