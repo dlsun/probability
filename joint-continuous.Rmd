@@ -68,7 +68,7 @@ multivariable calculus and do many, many examples.
 
 ## Worked Examples {-}
 
-```{example pp-joint-first-second, name="Joint Distribution of the First and Second Arrival Times"}
+```{example pp-joint-arrivals, name="Joint Distribution of the First and Second Arrival Times"}
 In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process 
 at a rate of $\lambda = 0.8$ particles per second. The time $X$ that the first particle is detected
   and the time $Y$ that the second particle is detected can be shown to have the joint p.d.f.:
@@ -202,7 +202,7 @@ The video below explains this problem.
 
 In general, if the joint p.d.f. is constant on its support, as in Example \@ref(exm:actuarial-joint), then 
 the it is easier to calculate probabilities using geometry rather than calculus. 
-However, if the joint p.d.f. is not constant, as in Example \@ref(exm:pp-joint-first-second), then calculus is necessary.
+However, if the joint p.d.f. is not constant, as in Example \@ref(exm:pp-joint-arrivals), then calculus is necessary.
 
 
 ## Essential Practice {-}

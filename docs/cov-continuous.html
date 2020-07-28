@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-27" />
+<meta name="date" content="2020-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -447,8 +447,9 @@ E[XY] &amp;= \iint_S xy \cdot 0.64 e^{-0.8 y}\,dx\,dy \\
 <p>What about <span class="math inline">\(E[X]\)</span>? We know that the first arrival follows an <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> distribution,
 so its expected value is <span class="math inline">\(1/\lambda = 1/0.8\)</span> seconds.</p>
 <p>What about <span class="math inline">\(E[Y]\)</span>? We showed in Example <a href="ev-joint-continuous.html#exm:pp-arrival-ev">43.3</a> that the <span class="math inline">\(r\)</span>th arrival is expected to happen
-at <span class="math inline">\(r / 0.8\)</span> seconds (by linearity of expectation, because the <span class="math inline">\(r\)</span>th arrival is the sum of the
-<span class="math inline">\(r\)</span> <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> interarrival times). Therefore, <span class="math inline">\(E[Y] = 2 / 0.8\)</span>.</p>
+at <span class="math inline">\(r / 0.8\)</span> seconds (by linearity of expectation, since the <span class="math inline">\(r\)</span>th arrival is the sum of the
+<span class="math inline">\(r\)</span> <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> interarrival times). Therefore, the secon arrival is expected
+to happen at <span class="math inline">\(E[Y] = 2 / 0.8\)</span> seconds.</p>
 Putting everything together, we have
 <span class="math display">\[ \text{Cov}[X, Y] = E[XY] - E[X]E[Y] = \frac{75}{16} - \frac{1}{0.8} \cdot \frac{2}{0.8} = 1.5625. \]</span>
 </div>
@@ -475,23 +476,35 @@ Putting everything together, we have
 <span class="math inline">\(Z\)</span> is <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> and independent of <span class="math inline">\(X\)</span>, so <span class="math inline">\(\text{Cov}[X, Z] = 0\)</span>.</p>
 Now, we have
 <span class="math display">\[\begin{align*} 
-\text{Cov}[X, Y] &amp;= \text{Cov}[X, X + Z] \\
-&amp;= \underbrace{\text{Cov}[X, X]}_{\text{Var}[X]} + \underbrace{\text{Cov}[X, Z]}_0 \\
-&amp;= \frac{1}{0.8^2}, 
+\text{Cov}[X, Y] &amp;= \text{Cov}[X, X + Z] = \underbrace{\text{Cov}[X, X]}_{\text{Var}[X]} + \underbrace{\text{Cov}[X, Z]}_0 = \frac{1}{0.8^2} = 1.5625, 
 \end{align*}\]</span>
-where in the last step we used the fact that the variance of an <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variable is <span class="math inline">\(1/\lambda^2\)</span>.
+where in the last step we used the fact that the variance of an <span class="math inline">\(\text{Exponential}(\lambda)\)</span> random variable is <span class="math inline">\(1/\lambda^2\)</span>. This matches the answer we got in Example <a href="cov-continuous.html#exm:cov-arrival-times">44.1</a>, but it required much less
+calculation.
 </div>
 
 
 <div class="example">
-<span id="exm:unnamed-chunk-150" class="example"><strong>Example 44.3  (Standard Deviation of Arrival Times)  </strong></span>
+<p><span id="exm:pp-arrival-sd" class="example"><strong>Example 44.3  (Standard Deviation of Arrival Times)  </strong></span>In Example <a href="ev-joint-continuous.html#exm:pp-arrival-ev">43.3</a>, we saw that the expected value of the <span class="math inline">\(r\)</span>th arrival time in a
+Poisson process of rate <span class="math inline">\(\lambda=0.8\)</span> is <span class="math inline">\(r / 0.8\)</span>. What is the standard deviation of the <span class="math inline">\(r\)</span>th arrival time?</p>
+<p>The <span class="math inline">\(r\)</span>th arrival time <span class="math inline">\(S_r\)</span> is the sum of <span class="math inline">\(r\)</span> independent <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> random variables:
+<span class="math display">\[ S_r = T_1 + T_2 + \ldots + T_r.  \]</span>
+By properties of covariance:
+<span class="math display">\[\begin{align*}
+\text{Var}[S_r] &amp;= \text{Cov}[S_r, S_r] \\
+  &amp;= \text{Cov}[T_1 + T_2 + \ldots + T_r, T_1 + T_2 + \ldots + T_r] \\
+  &amp;= \sum_{i=1}^r \underbrace{\text{Cov}[T_i, T_i]}_{\text{Var}[T_i]} + \sum_{i\neq j} \underbrace{\text{Cov}[T_i, T_j]}_0 \\
+  &amp;= r \text{Var}[T_1] \\
+  &amp;= r \frac{1}{0.8^2}.
+\end{align*}\]</span></p>
+Therefore, the standard deviation is
+<span class="math display">\[ \text{SD}[S_r] = \frac{\sqrt{r}}{0.8}. \]</span>
 </div>
 
 </div>
 <div id="essential-practice-33" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>Let <span class="math inline">\(A\)</span> be a <span class="math inline">\(\text{Exponential}(\lambda=2)\)</span> random variable, and let <span class="math inline">\(\Theta\)</span> be a
+<li><p>Let <span class="math inline">\(A\)</span> be a <span class="math inline">\(\text{Exponential}(\lambda=1.5)\)</span> random variable, and let <span class="math inline">\(\Theta\)</span> be a
 <span class="math inline">\(\text{Uniform}(a=-\pi, b=\pi)\)</span> random variable. What is
 <span class="math inline">\(\text{Cov}[A\cos(\Theta + 2\pi s), A\cos(\Theta + 2\pi t)]\)</span>?</p></li>
 <li><p>In a standby system, a component is used until it wears out and is then immediately

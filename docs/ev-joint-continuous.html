@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-27" />
+<meta name="date" content="2020-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -477,7 +477,7 @@ one random variable.</p>
 <li>To calculate <span class="math inline">\(E[I^2]\)</span>, we can use LOTUS <a href="lotus-continuous.html#eq:lotus-continuous">(38.1)</a>, or we can rearrange the shortcut formula
 for variance <a href="var-continuous.html#eq:var-shortcut-continuous">(39.2)</a> to obtain
 <span class="math display">\[ E[I^2] = \text{Var}[I] + E[I]^2 = \frac{1}{0.5^2} + \left(\frac{1}{0.5} \right)^2 = \frac{2}{0.5^2} = 8. \]</span>
-Note that we used the known formulas for the expected value and variance of the exponential distribution.</li>
+(Note that we used the formulas for the expectation and variance of the exponential distribution.)</li>
 <li>To calculate <span class="math inline">\(E[R]\)</span>, we use the fact that the three resistors are equally likely to be chosen, so
 this is a discrete random variable:
 <span class="math display">\[ E[R] = 1 \cdot \frac{1}{3} + 2 \cdot \frac{1}{3} + 5 \cdot \frac{1}{3} = \frac{8}{3} \]</span></li>
@@ -517,11 +517,11 @@ hits the detector?</p>
 Recall from Theorem <a href="exponential.html#thm:interarrival">35.2</a> that the interarrival times (i.e., times between arrivals) are independent
 <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> random variables, <span class="math inline">\(T_i\)</span>. Then, the time of the <span class="math inline">\(r\)</span>th arrival is the sum of the first
 <span class="math inline">\(r\)</span> interarrival times:
-<span class="math display">\[ W_r = T_1 + T_2 + \ldots + T_r.  \]</span>
+<span class="math display">\[ S_r = T_1 + T_2 + \ldots + T_r.  \]</span>
 By linearity of expectation (and the formula for the expectation of the exponential distribution),
 the expected time of the <span class="math inline">\(r\)</span>th arrival is
 <span class="math display">\[\begin{align*} 
-E[W_r] &amp;= E[T_1] + E[T_2] + \ldots + E[T_r] \\
+E[S_r] &amp;= E[T_1] + E[T_2] + \ldots + E[T_r] \\
 &amp;= \frac{1}{0.8} + \frac{1}{0.8} + \ldots + \frac{1}{0.8} \\
 &amp;= \frac{r}{0.8}.
 \end{align*}\]</span>
@@ -538,15 +538,15 @@ The expected value increases with <span class="math inline">\(r\)</span>, which 
 so that <span class="math inline">\(X\)</span> is a continuous random variable uniformly distributed over <span class="math inline">\((3, 5)\)</span>. Assume that the
 current <span class="math inline">\(I\)</span> is also a continuous random variable, uniformly distributed over <span class="math inline">\((10, 20)\)</span>. Suppose,
 in addition, that the random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(I\)</span> are independent. Find the expected magnetizing force <span class="math inline">\(E[H]\)</span>.</p>
-<p>(<em>Hint:</em> Use independence so that you do not have do any integrals.)</p></li>
-<li><p>Let <span class="math inline">\(A\)</span> be a <span class="math inline">\(\text{Exponential}(\lambda=2)\)</span> random variable, and let <span class="math inline">\(\Theta\)</span> be a
+<p>(<em>Hint:</em> Use independence so that you do not have do any double integrals.)</p></li>
+<li><p>Let <span class="math inline">\(A\)</span> be a <span class="math inline">\(\text{Exponential}(\lambda=1.5)\)</span> random variable, and let <span class="math inline">\(\Theta\)</span> be a
 <span class="math inline">\(\text{Uniform}(a=-\pi, b=\pi)\)</span> random variable. Assume <span class="math inline">\(A\)</span> and <span class="math inline">\(\Theta\)</span> are independent.
 Let <span class="math inline">\(s, t\)</span> be constants, so your answers may
 depend on <span class="math inline">\(s, t\)</span>. Calculate:</p>
 <ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(E[A \cos(\Theta + 2\pi t)]\)</span>.</li>
-<li><span class="math inline">\(E[A^2 \cos^2(\Theta + 2\pi t)]\)</span>.</li>
-<li><span class="math inline">\(E[A^2 \cos(\Theta + 2\pi s)\cos(\Theta + 2\pi t)]\)</span>.</li>
+<li><span class="math inline">\(E[A \cos(\Theta + 2\pi t)]\)</span></li>
+<li><span class="math inline">\(E[A^2 \cos^2(\Theta + 2\pi t)]\)</span></li>
+<li><span class="math inline">\(E[A^2 \cos(\Theta + 2\pi s)\cos(\Theta + 2\pi t)]\)</span></li>
 </ol>
 <p>(Feel free to set up the integrals and use Wolfram Alpha.)</p>
 <p>(These calculations will come in handy later in the course.)</p></li>
