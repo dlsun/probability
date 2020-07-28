@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 3 Box Models and Combinations | Introduction to Probability</title>
+  <title>Lesson 45 Sums of Continuous Random Variables | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 3 Box Models and Combinations | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 45 Sums of Continuous Random Variables | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 3 Box Models and Combinations | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 45 Sums of Continuous Random Variables | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="factorial.html"/>
-<link rel="next" href="replacement.html"/>
+<link rel="prev" href="cov-continuous.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -405,194 +405,181 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="box-models" class="section level1">
-<h1><span class="header-section-number">Lesson 3</span> Box Models and Combinations</h1>
-<div id="motivating-example-2" class="section level2 unnumbered">
-<h2>Motivating Example</h2>
-<p>One of the most coveted hands in poker is a four-of-a-kind, which is when the hand contains
-all four cards of a particular rank. For example, the hand below is an example of a four-of-a-kind,
-since it contains all four 7s in the deck. (The last card, called the “kicker”, can be any other card.)</p>
-<p><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_hearts.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_clubs.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_spades.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/7_of_diamonds.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_spades.png" width="20%" /></p>
-<p>In this lesson, we will calculate the probability of a four-of-a-kind in two ways: (1)
-using methods that we have already learned and (2) using combinations, which is a new
-method that will be introduced in this lesson.</p>
-</div>
-<div id="theory-2" class="section level2 unnumbered">
+<div id="sums-continuous" class="section level1">
+<h1><span class="header-section-number">Lesson 45</span> Sums of Continuous Random Variables</h1>
+<div id="theory-41" class="section level2 unnumbered">
 <h2>Theory</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/M3VFRQCQZJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p>Many counting and probability problems can be reduced to a <strong>box model</strong>.
-In a box model, there are <span class="math inline">\(N\)</span> tickets in a box, and we draw
-<span class="math inline">\(n\)</span> tickets from the box.</p>
-<p>For example, three rolls of a fair die can be modeled as <span class="math inline">\(n=3\)</span> draws from
-the box
-<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{6}$}. \]</span>
-In order to accurately model how dice behave (i.e., the outcome of one die
-roll does not affect the outcome of another), we have to place the ticket
-back in the box after each draw. In other
-words, the <span class="math inline">\(n=3\)</span> draws are made <strong>with replacement</strong>.</p>
-<p>In other situations, the draws are made <strong>without replacement</strong>.
-For example, consider four friends who draw names from a hat to determine
-whom each person’s Secret Santa is. If we call the four friends
-“1”, “2”, “3”, and “4” (their actual names are unimportant, as far as
-probability is concerned), then we can model the Secret Santa game as
-<span class="math inline">\(n=4\)</span> draws from the box
-<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \fbox{3}\ \fbox{4}$}. \]</span>
-Since every person has exactly one Secret Santa, the draws must be made
-without replacement. Once a Secret Santa has been chosen for person 3,
-we remove <span class="math inline">\(\fbox{3}\)</span> from the box so that they do not end up with
-two Secret Santas.</p>
-<p>Using the multiplication principle (Theorem <a href="counting.html#thm:multiplication-principle">1.1</a>), we can count the number of ways to
-draw <span class="math inline">\(n\)</span> tickets from the box
-<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{\(N\)}$}. \]</span></p>
-<ul>
-<li>If drawing <strong>with replacement</strong>, the number of possible ways is
-<span class="math display">\[ \underbrace{N \cdot N \cdot N \cdot \ldots \cdot N}_{\text{$n$ terms}} = N^n, \]</span>
-since we have <span class="math inline">\(N\)</span> tickets to choose from on each draw.</li>
-<li>If drawing <strong>without replacement</strong>, the number of possible ways is
-<span class="math display">\[ \underbrace{N \cdot (N-1) \cdot (N-2) \cdot \ldots \cdot (N-n+1)}_{\text{$n$ terms}} = \frac{N!}{(N-n)!}, \]</span>
-since the number of tickets remaining in the box decreases by 1 on each draw.</li>
-</ul>
-<p>For example, if we assign a number 1 to 52 to each card in a standard playing deck, then
-a poker hand can be modeled as <span class="math inline">\(n=5\)</span> draws, without replacement, from the box
-<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{52}$}. \]</span>
-The number of possible poker hands is
-<span class="math display">\[ \frac{52!}{(52-5)!} = 52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 = 311,875,200. \]</span></p>
-<p>How many of these possible outcomes result in a four-of-a-kind? Here is the reasoning:</p>
-<ul>
-<li>Let’s start by assuming that the first four cards in the hand are the four-of-a-kind and the
-last card is the kicker.
-<ul>
-<li>The first card can be any one of the 52 cards.</li>
-<li>Once we have chosen the first card, the rank of the four-of-a-kind is determined.
-The second card must be one of the 3 remaining cards of the same rank.</li>
-<li>The third card must be one of the 2 remaining cards of that rank.</li>
-<li>The fourth card must be the 1 remaining card of that rank.</li>
-<li>The last card, the kicker, is one of the other 48 cards in the deck.</li>
-</ul></li>
-<li>We assumed that the kicker was the last card in the hand. But the kicker could just as well have been the first card in the hand. In fact, the kicker could have been in any one of 5 positions. So we need to multiply
-everything by 5 in the end.</li>
-</ul>
-<p>So the probability of a four-of-a-kind is
-<span class="math display">\[ \frac{(52 \cdot 3 \cdot 2 \cdot 1 \cdot 48) \cdot 5}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48} \approx .00024. \]</span></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/M6twelcVmz4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p>This calculation was complicated because we had to consider the different <strong>orders</strong>
-in which the cards might be drawn. It is often easier to
-ignore the order when counting outcomes. That is, we treat <span class="math inline">\(\fbox{1}\ \fbox{3}\ \fbox{4}\ \fbox{5}\ \fbox{8}\)</span>
-as the same outcome as <span class="math inline">\(\fbox{3}\ \fbox{5}\ \fbox{4}\ \fbox{1}\ \fbox{8}\)</span>; we do not double count
-different reorderings of the same draws. Fortunately, when the draws are made <em>without replacement</em>,
-the unordered outcomes are also equally likely, so it is equally valid to count unordered outcomes as
-ordered ones for the purposes of calculating probabilities. If we ignore order when counting,
-we say that “<strong>order doesn’t matter</strong>”.</p>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent continuous random variables. What is the distribution of their sum—
+that is, the random variable <span class="math inline">\(T = X + Y\)</span>? In Lesson <a href="sums-discrete.html#sums-discrete">21</a>, we saw that for discrete
+random variables, we <em>convolve</em> their p.m.f.s. In this lesson, we learn the analog of this result for
+continuous random variables.</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-3" class="theorem"><strong>Theorem 3.1  (Combinations)  </strong></span>The number of ways to draw <span class="math inline">\(n\)</span> tickets from the box
-<span class="math display">\[ \fbox{$\fbox{1}\ \fbox{2}\ \ldots\ \fbox{\(N\)}$}, \]</span>
-when <em>order doesn’t matter</em>, is symbolized <span class="math inline">\(\binom{N}{n}\)</span> (pronounced: “<span class="math inline">\(N\)</span> choose <span class="math inline">\(n\)</span>”)
-and is equal to
-<span class="math display" id="eq:binom-coef">\[\begin{equation}
-\binom{N}{n} = \frac{N!}{n! (N-n)!}. 
-\tag{3.1}
+<span id="thm:sum-independent-continuous" class="theorem"><strong>Theorem 45.1  (Sum of Independent Random Variables)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent continuous random variables.
+Then, the p.d.f. of <span class="math inline">\(T = X + Y\)</span> is the <strong>convolution</strong> of the p.d.f.s of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>:
+<span class="math display" id="eq:convolution-continuous">\[\begin{equation} f_T = f_X * f_Y.
+\tag{45.1}
 \end{equation}\]</span>
+The convolution operator <span class="math inline">\(*\)</span> in <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a> is defined as follows:
+<span class="math display">\[ f_T(t) = \int_{-\infty}^\infty f_X(x) \cdot f_Y(t-x)\,dx. \]</span>
+Note that the verb form of “convolution” is <strong>convolve</strong>, not “convolute”, even though many
+students find convolution quite convoluted!
 </div>
 
+<p>Comparing this with Theorem <a href="sums-discrete.html#thm:sum-independent">21.1</a>, we see once again that the only difference
+between the discrete case and the continuous case is that sums are replaced by integrals and p.m.f.s by
+p.d.f.s.</p>
 
 <div class="proof">
- <span class="proof"><em>Proof. </em></span> We know that any set of <span class="math inline">\(n\)</span> distinct objects can be reordered in <span class="math inline">\(n!\)</span> ways.
-So when we count different reorderings of the same set of <span class="math inline">\(n\)</span> tickets, we end up counting each set of
-distinct tickets <span class="math inline">\(n!\)</span> times. By the multiplication principle (Theorem <a href="counting.html#thm:multiplication-principle">1.1</a>):
+<p> <span class="proof"><em>Proof. </em></span> Since <span class="math inline">\(T\)</span> is a continuous random variable, we find its c.d.f. and take derivatives. Let <span class="math inline">\(f\)</span>
+denote the joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. We know that <span class="math inline">\(f(x, y)\)</span> factors as
+<span class="math inline">\(f_X(x)\cdot f_Y(y)\)</span> by Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a>, since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are
+independent.
 <span class="math display">\[\begin{align*}
-\left(\text{# ways when order matters}\right) &amp;= \left(\text{# ways when order doesn&#39;t matter}\right) \cdot n!.
+F_T(t) = P(T \leq t) &amp;= P(X + Y \leq t) \\
+&amp;= \int_{-\infty}^\infty \int_{-\infty}^{t-x} f(x, y) \,dy\,dx \\
+&amp;= \int_{-\infty}^\infty \int_{-\infty}^{t-x} f_X(x) \cdot f_Y(y) \,dy\,dx \\
+&amp;= \int_{-\infty}^\infty f_X(x)   \int_{-\infty}^{t-x}  f_Y(y) \,dy\,dx \\
+&amp;= \int_{-\infty}^\infty f_X(x)  F_Y(t-x) \,dx,
 \end{align*}\]</span>
-But we already know the left-hand side of this equation, the number of ways
-to draw <span class="math inline">\(n\)</span> tickets without replacement when order matters: it is <span class="math inline">\(\frac{N!}{(N-n)!}\)</span>. Solving
-for the unknown in this equation, we end up with:
+where in the last step, we used the definition of the c.d.f. of <span class="math inline">\(Y\)</span>. (We are calculating the area under
+the p.d.f. of <span class="math inline">\(Y\)</span> up to <span class="math inline">\(t-x\)</span>.)</p>
+Now, we take the derivative with respect to <span class="math inline">\(t\)</span>. The integral behaves like a sum, so we can move the
+derivative inside the integral sign. Also, <span class="math inline">\(f_X(x)\)</span> is a constant with respect to <span class="math inline">\(t\)</span>.
 <span class="math display">\[\begin{align*}
-\binom{N}{n} \overset{\text{def}}{=} \left(\text{# ways when order doesn&#39;t matter}\right) &amp;= \frac{\left(\text{# ways when order matters}\right)}{n!} \\
-  &amp;= \frac{N!}{n! (N-n)!}
+\frac{d}{dt} F_T(t) &amp;= \int_{-\infty}^\infty f_X(x) \frac{d}{dt} F_Y(t-x) \,dx \\
+&amp;= \int_{-\infty}^\infty f_X(x) f_Y(t-x) \,dx,
 \end{align*}\]</span>
+as we wanted to show.
 </div>
 
 
 <div class="example">
-<p><span id="exm:committee-chair" class="example"><strong>Example 3.1  (Commitee Chair Example)  </strong></span>How many different <em>chaired</em> commitees of <span class="math inline">\(k\)</span> people can be formed from <span class="math inline">\(m\)</span> people? A “chaired committee” is a
-committee where one person has been designated as chair. Two possible committees consisting of the same <span class="math inline">\(k\)</span> people are
-considered different if they have different chairs.</p>
-<p>One way to form the chaired committee is to first choose the <span class="math inline">\(k\)</span> people, and then designate one of the <span class="math inline">\(k\)</span> people as chair.
-By the multiplication principle (Theorem <a href="counting.html#thm:multiplication-principle">1.1</a>), there are
-<span class="math display">\[ \binom{m}{k} \cdot k \]</span>
-ways to do this. (Note that we only care about who is on the committee, not the order in which they were selected to
-be on the committee, so for the purposes of this problem, order does not matter.)</p>
-<p>Another way to form the chaired committee is to first choose one of the <span class="math inline">\(m\)</span> people to be chair, and then choose
-the <span class="math inline">\(k-1\)</span> other members from the remaining <span class="math inline">\(n-1\)</span> people. There are
-<span class="math display">\[ m \cdot \binom{m-1}{k-1} \]</span>
-ways to do this.</p>
-Both answers are correct, so they must be equal to one another, yielding the useful combinatorial identity
-<span class="math display" id="eq:committee-chair">\[\begin{equation}
-k \binom{m}{k} = m \binom{m-1}{k-1}.
-\tag{3.2}
-\end{equation}\]</span>
-The “story proof” (about the chaired committee) proves this identity. Of course, we could also prove this identity by
-expanding the combinations using <a href="box-models.html#eq:binom-coef">(3.1)</a> and simplifying. One of the Essential Practice
-problems asks you to do this. However, this algebraic proof does not give much insight into <em>why</em> the identity is
-true. The story proof gives us the insight that will help us remember this identity in the future. We will use
-this combinatorial identity many times throughout this book.
+<p><span id="exm:sum-uniforms" class="example"><strong>Example 45.1  (Sum of Independent Uniforms)  </strong></span>Let <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> be independent <span class="math inline">\(\text{Uniform}(a=0, b=1)\)</span> random variables.
+What is the p.d.f. of <span class="math inline">\(T = U + V\)</span>?</p>
+<p>We have to convolve the p.d.f. of <span class="math inline">\(U\)</span> with the p.d.f. of <span class="math inline">\(V\)</span>. The p.d.f.s of both <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are
+<span class="math display">\[ f(x) = \begin{cases} 1 &amp; 0 &lt; x &lt; 1 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
+This is a rectangle function.</p>
+<p>To calculate the convolution, we first flip <span class="math inline">\(f_V\)</span> about the <span class="math inline">\(y\)</span>-axis. We then integrate the
+product of <span class="math inline">\(f_U\)</span> and the flipped version of <span class="math inline">\(f_V\)</span> to get the convolution at <span class="math inline">\(t=0\)</span>. In this case,
+the two functions are never both non-zero, so the integral is 0.</p>
 </div>
 
-<p>Now, let’s revisit the probability of a four-of-a-kind using combinations. If we ignore the order
-of the cards in the hand, there are
-<span class="math display">\[ \binom{52}{5} = 2,598,960. \]</span>
-possible poker hands. (Binomial coefficients can be calculated <a href="https://www.wolframalpha.com/input/?i=52%20choose%205">using Wolfram Alpha</a>.) Notice how much smaller this number is
-than the 300+ million ordered poker hands. That is because when order matters,
-each distinct (unordered) poker hand gets counted <span class="math inline">\(5! = 120\)</span> times, once for each possible way of
-reordering the 5 cards in the hand.</p>
-<p>How many “unordered” four-of-a-kind hands are there? Here is how to count them:</p>
-<ul>
-<li>There are 13 ranks (Ace through King). Any one of these ranks could be the rank for the four-of-a-kind.</li>
-<li>Once we have chosen the rank, that completely determines 4 of the 5 cards in the four-of-a-kind hand.
-There is only one way to include all 4 cards of a given rank, since we are no longer concerned with
-the order in which they are drawn or their position in the hand.</li>
-<li>So all that’s left is to choose the kicker, which can be any one of the remaining 48 cards.</li>
-</ul>
-<p>So when we ignore order, there are
-<span class="math display">\[ 13 \cdot 48 = 624 \]</span>
-ways to get a four-of-a-kind. The probability is therefore
-<span class="math display">\[ \frac{13 \times 48}{\binom{52}{5}} = \frac{624}{2,598,960} \approx .00024, \]</span>
-which matches the answer from before. Notice how much simpler <span class="math inline">\(13 \cdot 48\)</span> is, compared
-with the mental gymnastics needed to account for the order.</p>
-</div>
-<div id="essential-practice" class="section level2 unnumbered">
-<h2>Essential Practice</h2>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-151-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Now, to get the convolution at <span class="math inline">\(t\)</span>, we shift the flipped version of <span class="math inline">\(f_V\)</span> to the right by <span class="math inline">\(t\)</span>. This is why
+the convolution operation is often called “flip and shift”. To see why, consider the formula when we
+flip and shift <span class="math inline">\(f_V\)</span>:
+<span class="math display">\[\begin{align*}
+  \text{FLIP}[f_V](x) &amp;= f_V(-x) \\
+  \text{SHIFT}_t[\text{FLIP}[f_V]](x) &amp;= f_V(-(x - t)) = f_V(t - x). \\
+  \end{align*}\]</span>
+This is exactly the term that we multiply by <span class="math inline">\(f_U(x)\)</span> in the convolution formula <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a>
+before integrating.</p>
+<p>For the uniform distribution, there are two cases. If we shift (the flipped version of <span class="math inline">\(f_V\)</span>) by some amount
+<span class="math inline">\(0 &lt; t &lt; 1\)</span>, then the supports of the two distributions overlap between <span class="math inline">\(0\)</span> and <span class="math inline">\(t\)</span>, so the result of the convolution
+is
+<span class="math display">\[ f_T(t) = \int_0^t 1 \cdot 1\,dx = t. \]</span></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-152-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>On the other hand, if we shift by some amount
+<span class="math inline">\(1 &lt; t &lt; 2\)</span>, then the supports of the two distributions overlap between <span class="math inline">\(t-1\)</span> and <span class="math inline">\(1\)</span>, so the result of the convolution
+is
+<span class="math display">\[ f_T(t) = \int_{t-1}^1 1 \cdot 1\,dx = 2 - t. \]</span></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-153-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Putting it all together, the formula for the p.d.f. is given by
+<span class="math display">\[ f_T(t) = \begin{cases} t &amp; 0 &lt; t \leq 1 \\ 2 - t &amp; 1 &lt; t &lt; 2 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
+This is sometimes known as the <strong>triangular distribution</strong>, for obvious reasons.</p>
+
+<div class="example">
+<p><span id="exm:pp-arrival-dist" class="example"><strong>Example 45.2  (Distribution of the Arrival Times)  </strong></span>In Examples <a href="ev-joint-continuous.html#exm:pp-arrival-ev">43.3</a> and <a href="cov-continuous.html#exm:pp-arrival-sd">44.3</a>, we derived the expectation and
+standard deviation of <span class="math inline">\(S_r\)</span>, the <span class="math inline">\(r\)</span>th arrival time by writing <span class="math inline">\(S_r\)</span> as a sum of the
+<span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> interarrival times:
+<span class="math display">\[ S_r = T_1 + T_2 + \ldots + T_r.  \]</span>
+In this example, we investigate the distribution of <span class="math inline">\(S_r\)</span>.</p>
+<p>We start with the case <span class="math inline">\(r=2\)</span>. Since <span class="math inline">\(S_2\)</span> is the sum of <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>, two independent
+exponential random variables, we can use @ref{thm:convolution-continuous} to derive its p.d.f.</p>
+<p>We convolve the <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> p.d.f. with itself, since <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>
+have the same distribution. Plugging the p.d.f.s into <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a>, we obtain:
+<span class="math display">\[ f_{S_2}(t) = \int_{?}^? 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx,  \]</span>
+where the limits of integration are TBD.</p>
+<p>To determine the limits of integration, there are several ways to think about it:</p>
 <ol style="list-style-type: decimal">
-<li>Prove the identity <a href="box-models.html#eq:committee-chair">(3.2)</a> by expanding the combinations using
-<a href="box-models.html#eq:binom-coef">(3.1)</a> and simplifying.</li>
-<li>Prove the identity
-<span class="math display">\[ \binom{m}{k} = \binom{m}{m-k} \]</span>
-in two ways: using a “story proof” (as in Example <a href="box-models.html#exm:committee-chair">3.1</a>) and using algebra.</li>
-<li>Calculate <span class="math inline">\(\binom{m}{1}\)</span>. Why does this answer make sense?</li>
-<li>In Lesson <a href="counting.html#counting">1</a>, you calculated the probability of a “flush of hearts” in poker by counting
-the possible hands. There, you took order into account. Repeat the calculation
-by counting the possible hands where order does not matter.</li>
-<li>How many different 8-letter “words” can be formed by rearranging the letters in LALALAAA?
-(<strong>Hint:</strong> Model this situation using <span class="math inline">\(n=3\)</span> draws from the box
-<span class="math inline">\(\fbox{\(\fbox{1}\ \fbox{2}\ \ldots\ \fbox{8}\)}\)</span>. The tickets that you
-draw correspond to the <em>positions</em> of the three Ls. So, for example, drawing
-<span class="math inline">\(\fbox{3}, \fbox{1}, \fbox{5}\)</span> corresponds to the word LALALAAA.
-You still need to figure out whether the draws should be made with replacement and whether you should
-count different orderings of the same 3 tickets.)</li>
-<li>You toss a coin 60 times. Each toss results in two equally likely outcomes, heads or tails.
-What is the probability that you get exactly 30 heads in the 60 tosses?
-(<strong>Hint:</strong> To count the number of ways of getting exactly 30 heads, you need to count the number of
-ways of arranging 30 H and 30 Ts. The general strategy from the previous question may be helpful here.)</li>
+<li>Remember that the support of the exponential distribution is on
+the positive numbers. Therefore, the integrand will be 0, unless both <span class="math inline">\(x\)</span> and <span class="math inline">\((t-x)\)</span> are positive. This means
+that the limits of integration must be from <span class="math inline">\(0\)</span> to <span class="math inline">\(t\)</span>.</li>
+<li><span class="math inline">\(f_{S_2}(t)\)</span> captures how likely it is for the second arrival to happen “near” <span class="math inline">\(t\)</span> seconds.
+If <span class="math inline">\(x &gt; t\)</span>, then the first arrival happened <em>after</em> <span class="math inline">\(t\)</span> seconds, so the second arrival could not have
+happened near <span class="math inline">\(t\)</span> seconds.</li>
+<li>If we flip and shift one of the exponential distributions, then the supports of the two functions will only
+overlap between <span class="math inline">\(0\)</span> and <span class="math inline">\(t\)</span>, as illustrated in the graph below.</li>
 </ol>
 </div>
-<div id="additional-practice" class="section level2 unnumbered">
-<h2>Additional Practice</h2>
+
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-154-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Now that we have the limits of integration, we obtain the following formula for the p.d.f. for <span class="math inline">\(t &gt; 0\)</span>.
+<span class="math display">\[\begin{align*}
+f_{S_2}(t) &amp;= \int_0^t 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \\
+&amp;=\int_0^t  (0.8)^2  e^{-0.8 (x + (t - x))}\,dx \\
+&amp;= (0.8)^2 e^{-0.8 t} \int_0^t 1\,dx \\
+&amp;= (0.8)^2 t e^{-0.8 t}; t &gt; 0
+\end{align*}\]</span></p>
+<p>This p.d.f. is graphed in red, along with the exponential p.d.f. of the interarrival times in gray.
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-155-1.png" width="672" style="display: block; margin: auto;" />
+From the figure above, we see that the second arrival tends to happen later than the first arrival,
+which makes intuitive sense. The p.d.f. also seems to be centered around <span class="math inline">\(2 / 0.8 = 2.5\)</span>,
+which is the expected value we calculated in Example <a href="ev-joint-continuous.html#exm:pp-arrival-ev">43.3</a>.</p>
+<p>What about when <span class="math inline">\(r=3\)</span>? The time of third arrival is the sum of the time of the second arrival, <span class="math inline">\(S_2\)</span>, and the
+time between the second and third arrivals, <span class="math inline">\(T_3\)</span>. Therefore, to obtain the p.d.f. of <span class="math inline">\(S_3\)</span>, we convolve
+the p.d.f. of <span class="math inline">\(S_2\)</span> we derived above with the <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span>
+p.d.f. The right limits of integration are <span class="math inline">\(0\)</span> to <span class="math inline">\(t\)</span>, by the same argument as above.
+<span class="math display">\[\begin{align*}
+f_{S_3}(t) &amp;= \int_0^t (0.8)^2 x e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \\
+&amp;=\int_0^t  (0.8)^3 x e^{-0.8 (x + (t - x))}\,dx \\
+&amp;= (0.8)^3 e^{-0.8 t} \int_0^t x\,dx \\
+&amp;= \frac{(0.8)^3}{2} t^2 e^{-0.8 t}; t &gt; 0
+\end{align*}\]</span>
+This p.d.f. is graphed in blue below.
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-156-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In general, we can continue in this way to obtain the following formula for the p.d.f. of the
+<span class="math inline">\(r\)</span>th arrival time in this Poisson process.
+<span class="math display">\[\begin{equation}
+f_{S_r}(t) = \frac{(0.8)^r}{(r-1)!} t^{r-1} e^{-0.8 t}; t &gt; 0.
+\end{equation}\]</span>
+This family of distributions is known as the <strong>gamma distribution</strong>, with parameters <span class="math inline">\(r\)</span> and <span class="math inline">\(\lambda =0.8\)</span>.</p>
+</div>
+<div id="essential-practice-34" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li>Use a story proof to show that
-<span class="math display">\[ x(x-1) \binom{n}{x} = n (n-1) \binom{n-2}{x-2}. \]</span>
-(<em>Hint:</em> Consider selecting a committee with a chair and a vice-chair.)</li>
+<li><p>In this exercise, you will investigate the distribution of <span class="math inline">\(S_n = U_1 + U_2 + \ldots + U_n\)</span>, where
+<span class="math inline">\(U_i\)</span> are i.i.d. <span class="math inline">\(\text{Uniform}(a=0, b=1)\)</span> random variables. You already
+calculated <span class="math inline">\(E[S_n]\)</span> and <span class="math inline">\(\text{SD}[S_n]\)</span> in Lesson <a href="cov-continuous.html#cov-continuous">44</a>. Now, you will calculate its
+distribution.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Find the p.d.f. of <span class="math inline">\(S_3 = U_1 + U_2 + U_3\)</span> and sketch its graph.</p>
+<p>(<em>Hint 1:</em> We already worked out the distribution of <span class="math inline">\(U_1 + U_2\)</span> in Example <a href="sums-continuous.html#exm:sum-uniforms">45.1</a>.
+Do another convolution.)</p>
+<p>(<em>Hint 2:</em> You should end up with a p.d.f. with 4 cases: <span class="math inline">\(f_{S_3}(t) = \begin{cases} ... &amp; 0 &lt; t \leq 1 \\ ... &amp; 1 &lt; t \leq 2 \\ ... &amp; 2 &lt; t &lt; 3 \\ 0 &amp; \text{otherwise} \end{cases}\)</span>.)</p></li>
+<li><p>Find the p.d.f. of <span class="math inline">\(S_4 = U_1 + U_2 + U_3 + U_4\)</span> and sketch its graph.</p>
+<p>(<em>Hint:</em> Note that Example <a href="sums-continuous.html#exm:sum-uniforms">45.1</a> gives the distribution of
+<span class="math inline">\(T_1 = U_1 + U_2\)</span> and <span class="math inline">\(T_2 = U_3 + U_4\)</span>. Furthermore, <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> must be independent,
+since the <span class="math inline">\(U_i\)</span>s are. So you should be able to do this by convolving two triangle functions. You
+can check your answer by convolving the p.d.f. of <span class="math inline">\(S_3\)</span> that you derived above with another uniform.)</p></li>
+<li><p>Neither <span class="math inline">\(S_3\)</span> or <span class="math inline">\(S_4\)</span> are distributions with a name. However, if you sketch their p.d.f.s, they should
+remind you of one of the distributions we have learned. Which one?</p></li>
+</ol></li>
+<li><p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <em>standard</em> normal—that is, <span class="math inline">\(\text{Normal}(\mu=0, \sigma=1)\)</span>—random variables.
+Let <span class="math inline">\(T = X + Y\)</span>. You should quickly be able to determine <span class="math inline">\(E[T]\)</span> and <span class="math inline">\(\text{Var}[T]\)</span>. But what is the distribution of
+<span class="math inline">\(T\)</span>? Use convolution to answer this question.</p>
+<p>(I’m happy if you can just set up the integral and plug it into Wolfram Alpha.
+If you really want to know how to solve it by hand, try “completing the square” in the exponent
+so that you end up with something that looks like a normal p.d.f., which you know must integrate to 1.)</p></li>
+<li><p>(This exercise is an application of the result that you found in the previous exercise. It is otherwise
+unrelated to this lesson.) Let <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, and <span class="math inline">\(X_3\)</span> represent the times (in minutes) necessary to perform three
+successive repair tasks at a service facility. They are independent, normal random variables with
+expected values 45, 50, and 75 and variances 10, 12, and 14, respectively. What is the probability that the
+service facility is able to finish all three tasks within 3 hours (that is, 180 minutes)?</p>
+<p>(<em>Hint:</em> Use the previous exercise to identify the distribution of <span class="math inline">\(T = X_1 + X_2 + X_3\)</span>. It is one of the
+named distributions we learned. Once you identify the distribution and its parameters, you can calculate the
+probability in the usual way. You should not need to do any convolutions to answer this question.)</p></li>
 </ol>
 
 </div>
@@ -602,8 +589,8 @@ ways of arranging 30 H and 30 Ts. The general strategy from the previous questio
           </div>
         </div>
       </div>
-<a href="factorial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="replacement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cov-continuous.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -634,7 +621,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/box-models.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/sums-continuous.Rmd",
 "text": "Edit"
 },
 "history": {

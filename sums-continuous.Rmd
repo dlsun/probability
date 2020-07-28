@@ -1,0 +1,304 @@
+# Sums of Continuous Random Variables {#sums-continuous}
+
+
+## Theory {-}
+
+Let $X$ and $Y$ be independent continuous random variables. What is the distribution of their sum---
+that is, the random variable $T = X + Y$? In Lesson \@ref(sums-discrete), we saw that for discrete 
+random variables, we _convolve_ their p.m.f.s. In this lesson, we learn the analog of this result for 
+continuous random variables.
+
+```{theorem sum-independent-continuous, name="Sum of Independent Random Variables"}
+Let $X$ and $Y$ be independent continuous random variables. 
+Then, the p.d.f. of $T = X + Y$ is the **convolution** of the p.d.f.s of $X$ and $Y$:
+  \begin{equation} f_T = f_X * f_Y.
+(\#eq:convolution-continuous)
+\end{equation}
+The convolution operator $*$ in \@ref(eq:convolution-continuous) is defined as follows:
+\[ f_T(t) = \int_{-\infty}^\infty f_X(x) \cdot f_Y(t-x)\,dx. \]
+Note that the verb form of "convolution" is **convolve**, not "convolute", even though many 
+students find convolution quite convoluted!
+```
+
+Comparing this with Theorem \@ref(thm:sum-independent), we see once again that the only difference 
+between the discrete case and the continuous case is that sums are replaced by integrals and p.m.f.s by 
+p.d.f.s.
+
+```{proof}
+Since $T$ is a continuous random variable, we find its c.d.f. and take derivatives. Let $f$ 
+denote the joint distribution of $X$ and $Y$. We know that $f(x, y)$ factors as 
+$f_X(x)\cdot f_Y(y)$ by Theorem \@ref(thm:joint-pdf-independent), since $X$ and $Y$ are 
+independent.
+\begin{align*}
+F_T(t) = P(T \leq t) &= P(X + Y \leq t) \\
+&= \int_{-\infty}^\infty \int_{-\infty}^{t-x} f(x, y) \,dy\,dx \\
+&= \int_{-\infty}^\infty \int_{-\infty}^{t-x} f_X(x) \cdot f_Y(y) \,dy\,dx \\
+&= \int_{-\infty}^\infty f_X(x)   \int_{-\infty}^{t-x}  f_Y(y) \,dy\,dx \\
+&= \int_{-\infty}^\infty f_X(x)  F_Y(t-x) \,dx,
+\end{align*}
+where in the last step, we used the definition of the c.d.f. of $Y$. (We are calculating the area under 
+                                                                      the p.d.f. of $Y$ up to $t-x$.)
+
+Now, we take the derivative with respect to $t$. The integral behaves like a sum, so we can move the 
+derivative inside the integral sign. Also, $f_X(x)$ is a constant with respect to $t$.
+\begin{align*}
+\frac{d}{dt} F_T(t) &= \int_{-\infty}^\infty f_X(x) \frac{d}{dt} F_Y(t-x) \,dx \\
+&= \int_{-\infty}^\infty f_X(x) f_Y(t-x) \,dx,
+\end{align*}
+as we wanted to show.
+```
+
+```{example sum-uniforms, name="Sum of Independent Uniforms"}
+Let $U$ and $V$ be independent $\text{Uniform}(a=0, b=1)$ random variables. 
+What is the p.d.f. of $T = U + V$?
+  
+  We have to convolve the p.d.f. of $U$ with the p.d.f. of $V$. The p.d.f.s of both $U$ and $V$ are 
+\[ f(x) = \begin{cases} 1 & 0 < x < 1 \\ 0 & \text{otherwise} \end{cases}. \]
+This is a rectangle function.
+
+To calculate the convolution, we first flip $f_V$ about the $y$-axis. We then integrate the 
+product of $f_U$ and the flipped version of $f_V$ to get the convolution at $t=0$. In this case, 
+the two functions are never both non-zero, so the integral is 0.
+
+```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
+	\begin{tikzpicture}[scale=2]
+	
+	\draw[gray,->] (-1.5, 0) -- (2.5, 0);
+	\draw[gray,->] (0, -0.1) -- (0, 1.5);
+	\draw[gray] (1, -0.1) -- (1, 0.1);
+	\node[anchor=east] at (0, 1) {$1$};
+	\node[anchor=north] at (0, -0.1) {$0$};
+	\node[anchor=north] at (1, -0.1) {$1$};
+
+  \draw[gray,->] (-1.5, -2) -- (2.5, -2);
+	\draw[gray,->] (0, -2.1) -- (0, -0.5);
+	\draw[gray] (1, -2.1) -- (1, -1.9);
+	\node[anchor=east] at (0, -1) {$1$};
+	\node[anchor=north] at (0, -2.1) {$0$};
+	\node[anchor=north] at (1, -2.1) {$1$};
+
+		\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
+		\node[anchor=west,blue] at (1, 1) {$f_U$};
+	
+	\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (-1, 0) -- (-1, 1) -- (0, 1) -- (0, 0) -- (2.4, 0);
+	\node[anchor=east,red] at (-1, 1) {$f_V$};
+
+	\filldraw[orange, opacity=0.7] (0, -2) circle (2pt);
+	
+	\end{tikzpicture}
+```
+  
+  Now, to get the convolution at $t$, we shift the flipped version of $f_V$ to the right by $t$. This is why 
+  the convolution operation is often called "flip and shift". To see why, consider the formula when we 
+  flip and shift $f_V$:
+  \begin{align*}
+  \text{FLIP}[f_V](x) &= f_V(-x) \\
+  \text{SHIFT}_t[\text{FLIP}[f_V]](x) &= f_V(-(x - t)) = f_V(t - x). \\
+  \end{align*}
+  This is exactly the term that we multiply by $f_U(x)$ in the convolution formula \@ref(eq:convolution-continuous) 
+  before integrating.
+  
+  For the uniform distribution, there are two cases. If we shift (the flipped version of $f_V$) by some amount 
+  $0 < t < 1$, then the supports of the two distributions overlap between $0$ and $t$, so the result of the convolution 
+  is
+  \[ f_T(t) = \int_0^t 1 \cdot 1\,dx = t. \]
+  
+```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
+	\begin{tikzpicture}[scale=2]
+	
+	\draw[gray,->] (-1.5, 0) -- (2.5, 0);
+	\draw[gray,->] (0, -0.1) -- (0, 1.5);
+	\draw[gray] (1, -0.1) -- (1, 0.1);
+	\node[anchor=east] at (0, 1) {$1$};
+	\node[anchor=north] at (0, -0.1) {$0$};
+	\node[anchor=north] at (1, -0.1) {$1$};
+
+  \draw[gray,->] (-1.5, -2) -- (2.5, -2);
+	\draw[gray,->] (0, -2.1) -- (0, -0.5);
+	\draw[gray] (1, -2.1) -- (1, -1.9);
+	\node[anchor=east] at (0, -1) {$1$};
+	\node[anchor=north] at (0, -2.1) {$0$};
+	\node[anchor=north] at (1, -2.1) {$1$};
+
+		\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
+		\node[anchor=west,blue] at (1, 1) {$f_U$};
+	
+	\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (-0.6, 0) -- (-0.6, 1) -- (0.4, 1) -- (0.4, 0) -- (2.4, 0);
+	\node[anchor=east,red] at (-0.6, 1) {$f_V$};
+	\node[anchor=north] at (0.4, -0.1) {$t$};
+
+	\filldraw[orange, opacity=0.7] (0.4, -1.6) circle (2pt);
+
+	\draw[ultra thick,orange,opacity=0.7] (-1.4, -2) -- (0, -2) -- (1, -1);
+  \node[anchor=north] at (0.4, -2.1) {$t$};
+	\node[anchor=west,red] at (1, -1) {$f_T$};
+	
+	\end{tikzpicture}
+```
+
+On the other hand, if we shift by some amount 
+  $1 < t < 2$, then the supports of the two distributions overlap between $t-1$ and $1$, so the result of the convolution 
+  is
+  \[ f_T(t) = \int_{t-1}^1 1 \cdot 1\,dx = 2 - t. \]
+
+```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
+	\begin{tikzpicture}[scale=2]
+	
+	\draw[gray,->] (-1.5, 0) -- (2.5, 0);
+	\draw[gray,->] (0, -0.1) -- (0, 1.5);
+	\draw[gray] (1, -0.1) -- (1, 0.1);
+	\node[anchor=east] at (0, 1) {$1$};
+	\node[anchor=north] at (0, -0.1) {$0$};
+	\node[anchor=north] at (1, -0.1) {$1$};
+
+\draw[gray,->] (-1.5, -2) -- (2.5, -2);
+	\draw[gray,->] (0, -2.1) -- (0, -0.5);
+	\draw[gray] (1, -2.1) -- (1, -1.9);
+	\node[anchor=east] at (0, -1) {$1$};
+	\node[anchor=north] at (0, -2.1) {$0$};
+	\node[anchor=north] at (1, -2.1) {$1$};
+
+		\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
+		\node[anchor=west,blue] at (1, 1) {$f_U$};
+
+	\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (0.5, 0) -- (0.5, 1) -- (1.5, 1) -- (1.5, 0) -- (2.4, 0);
+	\node[anchor=west,red] at (1.5, 1) {$f_V$};
+	\node[anchor=north] at (1.5, -0.1) {$t$};
+	\node[anchor=north] at (0.5, -0.1) {$t - 1$};
+
+  \filldraw[orange, opacity=0.7] (1.5, -1.5) circle (2pt);
+
+	\draw[ultra thick,orange,opacity=0.7] (-1.4, -2) -- (0, -2) -- (1, -1) -- (2, -2) -- (2.4, -2);
+	\node[anchor=west,red] at (1, -1) {$f_T$};
+	
+	\end{tikzpicture}
+```
+
+Putting it all together, the formula for the p.d.f. is given by 
+\[ f_T(t) = \begin{cases} t & 0 < t \leq 1 \\ 2 - t & 1 < t < 2 \\ 0 & \text{otherwise} \end{cases}. \]
+This is sometimes known as the **triangular distribution**, for obvious reasons.
+
+```{example pp-arrival-dist, name="Distribution of the Arrival Times"}
+In Examples \@ref(exm:pp-arrival-ev) and \@ref(exm:pp-arrival-sd), we derived the expectation and 
+standard deviation of $S_r$, the $r$th arrival time by writing $S_r$ as a sum of the
+$\text{Exponential}(\lambda=0.8)$ interarrival times:
+  \[ S_r = T_1 + T_2 + \ldots + T_r.  \]
+In this example, we investigate the distribution of $S_r$.
+
+We start with the case $r=2$. Since $S_2$ is the sum of $T_1$ and $T_2$, two independent 
+exponential random variables, we can use \@ref{thm:convolution-continuous} to derive its p.d.f. 
+
+We convolve the $\text{Exponential}(\lambda=0.8)$ p.d.f. with itself, since $T_1$ and $T_2$ 
+  have the same distribution. Plugging the p.d.f.s into \@ref(eq:convolution-continuous), we obtain:
+\[ f_{S_2}(t) = \int_{?}^? 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx,  \]
+where the limits of integration are TBD.
+
+To determine the limits of integration, there are several ways to think about it:
+  
+1. Remember that the support of the exponential distribution is on 
+the positive numbers. Therefore, the integrand will be 0, unless both $x$ and $(t-x)$ are positive. This means 
+that the limits of integration must be from $0$ to $t$. 
+2. $f_{S_2}(t)$ captures how likely it is for the second arrival to happen "near" $t$ seconds. 
+If $x > t$, then the first arrival happened _after_ $t$ seconds, so the second arrival could not have 
+happened near $t$ seconds.
+3. If we flip and shift one of the exponential distributions, then the supports of the two functions will only 
+overlap between $0$ and $t$, as illustrated in the graph below.
+
+```{r, echo=FALSE, out.width='50%', fig.ext='png', fig.align='center'}
+t <- seq(-3, 4, by=0.01)
+plot(t, 0.8 * exp(-0.8 * t) * (t >= 0), xlim=c(-2.5, 4), type="l", col="blue", 
+     xaxt="n", yaxt="n", bty="n",
+     xlab="x", ylab="Probability Density Function f(x)", lwd=2)
+axis(1, pos=0, at=seq(-3, 4), labels=seq(-3, 4))
+axis(1, pos=0, at=1.5, labels="t", col="red", col.axis="red")
+axis(2, pos=0)
+lines(1.5 - t, 0.8 * exp(-0.8 * t) * (t >= 0), lwd=2, col="red")
+```
+
+Now that we have the limits of integration, we obtain the following formula for the p.d.f. for $t > 0$.
+  \begin{align*}
+f_{S_2}(t) &= \int_0^t 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \\
+&=\int_0^t  (0.8)^2  e^{-0.8 (x + (t - x))}\,dx \\
+&= (0.8)^2 e^{-0.8 t} \int_0^t 1\,dx \\
+&= (0.8)^2 t e^{-0.8 t}; t > 0
+\end{align*}
+
+This p.d.f. is graphed in red, along with the exponential p.d.f. of the interarrival times in gray.
+```{r, echo=FALSE, fig.ext='png', fig.align='center'}
+plot(function(t) 0.8 * exp(-0.8 * t), xlim=c(0, 6), type="l", col="gray", xlab="t", ylab="Probability Density Function f(t)", lwd=2)
+t <- seq(0, 6, by=0.05)
+lines(t, 0.64 * t * exp(-0.8 * t), col="red", lwd=2)
+legend(4.5, 0.8, c("1st Arrival", "2nd Arrival"), lty=1, lwd=2, col=c("gray", "red"))
+```
+From the figure above, we see that the second arrival tends to happen later than the first arrival, 
+which makes intuitive sense. The p.d.f. also seems to be centered around $2 / 0.8 = 2.5$, 
+which is the expected value we calculated in Example \@ref(exm:pp-arrival-ev).
+
+What about when $r=3$? The time of third arrival is the sum of the time of the second arrival, $S_2$, and the 
+time between the second and third arrivals, $T_3$. Therefore, to obtain the p.d.f. of $S_3$, we convolve 
+the p.d.f. of $S_2$ we derived above with the $\text{Exponential}(\lambda=0.8)$ 
+p.d.f. The right limits of integration are $0$ to $t$, by the same argument as above.
+\begin{align*}
+f_{S_3}(t) &= \int_0^t (0.8)^2 x e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \\
+&=\int_0^t  (0.8)^3 x e^{-0.8 (x + (t - x))}\,dx \\
+&= (0.8)^3 e^{-0.8 t} \int_0^t x\,dx \\
+&= \frac{(0.8)^3}{2} t^2 e^{-0.8 t}; t > 0
+\end{align*}
+This p.d.f. is graphed in blue below.
+```{r, echo=FALSE, fig.ext='png', fig.align='center'}
+plot(function(t) 0.8 * exp(-0.8 * t), xlim=c(0, 6), type="l", col="gray", xlab="t", ylab="Probability Density Function f(t)", lwd=2)
+t <- seq(0, 6, by=0.05)
+lines(t, 0.64 * t * exp(-0.8 * t), lwd=2, col="red")
+lines(t, 0.8^3 * t^2 / 2 * exp(-0.8 * t), lwd=2, col="blue")
+legend(4.5, 0.8, c("1st Arrival", "2nd Arrival", "3rd arrival"), lty=1, lwd=2, col=c("gray", "red", "blue"))
+```
+
+In general, we can continue in this way to obtain the following formula for the p.d.f. of the 
+$r$th arrival time in this Poisson process.
+\begin{equation}
+f_{S_r}(t) = \frac{(0.8)^r}{(r-1)!} t^{r-1} e^{-0.8 t}; t > 0.
+\end{equation}
+This family of distributions is known as the **gamma distribution**, with parameters $r$ and $\lambda =0.8$.
+
+## Essential Practice {-}
+
+1. In this exercise, you will investigate the distribution of $S_n = U_1 + U_2 + \ldots + U_n$, where 
+$U_i$ are i.i.d. $\text{Uniform}(a=0, b=1)$ random variables. You already 
+calculated $E[S_n]$ and $\text{SD}[S_n]$ in Lesson \@ref(cov-continuous). Now, you will calculate its 
+distribution.
+
+    a. Find the p.d.f. of $S_3 = U_1 + U_2 + U_3$ and sketch its graph.
+
+        (_Hint 1:_ We already worked out the distribution of $U_1 + U_2$ in Example \@ref(exm:sum-uniforms). 
+        Do another convolution.)
+        
+        (_Hint 2:_ You should end up with a p.d.f. with 4 cases: $f_{S_3}(t) = \begin{cases} ... & 0 < t \leq 1 \\ ... & 1 < t \leq 2 \\ ... & 2 < t < 3 \\ 0 & \text{otherwise} \end{cases}$.)
+
+    b. Find the p.d.f. of $S_4 = U_1 + U_2 + U_3 + U_4$ and sketch its graph.
+    
+        (_Hint:_ Note that Example \@ref(exm:sum-uniforms) gives the distribution of 
+        $T_1 = U_1 + U_2$ and $T_2 = U_3 + U_4$. Furthermore, $T_1$ and $T_2$ must be independent, 
+        since the $U_i$s are. So you should be able to do this by convolving two triangle functions. You 
+        can check your answer by convolving the p.d.f. of $S_3$ that you derived above with another uniform.)
+        
+    c. Neither $S_3$ or $S_4$ are distributions with a name. However, if you sketch their p.d.f.s, they should 
+    remind you of one of the distributions we have learned. Which one?
+    
+2. Let $X$ and $Y$ be independent _standard_ normal---that is, $\text{Normal}(\mu=0, \sigma=1)$---random variables. 
+Let $T = X + Y$. You should quickly be able to determine $E[T]$ and $\text{Var}[T]$. But what is the distribution of 
+$T$? Use convolution to answer this question.
+
+    (I'm happy if you can just set up the integral and plug it into Wolfram Alpha. 
+    If you really want to know how to solve it by hand, try "completing the square" in the exponent 
+    so that you end up with something that looks like a normal p.d.f., which you know must integrate to 1.)
+    
+3. (This exercise is an application of the result that you found in the previous exercise. It is otherwise 
+unrelated to this lesson.) Let $X_1$, $X_2$, and $X_3$ represent the times (in minutes) necessary to perform three 
+successive repair tasks at a service facility. They are independent, normal random variables with 
+expected values 45, 50, and 75 and variances 10, 12, and 14, respectively. What is the probability that the 
+service facility is able to finish all three tasks within 3 hours (that is, 180 minutes)?
+
+    (_Hint:_ Use the previous exercise to identify the distribution of $T = X_1 + X_2 + X_3$. It is one of the 
+    named distributions we learned. Once you identify the distribution and its parameters, you can calculate the 
+    probability in the usual way. You should not need to do any convolutions to answer this question.)
+

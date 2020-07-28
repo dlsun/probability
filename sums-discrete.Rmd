@@ -40,13 +40,15 @@ This is the general equation for the p.m.f. of the sum $T$. If the random variab
 then we can actually say more.
 
 ```{theorem sum-independent, name="Sum of Independent Random Variables"}
-Let $X$ and $Y$ be independent random variables, 
-respectively. Then, the p.m.f. of $T = X + Y$ is the **convolution** of the p.m.f.s of $X$ and $Y$:
+Let $X$ and $Y$ be independent random variables. 
+Then, the p.m.f. of $T = X + Y$ is the **convolution** of the p.m.f.s of $X$ and $Y$:
   \begin{equation} f_T = f_X * f_Y.
 (\#eq:convolution)
 \end{equation}
 The convolution operator $*$ in \@ref(eq:convolution) is defined as follows:
 \[ f_T(t) = \sum_x f_X(x) \cdot f_Y(t-x). \]
+Note that the verb form of "convolution" is **convolve**, not "convolute", even though many 
+students find convolution quite convoluted!
 ```
 
 ```{proof}

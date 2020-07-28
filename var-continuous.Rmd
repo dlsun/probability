@@ -20,6 +20,7 @@ The "shortcut formula" also works for continuous random variables.
 The variance can also be computed as:
 \begin{equation}
 \text{Var}[X] = E[X^2] - E[X]^2.
+(\#eq:var-shortcut-continuous)
 \end{equation}
 ```
 
