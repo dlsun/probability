@@ -465,7 +465,7 @@ product of <span class="math inline">\(f_U\)</span> and the flipped version of <
 the two functions are never both non-zero, so the integral is 0.</p>
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-151-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-152-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Now, to get the convolution at <span class="math inline">\(t\)</span>, we shift the flipped version of <span class="math inline">\(f_V\)</span> to the right by <span class="math inline">\(t\)</span>. This is why
 the convolution operation is often called “flip and shift”. To see why, consider the formula when we
 flip and shift <span class="math inline">\(f_V\)</span>:
@@ -479,12 +479,12 @@ before integrating.</p>
 <span class="math inline">\(0 &lt; t &lt; 1\)</span>, then the supports of the two distributions overlap between <span class="math inline">\(0\)</span> and <span class="math inline">\(t\)</span>, so the result of the convolution
 is
 <span class="math display">\[ f_T(t) = \int_0^t 1 \cdot 1\,dx = t. \]</span></p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-152-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-153-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>On the other hand, if we shift by some amount
 <span class="math inline">\(1 &lt; t &lt; 2\)</span>, then the supports of the two distributions overlap between <span class="math inline">\(t-1\)</span> and <span class="math inline">\(1\)</span>, so the result of the convolution
 is
 <span class="math display">\[ f_T(t) = \int_{t-1}^1 1 \cdot 1\,dx = 2 - t. \]</span></p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-153-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-154-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Putting it all together, the formula for the p.d.f. is given by
 <span class="math display">\[ f_T(t) = \begin{cases} t &amp; 0 &lt; t \leq 1 \\ 2 - t &amp; 1 &lt; t &lt; 2 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
 This is sometimes known as the <strong>triangular distribution</strong>, for obvious reasons.</p>
@@ -514,7 +514,7 @@ overlap between <span class="math inline">\(0\)</span> and <span class="math inl
 </ol>
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-154-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-155-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Now that we have the limits of integration, we obtain the following formula for the p.d.f. for <span class="math inline">\(t &gt; 0\)</span>.
 <span class="math display">\[\begin{align*}
 f_{S_2}(t) &amp;= \int_0^t 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \\
@@ -523,7 +523,7 @@ f_{S_2}(t) &amp;= \int_0^t 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \\
 &amp;= (0.8)^2 t e^{-0.8 t}; t &gt; 0
 \end{align*}\]</span></p>
 <p>This p.d.f. is graphed in red, along with the exponential p.d.f. of the interarrival times in gray.
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-155-1.png" width="672" style="display: block; margin: auto;" />
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-156-1.png" width="672" style="display: block; margin: auto;" />
 From the figure above, we see that the second arrival tends to happen later than the first arrival,
 which makes intuitive sense. The p.d.f. also seems to be centered around <span class="math inline">\(2 / 0.8 = 2.5\)</span>,
 which is the expected value we calculated in Example <a href="ev-joint-continuous.html#exm:pp-arrival-ev">43.3</a>.</p>
@@ -538,7 +538,7 @@ f_{S_3}(t) &amp;= \int_0^t (0.8)^2 x e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \
 &amp;= \frac{(0.8)^3}{2} t^2 e^{-0.8 t}; t &gt; 0
 \end{align*}\]</span>
 This p.d.f. is graphed in blue below.
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-156-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-157-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In general, we can continue in this way to obtain the following formula for the p.d.f. of the
 <span class="math inline">\(r\)</span>th arrival time in this Poisson process.
 <span class="math display">\[\begin{equation}

@@ -416,7 +416,7 @@ but keep in mind that the expected values are now computed
 using integrals and p.d.f.s, rather than sums and p.m.f.s.</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-146" class="definition"><strong>Definition 44.1  (Covariance)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables. Then, the <strong>covariance</strong> of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, symbolized
+<span id="def:unnamed-chunk-147" class="definition"><strong>Definition 44.1  (Covariance)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables. Then, the <strong>covariance</strong> of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, symbolized
 <span class="math inline">\(\text{Cov}[X, Y]\)</span> is defined as
 <span class="math display">\[\begin{equation}
 \text{Cov}[X, Y] \overset{\text{def}}{=} E[(X - E[X])(Y - E[Y])].
@@ -425,7 +425,7 @@ using integrals and p.d.f.s, rather than sums and p.m.f.s.</p>
 
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-147" class="theorem"><strong>Theorem 44.1  (Shortcut Formula for Covariance)  </strong></span>The covariance can also be computed as:
+<span id="thm:unnamed-chunk-148" class="theorem"><strong>Theorem 44.1  (Shortcut Formula for Covariance)  </strong></span>The covariance can also be computed as:
 <span class="math display" id="eq:cov-shortcut-continuous">\[\begin{equation}
 \text{Cov}[X, Y] = E[XY] - E[X]E[Y].
 \tag{44.1}
@@ -460,7 +460,7 @@ Putting everything together, we have
 
 
 <div class="theorem">
-<p><span id="thm:unnamed-chunk-148" class="theorem"><strong>Theorem 44.2  (Properties of Covariance)  </strong></span>Let <span class="math inline">\(X, Y, Z\)</span> be random variables, and let <span class="math inline">\(c\)</span> be a constant. Then:</p>
+<p><span id="thm:unnamed-chunk-149" class="theorem"><strong>Theorem 44.2  (Properties of Covariance)  </strong></span>Let <span class="math inline">\(X, Y, Z\)</span> be random variables, and let <span class="math inline">\(c\)</span> be a constant. Then:</p>
 <ol style="list-style-type: decimal">
 <li>Covariance-Variance Relationship: <span class="math inline">\(\displaystyle\text{Var}[X] = \text{Cov}[X, X]\)</span> (This was also Theorem <a href="covariance.html#thm:cov-var">29.1</a>.)</li>
 <li><p>Pulling Out Constants:</p>
@@ -475,7 +475,7 @@ Putting everything together, we have
 </ol>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-149" class="example"><strong>Example 44.2  </strong></span>Here is an easier way to do Example <a href="cov-continuous.html#exm:cov-arrival-times">44.1</a>, using properties of covariance.</p>
+<p><span id="exm:unnamed-chunk-150" class="example"><strong>Example 44.2  </strong></span>Here is an easier way to do Example <a href="cov-continuous.html#exm:cov-arrival-times">44.1</a>, using properties of covariance.</p>
 <p>Write <span class="math inline">\(Y = X + Z\)</span>, where <span class="math inline">\(Z\)</span> is the time between the first and second arrivals. We know that
 <span class="math inline">\(Z\)</span> is <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> and independent of <span class="math inline">\(X\)</span>, so <span class="math inline">\(\text{Cov}[X, Z] = 0\)</span>.</p>
 Now, we have
