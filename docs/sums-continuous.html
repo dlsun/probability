@@ -499,7 +499,7 @@ standard deviation of <span class="math inline">\(S_r\)</span>, the <span class=
 <span class="math display">\[ S_r = T_1 + T_2 + \ldots + T_r.  \]</span>
 In this example, we investigate the distribution of <span class="math inline">\(S_r\)</span>.</p>
 <p>We start with the case <span class="math inline">\(r=2\)</span>. Since <span class="math inline">\(S_2\)</span> is the sum of <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>, two independent
-exponential random variables, we can use <a href="sums-continuous.html#thm:sum-independent-continuous">45.1</a> to derive its p.d.f.</p>
+exponential random variables, we can use Theorem <a href="sums-continuous.html#thm:sum-independent-continuous">45.1</a> to derive its p.d.f.</p>
 <p>We convolve the <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> p.d.f. with itself, since <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>
 have the same distribution. Plugging the p.d.f.s into <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a>, we obtain:
 <span class="math display">\[ f_{S_2}(t) = \int_{?}^? 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx,  \]</span>
