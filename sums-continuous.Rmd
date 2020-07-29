@@ -49,15 +49,15 @@ as we wanted to show.
 ```
 
 ```{example sum-uniforms, name="Sum of Independent Uniforms"}
-Let $U$ and $V$ be independent $\text{Uniform}(a=0, b=1)$ random variables. 
-What is the p.d.f. of $T = U + V$?
+Let $X$ and $Y$ be independent $\text{Uniform}(a=0, b=1)$ random variables. 
+What is the p.d.f. of $T = X + Y$?
   
-  We have to convolve the p.d.f. of $U$ with the p.d.f. of $V$. The p.d.f.s of both $U$ and $V$ are 
+  We have to convolve the p.d.f. of $X$ with the p.d.f. of $Y$. The p.d.f.s of both $X$ and $Y$ are 
 \[ f(x) = \begin{cases} 1 & 0 < x < 1 \\ 0 & \text{otherwise} \end{cases}. \]
 This is a rectangle function.
 
-To calculate the convolution, we first flip $f_V$ about the $y$-axis. We then integrate the 
-product of $f_U$ and the flipped version of $f_V$ to get the convolution at $t=0$. In this case, 
+To calculate the convolution, we first flip $f_Y$ about the $y$-axis. We then integrate the 
+product of $f_X$ and the flipped version of $f_Y$ to obtain the convolution at $t=0$. In this case, 
 the two functions are never both non-zero, so the integral is 0.
 
 ```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
@@ -69,6 +69,7 @@ the two functions are never both non-zero, so the integral is 0.
 	\node[anchor=east] at (0, 1) {$1$};
 	\node[anchor=north] at (0, -0.1) {$0$};
 	\node[anchor=north] at (1, -0.1) {$1$};
+\node[anchor=west] at (2.5, 0) {$x$};
 
   \draw[gray,->] (-1.5, -2) -- (2.5, -2);
 	\draw[gray,->] (0, -2.1) -- (0, -0.5);
@@ -76,31 +77,34 @@ the two functions are never both non-zero, so the integral is 0.
 	\node[anchor=east] at (0, -1) {$1$};
 	\node[anchor=north] at (0, -2.1) {$0$};
 	\node[anchor=north] at (1, -2.1) {$1$};
+\node[anchor=west] at (2.5, -2) {$t$};
 
-		\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
-		\node[anchor=west,blue] at (1, 1) {$f_U$};
+		\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
+		\node[anchor=west,red] at (1, 1) {$f_X(x)$};
 	
-	\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (-1, 0) -- (-1, 1) -- (0, 1) -- (0, 0) -- (2.4, 0);
-	\node[anchor=east,red] at (-1, 1) {$f_V$};
+	\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (-1, 0) -- (-1, 1) -- (0, 1) -- (0, 0) -- (2.4, 0);
+	\node[anchor=east,blue] at (-1, 1) {$f_Y(t-x)$};
 
 	\filldraw[orange, opacity=0.7] (0, -2) circle (2pt);
 	
 	\end{tikzpicture}
 ```
   
-  Now, to get the convolution at $t$, we shift the flipped version of $f_V$ to the right by $t$. This is why 
+  Now, to get the convolution at $t$, we shift the flipped version of $f_Y$ to the right by $t$. This is why 
   the convolution operation is often called "flip and shift". To see why, consider the formula when we 
-  flip and shift $f_V$:
+  flip and shift $f_Y$:
   \begin{align*}
-  \text{FLIP}[f_V](x) &= f_V(-x) \\
-  \text{SHIFT}_t[\text{FLIP}[f_V]](x) &= f_V(-(x - t)) = f_V(t - x). \\
+  \text{FLIP}[f_Y](x) &= f_Y(-x) \\
+  \text{SHIFT}_t[\text{FLIP}[f_Y]](x) &= \text{FLIP}[f_Y](x - t) \\
+  &= f_Y(-(x - t)) \\
+  &= f_Y(t - x). \\
   \end{align*}
-  This is exactly the term that we multiply by $f_U(x)$ in the convolution formula \@ref(eq:convolution-continuous) 
+  This is exactly the term that we multiply by $f_X(x)$ in the convolution formula \@ref(eq:convolution-continuous) 
   before integrating.
   
-  For the uniform distribution, there are two cases. If we shift (the flipped version of $f_V$) by some amount 
-  $0 < t < 1$, then the supports of the two distributions overlap between $0$ and $t$, so the result of the convolution 
-  is
+  For the uniform distribution, there are two cases. If we shift (the flipped version of $f_Y$) by some amount 
+  $0 < t < 1$, then the supports of the two distributions overlap between $0$ and $t$, so the result of 
+  the convolution is
   \[ f_T(t) = \int_0^t 1 \cdot 1\,dx = t. \]
   
 ```{r, echo=FALSE, engine='tikz', out.width='50%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
@@ -112,6 +116,7 @@ the two functions are never both non-zero, so the integral is 0.
 	\node[anchor=east] at (0, 1) {$1$};
 	\node[anchor=north] at (0, -0.1) {$0$};
 	\node[anchor=north] at (1, -0.1) {$1$};
+\node[anchor=west] at (2.5, 0) {$x$};
 
   \draw[gray,->] (-1.5, -2) -- (2.5, -2);
 	\draw[gray,->] (0, -2.1) -- (0, -0.5);
@@ -119,12 +124,13 @@ the two functions are never both non-zero, so the integral is 0.
 	\node[anchor=east] at (0, -1) {$1$};
 	\node[anchor=north] at (0, -2.1) {$0$};
 	\node[anchor=north] at (1, -2.1) {$1$};
+\node[anchor=west] at (2.5, -2) {$t$};
 
-		\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
-		\node[anchor=west,blue] at (1, 1) {$f_U$};
+		\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
+		\node[anchor=west,red] at (1, 1) {$f_X(x)$};
 	
-	\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (-0.6, 0) -- (-0.6, 1) -- (0.4, 1) -- (0.4, 0) -- (2.4, 0);
-	\node[anchor=east,red] at (-0.6, 1) {$f_V$};
+	\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (-0.6, 0) -- (-0.6, 1) -- (0.4, 1) -- (0.4, 0) -- (2.4, 0);
+	\node[anchor=east,blue] at (-0.6, 1) {$f_Y(t-x)$};
 	\node[anchor=north] at (0.4, -0.1) {$t$};
 
 	\filldraw[orange, opacity=0.7] (0.4, -1.6) circle (2pt);
@@ -150,6 +156,7 @@ On the other hand, if we shift by some amount
 	\node[anchor=east] at (0, 1) {$1$};
 	\node[anchor=north] at (0, -0.1) {$0$};
 	\node[anchor=north] at (1, -0.1) {$1$};
+\node[anchor=west] at (2.5, 0) {$x$};
 
 \draw[gray,->] (-1.5, -2) -- (2.5, -2);
 	\draw[gray,->] (0, -2.1) -- (0, -0.5);
@@ -157,12 +164,13 @@ On the other hand, if we shift by some amount
 	\node[anchor=east] at (0, -1) {$1$};
 	\node[anchor=north] at (0, -2.1) {$0$};
 	\node[anchor=north] at (1, -2.1) {$1$};
+  \node[anchor=west] at (2.5, -2) {$t$};
 
-		\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
-		\node[anchor=west,blue] at (1, 1) {$f_U$};
+		\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (0, 0) -- (0, 1) -- (1, 1) -- (1, 0) -- (2.4, 0);
+		\node[anchor=west,red] at (1, 1) {$f_X(x)$};
 
-	\draw[ultra thick,red,opacity=0.5] (-1.4, 0) -- (0.5, 0) -- (0.5, 1) -- (1.5, 1) -- (1.5, 0) -- (2.4, 0);
-	\node[anchor=west,red] at (1.5, 1) {$f_V$};
+	\draw[ultra thick,blue,opacity=0.5] (-1.4, 0) -- (0.5, 0) -- (0.5, 1) -- (1.5, 1) -- (1.5, 0) -- (2.4, 0);
+	\node[anchor=west,blue] at (1.5, 1) {$f_Y(t-x)$};
 	\node[anchor=north] at (1.5, -0.1) {$t$};
 	\node[anchor=north] at (0.5, -0.1) {$t - 1$};
 

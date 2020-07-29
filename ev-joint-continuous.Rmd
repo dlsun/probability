@@ -15,7 +15,7 @@ Let $g$ be some function. Then,
 E[g(X, Y)] = \int_{-\infty}^\infty \int_{-\infty}^\infty g(x, y) \cdot f(x, y)\,dx\,dy.
 (\#eq:lotus2d-continuous)
 \end{equation}
-Compare this theorem with \@ref(thm:lotus2d).
+Compare this result with Theorem \@ref(thm:lotus2d).
 ```
 
 
@@ -45,7 +45,7 @@ In fact, if $X$ and $Y$ are independent, then for any functions $g$ and $h$,
 \begin{equation}
 E[g(X)h(Y)] = E[g(X)] E[h(Y)].
 \end{equation}
-Compare this theorem with \@ref(thm:ev-product).
+Compare this result with Theorem \@ref(thm:ev-product).
 ```{proof}
 \begin{align*}
 E[XY] &= \int_{-\infty}^\infty \int_{-\infty}^\infty xy f(x, y)\,dx\,dy & \text{(by 2D LOTUS)} \\
@@ -88,7 +88,7 @@ Let $X$ and $Y$ be continuous random variables. Then, _no matter what their join
 \begin{equation}
 E[X+Y] = E[X] + E[Y].
 \end{equation}
-Compare this theorem with \@ref(thm:linearity).
+Compare this result with Theorem \@ref(thm:linearity).
 ```{proof}
 Since $E[X + Y]$ involves two random variables, we have to evaluate the expectation 
 using 2D LOTUS \@ref(eq:lotus2d-continuous), with $g(x, y) = x + y$. Suppose 

@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-28" />
+<meta name="date" content="2020-07-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -455,29 +455,31 @@ as we wanted to show.
 
 
 <div class="example">
-<p><span id="exm:sum-uniforms" class="example"><strong>Example 45.1  (Sum of Independent Uniforms)  </strong></span>Let <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> be independent <span class="math inline">\(\text{Uniform}(a=0, b=1)\)</span> random variables.
-What is the p.d.f. of <span class="math inline">\(T = U + V\)</span>?</p>
-<p>We have to convolve the p.d.f. of <span class="math inline">\(U\)</span> with the p.d.f. of <span class="math inline">\(V\)</span>. The p.d.f.s of both <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are
+<p><span id="exm:sum-uniforms" class="example"><strong>Example 45.1  (Sum of Independent Uniforms)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <span class="math inline">\(\text{Uniform}(a=0, b=1)\)</span> random variables.
+What is the p.d.f. of <span class="math inline">\(T = X + Y\)</span>?</p>
+<p>We have to convolve the p.d.f. of <span class="math inline">\(X\)</span> with the p.d.f. of <span class="math inline">\(Y\)</span>. The p.d.f.s of both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are
 <span class="math display">\[ f(x) = \begin{cases} 1 &amp; 0 &lt; x &lt; 1 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
 This is a rectangle function.</p>
-<p>To calculate the convolution, we first flip <span class="math inline">\(f_V\)</span> about the <span class="math inline">\(y\)</span>-axis. We then integrate the
-product of <span class="math inline">\(f_U\)</span> and the flipped version of <span class="math inline">\(f_V\)</span> to get the convolution at <span class="math inline">\(t=0\)</span>. In this case,
+<p>To calculate the convolution, we first flip <span class="math inline">\(f_Y\)</span> about the <span class="math inline">\(y\)</span>-axis. We then integrate the
+product of <span class="math inline">\(f_X\)</span> and the flipped version of <span class="math inline">\(f_Y\)</span> to obtain the convolution at <span class="math inline">\(t=0\)</span>. In this case,
 the two functions are never both non-zero, so the integral is 0.</p>
 </div>
 
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-152-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Now, to get the convolution at <span class="math inline">\(t\)</span>, we shift the flipped version of <span class="math inline">\(f_V\)</span> to the right by <span class="math inline">\(t\)</span>. This is why
+<p>Now, to get the convolution at <span class="math inline">\(t\)</span>, we shift the flipped version of <span class="math inline">\(f_Y\)</span> to the right by <span class="math inline">\(t\)</span>. This is why
 the convolution operation is often called “flip and shift”. To see why, consider the formula when we
-flip and shift <span class="math inline">\(f_V\)</span>:
+flip and shift <span class="math inline">\(f_Y\)</span>:
 <span class="math display">\[\begin{align*}
-  \text{FLIP}[f_V](x) &amp;= f_V(-x) \\
-  \text{SHIFT}_t[\text{FLIP}[f_V]](x) &amp;= f_V(-(x - t)) = f_V(t - x). \\
+  \text{FLIP}[f_Y](x) &amp;= f_Y(-x) \\
+  \text{SHIFT}_t[\text{FLIP}[f_Y]](x) &amp;= \text{FLIP}[f_Y](x - t) \\
+  &amp;= f_Y(-(x - t)) \\
+  &amp;= f_Y(t - x). \\
   \end{align*}\]</span>
-This is exactly the term that we multiply by <span class="math inline">\(f_U(x)\)</span> in the convolution formula <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a>
+This is exactly the term that we multiply by <span class="math inline">\(f_X(x)\)</span> in the convolution formula <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a>
 before integrating.</p>
-<p>For the uniform distribution, there are two cases. If we shift (the flipped version of <span class="math inline">\(f_V\)</span>) by some amount
-<span class="math inline">\(0 &lt; t &lt; 1\)</span>, then the supports of the two distributions overlap between <span class="math inline">\(0\)</span> and <span class="math inline">\(t\)</span>, so the result of the convolution
-is
+<p>For the uniform distribution, there are two cases. If we shift (the flipped version of <span class="math inline">\(f_Y\)</span>) by some amount
+<span class="math inline">\(0 &lt; t &lt; 1\)</span>, then the supports of the two distributions overlap between <span class="math inline">\(0\)</span> and <span class="math inline">\(t\)</span>, so the result of
+the convolution is
 <span class="math display">\[ f_T(t) = \int_0^t 1 \cdot 1\,dx = t. \]</span></p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-153-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>On the other hand, if we shift by some amount
