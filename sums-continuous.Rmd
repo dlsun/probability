@@ -277,29 +277,31 @@ $U_i$ are i.i.d. $\text{Uniform}(a=0, b=1)$ random variables. You already
 calculated $E[S_n]$ and $\text{SD}[S_n]$ in Lesson \@ref(cov-continuous). Now, you will calculate its 
 distribution.
 
-    a. Find the p.d.f. of $S_3 = U_1 + U_2 + U_3$ and sketch its graph.
+    a. Find the p.d.f. of $S_3 = U_1 + U_2 + U_3$ and sketch its graph. Check that this p.d.f.
+    agrees with the value of $E[S_3]$ and $\text{SD}[S_3]$ that you calculated earlier.
 
         (_Hint 1:_ We already worked out the distribution of $U_1 + U_2$ in Example \@ref(exm:sum-uniforms). 
         Do another convolution.)
         
         (_Hint 2:_ You should end up with a p.d.f. with 4 cases: $f_{S_3}(t) = \begin{cases} ... & 0 < t \leq 1 \\ ... & 1 < t \leq 2 \\ ... & 2 < t < 3 \\ 0 & \text{otherwise} \end{cases}$.)
 
-    b. Find the p.d.f. of $S_4 = U_1 + U_2 + U_3 + U_4$ and sketch its graph.
+    b. Find the p.d.f. of $S_4 = U_1 + U_2 + U_3 + U_4$ and sketch its graph. Check that this p.d.f.
+    agrees with the value of $E[S_4]$ and $\text{SD}[S_4]$ that you calculated earlier.
     
         (_Hint:_ Note that Example \@ref(exm:sum-uniforms) gives the distribution of 
         $T_1 = U_1 + U_2$ and $T_2 = U_3 + U_4$. Furthermore, $T_1$ and $T_2$ must be independent, 
         since the $U_i$s are. So you should be able to do this by convolving two triangle functions. You 
         can check your answer by convolving the p.d.f. of $S_3$ that you derived above with another uniform.)
         
-    c. Neither $S_3$ or $S_4$ are distributions with a name. However, if you sketch their p.d.f.s, they should 
-    remind you of one of the distributions we have learned. Which one?
+    c. Neither $S_3$ nor $S_4$ are named distributions. However, if you sketch their p.d.f.s, they should 
+    remind you of one of the named distributions we learned. Which one?
     
 2. Let $X$ and $Y$ be independent _standard_ normal---that is, $\text{Normal}(\mu=0, \sigma=1)$---random variables. 
 Let $T = X + Y$. You should quickly be able to determine $E[T]$ and $\text{Var}[T]$. But what is the distribution of 
 $T$? Use convolution to answer this question.
 
     (I'm happy if you can just set up the integral and plug it into Wolfram Alpha. 
-    If you really want to know how to solve it by hand, try "completing the square" in the exponent 
+    If you really want to solve it by hand, try "completing the square" in the exponent 
     so that you end up with something that looks like a normal p.d.f., which you know must integrate to 1.)
     
 3. (This exercise is an application of the result that you found in the previous exercise. It is otherwise 

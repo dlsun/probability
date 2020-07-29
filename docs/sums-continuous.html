@@ -557,23 +557,25 @@ This family of distributions is known as the <strong>gamma distribution</strong>
 calculated <span class="math inline">\(E[S_n]\)</span> and <span class="math inline">\(\text{SD}[S_n]\)</span> in Lesson <a href="cov-continuous.html#cov-continuous">44</a>. Now, you will calculate its
 distribution.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Find the p.d.f. of <span class="math inline">\(S_3 = U_1 + U_2 + U_3\)</span> and sketch its graph.</p>
+<li><p>Find the p.d.f. of <span class="math inline">\(S_3 = U_1 + U_2 + U_3\)</span> and sketch its graph. Check that this p.d.f.
+agrees with the value of <span class="math inline">\(E[S_3]\)</span> and <span class="math inline">\(\text{SD}[S_3]\)</span> that you calculated earlier.</p>
 <p>(<em>Hint 1:</em> We already worked out the distribution of <span class="math inline">\(U_1 + U_2\)</span> in Example <a href="sums-continuous.html#exm:sum-uniforms">45.1</a>.
 Do another convolution.)</p>
 <p>(<em>Hint 2:</em> You should end up with a p.d.f. with 4 cases: <span class="math inline">\(f_{S_3}(t) = \begin{cases} ... &amp; 0 &lt; t \leq 1 \\ ... &amp; 1 &lt; t \leq 2 \\ ... &amp; 2 &lt; t &lt; 3 \\ 0 &amp; \text{otherwise} \end{cases}\)</span>.)</p></li>
-<li><p>Find the p.d.f. of <span class="math inline">\(S_4 = U_1 + U_2 + U_3 + U_4\)</span> and sketch its graph.</p>
+<li><p>Find the p.d.f. of <span class="math inline">\(S_4 = U_1 + U_2 + U_3 + U_4\)</span> and sketch its graph. Check that this p.d.f.
+agrees with the value of <span class="math inline">\(E[S_4]\)</span> and <span class="math inline">\(\text{SD}[S_4]\)</span> that you calculated earlier.</p>
 <p>(<em>Hint:</em> Note that Example <a href="sums-continuous.html#exm:sum-uniforms">45.1</a> gives the distribution of
 <span class="math inline">\(T_1 = U_1 + U_2\)</span> and <span class="math inline">\(T_2 = U_3 + U_4\)</span>. Furthermore, <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> must be independent,
 since the <span class="math inline">\(U_i\)</span>s are. So you should be able to do this by convolving two triangle functions. You
 can check your answer by convolving the p.d.f. of <span class="math inline">\(S_3\)</span> that you derived above with another uniform.)</p></li>
-<li><p>Neither <span class="math inline">\(S_3\)</span> or <span class="math inline">\(S_4\)</span> are distributions with a name. However, if you sketch their p.d.f.s, they should
-remind you of one of the distributions we have learned. Which one?</p></li>
+<li><p>Neither <span class="math inline">\(S_3\)</span> nor <span class="math inline">\(S_4\)</span> are named distributions. However, if you sketch their p.d.f.s, they should
+remind you of one of the named distributions we learned. Which one?</p></li>
 </ol></li>
 <li><p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <em>standard</em> normal—that is, <span class="math inline">\(\text{Normal}(\mu=0, \sigma=1)\)</span>—random variables.
 Let <span class="math inline">\(T = X + Y\)</span>. You should quickly be able to determine <span class="math inline">\(E[T]\)</span> and <span class="math inline">\(\text{Var}[T]\)</span>. But what is the distribution of
 <span class="math inline">\(T\)</span>? Use convolution to answer this question.</p>
 <p>(I’m happy if you can just set up the integral and plug it into Wolfram Alpha.
-If you really want to know how to solve it by hand, try “completing the square” in the exponent
+If you really want to solve it by hand, try “completing the square” in the exponent
 so that you end up with something that looks like a normal p.d.f., which you know must integrate to 1.)</p></li>
 <li><p>(This exercise is an application of the result that you found in the previous exercise. It is otherwise
 unrelated to this lesson.) Let <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, and <span class="math inline">\(X_3\)</span> represent the times (in minutes) necessary to perform three
