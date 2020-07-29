@@ -52,6 +52,8 @@ as we wanted to show.
 Let $X$ and $Y$ be independent $\text{Uniform}(a=0, b=1)$ random variables. 
 What is the p.d.f. of $T = X + Y$?
   
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/ohYTADogkj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
   We have to convolve the p.d.f. of $X$ with the p.d.f. of $Y$. The p.d.f.s of both $X$ and $Y$ are 
 \[ f(x) = \begin{cases} 1 & 0 < x < 1 \\ 0 & \text{otherwise} \end{cases}. \]
 This is a rectangle function.
