@@ -304,7 +304,7 @@ $\bar X_n$ be your average net winnings _per_ bet.
 at a rate of $\lambda = 0.8$ particles per second. What is the probability that the 100th particle 
 is detected between 90 and 120 seconds? Calculate this probability in two ways:
 
-    a. Make an argument for why _the time the 100th particle is detected_ approximately follows a 
+    a. Argue that _the time the 100th particle is detected_ approximately follows a 
     normal distribution. Use the normal approximation to calculate an approximate probability.
     b. We derived the exact p.d.f. of the $r$th arrival time in Example \@ref(exm:pp-arrival-dist). 
     Integrate this p.d.f. to get the exact probability.
