@@ -451,13 +451,13 @@ respectively, which we can calculate using properties of expectation and covaria
 &amp;= n\text{Var}[X_1] &amp; \text{($X_i$s are identically distributed)} \\
 \sigma = \sqrt{\sigma^2} &amp;= \sqrt{n} \text{SD}[X_1].
 \end{align*}\]</span></p>
-Since the average is just the sum divided by <span class="math inline">\(n\)</span>, the <em>average</em> of <span class="math inline">\(n\)</span> i.i.d. random variables is
-also approximately normal. (Scaling a normal random variable by a constant yields another
-normal distribution.)
+Since the mean of a list of numbers is just their sum divided by <span class="math inline">\(n\)</span>,
+the <em>mean</em> of <span class="math inline">\(n\)</span> i.i.d. random variables is also approximately normal.
+(Scaling a normal random variable by a constant just produces another normal distribution.)
 
 <div class="theorem">
 <span id="thm:clt-means" class="theorem"><strong>Theorem 46.2  (Central Limit Theorem for Means)  </strong></span>Let <span class="math inline">\(X_1, ..., X_n\)</span> be independent and identically distributed (i.i.d.) random variables.
-Then, for <span class="math inline">\(n\)</span> large, their mean
+Then, for <span class="math inline">\(n\)</span> large, their (sample) mean
 <span class="math display">\[ \bar X_n = \frac{X_1 + ... + X_n}{n}  \]</span>
 is approximately normally distributed.
 </div>
@@ -473,9 +473,10 @@ is approximately normally distributed.
 &amp;= \frac{\text{Var}[X_1]}{n} \\
 \sigma = \text{SD}[\bar X_n] &amp;= \frac{\text{SD}[X_1]}{\sqrt{n}}.
 \end{align*}\]</span></p>
-<p>On average, the mean will be the expected value of one observation, and the uncertainty
+<p>The sample mean will hover around the expected value of each observation, and the uncertainty
 (as measured by the standard deviation) approaches 0 as <span class="math inline">\(n \to \infty\)</span>. This is the same
-calculation that we did in Lesson <a href="lln.html#lln">32</a> on the Law of Large Numbers.</p>
+calculation that we did in Lesson <a href="lln.html#lln">32</a> to prove the Law of Large Numbers, which says
+that the sample mean <em>converges</em> to this expected value as <span class="math inline">\(n \to\infty\)</span>.</p>
 </div>
 <div id="worked-examples-1" class="section level2 unnumbered">
 <h2>Worked Examples</h2>
@@ -493,7 +494,8 @@ by more than this margin on either side, the Master of the Mint was exposed to s
 <p>In 1799, <em>each</em> guinea was supposed to weigh 128 grains. Due to manufacturing variability,
 the standard deviation of guinea weights was about 0.1 grains. To give the
 Master of the Mint some wiggle room, the allowable margin of error for <em>each</em>
-guinea was set at 0.32 grains.</p>
+guinea was set at 0.32 grains. The British government reasoned that the expected
+weight of  guineas should be 12,800 grains, with an allowable margin of 32 grains.</p>
 Let’s suppose the Master of the Mint makes the guineas weigh <span class="math inline">\(127.7\)</span> grains on average, skimming
 <span class="math inline">\(0.1\)</span> grains from each coin. What is the probability he gets caught?
 </div>
@@ -525,8 +527,7 @@ but this is probability is so small that we can ignore it.)
 
 <div class="example">
 <span id="exm:pyx2" class="example"><strong>Example 46.2  (Trial of the Pyx continued)  </strong></span>Not satisfied with a 1-in-50 chance of being caught, the Master of the Mint
-wants to reduce his chances of getting caught to 0.1%?
-What should he make the guineas weigh on average?
+wants to reduce his chances of getting caught to 0.1%? What should he make the guineas weigh on average?
 </div>
 
 

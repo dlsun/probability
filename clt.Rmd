@@ -39,12 +39,12 @@ respectively, which we can calculate using properties of expectation and covaria
 \sigma = \sqrt{\sigma^2} &= \sqrt{n} \text{SD}[X_1].
 \end{align*}
 
-Since the average is just the sum divided by $n$, the _average_ of $n$ i.i.d. random variables is 
-also approximately normal. (Scaling a normal random variable by a constant yields another 
-normal distribution.)
+Since the mean of a list of numbers is just their sum divided by $n$, 
+the _mean_ of $n$ i.i.d. random variables is also approximately normal. 
+(Scaling a normal random variable by a constant just produces another normal distribution.)
 ```{theorem clt-means, name="Central Limit Theorem for Means"}
 Let $X_1, ..., X_n$ be independent and identically distributed (i.i.d.) random variables. 
-Then, for $n$ large, their mean
+Then, for $n$ large, their (sample) mean
 \[ \bar X_n = \frac{X_1 + ... + X_n}{n}  \]
 is approximately normally distributed.
 ```
@@ -60,9 +60,10 @@ The parameters of this normal distribution are:
 \sigma = \text{SD}[\bar X_n] &= \frac{\text{SD}[X_1]}{\sqrt{n}}.
 \end{align*}
 
-On average, the mean will be the expected value of one observation, and the uncertainty 
+The sample mean will hover around the expected value of each observation, and the uncertainty 
 (as measured by the standard deviation) approaches 0 as $n \to \infty$. This is the same
-calculation that we did in Lesson \@ref(lln) on the Law of Large Numbers.
+calculation that we did in Lesson \@ref(lln) to prove the Law of Large Numbers, which says 
+that the sample mean _converges_ to this expected value as $n \to\infty$.
 
 ## Worked Examples {-}
 
@@ -81,7 +82,8 @@ by more than this margin on either side, the Master of the Mint was exposed to s
  In 1799, _each_ guinea was supposed to weigh 128 grains. Due to manufacturing variability, 
 	 the standard deviation of guinea weights was about 0.1 grains. To give the 
 	 Master of the Mint some wiggle room, the allowable margin of error for _each_
-	 guinea was set at 0.32 grains.
+	 guinea was set at 0.32 grains. The British government reasoned that the expected 
+	 weight of \underline{100} guineas should be 12,800 grains, with an allowable margin of 32 grains. 
 	  
 Let's suppose the Master of the Mint makes the guineas weigh $127.7$ grains on average, skimming 
 $0.1$ grains from each coin. What is the probability he gets caught?
@@ -115,8 +117,7 @@ Now, the Master of the Mint fails the Trial if the weight is off by 32 grains. T
 
 ```{example pyx2, name="Trial of the Pyx continued"}
 Not satisfied with a 1-in-50 chance of being caught, the Master of the Mint 
-wants to reduce his chances of getting caught to 0.1\%? 
-  What should he make the guineas weigh on average?
+wants to reduce his chances of getting caught to 0.1\%? What should he make the guineas weigh on average?
 ```{solution}
 Let $X_i$ denote the weight of a single guinea. Then, $E[X_i] = m$ (we are trying to determine 
                                                                        this) and 
