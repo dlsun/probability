@@ -82,8 +82,8 @@ by more than this margin on either side, the Master of the Mint was exposed to s
  In 1799, _each_ guinea was supposed to weigh 128 grains. Due to manufacturing variability, 
 	 the standard deviation of guinea weights was about 0.1 grains. To give the 
 	 Master of the Mint some wiggle room, the allowable margin of error for _each_
-	 guinea was set at 0.32 grains. The British government reasoned that the expected 
-	 weight of \underline{100} guineas should be 12,800 grains, with an allowable margin of 32 grains. 
+	 guinea was set at 0.32 grains. The British government reasoned that the total 
+	 weight of _100_ guineas should be 12,800 grains on average, with an allowable margin of 32 grains. 
 	  
 Let's suppose the Master of the Mint makes the guineas weigh $127.7$ grains on average, skimming 
 $0.1$ grains from each coin. What is the probability he gets caught?
@@ -110,13 +110,13 @@ By the Central Limit Theorem, we can approximate the distribution of $S$ by
 Now, the Master of the Mint fails the Trial if the weight is off by 32 grains. That is, 
 			he fails if $S < 12800 - 32$. This probability is
 			\[ P(S < 12768) = P(\frac{S - 12770}{1} < \frac{12768 - 12770}{1}) = \Phi(-2) \approx .023. \]
-			(Technically, the Master also fails the Trial if the weight is off by 
-			  more than 32 in the _other_ direction (i.e., $S > 12832$), 
-			  but this is probability is so small that we can ignore it.)
+			(Technically, the Master also fails if the weight is off by 
+			  32 in the _other_ direction, i.e., $S > 12832$, 
+			  but this is probability is so tiny that we can ignore it.)
 ```
 
 ```{example pyx2, name="Trial of the Pyx continued"}
-Not satisfied with a 1-in-50 chance of being caught, the Master of the Mint 
+Not satisfied with a 1-in-50 chance of being caught (and likely executed), the Master of the Mint 
 wants to reduce his chances of getting caught to 0.1\%? What should he make the guineas weigh on average?
 ```{solution}
 Let $X_i$ denote the weight of a single guinea. Then, $E[X_i] = m$ (we are trying to determine 

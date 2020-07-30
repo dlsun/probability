@@ -494,8 +494,8 @@ by more than this margin on either side, the Master of the Mint was exposed to s
 <p>In 1799, <em>each</em> guinea was supposed to weigh 128 grains. Due to manufacturing variability,
 the standard deviation of guinea weights was about 0.1 grains. To give the
 Master of the Mint some wiggle room, the allowable margin of error for <em>each</em>
-guinea was set at 0.32 grains. The British government reasoned that the expected
-weight of  guineas should be 12,800 grains, with an allowable margin of 32 grains.</p>
+guinea was set at 0.32 grains. The British government reasoned that the total
+weight of <em>100</em> guineas should be 12,800 grains on average, with an allowable margin of 32 grains.</p>
 Let’s suppose the Master of the Mint makes the guineas weigh <span class="math inline">\(127.7\)</span> grains on average, skimming
 <span class="math inline">\(0.1\)</span> grains from each coin. What is the probability he gets caught?
 </div>
@@ -519,14 +519,14 @@ this normal distribution.</p>
 Now, the Master of the Mint fails the Trial if the weight is off by 32 grains. That is,
 he fails if <span class="math inline">\(S &lt; 12800 - 32\)</span>. This probability is
 <span class="math display">\[ P(S &lt; 12768) = P(\frac{S - 12770}{1} &lt; \frac{12768 - 12770}{1}) = \Phi(-2) \approx .023. \]</span>
-(Technically, the Master also fails the Trial if the weight is off by
-more than 32 in the <em>other</em> direction (i.e., <span class="math inline">\(S &gt; 12832\)</span>),
-but this is probability is so small that we can ignore it.)
+(Technically, the Master also fails if the weight is off by
+32 in the <em>other</em> direction, i.e., <span class="math inline">\(S &gt; 12832\)</span>,
+but this is probability is so tiny that we can ignore it.)
 </div>
 
 
 <div class="example">
-<span id="exm:pyx2" class="example"><strong>Example 46.2  (Trial of the Pyx continued)  </strong></span>Not satisfied with a 1-in-50 chance of being caught, the Master of the Mint
+<span id="exm:pyx2" class="example"><strong>Example 46.2  (Trial of the Pyx continued)  </strong></span>Not satisfied with a 1-in-50 chance of being caught (and likely executed), the Master of the Mint
 wants to reduce his chances of getting caught to 0.1%? What should he make the guineas weigh on average?
 </div>
 
