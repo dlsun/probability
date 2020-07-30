@@ -207,7 +207,7 @@ expected value and standard deviation:
 \begin{align*}
 E[S] &= np = 300 \cdot \frac{2}{38} \approx 15.79 & \text{SD}[S] &= \sqrt{np(1-p)} = \sqrt{300 \cdot \frac{2}{38} \cdot (1 - \frac{2}{38})} \approx 3.87.
 \end{align*}
-So $S \approx \text{Normal}(\mu=10.53, \sigma=3.15)$. Now we can calculate $P(S \geq 22)$ using a normal 
+So $S \approx \text{Normal}(\mu=15.79, \sigma=3.87)$. Now we can calculate $P(S \geq 22)$ using a normal 
 distribution calculator:
 ```{python}
 # Python code
