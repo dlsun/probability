@@ -5,10 +5,10 @@
 In Lesson \@ref(sums-continuous), we saw that calculating the exact distribution of a 
 sum of i.i.d. random variables, $S_n = X_1 + X_2 + \ldots + X_n$ is a lot of work. 
 Each time we add another random variable, we have to calculate a convolution, which requires 
-calculating an integral. For arbitrary p.m.f.s and p.d.f.s, calculating so many convolutions 
+calculating an integral. For arbitrary p.m.f.s and p.d.f.s, calculating many convolutions 
 is impractical.
 
-However, we often need to calculate probabilities involving the sum of hundreds or even 
+However, we often work with the sum of hundreds or even 
 thousands of random variables. Since getting the exact distribution of $S_n$ is impractical, 
 we need an approximation that is accurate and easy to use. The **Central Limit Theorem** 
 provides that approximation.
@@ -22,11 +22,10 @@ Then, for $n$ large, their sum
 is approximately normally distributed.
 ```
 Therefore, to calculate a probability such as $P(S_n \leq x)$, we can use a 
-normal distribution. Of course, we need to determine the parameters of the 
-normal distribution. That is, we need to know $\mu$ and $\sigma$. We choose 
+normal distribution. Of course, we need the parameters of the 
+normal distribution. That is, we need to specify $\mu$ and $\sigma$. We choose 
 these parameters to match the expectation $E[S_n]$ and the standard deviation $\text{SD}[S_n]$, 
-respectively, which we can calculate using properties of expectation and covariance:
-
+which we can calculate using properties of expectation and covariance:
 \begin{align*}
 \mu = E[S_n] &= E[X_1 + X_2 + ... + X_n] \\
 &= E[X_1] + E[X_2] + ... + E[X_n] & \text{(linearity of expectation)} \\
@@ -63,7 +62,10 @@ The parameters of this normal distribution are:
 The sample mean will hover around the expected value of each observation, and the uncertainty 
 (as measured by the standard deviation) approaches 0 as $n \to \infty$. This is the same
 calculation that we did in Lesson \@ref(lln) to prove the Law of Large Numbers, which says 
-that the sample mean _converges_ to this expected value as $n \to\infty$.
+that the sample mean _converges_ to this expected value as $n \to\infty$. For any 
+finite number $n$, the sample mean will be close to, but not exactly equal to, the expected value. 
+The Central Limit Theorem says that the remaining variability can be approximated by a normal 
+distribution.
 
 ## Worked Examples {-}
 
@@ -220,16 +222,22 @@ Notice that we plugged in 22 into the c.d.f. because the normal distribution is 
 \[ P(S \geq 22) = 1 - P(S < 22) = 1 - P(S \leq 22), \]
 since the probability that $S$ equals 22 exactly is zero. However, because
 we are using the normal distribution to approximate a discrete distribution, 
-some people have argued that we should plug in 21 or 21.5 instead.
+some people argue that we should plug in 21 or 21.5 instead. This is called a _continuity correction_, 
+since it attempts to correct for the error in approximating a discrete distribution by a continuous one. 
+Indeed, if you plug in 21.5, you get an approximation that is closer to the exact answer we obtained above.
+```{r}
+# R
+1 - pnorm(21.5, mean=300 * 2/38, sd=sqrt(300 * 2/38 * (1 - 2/38)))
+```
 
-In my opinion, it is a waste of time to worry about such details, since this is no longer a 
-practical method of calculating probabilities. There is no reason to use 
-the normal approximation to calculate this probability when exact binomial calculators 
-are available. The normal approximation to the binomial is presented primarily as an 
-application of the Central Limit Theorem.
+In my opinion, worrying about continuity corrections is like rearranging the deck chairs 
+on the Titanic. There is no point in trying to make the normal approximation slightly better when you can 
+just use a  binomial calculator and get the exact answer. The normal approximation to the binomial is primarily 
+interesting as an application of the Central Limit Theorem, not as a practical way to calculate 
+probabilities.
 
 Shown below is the normal approximation (in red) to the binomial p.m.f. (in black). 
-As we can see, the normal approximation is good, but not perfect.
+The normal approximation is very good, but not perfect.
 
 ```{r normal-approx-binomial, echo=FALSE, fig.show = "hold", fig.align = "default", fig.asp=0.7}
 plot(0:50, dbinom(0:50, 300, 2/38), pch=19, xlab="x", ylab="f(x)", xlim=c(0, 45))

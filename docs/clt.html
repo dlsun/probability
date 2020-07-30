@@ -419,9 +419,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In Lesson <a href="sums-continuous.html#sums-continuous">45</a>, we saw that calculating the exact distribution of a
 sum of i.i.d. random variables, <span class="math inline">\(S_n = X_1 + X_2 + \ldots + X_n\)</span> is a lot of work.
 Each time we add another random variable, we have to calculate a convolution, which requires
-calculating an integral. For arbitrary p.m.f.s and p.d.f.s, calculating so many convolutions
+calculating an integral. For arbitrary p.m.f.s and p.d.f.s, calculating many convolutions
 is impractical.</p>
-<p>However, we often need to calculate probabilities involving the sum of hundreds or even
+<p>However, we often work with the sum of hundreds or even
 thousands of random variables. Since getting the exact distribution of <span class="math inline">\(S_n\)</span> is impractical,
 we need an approximation that is accurate and easy to use. The <strong>Central Limit Theorem</strong>
 provides that approximation.</p>
@@ -437,11 +437,11 @@ is approximately normally distributed.
 </div>
 
 <p>Therefore, to calculate a probability such as <span class="math inline">\(P(S_n \leq x)\)</span>, we can use a
-normal distribution. Of course, we need to determine the parameters of the
-normal distribution. That is, we need to know <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. We choose
+normal distribution. Of course, we need the parameters of the
+normal distribution. That is, we need to specify <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. We choose
 these parameters to match the expectation <span class="math inline">\(E[S_n]\)</span> and the standard deviation <span class="math inline">\(\text{SD}[S_n]\)</span>,
-respectively, which we can calculate using properties of expectation and covariance:</p>
-<p><span class="math display">\[\begin{align*}
+which we can calculate using properties of expectation and covariance:
+<span class="math display">\[\begin{align*}
 \mu = E[S_n] &amp;= E[X_1 + X_2 + ... + X_n] \\
 &amp;= E[X_1] + E[X_2] + ... + E[X_n] &amp; \text{(linearity of expectation)} \\
 &amp;= n E[X_1] &amp; \text{($X_i$s are identically distributed)} \\
@@ -477,7 +477,10 @@ is approximately normally distributed.
 <p>The sample mean will hover around the expected value of each observation, and the uncertainty
 (as measured by the standard deviation) approaches 0 as <span class="math inline">\(n \to \infty\)</span>. This is the same
 calculation that we did in Lesson <a href="lln.html#lln">32</a> to prove the Law of Large Numbers, which says
-that the sample mean <em>converges</em> to this expected value as <span class="math inline">\(n \to\infty\)</span>.</p>
+that the sample mean <em>converges</em> to this expected value as <span class="math inline">\(n \to\infty\)</span>. For any
+finite number <span class="math inline">\(n\)</span>, the sample mean will be close to, but not exactly equal to, the expected value.
+The Central Limit Theorem says that the remaining variability can be approximated by a normal
+distribution.</p>
 </div>
 <div id="worked-examples-1" class="section level2 unnumbered">
 <h2>Worked Examples</h2>
@@ -629,14 +632,19 @@ distribution calculator:</p>
 <span class="math display">\[ P(S \geq 22) = 1 - P(S &lt; 22) = 1 - P(S \leq 22), \]</span>
 since the probability that <span class="math inline">\(S\)</span> equals 22 exactly is zero. However, because
 we are using the normal distribution to approximate a discrete distribution,
-some people have argued that we should plug in 21 or 21.5 instead.</p>
-<p>In my opinion, it is a waste of time to worry about such details, since this is no longer a
-practical method of calculating probabilities. There is no reason to use
-the normal approximation to calculate this probability when exact binomial calculators
-are available. The normal approximation to the binomial is presented primarily as an
-application of the Central Limit Theorem.</p>
+some people argue that we should plug in 21 or 21.5 instead. This is called a <em>continuity correction</em>,
+since it attempts to correct for the error in approximating a discrete distribution by a continuous one.
+Indeed, if you plug in 21.5, you get an approximation that is closer to the exact answer we obtained above.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># R</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">21.5</span>, <span class="dt">mean=</span><span class="dv">300</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">300</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>)))</a></code></pre></div>
+<pre><code>## [1] 0.06990513</code></pre>
+<p>In my opinion, worrying about continuity corrections is like rearranging the deck chairs
+on the Titanic. There is no point in trying to make the normal approximation slightly better when you can
+just use a binomial calculator and get the exact answer. The normal approximation to the binomial is primarily
+interesting as an application of the Central Limit Theorem, not as a practical way to calculate
+probabilities.</p>
 <p>Shown below is the normal approximation (in red) to the binomial p.m.f. (in black).
-As we can see, the normal approximation is good, but not perfect.</p>
+The normal approximation is very good, but not perfect.</p>
 <p><img src="bookdown-demo_files/figure-html/normal-approx-binomial-1.png" width="672" /></p>
 </div>
 <div id="essential-practice-35" class="section level2 unnumbered">
@@ -654,17 +662,17 @@ Consider betting on a single number on each of <span class="math inline">\(n\)</
 <ol style="list-style-type: lower-alpha">
 <li><p>For which of the following values of <span class="math inline">\(n\)</span> is <span class="math inline">\(\bar X_n\)</span> close to normally
 distributed? Do a simulation to find out. (Copy the code below into a Colab and modify.)</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># Python code (Make sure Symbulate has been imported.) </span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2">n <span class="op">=</span> <span class="dv">10</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3">P <span class="op">=</span> BoxModel({<span class="dv">35</span>: <span class="dv">1</span>, <span class="dv">-1</span>: <span class="dv">37</span>}, size<span class="op">=</span>n, replace<span class="op">=</span><span class="va">True</span>)</a>
-<a class="sourceLine" id="cb53-4" data-line-number="4">X <span class="op">=</span> RV(P, mean)</a>
-<a class="sourceLine" id="cb53-5" data-line-number="5">X.sim(<span class="dv">9999</span>)</a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co"># You can use .plot() to make a histogram of these results.</span></a></code></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># R code</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="kw">replicate</span>(<span class="dv">9999</span>,</a>
-<a class="sourceLine" id="cb54-4" data-line-number="4">          <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">35</span>, <span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">37</span>)), <span class="dt">size=</span>n, <span class="dt">replace=</span><span class="ot">TRUE</span>)))</a>
-<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="co"># You can use hist() to make a histogram of these results.</span></a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># Python code (Make sure Symbulate has been imported.) </span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">n <span class="op">=</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">P <span class="op">=</span> BoxModel({<span class="dv">35</span>: <span class="dv">1</span>, <span class="dv">-1</span>: <span class="dv">37</span>}, size<span class="op">=</span>n, replace<span class="op">=</span><span class="va">True</span>)</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">X <span class="op">=</span> RV(P, mean)</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5">X.sim(<span class="dv">9999</span>)</a>
+<a class="sourceLine" id="cb55-6" data-line-number="6"><span class="co"># You can use .plot() to make a histogram of these results.</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># R code</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="kw">replicate</span>(<span class="dv">9999</span>,</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4">          <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">35</span>, <span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">37</span>)), <span class="dt">size=</span>n, <span class="dt">replace=</span><span class="ot">TRUE</span>)))</a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="co"># You can use hist() to make a histogram of these results.</span></a></code></pre></div>
 <ul>
 <li><span class="math inline">\(n=10\)</span></li>
 <li><span class="math inline">\(n=100\)</span></li>
