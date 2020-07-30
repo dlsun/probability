@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="cov-continuous.html"/>
-
+<link rel="next" href="clt.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -385,6 +385,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sums-continuous.html"><a href="sums-continuous.html#theory-41"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="sums-continuous.html"><a href="sums-continuous.html#essential-practice-34"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="46" data-path="clt.html"><a href="clt.html"><i class="fa fa-check"></i><b>46</b> Central Limit Theorem</a><ul>
+<li class="chapter" data-level="46.1" data-path="clt.html"><a href="clt.html#motivation-2"><i class="fa fa-check"></i><b>46.1</b> Motivation</a></li>
+<li class="chapter" data-level="46.2" data-path="clt.html"><a href="clt.html#theory-42"><i class="fa fa-check"></i><b>46.2</b> Theory</a></li>
+<li class="chapter" data-level="46.3" data-path="clt.html"><a href="clt.html#worked-examples-1"><i class="fa fa-check"></i><b>46.3</b> Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#essential-practice-35"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -544,8 +550,9 @@ This p.d.f. is graphed in blue below.
 <img src="bookdown-demo_files/figure-html/unnamed-chunk-157-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In general, we can continue in this way to obtain the following formula for the p.d.f. of the
 <span class="math inline">\(r\)</span>th arrival time in this Poisson process.
-<span class="math display">\[\begin{equation}
+<span class="math display" id="eq:arrival-times-pdf">\[\begin{equation}
 f_{S_r}(t) = \frac{(0.8)^r}{(r-1)!} t^{r-1} e^{-0.8 t}; t &gt; 0.
+\tag{45.2}
 \end{equation}\]</span>
 This family of distributions is known as the <strong>gamma distribution</strong>, with parameters <span class="math inline">\(r\)</span> and <span class="math inline">\(\lambda =0.8\)</span>.</p>
 </div>
@@ -564,10 +571,9 @@ Do another convolution.)</p>
 <p>(<em>Hint 2:</em> You should end up with a p.d.f. with 4 cases: <span class="math inline">\(f_{S_3}(t) = \begin{cases} ... &amp; 0 &lt; t \leq 1 \\ ... &amp; 1 &lt; t \leq 2 \\ ... &amp; 2 &lt; t &lt; 3 \\ 0 &amp; \text{otherwise} \end{cases}\)</span>.)</p></li>
 <li><p>Find the p.d.f. of <span class="math inline">\(S_4 = U_1 + U_2 + U_3 + U_4\)</span> and sketch its graph. Check that this p.d.f.
 agrees with the value of <span class="math inline">\(E[S_4]\)</span> and <span class="math inline">\(\text{SD}[S_4]\)</span> that you calculated earlier.</p>
-<p>(<em>Hint:</em> Note that Example <a href="sums-continuous.html#exm:sum-uniforms">45.1</a> gives the distribution of
-<span class="math inline">\(T_1 = U_1 + U_2\)</span> and <span class="math inline">\(T_2 = U_3 + U_4\)</span>. Furthermore, <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> must be independent,
-since the <span class="math inline">\(U_i\)</span>s are. So you should be able to do this by convolving two triangle functions. You
-can check your answer by convolving the p.d.f. of <span class="math inline">\(S_3\)</span> that you derived above with another uniform.)</p></li>
+<p>(<em>Hint:</em> I think the easiest way to do this is to convolve another uniform p.d.f. with
+the p.d.f. you got in part a. However, you could also do this by convolving two triangle
+functions together. You should get the same answer either way.)</p></li>
 <li><p>Neither <span class="math inline">\(S_3\)</span> nor <span class="math inline">\(S_4\)</span> are named distributions. However, if you sketch their p.d.f.s, they should
 remind you of one of the named distributions we learned. Which one?</p></li>
 </ol></li>
@@ -594,8 +600,8 @@ probability in the usual way. You should not need to do any convolutions to answ
           </div>
         </div>
       </div>
-<a href="cov-continuous.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="cov-continuous.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="clt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

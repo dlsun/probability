@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introduction to Probability</title>
+  <title>Lesson 46 Central Limit Theorem | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to Probability" />
+  <meta property="og:title" content="Lesson 46 Central Limit Theorem | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 46 Central Limit Theorem | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="sums-continuous.html"/>
 
-<link rel="next" href="counting.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -411,22 +411,244 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introduction to Probability</h1>
-<p class="author"><em>Dennis Sun</em></p>
-<p class="date"><em>2020-07-29</em></p>
+<div id="clt" class="section level1">
+<h1><span class="header-section-number">Lesson 46</span> Central Limit Theorem</h1>
+<div id="motivation-2" class="section level2">
+<h2><span class="header-section-number">46.1</span> Motivation</h2>
+<p>In Lesson <a href="sums-continuous.html#sums-continuous">45</a>, we saw that calculating the exact distribution of a
+sum of i.i.d. random variables, <span class="math inline">\(S_n = X_1 + X_2 + \ldots + X_n\)</span> is a lot of work.
+Each time we add another random variable, we have to calculate a convolution, which requires
+calculating an integral. For arbitrary p.m.f.s and p.d.f.s, calculating so many convolutions
+is impractical.</p>
+<p>However, we often need to calculate probabilities involving the sum of hundreds or even
+thousands of random variables. Since getting the exact distribution of <span class="math inline">\(S_n\)</span> is impractical,
+we need an approximation that is accurate and easy to use. The <strong>Central Limit Theorem</strong>
+provides that approximation.</p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
+<div id="theory-42" class="section level2">
+<h2><span class="header-section-number">46.2</span> Theory</h2>
 
+<div class="theorem">
+<span id="thm:clt" class="theorem"><strong>Theorem 46.1  (Central Limit Theorem for Sums)  </strong></span>Let <span class="math inline">\(X_1, ..., X_n\)</span> be independent and identically distributed (i.i.d.) random variables.
+Then, for <span class="math inline">\(n\)</span> large, their sum
+<span class="math display">\[ S_n = X_1 + ... + X_n  \]</span>
+is approximately normally distributed.
+</div>
+
+<p>Therefore, to calculate a probability such as <span class="math inline">\(P(S_n \leq x)\)</span>, we can use a
+normal distribution. Of course, we need to determine the parameters of the
+normal distribution. That is, we need to know <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. We choose
+these parameters to match the expectation <span class="math inline">\(E[S_n]\)</span> and the standard deviation <span class="math inline">\(\text{SD}[S_n]\)</span>,
+respectively, which we can calculate using properties of expectation and covariance:</p>
+<p><span class="math display">\[\begin{align*}
+\mu = E[S_n] &amp;= E[X_1 + X_2 + ... + X_n] \\
+&amp;= E[X_1] + E[X_2] + ... + E[X_n] &amp; \text{(linearity of expectation)} \\
+&amp;= n E[X_1] &amp; \text{($X_i$s are identically distributed)} \\
+\sigma^2 = \text{Var}[S_n] &amp;= \text{Cov}[S_n, S_n] \\
+&amp;= \text{Cov}[X_1 + ... + X_n, X_1 + ... + X_n] \\
+&amp;= \text{Cov}[X_1, X_1] + \text{Cov}[X_1, X_2] + ... + \text{Cov}[X_n, X_n] &amp; \text{(properties of covariance)} \\
+&amp;= \text{Var}[X_1] + ... + \text{Var}[X_n] &amp; \text{($X_i$s are independent)} \\
+&amp;= n\text{Var}[X_1] &amp; \text{($X_i$s are identically distributed)} \\
+\sigma = \sqrt{\sigma^2} &amp;= \sqrt{n} \text{SD}[X_1].
+\end{align*}\]</span></p>
+Since the average is just the sum divided by <span class="math inline">\(n\)</span>, the <em>average</em> of <span class="math inline">\(n\)</span> i.i.d. random variables is
+also approximately normal. (Scaling a normal random variable by a constant yields another
+normal distribution.)
+
+<div class="theorem">
+<span id="thm:clt-means" class="theorem"><strong>Theorem 46.2  (Central Limit Theorem for Means)  </strong></span>Let <span class="math inline">\(X_1, ..., X_n\)</span> be independent and identically distributed (i.i.d.) random variables.
+Then, for <span class="math inline">\(n\)</span> large, their mean
+<span class="math display">\[ \bar X_n = \frac{X_1 + ... + X_n}{n}  \]</span>
+is approximately normally distributed.
+</div>
+
+<p>The parameters of this normal distribution are:
+<span class="math display">\[\begin{align*}
+\mu = E[\bar X_n] &amp;= E[\frac{S_n}{n}] \\
+&amp;= \frac{n E[X_1]}{n} \\
+&amp;= E[X_1] \\
+\sigma^2 = \text{Var}[\bar X_n] &amp;= \text{Var}[\frac{S_n}{n}] \\
+&amp;= \frac{1}{n^2} \text{Var}[S_n] \\
+&amp;= \frac{1}{n^2} n \text{Var}[X_1] \\
+&amp;= \frac{\text{Var}[X_1]}{n} \\
+\sigma = \text{SD}[\bar X_n] &amp;= \frac{\text{SD}[X_1]}{\sqrt{n}}.
+\end{align*}\]</span></p>
+<p>On average, the mean will be the expected value of one observation, and the uncertainty
+(as measured by the standard deviation) approaches 0 as <span class="math inline">\(n \to \infty\)</span>. This is the same
+calculation that we did in Lesson <a href="lln.html#lln">32</a> on the Law of Large Numbers.</p>
+</div>
+<div id="worked-examples-1" class="section level2">
+<h2><span class="header-section-number">46.3</span> Worked Examples</h2>
+
+<div class="example">
+<p><span id="exm:pyx1" class="example"><strong>Example 46.1  (Trial of the Pyx)  </strong></span>Since the 1200s, coins struck by the Royal Mint in England have been evaluated for their metal content in a ceremony called the Trial of the Pyx. This ceremony does not have much meaning today (see the video below), but in the 1700s, English coins were made of gold. The Master of the Mint had an incentive to make coins
+weigh less than the standard, because he could keep the shortfall himself (as long as he was not caught).</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UZQfA2cRHJs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>In the Trial, 100 guineas (i.e., gold coins) would be chosen randomly and independently from all coins
+made at the Mint that year, put in the Pyx (a ceremonial box), and weighed.
+The Master of the Mint was allowed a margin of error, which was set according to the manufacturing
+tolerances of the time. If the actual weight of the coins in the Pyx differed from its target weight
+by more than this margin on either side, the Master of the Mint was exposed to serious penalties.</p>
+<p>In 1799, <em>each</em> guinea was supposed to weigh 128 grains. Due to manufacturing variability,
+the standard deviation of guinea weights was about 0.1 grains. To give the
+Master of the Mint some wiggle room, the allowable margin of error for <em>each</em>
+guinea was set at 0.32 grains.</p>
+Let’s suppose the Master of the Mint makes the guineas weigh <span class="math inline">\(127.7\)</span> grains on average, skimming
+<span class="math inline">\(0.1\)</span> grains from each coin. What is the probability he gets caught?
+</div>
+
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> Let <span class="math inline">\(X_i\)</span> be the actual weight of a single guinea. Then, <span class="math inline">\(E[X_i] = 127.7\)</span> and
+<span class="math inline">\(\text{Var}[X_i] = 0.1^2\)</span>. The total weight of the 100 guineas is:
+<span class="math display">\[ S = X_1 + ... + X_{100}. \]</span></p>
+<p>We know that
+<span class="math display">\[\begin{align*}
+    E[S] &amp;= 100 \cdot 127.7 = 12770 &amp; \text{Var}[S] &amp;= 100 \cdot 0.1^2 \\
+    &amp; &amp; \text{SD}[S] &amp;= \sqrt{100} \cdot 0.1 = 1
+    \end{align*}\]</span></p>
+<p>By the Central Limit Theorem, we can approximate the distribution of <span class="math inline">\(S\)</span> by
+<span class="math display">\[ S \approx \textrm{Normal}(\mu=12770, \sigma=1). \]</span>
+Notice that we did not need to know how the weights of
+individual guineas are distributed! The weight of an individual guinea can follow any
+distribution, and the <em>total</em> weight of 100 independent guineas will still follow
+this normal distribution.</p>
+Now, the Master of the Mint fails the Trial if the weight is off by 32 grains. That is,
+he fails if <span class="math inline">\(S &lt; 12800 - 32\)</span>. This probability is
+<span class="math display">\[ P(S &lt; 12768) = P(\frac{S - 12770}{1} &lt; \frac{12768 - 12770}{1}) = \Phi(-2) \approx .023. \]</span>
+(Technically, the Master also fails the Trial if the weight is off by
+more than 32 in the <em>other</em> direction (i.e., <span class="math inline">\(S &gt; 12832\)</span>),
+but this is probability is so small that we can ignore it.)
+</div>
+
+
+<div class="example">
+<span id="exm:pyx2" class="example"><strong>Example 46.2  (Trial of the Pyx continued)  </strong></span>Not satisfied with a 1-in-50 chance of being caught, the Master of the Mint
+wants to reduce his chances of getting caught to 0.1%?
+What should he make the guineas weigh on average?
+</div>
+
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> Let <span class="math inline">\(X_i\)</span> denote the weight of a single guinea. Then, <span class="math inline">\(E[X_i] = m\)</span> (we are trying to determine
+this) and
+<span class="math inline">\(\text{Var}[X_i] = 0.1^2\)</span>. The total weight of the 100 guineas is:
+<span class="math display">\[ S = X_1 + ... +X_{100}. \]</span></p>
+<p>By the same logic as in Example <a href="clt.html#exm:pyx1">46.1</a>, <span class="math inline">\(S \approx \textrm{Normal}(\mu=100m, \sigma=1)\)</span>. Our goal
+is to solve for <span class="math inline">\(m\)</span> so that
+<span class="math display">\[ P(S &lt; 12768) = .001. \]</span></p>
+To this end, we standardize both sides:
+<span class="math display">\[ .001 = P(\frac{S - 100m}{1} &lt; \frac{12768 - 100m}{1}) = \Phi(12768 - 100m). \]</span>
+Using the quantile function, we find that
+<span class="math display">\[ 12768 - 100m \approx -3.09, \]</span>
+so he would just need to target an average weight of <span class="math inline">\(m \approx 127.71\)</span> grains, which is only a
+smidge higher (and still quite far off from the target weight of 128 grains).
+</div>
+
+<p>Where did the government go wrong in setting up the Trial of the Pyx? They were much too
+lenient in allowing the Master of the Mint a margin of 32 grains. We know that the
+uncertainty in the sum of <span class="math inline">\(n\)</span> independent random variables grows as <span class="math inline">\(\sqrt{n}\)</span>, not <span class="math inline">\(n\)</span>.
+So if they wanted to
+allow the Master of the Mint a margin of 0.32 grains per coin, they should have
+only allowed him a margin of <span class="math inline">\(\sqrt{100} \cdot 32 = 3.2\)</span> grains for 100 coins. Instead,
+they allowed him a margin that was 10 times larger.</p>
+
+<div class="example">
+<p><span id="exm:normal-approx-binom" class="example"><strong>Example 46.3  (Normal Approximation to the Binomial)  </strong></span>The Central Limit Theorem works for discrete random variables as well.
+For example, suppose a casino suspects that one of its roulette wheels is defective.
+They notice that the ball has landed in the 0 or 00 pockets 22 times in the last 300 spins.
+Is this evidence that the roulette wheel is biased towards 0 and 00?</p>
+We can set up a box model for the <em>number of times that the ball lands in the 0 or 00 pockets</em>. We
+can represent this as the number of <span class="math inline">\(\fbox{1}\)</span>s in <span class="math inline">\(n=300\)</span> draws (with replacement) from the box
+<span class="math display">\[ \fbox{$\underbrace{\fbox{1}\ \fbox{1}}_{N_1=2}\ \underbrace{\fbox{0}\ \fbox{0}\ \ldots\ \fbox{0}\ \fbox{0}}_{N_0=36}$}. \]</span>
+This is the description of a <span class="math inline">\(\text{Binomial}(n=300, p=2/38)\)</span> random variable. Using a binomial
+distribution calculator, the (exact) probability of getting 22 or more is
+</div>
+
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># R</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">21</span>, <span class="dt">size=</span><span class="dv">300</span>, <span class="dt">prob=</span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>)</a></code></pre></div>
+<pre><code>## [1] 0.07497809</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># Python</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="dv">1</span> <span class="op">-</span> Binomial(n<span class="op">=</span><span class="dv">300</span>, p<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>).cdf(<span class="dv">21</span>)</a></code></pre></div>
+<pre><code>## 0.0749780882223865</code></pre>
+<p>We can also approximate this random variable—let’s call it <span class="math inline">\(S\)</span>—by a normal distribution.
+To see this, write
+<span class="math display">\[ S = X_1 + X_2 + \ldots + X_{300}, \]</span>
+where each <span class="math inline">\(X_i\)</span> represents the outcome of one draw. Because the draws are made with
+replacement, the <span class="math inline">\(X_i\)</span>s are independent. By the Central Limit Theorem, <span class="math inline">\(S\)</span> is approximately normal.</p>
+<p>We approximate it by a normal distribution with the right expected value and standard deviation:
+<span class="math display">\[\begin{align*}
+E[S] &amp;= np = 300 \cdot \frac{2}{38} \approx 15.79 &amp; \text{SD}[S] &amp;= \sqrt{np(1-p)} = \sqrt{300 \cdot \frac{2}{38} \cdot (1 - \frac{2}{38})} \approx 3.87.
+\end{align*}\]</span>
+So <span class="math inline">\(S \approx \text{Normal}(\mu=10.53, \sigma=3.15)\)</span>. Now we can calculate <span class="math inline">\(P(S \geq 22)\)</span> using a normal
+distribution calculator:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># R</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">22</span>, <span class="dt">mean=</span><span class="fl">15.79</span>, <span class="dt">sd=</span><span class="fl">3.87</span>)</a></code></pre></div>
+<pre><code>## [1] 0.0542853</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># Python</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span> Normal(mean<span class="op">=</span><span class="fl">15.79</span>, sd<span class="op">=</span><span class="fl">3.87</span>).cdf(<span class="dv">22</span>)</a></code></pre></div>
+<pre><code>## 0.054285297605561</code></pre>
+<p>Shown below is the normal approximation (in red) to the binomial p.m.f. (in black).
+As we can see, the normal approximation is good, but not perfect.</p>
+<p><img src="bookdown-demo_files/figure-html/normal-approx-binomial-1.png" width="672" /></p>
+<p>These days, the wide availability of software for calculating exact binomial probabilities has
+diminished the importance of the normal approximation to the binomial. However, it is still an
+interesting application of the Central Limit Theorem.</p>
+</div>
+<div id="essential-practice-35" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<ol style="list-style-type: decimal">
+<li><p>There are 40 students in an elementary statistics class. From years of experience, the
+instructor knows that the time needed to grade a randomly chosen paper from an exam is a
+random variable with an expected value of 6 min and a standard deviation of 6 min.</p>
+<p>If grading times are independent and the instructor begins grading at 8:00 p.m. and grades
+continuously, what is the (approximate) probability that she is done grading before the late
+night shows begin at 11:30 p.m.?</p></li>
+<li><p>In roulette, a bet on a single number has a <span class="math inline">\(1/38\)</span> probability of success and pays 35-to-1.
+Consider betting on a single number on each of <span class="math inline">\(n\)</span> spins of a roulette wheel. Let
+<span class="math inline">\(\bar X_n\)</span> be your average net winnings over those <span class="math inline">\(n\)</span> bets.</p>
+<ol style="list-style-type: lower-alpha">
+<li>For which of the following values of <span class="math inline">\(n\)</span> is <span class="math inline">\(\bar X_n\)</span> reasonably close to normally
+distributed? Do a simulation to find out.</li>
+</ol>
+<ul>
+<li><span class="math inline">\(n=10\)</span></li>
+<li><span class="math inline">\(n=100\)</span></li>
+<li><span class="math inline">\(n=1000\)</span></li>
+<li><span class="math inline">\(n=10000\)</span></li>
+</ul>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>For each <span class="math inline">\(n\)</span>, calculate the approximate probability that you come out ahead,
+i.e., <span class="math inline">\(P(\bar X_n &gt; 0)\)</span>. I encourage you to use a combination of simulation and the
+Central Limit Theorem (provided that it applies).</p></li>
+<li><p>The casino wants to determine how many bets on a single number they need,
+in order to have at least a 99% probability of coming out ahead. (Remember, the casino
+come out ahead if you lose, i.e., <span class="math inline">\(\bar X_n &lt; 0\)</span>.) Determine the minimum number of
+bets, and remember that <span class="math inline">\(n\)</span> must be an integer.</p></li>
+</ol></li>
+<li><p>In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second. What is the probability that the 100th particle
+is detected between 90 and 120 seconds? Calculate this probability in two ways:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Make an argument for why the time the 100th particle arrives should be approximately normal.
+Use the normal approximation to calculate the approximate probability.</li>
+<li>We derived the exact p.d.f. of the <span class="math inline">\(r\)</span>th arrival time in Example <a href="sums-continuous.html#exm:pp-arrival-dist">45.2</a>.
+Integrate this p.d.f. to get the exact probability.</li>
+<li>How good was the normal approximation?</li>
+</ol></li>
+</ol>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="sums-continuous.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="counting.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -457,7 +679,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/index.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/clt.Rmd",
 "text": "Edit"
 },
 "history": {
