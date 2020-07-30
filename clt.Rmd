@@ -144,6 +144,35 @@ allow the Master of the Mint a margin of 0.32 grains per coin, they should have
 only allowed him a margin of $\sqrt{100} \cdot 32 = 3.2$ grains for 100 coins. Instead, 
 they allowed him a margin that was 10 times larger.
 
+Here is an example where we use the Central Limit Theorem for Means (Theorem \@ref(thm:clt-means)).
+
+```{example}
+Suppose salaries at a very large corporation have a mean of $62,000 and a standard deviation of 
+$32,000.
+
+a. If a single employee is randomly selected, what is the probability their salary exceeds $66,000?
+b. If 100 employees are randomly selected, what is the probability their average salary exceeds $66,000?
+```{solution}
+The solution is explained in the following video.
+    
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Pujol1yC1_A?start=504" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
+a. It is impossible to answer this question without knowing the distribution of salaries.
+b. By the Central Limit Theorem, even if salaries are not normally distributed, the average of 100 salaries, $\bar X$, 
+will be. We just need to figure out the mean and the variance:
+  \begin{align*}
+E[\bar X] &= E[X_1] = 62000 \\
+\text{SD}[\bar X] &= \frac{\text{SD}[X_1]}{\sqrt{n}} = \frac{32000}{\sqrt{100}}.
+\end{align*}
+So $\bar X$ approximately follows a $\text{Normal}(\mu=62000, \sigma=\frac{32000}{\sqrt{100}})$ distribution. 
+Therefore:
+  \begin{align*}
+P(\bar X > 66000) &= P\Big(\underbrace{\frac{\bar X - 62000}{32000 / \sqrt{100}}}_Z > \underbrace{\frac{66000 - 62000}{32000 / \sqrt{100}}}_{1.25}\Big) \\
+&\approx 1 - \Phi(1.25) \\
+&\approx 0.106
+\end{align*}
+```
+
 ```{example normal-approx-binom, name="Normal Approximation to the Binomial"}
 The Central Limit Theorem works for discrete random variables as well. 
 For example, suppose a casino suspects that one of its roulette wheels is defective. 
@@ -171,7 +200,8 @@ To see this, write
 where each $X_i$ represents the outcome of one draw. Because the draws are made with 
 replacement, the $X_i$s are independent. By the Central Limit Theorem, $S$ is approximately normal.
 
-We approximate it by a normal distribution with the right expected value and standard deviation:
+We approximate it by a normal distribution, choosing $\mu$ and $\sigma$ to match the 
+expected value and standard deviation:
 \begin{align*}
 E[S] &= np = 300 \cdot \frac{2}{38} \approx 15.79 & \text{SD}[S] &= \sqrt{np(1-p)} = \sqrt{300 \cdot \frac{2}{38} \cdot (1 - \frac{2}{38})} \approx 3.87.
 \end{align*}
@@ -226,7 +256,7 @@ night shows begin at 11:30 p.m.?
 Consider betting on a single number on each of $n$ spins of a roulette wheel. Let 
 $\bar X_n$ be your average net winnings _per_ bet.
 
-    a. For which of the following values of $n$ is $\bar X_n$ reasonably close to normally 
+    a. For which of the following values of $n$ is $\bar X_n$ close to normally 
     distributed? Do a simulation to find out. (Copy the code below into a Colab and modify.)
     
         ```{python, results="hide"}
@@ -253,19 +283,21 @@ $\bar X_n$ be your average net winnings _per_ bet.
     
     b. For each $n$, calculate the approximate probability that you come out ahead, 
     i.e., $P(\bar X_n > 0)$. I encourage you to use a combination of simulation and the 
-    Central Limit Theorem (provided that it applies).
+    Central Limit Theorem (but first double check that it works!).
     
-    c. The casino wants to determine how many bets on a single number they need 
-    in order to have at least a 99% probability of coming out ahead. (Remember, the casino 
-    come out ahead if you lose, i.e., $\bar X_n < 0$.) Determine the minimum number of 
-    bets, and remember that $n$ must be an integer.
+        (_Hint:_ We calculated the expected value and variance of this bet in previous lessons.)
+    
+    c. The casino wants to determine how many bets on a single number are needed 
+    before they have (at least) a 99% probability of making a profit. (Remember, the casino 
+    profits if you lose: $\bar X_n < 0$.) Determine the minimum number of 
+    bets, keeping in mind that $n$ must be an integer.
 
 3. In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process 
 at a rate of $\lambda = 0.8$ particles per second. What is the probability that the 100th particle 
 is detected between 90 and 120 seconds? Calculate this probability in two ways:
 
-    a. Make an argument for why the time the 100th particle arrives should be approximately normal. 
-    Use the normal approximation to calculate the approximate probability.
+    a. Make an argument for why _the time the 100th particle is detected_ approximately follows a 
+    normal distribution. Use the normal approximation to calculate an approximate probability.
     b. We derived the exact p.d.f. of the $r$th arrival time in Example \@ref(exm:pp-arrival-dist). 
     Integrate this p.d.f. to get the exact probability.
     c. How good was the normal approximation?

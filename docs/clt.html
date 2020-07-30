@@ -555,9 +555,41 @@ So if they wanted to
 allow the Master of the Mint a margin of 0.32 grains per coin, they should have
 only allowed him a margin of <span class="math inline">\(\sqrt{100} \cdot 32 = 3.2\)</span> grains for 100 coins. Instead,
 they allowed him a margin that was 10 times larger.</p>
+<p>Here is an example where we use the Central Limit Theorem for Means (Theorem <a href="clt.html#thm:clt-means">46.2</a>).</p>
 
 <div class="example">
-<p><span id="exm:normal-approx-binom" class="example"><strong>Example 46.3  (Normal Approximation to the Binomial)  </strong></span>The Central Limit Theorem works for discrete random variables as well.
+<p><span id="exm:unnamed-chunk-160" class="example"><strong>Example 46.3  </strong></span>Suppose salaries at a very large corporation have a mean of $62,000 and a standard deviation of
+$32,000.</p>
+<ol style="list-style-type: lower-alpha">
+<li>If a single employee is randomly selected, what is the probability their salary exceeds $66,000?</li>
+<li>If 100 employees are randomly selected, what is the probability their average salary exceeds $66,000?
+</div>
+
+<div class="solution">
+ <span class="solution"><em>Solution. </em></span> The solution is explained in the following video.</li>
+</ol>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Pujol1yC1_A?start=504" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<ol style="list-style-type: lower-alpha">
+<li>It is impossible to answer this question without knowing the distribution of salaries.</li>
+<li>By the Central Limit Theorem, even if salaries are not normally distributed, the average of 100 salaries, <span class="math inline">\(\bar X\)</span>,
+will be. We just need to figure out the mean and the variance:
+<span class="math display">\[\begin{align*}
+E[\bar X] &amp;= E[X_1] = 62000 \\
+\text{SD}[\bar X] &amp;= \frac{\text{SD}[X_1]}{\sqrt{n}} = \frac{32000}{\sqrt{100}}.
+\end{align*}\]</span>
+So <span class="math inline">\(\bar X\)</span> approximately follows a <span class="math inline">\(\text{Normal}(\mu=62000, \sigma=\frac{32000}{\sqrt{100}})\)</span> distribution.
+Therefore:
+<span class="math display">\[\begin{align*}
+P(\bar X &gt; 66000) &amp;= P\Big(\underbrace{\frac{\bar X - 62000}{32000 / \sqrt{100}}}_Z &gt; \underbrace{\frac{66000 - 62000}{32000 / \sqrt{100}}}_{1.25}\Big) \\
+&amp;\approx 1 - \Phi(1.25) \\
+&amp;\approx 0.106
+\end{align*}\]</span>
+</div></li>
+</ol>
+
+<div class="example">
+<p><span id="exm:normal-approx-binom" class="example"><strong>Example 46.4  (Normal Approximation to the Binomial)  </strong></span>The Central Limit Theorem works for discrete random variables as well.
 For example, suppose a casino suspects that one of its roulette wheels is defective.
 They notice that the ball has landed in the 0 or 00 pockets 22 times in the last 300 spins.
 Is this evidence that the roulette wheel is biased towards 0 and 00?</p>
@@ -580,7 +612,8 @@ To see this, write
 <span class="math display">\[ S = X_1 + X_2 + \ldots + X_{300}, \]</span>
 where each <span class="math inline">\(X_i\)</span> represents the outcome of one draw. Because the draws are made with
 replacement, the <span class="math inline">\(X_i\)</span>s are independent. By the Central Limit Theorem, <span class="math inline">\(S\)</span> is approximately normal.</p>
-<p>We approximate it by a normal distribution with the right expected value and standard deviation:
+<p>We approximate it by a normal distribution, choosing <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> to match the
+expected value and standard deviation:
 <span class="math display">\[\begin{align*}
 E[S] &amp;= np = 300 \cdot \frac{2}{38} \approx 15.79 &amp; \text{SD}[S] &amp;= \sqrt{np(1-p)} = \sqrt{300 \cdot \frac{2}{38} \cdot (1 - \frac{2}{38})} \approx 3.87.
 \end{align*}\]</span>
@@ -619,7 +652,7 @@ night shows begin at 11:30 p.m.?</p></li>
 Consider betting on a single number on each of <span class="math inline">\(n\)</span> spins of a roulette wheel. Let
 <span class="math inline">\(\bar X_n\)</span> be your average net winnings <em>per</em> bet.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>For which of the following values of <span class="math inline">\(n\)</span> is <span class="math inline">\(\bar X_n\)</span> reasonably close to normally
+<li><p>For which of the following values of <span class="math inline">\(n\)</span> is <span class="math inline">\(\bar X_n\)</span> close to normally
 distributed? Do a simulation to find out. (Copy the code below into a Colab and modify.)</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># Python code (Make sure Symbulate has been imported.) </span></a>
 <a class="sourceLine" id="cb53-2" data-line-number="2">n <span class="op">=</span> <span class="dv">10</span></a>
@@ -640,18 +673,19 @@ distributed? Do a simulation to find out. (Copy the code below into a Colab and 
 </ul></li>
 <li><p>For each <span class="math inline">\(n\)</span>, calculate the approximate probability that you come out ahead,
 i.e., <span class="math inline">\(P(\bar X_n &gt; 0)\)</span>. I encourage you to use a combination of simulation and the
-Central Limit Theorem (provided that it applies).</p></li>
-<li><p>The casino wants to determine how many bets on a single number they need
-in order to have at least a 99% probability of coming out ahead. (Remember, the casino
-come out ahead if you lose, i.e., <span class="math inline">\(\bar X_n &lt; 0\)</span>.) Determine the minimum number of
-bets, and remember that <span class="math inline">\(n\)</span> must be an integer.</p></li>
+Central Limit Theorem (but first double check that it works!).</p>
+<p>(<em>Hint:</em> We calculated the expected value and variance of this bet in previous lessons.)</p></li>
+<li><p>The casino wants to determine how many bets on a single number are needed
+before they have (at least) a 99% probability of making a profit. (Remember, the casino
+profits if you lose: <span class="math inline">\(\bar X_n &lt; 0\)</span>.) Determine the minimum number of
+bets, keeping in mind that <span class="math inline">\(n\)</span> must be an integer.</p></li>
 </ol></li>
 <li><p>In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process
 at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second. What is the probability that the 100th particle
 is detected between 90 and 120 seconds? Calculate this probability in two ways:</p>
 <ol style="list-style-type: lower-alpha">
-<li>Make an argument for why the time the 100th particle arrives should be approximately normal.
-Use the normal approximation to calculate the approximate probability.</li>
+<li>Make an argument for why <em>the time the 100th particle is detected</em> approximately follows a
+normal distribution. Use the normal approximation to calculate an approximate probability.</li>
 <li>We derived the exact p.d.f. of the <span class="math inline">\(r\)</span>th arrival time in Example <a href="sums-continuous.html#exm:pp-arrival-dist">45.2</a>.
 Integrate this p.d.f. to get the exact probability.</li>
 <li>How good was the normal approximation?</li>
