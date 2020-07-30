@@ -591,12 +591,12 @@ distribution calculator:</p>
 <a class="sourceLine" id="cb51-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">22</span>, <span class="dt">mean=</span><span class="dv">300</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">300</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>)))</a></code></pre></div>
 <pre><code>## [1] 0.0541615</code></pre>
 <p>Notice that we plugged in 22 into the c.d.f. because the normal distribution is continuous. That is,
-<span class="math display">\[ P(S \geq 22) = 1 - P(S &lt; 22) = 1 - P(S &lt;= 22), \]</span>
-since the probability that <span class="math inline">\(S\)</span> equals 22 exactly is zero. However, in this case,
-we are using the normal distribution to approximate a discrete distribution, so
-some have argued that we should plug in 21 or 21.5 instead.</p>
-<p>In my opinion, details like these are irrelevant, since this is no longer a practical
-method of calculating probabilities. There is no reason to use
+<span class="math display">\[ P(S \geq 22) = 1 - P(S &lt; 22) = 1 - P(S \leq 22), \]</span>
+since the probability that <span class="math inline">\(S\)</span> equals 22 exactly is zero. However, because
+we are using the normal distribution to approximate a discrete distribution,
+some people have argued that we should plug in 21 or 21.5 instead.</p>
+<p>In my opinion, it is a waste of time to worry about such details, since this is no longer a
+practical method of calculating probabilities. There is no reason to use
 the normal approximation to calculate this probability when exact binomial calculators
 are available. The normal approximation to the binomial is presented primarily as an
 application of the Central Limit Theorem.</p>

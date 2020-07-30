@@ -186,13 +186,13 @@ distribution calculator:
 ```
 
 Notice that we plugged in 22 into the c.d.f. because the normal distribution is continuous. That is,
-\[ P(S \geq 22) = 1 - P(S < 22) = 1 - P(S <= 22), \]
-since the probability that $S$ equals 22 exactly is zero. However, in this case, 
-we are using the normal distribution to approximate a discrete distribution, so
-some have argued that we should plug in 21 or 21.5 instead.
+\[ P(S \geq 22) = 1 - P(S < 22) = 1 - P(S \leq 22), \]
+since the probability that $S$ equals 22 exactly is zero. However, because
+we are using the normal distribution to approximate a discrete distribution, 
+some people have argued that we should plug in 21 or 21.5 instead.
 
-In my opinion, details like these are irrelevant, since this is no longer a practical 
-method of calculating probabilities. There is no reason to use 
+In my opinion, it is a waste of time to worry about such details, since this is no longer a 
+practical method of calculating probabilities. There is no reason to use 
 the normal approximation to calculate this probability when exact binomial calculators 
 are available. The normal approximation to the binomial is presented primarily as an 
 application of the Central Limit Theorem.
