@@ -617,7 +617,7 @@ continuously, what is the (approximate) probability that she is done grading bef
 night shows begin at 11:30 p.m.?</p></li>
 <li><p>In roulette, a bet on a single number has a <span class="math inline">\(1/38\)</span> probability of success and pays 35-to-1.
 Consider betting on a single number on each of <span class="math inline">\(n\)</span> spins of a roulette wheel. Let
-<span class="math inline">\(\bar X_n\)</span> be your average net winnings over those <span class="math inline">\(n\)</span> bets.</p>
+<span class="math inline">\(\bar X_n\)</span> be your average net winnings <em>per</em> bet.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>For which of the following values of <span class="math inline">\(n\)</span> is <span class="math inline">\(\bar X_n\)</span> reasonably close to normally
 distributed? Do a simulation to find out. (Copy the code below into a Colab and modify.)</p>
@@ -630,7 +630,7 @@ distributed? Do a simulation to find out. (Copy the code below into a Colab and 
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># R code</span></a>
 <a class="sourceLine" id="cb54-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">10</span></a>
 <a class="sourceLine" id="cb54-3" data-line-number="3"><span class="kw">replicate</span>(<span class="dv">9999</span>,</a>
-<a class="sourceLine" id="cb54-4" data-line-number="4">          <span class="kw">sum</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">35</span>, <span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">37</span>)), <span class="dt">size=</span>n, <span class="dt">replace=</span><span class="ot">TRUE</span>)))</a>
+<a class="sourceLine" id="cb54-4" data-line-number="4">          <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">35</span>, <span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">37</span>)), <span class="dt">size=</span>n, <span class="dt">replace=</span><span class="ot">TRUE</span>)))</a>
 <a class="sourceLine" id="cb54-5" data-line-number="5"><span class="co"># You can use hist() to make a histogram of these results.</span></a></code></pre></div>
 <ul>
 <li><span class="math inline">\(n=10\)</span></li>
@@ -664,8 +664,8 @@ Integrate this p.d.f. to get the exact probability.</li>
 <li><p>A randomly selected apple from the Cal Poly Orchard weighs 4.9 oz. on average, with a standard deviation of 0.3 oz. However, the distribution of the weights of apples is unknown.</p>
 <ol style="list-style-type: lower-alpha">
 <li>With the information given, is it possible to determine the
-probability that a randomly selected apple weighs more than 5.0 oz?
-b.The apples are packed into crates of 60 apples each. The apples are randomly and independently selected
+probability that a randomly selected apple weighs more than 5.0 oz?</li>
+<li>The apples are packed into crates of 60 apples each. The apples are randomly and independently selected
 from the Cal Poly Orchard. With the information given, is it possible to determine the probability
 that the total weight of the apples in a crate exceeds 300 oz?</li>
 </ol></li>

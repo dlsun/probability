@@ -224,7 +224,7 @@ night shows begin at 11:30 p.m.?
 
 2. In roulette, a bet on a single number has a $1/38$ probability of success and pays 35-to-1. 
 Consider betting on a single number on each of $n$ spins of a roulette wheel. Let 
-$\bar X_n$ be your average net winnings over those $n$ bets. 
+$\bar X_n$ be your average net winnings _per_ bet.
 
     a. For which of the following values of $n$ is $\bar X_n$ reasonably close to normally 
     distributed? Do a simulation to find out. (Copy the code below into a Colab and modify.)
@@ -242,7 +242,7 @@ $\bar X_n$ be your average net winnings over those $n$ bets.
         # R code
         n <- 10
         replicate(9999,
-                  sum(sample(c(35, rep(-1, 37)), size=n, replace=TRUE)))
+                  mean(sample(c(35, rep(-1, 37)), size=n, replace=TRUE)))
         # You can use hist() to make a histogram of these results.
         ```
     
@@ -277,6 +277,6 @@ is detected between 90 and 120 seconds? Calculate this probability in two ways:
 
     a. With the information given, is it possible to determine the 
     probability that a randomly selected apple weighs more than 5.0 oz?
-    b.The apples are packed into crates of 60 apples each. The apples are randomly and independently selected 
+    b. The apples are packed into crates of 60 apples each. The apples are randomly and independently selected 
     from the Cal Poly Orchard. With the information given, is it possible to determine the probability 
     that the total weight of the apples in a crate exceeds 300 oz?
