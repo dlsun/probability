@@ -154,14 +154,14 @@ can represent this as the number of $\fbox{1}$s in $n=300$ draws (with replaceme
 \[ \fbox{$\underbrace{\fbox{1}\ \fbox{1}}_{N_1=2}\ \underbrace{\fbox{0}\ \fbox{0}\ \ldots\ \fbox{0}\ \fbox{0}}_{N_0=36}$}. \]
 This is the description of a $\text{Binomial}(n=300, p=2/38)$ random variable. Using a binomial 
 distribution calculator, the (exact) probability of getting 22 or more is 
-```{r}
-# R
-1 - pbinom(21, size=300, prob=2/38)
-```
 ```{python}
-# Python
+# Python code
 from symbulate import *
 1 - Binomial(n=300, p=2/38).cdf(21)
+```
+```{r}
+# R code
+1 - pbinom(21, size=300, prob=2/38)
 ```
 
 We can also approximate this random variable---let's call it $S$---by a normal distribution. 
@@ -176,14 +176,26 @@ E[S] &= np = 300 \cdot \frac{2}{38} \approx 15.79 & \text{SD}[S] &= \sqrt{np(1-p
 \end{align*}
 So $S \approx \text{Normal}(\mu=10.53, \sigma=3.15)$. Now we can calculate $P(S \geq 22)$ using a normal 
 distribution calculator:
+```{python}
+# Python code
+1 - Normal(mean=300 * 2/38, sd=sqrt(300 * 2/38 * (1 - 2/38))).cdf(22)
+```
 ```{r}
 # R
-1 - pnorm(22, mean=15.79, sd=3.87)
+1 - pnorm(22, mean=300 * 2/38, sd=sqrt(300 * 2/38 * (1 - 2/38)))
 ```
-```{python}
-# Python
-1 - Normal(mean=15.79, sd=3.87).cdf(22)
-```
+
+Notice that we plugged in 22 into the c.d.f. because the normal distribution is continuous. That is,
+\[ P(S \geq 22) = 1 - P(S < 22) = 1 - P(S <= 22), \]
+since the probability that $S$ equals 22 exactly is zero. However, in this case, 
+we are using the normal distribution to approximate a discrete distribution, so
+some have argued that we should plug in 21 or 21.5 instead.
+
+In my opinion, details like these are irrelevant, since this is no longer a practical 
+method of calculating probabilities. There is no reason to use 
+the normal approximation to calculate this probability when exact binomial calculators 
+are available. The normal approximation to the binomial is presented primarily as an 
+application of the Central Limit Theorem.
 
 Shown below is the normal approximation (in red) to the binomial p.m.f. (in black). 
 As we can see, the normal approximation is good, but not perfect.
@@ -197,10 +209,6 @@ for(x in 0:50) {
 x <- seq(0, 50, by=.1)
 lines(x, dnorm(x, mean=15.79, sd=3.87), col="red", lwd=2)
 ```
-
-These days, the wide availability of software for calculating exact binomial probabilities has 
-diminished the importance of the normal approximation to the binomial. However, it is still an 
-interesting application of the Central Limit Theorem.
 
 
 ## Essential Practice {-}
@@ -218,18 +226,35 @@ Consider betting on a single number on each of $n$ spins of a roulette wheel. Le
 $\bar X_n$ be your average net winnings over those $n$ bets. 
 
     a. For which of the following values of $n$ is $\bar X_n$ reasonably close to normally 
-    distributed? Do a simulation to find out.
+    distributed? Do a simulation to find out. (Copy the code below into a Colab and modify.)
     
-    - $n=10$
-    - $n=100$
-    - $n=1000$
-    - $n=10000$
+        ```{python, results="hide"}
+        # Python code (Make sure Symbulate has been imported.) 
+        n = 10
+        P = BoxModel({35: 1, -1: 37}, size=n, replace=True)
+        X = RV(P, mean)
+        X.sim(9999)
+        # You can use .plot() to make a histogram of these results.
+        ```
+        
+        ```{r, results="hide"}
+        # R code
+        n <- 10
+        replicate(9999,
+                  sum(sample(c(35, rep(-1, 37)), size=n, replace=TRUE)))
+        # You can use hist() to make a histogram of these results.
+        ```
+    
+        - $n=10$
+        - $n=100$
+        - $n=1000$
+        - $n=10000$
     
     b. For each $n$, calculate the approximate probability that you come out ahead, 
     i.e., $P(\bar X_n > 0)$. I encourage you to use a combination of simulation and the 
     Central Limit Theorem (provided that it applies).
     
-    c. The casino wants to determine how many bets on a single number they need, 
+    c. The casino wants to determine how many bets on a single number they need 
     in order to have at least a 99% probability of coming out ahead. (Remember, the casino 
     come out ahead if you lose, i.e., $\bar X_n < 0$.) Determine the minimum number of 
     bets, and remember that $n$ must be an integer.

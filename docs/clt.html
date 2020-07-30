@@ -566,13 +566,13 @@ This is the description of a <span class="math inline">\(\text{Binomial}(n=300, 
 distribution calculator, the (exact) probability of getting 22 or more is
 </div>
 
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># R</span></a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">21</span>, <span class="dt">size=</span><span class="dv">300</span>, <span class="dt">prob=</span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>)</a></code></pre></div>
-<pre><code>## [1] 0.07497809</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># Python</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="dv">1</span> <span class="op">-</span> Binomial(n<span class="op">=</span><span class="dv">300</span>, p<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>).cdf(<span class="dv">21</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># Python code</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="dv">1</span> <span class="op">-</span> Binomial(n<span class="op">=</span><span class="dv">300</span>, p<span class="op">=</span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>).cdf(<span class="dv">21</span>)</a></code></pre></div>
 <pre><code>## 0.0749780882223865</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># R code</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">21</span>, <span class="dt">size=</span><span class="dv">300</span>, <span class="dt">prob=</span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>)</a></code></pre></div>
+<pre><code>## [1] 0.07497809</code></pre>
 <p>We can also approximate this random variable—let’s call it <span class="math inline">\(S\)</span>—by a normal distribution.
 To see this, write
 <span class="math display">\[ S = X_1 + X_2 + \ldots + X_{300}, \]</span>
@@ -584,18 +584,25 @@ E[S] &amp;= np = 300 \cdot \frac{2}{38} \approx 15.79 &amp; \text{SD}[S] &amp;= 
 \end{align*}\]</span>
 So <span class="math inline">\(S \approx \text{Normal}(\mu=10.53, \sigma=3.15)\)</span>. Now we can calculate <span class="math inline">\(P(S \geq 22)\)</span> using a normal
 distribution calculator:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># R</span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">22</span>, <span class="dt">mean=</span><span class="fl">15.79</span>, <span class="dt">sd=</span><span class="fl">3.87</span>)</a></code></pre></div>
-<pre><code>## [1] 0.0542853</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># Python</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span> Normal(mean<span class="op">=</span><span class="fl">15.79</span>, sd<span class="op">=</span><span class="fl">3.87</span>).cdf(<span class="dv">22</span>)</a></code></pre></div>
-<pre><code>## 0.054285297605561</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># Python code</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span> Normal(mean<span class="op">=</span><span class="dv">300</span> <span class="op">*</span> <span class="dv">2</span><span class="op">/</span><span class="dv">38</span>, sd<span class="op">=</span>sqrt(<span class="dv">300</span> <span class="op">*</span> <span class="dv">2</span><span class="op">/</span><span class="dv">38</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">2</span><span class="op">/</span><span class="dv">38</span>))).cdf(<span class="dv">22</span>)</a></code></pre></div>
+<pre><code>## 0.054161500900249515</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># R</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">22</span>, <span class="dt">mean=</span><span class="dv">300</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>, <span class="dt">sd=</span><span class="kw">sqrt</span>(<span class="dv">300</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">38</span>)))</a></code></pre></div>
+<pre><code>## [1] 0.0541615</code></pre>
+<p>Notice that we plugged in 22 into the c.d.f. because the normal distribution is continuous. That is,
+<span class="math display">\[ P(S \geq 22) = 1 - P(S &lt; 22) = 1 - P(S &lt;= 22), \]</span>
+since the probability that <span class="math inline">\(S\)</span> equals 22 exactly is zero. However, in this case,
+we are using the normal distribution to approximate a discrete distribution, so
+some have argued that we should plug in 21 or 21.5 instead.</p>
+<p>In my opinion, details like these are irrelevant, since this is no longer a practical
+method of calculating probabilities. There is no reason to use
+the normal approximation to calculate this probability when exact binomial calculators
+are available. The normal approximation to the binomial is presented primarily as an
+application of the Central Limit Theorem.</p>
 <p>Shown below is the normal approximation (in red) to the binomial p.m.f. (in black).
 As we can see, the normal approximation is good, but not perfect.</p>
 <p><img src="bookdown-demo_files/figure-html/normal-approx-binomial-1.png" width="672" /></p>
-<p>These days, the wide availability of software for calculating exact binomial probabilities has
-diminished the importance of the normal approximation to the binomial. However, it is still an
-interesting application of the Central Limit Theorem.</p>
 </div>
 <div id="essential-practice-35" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
@@ -610,20 +617,29 @@ night shows begin at 11:30 p.m.?</p></li>
 Consider betting on a single number on each of <span class="math inline">\(n\)</span> spins of a roulette wheel. Let
 <span class="math inline">\(\bar X_n\)</span> be your average net winnings over those <span class="math inline">\(n\)</span> bets.</p>
 <ol style="list-style-type: lower-alpha">
-<li>For which of the following values of <span class="math inline">\(n\)</span> is <span class="math inline">\(\bar X_n\)</span> reasonably close to normally
-distributed? Do a simulation to find out.</li>
-</ol>
+<li><p>For which of the following values of <span class="math inline">\(n\)</span> is <span class="math inline">\(\bar X_n\)</span> reasonably close to normally
+distributed? Do a simulation to find out. (Copy the code below into a Colab and modify.)</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># Python code (Make sure Symbulate has been imported.) </span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">n <span class="op">=</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3">P <span class="op">=</span> BoxModel({<span class="dv">35</span>: <span class="dv">1</span>, <span class="dv">-1</span>: <span class="dv">37</span>}, size<span class="op">=</span>n, replace<span class="op">=</span><span class="va">True</span>)</a>
+<a class="sourceLine" id="cb53-4" data-line-number="4">X <span class="op">=</span> RV(P, mean)</a>
+<a class="sourceLine" id="cb53-5" data-line-number="5">X.sim(<span class="dv">9999</span>)</a>
+<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co"># You can use .plot() to make a histogram of these results.</span></a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># R code</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="kw">replicate</span>(<span class="dv">9999</span>,</a>
+<a class="sourceLine" id="cb54-4" data-line-number="4">          <span class="kw">sum</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">35</span>, <span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">37</span>)), <span class="dt">size=</span>n, <span class="dt">replace=</span><span class="ot">TRUE</span>)))</a>
+<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="co"># You can use hist() to make a histogram of these results.</span></a></code></pre></div>
 <ul>
 <li><span class="math inline">\(n=10\)</span></li>
 <li><span class="math inline">\(n=100\)</span></li>
 <li><span class="math inline">\(n=1000\)</span></li>
 <li><span class="math inline">\(n=10000\)</span></li>
-</ul>
-<ol start="2" style="list-style-type: lower-alpha">
+</ul></li>
 <li><p>For each <span class="math inline">\(n\)</span>, calculate the approximate probability that you come out ahead,
 i.e., <span class="math inline">\(P(\bar X_n &gt; 0)\)</span>. I encourage you to use a combination of simulation and the
 Central Limit Theorem (provided that it applies).</p></li>
-<li><p>The casino wants to determine how many bets on a single number they need,
+<li><p>The casino wants to determine how many bets on a single number they need
 in order to have at least a 99% probability of coming out ahead. (Remember, the casino
 come out ahead if you lose, i.e., <span class="math inline">\(\bar X_n &lt; 0\)</span>.) Determine the minimum number of
 bets, and remember that <span class="math inline">\(n\)</span> must be an integer.</p></li>

@@ -267,6 +267,7 @@ In general, we can continue in this way to obtain the following formula for the 
 $r$th arrival time in this Poisson process.
 \begin{equation}
 f_{S_r}(t) = \frac{(0.8)^r}{(r-1)!} t^{r-1} e^{-0.8 t}; t > 0.
+(\#eq:arrival-times-pdf)
 \end{equation}
 This family of distributions is known as the **gamma distribution**, with parameters $r$ and $\lambda =0.8$.
 
@@ -288,10 +289,9 @@ distribution.
     b. Find the p.d.f. of $S_4 = U_1 + U_2 + U_3 + U_4$ and sketch its graph. Check that this p.d.f.
     agrees with the value of $E[S_4]$ and $\text{SD}[S_4]$ that you calculated earlier.
     
-        (_Hint:_ Note that Example \@ref(exm:sum-uniforms) gives the distribution of 
-        $T_1 = U_1 + U_2$ and $T_2 = U_3 + U_4$. Furthermore, $T_1$ and $T_2$ must be independent, 
-        since the $U_i$s are. So you should be able to do this by convolving two triangle functions. You 
-        can check your answer by convolving the p.d.f. of $S_3$ that you derived above with another uniform.)
+        (_Hint:_ I think the easiest way to do this is to convolve another uniform p.d.f. with 
+        the p.d.f. you got in part a. However, you could also do this by convolving two triangle 
+        functions together. You should get the same answer either way.)
         
     c. Neither $S_3$ nor $S_4$ are named distributions. However, if you sketch their p.d.f.s, they should 
     remind you of one of the named distributions we learned. Which one?
