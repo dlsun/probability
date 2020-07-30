@@ -620,7 +620,7 @@ expected value and standard deviation:
 <span class="math display">\[\begin{align*}
 E[S] &amp;= np = 300 \cdot \frac{2}{38} \approx 15.79 &amp; \text{SD}[S] &amp;= \sqrt{np(1-p)} = \sqrt{300 \cdot \frac{2}{38} \cdot (1 - \frac{2}{38})} \approx 3.87.
 \end{align*}\]</span>
-So <span class="math inline">\(S \approx \text{Normal}(\mu=10.53, \sigma=3.15)\)</span>. Now we can calculate <span class="math inline">\(P(S \geq 22)\)</span> using a normal
+So <span class="math inline">\(S \approx \text{Normal}(\mu=15.79, \sigma=3.87)\)</span>. Now we can calculate <span class="math inline">\(P(S \geq 22)\)</span> using a normal
 distribution calculator:</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># Python code</span></a>
 <a class="sourceLine" id="cb49-2" data-line-number="2"><span class="dv">1</span> <span class="op">-</span> Normal(mean<span class="op">=</span><span class="dv">300</span> <span class="op">*</span> <span class="dv">2</span><span class="op">/</span><span class="dv">38</span>, sd<span class="op">=</span>sqrt(<span class="dv">300</span> <span class="op">*</span> <span class="dv">2</span><span class="op">/</span><span class="dv">38</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">2</span><span class="op">/</span><span class="dv">38</span>))).cdf(<span class="dv">22</span>)</a></code></pre></div>
