@@ -1,6 +1,6 @@
 # Central Limit Theorem {#clt}
 
-## Motivation
+## Motivation {-}
 
 In Lesson \@ref(sums-continuous), we saw that calculating the exact distribution of a 
 sum of i.i.d. random variables, $S_n = X_1 + X_2 + \ldots + X_n$ is a lot of work. 
@@ -13,7 +13,7 @@ thousands of random variables. Since getting the exact distribution of $S_n$ is 
 we need an approximation that is accurate and easy to use. The **Central Limit Theorem** 
 provides that approximation.
 
-## Theory
+## Theory {-}
 
 ```{theorem clt, name="Central Limit Theorem for Sums"}
 Let $X_1, ..., X_n$ be independent and identically distributed (i.i.d.) random variables. 
@@ -64,7 +64,7 @@ On average, the mean will be the expected value of one observation, and the unce
 (as measured by the standard deviation) approaches 0 as $n \to \infty$. This is the same
 calculation that we did in Lesson \@ref(lln) on the Law of Large Numbers.
 
-## Worked Examples
+## Worked Examples {-}
 
 ```{example pyx1, name="Trial of the Pyx"}
 Since the 1200s, coins struck by the Royal Mint in England have been evaluated for their metal content in a ceremony called the Trial of the Pyx. This ceremony does not have much meaning today (see the video below), but in the 1700s, English coins were made of gold. The Master of the Mint had an incentive to make coins 
