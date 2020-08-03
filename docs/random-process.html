@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 45 Sums of Continuous Random Variables | Introduction to Probability</title>
+  <title>Lesson 47 Random Processes | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 45 Sums of Continuous Random Variables | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 47 Random Processes | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 45 Sums of Continuous Random Variables | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 47 Random Processes | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="cov-continuous.html"/>
-<link rel="next" href="clt.html"/>
+<link rel="prev" href="clt.html"/>
+<link rel="next" href="random-process-examples.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -418,186 +418,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sums-continuous" class="section level1">
-<h1><span class="header-section-number">Lesson 45</span> Sums of Continuous Random Variables</h1>
-<div id="theory-41" class="section level2 unnumbered">
+<div id="random-process" class="section level1">
+<h1><span class="header-section-number">Lesson 47</span> Random Processes</h1>
+<div id="motivation-3" class="section level2 unnumbered">
+<h2>Motivation</h2>
+<p>A signal is a function of time, usually symbolized <span class="math inline">\(x(t)\)</span> (or <span class="math inline">\(x[n]\)</span>, if the
+signal is discrete).
+In a <em>noisy</em> signal, the exact value of the signal is
+random. Therefore, we will model noisy signals as a
+random function <span class="math inline">\(X(t)\)</span>, where at each time <span class="math inline">\(t\)</span>,
+<span class="math inline">\(X(t)\)</span> is a random variable. These “noisy signals” are
+formally called <strong>random processes</strong> or <strong>stochastic processes</strong>.</p>
+</div>
+<div id="theory-43" class="section level2 unnumbered">
 <h2>Theory</h2>
-<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent continuous random variables. What is the distribution of their sum—
-that is, the random variable <span class="math inline">\(T = X + Y\)</span>? In Lesson <a href="sums-discrete.html#sums-discrete">21</a>, we saw that for discrete
-random variables, we <em>convolve</em> their p.m.f.s. In this lesson, we learn the analog of this result for
-continuous random variables.</p>
 
-<div class="theorem">
-<span id="thm:sum-independent-continuous" class="theorem"><strong>Theorem 45.1  (Sum of Independent Random Variables)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent continuous random variables.
-Then, the p.d.f. of <span class="math inline">\(T = X + Y\)</span> is the <strong>convolution</strong> of the p.d.f.s of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>:
-<span class="math display" id="eq:convolution-continuous">\[\begin{equation} f_T = f_X * f_Y.
-\tag{45.1}
-\end{equation}\]</span>
-The convolution operator <span class="math inline">\(*\)</span> in <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a> is defined as follows:
-<span class="math display">\[ f_T(t) = \int_{-\infty}^\infty f_X(x) \cdot f_Y(t-x)\,dx. \]</span>
-Note that the verb form of “convolution” is <strong>convolve</strong>, not “convolute”, even though many
-students find convolution quite convoluted!
+<div class="definition">
+<p><span id="def:random-process" class="definition"><strong>Definition 47.1  (Random Process)  </strong></span>A <strong>random process</strong> is a collection of random variables <span class="math inline">\(\{ X_t \}\)</span>
+indexed by time. Each realization of the process is a function of <span class="math inline">\(t\)</span>.
+For every fixed time <span class="math inline">\(t\)</span>, <span class="math inline">\(X_t\)</span> is a random variable.</p>
+Random processes are classified as <strong>continuous-time</strong> or <strong>discrete-time</strong>,
+depending on whether time is continuous or discrete. We typically
+notate continuous-time random processes as <span class="math inline">\(\{ X(t) \}\)</span> and
+discrete-time processes as <span class="math inline">\(\{ X[n] \}\)</span>.
 </div>
 
-<p>Comparing this with Theorem <a href="sums-discrete.html#thm:sum-independent">21.1</a>, we see once again that the only difference
-between the discrete case and the continuous case is that sums are replaced by integrals and p.m.f.s by
-p.d.f.s.</p>
-
-<div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> Since <span class="math inline">\(T\)</span> is a continuous random variable, we find its c.d.f. and take derivatives. Let <span class="math inline">\(f\)</span>
-denote the joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. We know that <span class="math inline">\(f(x, y)\)</span> factors as
-<span class="math inline">\(f_X(x)\cdot f_Y(y)\)</span> by Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a>, since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are
-independent.
-<span class="math display">\[\begin{align*}
-F_T(t) = P(T \leq t) &amp;= P(X + Y \leq t) \\
-&amp;= \int_{-\infty}^\infty \int_{-\infty}^{t-x} f(x, y) \,dy\,dx \\
-&amp;= \int_{-\infty}^\infty \int_{-\infty}^{t-x} f_X(x) \cdot f_Y(y) \,dy\,dx \\
-&amp;= \int_{-\infty}^\infty f_X(x)   \int_{-\infty}^{t-x}  f_Y(y) \,dy\,dx \\
-&amp;= \int_{-\infty}^\infty f_X(x)  F_Y(t-x) \,dx,
-\end{align*}\]</span>
-where in the last step, we used the definition of the c.d.f. of <span class="math inline">\(Y\)</span>. (We are calculating the area under
-the p.d.f. of <span class="math inline">\(Y\)</span> up to <span class="math inline">\(t-x\)</span>.)</p>
-Now, we take the derivative with respect to <span class="math inline">\(t\)</span>. The integral behaves like a sum, so we can move the
-derivative inside the integral sign. Also, <span class="math inline">\(f_X(x)\)</span> is a constant with respect to <span class="math inline">\(t\)</span>.
-<span class="math display">\[\begin{align*}
-\frac{d}{dt} F_T(t) &amp;= \int_{-\infty}^\infty f_X(x) \frac{d}{dt} F_Y(t-x) \,dx \\
-&amp;= \int_{-\infty}^\infty f_X(x) f_Y(t-x) \,dx,
-\end{align*}\]</span>
-as we wanted to show.
-</div>
-
+<p>We have actually encountered several random processes already.</p>
 
 <div class="example">
-<p><span id="exm:sum-uniforms" class="example"><strong>Example 45.1  (Sum of Independent Uniforms)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <span class="math inline">\(\text{Uniform}(a=0, b=1)\)</span> random variables.
-What is the p.d.f. of <span class="math inline">\(T = X + Y\)</span>?</p>
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/ohYTADogkj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-<p>We have to convolve the p.d.f. of <span class="math inline">\(X\)</span> with the p.d.f. of <span class="math inline">\(Y\)</span>. The p.d.f.s of both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are
-<span class="math display">\[ f(x) = \begin{cases} 1 &amp; 0 &lt; x &lt; 1 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
-This is a rectangle function.</p>
-<p>To calculate the convolution, we first flip <span class="math inline">\(f_Y\)</span> about the <span class="math inline">\(y\)</span>-axis. We then integrate the
-product of <span class="math inline">\(f_X\)</span> and the flipped version of <span class="math inline">\(f_Y\)</span> to obtain the convolution at <span class="math inline">\(t=0\)</span>. In this case,
-the two functions are never both non-zero, so the integral is 0.</p>
+<p><span id="exm:unnamed-chunk-169" class="example"><strong>Example 47.1  (Poisson Process)  </strong></span>The Poisson process, introduced in Lesson <a href="poisson-process.html#poisson-process">17</a>, is an
+a continuous-time random process.</p>
+Define <span class="math inline">\(N(t)\)</span> to be the <em>number of arrivals up to time <span class="math inline">\(t\)</span></em>.
+Then, <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> is a continuous-time random process.
+The graph below shows how the arrivals (orange dots) can be
+translated into a continuous-time function <span class="math inline">\(N(t)\)</span> (blue line).
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-152-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Now, to get the convolution at <span class="math inline">\(t\)</span>, we shift the flipped version of <span class="math inline">\(f_Y\)</span> to the right by <span class="math inline">\(t\)</span>. This is why
-the convolution operation is often called “flip and shift”. To see why, consider the formula when we
-flip and shift <span class="math inline">\(f_Y\)</span>:
-<span class="math display">\[\begin{align*}
-  \text{FLIP}[f_Y](x) &amp;= f_Y(-x) \\
-  \text{SHIFT}_t[\text{FLIP}[f_Y]](x) &amp;= \text{FLIP}[f_Y](x - t) \\
-  &amp;= f_Y(-(x - t)) \\
-  &amp;= f_Y(t - x). \\
-  \end{align*}\]</span>
-This is exactly the term that we multiply by <span class="math inline">\(f_X(x)\)</span> in the convolution formula <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a>
-before integrating.</p>
-<p>For the uniform distribution, there are two cases. If we shift (the flipped version of <span class="math inline">\(f_Y\)</span>) by some amount
-<span class="math inline">\(0 &lt; t &lt; 1\)</span>, then the supports of the two distributions overlap between <span class="math inline">\(0\)</span> and <span class="math inline">\(t\)</span>, so the result of
-the convolution is
-<span class="math display">\[ f_T(t) = \int_0^t 1 \cdot 1\,dx = t. \]</span></p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-153-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>On the other hand, if we shift by some amount
-<span class="math inline">\(1 &lt; t &lt; 2\)</span>, then the supports of the two distributions overlap between <span class="math inline">\(t-1\)</span> and <span class="math inline">\(1\)</span>, so the result of the convolution
-is
-<span class="math display">\[ f_T(t) = \int_{t-1}^1 1 \cdot 1\,dx = 2 - t. \]</span></p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-154-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Putting it all together, the formula for the p.d.f. is given by
-<span class="math display">\[ f_T(t) = \begin{cases} t &amp; 0 &lt; t \leq 1 \\ 2 - t &amp; 1 &lt; t &lt; 2 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
-This is sometimes known as the <strong>triangular distribution</strong>, for obvious reasons.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p>Shown below are 30 realizations of the Poisson process.
+At any time <span class="math inline">\(t\)</span>, the value of the process is a discrete
+random variable that takes on the values 0, 1, 2, ….</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 
 <div class="example">
-<p><span id="exm:pp-arrival-dist" class="example"><strong>Example 45.2  (Distribution of the Arrival Times)  </strong></span>In Examples <a href="ev-joint-continuous.html#exm:pp-arrival-ev">43.3</a> and <a href="cov-continuous.html#exm:pp-arrival-sd">44.3</a>, we derived the expectation and
-standard deviation of <span class="math inline">\(S_r\)</span>, the <span class="math inline">\(r\)</span>th arrival time by writing <span class="math inline">\(S_r\)</span> as a sum of the
-<span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> interarrival times:
-<span class="math display">\[ S_r = T_1 + T_2 + \ldots + T_r.  \]</span>
-In this example, we investigate the distribution of <span class="math inline">\(S_r\)</span>.</p>
-<p>We start with the case <span class="math inline">\(r=2\)</span>. Since <span class="math inline">\(S_2\)</span> is the sum of <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>, two independent
-exponential random variables, we can use Theorem <a href="sums-continuous.html#thm:sum-independent-continuous">45.1</a> to derive its p.d.f.</p>
-<p>We convolve the <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span> p.d.f. with itself, since <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span>
-have the same distribution. Plugging the p.d.f.s into <a href="sums-continuous.html#eq:convolution-continuous">(45.1)</a>, we obtain:
-<span class="math display">\[ f_{S_2}(t) = \int_{?}^? 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx,  \]</span>
-where the limits of integration are TBD.</p>
-<p>To determine the limits of integration, there are several ways to think about it:</p>
-<ol style="list-style-type: decimal">
-<li>Remember that the support of the exponential distribution is on
-the positive numbers. Therefore, the integrand will be 0, unless both <span class="math inline">\(x\)</span> and <span class="math inline">\((t-x)\)</span> are positive. This means
-that the limits of integration must be from <span class="math inline">\(0\)</span> to <span class="math inline">\(t\)</span>.</li>
-<li><span class="math inline">\(f_{S_2}(t)\)</span> captures how likely it is for the second arrival to happen “near” <span class="math inline">\(t\)</span> seconds.
-If <span class="math inline">\(x &gt; t\)</span>, then the first arrival happened <em>after</em> <span class="math inline">\(t\)</span> seconds, so the second arrival could not have
-happened near <span class="math inline">\(t\)</span> seconds.</li>
-<li>If we flip and shift one of the exponential distributions, then the supports of the two functions will only
-overlap between <span class="math inline">\(0\)</span> and <span class="math inline">\(t\)</span>, as illustrated in the graph below.</li>
-</ol>
+<p><span id="exm:white-noise" class="example"><strong>Example 47.2  (White Noise)  </strong></span>In several lessons (for example, Lesson <a href="lln.html#lln">32</a> and <a href="clt.html#clt">46</a>), we have
+examined sequences of independent and identically distributed (i.i.d.) random variables.
+A sequence of independent and identically distributed random variables
+<span class="math inline">\(.., Z[-2], Z[-1], Z[0], Z[1], Z[2], ...\)</span> is called <strong>white noise</strong>.
+White noise is an example of a discrete-time process.</p>
+The graph below shows one realization of white noise, where <span class="math inline">\(Z[n]\)</span> is a
+standard normal random variable. This process is only
+defined at integer times <span class="math inline">\(n=-2, -1, 0, 1, 2, ...\)</span> (even though we have
+connected the dots).
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-155-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Now that we have the limits of integration, we obtain the following formula for the p.d.f. for <span class="math inline">\(t &gt; 0\)</span>.
-<span class="math display">\[\begin{align*}
-f_{S_2}(t) &amp;= \int_0^t 0.8 e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \\
-&amp;=\int_0^t  (0.8)^2  e^{-0.8 (x + (t - x))}\,dx \\
-&amp;= (0.8)^2 e^{-0.8 t} \int_0^t 1\,dx \\
-&amp;= (0.8)^2 t e^{-0.8 t}; t &gt; 0
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<p>Shown below are 50 realizations of the white noise process. Notice how
+the distribution of <span class="math inline">\(Z[n]\)</span> looks similar for every <span class="math inline">\(n\)</span>. This is because
+we constructed the process by simulating an <em>independent</em> standard normal
+random variable at every time <span class="math inline">\(n\)</span>.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-174" class="example"><strong>Example 47.3  (Random Walk)  </strong></span>In Lesson <a href="random-walk.html#random-walk">31</a>, we studied the random walk. More precisely,
+we studied a special case called the <strong>simple random walk</strong>.</p>
+<p>In general, a <strong>(general) random walk</strong> { X[n]; n 0 } is a discrete-time process, defined by
+<span class="math display">\[\begin{align*} 
+X[0] &amp;= 0 \\
+X[n] &amp;= X[n-1] + Z[n] &amp; n \geq 1, 
+\end{align*}\]</span>
+where <span class="math inline">\(\{ Z[n] \}\)</span> is a white noise process. In other words, each step is a independent and
+random draw from the same distribution.</p>
+<p>Let’s work out an explicit formula for <span class="math inline">\(X[n]\)</span> in terms of <span class="math inline">\(Z[1], Z[2], ...\)</span>.
+<span class="math display">\[\begin{align*} 
+X[0] &amp;= 0 \\
+X[1] &amp;= \underbrace{X[0]}_0 + Z[1] = Z[1] \\
+X[2] &amp;= \underbrace{X[1]}_{Z[1]} + Z[2] = Z[1] + Z[2] \\
+X[3] &amp;= \underbrace{X[2]}_{Z[1] + Z[2]} + Z[3] = Z[1] + Z[2] + Z[3] \\
+&amp; \vdots \\
+X[n] &amp;= Z[1] + Z[2] + \ldots + Z[n].
 \end{align*}\]</span></p>
-<p>This p.d.f. is graphed in red, along with the exponential p.d.f. of the interarrival times in gray.
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-156-1.png" width="672" style="display: block; margin: auto;" />
-From the figure above, we see that the second arrival tends to happen later than the first arrival,
-which makes intuitive sense. The p.d.f. also seems to be centered around <span class="math inline">\(2 / 0.8 = 2.5\)</span>,
-which is the expected value we calculated in Example <a href="ev-joint-continuous.html#exm:pp-arrival-ev">43.3</a>.</p>
-<p>What about when <span class="math inline">\(r=3\)</span>? The time of third arrival is the sum of the time of the second arrival, <span class="math inline">\(S_2\)</span>, and the
-time between the second and third arrivals, <span class="math inline">\(T_3\)</span>. Therefore, to obtain the p.d.f. of <span class="math inline">\(S_3\)</span>, we convolve
-the p.d.f. of <span class="math inline">\(S_2\)</span> we derived above with the <span class="math inline">\(\text{Exponential}(\lambda=0.8)\)</span>
-p.d.f. The right limits of integration are <span class="math inline">\(0\)</span> to <span class="math inline">\(t\)</span>, by the same argument as above.
-<span class="math display">\[\begin{align*}
-f_{S_3}(t) &amp;= \int_0^t (0.8)^2 x e^{-0.8 x} \cdot 0.8 e^{-0.8 (t - x)}\,dx \\
-&amp;=\int_0^t  (0.8)^3 x e^{-0.8 (x + (t - x))}\,dx \\
-&amp;= (0.8)^3 e^{-0.8 t} \int_0^t x\,dx \\
-&amp;= \frac{(0.8)^3}{2} t^2 e^{-0.8 t}; t &gt; 0
-\end{align*}\]</span>
-This p.d.f. is graphed in blue below.
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-157-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>In general, we can continue in this way to obtain the following formula for the p.d.f. of the
-<span class="math inline">\(r\)</span>th arrival time in this Poisson process.
-<span class="math display" id="eq:arrival-times-pdf">\[\begin{equation}
-f_{S_r}(t) = \frac{(0.8)^r}{(r-1)!} t^{r-1} e^{-0.8 t}; t &gt; 0.
-\tag{45.2}
-\end{equation}\]</span>
-This family of distributions is known as the <strong>gamma distribution</strong>, with parameters <span class="math inline">\(r\)</span> and <span class="math inline">\(\lambda =0.8\)</span>.</p>
+<p>In a simple random walk, the steps are i.i.d.
+random variables with p.m.f.
+<span class="math display">\[ \begin{array}{r|cc}
+z &amp; -1 &amp; 1 \\
+\hline
+f(z) &amp; 0.5 &amp; 0.5
+\end{array}. \]</span>
+See Lesson <a href="random-walk.html#random-walk">31</a> for pictures of a simple random walk.</p>
+Below, we show one realization of a random walk, where the steps are
+i.i.d. standard normal random variables (i.e., the process
+considered in Example <a href="random-process.html#exm:white-noise">47.2</a>).
 </div>
-<div id="essential-practice-34" class="section level2 unnumbered">
+
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p>Now, we show 50 realizations of the same random walk process. Notice how the distribution of
+<span class="math inline">\(X[n]\)</span> is different for each <span class="math inline">\(n\)</span>. In the Essential Practice below, you will work out the
+distribution of each <span class="math inline">\(X[n]\)</span>.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+</div>
+<div id="essential-practice-36" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>In this exercise, you will investigate the distribution of <span class="math inline">\(S_n = U_1 + U_2 + \ldots + U_n\)</span>, where
-<span class="math inline">\(U_i\)</span> are i.i.d. <span class="math inline">\(\text{Uniform}(a=0, b=1)\)</span> random variables. You already
-calculated <span class="math inline">\(E[S_n]\)</span> and <span class="math inline">\(\text{SD}[S_n]\)</span> in Lesson <a href="cov-continuous.html#cov-continuous">44</a>. Now, you will calculate its
-distribution.</p>
+<li><p>Radioactive particles hit a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Find the p.d.f. of <span class="math inline">\(S_3 = U_1 + U_2 + U_3\)</span> and sketch its graph. Check that this p.d.f.
-agrees with the value of <span class="math inline">\(E[S_3]\)</span> and <span class="math inline">\(\text{SD}[S_3]\)</span> that you calculated earlier.</p>
-<p>(<em>Hint 1:</em> We already worked out the distribution of <span class="math inline">\(U_1 + U_2\)</span> in Example <a href="sums-continuous.html#exm:sum-uniforms">45.1</a>.
-Do another convolution.)</p>
-<p>(<em>Hint 2:</em> You should end up with a p.d.f. with 4 cases: <span class="math inline">\(f_{S_3}(t) = \begin{cases} ... &amp; 0 &lt; t \leq 1 \\ ... &amp; 1 &lt; t \leq 2 \\ ... &amp; 2 &lt; t &lt; 3 \\ 0 &amp; \text{otherwise} \end{cases}\)</span>.)</p></li>
-<li><p>Find the p.d.f. of <span class="math inline">\(S_4 = U_1 + U_2 + U_3 + U_4\)</span> and sketch its graph. Check that this p.d.f.
-agrees with the value of <span class="math inline">\(E[S_4]\)</span> and <span class="math inline">\(\text{SD}[S_4]\)</span> that you calculated earlier.</p>
-<p>(<em>Hint:</em> I think the easiest way to do this is to convolve another uniform p.d.f. with
-the p.d.f. you got in part a. However, you could also do this by convolving two triangle
-functions together. You should get the same answer either way.)</p></li>
-<li><p>Neither <span class="math inline">\(S_3\)</span> nor <span class="math inline">\(S_4\)</span> are named distributions. However, if you sketch their p.d.f.s, they should
-remind you of one of the named distributions we learned. Which one?</p></li>
+<li>What is the distribution of <span class="math inline">\(N(1.2)\)</span>? (Hint: Translate this into a statement about the number of arrivals
+on some interval.) Calculate <span class="math inline">\(P(N(1.2) &gt; 1)\)</span>.</li>
+<li>What is <span class="math inline">\(P(N(2.0) &gt; N(1.2))\)</span>? (Hint: Translate this into a statement about the number of arrivals on some
+interval.)</li>
 </ol></li>
-<li><p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent <em>standard</em> normal—that is, <span class="math inline">\(\text{Normal}(\mu=0, \sigma=1)\)</span>—random variables.
-Let <span class="math inline">\(T = X + Y\)</span>. You should quickly be able to determine <span class="math inline">\(E[T]\)</span> and <span class="math inline">\(\text{Var}[T]\)</span>. But what is the distribution of
-<span class="math inline">\(T\)</span>? Use convolution to answer this question.</p>
-<p>(I’m happy if you can just set up the integral and plug it into Wolfram Alpha.
-If you really want to solve it by hand, try “completing the square” in the exponent
-so that you end up with something that looks like a normal p.d.f., which you know must integrate to 1.)</p></li>
-<li><p>(This exercise is an application of the result that you found in the previous exercise. It is otherwise
-unrelated to this lesson.) Let <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, and <span class="math inline">\(X_3\)</span> represent the times (in minutes) necessary to perform three
-successive repair tasks at a service facility. They are independent, normal random variables with
-expected values 45, 50, and 75 and variances 10, 12, and 14, respectively. What is the probability that the
-service facility is able to finish all three tasks within 3 hours (that is, 180 minutes)?</p>
-<p>(<em>Hint:</em> Use the previous exercise to identify the distribution of <span class="math inline">\(T = X_1 + X_2 + X_3\)</span>. It is one of the
-named distributions we learned. Once you identify the distribution and its parameters, you can calculate the
-probability in the usual way. You should not need to do any convolutions to answer this question.)</p></li>
+<li><p>Let <span class="math inline">\(\{Z[n]\}\)</span> be white noise consisting of i.i.d. <span class="math inline">\(\text{Exponential}(\lambda=0.5)\)</span> random
+variables.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What is <span class="math inline">\(P(Z[2] &gt; 1.0)\)</span>?</li>
+<li>What is <span class="math inline">\(P(Z[3] &gt; Z[2])\)</span>?</li>
+</ol></li>
+<li><p>Let <span class="math inline">\(\{ X[n] \}\)</span> be a random walk, where the steps are i.i.d. standard normal
+random variables. What is the distribution of <span class="math inline">\(X[n]\)</span>? (Your answer should depend on <span class="math inline">\(n\)</span>.) What is
+<span class="math inline">\(P(Z[100] &gt; 20)\)</span>.</p>
+<p>(Hint: What do you know about the sum of independent normal random variables?)</p></li>
 </ol>
 
 </div>
@@ -607,8 +547,8 @@ probability in the usual way. You should not need to do any convolutions to answ
           </div>
         </div>
       </div>
-<a href="cov-continuous.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="clt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="clt.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="random-process-examples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -639,7 +579,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/sums-continuous.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/random-process.Rmd",
 "text": "Edit"
 },
 "history": {

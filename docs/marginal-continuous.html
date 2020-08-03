@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-07-30" />
+<meta name="date" content="2020-08-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -392,6 +392,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#essential-practice-35"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#additional-practice-8"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="47" data-path="random-process.html"><a href="random-process.html"><i class="fa fa-check"></i><b>47</b> Random Processes</a><ul>
+<li class="chapter" data-level="" data-path="random-process.html"><a href="random-process.html#motivation-3"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="random-process.html"><a href="random-process.html#theory-43"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="random-process.html"><a href="random-process.html#essential-practice-36"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="48" data-path="random-process-examples.html"><a href="random-process-examples.html"><i class="fa fa-check"></i><b>48</b> Examples of Random Processes</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -535,17 +541,18 @@ set up and the integral and use Wolfram Alpha to do the rest.)</li>
 <li>Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent? (<em>Hint:</em> According to Theorem <a href="marginal-continuous.html#thm:joint-pdf-independent">42.1</a>,
 what would their joint p.d.f. have to be if they were independent?)</li>
 </ol></li>
-<li>Each day, two Cal Poly students, Xavier and Yolanda, arrive independently at The Avenue at a
-random time between noon and 1 p.m. Let <span class="math inline">\(X\)</span> be the time that Xavier arrives (in minutes after 12 p.m.)
-and <span class="math inline">\(Y\)</span> be the time that Yolanda arrives (in minutes after 12 p.m.). <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent
-<span class="math inline">\(\text{Uniform}(a=0, b=60)\)</span> random variables.
+<li>Harry and Sally independently go to Katz’s Deli for lunch on weekdays from their
+respective jobs. Let <span class="math inline">\(H\)</span> be the time that Harry arrives and <span class="math inline">\(S\)</span> be the time that
+Sally arrives (in minutes after 12 p.m.). <span class="math inline">\(H\)</span> and <span class="math inline">\(S\)</span>
+are independent <span class="math inline">\(\text{Uniform}(a=0, b=90)\)</span> random variables.
 <ol style="list-style-type: lower-alpha">
-<li>What is the joint p.d.f. of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>? Sketch a bird’s-eye view of the joint p.d.f.</li>
-<li>If both Xavier and Yolanda take 15 minutes to eat their lunch (after they arrive), what is the
-probability that they are able to meet up? (<em>Hint:</em> Sketch the region of times <span class="math inline">\((x, y)\)</span>
-that correspond to Xavier and Yolanda meeting up. You can
-calculate this probability by geometry, without using integration.)</li>
-<li>What is the probability that Xavier arrives after Yolanda arrives?</li>
+<li>What is the joint p.d.f. of <span class="math inline">\(H\)</span> and <span class="math inline">\(S\)</span>? Sketch a bird’s-eye view of the joint p.d.f.</li>
+<li><p>If they each take 20 minutes to eat their lunch after they arrive,
+what is the probability that Harry meets Sally…?</p>
+(<em>Hint:</em> The two are able to meet if they arrive within 20 minutes of each other.
+Sketch the region of times that correspond to Harry and Sally meeting.
+You can calculate this probability by geometry, without using integration.)</li>
+<li><p>What is the probability that Harry arrives after Sally arrives?</p></li>
 </ol></li>
 </ol>
 

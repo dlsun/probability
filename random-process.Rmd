@@ -1,0 +1,210 @@
+# Random Processes {#random-process}
+
+## Motivation {-}
+
+A signal is a function of time, usually symbolized $x(t)$ (or $x[n]$, if the 
+signal is discrete). 
+In a _noisy_ signal, the exact value of the signal is 
+random. Therefore, we will model noisy signals as a 
+random function $X(t)$, where at each time $t$, 
+$X(t)$ is a random variable. These "noisy signals" are 
+formally called **random processes** or **stochastic processes**.
+
+
+## Theory {-}
+
+```{definition random-process, name="Random Process"}
+A **random process** is a collection of random variables $\{ X_t \}$ 
+  indexed by time. Each realization of the process is a function of $t$. 
+  For every fixed time $t$, $X_t$ is a random variable.
+  
+Random processes are classified as **continuous-time** or **discrete-time**, 
+depending on whether time is continuous or discrete. We typically 
+notate continuous-time random processes as $\{ X(t) \}$ and 
+discrete-time processes as $\{ X[n] \}$.
+```
+
+We have actually encountered several random processes already.
+
+```{example, name="Poisson Process"}
+The Poisson process, introduced in Lesson \@ref(poisson-process), is an 
+a continuous-time random process.
+
+Define $N(t)$ to be the _number of arrivals up to time $t$_. 
+Then, $\{ N(t); t \geq 0 \}$ is a continuous-time random process. 
+The graph below shows how the arrivals (orange dots) can be 
+translated into a continuous-time function $N(t)$ (blue line).
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+set.seed(1)
+arrivals <- cumsum(rexp(10, 0.8))
+ts <- seq(0, 5, by=.01)
+N <- c()
+for(t in ts) {
+  N <- c(N, sum(arrivals < t))
+}
+plot(arrivals[arrivals < 5], rep(0, sum(arrivals < 5)), col="orange", pch=19,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(0, 5),
+     xlab="Time (t)", ylab="Number of arrivals N(t)")
+axis(1, pos=0, at=0:5)
+axis(2, pos=0, at=0:5)
+lines(ts, N, col="blue", lwd=2)
+```
+
+Shown below are 30 realizations of the Poisson process. 
+At any time $t$, the value of the process is a discrete 
+random variable that takes on the values 0, 1, 2, ....
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(0, 8.5),
+     xlab="Time (t)", ylab="Number of arrivals N(t)")
+axis(1, pos=0, at=0:5)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:30) {
+  arrivals <- cumsum(rexp(10, 0.8))
+  ts <- seq(0, 6, by=.01)
+  N <- c()
+  for(t in ts) {
+    N <- c(N, sum(arrivals < t))
+  }
+  lines(ts, N, col=rgb(0, 0, 1, 0.2))
+}
+```
+
+```{example white-noise, name="White Noise"}
+In several lessons (for example, Lesson \@ref(lln) and \@ref(clt)), we have 
+examined sequences of independent and identically distributed (i.i.d.) random variables. 
+A sequence of independent and identically distributed random variables 
+$.., Z[-2], Z[-1], Z[0], Z[1], Z[2], ...$ is called **white noise**. 
+White noise is an example of a discrete-time process.
+
+The graph below shows one realization of white noise, where $Z[n]$ is a 
+standard normal random variable. This process is only 
+defined at integer times $n=-2, -1, 0, 1, 2, ...$ (even though we have 
+connected the dots).
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+set.seed(1)
+ts <- -3:4
+Z <- rnorm(8)
+plot(ts, Z, col="blue", pch=19,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-3, 3),
+     xlab="Time Sample (n)", ylab="Z[n]")
+axis(1, pos=0, at=-2:3)
+axis(2, pos=0, at=-3:3)
+lines(ts, Z, col="blue", lwd=2)
+```
+
+Shown below are 50 realizations of the white noise process. Notice how 
+the distribution of $Z[n]$ looks similar for every $n$. This is because 
+we constructed the process by simulating an _independent_ standard normal 
+random variable at every time $n$.
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-3, 3),
+     xlab="Time Sample (n)", ylab="Z[n]")
+axis(1, pos=0, at=-2:3)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:50) {
+  ts <- -3:4
+  Z <- rnorm(8)
+  points(ts, Z, pch=19, col=rgb(0, 0, 1, 0.2))
+  lines(ts, Z, col=rgb(0, 0, 1, 0.2))
+}
+```
+
+```{example, name="Random Walk"}
+In Lesson \@ref(random-walk), we studied the random walk. More precisely, 
+we studied a special case called the **simple random walk**.
+
+In general, a **(general) random walk** \{ X[n]; n \geq 0 \} is a discrete-time process, defined by 
+\begin{align*} 
+X[0] &= 0 \\
+X[n] &= X[n-1] + Z[n] & n \geq 1, 
+\end{align*}
+where $\{ Z[n] \}$ is a white noise process. In other words, each step is a independent and 
+random draw from the same distribution.
+
+Let's work out an explicit formula for $X[n]$ in terms of $Z[1], Z[2], ...$.
+\begin{align*} 
+X[0] &= 0 \\
+X[1] &= \underbrace{X[0]}_0 + Z[1] = Z[1] \\
+X[2] &= \underbrace{X[1]}_{Z[1]} + Z[2] = Z[1] + Z[2] \\
+X[3] &= \underbrace{X[2]}_{Z[1] + Z[2]} + Z[3] = Z[1] + Z[2] + Z[3] \\
+& \vdots \\
+X[n] &= Z[1] + Z[2] + \ldots + Z[n].
+\end{align*}
+
+In a simple random walk, the steps are i.i.d. 
+random variables with p.m.f. 
+\[ \begin{array}{r|cc}
+z & -1 & 1 \\
+\hline
+f(z) & 0.5 & 0.5
+\end{array}. \]
+See Lesson \@ref(random-walk) for pictures of a simple random walk.
+
+Below, we show one realization of a random walk, where the steps are 
+i.i.d. standard normal random variables (i.e., the process
+considered in Example \@ref(exm:white-noise)).
+```
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+set.seed(1)
+ts <- 0:5
+X <- c(0, cumsum(rnorm(5)))
+plot(ts, X, col="blue", pch=19,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(-3, 3),
+     xlab="Time Sample (n)", ylab="X[n]")
+axis(1, pos=0, at=0:5)
+axis(2, pos=0, at=-3:3)
+lines(ts, X, col="blue", lwd=2)
+```
+
+Now, we show 50 realizations of the same random walk process. Notice how the distribution of 
+$X[n]$ is different for each $n$. In the Essential Practice below, you will work out the 
+distribution of each $X[n]$.
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(-5.1, 5.1),
+     xlab="Time Sample (n)", ylab="X[n]")
+axis(1, pos=0)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:50) {
+  ts <- 0:5
+  X <- c(0, cumsum(rnorm(5)))
+  points(ts, X, pch=19, col=rgb(0, 0, 1, 0.2))
+  lines(ts, X, col=rgb(0, 0, 1, 0.2))
+}
+```
+
+## Essential Practice {-}
+
+1. Radioactive particles hit a Geiger counter according to a Poisson process 
+at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
+
+    a. What is the distribution of $N(1.2)$? (Hint: Translate this into a statement about the number of arrivals 
+    on some interval.) Calculate $P(N(1.2) > 1)$.
+    b. What is $P(N(2.0) > N(1.2))$? (Hint: Translate this into a statement about the number of arrivals on some 
+    interval.)
+    
+2. Let $\{Z[n]\}$ be white noise consisting of i.i.d. $\text{Exponential}(\lambda=0.5)$ random 
+variables.
+
+    a. What is $P(Z[2] > 1.0)$?
+    b. What is $P(Z[3] > Z[2])$?
+
+3. Let $\{ X[n] \}$ be a random walk, where the steps are i.i.d. standard normal 
+random variables. What is the distribution of $X[n]$? (Your answer should depend on $n$.) What is 
+$P(Z[100] > 20)$.
+
+    (Hint: What do you know about the sum of independent normal random variables?)

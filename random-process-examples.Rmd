@@ -1,0 +1,91 @@
+# Examples of Random Processes {#random-process-examples}
+
+In this lesson, we cover a few more examples of random processes.
+
+```{example random-amplitude, name="Random Amplitude Process"}
+Let $A$ be a random variable. Let $f$ be a constant. Then the continuous-time process 
+\[ X(t) = A\cos(2\pi  f t) \]
+is called a **random amplitude** process.
+
+Note that once the value of $A$ is simulated, the random process $\{ X(t) \}$ is
+completey specified for all times $t$. The graph below shows three realizations of 
+the random amplitude process, where $A$ is $\text{Exponential}(\lambda = 0.8)$.
+```
+```{r, engine="tikz", echo=FALSE, fig.show = "hold", fig.align = "default"}
+	\begin{tikzpicture}
+	
+	\draw[->,gray,dashed] (-.5, 0) -- (4.7, 0);
+	\draw[->,gray,dashed] (0, -2) -- (0, 2);
+	\node[anchor=south east] at (0, 1.5) {$X(t)$};
+	\node[anchor=west] at (4.7, 0) {$t$};
+	
+	\draw[domain=-.5:4.7, variable=\x, samples=200, red] plot(\x, {0.4*cos(360*\x)});
+	\node[anchor=east, red] at (-.5, -0.4) {$A = 0.4$};
+
+	\draw[domain=-.5:4.7, variable=\x, samples=200, orange] plot(\x, {1.8*cos(360*\x)});
+	\node[anchor=east, orange] at (-.5, -1.8) {$A = 1.8$};
+
+	\draw[domain=-.5:4.7, variable=\x, samples=200, blue] plot(\x, {0.9*cos(360*\x)});
+	\node[anchor=east, blue] at (-.5, -0.9) {$A = 0.9$};
+
+	\end{tikzpicture}
+```
+
+
+```{example, name="Moving Average Process"}
+Let $\{ Z[n] \}$ be a white noise process. Then, a **moving average process** (of order 1) $\{ X[n] \}$ 
+is a discrete-time process defined by 
+\begin{equation}
+X[n] = \theta_0 Z[n] + \theta_1 Z[n-1].
+(\#eq:ma1)
+\end{equation}
+
+Below, we show one realization of a white noise process $\{ Z[n] \}$ (in orange), 
+along with the corresponding moving average process 
+\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1]. \]
+Notice that the moving average process is just the average of successive values of the 
+white noise process. As a result, the moving average process is "smoother" than the white noise process.
+```
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+set.seed(1)
+ts <- -2:7
+Z <- rnorm(10)
+plot(ts, Z, col="orange", pch=19,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 6), ylim=c(-3, 3),
+     xlab="Time Sample (n)", ylab="Value of the Process")
+lines(ts, Z, col="orange")
+axis(1, pos=0)
+axis(2, pos=0)
+X <- c()
+for(i in 2:10) {
+  X <- c(X, (Z[i] + Z[i-1]) / 2)
+}
+points(-1:7, X, col="blue", pch=19)
+lines(-1:7, X, col="blue", lwd=2)
+legend(4, 3, c("White Noise", "Moving Average"), lty=1, lwd=c(1, 2), col=c("orange", "blue"))
+```
+
+Now, we show 50 realizations of the same moving average process. Superficially, this might 
+look like the white noise of Example \@ref(exm:white-noise), but if you look closely, you will 
+see that each individual function fluctuates less.
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+set.seed(1)
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 6), ylim=c(-3, 3),
+     xlab="Time Sample (n)", ylab="X[n]")
+axis(1, pos=0)
+axis(2, pos=0)
+for(i in 1:50) {
+  Z <- rnorm(10)
+  X <- c()
+  for(i in 2:10) {
+    X <- c(X, (Z[i] + Z[i-1]) / 2)
+  }
+  points(-1:7, X, col=rgb(0, 0, 1, 0.2), pch=19)
+  lines(-1:7, X, col=rgb(0, 0, 1, 0.2), lwd=2)
+}
+```
+
