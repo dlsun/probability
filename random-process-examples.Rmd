@@ -31,6 +31,10 @@ the random amplitude process, where $A$ is $\text{Exponential}(\lambda = 0.8)$.
 	\end{tikzpicture}
 ```
 
+Here is a video that animates the random amplitude process.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vU8yW3e-8-c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ```{example, name="Moving Average Process"}
 Let $\{ Z[n] \}$ be a white noise process. Then, a **moving average process** (of order 1) $\{ X[n] \}$ 
