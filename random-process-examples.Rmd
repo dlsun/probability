@@ -8,7 +8,7 @@ Let $A$ be a random variable. Let $f$ be a constant. Then the continuous-time pr
 is called a **random amplitude** process.
 
 Note that once the value of $A$ is simulated, the random process $\{ X(t) \}$ is
-completey specified for all times $t$. The graph below shows three realizations of 
+completely specified for all times $t$. The graph below shows three realizations of 
 the random amplitude process, where $A$ is $\text{Exponential}(\lambda = 0.8)$.
 ```
 ```{r, engine="tikz", echo=FALSE, fig.show = "hold", fig.align = "default"}

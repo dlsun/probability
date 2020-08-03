@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 29 Covariance | Introduction to Probability</title>
+  <title>Lesson 49 Brownian Motion | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 29 Covariance | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 49 Brownian Motion | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 29 Covariance | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 49 Brownian Motion | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-03" />
+<meta name="date" content="2020-08-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="variance.html"/>
-<link rel="next" href="cov-properties.html"/>
+<link rel="prev" href="random-process-examples.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -359,12 +359,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="40" data-path="normal.html"><a href="normal.html"><i class="fa fa-check"></i><b>40</b> Normal Distribution</a><ul>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#motivation-1"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#standard-normal-distribution"><i class="fa fa-check"></i>Standard Normal Distribution</a></li>
-<li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
-<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
@@ -388,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="46" data-path="clt.html"><a href="clt.html"><i class="fa fa-check"></i><b>46</b> Central Limit Theorem</a><ul>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#motivation-2"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#theory-42"><i class="fa fa-check"></i>Theory</a></li>
-<li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#worked-examples-1"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#essential-practice-35"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#additional-practice-8"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
@@ -398,6 +396,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="random-process.html"><a href="random-process.html#essential-practice-36"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="48" data-path="random-process-examples.html"><a href="random-process-examples.html"><i class="fa fa-check"></i><b>48</b> Examples of Random Processes</a></li>
+<li class="chapter" data-level="49" data-path="brownian-motion.html"><a href="brownian-motion.html"><i class="fa fa-check"></i><b>49</b> Brownian Motion</a><ul>
+<li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#why-poisson-1"><i class="fa fa-check"></i>Why Poisson?</a></li>
+<li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#essential-practice-37"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -418,133 +420,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="covariance" class="section level1">
-<h1><span class="header-section-number">Lesson 29</span> Covariance</h1>
-<div id="theory-26" class="section level2 unnumbered">
-<h2>Theory</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MpnOmEAb0uM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<div id="brownian-motion" class="section level1">
+<h1><span class="header-section-number">Lesson 49</span> Brownian Motion</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FAdxd2Iv-UA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>The covariance measures the relationship between two random variables.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nrUBPO6zZ40" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>The videos above discussed Brownian motion of particles moving in two or three dimensions; for simplicity, we
+will only consider Brownian motion in one dimension. This can be used to model, among other things, a particle
+moving along a line.</p>
+<p>Shown below</p>
 
 <div class="definition">
-<span id="def:covariance" class="definition"><strong>Definition 29.1  (Covariance)  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables. Then, the <strong>covariance</strong> of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, symbolized
-<span class="math inline">\(\text{Cov}[X, Y]\)</span> is defined as
-<span class="math display" id="eq:cov">\[\begin{equation}
-\text{Cov}[X, Y] \overset{\text{def}}{=} E[(X - E[X])(Y - E[Y])].
-\tag{29.1}
-\end{equation}\]</span>
-</div>
-
-<p>The <em>sign</em> of the covariance is most meaningful:</p>
-<ul>
-<li>If <span class="math inline">\(\text{Cov}[X, Y] &gt; 0\)</span>, then <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> tend to move together. When <span class="math inline">\(X\)</span> is high,
-<span class="math inline">\(Y\)</span> tends to also be high.</li>
-<li>If <span class="math inline">\(\text{Cov}[X, Y] &lt; 0\)</span>, then <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> tend to move in opposite directions.
-When <span class="math inline">\(X\)</span> is high, <span class="math inline">\(Y\)</span> tends to be low.</li>
-<li>If <span class="math inline">\(\text{Cov}[X, Y] = 0\)</span>, then <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> do not consistently move together.
-This does not mean that they are independent, just that they do not consistently move
-together.</li>
-</ul>
-By comparing the definitions of variance <a href="variance.html#eq:var">(28.1)</a> and covariance <a href="covariance.html#eq:cov">(29.1)</a>,
-we have the following obvious, but important, relationship between variance and covariance.
-
-<div class="theorem">
-<span id="thm:cov-var" class="theorem"><strong>Theorem 29.1  (Covariance-Variance Relationship)  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable. Then:
-<span class="math display">\[\begin{equation}
-\text{Var}[X] = \text{Cov}[X, X].
-\end{equation}\]</span>
-</div>
-
-<p>For calculations, it is often easier to use the following “shortcut formula” for the covariance.</p>
-
-<div class="theorem">
-<span id="thm:cov-shortcut" class="theorem"><strong>Theorem 29.2  (Shortcut Formula for Covariance)  </strong></span>The covariance can also be computed as:
-<span class="math display" id="eq:cov-shortcut">\[\begin{equation}
-\text{Cov}[X, Y] = E[XY] - E[X]E[Y].
-\tag{29.2}
-\end{equation}\]</span>
-</div>
-
-
-<div class="proof">
- <span class="proof"><em>Proof. </em></span> <span class="math display">\[\begin{align*}
-\text{Cov}[X, Y] &amp;= E[(X - E[X])(Y - E[Y])] &amp; \text{(definition of covariance)} \\
-&amp;= E[XY - X E[Y] - E[X] Y + E[X]E[Y]] &amp; \text{(expand expression inside expectation)}\\
-&amp;= E[XY] -E[X] E[Y] - E[X] E[Y] + E[X]E[Y] &amp; \text{(linearity of expectation)} \\
-&amp;= E[XY] - E[X]E[Y] &amp; \text{(simplify)}
-\end{align*}\]</span>
-</div>
-
-<p>Here is an example where we use the shortcut formula.</p>
+<p><span id="def:bm" class="definition"><strong>Definition 49.1  (Brownian Motion)  </strong></span>A <strong>Brownian motion of scale <span class="math inline">\(\alpha\)</span></strong> is a random process <span class="math inline">\(\{ B(t) \}\)</span> with the following properties:</p>
+<ol style="list-style-type: decimal">
+<li>The “particle” starts at the origin at <span class="math inline">\(t=0\)</span>: <span class="math inline">\(B(0) = 0\)</span>.</li>
+<li>The displacement over any interval <span class="math inline">\((s, t)\)</span>, denoted by <span class="math inline">\(B(t) - B(s)\)</span>, follows a
+<span class="math inline">\(\text{Normal}(\mu=0, \sigma=\sqrt{\alpha(t - s)})\)</span> distribution.</li>
+<li>The displacements over non-overlapping intervals are independent.
+</div></li>
+</ol>
+<p>These properties allow us to calculate any probability of interest.</p>
 
 <div class="example">
-<p><span id="exm:roulette-cov" class="example"><strong>Example 29.1  (Roulette Covariance)  </strong></span>Let’s calculate the covariance between the number of bets that Xavier wins, <span class="math inline">\(X\)</span>, and
-the number of bets that Yolanda wins, <span class="math inline">\(Y\)</span>.</p>
-<p>We calculated <span class="math inline">\(E[XY] \approx 4.11\)</span> in Lessons <a href="lotus2d.html#lotus2d">25</a> and <a href="ev-product.html#ev-product">27</a>. But if we did not
-already know this, we would have to calculate it (usually by 2D LOTUS).</p>
-<p>Since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are binomial, we also know their expected values are
-<span class="math inline">\(E[X] = 3\frac{18}{38}\)</span> and <span class="math inline">\(E[Y] = 5\frac{18}{38}\)</span>.</p>
-<p>Therefore, the covariance is
-<span class="math display">\[ \text{Cov}[X, Y] = E[XY] - E[X]E[Y] = 4.11 - 3\frac{18}{38} \cdot 5\frac{18}{38} = .744. \]</span></p>
-This covariance is positive, which makes sense—since the more Xavier wins, the more Yolanda wins.
-</div>
+<p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 49.1  (Geiger Counter)  </strong></span>
+In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that the Geiger counter detects 3 or more particles in the
+next 4 seconds?</li>
+<li>What is the probability that the Geiger counter detects (exactly) 1 particle in the next second and
+3 or more in the next 4 seconds?
+</div></li>
+</ol>
 
-Finally, we note that if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then their covariance is zero.
-
-<div class="theorem">
-<span id="thm:unnamed-chunk-98" class="theorem"><strong>Theorem 29.3  (Independence Implies Zero Covariance)  </strong></span>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(\text{Cov}[X, Y] = 0\)</span>.
-</div>
-
-
-<div class="proof">
- <span class="proof"><em>Proof. </em></span> We use the shortcut formula <a href="covariance.html#eq:cov-shortcut">(29.2)</a> and Theorem <a href="ev-product.html#thm:ev-product">27.1</a>.
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> .</p>
+<ol style="list-style-type: lower-alpha">
+<li>The number of particles arriving at the detector in the next 4 seconds, <span class="math inline">\(X\)</span>, follows a
+<span class="math inline">\(\text{Poisson}(\mu = 0.8 \cdot (4 - 0) = 3.2)\)</span> distribution by Property 1 (<a href="#def:pp"><strong>??</strong></a>). Therefore,
+the probability of detecting 3 or more particles is:
 <span class="math display">\[\begin{align*}
-\text{Cov}[X, Y] &amp;= E[XY] - E[X]E[Y] \\
-&amp;= E[X]E[Y] - E[X]E[Y] \\
-&amp;= 0
-\end{align*}\]</span>
+P(X \geq 3) &amp;= 1 - P(X &lt; 3) \\
+&amp;= 1 - f(0) - f(1) - f(2) \\
+&amp;= 1 - e^{-3.2} \frac{3.2^0}{0!} - e^{-3.2} \frac{3.2^1}{1!} - e^{-3.2} \frac{3.2^2}{2!} \\
+&amp;\approx .6201
+\end{align*}\]</span></li>
+<li><p>The joint probability
+<span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{3 or more particles in (0, 4)}) \]</span>
+involves two events that are not independent. However, we can rewrite the joint probability
+as:
+<span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{2 or more particles in (1, 4)}). \]</span>
+Now, <span class="math inline">\((0, 1)\)</span> and <span class="math inline">\((1, 4)\)</span> are non-overlapping intervals, so the number of particles arriving in
+<span class="math inline">\((0, 1)\)</span> is independent of the number of particles arriving in <span class="math inline">\((1, 4)\)</span> by Property 2 (<a href="#def:pp"><strong>??</strong></a>).
+Therefore, by Theorem <a href="#thm:independence-mult"><strong>??</strong></a>, we obtain their joint probability
+by multiplying their individual probabilities:
+<span class="math display">\[ P(\text{1 particle in (0, 1)}) \cdot P(\text{2 or more particles in (1, 4)}). \]</span></p>
+<p>Now, we know from Property 1 (<a href="#def:pp"><strong>??</strong></a>) that</p>
+<ul>
+<li>the number of particles in <span class="math inline">\((0, 1)\)</span> follows a <span class="math inline">\(\text{Poisson}(\mu = 0.8)\)</span> distribution, and</li>
+<li>the number of particles in <span class="math inline">\((1, 4)\)</span> follows a <span class="math inline">\(\text{Poisson}(\mu = 2.4)\)</span> distribution.</li>
+</ul>
+If we represent the p.m.f.s of these two random variables by <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>, respectively, then the probability is
+<span class="math display">\[ f_1(1) \cdot \left(1 - f_2(0) - f_2(1) \right) = e^{-0.8} \frac{0.8^1}{1!} \cdot \left( 1 - e^{-2.4} \frac{2.4^0}{0!} - e^{-2.4} \frac{2.4^1}{1!} \right) \approx .2486. \]</span>
+</div></li>
+</ol>
+<p>We can also calculate these probabilities with the aid of software:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">0</span>)).pmf(<span class="dv">1</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span>)).cdf(<span class="dv">1</span>))</a></code></pre></div>
+<pre><code>## 0.24858997647262118</code></pre>
+<div id="why-poisson-1" class="section level3 unnumbered">
+<h3>Why Poisson?</h3>
+<p>Why does it make sense to assume that the number of arrivals on any interval
+follows a Poisson distribution? If we chop time up into tiny segments of length <span class="math inline">\(\Delta t\)</span>,
+then the probability of an arrival on any one of these segments will be small—but there will be many such intervals.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" alt="Chopping Up Time in a Poisson Process" width="50%" />
+<p class="caption">
+Figure 49.1: Chopping Up Time in a Poisson Process
+</p>
 </div>
-
-<p>However, the converse is not true.
-It is possible for the covariance to be 0, even when the random variables are not independent.
-An example of such a distibution can be found in the Essential Practice below.</p>
+<p>If we further assume that arrivals are independent across these tiny segments, then
+the number of arrivals follows a binomial distribution, with large <span class="math inline">\(n\)</span> (because there are many segments)
+and small <span class="math inline">\(p\)</span> (because an arrival is unlikely to fall exactly in any given segment).
+We saw in Theorem <a href="#thm:poisson"><strong>??</strong></a> that the Poisson distribution is a good approximation to the binomial
+when <span class="math inline">\(n\)</span> is large and <span class="math inline">\(p\)</span> is small.</p>
+<p><strong>Technical Detail:</strong> In order for the number of arrivals to be binomial, each tiny segment must
+contain either 1 arrival or none; there cannot be 2 or more arrivals in any segment. Usually,
+if <span class="math inline">\(\Delta t\)</span> is so small that it is rare to get even 1 arrival in a segment, then it is
+essentially impossible to get 2 arrivals.</p>
 </div>
-<div id="essential-practice-18" class="section level2 unnumbered">
+<div id="essential-practice-37" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables with joint p.m.f.
-<span class="math display">\[ \begin{array}{rr|ccc}
-y &amp; 1 &amp; .3 &amp;  0 &amp; .3 \\
-  &amp; 0 &amp;  0 &amp; .4 &amp;  0 \\
-\hline
-  &amp; &amp; 0 &amp; 1 &amp; 2 \\
-  &amp; &amp; &amp; x  \\
-\end{array}. \]</span>
-Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent? What is <span class="math inline">\(\text{Cov}[X, Y]\)</span>?</p></li>
-<li><p>Two tickets are drawn from a box with <span class="math inline">\(N_1\)</span> <span class="math inline">\(\fbox{1}\)</span>s and <span class="math inline">\(N_0\)</span> <span class="math inline">\(\fbox{0}\)</span>s. Let <span class="math inline">\(X\)</span> be the number of
-<span class="math inline">\(\fbox{1}\)</span>s on the first draw and <span class="math inline">\(Y\)</span> be the number of <span class="math inline">\(\fbox{1}\)</span>s on the second draw. (Note that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>
-can only be 0 or 1.)</p>
+<li><p>Brownian motion is used in finance to model short-term asset price fluctuation. Suppose the price (in dollars) of a barrel of crude oil varies according to a Brownian motion process; specifically, suppose the change in a barrel’s price
+<span class="math inline">\(t\)</span> days from now is modeled by Brownian motion <span class="math inline">\(B(t)\)</span> with <span class="math inline">\(\alpha = .15\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span> when the draws are made with replacement.</li>
-<li>Calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span> when the draws are made without replacement.</li>
-</ol>
-<p>(Hint: You worked out <span class="math inline">\(E[XY]\)</span> in Lesson <a href="lotus2d.html#lotus2d">25</a>. Use it!)</p></li>
-<li><p>At Diablo Canyon nuclear plant, radioactive particles hit a Geiger counter according to a Poisson process
-with a rate of 3.5 particles per second. Let <span class="math inline">\(X\)</span> be the number of particles detected in the first 2 seconds.
-Let <span class="math inline">\(Y\)</span> be the number of particles detected in the second after that (i.e., the 3rd second).
-Calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span>.</p></li>
-</ol>
-</div>
-<div id="additional-practice-3" class="section level2 unnumbered">
-<h2>Additional Practice</h2>
-<ol style="list-style-type: decimal">
-<li><p>Consider the following three scenarios:</p>
-<ul>
-<li>A fair coin is tossed 3 times. <span class="math inline">\(X\)</span> is the number of heads and <span class="math inline">\(Y\)</span> is the number of tails.</li>
-<li>A fair coin is tossed 4 times. <span class="math inline">\(X\)</span> is the number of heads in the first 3 tosses, <span class="math inline">\(Y\)</span> is the number of heads in the last 3 tosses.</li>
-<li>A fair coin is tossed 6 times. <span class="math inline">\(X\)</span> is the number of heads in the first 3 tosses, <span class="math inline">\(Y\)</span> is the number of heads in the last 3 tosses.</li>
-</ul>
-<p>Calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span> for each of these three scenarios. Interpret the sign of the covariance.</p></li>
+<li>Find the probability that the price of a barrel of crude oil has changed by more than $1, in either direction, after 5 days.</li>
+<li>Repeat (a) for a time interval of 10 days.</li>
+<li>Given that the price has increased by $1 after seven days, what is the probability the price is at least another $1 higher after an additional seven days? In other words, given that the price increased by $1 after seven days, what is the probability that the price has increased by at least $2 after 14 days?</li>
+</ol></li>
 </ol>
 
 </div>
@@ -554,8 +529,8 @@ Calculate <span class="math inline">\(\text{Cov}[X, Y]\)</span>.</p></li>
           </div>
         </div>
       </div>
-<a href="variance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="cov-properties.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="random-process-examples.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -586,7 +561,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/covariance.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/brownian-motion.Rmd",
 "text": "Edit"
 },
 "history": {

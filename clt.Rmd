@@ -316,7 +316,7 @@ is detected between 90 and 120 seconds? Calculate this probability in two ways:
 1. A randomly selected apple from the Cal Poly Orchard weighs 4.9 oz. on average, with a standard deviation of 0.3 oz. However, the distribution of the weights of apples is unknown. 
 
     a. With the information given, is it possible to determine the 
-    probability that a randomly selected apple weighs more than 5.0 oz?
+    probability that a randomly selected apple weighs more than 5.0 oz? If so, calculate it.
     b. The apples are packed into crates of 60 apples each. The apples are randomly and independently selected 
     from the Cal Poly Orchard. With the information given, is it possible to determine the probability 
-    that the total weight of the apples in a crate exceeds 300 oz?
+    that the total weight of the apples in a crate exceeds 300 oz? If so, calculate it.

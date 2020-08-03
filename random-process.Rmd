@@ -27,7 +27,7 @@ discrete-time processes as $\{ X[n] \}$.
 We have actually encountered several random processes already.
 
 ```{example, name="Poisson Process"}
-The Poisson process, introduced in Lesson \@ref(poisson-process), is an 
+The Poisson process, introduced in Lesson \@ref(poisson-process), is 
 a continuous-time random process.
 
 Define $N(t)$ to be the _number of arrivals up to time $t$_. 
@@ -197,14 +197,14 @@ at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ repr
     b. What is $P(N(2.0) > N(1.2))$? (Hint: Translate this into a statement about the number of arrivals on some 
     interval.)
     
-2. Let $\{Z[n]\}$ be white noise consisting of i.i.d. $\text{Exponential}(\lambda=0.5)$ random 
-variables.
+2. Let $\{Z[n]\}$ be white noise consisting of i.i.d. 
+$\text{Exponential}(\lambda=0.5)$ random variables.
 
     a. What is $P(Z[2] > 1.0)$?
     b. What is $P(Z[3] > Z[2])$?
 
 3. Let $\{ X[n] \}$ be a random walk, where the steps are i.i.d. standard normal 
 random variables. What is the distribution of $X[n]$? (Your answer should depend on $n$.) What is 
-$P(Z[100] > 20)$.
+$P(X[100] > 20)$?
 
     (Hint: What do you know about the sum of independent normal random variables?)

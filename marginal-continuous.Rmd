@@ -148,13 +148,15 @@ Setting this equal to 1, we see that $c^2 = \frac{1}{2\pi}$. In other words, $c 
     b. Are $X$ and $Y$ independent? (_Hint:_ According to Theorem \@ref(thm:joint-pdf-independent), 
     what would their joint p.d.f. have to be if they were independent?)
 
-2. Each day, two Cal Poly students, Xavier and Yolanda, arrive independently at The Avenue at a 
-random time between noon and 1 p.m. Let $X$ be the time that Xavier arrives (in minutes after 12 p.m.) 
-and $Y$ be the time that Yolanda arrives (in minutes after 12 p.m.). $X$ and $Y$ are independent 
-$\text{Uniform}(a=0, b=60)$ random variables.
-    a. What is the joint p.d.f. of $X$ and $Y$? Sketch a bird's-eye view of the joint p.d.f.
-    b. If both Xavier and Yolanda take 15 minutes to eat their lunch (after they arrive), what is the 
-    probability that they are able to meet up? (_Hint:_ Sketch the region of times $(x, y)$ 
-    that correspond to Xavier and Yolanda meeting up. You can 
-    calculate this probability by geometry, without using integration.)
-    c. What is the probability that Xavier arrives after Yolanda arrives?
+2. Harry and Sally independently go to Katz's Deli for lunch on weekdays from their 
+respective jobs. Let $H$ be the time that Harry arrives and $S$ be the time that 
+Sally arrives (in minutes after 12 p.m.). $H$ and $S$ 
+are independent $\text{Uniform}(a=0, b=90)$ random variables.
+    a. What is the joint p.d.f. of $H$ and $S$? Sketch a bird's-eye view of the joint p.d.f.
+    b. If they each take 20 minutes to eat their lunch after they arrive, 
+    what is the probability that Harry meets Sally...? 
+    
+        (_Hint:_ The two are able to meet if they arrive within 20 minutes of each other. 
+        Sketch the region of times that correspond to Harry and Sally meeting. 
+        You can calculate this probability by geometry, without using integration.)
+    c. What is the probability that Harry arrives after Sally arrives?
