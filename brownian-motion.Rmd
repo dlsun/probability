@@ -8,9 +8,25 @@ The videos above discussed Brownian motion of particles moving in two or three d
 will only consider Brownian motion in one dimension. This can be used to model, among other things, a particle 
 moving along a line.
 
-Shown below are three sample paths of Brownian motion.
+Shown below are 5 sample paths of Brownian motion.
 
-TODO
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+set.seed(1)
+colors = c("black", "red", "blue", "orange", "green")
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 3), ylim=c(-3, 3),
+     xlab="Time (t)", ylab="B(t)")
+axis(1, pos=0)
+axis(2, pos=0)
+for(i in 1:5) {
+  n <- 300
+  t <- 0:n
+  x <- c(0, cumsum(rnorm(n)))
+
+  lines(t / 100, x / sqrt(100), type="l", col=colors[i])
+}
+```
 
 ```{definition bm, name="Brownian Motion"}
 **Brownian motion of scale $\alpha$** $\{ B(t); t \geq 0 \}$ is a continuous-time process with the 
@@ -60,12 +76,12 @@ to a continuous-time process $\{ B(t); t \geq 0 \}$. The recipe is as follows:
 
 1. Suppose the steps of the random walk happens at intervals of $\Delta t$ seconds. That is, 
 \[ X(t) = X\left[\frac{t}{\Delta t}\right] \]
-2. We let $\Delta t \to 0$. Since the steps happen so rapidly, it does not make sense to take steps of 
+2. We let $\Delta t \to 0$. Since each step happens so quickly, it does not make sense to take steps of 
 the same size. We should also rescale the size of the steps to be commensurate with how quickly they 
-are happening. The right rescaling is:
+happen. The right rescaling is:
 \[ B(t) = \sqrt{\Delta t} X(t). \]
 
-If we start with a discrete-time random walk and rescale time and steps in this way, we get 
+If we start with a discrete-time random walk and rescale time and step sizes in this way, we get 
 Brownian motion. The animation below illustrates this.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BOmURxCgubM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

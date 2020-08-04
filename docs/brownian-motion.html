@@ -431,8 +431,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The videos above discussed Brownian motion of particles moving in two or three dimensions; for simplicity, we
 will only consider Brownian motion in one dimension. This can be used to model, among other things, a particle
 moving along a line.</p>
-<p>Shown below are three sample paths of Brownian motion.</p>
-<p>TODO</p>
+<p>Shown below are 5 sample paths of Brownian motion.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 
 <div class="definition">
 <p><span id="def:bm" class="definition"><strong>Definition 49.1  (Brownian Motion)  </strong></span><strong>Brownian motion of scale <span class="math inline">\(\alpha\)</span></strong> <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span> is a continuous-time process with the
@@ -447,7 +447,7 @@ following properties:</p>
 <p>These three properties allow us to calculate most probabilities of interest.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-181" class="example"><strong>Example 49.1  (Grain of Pollen)  </strong></span>The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion
+<p><span id="exm:unnamed-chunk-182" class="example"><strong>Example 49.1  (Grain of Pollen)  </strong></span>The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion
 with parameter <span class="math inline">\(\alpha = 4\)</span> mm/s.</p>
 <ol style="list-style-type: lower-alpha">
 <li>What is the probability the pollen grain moves by more than 10 mm (in the horizontal direction)
@@ -483,12 +483,12 @@ to a continuous-time process <span class="math inline">\(\{ B(t); t \geq 0 \}\)<
 <ol style="list-style-type: decimal">
 <li>Suppose the steps of the random walk happens at intervals of <span class="math inline">\(\Delta t\)</span> seconds. That is,
 <span class="math display">\[ X(t) = X\left[\frac{t}{\Delta t}\right] \]</span></li>
-<li>We let <span class="math inline">\(\Delta t \to 0\)</span>. Since the steps happen so rapidly, it does not make sense to take steps of
+<li>We let <span class="math inline">\(\Delta t \to 0\)</span>. Since each step happens so quickly, it does not make sense to take steps of
 the same size. We should also rescale the size of the steps to be commensurate with how quickly they
-are happening. The right rescaling is:
+happen. The right rescaling is:
 <span class="math display">\[ B(t) = \sqrt{\Delta t} X(t). \]</span></li>
 </ol>
-<p>If we start with a discrete-time random walk and rescale time and steps in this way, we get
+<p>If we start with a discrete-time random walk and rescale time and step sizes in this way, we get
 Brownian motion. The animation below illustrates this.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BOmURxCgubM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
