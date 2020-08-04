@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-02" />
+<meta name="date" content="2020-08-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -359,10 +359,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="40" data-path="normal.html"><a href="normal.html"><i class="fa fa-check"></i><b>40</b> Normal Distribution</a><ul>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#motivation-1"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#standard-normal-distribution"><i class="fa fa-check"></i>Standard Normal Distribution</a></li>
+<li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#general-normal-distribution"><i class="fa fa-check"></i>(General) Normal Distribution</a></li>
 <li class="chapter" data-level="" data-path="normal.html"><a href="normal.html#essential-practice-29"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="41" data-path="joint-continuous.html"><a href="joint-continuous.html"><i class="fa fa-check"></i><b>41</b> Joint Continuous Distributions</a><ul>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#theory-37"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#essential-practice-30"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="joint-continuous.html"><a href="joint-continuous.html#additional-practice-7"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
@@ -386,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="46" data-path="clt.html"><a href="clt.html"><i class="fa fa-check"></i><b>46</b> Central Limit Theorem</a><ul>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#motivation-2"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#theory-42"><i class="fa fa-check"></i>Theory</a></li>
-<li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#worked-examples"><i class="fa fa-check"></i>Worked Examples</a></li>
+<li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#worked-examples-1"><i class="fa fa-check"></i>Worked Examples</a></li>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#essential-practice-35"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#additional-practice-8"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
@@ -397,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="48" data-path="random-process-examples.html"><a href="random-process-examples.html"><i class="fa fa-check"></i><b>48</b> Examples of Random Processes</a></li>
 <li class="chapter" data-level="49" data-path="brownian-motion.html"><a href="brownian-motion.html"><i class="fa fa-check"></i><b>49</b> Brownian Motion</a><ul>
-<li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#why-poisson-1"><i class="fa fa-check"></i>Why Poisson?</a></li>
+<li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#brownian-motion-as-the-limit-of-a-random-walk"><i class="fa fa-check"></i>Brownian Motion as the Limit of a Random Walk</a></li>
 <li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#essential-practice-37"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -429,86 +431,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The videos above discussed Brownian motion of particles moving in two or three dimensions; for simplicity, we
 will only consider Brownian motion in one dimension. This can be used to model, among other things, a particle
 moving along a line.</p>
-<p>Shown below</p>
+<p>Shown below are three sample paths of Brownian motion.</p>
+<p>TODO</p>
 
 <div class="definition">
-<p><span id="def:bm" class="definition"><strong>Definition 49.1  (Brownian Motion)  </strong></span>A <strong>Brownian motion of scale <span class="math inline">\(\alpha\)</span></strong> is a random process <span class="math inline">\(\{ B(t) \}\)</span> with the following properties:</p>
+<p><span id="def:bm" class="definition"><strong>Definition 49.1  (Brownian Motion)  </strong></span><strong>Brownian motion of scale <span class="math inline">\(\alpha\)</span></strong> <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span> is a continuous-time process with the
+following properties:</p>
 <ol style="list-style-type: decimal">
 <li>The “particle” starts at the origin at <span class="math inline">\(t=0\)</span>: <span class="math inline">\(B(0) = 0\)</span>.</li>
 <li>The displacement over any interval <span class="math inline">\((s, t)\)</span>, denoted by <span class="math inline">\(B(t) - B(s)\)</span>, follows a
 <span class="math inline">\(\text{Normal}(\mu=0, \sigma=\sqrt{\alpha(t - s)})\)</span> distribution.</li>
-<li>The displacements over non-overlapping intervals are independent.
+<li><strong>Independent increments:</strong> The displacements over non-overlapping intervals are independent.
 </div></li>
 </ol>
-<p>These properties allow us to calculate any probability of interest.</p>
+<p>These three properties allow us to calculate most probabilities of interest.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 49.1  (Geiger Counter)  </strong></span>
-In San Luis Obispo, radioactive particles reach a Geiger counter according to a Poisson process
-at a rate of <span class="math inline">\(\lambda = 0.8\)</span> particles per second.</p>
+<p><span id="exm:unnamed-chunk-181" class="example"><strong>Example 49.1  (Grain of Pollen)  </strong></span>The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion
+with parameter <span class="math inline">\(\alpha = 4\)</span> mm/s.</p>
 <ol style="list-style-type: lower-alpha">
-<li>What is the probability that the Geiger counter detects 3 or more particles in the
-next 4 seconds?</li>
-<li>What is the probability that the Geiger counter detects (exactly) 1 particle in the next second and
-3 or more in the next 4 seconds?
+<li>What is the probability the pollen grain moves by more than 10 mm (in the horizontal direction)
+between 1 and 4 seconds?</li>
+<li>If the particle is more than 5 mm away from the origin after 1 second, what is the probability the pollen grain
+moves by more than 10 mm between 1 and 4 seconds?
 </div></li>
 </ol>
 
 <div class="solution">
 <p> <span class="solution"><em>Solution. </em></span> .</p>
 <ol style="list-style-type: lower-alpha">
-<li>The number of particles arriving at the detector in the next 4 seconds, <span class="math inline">\(X\)</span>, follows a
-<span class="math inline">\(\text{Poisson}(\mu = 0.8 \cdot (4 - 0) = 3.2)\)</span> distribution by Property 1 (<a href="#def:pp"><strong>??</strong></a>). Therefore,
-the probability of detecting 3 or more particles is:
-<span class="math display">\[\begin{align*}
-P(X \geq 3) &amp;= 1 - P(X &lt; 3) \\
-&amp;= 1 - f(0) - f(1) - f(2) \\
-&amp;= 1 - e^{-3.2} \frac{3.2^0}{0!} - e^{-3.2} \frac{3.2^1}{1!} - e^{-3.2} \frac{3.2^2}{2!} \\
-&amp;\approx .6201
-\end{align*}\]</span></li>
-<li><p>The joint probability
-<span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{3 or more particles in (0, 4)}) \]</span>
-involves two events that are not independent. However, we can rewrite the joint probability
-as:
-<span class="math display">\[ P(\text{1 particle in (0, 1)} \text{ AND } \text{2 or more particles in (1, 4)}). \]</span>
-Now, <span class="math inline">\((0, 1)\)</span> and <span class="math inline">\((1, 4)\)</span> are non-overlapping intervals, so the number of particles arriving in
-<span class="math inline">\((0, 1)\)</span> is independent of the number of particles arriving in <span class="math inline">\((1, 4)\)</span> by Property 2 (<a href="#def:pp"><strong>??</strong></a>).
-Therefore, by Theorem <a href="#thm:independence-mult"><strong>??</strong></a>, we obtain their joint probability
-by multiplying their individual probabilities:
-<span class="math display">\[ P(\text{1 particle in (0, 1)}) \cdot P(\text{2 or more particles in (1, 4)}). \]</span></p>
-<p>Now, we know from Property 1 (<a href="#def:pp"><strong>??</strong></a>) that</p>
-<ul>
-<li>the number of particles in <span class="math inline">\((0, 1)\)</span> follows a <span class="math inline">\(\text{Poisson}(\mu = 0.8)\)</span> distribution, and</li>
-<li>the number of particles in <span class="math inline">\((1, 4)\)</span> follows a <span class="math inline">\(\text{Poisson}(\mu = 2.4)\)</span> distribution.</li>
-</ul>
-If we represent the p.m.f.s of these two random variables by <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>, respectively, then the probability is
-<span class="math display">\[ f_1(1) \cdot \left(1 - f_2(0) - f_2(1) \right) = e^{-0.8} \frac{0.8^1}{1!} \cdot \left( 1 - e^{-2.4} \frac{2.4^0}{0!} - e^{-2.4} \frac{2.4^1}{1!} \right) \approx .2486. \]</span>
-</div></li>
+<li>The displacement of the particle between 1 and 4 seconds is represented by <span class="math inline">\(B(4) - B(1)\)</span>, which
+we know follows a <span class="math inline">\(\text{Normal}(\mu=0, \sigma=\underbrace{\sqrt{4(4-1)}}_{\sqrt{12}})\)</span> distribution.</li>
 </ol>
-<p>We can also calculate these probabilities with the aid of software:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">from</span> symbulate <span class="im">import</span> <span class="op">*</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">0</span>)).pmf(<span class="dv">1</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> Poisson(<span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">4</span> <span class="op">-</span> <span class="dv">1</span>)).cdf(<span class="dv">1</span>))</a></code></pre></div>
-<pre><code>## 0.24858997647262118</code></pre>
-<div id="why-poisson-1" class="section level3 unnumbered">
-<h3>Why Poisson?</h3>
-<p>Why does it make sense to assume that the number of arrivals on any interval
-follows a Poisson distribution? If we chop time up into tiny segments of length <span class="math inline">\(\Delta t\)</span>,
-then the probability of an arrival on any one of these segments will be small—but there will be many such intervals.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" alt="Chopping Up Time in a Poisson Process" width="50%" />
-<p class="caption">
-Figure 49.1: Chopping Up Time in a Poisson Process
-</p>
+Since the question does not indicate whether the displacement is positive or negative, we’re really interested in determining P(|B(4) - B(1)| &gt; 10). Because the distribution of
+<span class="math inline">\(B(4) - B(1)\)</span> is symmetric about <span class="math inline">\(0\)</span>, this is the same as <span class="math inline">\(2 P(B(4) - B(1) &gt; 10)\)</span>.
+<span class="math display">\[\begin{align*}
+P(|B(4) - B(1)| &gt; 10) &amp;= 2 P(B(4) - B(1) &gt; 10) \\
+&amp;= 2 P(\underbrace{\frac{B(4) - B(1) - 0}{\sqrt{12}}}_Z &gt; \frac{10 - 0}{\sqrt{12}}) \\
+&amp;= 2 (1 - \Phi(\frac{10}{\sqrt{12}})) \\
+&amp;\approx .0039.
+\end{align*}\]</span>
+b. The interval <span class="math inline">\((0, 1)\)</span> does not overlap with the interval <span class="math inline">\((1, 4)\)</span>. Therefore, by the independent
+increments property, <span class="math inline">\(B(1) = B(1) - B(0)\)</span> is independent of <span class="math inline">\(B(4) - B(1)\)</span>, and
+<span class="math display">\[ P(|B(4) - B(1)| &gt; 10 \big| |B(1)| &gt; 5) = P(|B(4) - B(1)| &gt; 10) = .0039. \]</span>
 </div>
-<p>If we further assume that arrivals are independent across these tiny segments, then
-the number of arrivals follows a binomial distribution, with large <span class="math inline">\(n\)</span> (because there are many segments)
-and small <span class="math inline">\(p\)</span> (because an arrival is unlikely to fall exactly in any given segment).
-We saw in Theorem <a href="#thm:poisson"><strong>??</strong></a> that the Poisson distribution is a good approximation to the binomial
-when <span class="math inline">\(n\)</span> is large and <span class="math inline">\(p\)</span> is small.</p>
-<p><strong>Technical Detail:</strong> In order for the number of arrivals to be binomial, each tiny segment must
-contain either 1 arrival or none; there cannot be 2 or more arrivals in any segment. Usually,
-if <span class="math inline">\(\Delta t\)</span> is so small that it is rare to get even 1 arrival in a segment, then it is
-essentially impossible to get 2 arrivals.</p>
+
+<div id="brownian-motion-as-the-limit-of-a-random-walk" class="section level3 unnumbered">
+<h3>Brownian Motion as the Limit of a Random Walk</h3>
+<p>Brownian motion is the extension of a (discrete-time) random walk <span class="math inline">\(\{ X[n]; n \geq 0 \}\)</span>
+to a continuous-time process <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span>. The recipe is as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Suppose the steps of the random walk happens at intervals of <span class="math inline">\(\Delta t\)</span> seconds. That is,
+<span class="math display">\[ X(t) = X\left[\frac{t}{\Delta t}\right] \]</span></li>
+<li>We let <span class="math inline">\(\Delta t \to 0\)</span>. Since the steps happen so rapidly, it does not make sense to take steps of
+the same size. We should also rescale the size of the steps to be commensurate with how quickly they
+are happening. The right rescaling is:
+<span class="math display">\[ B(t) = \sqrt{\Delta t} X(t). \]</span></li>
+</ol>
+<p>If we start with a discrete-time random walk and rescale time and steps in this way, we get
+Brownian motion. The animation below illustrates this.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BOmURxCgubM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 </div>
 <div id="essential-practice-37" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
@@ -518,7 +501,7 @@ essentially impossible to get 2 arrivals.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Find the probability that the price of a barrel of crude oil has changed by more than $1, in either direction, after 5 days.</li>
 <li>Repeat (a) for a time interval of 10 days.</li>
-<li>Given that the price has increased by $1 after seven days, what is the probability the price is at least another $1 higher after an additional seven days? In other words, given that the price increased by $1 after seven days, what is the probability that the price has increased by at least $2 after 14 days?</li>
+<li>Given that the price has increased by $1 after one week (7 days), what is the probability that the price has increased by at least $2 after two weeks (14 days)?</li>
 </ol></li>
 </ol>
 
