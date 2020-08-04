@@ -40,7 +40,7 @@ $\text{Normal}(\mu=0, \sigma=\sqrt{\alpha(t - s)})$ distribution.
 
 These three properties allow us to calculate most probabilities of interest.
 
-```{example, name="Grain of Pollen"}
+```{example, name="Motion of a Pollen Grain"}
 The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion 
 with parameter $\alpha = 4$ mm/s. 
 
@@ -56,11 +56,12 @@ moves by more than 10 mm between 1 and 4 seconds?
 a. The displacement of the particle between 1 and 4 seconds is represented by $B(4) - B(1)$, which 
 we know follows a $\text{Normal}(\mu=0, \sigma=\underbrace{\sqrt{4(4-1)}}_{\sqrt{12}})$ distribution. 
 
-Since the question does not indicate whether the displacement is positive or negative, we’re really interested in determining P(|B(4) - B(1)| > 10). Because the distribution of
-$B(4) - B(1)$ is symmetric about $0$, this is the same as $2 P(B(4) - B(1) > 10)$. 
+Since the question does not indicate whether the displacement is positive or negative, we’re really interested in determining $P(|B(4) - B(1)| > 10)$. Because the distribution of
+$B(4) - B(1)$ is symmetric about $0$, this is the same as $2 P(B(4) - B(1) > 10)$ or 
+$2 P(B(4) - B(1) < -10)$. 
 \begin{align*}
 P(|B(4) - B(1)| > 10) &= 2 P(B(4) - B(1) > 10) \\
-&= 2 P(\underbrace{\frac{B(4) - B(1) - 0}{\sqrt{12}}}_Z > \frac{10 - 0}{\sqrt{12}}) \\
+&= 2 P\big(\underbrace{\frac{B(4) - B(1) - 0}{\sqrt{12}}}_Z > \frac{10 - 0}{\sqrt{12}}\big) \\
 &= 2 (1 - \Phi(\frac{10}{\sqrt{12}})) \\
 &\approx .0039.
 \end{align*}

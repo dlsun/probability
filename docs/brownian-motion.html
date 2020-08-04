@@ -447,7 +447,7 @@ following properties:</p>
 <p>These three properties allow us to calculate most probabilities of interest.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-182" class="example"><strong>Example 49.1  (Grain of Pollen)  </strong></span>The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion
+<p><span id="exm:unnamed-chunk-182" class="example"><strong>Example 49.1  (Motion of a Pollen Grain)  </strong></span>The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion
 with parameter <span class="math inline">\(\alpha = 4\)</span> mm/s.</p>
 <ol style="list-style-type: lower-alpha">
 <li>What is the probability the pollen grain moves by more than 10 mm (in the horizontal direction)
@@ -463,11 +463,12 @@ moves by more than 10 mm between 1 and 4 seconds?
 <li>The displacement of the particle between 1 and 4 seconds is represented by <span class="math inline">\(B(4) - B(1)\)</span>, which
 we know follows a <span class="math inline">\(\text{Normal}(\mu=0, \sigma=\underbrace{\sqrt{4(4-1)}}_{\sqrt{12}})\)</span> distribution.</li>
 </ol>
-Since the question does not indicate whether the displacement is positive or negative, we’re really interested in determining P(|B(4) - B(1)| &gt; 10). Because the distribution of
-<span class="math inline">\(B(4) - B(1)\)</span> is symmetric about <span class="math inline">\(0\)</span>, this is the same as <span class="math inline">\(2 P(B(4) - B(1) &gt; 10)\)</span>.
+Since the question does not indicate whether the displacement is positive or negative, we’re really interested in determining <span class="math inline">\(P(|B(4) - B(1)| &gt; 10)\)</span>. Because the distribution of
+<span class="math inline">\(B(4) - B(1)\)</span> is symmetric about <span class="math inline">\(0\)</span>, this is the same as <span class="math inline">\(2 P(B(4) - B(1) &gt; 10)\)</span> or
+<span class="math inline">\(2 P(B(4) - B(1) &lt; -10)\)</span>.
 <span class="math display">\[\begin{align*}
 P(|B(4) - B(1)| &gt; 10) &amp;= 2 P(B(4) - B(1) &gt; 10) \\
-&amp;= 2 P(\underbrace{\frac{B(4) - B(1) - 0}{\sqrt{12}}}_Z &gt; \frac{10 - 0}{\sqrt{12}}) \\
+&amp;= 2 P\big(\underbrace{\frac{B(4) - B(1) - 0}{\sqrt{12}}}_Z &gt; \frac{10 - 0}{\sqrt{12}}\big) \\
 &amp;= 2 (1 - \Phi(\frac{10}{\sqrt{12}})) \\
 &amp;\approx .0039.
 \end{align*}\]</span>
