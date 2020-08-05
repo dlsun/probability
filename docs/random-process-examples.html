@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-03" />
+<meta name="date" content="2020-08-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -402,6 +402,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#brownian-motion-as-the-limit-of-a-random-walk"><i class="fa fa-check"></i>Brownian Motion as the Limit of a Random Walk</a></li>
 <li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#essential-practice-37"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="50" data-path="mean-function.html"><a href="mean-function.html"><i class="fa fa-check"></i><b>50</b> Mean Function</a><ul>
+<li class="chapter" data-level="" data-path="mean-function.html"><a href="mean-function.html#theory-44"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="mean-function.html"><a href="mean-function.html#essential-practice-38"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -435,13 +439,13 @@ completely specified for all times <span class="math inline">\(t\)</span>. The g
 the random amplitude process, where <span class="math inline">\(A\)</span> is <span class="math inline">\(\text{Exponential}(\lambda = 0.8)\)</span>.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <p>Here is a video that animates the random amplitude process.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vU8yW3e-8-c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-178" class="example"><strong>Example 48.2  (Moving Average Process)  </strong></span>Let <span class="math inline">\(\{ Z[n] \}\)</span> be a white noise process. Then, a <strong>moving average process</strong> (of order 1) <span class="math inline">\(\{ X[n] \}\)</span>
+<p><span id="exm:ma1" class="example"><strong>Example 48.2  (Moving Average Process)  </strong></span>Let <span class="math inline">\(\{ Z[n] \}\)</span> be a white noise process. Then, a <strong>moving average process</strong> (of order 1) <span class="math inline">\(\{ X[n] \}\)</span>
 is a discrete-time process defined by
 <span class="math display" id="eq:ma1">\[\begin{equation}
 X[n] = \theta_0 Z[n] + \theta_1 Z[n-1].
@@ -454,11 +458,11 @@ Notice that the moving average process is just the average of successive values 
 white noise process. As a result, the moving average process is “smoother” than the white noise process.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p>Now, we show 50 realizations of the same moving average process. Superficially, this might
 look like the white noise of Example <a href="random-process.html#exm:white-noise">47.2</a>, but if you look closely, you will
 see that each individual function fluctuates less.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 
 </div>
             </section>

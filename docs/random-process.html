@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-03" />
+<meta name="date" content="2020-08-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -402,6 +402,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#brownian-motion-as-the-limit-of-a-random-walk"><i class="fa fa-check"></i>Brownian Motion as the Limit of a Random Walk</a></li>
 <li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#essential-practice-37"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="50" data-path="mean-function.html"><a href="mean-function.html"><i class="fa fa-check"></i><b>50</b> Mean Function</a><ul>
+<li class="chapter" data-level="" data-path="mean-function.html"><a href="mean-function.html#theory-44"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="mean-function.html"><a href="mean-function.html#essential-practice-38"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -450,7 +454,7 @@ discrete-time processes as <span class="math inline">\(\{ X[n] \}\)</span>.
 <p>We have actually encountered several random processes already.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-169" class="example"><strong>Example 47.1  (Poisson Process)  </strong></span>The Poisson process, introduced in Lesson <a href="poisson-process.html#poisson-process">17</a>, is
+<p><span id="exm:poisson-process-as-process" class="example"><strong>Example 47.1  (Poisson Process)  </strong></span>The Poisson process, introduced in Lesson <a href="poisson-process.html#poisson-process">17</a>, is
 a continuous-time random process.</p>
 Define <span class="math inline">\(N(t)\)</span> to be the <em>number of arrivals up to time <span class="math inline">\(t\)</span></em>.
 Then, <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> is a continuous-time random process.
@@ -458,11 +462,11 @@ The graph below shows how the arrivals (orange dots) can be
 translated into a continuous-time function <span class="math inline">\(N(t)\)</span> (blue line).
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <p>Shown below are 30 realizations of the Poisson process.
 At any time <span class="math inline">\(t\)</span>, the value of the process is a discrete
 random variable that takes on the values 0, 1, 2, ….</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 
 <div class="example">
 <p><span id="exm:white-noise" class="example"><strong>Example 47.2  (White Noise)  </strong></span>In several lessons (for example, Lesson <a href="lln.html#lln">32</a> and <a href="clt.html#clt">46</a>), we have
@@ -476,17 +480,17 @@ defined at integer times <span class="math inline">\(n=-2, -1, 0, 1, 2, ...\)</s
 connected the dots).
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 <p>Shown below are 50 realizations of the white noise process. Notice how
 the distribution of <span class="math inline">\(Z[n]\)</span> looks similar for every <span class="math inline">\(n\)</span>. This is because
 we constructed the process by simulating an <em>independent</em> standard normal
 random variable at every time <span class="math inline">\(n\)</span>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-174" class="example"><strong>Example 47.3  (Random Walk)  </strong></span>In Lesson <a href="random-walk.html#random-walk">31</a>, we studied the random walk. More precisely,
+<p><span id="exm:random-walk-process" class="example"><strong>Example 47.3  (Random Walk)  </strong></span>In Lesson <a href="random-walk.html#random-walk">31</a>, we studied the random walk. More precisely,
 we studied a special case called the <strong>simple random walk</strong>.</p>
-<p>In general, a <strong>(general) random walk</strong> { X[n]; n 0 } is a discrete-time process, defined by
+<p>In general, a <strong>(general) random walk</strong> <span class="math inline">\(\{ X[n]; n \geq 0 \}\)</span> is a discrete-time process, defined by
 <span class="math display">\[\begin{align*} 
 X[0] &amp;= 0 \\
 X[n] &amp;= X[n-1] + Z[n] &amp; n \geq 1, 
@@ -510,16 +514,16 @@ z &amp; -1 &amp; 1 \\
 f(z) &amp; 0.5 &amp; 0.5
 \end{array}. \]</span>
 See Lesson <a href="random-walk.html#random-walk">31</a> for pictures of a simple random walk.</p>
-Below, we show one realization of a random walk, where the steps are
+Below, we show one realization of a random walk, where the steps <span class="math inline">\(Z[n]\)</span> are
 i.i.d. standard normal random variables (i.e., the process
 considered in Example <a href="random-process.html#exm:white-noise">47.2</a>).
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 <p>Now, we show 50 realizations of the same random walk process. Notice how the distribution of
 <span class="math inline">\(X[n]\)</span> is different for each <span class="math inline">\(n\)</span>. In the Essential Practice below, you will work out the
 distribution of each <span class="math inline">\(X[n]\)</span>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
 </div>
 <div id="essential-practice-36" class="section level2 unnumbered">
 <h2>Essential Practice</h2>

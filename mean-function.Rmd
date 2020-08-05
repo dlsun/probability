@@ -1,0 +1,156 @@
+# Mean Function {#mean-function}
+
+
+## Theory {-}
+
+```{definition mean-function, name="Mean Function"}
+The **mean function** $\mu(t)$ of a random process $\{ X(t) \}$ 
+  is a function that specifies the expected value at each time $t$. 
+That is,
+\[ \mu(t) \overset{\text{def}}{=} E[X(t)]. \]
+
+For a discrete-time process, we typically 
+\[ \mu[n] \overset{\text{def}}{=} E[X[n]] \]
+```
+
+Let's calculate the mean function of some processes.
+
+```{example random-amplitude-mean, name="Random Amplitude Process"}
+Consider the random amplitude process 
+\begin{equation}
+X(t) = A\cos(2\pi  f t),
+(\#eq:random-amplitude)
+\end{equation}
+introduced in Example @\ref{exm:random-amplitude}. 
+
+To calculate its mean function, we note that $A$ is the only thing that is 
+random in \@ref(eq:random-amplitude). Everything else is a constant, 
+so they can be pulled outside the expected value.
+\begin{align*}
+\mu(t) = E[X(t)] &= E[A\cos(2\pi ft)] \\
+&= E[A] \cos(2\pi ft) \\
+\end{align*}
+Thus, the mean function is a cosine whose amplitude depends on the distribution of $A$.
+```
+
+```{example poisson-process-mean, name="Poisson Process"}
+Consider the Poisson process 
+$\{ N(t); t \geq 0 \}$ of rate $\lambda$, 
+defined in Example \@ref(exm:poisson-process-as-process).
+
+Remember that $N(t)$ represents the number of arrivals on the 
+interval $(0, t)$, which we know (by properties of the Poisson process) 
+follows a $\text{Poisson}(\mu=\lambda t)$ distribution. Since the 
+expected value of a $\text{Poisson}(\mu)$ random variable is $\mu$, we 
+must have
+\[ E[N(t)] = \lambda t \]
+```
+
+Shown below are 30 realizations of the Poisson process, with  
+the mean function overlaid in red.
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(0, 8.5),
+     xlab="Time (t)", ylab="Number of arrivals N(t)")
+axis(1, pos=0, at=0:5)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:30) {
+  arrivals <- cumsum(rexp(10, 0.8))
+  ts <- seq(0, 6, by=.01)
+  N <- c()
+  for(t in ts) {
+    N <- c(N, sum(arrivals < t))
+  }
+  lines(ts, N, col=rgb(0, 0, 1, 0.2))
+}
+abline(a=0, b=0.8, col="red", lty=2, lwd=2)
+```
+
+```{example white-noise-mean, name="White Noise"}
+Consider the white noise process $\{ Z[n] \}$ defined in \@ref(exm:white-noise), 
+which consists of i.i.d. random variables. Suppose the expected value of these 
+random variables is $\mu \overset{\text{def}}{=} E[Z[n]]$. Then, the mean function 
+is constant, equal to this expected value.
+\[ \mu[n] = E[Z[n]] \equiv \mu. \]
+```
+
+Shown below (in blue) are 50 realizations of a white noise process consisting of i.i.d. 
+standard normal random variables, along with the mean function (in red), which in this case is 
+$\mu[n] \equiv 0$.
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-3, 3),
+     xlab="Time Sample (n)", ylab="Z[n]")
+axis(1, pos=0, at=-2:3)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:50) {
+  ts <- -3:4
+  Z <- rnorm(8)
+  points(ts, Z, pch=19, col=rgb(0, 0, 1, 0.2))
+  lines(ts, Z, col=rgb(0, 0, 1, 0.2))
+}
+points(-2:3, rep(0, 6), col="red", pch=19)
+abline(h=0, col="red", lty=2, lwd=2)
+```
+
+```{example random-walk-mean, name="Random Walk"}
+Consider the random walk process $\{ X[n]; n\geq 0 \}$ of 
+Example \@ref(exm:random-walk-process). 
+Since 
+\[ X[n] = Z[1] + Z[2] + \ldots + Z[n], \]
+the mean function is 
+\begin{align*} 
+\mu[n] = E[X[n]] &= E[Z[1]] + E[Z[2]] + \ldots + E[Z[n]] \\
+&= n E[Z[1]].
+\end{align*}
+```
+
+Shown below (in blue) are 50 realizations of the random walk process where the steps $Z[n]$ are 
+i.i.d. standard normal, so the mean function (shown in red) is $\mu[n] = n \cdot 0 \equiv 0$.
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(-5.1, 5.1),
+     xlab="Time Sample (n)", ylab="X[n]")
+axis(1, pos=0)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:50) {
+  ts <- 0:5
+  X <- c(0, cumsum(rnorm(5)))
+  points(ts, X, pch=19, col=rgb(0, 0, 1, 0.2))
+  lines(ts, X, col=rgb(0, 0, 1, 0.2))
+}
+points(0:5, rep(0, 6), col="red", pch=19)
+abline(h=0, col="red", lty=2, lwd=2)
+```
+
+## Essential Practice {-}
+
+1. Let $\{B(t)\}$ be Brownian motion, defined in Lesson \@ref(brownian-motion). Calculate the 
+mean function of Brownian motion.
+
+2. Radioactive particles hit a Geiger counter according to a Poisson process 
+at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
+
+    Define the new process $\{ D(t); t \geq 3 \}$ by 
+    \[ D(t) = N(t) - N(t - 3). \]
+    This process represents the number of particles that hit the Geiger counter in the last 3 seconds. 
+    Calculate the mean function of $\{ D(t); t \geq 3 \}$.
+ 
+3. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 
+\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]
+where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables. 
+Calculate the mean function of $\{ X[n] \}$.
+    
+4. Let $\Theta$ be a $\text{Uniform}(a=-\pi, b=\pi)$ random variable, and let $f$ be a constant. 
+Define the random phase process $\{ X(t) \}$ by
+\[ X(t) = \cos(2\pi f t + \Theta). \]
+Calculate the mean function of $\{ X(t) \}$. (Hint: LOTUS)

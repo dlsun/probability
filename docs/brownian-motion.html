@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-03" />
+<meta name="date" content="2020-08-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="random-process-examples.html"/>
-
+<link rel="next" href="mean-function.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -402,6 +402,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#brownian-motion-as-the-limit-of-a-random-walk"><i class="fa fa-check"></i>Brownian Motion as the Limit of a Random Walk</a></li>
 <li class="chapter" data-level="" data-path="brownian-motion.html"><a href="brownian-motion.html#essential-practice-37"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="50" data-path="mean-function.html"><a href="mean-function.html"><i class="fa fa-check"></i><b>50</b> Mean Function</a><ul>
+<li class="chapter" data-level="" data-path="mean-function.html"><a href="mean-function.html#theory-44"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="mean-function.html"><a href="mean-function.html#essential-practice-38"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -432,7 +436,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 will only consider Brownian motion in one dimension. This can be used to model, among other things, a particle
 moving along a line.</p>
 <p>Shown below are 5 sample paths of Brownian motion.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 
 <div class="definition">
 <p><span id="def:bm" class="definition"><strong>Definition 49.1  (Brownian Motion)  </strong></span><strong>Brownian motion of scale <span class="math inline">\(\alpha\)</span></strong> <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span> is a continuous-time process with the
@@ -447,7 +451,7 @@ following properties:</p>
 <p>These three properties allow us to calculate most probabilities of interest.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-182" class="example"><strong>Example 49.1  (Motion of a Pollen Grain)  </strong></span>The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion
+<p><span id="exm:unnamed-chunk-179" class="example"><strong>Example 49.1  (Motion of a Pollen Grain)  </strong></span>The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion
 with parameter <span class="math inline">\(\alpha = 4\)</span> mm/s.</p>
 <ol style="list-style-type: lower-alpha">
 <li>What is the probability the pollen grain moves by more than 10 mm (in the horizontal direction)
@@ -474,7 +478,7 @@ P(|B(4) - B(1)| &gt; 10) &amp;= 2 P(B(4) - B(1) &gt; 10) \\
 \end{align*}\]</span>
 b. The interval <span class="math inline">\((0, 1)\)</span> does not overlap with the interval <span class="math inline">\((1, 4)\)</span>. Therefore, by the independent
 increments property, <span class="math inline">\(B(1) = B(1) - B(0)\)</span> is independent of <span class="math inline">\(B(4) - B(1)\)</span>, and
-<span class="math display">\[ P(|B(4) - B(1)| &gt; 10 \big| |B(1)| &gt; 5) = P(|B(4) - B(1)| &gt; 10) = .0039. \]</span>
+<span class="math display">\[ P\Big(|B(4) - B(1)| &gt; 10\ \big|\ |B(1)| &gt; 5\Big) = P(|B(4) - B(1)| &gt; 10) = .0039. \]</span>
 </div>
 
 <div id="brownian-motion-as-the-limit-of-a-random-walk" class="section level3 unnumbered">
@@ -513,8 +517,8 @@ Brownian motion. The animation below illustrates this.</p>
           </div>
         </div>
       </div>
-<a href="random-process-examples.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="random-process-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mean-function.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
