@@ -1,0 +1,201 @@
+# Variance Function {#var-function}
+
+## Theory {-}
+
+```{definition var-function, name="Variance Function"}
+The **variance function** $V(t)$ of a random process $\{ X(t) \}$ 
+  is a function that specifies the variance of the process at each time $t$. 
+That is,
+\[ V(t) \overset{\text{def}}{=} \text{Var}[X(t)]. \]
+
+For a discrete-time process, we notate the variance function as 
+\[ V[n] \overset{\text{def}}{=} \text{Var}[X[n]]. \]
+```
+
+Let's calculate the variance function of some random processes.
+
+```{example random-amplitude-var, name="Random Amplitude Process"}
+Consider the random amplitude process 
+\begin{equation}
+X(t) = A\cos(2\pi  f t)
+(\#eq:random-amplitude)
+\end{equation}
+introduced in Example \@ref(exm:random-amplitude). 
+
+To be concrete, suppose $A$ is a $\text{Binomial}(n=5, p=0.5)$ random variable 
+and $f = 1$. To calculate the variance function, observe that the only thing that is 
+random in \@ref(eq:random-amplitude) is $A$. Everything else is a constant, 
+so they can be pulled outside the variance. (However, we have to remember to 
+                                             square anything we pull outside the variance.)
+\begin{align*}
+V(t) = \text{Var}[X(t)] &= \text{Var}[A\cos(2\pi ft)] \\
+&= \text{Var}[A] \cos^2(2\pi ft) \\
+&= 1.25 \cos^2(2\pi ft),
+\end{align*}
+where in the last step, we used the formula for the variance of a binomial random variable, 
+$\text{Var}[A] = np(1-p) = 5 \cdot 0.5 \cdot (1 - 0.5) = 1.25$.
+```
+
+To visualize the variance function, we take its square root so that it is in the same units as the 
+mean function. Then, we plot the band $\mu(t) \pm \sqrt{V(t)}$ around the mean function $\mu(t)$:
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-5.1, 5.1),
+     xlab="Time (t)", ylab="Number of arrivals N(t)")
+axis(1, pos=0)
+axis(2, pos=0)
+set.seed(1)
+ts <- seq(-2, 3, by=0.01)
+a <- rbinom(30, 5, 0.5)
+for(i in 1:30) {
+  lines(ts, a[i] * cos(2 * pi * ts), col=rgb(0, 0, 1, 0.2))
+}
+lines(ts, 2.5 * cos(2 * pi * ts), col="red", lty=2, lwd=2)
+polygon(c(ts, rev(ts)),
+        c(2.5 * cos(2 * pi * ts) + sqrt(1.25 * cos(2 * pi * ts)^2),
+          2.5 * cos(2 * pi * rev(ts)) - sqrt(1.25 * cos(2 * pi * ts)^2)),
+        border=NA,
+        col=rgb(1, 0, 0, 0.2))
+```
+
+```{example poisson-process-var, name="Poisson Process"}
+Consider the Poisson process 
+$\{ N(t); t \geq 0 \}$ of rate $\lambda$, 
+defined in Example \@ref(exm:poisson-process-as-process).
+
+Recall that $N(t)$ represents the number of arrivals on the 
+interval $(0, t)$, which we know (by properties of the Poisson process) 
+follows a $\text{Poisson}(\mu=\lambda t)$ distribution. Since the 
+variance of a $\text{Poisson}(\mu)$ random variable is $\mu$, we 
+must have
+\[ V(t) = \text{Var}[N(t)] = \lambda t \]
+```
+
+The variance function of the Poisson process is visualized below as a band of width 
+$\sqrt{V(t)} = \sqrt{\lambda t}$ around the mean function $\mu(t) = \lambda t$, which 
+we calculated in Example \@ref(exm:poisson-process-mean).
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(0, 8.5),
+     xlab="Time (t)", ylab="Number of arrivals N(t)")
+axis(1, pos=0, at=0:5)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:30) {
+  arrivals <- cumsum(rexp(10, 0.8))
+  ts <- seq(0, 6, by=.01)
+  N <- c()
+  for(t in ts) {
+    N <- c(N, sum(arrivals < t))
+  }
+  lines(ts, N, col=rgb(0, 0, 1, 0.2))
+}
+abline(a=0, b=0.8, col="red", lty=2, lwd=2)
+polygon(c(ts, rev(ts)),
+        c(0.8 * ts + sqrt(0.8 * ts),
+          0.8 * rev(ts) - sqrt(0.8 * rev(ts))),
+        border=NA,
+        col=rgb(1, 0, 0, 0.2))
+```
+
+```{example white-noise-var, name="White Noise"}
+Consider the white noise process $\{ Z[n] \}$ defined in Example \@ref(exm:white-noise), 
+which consists of i.i.d. random variables. Suppose the variance of these 
+random variables is $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. Then, the 
+variance function is constant, equal to this value.
+\[ V[n] = \text{Var}[Z[n]] \equiv \sigma^2. \]
+```
+
+Shown below (in blue) are 30 realizations of a white noise process where the $Z[n]$s 
+are i.i.d. standard normal.
+The variance function of the white noise process is visualized below as a band of width 
+$\sqrt{V[n]} = 1$ around the mean function $\mu[n] \equiv 0$, which we calculated in Example \@ref(exm:white-noise-mean).
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-3, 3),
+     xlab="Time Sample (n)", ylab="Z[n]")
+axis(1, pos=0, at=-2:3)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:30) {
+  ts <- -3:4
+  Z <- rnorm(8)
+  points(ts, Z, pch=19, col=rgb(0, 0, 1, 0.2))
+  lines(ts, Z, col=rgb(0, 0, 1, 0.2))
+}
+points(-2:3, rep(0, 6), col="red", pch=19)
+abline(h=0, col="red", lty=2, lwd=2)
+polygon(c(-3, 4, 4, -3),
+        c(1, 1, -1, -1),
+        border=NA,
+        col=rgb(1, 0, 0, 0.2))
+```
+
+```{example random-walk-var, name="Random Walk"}
+Consider the random walk process $\{ X[n]; n\geq 0 \}$ from 
+Example \@ref(exm:random-walk-process). 
+Since 
+\[ X[n] = Z[1] + Z[2] + \ldots + Z[n], \]
+the variance function is 
+\begin{align*} 
+V[n] = \text{Var}[X[n]] &= \text{Cov}[X[n], X[n]] \\
+&= \text{Cov}[Z[1] + \ldots + Z[n], Z[1] + \ldots + Z[n]] \\
+&= \text{Var}[Z[1]] + \text{Var}[Z[2]] + \ldots + \text{Var}[Z[n]] \\
+&= n \text{Var}[Z[1]].
+\end{align*}
+```
+
+Shown below (in blue) are 30 realizations of the random walk process where the steps $Z[n]$ are 
+i.i.d. standard normal. In this case, the variance function (shown in red) is $V[n] = n \cdot 1 \equiv n$. 
+We visualize the variance function as a band of width $\sqrt{V[n]} = \sqrt{n}$ 
+around the mean function $\mu[n] \equiv 0$, which we calculated in Example \@ref(exm:random-walk-mean).
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(-5.1, 5.1),
+     xlab="Time Sample (n)", ylab="X[n]")
+axis(1, pos=0)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:30) {
+  ts <- 0:5
+  X <- c(0, cumsum(rnorm(5)))
+  points(ts, X, pch=19, col=rgb(0, 0, 1, 0.2))
+  lines(ts, X, col=rgb(0, 0, 1, 0.2))
+}
+points(0:5, rep(0, 6), col="red", pch=19)
+abline(h=0, col="red", lty=2, lwd=2)
+polygon(c(ts, rev(ts)),
+        c(sqrt(ts), -sqrt(rev(ts))),
+        border=NA,
+        col=rgb(1, 0, 0, 0.2))
+```
+
+## Essential Practice {-}
+
+1. Let $\{B(t)\}$ be Brownian motion, defined in Lesson \@ref(brownian-motion). Calculate the 
+variance function of Brownian motion.
+
+2. Radioactive particles hit a Geiger counter according to a Poisson process 
+at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
+
+    Define the new process $\{ D(t); t \geq 3 \}$ by 
+    \[ D(t) = N(t) - N(t - 3). \]
+    This process represents the number of particles that hit the Geiger counter in the last 3 seconds. 
+    Calculate the variance function of $\{ D(t); t \geq 3 \}$.
+ 
+3. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 
+\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]
+where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables. 
+Calculate the variance function of $\{ X[n] \}$.
+    
+4. Let $\Theta$ be a $\text{Uniform}(a=-\pi, b=\pi)$ random variable, and let $f$ be a constant. 
+Define the random phase process $\{ X(t) \}$ by
+\[ X(t) = \cos(2\pi f t + \Theta). \]
+Calculate the variance function of $\{ X(t) \}$. (Hint: LOTUS)

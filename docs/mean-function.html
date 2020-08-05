@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-04" />
+<meta name="date" content="2020-08-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="brownian-motion.html"/>
-
+<link rel="next" href="var-function.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -406,6 +406,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="mean-function.html"><a href="mean-function.html#theory-44"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="mean-function.html"><a href="mean-function.html#essential-practice-38"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="51" data-path="var-function.html"><a href="var-function.html"><i class="fa fa-check"></i><b>51</b> Variance Function</a><ul>
+<li class="chapter" data-level="" data-path="var-function.html"><a href="var-function.html#theory-45"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="var-function.html"><a href="var-function.html#essential-practice-39"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -428,6 +432,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="mean-function" class="section level1">
 <h1><span class="header-section-number">Lesson 50</span> Mean Function</h1>
+<p>In the next few lessons, we discuss three functions that are
+commonly used to summarize random processes: the mean function,
+the variance function, and the autocovariance function.</p>
 <div id="theory-44" class="section level2 unnumbered">
 <h2>Theory</h2>
 
@@ -436,45 +443,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 is a function that specifies the expected value at each time <span class="math inline">\(t\)</span>.
 That is,
 <span class="math display">\[ \mu(t) \overset{\text{def}}{=} E[X(t)]. \]</span></p>
-For a discrete-time process, we typically
-<span class="math display">\[ \mu[n] \overset{\text{def}}{=} E[X[n]] \]</span>
+For a discrete-time process, we notate the mean function as
+<span class="math display">\[ \mu[n] \overset{\text{def}}{=} E[X[n]]. \]</span>
 </div>
 
-<p>Let’s calculate the mean function of some processes.</p>
+<p>Let’s calculate the mean function of some random processes.</p>
 
 <div class="example">
 <p><span id="exm:random-amplitude-mean" class="example"><strong>Example 50.1  (Random Amplitude Process)  </strong></span>Consider the random amplitude process
 <span class="math display" id="eq:random-amplitude">\[\begin{equation}
-X(t) = A\cos(2\pi  f t),
+X(t) = A\cos(2\pi  f t)
 \tag{50.1}
 \end{equation}\]</span>
-introduced in Example @.</p>
-To calculate its mean function, we note that <span class="math inline">\(A\)</span> is the only thing that is
-random in <a href="mean-function.html#eq:random-amplitude">(50.1)</a>. Everything else is a constant,
-so they can be pulled outside the expected value.
+introduced in Example <a href="random-process-examples.html#exm:random-amplitude">48.1</a>.</p>
+To be concrete, suppose <span class="math inline">\(A\)</span> is a <span class="math inline">\(\text{Binomial}(n=5, p=0.5)\)</span> random variable
+and <span class="math inline">\(f = 1\)</span>. To calculate the mean function, observe that the only thing that is
+random in <a href="mean-function.html#eq:random-amplitude">(50.1)</a> is <span class="math inline">\(A\)</span>. Everything else is a constant,
+so they can be pulled outside the expectation.
 <span class="math display">\[\begin{align*}
 \mu(t) = E[X(t)] &amp;= E[A\cos(2\pi ft)] \\
 &amp;= E[A] \cos(2\pi ft) \\
+&amp;= 2.5 \cos(2\pi ft),
 \end{align*}\]</span>
-Thus, the mean function is a cosine whose amplitude depends on the distribution of <span class="math inline">\(A\)</span>.
+where in the last step, we used the formula for the expected value of a binomial random variable,
+<span class="math inline">\(E[A] = np = 5 \cdot 0.5 = 2.5\)</span>.
 </div>
 
+<p>30 realizations of this process are shown below, along with the mean function (in red).
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 
 <div class="example">
 <p><span id="exm:poisson-process-mean" class="example"><strong>Example 50.2  (Poisson Process)  </strong></span>Consider the Poisson process
 <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> of rate <span class="math inline">\(\lambda\)</span>,
 defined in Example <a href="random-process.html#exm:poisson-process-as-process">47.1</a>.</p>
-Remember that <span class="math inline">\(N(t)\)</span> represents the number of arrivals on the
+Recall that <span class="math inline">\(N(t)\)</span> represents the number of arrivals on the
 interval <span class="math inline">\((0, t)\)</span>, which we know (by properties of the Poisson process)
 follows a <span class="math inline">\(\text{Poisson}(\mu=\lambda t)\)</span> distribution. Since the
 expected value of a <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variable is <span class="math inline">\(\mu\)</span>, we
 must have
-<span class="math display">\[ E[N(t)] = \lambda t \]</span>
+<span class="math display">\[ \mu(t) = E[N(t)] = \lambda t \]</span>
 </div>
 
 <p>Shown below are 30 realizations of the Poisson process, with<br />
 the mean function overlaid in red.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 
 <div class="example">
 <span id="exm:white-noise-mean" class="example"><strong>Example 50.3  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in <a href="random-process.html#exm:white-noise">47.2</a>,
@@ -484,10 +496,10 @@ is constant, equal to this expected value.
 <span class="math display">\[ \mu[n] = E[Z[n]] \equiv \mu. \]</span>
 </div>
 
-<p>Shown below (in blue) are 50 realizations of a white noise process consisting of i.i.d.
+<p>Shown below (in blue) are 30 realizations of a white noise process consisting of i.i.d.
 standard normal random variables, along with the mean function (in red), which in this case is
 <span class="math inline">\(\mu[n] \equiv 0\)</span>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 
 <div class="example">
 <span id="exm:random-walk-mean" class="example"><strong>Example 50.4  (Random Walk)  </strong></span>Consider the random walk process <span class="math inline">\(\{ X[n]; n\geq 0 \}\)</span> of
@@ -501,9 +513,9 @@ the mean function is
 \end{align*}\]</span>
 </div>
 
-<p>Shown below (in blue) are 50 realizations of the random walk process where the steps <span class="math inline">\(Z[n]\)</span> are
+<p>Shown below (in blue) are 30 realizations of the random walk process where the steps <span class="math inline">\(Z[n]\)</span> are
 i.i.d. standard normal, so the mean function (shown in red) is <span class="math inline">\(\mu[n] = n \cdot 0 \equiv 0\)</span>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 </div>
 <div id="essential-practice-38" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
@@ -533,8 +545,8 @@ Calculate the mean function of <span class="math inline">\(\{ X(t) \}\)</span>. 
           </div>
         </div>
       </div>
-<a href="brownian-motion.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="brownian-motion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="var-function.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
