@@ -469,8 +469,9 @@ where in the last step, we used the formula for the expected value of a binomial
 <span class="math inline">\(E[A] = np = 5 \cdot 0.5 = 2.5\)</span>.
 </div>
 
-<p>30 realizations of this process are shown below, along with the mean function (in red).
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p>30 realizations of this process are shown below, along with the mean function (in red). Notice
+how the mean function passes through the heart of the realizations.
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 
 <div class="example">
 <p><span id="exm:poisson-process-mean" class="example"><strong>Example 50.2  (Poisson Process)  </strong></span>Consider the Poisson process
@@ -485,8 +486,8 @@ must have
 </div>
 
 <p>Shown below are 30 realizations of the Poisson process, with<br />
-the mean function overlaid in red.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+the mean function superimposed (in red).</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 
 <div class="example">
 <span id="exm:white-noise-mean" class="example"><strong>Example 50.3  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in <a href="random-process.html#exm:white-noise">47.2</a>,
@@ -499,7 +500,7 @@ is constant, equal to this expected value.
 <p>Shown below (in blue) are 30 realizations of a white noise process consisting of i.i.d.
 standard normal random variables, along with the mean function (in red), which in this case is
 <span class="math inline">\(\mu[n] \equiv 0\)</span>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 
 <div class="example">
 <span id="exm:random-walk-mean" class="example"><strong>Example 50.4  (Random Walk)  </strong></span>Consider the random walk process <span class="math inline">\(\{ X[n]; n\geq 0 \}\)</span> of
@@ -515,13 +516,14 @@ the mean function is
 
 <p>Shown below (in blue) are 30 realizations of the random walk process where the steps <span class="math inline">\(Z[n]\)</span> are
 i.i.d. standard normal, so the mean function (shown in red) is <span class="math inline">\(\mu[n] = n \cdot 0 \equiv 0\)</span>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 </div>
 <div id="essential-practice-38" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>Let <span class="math inline">\(\{B(t)\}\)</span> be Brownian motion, defined in Lesson <a href="brownian-motion.html#brownian-motion">49</a>. Calculate the
-mean function of Brownian motion.</p></li>
+<li><p>Consider a grain of pollen suspended in water, whose horizontal position can be modeled by
+Brownian motion <span class="math inline">\(\{B(t)\}\)</span> of scale <span class="math inline">\(\alpha=0.5\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>. Calculate the
+mean function of <span class="math inline">\(\{ B(t) \}\)</span>.</p></li>
 <li><p>Radioactive particles hit a Geiger counter according to a Poisson process
 at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
 <p>Define the new process <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> by

@@ -26,7 +26,7 @@ discrete-time processes as $\{ X[n] \}$.
 
 We have actually encountered several random processes already.
 
-```{example, name="Poisson Process"}
+```{example poisson-process-as-process, name="Poisson Process"}
 The Poisson process, introduced in Lesson \@ref(poisson-process), is 
 a continuous-time random process.
 
@@ -98,7 +98,7 @@ axis(2, pos=0, at=-3:3)
 lines(ts, Z, col="blue", lwd=2)
 ```
 
-Shown below are 50 realizations of the white noise process. Notice how 
+Shown below are 30 realizations of the white noise process. Notice how 
 the distribution of $Z[n]$ looks similar for every $n$. This is because 
 we constructed the process by simulating an _independent_ standard normal 
 random variable at every time $n$.
@@ -111,7 +111,7 @@ plot(NA, NA,
 axis(1, pos=0, at=-2:3)
 axis(2, pos=0)
 set.seed(1)
-for(i in 1:50) {
+for(i in 1:30) {
   ts <- -3:4
   Z <- rnorm(8)
   points(ts, Z, pch=19, col=rgb(0, 0, 1, 0.2))
@@ -119,11 +119,11 @@ for(i in 1:50) {
 }
 ```
 
-```{example, name="Random Walk"}
+```{example random-walk-process, name="Random Walk"}
 In Lesson \@ref(random-walk), we studied the random walk. More precisely, 
 we studied a special case called the **simple random walk**.
 
-In general, a **(general) random walk** \{ X[n]; n \geq 0 \} is a discrete-time process, defined by 
+In general, a **(general) random walk** $\{ X[n]; n \geq 0 \}$ is a discrete-time process, defined by 
 \begin{align*} 
 X[0] &= 0 \\
 X[n] &= X[n-1] + Z[n] & n \geq 1, 
@@ -150,7 +150,7 @@ f(z) & 0.5 & 0.5
 \end{array}. \]
 See Lesson \@ref(random-walk) for pictures of a simple random walk.
 
-Below, we show one realization of a random walk, where the steps are 
+Below, we show one realization of a random walk, where the steps $Z[n]$ are 
 i.i.d. standard normal random variables (i.e., the process
 considered in Example \@ref(exm:white-noise)).
 ```
@@ -167,7 +167,7 @@ axis(2, pos=0, at=-3:3)
 lines(ts, X, col="blue", lwd=2)
 ```
 
-Now, we show 50 realizations of the same random walk process. Notice how the distribution of 
+Now, we show 30 realizations of the same random walk process. Notice how the distribution of 
 $X[n]$ is different for each $n$. In the Essential Practice below, you will work out the 
 distribution of each $X[n]$.
 
@@ -179,7 +179,7 @@ plot(NA, NA,
 axis(1, pos=0)
 axis(2, pos=0)
 set.seed(1)
-for(i in 1:50) {
+for(i in 1:30) {
   ts <- 0:5
   X <- c(0, cumsum(rnorm(5)))
   points(ts, X, pch=19, col=rgb(0, 0, 1, 0.2))

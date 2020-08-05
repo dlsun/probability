@@ -467,9 +467,16 @@ where in the last step, we used the formula for the variance of a binomial rando
 <span class="math inline">\(\text{Var}[A] = np(1-p) = 5 \cdot 0.5 \cdot (1 - 0.5) = 1.25\)</span>.
 </div>
 
-<p>To visualize the variance function, we take its square root so that it is in the same units as the
-mean function. Then, we plot the band <span class="math inline">\(\mu(t) \pm \sqrt{V(t)}\)</span> around the mean function <span class="math inline">\(\mu(t)\)</span>:
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p>Remember that the variance function <span class="math inline">\(V(t)\)</span> measures the variability around the mean at time <span class="math inline">\(t\)</span>.
+Therefore, it makes sense to represent the variance function graphically as a band around the
+mean function. To construct this band, we do the following:</p>
+<ul>
+<li>First, we take the square root of the variance function so that it is in the same units as the mean function.
+(This is the same reason we define the standard deviation as the square root of the variance.)</li>
+<li>Then, we shade in a band of width <span class="math inline">\(\sqrt{V(t)}\)</span> around the mean function <span class="math inline">\(\mu(t)\)</span>.
+That is, the band is lower bounded by <span class="math inline">\(\mu(t) - \sqrt{V(t)}\)</span> and upper bounded by <span class="math inline">\(\mu(t) + \sqrt{V(t)}\)</span>.</li>
+</ul>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 
 <div class="example">
 <p><span id="exm:poisson-process-var" class="example"><strong>Example 51.2  (Poisson Process)  </strong></span>Consider the Poisson process
@@ -483,10 +490,9 @@ must have
 <span class="math display">\[ V(t) = \text{Var}[N(t)] = \lambda t \]</span>
 </div>
 
-<p>The variance function of the Poisson process is visualized below as a band of width
-<span class="math inline">\(\sqrt{V(t)} = \sqrt{\lambda t}\)</span> around the mean function <span class="math inline">\(\mu(t) = \lambda t\)</span>, which
-we calculated in Example <a href="mean-function.html#exm:poisson-process-mean">50.2</a>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p>We represent the variance function of the Poisson process below as a band of width
+<span class="math inline">\(\sqrt{V(t)} = \sqrt{\lambda t}\)</span> around the mean function <span class="math inline">\(\mu(t) = \lambda t\)</span> (see Example <a href="mean-function.html#exm:poisson-process-mean">50.2</a>).</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 
 <div class="example">
 <span id="exm:white-noise-var" class="example"><strong>Example 51.3  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in Example <a href="random-process.html#exm:white-noise">47.2</a>,
@@ -500,7 +506,7 @@ variance function is constant, equal to this value.
 are i.i.d. standard normal.
 The variance function of the white noise process is visualized below as a band of width
 <span class="math inline">\(\sqrt{V[n]} = 1\)</span> around the mean function <span class="math inline">\(\mu[n] \equiv 0\)</span>, which we calculated in Example <a href="mean-function.html#exm:white-noise-mean">50.3</a>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 
 <div class="example">
 <span id="exm:random-walk-var" class="example"><strong>Example 51.4  (Random Walk)  </strong></span>Consider the random walk process <span class="math inline">\(\{ X[n]; n\geq 0 \}\)</span> from
@@ -520,13 +526,14 @@ V[n] = \text{Var}[X[n]] &amp;= \text{Cov}[X[n], X[n]] \\
 i.i.d. standard normal. In this case, the variance function (shown in red) is <span class="math inline">\(V[n] = n \cdot 1 \equiv n\)</span>.
 We visualize the variance function as a band of width <span class="math inline">\(\sqrt{V[n]} = \sqrt{n}\)</span>
 around the mean function <span class="math inline">\(\mu[n] \equiv 0\)</span>, which we calculated in Example <a href="mean-function.html#exm:random-walk-mean">50.4</a>.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 </div>
 <div id="essential-practice-39" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li><p>Let <span class="math inline">\(\{B(t)\}\)</span> be Brownian motion, defined in Lesson <a href="brownian-motion.html#brownian-motion">49</a>. Calculate the
-variance function of Brownian motion.</p></li>
+<li><p>Consider a grain of pollen suspended in water, whose horizontal position can be modeled by
+Brownian motion <span class="math inline">\(\{B(t)\}\)</span> of scale <span class="math inline">\(\alpha=0.5\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>. Calculate the
+variance function of <span class="math inline">\(\{ B(t) \}\)</span>.</p></li>
 <li><p>Radioactive particles hit a Geiger counter according to a Poisson process
 at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
 <p>Define the new process <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> by

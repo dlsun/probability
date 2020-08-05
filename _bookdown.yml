@@ -14,6 +14,7 @@ rmd_files: [
   "continuous.Rmd", "uniform.Rmd", "exponential.Rmd", "transformations.Rmd",
   "ev-continuous.Rmd", "lotus-continuous.Rmd", "var-continuous.Rmd", "normal.Rmd",
   "joint-continuous.Rmd", "marginal-continuous.Rmd", "ev-joint-continuous.Rmd", "cov-continuous.Rmd",
-  "sums-continuous.Rmd", "clt.Rmd"
+  "sums-continuous.Rmd", "clt.Rmd", "random-process.Rmd", "random-process-examples.Rmd",
+  "brownian-motion.Rmd", "mean-function.Rmd", "var-function.Rmd"
 ]
 output_dir: "docs"

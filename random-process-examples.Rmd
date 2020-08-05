@@ -8,27 +8,24 @@ Let $A$ be a random variable. Let $f$ be a constant. Then the continuous-time pr
 is called a **random amplitude** process.
 
 Note that once the value of $A$ is simulated, the random process $\{ X(t) \}$ is
-completely specified for all times $t$. The graph below shows three realizations of 
-the random amplitude process, where $A$ is $\text{Exponential}(\lambda = 0.8)$.
+completely specified for all times $t$. 
+
+Shown below are 30 realizations of 
+the random amplitude process, where $A$ is $\text{Binomial}(n=5, p=0.5)$.
 ```
-```{r, engine="tikz", echo=FALSE, fig.show = "hold", fig.align = "default"}
-	\begin{tikzpicture}
-	
-	\draw[->,gray,dashed] (-.5, 0) -- (4.7, 0);
-	\draw[->,gray,dashed] (0, -2) -- (0, 2);
-	\node[anchor=south east] at (0, 1.5) {$X(t)$};
-	\node[anchor=west] at (4.7, 0) {$t$};
-	
-	\draw[domain=-.5:4.7, variable=\x, samples=200, red] plot(\x, {0.4*cos(360*\x)});
-	\node[anchor=east, red] at (-.5, -0.4) {$A = 0.4$};
-
-	\draw[domain=-.5:4.7, variable=\x, samples=200, orange] plot(\x, {1.8*cos(360*\x)});
-	\node[anchor=east, orange] at (-.5, -1.8) {$A = 1.8$};
-
-	\draw[domain=-.5:4.7, variable=\x, samples=200, blue] plot(\x, {0.9*cos(360*\x)});
-	\node[anchor=east, blue] at (-.5, -0.9) {$A = 0.9$};
-
-	\end{tikzpicture}
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-5.1, 5.1),
+     xlab="Time (t)", ylab="X(t)")
+axis(1, pos=0)
+axis(2, pos=0)
+set.seed(1)
+ts <- seq(-2, 3, by=0.01)
+a <- rbinom(30, 5, 0.5)
+for(i in 1:30) {
+  lines(ts, a[i] * cos(2 * pi * ts), col=rgb(0, 0, 1, 0.2))
+}
 ```
 
 Here is a video that animates the random amplitude process.
@@ -36,7 +33,7 @@ Here is a video that animates the random amplitude process.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vU8yW3e-8-c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-```{example, name="Moving Average Process"}
+```{example ma1, name="Moving Average Process"}
 Let $\{ Z[n] \}$ be a white noise process. Then, a **moving average process** (of order 1) $\{ X[n] \}$ 
 is a discrete-time process defined by 
 \begin{equation}
@@ -70,7 +67,7 @@ lines(-1:7, X, col="blue", lwd=2)
 legend(4, 3, c("White Noise", "Moving Average"), lty=1, lwd=c(1, 2), col=c("orange", "blue"))
 ```
 
-Now, we show 50 realizations of the same moving average process. Superficially, this might 
+Now, we show 30 realizations of the same moving average process. Superficially, this might 
 look like the white noise of Example \@ref(exm:white-noise), but if you look closely, you will 
 see that each individual function fluctuates less.
 
@@ -82,7 +79,7 @@ plot(NA, NA,
      xlab="Time Sample (n)", ylab="X[n]")
 axis(1, pos=0)
 axis(2, pos=0)
-for(i in 1:50) {
+for(i in 1:30) {
   Z <- rnorm(10)
   X <- c()
   for(i in 2:10) {
