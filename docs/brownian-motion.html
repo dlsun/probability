@@ -443,20 +443,22 @@ moving along a line.</p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 
 <div class="definition">
-<p><span id="def:bm" class="definition"><strong>Definition 49.1  (Brownian Motion)  </strong></span><strong>Brownian motion of scale <span class="math inline">\(\alpha\)</span></strong> <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span> is a continuous-time process with the
+<p><span id="def:bm" class="definition"><strong>Definition 49.1  (Brownian Motion)  </strong></span><strong>Brownian motion</strong> <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span> is a continuous-time process with the
 following properties:</p>
 <ol style="list-style-type: decimal">
 <li>The “particle” starts at the origin at <span class="math inline">\(t=0\)</span>: <span class="math inline">\(B(0) = 0\)</span>.</li>
 <li>The displacement over any interval <span class="math inline">\((s, t)\)</span>, denoted by <span class="math inline">\(B(t) - B(s)\)</span>, follows a
 <span class="math inline">\(\text{Normal}(\mu=0, \sigma=\sqrt{\alpha(t - s)})\)</span> distribution.</li>
-<li><strong>Independent increments:</strong> The displacements over non-overlapping intervals are independent.
-</div></li>
+<li><strong>Independent increments:</strong> The displacements over non-overlapping intervals are independent.</li>
 </ol>
+The parameter <span class="math inline">\(\alpha\)</span> controls the scale of Brownian motion.
+</div>
+
 <p>These three properties allow us to calculate most probabilities of interest.</p>
 
 <div class="example">
 <p><span id="exm:pollen" class="example"><strong>Example 49.1  (Motion of a Pollen Grain)  </strong></span>The horizontal position of a grain of pollen suspended in water can be modeled by Brownian motion
-with scale <span class="math inline">\(\alpha = 4\)</span> mm/s.</p>
+with scale <span class="math inline">\(\alpha = 4 \text{mm}^2/\text{s}\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
 <li>What is the probability the pollen grain moves by more than 10 mm (in the horizontal direction)
 between 1 and 4 seconds?</li>

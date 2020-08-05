@@ -1,0 +1,126 @@
+# Covariance of Continuous Random Variables {#cov-continuous}
+
+## Theory {-}
+
+This lesson summarizes results about the covariance of 
+continuous random variables. The statements of these 
+results are exactly the same as for discrete random variables, 
+but keep in mind that the expected values are now computed 
+using integrals and p.d.f.s, rather than sums and p.m.f.s.
+
+```{definition, name="Covariance"}
+Let $X$ and $Y$ be random variables. Then, the **covariance** of $X$ and $Y$, symbolized 
+$\text{Cov}[X, Y]$ is defined as 
+\begin{equation}
+\text{Cov}[X, Y] \overset{\text{def}}{=} E[(X - E[X])(Y - E[Y])].
+\end{equation}
+```
+
+```{theorem, name="Shortcut Formula for Covariance"}
+The covariance can also be computed as:
+\begin{equation}
+\text{Cov}[X, Y] = E[XY] - E[X]E[Y].
+(\#eq:cov-shortcut-continuous)
+\end{equation}
+```
+
+```{example cov-arrival-times, name="Covariance Between the First and Second Arrival Times"}
+In Example \@ref(exm:pp-joint-arrivals), we saw that the joint distribution of the first arrival time $X$ and 
+the second arrival time $Y$ in a Poisson process of rate $\lambda = 0.8$ is 
+\[ f(x, y) = \begin{cases} 0.64 e^{-0.8 y} & 0 < x < y \\ 0 & \text{otherwise} \end{cases}. \]
+What is the covariance between $X$ and $Y$? Intuitively, we expect the covariance to be positive. 
+The longer it takes for the first arrival to happen, the longer we will have to wait for the second 
+arrival, since the second arrival has to happen after the first arrival. Let's calculate the exact value
+of the covariance using the shortcut formula \@ref(eq:cov-shortcut-continuous). 
+
+First, we need to calculate $E[XY]$. We do this using 2D LOTUS \@ref(eq:lotus2d-continuous). 
+If $S = \{ (x, y): 0 < x < y \}$ denotes the support of the distribution, then 
+\begin{align*}
+E[XY] &= \iint_S xy \cdot 0.64 e^{-0.8 y}\,dx\,dy \\
+&= \int_0^\infty \int_0^y xy \cdot 0.64 e^{-0.8 y}\,dx\,dy \\
+&= \frac{75}{16}.
+\end{align*}
+
+What about $E[X]$? We know that the first arrival follows an $\text{Exponential}(\lambda=0.8)$ distribution, 
+so its expected value is $1/\lambda = 1/0.8$ seconds.
+
+What about $E[Y]$? We showed in Example \@ref(exm:pp-arrival-ev) that the $r$th arrival is expected to happen 
+at $r / 0.8$ seconds (by linearity of expectation, since the $r$th arrival is the sum of the 
+$r$ $\text{Exponential}(\lambda=0.8)$ interarrival times). Therefore, the secon arrival is expected 
+to happen at $E[Y] = 2 / 0.8$ seconds.
+
+Putting everything together, we have
+\[ \text{Cov}[X, Y] = E[XY] - E[X]E[Y] = \frac{75}{16} - \frac{1}{0.8} \cdot \frac{2}{0.8} = 1.5625. \]
+```
+
+```{theorem, name="Properties of Covariance"}
+Let $X, Y, Z$ be random variables, and let $c$ be a constant. Then:
+
+  1. Covariance-Variance Relationship: $\displaystyle\text{Var}[X] = \text{Cov}[X, X]$ (This was also Theorem \@ref(thm:cov-var).)
+  2. Pulling Out Constants: 
+    
+        $\displaystyle\text{Cov}[cX, Y] = c \cdot \text{Cov}[X, Y]$
+    
+        $\displaystyle\text{Cov}[X, cY] = c \cdot \text{Cov}[X, Y]$
+    
+  3. Distributive Property: 
+    
+        $\displaystyle\text{Cov}[X + Y, Z] = \text{Cov}[X, Z] + \text{Cov}[Y, Z]$
+    
+        $\displaystyle\text{Cov}[X, Y + Z] = \text{Cov}[X, Y] + \text{Cov}[X, Z]$
+    
+  4. Symmetry: $\displaystyle\text{Cov}[X, Y] = \text{Cov}[Y, X]$
+  5. Constants cannot covary: $\displaystyle\text{Cov}[X, c] = 0$.
+```
+
+```{example}
+Here is an easier way to do Example \@ref(exm:cov-arrival-times), using properties of covariance. 
+
+Write $Y = X + Z$, where $Z$ is the time between the first and second arrivals. We know that 
+$Z$ is $\text{Exponential}(\lambda=0.8)$ and independent of $X$, so $\text{Cov}[X, Z] = 0$.
+
+Now, we have
+\begin{align*} 
+\text{Cov}[X, Y] &= \text{Cov}[X, X + Z] = \underbrace{\text{Cov}[X, X]}_{\text{Var}[X]} + \underbrace{\text{Cov}[X, Z]}_0 = \frac{1}{0.8^2} = 1.5625, 
+\end{align*}
+where in the last step we used the fact that the variance of an $\text{Exponential}(\lambda)$ random variable is $1/\lambda^2$. This matches the answer we got in Example \@ref(exm:cov-arrival-times), but it required much less 
+calculation.
+```
+
+```{example pp-arrival-sd, name="Standard Deviation of Arrival Times"}
+In Example \@ref(exm:pp-arrival-ev), we saw that the expected value of the $r$th arrival time in a 
+Poisson process of rate $\lambda=0.8$ is $r / 0.8$. What is the standard deviation of the $r$th arrival time?
+  
+  The $r$th arrival time $S_r$ is the sum of $r$ independent $\text{Exponential}(\lambda=0.8)$ random variables:
+\[ S_r = T_1 + T_2 + \ldots + T_r.  \]
+  By properties of covariance:
+\begin{align*}
+\text{Var}[S_r] &= \text{Cov}[S_r, S_r] \\
+  &= \text{Cov}[T_1 + T_2 + \ldots + T_r, T_1 + T_2 + \ldots + T_r] \\
+  &= \sum_{i=1}^r \underbrace{\text{Cov}[T_i, T_i]}_{\text{Var}[T_i]} + \sum_{i\neq j} \underbrace{\text{Cov}[T_i, T_j]}_0 \\
+  &= r \text{Var}[T_1] \\
+  &= r \frac{1}{0.8^2}.
+\end{align*}
+
+  Therefore, the standard deviation is
+  \[ \text{SD}[S_r] = \frac{\sqrt{r}}{0.8}. \]
+```
+
+
+## Essential Practice {-}
+
+1. Let $A$ be a $\text{Exponential}(\lambda=1.5)$ random variable, and let $\Theta$ be a 
+$\text{Uniform}(a=-\pi, b=\pi)$ random variable. What is 
+$\text{Cov}[A\cos(\Theta + 2\pi s), A\cos(\Theta + 2\pi t)]$?
+
+2. In a standby system, a component is used until it wears out and is then immediately
+replaced by another, not necessarily identical, component. (The second component is said to be "in
+standby mode," i.e., waiting to be used.) The overall lifetime of a standby system is just the sum of the
+lifetimes of its individual components. Let $X$ and $Y$ denote the lifetimes of the two components of a
+standby system, and suppose $X$ and $Y$ are independent exponentially distributed random variables
+with expected lifetimes 3 weeks and 4 weeks, respectively. Let $T = X + Y$, the lifetime of the
+standby system. What is the _standard deviation_ of the lifetime of the system?
+
+3. Let $U_1, U_2, ..., U_n$ be independent and identically distributed (i.i.d.) $\text{Uniform}(a=0, b=1)$ 
+random variables. Let $S_n = U_1 + ... + U_n$ denote their sum. 
+Calculate $E[S_n]$ and $\text{SD}[S_n]$ in terms of $n$.
