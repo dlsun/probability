@@ -16,6 +16,10 @@ For a discrete-time process, we notate the mean function as
 \[ \mu[n] \overset{\text{def}}{=} E[X[n]]. \]
 ```
 
+The following video explains how you should think about a mean function intuitively.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R_zn7d47VUQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Let's calculate the mean function of some random processes.
 
 ```{example random-amplitude-mean, name="Random Amplitude Process"}
