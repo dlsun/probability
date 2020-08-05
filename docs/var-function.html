@@ -470,12 +470,12 @@ where in the last step, we used the formula for the variance of a binomial rando
 <p>Remember that the variance function <span class="math inline">\(V(t)\)</span> measures the variability around the mean at time <span class="math inline">\(t\)</span>.
 Therefore, it makes sense to represent the variance function graphically as a band around the
 mean function. To construct this band, we do the following:</p>
-<ul>
-<li>First, we take the square root of the variance function so that it is in the same units as the mean function.
-(This is the same reason we define the standard deviation as the square root of the variance.)</li>
-<li>Then, we shade in a band of width <span class="math inline">\(\sqrt{V(t)}\)</span> around the mean function <span class="math inline">\(\mu(t)\)</span>.
-That is, the band is lower bounded by <span class="math inline">\(\mu(t) - \sqrt{V(t)}\)</span> and upper bounded by <span class="math inline">\(\mu(t) + \sqrt{V(t)}\)</span>.</li>
-</ul>
+<ol style="list-style-type: decimal">
+<li>Take the square root of the variance function so that it is in the same units as the mean function.
+(This is the same reason we defined the standard deviation as the square root of the variance.)</li>
+<li>Shade in a band of width <span class="math inline">\(\sqrt{V(t)}\)</span> around the mean function <span class="math inline">\(\mu(t)\)</span>.
+That is, the band is lower-bounded by <span class="math inline">\(\mu(t) - \sqrt{V(t)}\)</span> and upper-bounded by <span class="math inline">\(\mu(t) + \sqrt{V(t)}\)</span>.</li>
+</ol>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 
 <div class="example">
@@ -503,9 +503,9 @@ variance function is constant, equal to this value.
 </div>
 
 <p>Shown below (in blue) are 30 realizations of a white noise process where the <span class="math inline">\(Z[n]\)</span>s
-are i.i.d. standard normal.
+are i.i.d. standard normal so that <span class="math inline">\(\sigma^2 = 1\)</span>.
 The variance function of the white noise process is visualized below as a band of width
-<span class="math inline">\(\sqrt{V[n]} = 1\)</span> around the mean function <span class="math inline">\(\mu[n] \equiv 0\)</span>, which we calculated in Example <a href="mean-function.html#exm:white-noise-mean">50.3</a>.</p>
+<span class="math inline">\(\sqrt{V[n]} = 1\)</span> around the mean function <span class="math inline">\(\mu[n] \equiv 0\)</span> (see Example <a href="mean-function.html#exm:white-noise-mean">50.3</a>).</p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 
 <div class="example">
@@ -525,14 +525,14 @@ V[n] = \text{Var}[X[n]] &amp;= \text{Cov}[X[n], X[n]] \\
 <p>Shown below (in blue) are 30 realizations of the random walk process where the steps <span class="math inline">\(Z[n]\)</span> are
 i.i.d. standard normal. In this case, the variance function (shown in red) is <span class="math inline">\(V[n] = n \cdot 1 \equiv n\)</span>.
 We visualize the variance function as a band of width <span class="math inline">\(\sqrt{V[n]} = \sqrt{n}\)</span>
-around the mean function <span class="math inline">\(\mu[n] \equiv 0\)</span>, which we calculated in Example <a href="mean-function.html#exm:random-walk-mean">50.4</a>.</p>
+around the mean function <span class="math inline">\(\mu[n] \equiv 0\)</span> (see Example <a href="mean-function.html#exm:random-walk-mean">50.4</a>).</p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 </div>
 <div id="essential-practice-39" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
 <li><p>Consider a grain of pollen suspended in water, whose horizontal position can be modeled by
-Brownian motion <span class="math inline">\(\{B(t)\}\)</span> with parameter <span class="math inline">\(\alpha=0.5 \text{mm}^2/\text{s}\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>.
+Brownian motion <span class="math inline">\(\{B(t)\}\)</span> with parameter <span class="math inline">\(\alpha=4 \text{mm}^2/\text{s}\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>.
 Calculate the variance function of <span class="math inline">\(\{ B(t) \}\)</span>.</p></li>
 <li><p>Radioactive particles hit a Geiger counter according to a Poisson process
 at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>

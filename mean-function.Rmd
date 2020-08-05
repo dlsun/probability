@@ -159,7 +159,7 @@ abline(h=0, col="red", lty=2, lwd=2)
 ## Essential Practice {-}
 
 1. Consider a grain of pollen suspended in water, whose horizontal position can be modeled by 
-Brownian motion $\{B(t)\}$ with parameter $\alpha=0.5 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
+Brownian motion $\{B(t)\}$ with parameter $\alpha=4 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
 Calculate the mean function of $\{ B(t) \}$.
 
 2. Radioactive particles hit a Geiger counter according to a Poisson process 

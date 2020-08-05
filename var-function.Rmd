@@ -40,10 +40,10 @@ Remember that the variance function $V(t)$ measures the variability around the m
 Therefore, it makes sense to represent the variance function graphically as a band around the 
 mean function. To construct this band, we do the following:
 
-- First, we take the square root of the variance function so that it is in the same units as the mean function.
-(This is the same reason we define the standard deviation as the square root of the variance.) 
-- Then, we shade in a band of width $\sqrt{V(t)}$ around the mean function $\mu(t)$. 
-That is, the band is lower bounded by $\mu(t) - \sqrt{V(t)}$ and upper bounded by $\mu(t) + \sqrt{V(t)}$.
+1. Take the square root of the variance function so that it is in the same units as the mean function.
+(This is the same reason we defined the standard deviation as the square root of the variance.) 
+2. Shade in a band of width $\sqrt{V(t)}$ around the mean function $\mu(t)$. 
+That is, the band is lower-bounded by $\mu(t) - \sqrt{V(t)}$ and upper-bounded by $\mu(t) + \sqrt{V(t)}$.
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,
@@ -116,9 +116,9 @@ variance function is constant, equal to this value.
 ```
 
 Shown below (in blue) are 30 realizations of a white noise process where the $Z[n]$s 
-are i.i.d. standard normal.
+are i.i.d. standard normal so that $\sigma^2 = 1$.
 The variance function of the white noise process is visualized below as a band of width 
-$\sqrt{V[n]} = 1$ around the mean function $\mu[n] \equiv 0$, which we calculated in Example \@ref(exm:white-noise-mean).
+$\sqrt{V[n]} = 1$ around the mean function $\mu[n] \equiv 0$ (see Example \@ref(exm:white-noise-mean)).
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,
@@ -159,7 +159,7 @@ V[n] = \text{Var}[X[n]] &= \text{Cov}[X[n], X[n]] \\
 Shown below (in blue) are 30 realizations of the random walk process where the steps $Z[n]$ are 
 i.i.d. standard normal. In this case, the variance function (shown in red) is $V[n] = n \cdot 1 \equiv n$. 
 We visualize the variance function as a band of width $\sqrt{V[n]} = \sqrt{n}$ 
-around the mean function $\mu[n] \equiv 0$, which we calculated in Example \@ref(exm:random-walk-mean).
+around the mean function $\mu[n] \equiv 0$ (see Example \@ref(exm:random-walk-mean)).
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,
@@ -186,7 +186,7 @@ polygon(c(ts, rev(ts)),
 ## Essential Practice {-}
 
 1. Consider a grain of pollen suspended in water, whose horizontal position can be modeled by 
-Brownian motion $\{B(t)\}$ with parameter $\alpha=0.5 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
+Brownian motion $\{B(t)\}$ with parameter $\alpha=4 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
 Calculate the variance function of $\{ B(t) \}$.
 
 2. Radioactive particles hit a Geiger counter according to a Poisson process 
