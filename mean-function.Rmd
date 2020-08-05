@@ -16,7 +16,7 @@ For a discrete-time process, we notate the mean function as
 \[ \mu[n] \overset{\text{def}}{=} E[X[n]]. \]
 ```
 
-The following video explains how you should think about a mean function intuitively.
+The following video explains how to think about a mean function intuitively.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/R_zn7d47VUQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -43,7 +43,7 @@ where in the last step, we used the formula for the expected value of a binomial
 $E[A] = np = 5 \cdot 0.5 = 2.5$.
 ```
 
-30 realizations of this process are shown below, along with the mean function (in red). Notice 
+Shown below (in blue) are 30 realizations of this process, along with the mean function (in red). Notice 
 how the mean function passes through the heart of the realizations.
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,
@@ -74,7 +74,7 @@ must have
 \[ \mu(t) = E[N(t)] = \lambda t \]
 ```
 
-Shown below are 30 realizations of the Poisson process, with  
+Shown below (in blue) are 30 realizations of the Poisson process, with  
 the mean function superimposed (in red). 
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}

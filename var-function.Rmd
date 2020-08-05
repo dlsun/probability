@@ -12,6 +12,10 @@ For a discrete-time process, we notate the variance function as
 \[ V[n] \overset{\text{def}}{=} \text{Var}[X[n]]. \]
 ```
 
+The following video explains how to think about a variance function intuitively.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/csrEDdchD4o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Let's calculate the variance function of some random processes.
 
 ```{example random-amplitude-var, name="Random Amplitude Process"}
