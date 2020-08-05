@@ -1,5 +1,8 @@
 # Mean Function {#mean-function}
 
+In the next few lessons, we discuss three functions that are 
+commonly used to summarize random processes: the mean function, 
+the variance function, and the autocovariance function.
 
 ## Theory {-}
 
@@ -9,28 +12,49 @@ The **mean function** $\mu(t)$ of a random process $\{ X(t) \}$
 That is,
 \[ \mu(t) \overset{\text{def}}{=} E[X(t)]. \]
 
-For a discrete-time process, we typically 
-\[ \mu[n] \overset{\text{def}}{=} E[X[n]] \]
+For a discrete-time process, we notate the mean function as 
+\[ \mu[n] \overset{\text{def}}{=} E[X[n]]. \]
 ```
 
-Let's calculate the mean function of some processes.
+Let's calculate the mean function of some random processes.
 
 ```{example random-amplitude-mean, name="Random Amplitude Process"}
 Consider the random amplitude process 
 \begin{equation}
-X(t) = A\cos(2\pi  f t),
+X(t) = A\cos(2\pi  f t)
 (\#eq:random-amplitude)
 \end{equation}
-introduced in Example @\ref{exm:random-amplitude}. 
+introduced in Example \@ref(exm:random-amplitude). 
 
-To calculate its mean function, we note that $A$ is the only thing that is 
-random in \@ref(eq:random-amplitude). Everything else is a constant, 
-so they can be pulled outside the expected value.
+To be concrete, suppose $A$ is a $\text{Binomial}(n=5, p=0.5)$ random variable 
+and $f = 1$. To calculate the mean function, observe that the only thing that is 
+random in \@ref(eq:random-amplitude) is $A$. Everything else is a constant, 
+so they can be pulled outside the expectation.
 \begin{align*}
 \mu(t) = E[X(t)] &= E[A\cos(2\pi ft)] \\
 &= E[A] \cos(2\pi ft) \\
+&= 2.5 \cos(2\pi ft),
 \end{align*}
-Thus, the mean function is a cosine whose amplitude depends on the distribution of $A$.
+where in the last step, we used the formula for the expected value of a binomial random variable, 
+$E[A] = np = 5 \cdot 0.5 = 2.5$.
+```
+
+30 realizations of this process are shown below, along with the mean function (in red). Notice 
+how the mean function passes through the heart of the realizations.
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-5.1, 5.1),
+     xlab="Time (t)", ylab="X(t)")
+axis(1, pos=0)
+axis(2, pos=0)
+set.seed(1)
+ts <- seq(-2, 3, by=0.01)
+a <- rbinom(30, 5, 0.5)
+for(i in 1:30) {
+  lines(ts, a[i] * cos(2 * pi * ts), col=rgb(0, 0, 1, 0.2))
+}
+lines(ts, 2.5 * cos(2 * pi * ts), col="red", lty=2, lwd=2)
 ```
 
 ```{example poisson-process-mean, name="Poisson Process"}
@@ -38,16 +62,16 @@ Consider the Poisson process
 $\{ N(t); t \geq 0 \}$ of rate $\lambda$, 
 defined in Example \@ref(exm:poisson-process-as-process).
 
-Remember that $N(t)$ represents the number of arrivals on the 
+Recall that $N(t)$ represents the number of arrivals on the 
 interval $(0, t)$, which we know (by properties of the Poisson process) 
 follows a $\text{Poisson}(\mu=\lambda t)$ distribution. Since the 
 expected value of a $\text{Poisson}(\mu)$ random variable is $\mu$, we 
 must have
-\[ E[N(t)] = \lambda t \]
+\[ \mu(t) = E[N(t)] = \lambda t \]
 ```
 
 Shown below are 30 realizations of the Poisson process, with  
-the mean function overlaid in red.
+the mean function superimposed (in red). 
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,
@@ -77,7 +101,7 @@ is constant, equal to this expected value.
 \[ \mu[n] = E[Z[n]] \equiv \mu. \]
 ```
 
-Shown below (in blue) are 50 realizations of a white noise process consisting of i.i.d. 
+Shown below (in blue) are 30 realizations of a white noise process consisting of i.i.d. 
 standard normal random variables, along with the mean function (in red), which in this case is 
 $\mu[n] \equiv 0$.
 
@@ -89,7 +113,7 @@ plot(NA, NA,
 axis(1, pos=0, at=-2:3)
 axis(2, pos=0)
 set.seed(1)
-for(i in 1:50) {
+for(i in 1:30) {
   ts <- -3:4
   Z <- rnorm(8)
   points(ts, Z, pch=19, col=rgb(0, 0, 1, 0.2))
@@ -111,7 +135,7 @@ the mean function is
 \end{align*}
 ```
 
-Shown below (in blue) are 50 realizations of the random walk process where the steps $Z[n]$ are 
+Shown below (in blue) are 30 realizations of the random walk process where the steps $Z[n]$ are 
 i.i.d. standard normal, so the mean function (shown in red) is $\mu[n] = n \cdot 0 \equiv 0$.
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
@@ -122,7 +146,7 @@ plot(NA, NA,
 axis(1, pos=0)
 axis(2, pos=0)
 set.seed(1)
-for(i in 1:50) {
+for(i in 1:30) {
   ts <- 0:5
   X <- c(0, cumsum(rnorm(5)))
   points(ts, X, pch=19, col=rgb(0, 0, 1, 0.2))
@@ -134,8 +158,9 @@ abline(h=0, col="red", lty=2, lwd=2)
 
 ## Essential Practice {-}
 
-1. Let $\{B(t)\}$ be Brownian motion, defined in Lesson \@ref(brownian-motion). Calculate the 
-mean function of Brownian motion.
+1. Consider a grain of pollen suspended in water, whose horizontal position can be modeled by 
+Brownian motion $\{B(t)\}$ with parameter $\alpha=0.5 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
+Calculate the mean function of $\{ B(t) \}$.
 
 2. Radioactive particles hit a Geiger counter according to a Poisson process 
 at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.

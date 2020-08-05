@@ -36,13 +36,20 @@ where in the last step, we used the formula for the variance of a binomial rando
 $\text{Var}[A] = np(1-p) = 5 \cdot 0.5 \cdot (1 - 0.5) = 1.25$.
 ```
 
-To visualize the variance function, we take its square root so that it is in the same units as the 
-mean function. Then, we plot the band $\mu(t) \pm \sqrt{V(t)}$ around the mean function $\mu(t)$:
+Remember that the variance function $V(t)$ measures the variability around the mean at time $t$. 
+Therefore, it makes sense to represent the variance function graphically as a band around the 
+mean function. To construct this band, we do the following:
+
+- First, we take the square root of the variance function so that it is in the same units as the mean function.
+(This is the same reason we define the standard deviation as the square root of the variance.) 
+- Then, we shade in a band of width $\sqrt{V(t)}$ around the mean function $\mu(t)$. 
+That is, the band is lower bounded by $\mu(t) - \sqrt{V(t)}$ and upper bounded by $\mu(t) + \sqrt{V(t)}$.
+
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,
      xaxt="n", yaxt="n", bty="n",
      xlim=c(-2, 3), ylim=c(-5.1, 5.1),
-     xlab="Time (t)", ylab="Number of arrivals N(t)")
+     xlab="Time (t)", ylab="X(t)")
 axis(1, pos=0)
 axis(2, pos=0)
 set.seed(1)
@@ -72,9 +79,8 @@ must have
 \[ V(t) = \text{Var}[N(t)] = \lambda t \]
 ```
 
-The variance function of the Poisson process is visualized below as a band of width 
-$\sqrt{V(t)} = \sqrt{\lambda t}$ around the mean function $\mu(t) = \lambda t$, which 
-we calculated in Example \@ref(exm:poisson-process-mean).
+We represent the variance function of the Poisson process below as a band of width 
+$\sqrt{V(t)} = \sqrt{\lambda t}$ around the mean function $\mu(t) = \lambda t$ (see Example \@ref(exm:poisson-process-mean)).
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,
@@ -179,8 +185,9 @@ polygon(c(ts, rev(ts)),
 
 ## Essential Practice {-}
 
-1. Let $\{B(t)\}$ be Brownian motion, defined in Lesson \@ref(brownian-motion). Calculate the 
-variance function of Brownian motion.
+1. Consider a grain of pollen suspended in water, whose horizontal position can be modeled by 
+Brownian motion $\{B(t)\}$ with parameter $\alpha=0.5 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
+Calculate the variance function of $\{ B(t) \}$.
 
 2. Radioactive particles hit a Geiger counter according to a Poisson process 
 at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
