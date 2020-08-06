@@ -45,7 +45,7 @@ The Poisson process is used to model random events, called "**arrivals**", over 
 ```{definition pp, name="Poisson Process"}
 A **Poisson process of rate $\lambda$** is characterized by the following properties:
 
-1. The _number of arrivals in any interval $(t_0, t_1)$_ follows a Poisson distribution with $\mu = \lambda (t_1 - t_0)$. 
+1. The _number of arrivals in any interval_ $(t_0, t_1)$ follows a Poisson distribution with $\mu = \lambda (t_1 - t_0)$. 
 That is, the parameter $\mu$ increases proportionally to the length of the interval.
 2. The numbers of arrivals in non-overlapping intervals are independent.
 ```

@@ -410,6 +410,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="var-function.html"><a href="var-function.html#theory-45"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="var-function.html"><a href="var-function.html#essential-practice-39"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="52" data-path="cov-function.html"><a href="cov-function.html"><i class="fa fa-check"></i><b>52</b> Autocovariance Function</a><ul>
+<li class="chapter" data-level="" data-path="cov-function.html"><a href="cov-function.html#theory-46"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cov-function.html"><a href="cov-function.html#essential-practice-40"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -460,8 +464,16 @@ discrete-time processes as <span class="math inline">\(\{ X[n] \}\)</span>.
 <div class="example">
 <p><span id="exm:poisson-process-as-process" class="example"><strong>Example 47.1  (Poisson Process)  </strong></span>The Poisson process, introduced in Lesson <a href="poisson-process.html#poisson-process">17</a>, is
 a continuous-time random process.</p>
-Define <span class="math inline">\(N(t)\)</span> to be the <em>number of arrivals up to time <span class="math inline">\(t\)</span></em>.
-Then, <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> is a continuous-time random process.
+<p>Define <span class="math inline">\(N(t)\)</span> to be the <em>number of arrivals up to time <span class="math inline">\(t\)</span></em>.
+Then, <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> is a continuous-time random process.</p>
+<p>We can now restate the defining properties of a Poisson process (Definition <a href="poisson-process.html#def:pp">17.1</a>)
+using <span class="math inline">\(\{ N(t) \}\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(N(0) = 0\)</span>.</li>
+<li><span class="math inline">\(N(t_1) - N(t_0)\)</span>, the number of arrivals on the interval <span class="math inline">\((t_0, t_1)\)</span>,
+follows a Poisson distribution with <span class="math inline">\(\mu = \lambda (t_1 - t_0)\)</span></li>
+<li><strong>Independent increments:</strong> The number of arrivals on non-overlapping intervals are independent.</li>
+</ol>
 The graph below shows how the arrivals (orange dots) can be
 translated into a continuous-time function <span class="math inline">\(N(t)\)</span> (blue line).
 </div>

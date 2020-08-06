@@ -410,6 +410,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="var-function.html"><a href="var-function.html#theory-45"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="var-function.html"><a href="var-function.html#essential-practice-39"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="52" data-path="cov-function.html"><a href="cov-function.html"><i class="fa fa-check"></i><b>52</b> Autocovariance Function</a><ul>
+<li class="chapter" data-level="" data-path="cov-function.html"><a href="cov-function.html#theory-46"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="cov-function.html"><a href="cov-function.html#essential-practice-40"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -439,12 +443,12 @@ the variance function, and the autocovariance function.</p>
 <h2>Theory</h2>
 
 <div class="definition">
-<p><span id="def:mean-function" class="definition"><strong>Definition 50.1  (Mean Function)  </strong></span>The <strong>mean function</strong> <span class="math inline">\(\mu(t)\)</span> of a random process <span class="math inline">\(\{ X(t) \}\)</span>
+<p><span id="def:mean-function" class="definition"><strong>Definition 50.1  (Mean Function)  </strong></span>The <strong>mean function</strong> <span class="math inline">\(\mu_X(t)\)</span> of a random process <span class="math inline">\(\{ X(t) \}\)</span>
 is a function that specifies the expected value at each time <span class="math inline">\(t\)</span>.
 That is,
-<span class="math display">\[ \mu(t) \overset{\text{def}}{=} E[X(t)]. \]</span></p>
+<span class="math display">\[ \mu_X(t) \overset{\text{def}}{=} E[X(t)]. \]</span></p>
 For a discrete-time process, we notate the mean function as
-<span class="math display">\[ \mu[n] \overset{\text{def}}{=} E[X[n]]. \]</span>
+<span class="math display">\[ \mu_X[n] \overset{\text{def}}{=} E[X[n]]. \]</span>
 </div>
 
 <p>The following video explains how to think about a mean function intuitively.</p>
@@ -464,7 +468,7 @@ and <span class="math inline">\(f = 1\)</span>. To calculate the mean function, 
 random in <a href="mean-function.html#eq:random-amplitude">(50.1)</a> is <span class="math inline">\(A\)</span>. Everything else is a constant,
 so they can be pulled outside the expectation.
 <span class="math display">\[\begin{align*}
-\mu(t) = E[X(t)] &amp;= E[A\cos(2\pi ft)] \\
+\mu_X(t) = E[X(t)] &amp;= E[A\cos(2\pi ft)] \\
 &amp;= E[A] \cos(2\pi ft) \\
 &amp;= 2.5 \cos(2\pi ft),
 \end{align*}\]</span>
@@ -485,7 +489,7 @@ interval <span class="math inline">\((0, t)\)</span>, which we know (by properti
 follows a <span class="math inline">\(\text{Poisson}(\mu=\lambda t)\)</span> distribution. Since the
 expected value of a <span class="math inline">\(\text{Poisson}(\mu)\)</span> random variable is <span class="math inline">\(\mu\)</span>, we
 must have
-<span class="math display">\[ \mu(t) = E[N(t)] = \lambda t \]</span>
+<span class="math display">\[ \mu_N(t) = E[N(t)] = \lambda t \]</span>
 </div>
 
 <p>Shown below (in blue) are 30 realizations of the Poisson process, with<br />
@@ -497,12 +501,12 @@ the mean function superimposed (in red).</p>
 which consists of i.i.d. random variables. Suppose the expected value of these
 random variables is <span class="math inline">\(\mu \overset{\text{def}}{=} E[Z[n]]\)</span>. Then, the mean function
 is constant, equal to this expected value.
-<span class="math display">\[ \mu[n] = E[Z[n]] \equiv \mu. \]</span>
+<span class="math display">\[ \mu_Z[n] = E[Z[n]] \equiv \mu. \]</span>
 </div>
 
 <p>Shown below (in blue) are 30 realizations of a white noise process consisting of i.i.d.
 standard normal random variables, along with the mean function (in red), which in this case is
-<span class="math inline">\(\mu[n] \equiv 0\)</span>.</p>
+<span class="math inline">\(\mu_Z[n] \equiv 0\)</span>.</p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 
 <div class="example">
@@ -512,13 +516,13 @@ Since
 <span class="math display">\[ X[n] = Z[1] + Z[2] + \ldots + Z[n], \]</span>
 the mean function is
 <span class="math display">\[\begin{align*} 
-\mu[n] = E[X[n]] &amp;= E[Z[1]] + E[Z[2]] + \ldots + E[Z[n]] \\
+\mu_X[n] = E[X[n]] &amp;= E[Z[1]] + E[Z[2]] + \ldots + E[Z[n]] \\
 &amp;= n E[Z[1]].
 \end{align*}\]</span>
 </div>
 
 <p>Shown below (in blue) are 30 realizations of the random walk process where the steps <span class="math inline">\(Z[n]\)</span> are
-i.i.d. standard normal, so the mean function (shown in red) is <span class="math inline">\(\mu[n] = n \cdot 0 \equiv 0\)</span>.</p>
+i.i.d. standard normal, so the mean function (shown in red) is <span class="math inline">\(\mu_X[n] = n \cdot 0 \equiv 0\)</span>.</p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 </div>
 <div id="essential-practice-38" class="section level2 unnumbered">

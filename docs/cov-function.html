@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 23 Expected Value and Infinity | Introduction to Probability</title>
+  <title>Lesson 52 Autocovariance Function | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 23 Expected Value and Infinity | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 52 Autocovariance Function | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 23 Expected Value and Infinity | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 52 Autocovariance Function | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="expected-value.html"/>
-<link rel="next" href="lotus.html"/>
+<link rel="prev" href="var-function.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -434,72 +434,135 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ev-infinity" class="section level1">
-<h1><span class="header-section-number">Lesson 23</span> Expected Value and Infinity</h1>
-<div id="pascals-wager" class="section level2">
-<h2><span class="header-section-number">23.1</span> Pascal’s Wager</h2>
-<p>The mathematician Blaise Pascal (1623-1662) made an argument for why it was rational
-to believe in God—at least the Judeo-Christian God. Pascal acknowledged that God may or
-may not exist and assigned the probability <span class="math inline">\(p &gt; 0\)</span> to God’s existence. Then, he
-considered the following bets:</p>
-<ol style="list-style-type: decimal">
-<li>If you believe in God, and He exists, then your reward is infinite (i.e., eternal salvation).
-If He does not exist, then your reward is some number <span class="math inline">\(a\)</span>, which may be negative but finite.</li>
-<li>If you do not believe in God, and He exists, the your reward is negative infinity
-(i.e., eternal damnation). If He does not exist, then your reward is some number <span class="math inline">\(b\)</span>, which is
-finite.</li>
-</ol>
-<p>Looking at the first bet (belief in God), Pascal calculated the expected reward <span class="math inline">\(E[R]\)</span> as follows. The p.m.f. of <span class="math inline">\(R\)</span> is
-<span class="math display">\[ \begin{array}{r|cc}
-r &amp; a &amp; \infty \\
-\hline
-f(r) &amp; 1-p &amp; p,
-\end{array} \]</span>
-and the expected value of this bet is
-<span class="math display">\[ E[R] = a\cdot (1-p) + \infty \cdot p = \infty. \]</span></p>
-<p>Can you do the same for the second bet?</p>
-<p>Pascal argued that we should pick the bet with the higher expected value, which is to believe in God.</p>
-<p>I present this only as an illustration of how expected value can be applied in surprising
-contexts, not to convince you to believe or not to believe. There have been
-many philosophical objections to Pascal’s wager. If you are interested, this video discusses
-some of the debates around Pascal’s wager. You can find many more discussions on Youtube.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2F_LUFIeUk0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+<div id="cov-function" class="section level1">
+<h1><span class="header-section-number">Lesson 52</span> Autocovariance Function</h1>
+<div id="theory-46" class="section level2 unnumbered">
+<h2>Theory</h2>
+
+<div class="definition">
+<p><span id="def:cov-function" class="definition"><strong>Definition 52.1  (Autocovariance Function)  </strong></span>The <strong>autocovariance function</strong> <span class="math inline">\(C_X(s, t)\)</span> of a random process <span class="math inline">\(\{ X(t) \}\)</span>
+is a function of <em>two</em> times <span class="math inline">\(s\)</span> and <span class="math inline">\(t\)</span>. It is sometimes just called the
+“covariance function” for short.</p>
+<p>It specifies the covariance between the value of the process at time <span class="math inline">\(s\)</span> and
+the value at time <span class="math inline">\(t\)</span>. That is,
+<span class="math display">\[ C_X(s, t) \overset{\text{def}}{=} \text{Cov}[X(s), X(t)]. \]</span></p>
+For a discrete-time process, we notate the autocovariance function as
+<span class="math display">\[ C_X[m, n] \overset{\text{def}}{=} \text{Cov}[X[m], X[n]]. \]</span>
 </div>
-<div id="st-petersburg" class="section level2">
-<h2><span class="header-section-number">23.2</span> St. Petersburg Paradox</h2>
-<p>In the Pascal’s Wager example, we dealt with random variables which could take on
-values such as <span class="math inline">\(\infty\)</span> or <span class="math inline">\(-\infty\)</span>. It is not surprising that the expected value
-is infinite when infinity is a possible value. However, the expected value can be infinite,
-even if the random variable is finite-valued. Let’s look at an example.</p>
-<p>You are offered the following game at a carnival.
-The game starts with $1 in a jar.
-You toss a coin repeatedly. Each time the coin lands heads,
-the amount of money in the jar is doubled. As soon as the
-coin lands tails, you cash out whatever money is in the jar, and
-the game ends.</p>
-<p>For example, if you toss the sequence HHHT, then you win $8 because:</p>
-<ul>
-<li>After the first H, the amount in the jar is doubled to $2.</li>
-<li>After the second H, the amount in the jar is doubled to $4.</li>
-<li>After the third H, the amount in the jar is doubled to $8.</li>
-<li>After the T, the game ends, and you win the $8 in the jar.</li>
-</ul>
-<p>How much would you be willing to pay to play this game?</p>
-<p>We have seen that the expected value represents the “fair value” of a game.
-First, let’s work out the p.m.f. of the amount of money you win, <span class="math inline">\(W\)</span>. Fill in the first
-few probabilities of this p.m.f. table.
-<span class="math display">\[ \begin{array}{rcccccc}
-w &amp; 1 &amp; 2 &amp; 4 &amp; ? &amp; ? &amp; \ldots  \\
-\hline
-f(w) &amp; 1/2 &amp; 1/4 &amp; ? &amp; ? &amp; ? &amp; \ldots \\
-\end{array}\]</span></p>
-<p>Now calculate <span class="math inline">\(E[W]\)</span> from the p.m.f. What does this suggest about how much
-you should be willing to pay? This is a famous puzzle in probability called the
-<strong>St. Petersburg Paradox</strong>.</p>
-<p>Here is a video discussing the St. Petersburg paradox.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dDl7g_2x74Q?start=369" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+
+<p>Notice that the variance function can be obtained from the autocovariance function:
+<span class="math display">\[ V(t) = \text{Var}[X(t)] = \text{Cov}[X(t), X(t)] = C(t, t). \]</span></p>
+<p>Let’s calculate the autocovariance function of some random processes. Unfortunately,
+the autocovariance function is difficult to visualize, since it is not just a function
+of time but a function of <em>two</em> times.</p>
+
+<div class="example">
+<p><span id="exm:random-amplitude-cov" class="example"><strong>Example 52.1  (Random Amplitude Process)  </strong></span>Consider the random amplitude process
+<span class="math display" id="eq:random-amplitude">\[\begin{equation}
+X(t) = A\cos(2\pi  f t)
+\tag{50.1}
+\end{equation}\]</span>
+introduced in Example <a href="random-process-examples.html#exm:random-amplitude">48.1</a>.</p>
+To be concrete, suppose <span class="math inline">\(A\)</span> is a <span class="math inline">\(\text{Binomial}(n=5, p=0.5)\)</span> random variable
+and <span class="math inline">\(f = 1\)</span>. To calculate the autocovariance function, observe that the only thing that is
+random in <a href="mean-function.html#eq:random-amplitude">(50.1)</a> is <span class="math inline">\(A\)</span>. Everything else is a constant,
+so they can be pulled outside the covariance.
+<span class="math display">\[\begin{align*}
+C_X(s, t) = \text{Cov}[X(s), X(t)] &amp;= \text{Cov}[A\cos(2\pi fs), A\cos(2\pi ft)] \\
+&amp;= \underbrace{\text{Cov}[A, A]}_{\text{Var}[A]} \cos(2\pi fs)\cos(2\pi ft) \\
+&amp;= 1.25 \cos(2\pi fs)\cos(2\pi ft),
+\end{align*}\]</span>
+where in the last step, we used the formula for the variance of a binomial random variable,
+<span class="math inline">\(\text{Var}[A] = np(1-p) = 5 \cdot 0.5 \cdot (1 - 0.5) = 1.25\)</span>.
+</div>
+
+
+<div class="example">
+<p><span id="exm:poisson-process-cov" class="example"><strong>Example 52.2  (Poisson Process)  </strong></span>Consider the Poisson process
+<span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> of rate <span class="math inline">\(\lambda\)</span>,
+defined in Example <a href="random-process.html#exm:poisson-process-as-process">47.1</a>.</p>
+<p>To calculate the autocovariance function, we first
+calculate <span class="math inline">\(\text{Cov}[N(s), N(t)]\)</span> assuming <span class="math inline">\(s &lt; t\)</span>.
+We can do this by breaking <span class="math inline">\(N(t)\)</span> into <span class="math inline">\(N(s)\)</span>, the number of
+arrivals up to time <span class="math inline">\(s\)</span>, plus <span class="math inline">\(N(t) - N(s)\)</span>, the number of
+arrivals between time <span class="math inline">\(s\)</span> and time <span class="math inline">\(t\)</span>. This allows us to use the
+independent increments property of the Poisson process (see Example <a href="random-process.html#exm:poisson-process-as-process">47.1</a>).
+<span class="math display">\[\begin{align*}
+\text{Cov}[N(s), N(t)] &amp;= \text{Cov}[N(s), N(s) + (N(t) - N(s))] \\
+&amp;= \text{Cov}[N(s), N(s)] + \underbrace{\text{Cov}[N(s), N(t) - N(s)]}_{\text{0 by independent increments}} \\
+&amp;= \text{Var}[N(s)] \\
+&amp;= \lambda s.
+\end{align*}\]</span></p>
+This is the covariance when <span class="math inline">\(s &lt; t\)</span>. If we repeat the argument for <span class="math inline">\(s &gt; t\)</span>, we will
+find that the covariance is <span class="math inline">\(\lambda t\)</span>. In other words, the covariance always involves
+the <em>smaller</em> of the two times <span class="math inline">\(s\)</span> and <span class="math inline">\(t\)</span>. Therefore, we can write the autocovariance function as
+<span class="math display">\[ C_N(s, t) = \lambda \min(s, t). \]</span>
+</div>
+
+
+<div class="example">
+<p><span id="exm:white-noise-cov" class="example"><strong>Example 52.3  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in Example <a href="random-process.html#exm:white-noise">47.2</a>,
+which consists of i.i.d. random variables with variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]\)</span>.</p>
+<p>By independence, the covariance between <span class="math inline">\(Z[m]\)</span> and <span class="math inline">\(Z[n]\)</span> is zero, unless <span class="math inline">\(m=n\)</span>, in which case
+<span class="math inline">\(\text{Cov}[Z[n], Z[n]] = \text{Var}[Z[n]] = \sigma^2\)</span>. That is, the autocovariance function is
+<span class="math display">\[ C_Z[m, n] = \begin{cases} \sigma^2 &amp; m = n \\ 0 &amp; m \neq n \end{cases}. \]</span></p>
+We can write the autocovariance function compactly using the discrete delta function <span class="math inline">\(\delta[k]\)</span>, defined as
+<span class="math display">\[ \delta[k] \overset{def}{=} \begin{cases} 1 &amp; k=0 \\ 0 &amp; k \neq 0 \end{cases}. \]</span>
+In terms of <span class="math inline">\(\delta[k]\)</span>, the autocovariance function is simply
+<span class="math display">\[ C_Z[m, n] = \sigma^2 \delta[m - n]. \]</span>
+</div>
+
+
+<div class="example">
+<p><span id="exm:random-walk-cov" class="example"><strong>Example 52.4  (Random Walk)  </strong></span>Consider the random walk process <span class="math inline">\(\{ X[n]; n\geq 0 \}\)</span> from
+Example <a href="random-process.html#exm:random-walk-process">47.3</a>.</p>
+<p>To calculate the autocovariance function, we first calculate
+<span class="math inline">\(\text{Cov}[X[m], X[n]]\)</span> assuming <span class="math inline">\(m &lt; n\)</span>. Since
+<span class="math display">\[ X[n] = Z[1] + Z[2] + \ldots + Z[n], \]</span>
+we can write this as
+<span class="math display">\[\begin{align*}
+\text{Cov}[X[m], X[n]] = \text{Cov}[&amp;Z[1] + \ldots + Z[m], \\
+&amp;Z[1] + \ldots + Z[m] + \ldots + Z[n]].
+\end{align*}\]</span>
+I find it helpful to write the covariance in two lines, aligning like terms,
+since the <span class="math inline">\(Z[i]\)</span>s are independent. When we expand the covariance, it reduces to
+<span class="math display">\[ \text{Var}[Z[1]] + \ldots + \text{Var}[Z[m]] = m \text{Var}[Z[1]].  \]</span></p>
+This is the covariance when <span class="math inline">\(m &lt; n\)</span>. If we repeat the argument for <span class="math inline">\(m &gt; n\)</span>, we will
+find that the covariance is <span class="math inline">\(n \text{Var}[Z[1]]\)</span>. In other words, the covariance always involves
+the <em>smaller</em> of the two times <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span>. Therefore, we can write the autocovariance function as
+<span class="math display">\[ C_X[m, n] = \min(m, n) \text{Var}[Z[1]]. \]</span>
+</div>
+
+</div>
+<div id="essential-practice-40" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<ol style="list-style-type: decimal">
+<li><p>Consider a grain of pollen suspended in water, whose horizontal position can be modeled by
+Brownian motion <span class="math inline">\(\{B(t)\}\)</span> with parameter <span class="math inline">\(\alpha=4 \text{mm}^2/\text{s}\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>.
+Calculate the autocovariance function of <span class="math inline">\(\{ B(t) \}\)</span>. Check that this autocovariance function agrees with the
+variance function you derived in Lesson <a href="var-function.html#var-function">51</a>.</p></li>
+<li><p>Radioactive particles hit a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
+<p>Define the new process <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> by
+<span class="math display">\[ D(t) = N(t) - N(t - 3). \]</span>
+This process represents the number of particles that hit the Geiger counter in the last 3 seconds.
+Calculate the autocovariance function of <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span>. Check that this autocovariance function
+agrees with the variance function you derived in Lesson <a href="var-function.html#var-function">51</a>.</p>
+<p>(<em>Hint:</em> Consider the following cases separately: (1) <span class="math inline">\(t &lt; s - 3\)</span>, (2) <span class="math inline">\(s - 3 &lt; t &lt; s\)</span>, (3) <span class="math inline">\(s &lt; t &lt; s + 3\)</span>, (4) <span class="math inline">\(t &gt; s + 3\)</span>. We derived the autocovariance
+function of <span class="math inline">\(\{ N(t) \}\)</span> already. Use it!)</p></li>
+<li><p>Consider the moving average process <span class="math inline">\(\{ X[n] \}\)</span> of Example <a href="random-process-examples.html#exm:ma1">48.2</a>, defined by
+<span class="math display">\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]</span>
+where <span class="math inline">\(\{ Z[n] \}\)</span> is a sequence of i.i.d. standard normal random variables.
+Calculate the autocovariance function of <span class="math inline">\(\{ X[n] \}\)</span>. Check that this autocovariance function agrees with the
+variance function you derived in Lesson <a href="var-function.html#var-function">51</a>.</p>
+<p>(<em>Hint:</em> Consider the following cases: (1) <span class="math inline">\(m = n\)</span>, (2) <span class="math inline">\(m = n+1\)</span>, (3) <span class="math inline">\(m = n-1\)</span>, (4) <span class="math inline">\(m &gt; n+1\)</span>, (5) <span class="math inline">\(m &lt; n-1\)</span>.)</p></li>
+<li><p>Let <span class="math inline">\(\Theta\)</span> be a <span class="math inline">\(\text{Uniform}(a=-\pi, b=\pi)\)</span> random variable, and let <span class="math inline">\(f\)</span> be a constant.
+Define the random phase process <span class="math inline">\(\{ X(t) \}\)</span> by
+<span class="math display">\[ X(t) = \cos(2\pi f t + \Theta). \]</span>
+Calculate the autocovariance function of <span class="math inline">\(\{ X(t) \}\)</span>. Check that this autocovariance function agrees with the
+variance function you derived in Lesson <a href="var-function.html#var-function">51</a>. (Hint: Use the shortcut formula for covariance. Calculate
+<span class="math inline">\(E[X(s) X(t)]\)</span> by LOTUS.)</p></li>
+</ol>
 
 </div>
 </div>
@@ -508,8 +571,8 @@ you should be willing to pay? This is a famous puzzle in probability called the
           </div>
         </div>
       </div>
-<a href="expected-value.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lotus.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="var-function.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -540,7 +603,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/ev-infinity.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/cov-function.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -7,13 +7,13 @@ the variance function, and the autocovariance function.
 ## Theory {-}
 
 ```{definition mean-function, name="Mean Function"}
-The **mean function** $\mu(t)$ of a random process $\{ X(t) \}$ 
+The **mean function** $\mu_X(t)$ of a random process $\{ X(t) \}$ 
   is a function that specifies the expected value at each time $t$. 
 That is,
-\[ \mu(t) \overset{\text{def}}{=} E[X(t)]. \]
+\[ \mu_X(t) \overset{\text{def}}{=} E[X(t)]. \]
 
 For a discrete-time process, we notate the mean function as 
-\[ \mu[n] \overset{\text{def}}{=} E[X[n]]. \]
+\[ \mu_X[n] \overset{\text{def}}{=} E[X[n]]. \]
 ```
 
 The following video explains how to think about a mean function intuitively.
@@ -35,7 +35,7 @@ and $f = 1$. To calculate the mean function, observe that the only thing that is
 random in \@ref(eq:random-amplitude) is $A$. Everything else is a constant, 
 so they can be pulled outside the expectation.
 \begin{align*}
-\mu(t) = E[X(t)] &= E[A\cos(2\pi ft)] \\
+\mu_X(t) = E[X(t)] &= E[A\cos(2\pi ft)] \\
 &= E[A] \cos(2\pi ft) \\
 &= 2.5 \cos(2\pi ft),
 \end{align*}
@@ -71,7 +71,7 @@ interval $(0, t)$, which we know (by properties of the Poisson process)
 follows a $\text{Poisson}(\mu=\lambda t)$ distribution. Since the 
 expected value of a $\text{Poisson}(\mu)$ random variable is $\mu$, we 
 must have
-\[ \mu(t) = E[N(t)] = \lambda t \]
+\[ \mu_N(t) = E[N(t)] = \lambda t \]
 ```
 
 Shown below (in blue) are 30 realizations of the Poisson process, with  
@@ -102,12 +102,12 @@ Consider the white noise process $\{ Z[n] \}$ defined in \@ref(exm:white-noise),
 which consists of i.i.d. random variables. Suppose the expected value of these 
 random variables is $\mu \overset{\text{def}}{=} E[Z[n]]$. Then, the mean function 
 is constant, equal to this expected value.
-\[ \mu[n] = E[Z[n]] \equiv \mu. \]
+\[ \mu_Z[n] = E[Z[n]] \equiv \mu. \]
 ```
 
 Shown below (in blue) are 30 realizations of a white noise process consisting of i.i.d. 
 standard normal random variables, along with the mean function (in red), which in this case is 
-$\mu[n] \equiv 0$.
+$\mu_Z[n] \equiv 0$.
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,
@@ -134,13 +134,13 @@ Since
 \[ X[n] = Z[1] + Z[2] + \ldots + Z[n], \]
 the mean function is 
 \begin{align*} 
-\mu[n] = E[X[n]] &= E[Z[1]] + E[Z[2]] + \ldots + E[Z[n]] \\
+\mu_X[n] = E[X[n]] &= E[Z[1]] + E[Z[2]] + \ldots + E[Z[n]] \\
 &= n E[Z[1]].
 \end{align*}
 ```
 
 Shown below (in blue) are 30 realizations of the random walk process where the steps $Z[n]$ are 
-i.i.d. standard normal, so the mean function (shown in red) is $\mu[n] = n \cdot 0 \equiv 0$.
+i.i.d. standard normal, so the mean function (shown in red) is $\mu_X[n] = n \cdot 0 \equiv 0$.
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(NA, NA,

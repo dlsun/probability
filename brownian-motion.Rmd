@@ -33,8 +33,8 @@ for(i in 1:5) {
 following properties:
 
 1. The "particle" starts at the origin at $t=0$: $B(0) = 0$.
-2. The displacement over any interval $(s, t)$, denoted by $B(t) - B(s)$, follows a 
-$\text{Normal}(\mu=0, \sigma=\sqrt{\alpha(t - s)})$ distribution.
+2. The displacement over any interval $(t_0, t_1)$, denoted by $B(t_1) - B(t_0)$, follows a 
+$\text{Normal}(\mu=0, \sigma=\sqrt{\alpha(t_1 - t_0)})$ distribution.
 3. **Independent increments:** The displacements over non-overlapping intervals are independent.
 
 The parameter $\alpha$ controls the scale of Brownian motion.

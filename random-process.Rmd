@@ -32,6 +32,15 @@ a continuous-time random process.
 
 Define $N(t)$ to be the _number of arrivals up to time $t$_. 
 Then, $\{ N(t); t \geq 0 \}$ is a continuous-time random process. 
+
+We can now restate the defining properties of a Poisson process (Definition \@ref(def:pp)) 
+using $\{ N(t) \}$.
+
+1. $N(0) = 0$.
+2. $N(t_1) - N(t_0)$, the number of arrivals on the interval $(t_0, t_1)$, 
+follows a Poisson distribution with $\mu = \lambda (t_1 - t_0)$
+3. **Independent increments:** The number of arrivals on non-overlapping intervals are independent.
+
 The graph below shows how the arrivals (orange dots) can be 
 translated into a continuous-time function $N(t)$ (blue line).
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
