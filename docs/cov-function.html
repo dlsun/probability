@@ -568,7 +568,8 @@ This process represents the number of particles that hit the Geiger counter in t
 Calculate the autocovariance function of <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span>. Check that this autocovariance function
 agrees with the variance function you derived in Lesson <a href="var-function.html#var-function">51</a>.</p>
 <p>(<em>Hint:</em> Start by calculating <span class="math inline">\(\text{Cov}[D(s), D(t)]\)</span> when <span class="math inline">\(s &gt; t\)</span>. What happens when <span class="math inline">\(s &gt; t + 3\)</span>?
-What happens when ? It should be straightforward to )</p></li>
+What happens when t &lt; s &lt; t + 3? Once you’ve worked this out, it should be straightforward to
+extend this to the case <span class="math inline">\(s &lt; t\)</span>.)</p></li>
 <li><p>Consider the moving average process <span class="math inline">\(\{ X[n] \}\)</span> of Example <a href="random-process-examples.html#exm:ma1">48.2</a>, defined by
 <span class="math display">\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]</span>
 where <span class="math inline">\(\{ Z[n] \}\)</span> is a sequence of i.i.d. standard normal random variables.

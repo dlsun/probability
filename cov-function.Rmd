@@ -138,7 +138,8 @@ at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ repr
     agrees with the variance function you derived in Lesson \@ref(var-function).
     
     (_Hint:_ Start by calculating $\text{Cov}[D(s), D(t)]$ when $s > t$. What happens when $s > t + 3$? 
-    What happens when ? It should be straightforward to )
+    What happens when t < s < t + 3? Once you've worked this out, it should be straightforward to 
+    extend this to the case $s < t$.)
  
 3. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 
 \[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]
