@@ -20,7 +20,9 @@ Notice that the variance function can be obtained from the autocovariance functi
 
 Let's calculate the autocovariance function of some random processes. Unfortunately, 
 the autocovariance function is difficult to visualize, since it is not just a function 
-of time but a function of _two_ times.
+of time but a function of _two_ times. However, the following video gives some intuition.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ogBcGFUV4wk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ```{example random-amplitude-cov, name="Random Amplitude Process"}
 Consider the random amplitude process 
