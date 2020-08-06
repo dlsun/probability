@@ -1,0 +1,154 @@
+# Autocovariance Function {#cov-function}
+
+## Theory {-}
+
+```{definition cov-function, name="Autocovariance Function"}
+The **autocovariance function** $C_X(s, t)$ of a random process $\{ X(t) \}$ 
+  is a function of _two_ times $s$ and $t$. It is sometimes just called the 
+"covariance function" for short.
+
+It specifies the covariance between the value of the process at time $s$ and 
+the value at time $t$. That is,
+\[ C_X(s, t) \overset{\text{def}}{=} \text{Cov}[X(s), X(t)]. \]
+
+For a discrete-time process, we notate the autocovariance function as 
+\[ C_X[m, n] \overset{\text{def}}{=} \text{Cov}[X[m], X[n]]. \]
+```
+
+Notice that the variance function can be obtained from the autocovariance function: 
+\[ V(t) = \text{Var}[X(t)] = \text{Cov}[X(t), X(t)] = C(t, t). \]
+
+Let's calculate the autocovariance function of some random processes. Unfortunately, 
+the autocovariance function is difficult to visualize, since it is not just a function 
+of time but a function of _two_ times.
+
+```{example random-amplitude-cov, name="Random Amplitude Process"}
+Consider the random amplitude process 
+\begin{equation}
+X(t) = A\cos(2\pi  f t)
+(\#eq:random-amplitude)
+\end{equation}
+introduced in Example \@ref(exm:random-amplitude). 
+
+To be concrete, suppose $A$ is a $\text{Binomial}(n=5, p=0.5)$ random variable 
+and $f = 1$. To calculate the autocovariance function, observe that the only thing that is 
+random in \@ref(eq:random-amplitude) is $A$. Everything else is a constant, 
+so they can be pulled outside the covariance. 
+\begin{align*}
+C_X(s, t) = \text{Cov}[X(s), X(t)] &= \text{Cov}[A\cos(2\pi fs), A\cos(2\pi ft)] \\
+&= \underbrace{\text{Cov}[A, A]}_{\text{Var}[A]} \cos(2\pi fs)\cos(2\pi ft) \\
+&= 1.25 \cos(2\pi fs)\cos(2\pi ft),
+\end{align*}
+where in the last step, we used the formula for the variance of a binomial random variable, 
+$\text{Var}[A] = np(1-p) = 5 \cdot 0.5 \cdot (1 - 0.5) = 1.25$.
+
+As a sanity check, we can derive the variance function from this autocovariance function:
+\[ V_X(t) = C_X(t, t) = 1.25 \cos(2\pi ft)\cos(2\pi ft) = 1.25 \cos^2(2\pi f t). \]
+This agrees with what we got in Example \@ref(exm:random-amplitude-var).
+```
+
+```{example poisson-process-cov, name="Poisson Process"}
+Consider the Poisson process 
+$\{ N(t); t \geq 0 \}$ of rate $\lambda$, 
+defined in Example \@ref(exm:poisson-process-as-process).
+
+To calculate the autocovariance function, we first 
+calculate $\text{Cov}[N(s), N(t)]$ assuming $s < t$. 
+We can do this by breaking $N(t)$ into $N(s)$, the number of 
+arrivals up to time $s$, plus $N(t) - N(s)$, the number of 
+arrivals between time $s$ and time $t$. This allows us to use the 
+independent increments property of the Poisson process (see Example \@ref(exm:poisson-process-as-process)).
+\begin{align*}
+\text{Cov}[N(s), N(t)] &= \text{Cov}[N(s), N(s) + (N(t) - N(s))] \\
+&= \text{Cov}[N(s), N(s)] + \underbrace{\text{Cov}[N(s), N(t) - N(s)]}_{\text{0 by independent increments}} \\
+&= \text{Var}[N(s)] \\
+&= \lambda s.
+\end{align*}
+
+This is the covariance when $s < t$. If we repeat the argument for $s > t$, we will 
+find that the covariance is $\lambda t$. In other words, the covariance always involves
+the _smaller_ of the two times $s$ and $t$. Therefore, we can write the autocovariance function as
+\[ C_N(s, t) = \lambda \min(s, t). \]
+
+As a sanity check, we can derive the variance function from this autocovariance function:
+\[ V_N(t) = C_N(t, t) = \lambda \min(t, t) = \lambda t. \]
+This agrees with what we got in Example \@ref(exm:poisson-process-var).
+```
+
+```{example white-noise-cov, name="White Noise"}
+Consider the white noise process $\{ Z[n] \}$ defined in Example \@ref(exm:white-noise), 
+which consists of i.i.d. random variables with variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. 
+
+By independence, the covariance between $Z[m]$ and $Z[n]$ is zero, unless $m=n$, in which case 
+$\text{Cov}[Z[n], Z[n]] = \text{Var}[Z[n]] = \sigma^2$. That is, the autocovariance function is 
+\[ C_Z[m, n] = \begin{cases} \sigma^2 & m = n \\ 0 & m \neq n \end{cases}. \]
+
+We can write the autocovariance function compactly using the discrete delta function $\delta[k]$, defined as 
+\[ \delta[k] \overset{def}{=} \begin{cases} 1 & k=0 \\ 0 & k \neq 0 \end{cases}. \]
+In terms of $\delta[k]$, the autocovariance function is simply 
+\[ C_Z[m, n] = \sigma^2 \delta[m - n]. \]
+
+As a sanity check, we can derive the variance function from this autocovariance function:
+\[ V_Z[n] = C_Z[n, n] = \sigma^2 \delta[n - n] = \sigma^2 \delta[0] = \sigma^2. \]
+This agrees with what we got in Example \@ref(exm:white-noise-var).
+```
+
+```{example random-walk-cov, name="Random Walk"}
+Consider the random walk process $\{ X[n]; n\geq 0 \}$ from 
+Example \@ref(exm:random-walk-process). 
+
+To calculate the autocovariance function, we first calculate 
+$\text{Cov}[X[m], X[n]]$ assuming $m < n$. Since 
+\[ X[n] = Z[1] + Z[2] + \ldots + Z[n], \]
+we can write this as 
+\begin{align*}
+\text{Cov}[X[m], X[n]] = \text{Cov}[&Z[1] + \ldots + Z[m], \\
+&Z[1] + \ldots + Z[m] + \ldots + Z[n]].
+\end{align*}
+I find it helpful to write the covariance in two lines, aligning like terms, 
+since the $Z[i]$s are independent. When we expand the covariance, it reduces to 
+\[ \text{Var}[Z[1]] + \ldots + \text{Var}[Z[m]] = m \text{Var}[Z[1]].  \]
+
+This is the covariance when $m < n$. If we repeat the argument for $m > n$, we will 
+find that the covariance is $n \text{Var}[Z[1]]$. In other words, the covariance always involves
+the _smaller_ of the two times $m$ and $n$. Therefore, we can write the autocovariance function as
+\[ C_X[m, n] = \min(m, n) \text{Var}[Z[1]]. \]
+
+As a sanity check, we can derive the variance function from this autocovariance function:
+\[ V_X[n] = C_X[n, n] = n \text{Var}[Z[1]]. \]
+This agrees with what we got in Example \@ref(exm:random-walk-var).
+```
+
+## Essential Practice {-}
+
+1. Consider a grain of pollen suspended in water, whose horizontal position can be modeled by 
+Brownian motion $\{B(t)\}$ with parameter $\alpha=4 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
+Calculate the autocovariance function of $\{ B(t) \}$. Check that this autocovariance function agrees with the 
+variance function you derived in Lesson \@ref(var-function).
+
+2. Radioactive particles hit a Geiger counter according to a Poisson process 
+at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
+
+    Define the new process $\{ D(t); t \geq 3 \}$ by 
+    \[ D(t) = N(t) - N(t - 3). \]
+    This process represents the number of particles that hit the Geiger counter in the last 3 seconds. 
+    Calculate the autocovariance function of $\{ D(t); t \geq 3 \}$. Check that this autocovariance function 
+    agrees with the variance function you derived in Lesson \@ref(var-function).
+    
+    (_Hint:_ Start by calculating $\text{Cov}[D(s), D(t)]$ when $s > t$. What happens when $s > t + 3$? 
+    What happens when ? It should be straightforward to )
+ 
+3. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 
+\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]
+where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables. 
+Calculate the autocovariance function of $\{ X[n] \}$. Check that this autocovariance function agrees with the 
+variance function you derived in Lesson \@ref(var-function).
+
+    (_Hint:_ Consider the following cases: (1) $m = n$, (2) $m = n+1$, (3) $m = n-1$, (4) $m > n+1$, (5) $m < n-1$.)
+    
+4. Let $\Theta$ be a $\text{Uniform}(a=-\pi, b=\pi)$ random variable, and let $f$ be a constant. 
+Define the random phase process $\{ X(t) \}$ by
+\[ X(t) = \cos(2\pi f t + \Theta). \]
+Calculate the autocovariance function of $\{ X(t) \}$. Check that this autocovariance function agrees with the 
+variance function you derived in Lesson \@ref(var-function). (Hint: Use the shortcut formula for covariance. Calculate 
+$E[X(s) X(t)]$ by LOTUS.)

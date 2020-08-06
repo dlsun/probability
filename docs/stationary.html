@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 9 Bayes’ Theorem | Introduction to Probability</title>
+  <title>Lesson 53 Stationary Processes | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 9 Bayes’ Theorem | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 53 Stationary Processes | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 9 Bayes’ Theorem | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 53 Stationary Processes | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ltp.html"/>
-<link rel="next" href="rv.html"/>
+<link rel="prev" href="cov-function.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -439,122 +439,140 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bayes" class="section level1">
-<h1><span class="header-section-number">Lesson 9</span> Bayes’ Theorem</h1>
-<div id="motivating-example-8" class="section level2">
-<h2><span class="header-section-number">9.1</span> Motivating Example</h2>
-<p>The ELISA test is used to screen blood for HIV.</p>
-<ul>
-<li>When the blood contains HIV, it gives a positive result 98% of the time.</li>
-<li>When the blood does not contain HIV, it gives a negative result 94% of the time.</li>
-</ul>
-<p>The prevalence of HIV is about 1% in the adult male population.
-A patient has just tested positive and wants to know the probability that he has HIV.
-What would you tell him?</p>
-<p>The solution to this problem involves an important theorem in probability and statistics called
-<strong>Bayes’ Theorem</strong>. This video covers some of the intuition and the history behind Bayes’ Theorem.
-Don’t worry about the details for now. This video is meant to be more inspiring than informative.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/R13BD8qKeTg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+<div id="stationary" class="section level1">
+<h1><span class="header-section-number">Lesson 53</span> Stationary Processes</h1>
+<div id="motivation-4" class="section level2 unnumbered">
+<h2>Motivation</h2>
+<p>What does it mean for a random process to remain the “same” over time?
+Obviously, the exact values will be different, since
+the process is random. The notion of a “stationary process” makes this notion precise.</p>
 </div>
-<div id="theory-7" class="section level2">
-<h2><span class="header-section-number">9.2</span> Theory</h2>
-<p>The conditional probabilities <span class="math inline">\(P(A | B)\)</span> and <span class="math inline">\(P(B | A)\)</span> are not the same. For example,
-let <span class="math inline">\(A\)</span> be “currently a Cal Poly student” and <span class="math inline">\(B\)</span> be “went to high school in California”.</p>
-<ul>
-<li><span class="math inline">\(P(B | A)\)</span> is very high, about <span class="math inline">\(0.85\)</span>, since most Cal Poly students are in-state.</li>
-<li><span class="math inline">\(P(A | B)\)</span> is very low, as only a very small fraction of people who went to high school in CA are currently in college, much less
-at Cal Poly.</li>
-</ul>
-<p>Bayes’ Theorem is a way to convert probabilities of the form <span class="math inline">\(P(B | A)\)</span> into probabilities of the form <span class="math inline">\(P(A | B)\)</span>. This switcheroo
-is surprisingly common in probability and statistics. For example,</p>
-<ul>
-<li>Doctors know the probability that a patient tests positive (<span class="math inline">\(B\)</span>) given that they have the disease (<span class="math inline">\(A\)</span>), but a patient
-is more interested in the probability that he has the disease (<span class="math inline">\(A\)</span>) given that he tested positive (<span class="math inline">\(B\)</span>).</li>
-<li>E-mail providers can collect data on the probability that an e-mail contains a certain word (<span class="math inline">\(B\)</span>) given that it is
-spam (<span class="math inline">\(A\)</span>), but a spam filter needs the probability that the e-mail is spam (<span class="math inline">\(A\)</span>) given that it contains the word (<span class="math inline">\(B\)</span>).</li>
-</ul>
-<p>Don’t be deceived by its simplicity; Bayes’ Theorem
-is one of the most important and powerful results in all of probability and statistics.</p>
+<div id="theory-47" class="section level2 unnumbered">
+<h2>Theory</h2>
 
-<div class="theorem">
-<span id="thm:unnamed-chunk-13" class="theorem"><strong>Theorem 9.1  (Bayes’ Theorem)  </strong></span><span class="math display">\[ P(A | B) = \frac{P(A) P(B | A)}{P(B)}. \]</span>
-</div>
-
-
-<div class="proof">
- <span class="proof"><em>Proof. </em></span> By the definition of conditional probability (<a href="conditional.html#def:conditional">6.1</a>) and the multiplication rule (<a href="conditional.html#thm:multiplication-rule">6.1</a>):
-<span class="math display">\[\begin{equation} 
-P(A | B) = \frac{P(A \textbf{ and } B)}{P(B)} = \frac{P(A) P(B | A)}{P(B)}.
-\end{equation}\]</span>
-</div>
-
-<p>The next video provides intuition about this proof, connecting it with concepts from the past few lessons, including
-conditional probability and independence.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/U_85TaXbeIo?start=13" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p>To solve most problems, you will need to combine Bayes’ Theorem with the Law of Total Probability (<a href="ltp.html#thm:ltp">8.1</a>).
-The solution to the HIV testing example from above demonstrates some of the common tricks.</p>
-
-<div class="solution">
-<p> <span class="solution"><em>Solution. </em></span> Let’s represent HIV positive by <span class="math inline">\(H\)</span> and a positive ELISA test by <span class="math inline">\(T\)</span>.</p>
-<p>The problem statement tells us that
-<span class="math display">\[\begin{align*}
-P(H) &amp;= 0.01 &amp; P(T | H) &amp;= 0.98 &amp; P(\textbf{not } T | \textbf{not } H) &amp;= 0.94.
-\end{align*}\]</span>
-By the Complement Rule, we can infer that
-<span class="math display">\[\begin{align*}
-P(\textbf{not } H) &amp;= 0.99 &amp; P(\textbf{not } T | H) &amp;= 0.02 &amp; P(T | \textbf{not } H) &amp;= 0.06.
-\end{align*}\]</span></p>
-<p>Since we already have <span class="math inline">\(P(T | H)\)</span> and we want to know <span class="math inline">\(P(H | T)\)</span>, this is a job for Bayes’ Rule:
-<span class="math display">\[ P(H | T) = \frac{P(H) P(T | H)}{P(T)} = \frac{0.01 \cdot 0.98}{P(T)}. \]</span>
-Unfortunately, we do not know <span class="math inline">\(P(T)\)</span>, the probability of testing positive overall. However, we do know
-its probability, conditional on HIV status. So we apply the Law of Total Probability, partitioning
-by HIV status:
-<span class="math display">\[ P(T) = P(H) P(T | H) + P(\textbf{not } H) P(T | \textbf{not } H) = 0.01 \cdot 0.98 + 0.99 \cdot 0.06. \]</span>
-Finally, we plug this result into Bayes’ Rule:
-<span class="math display">\[ P(H | T) = \frac{0.01 \cdot 0.98}{0.01 \cdot 0.98 + 0.99 \cdot 0.06} = .142. \]</span></p>
-So even though the patient tested positive for HIV, he only has a 14.2% chance of actually having HIV!
-</div>
-
-<p>The low probability is surprising at first. But it makes sense if we think about the problem geometrically. The figure below partitions
-adult males based on their HIV status and test status. The shaded area represents all people who tested positive. The people
-who actually have HIV make up only a tiny fraction of all the people who tested positive because there are so many more people who do not
-have the disease, that the false positives overwhelm the true positives.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" alt="Intuition for Bayes' Rule" width="60%" />
-<p class="caption">
-Figure 9.1: Intuition for Bayes’ Rule
-</p>
-</div>
-<p>The next video will give you deep insights about Bayes’ rule. You should be able to follow most of it, but you may want to come
-back to this video after trying some of the examples below.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HZGCoVF3YvM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-</div>
-<div id="examples-7" class="section level2">
-<h2><span class="header-section-number">9.3</span> Examples</h2>
+<div class="definition">
+<p><span id="def:stationary" class="definition"><strong>Definition 53.1  (Stationary Process)  </strong></span>A process <span class="math inline">\(\{ X(t) \}\)</span> is called <strong>strict-sense stationary</strong> if the process
+is completely invariant under time shifts. That is, the distribution of
+<span class="math display">\[ (X(t_1), X(t_2), ..., X(t_n)) \]</span>
+matches the distribution of
+<span class="math display">\[ (X(t_1 + \tau), X(t_2 + \tau), ..., X(t_n + \tau)) \]</span>
+for any times <span class="math inline">\(t_1, ..., t_n\)</span> and any time shift <span class="math inline">\(\tau\)</span>.</p>
+<p>However, we will mostly be concerned with <strong>wide-sense stationary</strong> processes, which
+is less restrictive. A random process <span class="math inline">\(\{ X(t) \}\)</span> is wide-sense stationary if its mean
+and autocovariance function are invariant under time shifts. That is:</p>
 <ol style="list-style-type: decimal">
-<li><p>The rare mineral unobtanium is present in only 1% of rocks in a mine. You have an
-unobtanium detector, which never fails to detect unobtanium when it is present.
-Otherwise, it is still reliable, returning accurate readings 90% of the time when
-unobtanium is not present.</p>
-<ol style="list-style-type: lower-alpha">
-<li>What is <span class="math inline">\(P(\text{unobtanium detected} | \text{unobtanium present})\)</span>?</li>
-<li>What is <span class="math inline">\(P(\text{unobtanium present} | \text{unobtanium detected})\)</span>?</li>
+<li>The mean function <span class="math inline">\(\mu_X(t)\)</span> is constant. In this case, we will write the mean function as <span class="math inline">\(\mu_X(t) \equiv \mu_X\)</span>.</li>
+<li><p>The autocovariance function <span class="math inline">\(C_X(s, t)\)</span> only depends on <span class="math inline">\(s - t\)</span>, the difference between the times.
+In this case, we will write the autocovariance function as <span class="math inline">\(C_X(s, t) = C_X(s - t)\)</span>.</p>
+(For a discrete-time process, we require the autocovariance function <span class="math inline">\(C_X[m, n]\)</span> to only depend on <span class="math inline">\(m - n\)</span>,
+and we write <span class="math inline">\(C_X[m, n] = C_X[m - n]\)</span>.)
+</div></li>
 </ol>
-<p>(<strong>Hint:</strong> One of these probabilities can be read off directly from the question prompt.
-The other needs to be calculated using Bayes’ Rule.)</p>
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/1csFTDXXULY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p></li>
-<li><p>One application where Bayes’ Theorem has been extremely successful is spam filtering. From historical data,
-80% of all e-mail is spam, and the phrase “free money” is used in 10% of spam e-mails. That is,
-<span class="math inline">\(P(\text{&quot;free money&quot;} | \text{spam}) = 0.1\)</span>.
-The phrase is also used in 1% of non-spam e-mails. A new e-mail has just arrived which contains the phrase
-“free money”. Given this information, what is the probability that it is spam,
-<span class="math inline">\(P(\text{spam} | \text{&quot;free money&quot;})\)</span>?</p></li>
-<li><p>A certain disease afflicts 10% of the population. A test for the disease is 90% accurate for patients with the disease
-and 80% accurate for patients without the disease. Suppose you test positive for the disease.
-What is the probability that you actually have the disease?</p></li>
+<p>Let’s determine whether some random processes are wide-sense stationary.</p>
+
+<div class="example">
+<p><span id="exm:random-amplitude-stationary" class="example"><strong>Example 53.1  (Random Amplitude Process)  </strong></span>Consider the random amplitude process
+<span class="math display" id="eq:random-amplitude">\[\begin{equation}
+X(t) = A\cos(2\pi  f t)
+\tag{50.1}
+\end{equation}\]</span>
+introduced in Example <a href="random-process-examples.html#exm:random-amplitude">48.1</a>.</p>
+<p>In Example <a href="mean-function.html#exm:random-amplitude-mean">50.1</a>, we
+showed that its mean function is
+<span class="math display">\[ \mu_X(t) = 2.5 \cos(2\pi f t). \]</span>
+This is not constant in <span class="math inline">\(t\)</span>, so this process cannot be wide-sense stationary. We
+do not even need to check the autocovariance function.</p>
+If we look at a graph of the process, it is clearly not stationary. If we shift
+the process by any amount that is less than a full period, then the process looks
+different. Shown on the graph below are 20 realizations of the original process
+<span class="math inline">\(\{ X(t) \}\)</span> in blue, as well as 20 realizations of the
+time-shifted process <span class="math inline">\(\{ X(t - 0.3) \}\)</span>. The peaks and troughs are in different places.
+</div>
+
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+
+<div class="example">
+<p><span id="exm:poisson-process-stationary" class="example"><strong>Example 53.2  (Poisson Process)  </strong></span>Consider the Poisson process
+<span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> of rate <span class="math inline">\(\lambda\)</span>,
+defined in Example <a href="random-process.html#exm:poisson-process-as-process">47.1</a>.</p>
+<p>In Example <a href="mean-function.html#exm:poisson-process-mean">50.2</a>, we
+showed that its mean function is
+<span class="math display">\[ \mu_N(t) = \lambda t. \]</span>
+This is not constant in <span class="math inline">\(t\)</span>, so we know that this process cannot be wide-sense stationary. We
+do not even need to check the autocovariance function.</p>
+Again, the fact that the Poisson process is not stationary is immediately apparent from a graph
+of the process. Shown below are 20 realizations of the original process <span class="math inline">\(\{ N(t) \}\)</span> in blue, as well as
+20 realizations of the time-shifted process <span class="math inline">\(\{ N(t - 1) \}\)</span> in red. The time-shifted process may not
+even start at 0 at time 0!
+</div>
+
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+
+<div class="example">
+<p><span id="exm:white-noise-stationary" class="example"><strong>Example 53.3  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in Example <a href="random-process.html#exm:white-noise">47.2</a>,
+which consists of i.i.d. random variables with mean <span class="math inline">\(\mu = E[Z[n]]\)</span> and
+variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]\)</span>.</p>
+<p>In Example <a href="mean-function.html#exm:white-noise-mean">50.3</a>, we showed that its mean function is
+<span class="math display">\[ \mu_Z[n] \equiv \mu, \]</span>
+which is constant, so the process could be wide-sense stationary. We need to check its
+autocovariance function.</p>
+<p>In Example <a href="cov-function.html#exm:white-noise-cov">52.3</a>, we showed that its autocovariance function is
+<span class="math display">\[ C[m, n] = \begin{cases} \sigma^2 &amp; m = n \\ 0 &amp; m \neq n \end{cases}. \]</span></p>
+<p>To see that this is a function of <span class="math inline">\(m - n\)</span>, we rewrite <span class="math inline">\(m = n\)</span> as <span class="math inline">\(m - n = 0\)</span>:
+<span class="math display">\[ C[m, n] = \begin{cases} \sigma^2 &amp; m - n = 0 \\ 0 &amp; m - n \neq 0 \end{cases}. \]</span></p>
+<p>This can be written more compactly using the discrete delta function <span class="math inline">\(\delta[k]\)</span>, defined as
+<span class="math display">\[ \delta[k] \overset{def}{=} \begin{cases} 1 &amp; k=0 \\ 0 &amp; k \neq 0 \end{cases}. \]</span>
+In terms of <span class="math inline">\(\delta[k]\)</span>, the autocovariance function is simply
+<span class="math display">\[ C[m, n] = \sigma^2 \delta[m - n]. \]</span></p>
+The graph below shows white noise <span class="math inline">\(\{ Z[n] \}\)</span> in blue and time-shifted white noise <span class="math inline">\(\{ Z[n-1] \}\)</span> in
+red. Visually, it is hard to tell the difference between the two, which is intutively why the
+process is stationary.
+</div>
+
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+
+<div class="example">
+<p><span id="exm:random-walk-stationary" class="example"><strong>Example 53.4  (Random Walk)  </strong></span>Consider the random walk process <span class="math inline">\(\{ X[n]; n\geq 0 \}\)</span> from
+Example <a href="random-process.html#exm:random-walk-process">47.3</a>.</p>
+<p>In Example <a href="mean-function.html#exm:random-walk-mean">50.4</a>, we calculated the mean function to be
+<span class="math display">\[ \mu[n] = 0. \]</span>
+This is constant, so the process might be wide-sense stationary. But
+we also need to check the autocovariance function.</p>
+<p>In Example <a href="cov-function.html#exm:random-walk-cov">52.4</a>, we calculated the autocovariance function to be
+<span class="math display">\[ C[m, n] = \min(m, n) \text{Var}[Z[1]]. \]</span>
+This is <em>not</em> just a function of <span class="math inline">\(m - n\)</span>, so the process is not wide-sense stationary.</p>
+<p>You might ask, “How can we be sure that there isn’t some way to manipulate <span class="math inline">\(\min(m, n)\)</span> so
+that it is a function of <span class="math inline">\(m-n\)</span>?” We can prove that it is impossible by testing a few pairs of
+values. For example, <span class="math inline">\((m, n) = (3, 2)\)</span> and <span class="math inline">\((m, n) = (6, 5)\)</span> are two pairs of values that are both
+separated in time by <span class="math inline">\(m - n = 1\)</span> samples. If it were possible to reduce <span class="math inline">\(C[m, n]\)</span> to a function
+<span class="math inline">\(C[m - n]\)</span> of the difference only, then <span class="math inline">\(C[3, 2]\)</span> would have to equal <span class="math inline">\(C[6, 5]\)</span>.</p>
+However, they are not equal: <span class="math inline">\(C[3, 2] = 2 \text{Var}[Z[1]]\)</span>, while <span class="math inline">\(C[6, 5] = 5 \text{Var}[Z[1]]\)</span>.
+</div>
+
+</div>
+<div id="essential-practice-41" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<p>For these practice questions, you may want to refer to the mean and autocovariance functions you
+calculated in Lessons <a href="mean-function.html#mean-function">50</a> and <a href="cov-function.html#cov-function">52</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Consider a grain of pollen suspended in water, whose horizontal position can be modeled by
+Brownian motion <span class="math inline">\(\{B(t); t \geq 0\}\)</span> with parameter <span class="math inline">\(\alpha=4 \text{mm}^2/\text{s}\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>.
+Is <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span> wide-sense stationary?</p></li>
+<li><p>Radioactive particles hit a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
+<p>Define the new process <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> by
+<span class="math display">\[ D(t) = N(t) - N(t - 3). \]</span>
+This process represents the number of particles that hit the Geiger counter in the last 3 seconds.
+Is <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> wide-sense stationary?</p></li>
+<li><p>Consider the moving average process <span class="math inline">\(\{ X[n] \}\)</span> of Example <a href="random-process-examples.html#exm:ma1">48.2</a>, defined by
+<span class="math display">\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]</span>
+where <span class="math inline">\(\{ Z[n] \}\)</span> is a sequence of i.i.d. standard normal random variables.
+Is <span class="math inline">\(\{ X[n] \}\)</span> wide-sense stationary?</p>
+<p>(<em>Hint:</em> Consider the following cases: (1) <span class="math inline">\(m = n\)</span>, (2) <span class="math inline">\(m = n+1\)</span>, (3) <span class="math inline">\(m = n-1\)</span>, (4) <span class="math inline">\(m &gt; n+1\)</span>, (5) <span class="math inline">\(m &lt; n-1\)</span>.)</p></li>
+<li><p>Let <span class="math inline">\(\Theta\)</span> be a <span class="math inline">\(\text{Uniform}(a=-\pi, b=\pi)\)</span> random variable, and let <span class="math inline">\(f\)</span> be a constant.
+Define the random phase process <span class="math inline">\(\{ X(t) \}\)</span> by
+<span class="math display">\[ X(t) = \cos(2\pi f t + \Theta). \]</span>
+Is <span class="math inline">\(\{ X(t) \}\)</span> wide-sense stationary?</p></li>
 </ol>
 
 </div>
@@ -564,8 +582,8 @@ What is the probability that you actually have the disease?</p></li>
           </div>
         </div>
       </div>
-<a href="ltp.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rv.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cov-function.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -596,7 +614,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/bayes.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/stationary.Rmd",
 "text": "Edit"
 },
 "history": {

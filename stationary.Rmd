@@ -1,0 +1,204 @@
+# Stationary Processes {#stationary}
+
+## Motivation {-}
+
+What does it mean for a random process to remain the "same" over time? 
+Obviously, the exact values will be different, since 
+the process is random. The notion of a "stationary process" makes this notion precise.
+
+## Theory {-}
+
+```{definition stationary, name="Stationary Process"}
+A process $\{ X(t) \}$ is called **strict-sense stationary** if the process 
+is completely invariant under time shifts. That is, the distribution of 
+\[ (X(t_1), X(t_2), ..., X(t_n)) \]
+matches the distribution of 
+\[ (X(t_1 + \tau), X(t_2 + \tau), ..., X(t_n + \tau)) \]
+for any times $t_1, ..., t_n$ and any time shift $\tau$.
+
+However, we will mostly be concerned with **wide-sense stationary** processes, which 
+is less restrictive. A random process $\{ X(t) \}$ is wide-sense stationary if its mean 
+and autocovariance function are invariant under time shifts. That is:
+
+1. The mean function $\mu_X(t)$ is constant. In this case, we will write the mean function as $\mu_X(t) \equiv \mu_X$.
+2. The autocovariance function $C_X(s, t)$ only depends on $s - t$, the difference between the times. 
+In this case, we will write the autocovariance function as $C_X(s, t) = C_X(s - t)$.
+
+    (For a discrete-time process, we require the autocovariance function $C_X[m, n]$ to only depend on $m - n$, 
+      and we write $C_X[m, n] = C_X[m - n]$.)
+```
+
+Let's determine whether some random processes are wide-sense stationary.
+
+```{example random-amplitude-stationary, name="Random Amplitude Process"}
+Consider the random amplitude process 
+\begin{equation}
+X(t) = A\cos(2\pi  f t)
+(\#eq:random-amplitude)
+\end{equation}
+introduced in Example \@ref(exm:random-amplitude). 
+
+In Example \@ref(exm:random-amplitude-mean), we 
+showed that its mean function is 
+\[ \mu_X(t) = 2.5 \cos(2\pi f t). \]
+This is not constant in $t$, so this process cannot be wide-sense stationary. We 
+do not even need to check the autocovariance function.
+
+If we look at a graph of the process, it is clearly not stationary. If we shift 
+the process by any amount that is less than a full period, then the process looks 
+different. Shown on the graph below are 20 realizations of the original process 
+$\{ X(t) \}$ in blue, as well as 20 realizations of the 
+time-shifted process $\{ X(t - 0.3) \}$. The peaks and troughs are in different places.
+```
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-5.1, 5.1),
+     xlab="Time (t)", ylab="X(t)")
+axis(1, pos=0)
+axis(2, pos=0)
+set.seed(1)
+ts <- seq(-2, 3, by=0.01)
+a <- rbinom(30, 5, 0.5)
+for(i in 1:20) {
+  lines(ts, a[i] * cos(2 * pi * ts), col=rgb(0, 0, 1, 0.2))
+  lines(ts, a[i] * cos(2 * pi * (ts - 0.3)), col=rgb(1, 0, 0, 0.2))
+}
+```
+
+
+```{example poisson-process-stationary, name="Poisson Process"}
+Consider the Poisson process 
+$\{ N(t); t \geq 0 \}$ of rate $\lambda$, 
+defined in Example \@ref(exm:poisson-process-as-process).
+
+In Example \@ref(exm:poisson-process-mean), we 
+showed that its mean function is 
+\[ \mu_N(t) = \lambda t. \]
+This is not constant in $t$, so we know that this process cannot be wide-sense stationary. We 
+do not even need to check the autocovariance function.
+
+Again, the fact that the Poisson process is not stationary is immediately apparent from a graph 
+of the process. Shown below are 20 realizations of the original process $\{ N(t) \}$ in blue, as well as 
+20 realizations of the time-shifted process $\{ N(t - 1) \}$ in red. The time-shifted process may not 
+even start at 0 at time 0!
+```
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(0, 5), ylim=c(0, 8.5),
+     xlab="Time (t)", ylab="Number of arrivals N(t)")
+axis(1, pos=0, at=0:5)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:20) {
+  arrivals <- cumsum(rexp(10, 0.8))
+  ts <- seq(0, 6, by=.01)
+  N <- c()
+  for(t in ts) {
+    N <- c(N, sum(arrivals < t))
+  }
+  lines(ts, N, col=rgb(0, 0, 1, 0.3))
+  lines(ts - 1, N, col=rgb(1, 0, 0, 0.3))
+}
+```
+
+
+```{example white-noise-stationary, name="White Noise"}
+Consider the white noise process $\{ Z[n] \}$ defined in Example \@ref(exm:white-noise), 
+which consists of i.i.d. random variables with mean $\mu = E[Z[n]]$ and 
+variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. 
+
+In Example \@ref(exm:white-noise-mean), we showed that its mean function is 
+\[ \mu_Z[n] \equiv \mu, \]
+which is constant, so the process could be wide-sense stationary. We need to check its 
+autocovariance function.
+
+In Example \@ref(exm:white-noise-cov), we showed that its autocovariance function is 
+\[ C[m, n] = \begin{cases} \sigma^2 & m = n \\ 0 & m \neq n \end{cases}. \]
+
+To see that this is a function of $m - n$, we rewrite $m = n$ as $m - n = 0$:
+  \[ C[m, n] = \begin{cases} \sigma^2 & m - n = 0 \\ 0 & m - n \neq 0 \end{cases}. \]
+
+This can be written more compactly using the discrete delta function $\delta[k]$, defined as 
+\[ \delta[k] \overset{def}{=} \begin{cases} 1 & k=0 \\ 0 & k \neq 0 \end{cases}. \]
+In terms of $\delta[k]$, the autocovariance function is simply 
+\[ C[m, n] = \sigma^2 \delta[m - n]. \]
+
+The graph below shows white noise $\{ Z[n] \}$ in blue and time-shifted white noise $\{ Z[n-1] \}$ in 
+red. Visually, it is hard to tell the difference between the two, which is intutively why the 
+process is stationary.
+```
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(NA, NA,
+     xaxt="n", yaxt="n", bty="n",
+     xlim=c(-2, 3), ylim=c(-3, 3),
+     xlab="Time Sample (n)", ylab="Z[n]")
+axis(1, pos=0, at=-2:3)
+axis(2, pos=0)
+set.seed(1)
+for(i in 1:20) {
+  ts <- -3:4
+  Z <- rnorm(8)
+  points(ts, Z, pch=19, col=rgb(0, 0, 1, 0.3))
+  lines(ts, Z, col=rgb(0, 0, 1, 0.3))
+  points(ts - 1, Z, pch=19, col=rgb(1, 0, 0, 0.3))
+  lines(ts - 1, Z, col=rgb(1, 0, 0, 0.3))
+}
+points(-2:3, rep(0, 6), col="red", pch=19)
+```
+
+```{example random-walk-stationary, name="Random Walk"}
+Consider the random walk process $\{ X[n]; n\geq 0 \}$ from 
+Example \@ref(exm:random-walk-process). 
+
+In Example \@ref(exm:random-walk-mean), we calculated the mean function to be
+\[ \mu[n] = 0. \]
+This is constant, so the process might be wide-sense stationary. But 
+we also need to check the autocovariance function.
+
+In Example \@ref(exm:random-walk-cov), we calculated the autocovariance function to be 
+\[ C[m, n] = \min(m, n) \text{Var}[Z[1]]. \]
+This is _not_ just a function of $m - n$, so the process is not wide-sense stationary.
+
+You might ask, "How can we be sure that there isn't some way to manipulate $\min(m, n)$ so 
+that it is a function of $m-n$?" We can prove that it is impossible by testing a few pairs of 
+values. For example, $(m, n) = (3, 2)$ and $(m, n) = (6, 5)$ are two pairs of values that are both 
+separated in time by $m - n = 1$ samples. If it were possible to reduce $C[m, n]$ to a function 
+$C[m - n]$ of the difference only, then $C[3, 2]$ would have to equal $C[6, 5]$. 
+
+However, they are not equal: $C[3, 2] = 2 \text{Var}[Z[1]]$, while $C[6, 5] = 5 \text{Var}[Z[1]]$.
+```
+
+
+## Essential Practice {-}
+
+For these practice questions, you may want to refer to the mean and autocovariance functions you 
+calculated in Lessons \@ref(mean-function) and \@ref(cov-function).
+
+1. Consider a grain of pollen suspended in water, whose horizontal position can be modeled by 
+Brownian motion $\{B(t); t \geq 0\}$ with parameter $\alpha=4 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
+Is $\{ B(t); t \geq 0 \}$ wide-sense stationary?
+
+2. Radioactive particles hit a Geiger counter according to a Poisson process 
+at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
+
+    Define the new process $\{ D(t); t \geq 3 \}$ by 
+    \[ D(t) = N(t) - N(t - 3). \]
+    This process represents the number of particles that hit the Geiger counter in the last 3 seconds. 
+    Is $\{ D(t); t \geq 3 \}$ wide-sense stationary?
+ 
+3. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 
+\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]
+where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables. 
+Is $\{ X[n] \}$ wide-sense stationary?
+
+    (_Hint:_ Consider the following cases: (1) $m = n$, (2) $m = n+1$, (3) $m = n-1$, (4) $m > n+1$, (5) $m < n-1$.)
+    
+4. Let $\Theta$ be a $\text{Uniform}(a=-\pi, b=\pi)$ random variable, and let $f$ be a constant. 
+Define the random phase process $\{ X(t) \}$ by
+\[ X(t) = \cos(2\pi f t + \Theta). \]
+Is $\{ X(t) \}$ wide-sense stationary?
