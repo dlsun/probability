@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 7 Independence | Introduction to Probability</title>
+  <title>Lesson 54 Autocorrelation Function | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 7 Independence | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 54 Autocorrelation Function | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 7 Independence | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 54 Autocorrelation Function | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="conditional.html"/>
-<link rel="next" href="ltp.html"/>
+<link rel="prev" href="stationary.html"/>
+<link rel="next" href="power.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -469,111 +469,122 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="independence" class="section level1">
-<h1><span class="header-section-number">Lesson 7</span> Independence</h1>
-<div id="motivating-example-6" class="section level2 unnumbered">
-<h2>Motivating Example</h2>
-<p>Many gamblers believe that after a string of losses, they are “due”
-for a win. Consider a gambler who repeatedly bets on reds in
-roulette, an event with probability <span class="math inline">\(18 / 38 \approx 0.474\)</span>. The ball has
-not landed in a red pocket on any of the last 4 spins of the wheel.
-Does this make it more likely that he will win on the next spin?</p>
-<p>This is really a conditional probability question in disguise.
-We want to know the probability that the ball will land in a
-red pocket on the 5th spin, <em>given</em> that it did not land in a
-red pocket on any of the first 4 spins:
-<span class="math display">\[ P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}). \]</span></p>
-</div>
-<div id="theory-5" class="section level2 unnumbered">
+<div id="autocorrelation" class="section level1">
+<h1><span class="header-section-number">Lesson 54</span> Autocorrelation Function</h1>
+<div id="theory-48" class="section level2 unnumbered">
 <h2>Theory</h2>
-<p>To verify that the two probabilities are <em>exactly</em> the same, we
-do the calculation:</p>
-<p><span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= \frac{P(\text{not red on first 4 spins} \textbf{ and } \text{red on 5th spin}) }{P(\text{not red on first 4 spins})} \\
-&amp;= \frac{ 20^4 \cdot 18 \big/ 38^5 }{20^4 \big/ 38^4} \\
-&amp;= \frac{18}{38}.
-\end{align*}\]</span></p>
-<p>We see that the conditional probability is <span class="math inline">\(18 / 38\)</span>, which is the same as the probability that the 5th
-spin is red if we did not know the outcome of the first 4 spins. In mathematical notation,
-<span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= P(\text{red on 5th spin})
-\end{align*}\]</span>
-When conditioning on one event (e.g., “not red on first 4 spins”) does not change the probability
-of another event (e.g., “red on 5th spin”), we say that the two
-events are <strong>independent</strong>. In this case, whether the gambler wins on the 5th spin is
-independent of the fact that he has lost each of the last 4 spins. The folk belief that one is
-“due” for a win after a series of losses is plain wrong and is known as the <strong>gambler’s fallacy</strong>.</p>
+<p>In this lesson, we introduce a summary of a random process that is closely
+related to the mean and autocovariance functions. This function plays a
+crucial role in signal processing.</p>
 
 <div class="definition">
-<span id="def:independence" class="definition"><strong>Definition 7.1  (Independence)  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be <strong>independent</strong> if the
-<span class="math display" id="eq:independence">\[\begin{equation}
-P(B | A) = P(B).
-\tag{7.1}
-\end{equation}\]</span>
+<p><span id="def:autocorrelation" class="definition"><strong>Definition 54.1  (Autocorrelation Function)  </strong></span>The <strong>autocorrelation function</strong> <span class="math inline">\(R_X(s, t)\)</span> of a random process <span class="math inline">\(\{ X(t) \}\)</span>
+is a function of <em>two</em> times <span class="math inline">\(s\)</span> and <span class="math inline">\(t\)</span>. It specifies
+<span class="math display" id="eq:autocorrelation">\[\begin{equation}
+R_X(s, t) \overset{\text{def}}{=} E[X(s)X(t)]. 
+\tag{54.1}
+\end{equation}\]</span></p>
+<p>By the shortcut formula for covariance <a href="covariance.html#eq:cov-shortcut">(29.2)</a>,
+<span class="math inline">\(E[X(s) X(t)] = \text{Cov}[X(s), X(t)] + E[X(s)] E[X(t)]\)</span>, so the autocorrelation
+function can be related to the mean function <a href="mean-function.html#eq:mean-function">(50.1)</a>
+and autocovariance function
+<span class="math display">\[ R_X(s, t) = C_X(s, t) + \mu_X(s) \mu_X(t). \]</span></p>
+<p>For a stationary process (Definition <a href="stationary.html#stationary">53</a>), the autocorrelation
+function only depends on the difference between the times <span class="math inline">\(\tau = s - t\)</span>:
+<span class="math display">\[ R_X(\tau) = C_X(\tau) + \mu_X^2 \]</span></p>
+For a discrete-time process, we notate the autocorrelation function as
+<span class="math display">\[ R_X[m, n] \overset{\text{def}}{=} C_X[m, n] + \mu_X[m] \mu_X[n]. \]</span>
 </div>
 
-The next result follows by applying the Multiplication Rule (<a href="conditional.html#thm:multiplication-rule">6.1</a>) to
-the definition of independence.
-
-<div class="theorem">
-<span id="thm:independence-mult" class="theorem"><strong>Theorem 7.1  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if their probabilities multiply:
-<span class="math display" id="eq:independence-mult">\[\begin{equation}
-P(A \textbf{ and } B) = P(A) P(B).
-\tag{7.2}
-\end{equation}\]</span>
-</div>
-
-
-<div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> First, we assume <a href="independence.html#eq:independence">(7.1)</a> and show that <a href="independence.html#eq:independence-mult">(7.2)</a> holds:
-<span class="math display">\[\begin{align*}
-P(A \textbf{ and } B) &amp;= P(A) P(B | A) &amp; \text{by the Multiplication Rule} \\
-&amp;= P(A) P(B) &amp; \text{by assumption}.
-\end{align*}\]</span></p>
-Conversely, we assume <a href="independence.html#eq:independence-mult">(7.2)</a> and show that <a href="independence.html#eq:independence">(7.1)</a> holds:
-<span class="math display">\[\begin{align*}
-P(B | A) &amp;= \frac{P(A \textbf{ and } B)}{P(A)} &amp; \text{by the definition of conditional probability}  \\
-&amp;= \frac{P(A) P(B)}{P(A)} &amp; \text{by assumption} \\
-&amp;= P(B).
-\end{align*}\]</span>
-</div>
-
-<p>Here is an example that combines several concepts from the past few lessons.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Kgudt4PXs28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+<p>Let’s calculate the autocorrelation function of some random processes.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-11" class="example"><strong>Example 7.1  </strong></span>You and a fellow castaway are stranded on a desert island, playing dice for the last banana. Two dice will be rolled.
-If the biggest number is 1, 2, 3, or 4, then Player 1 wins. If the biggest number is 5 or 6, then Player 2 wins.
-Would you rather be Player 1 or Player 2?
+<p><span id="exm:random-amplitude-autocorrelation" class="example"><strong>Example 54.1  (Random Amplitude Process)  </strong></span>Consider the random amplitude process
+<span class="math display" id="eq:random-amplitude">\[\begin{equation}
+X(t) = A\cos(2\pi  f t)
+\tag{50.2}
+\end{equation}\]</span>
+introduced in Example <a href="random-process-examples.html#exm:random-amplitude">48.1</a>.</p>
+Its autocorrelation function is
+<span class="math display" id="eq:random-amplitude-autocorrelation">\[\begin{equation} 
+R_X(s, t) = C_X(s, t) + \mu_X(s) \mu_X(t) = (1.25 + 2.5^2) \cos(2\pi f s) \cos(2\pi f t).
+\tag{54.2}
+\end{equation}\]</span>
 </div>
 
 
-<div class="solution">
- <span class="solution"><em>Solution. </em></span> Player 2 has a <span class="math inline">\(20/36 = 0.5556\)</span> chance of winning. Here’s why:
-<span class="math display">\[\begin{align*} 
-P(\text{biggest number is 5, 6}) &amp;= 1 - P(\text{biggest number is 1, 2, 3, 4}) \\
-&amp;= 1 - P(\text{1st die is 1, 2, 3, 4} \textbf{ and } \text{2nd die is 1, 2, 3, 4}) \\
-&amp;= 1 - \frac{4}{6} \cdot \frac{4}{6}\ \ \text{(by independence)} \\
-&amp;= 1 - \frac{16}{36} \\
-&amp;= \frac{20}{36}
-\end{align*}\]</span>
+<div class="example">
+<p><span id="exm:poisson-process-autocorrelation" class="example"><strong>Example 54.2  (Poisson Process)  </strong></span>Consider the Poisson process
+<span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> of rate <span class="math inline">\(\lambda\)</span>,
+defined in Example <a href="random-process.html#exm:poisson-process-as-process">47.1</a>.</p>
+Its autocorrelation function is
+<span class="math display" id="eq:poisson-process-autocorrelation">\[\begin{equation} 
+R_X(s, t) = C_X(s, t) + \mu_X(s) \mu_X(t) = \lambda\min(s, t) + \lambda^2 s t.
+\tag{54.3}
+\end{equation}\]</span>
+</div>
+
+
+<div class="example">
+<p><span id="exm:white-noise-autocorrelation" class="example"><strong>Example 54.3  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in Example <a href="random-process.html#exm:white-noise">47.2</a>,
+which consists of i.i.d. random variables with mean <span class="math inline">\(\mu = E[Z[n]]\)</span> and
+variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]\)</span>.</p>
+We showed in Example <a href="stationary.html#exm:white-noise-stationary">53.3</a> that this process is stationary,
+so its autocorrelation function depends only on <span class="math inline">\(k = m - n\)</span>:
+<span class="math display" id="eq:white-noise-autocorrelation">\[\begin{equation} 
+R_X[k] = C_X[k] + \mu_X^2 = \sigma^2\delta[k] + \mu^2.
+\tag{54.4}
+\end{equation}\]</span>
+</div>
+
+
+<div class="example">
+<p><span id="exm:random-walk-autocorrelation" class="example"><strong>Example 54.4  (Random Walk)  </strong></span>Consider the random walk process <span class="math inline">\(\{ X[n]; n\geq 0 \}\)</span> from
+Example <a href="random-process.html#exm:random-walk-process">47.3</a>.</p>
+Its autocorrelation function is:
+<span class="math display" id="eq:random-walk-autocorrelation">\[\begin{equation} 
+R_X[m, n] = C_X[m, n] + \underbrace{\mu_X[m]}_{0} \mu_Y[n] = \sigma^2 \min(m, n).
+\tag{54.5}
+\end{equation}\]</span>
+</div>
+
+
+<div class="example">
+<span id="exm:gaussian-process-autocorrelation" class="example"><strong>Example 54.5  </strong></span>Consider the process <span class="math inline">\(\{X(t)\}\)</span> from Example <a href="stationary.html#exm:gaussian-process">53.5</a>.
+It is stationary, so its autocorrelation function depends on <span class="math inline">\(\tau = s - t\)</span> only:
+<span class="math display" id="eq:gaussian-process-autocorrelation">\[\begin{equation} 
+R_X(\tau) = C_X(\tau) + \mu_X^2 = 5 e^{-3\tau^2} + 4.
+\tag{54.6}
+\end{equation}\]</span>
 </div>
 
 </div>
-<div id="examples-5" class="section level2 unnumbered">
-<h2>Examples</h2>
+<div id="essential-practice-42" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<p>For these questions, you may want to refer to the mean and
+autocovariance functions you calculated in Lessons <a href="mean-function.html#mean-function">50</a>
+and <a href="cov-function.html#cov-function">52</a>.</p>
 <ol style="list-style-type: decimal">
-<li>One card is dealt off the top of a well-shuffled deck of cards. Is the event that the card is a
-heart independent of the event that the card is an ace?</li>
-<li>Two cards are dealt off the top of a well-shuffled deck of cards. Is the event that the
-first card is a heart independent of the event that the second card is a heart?</li>
-<li>In the dice game Yahtzee, five dice are rolled. The outcomes of the five dice are independent.
-What is the probability of rolling a “Yahtzee” (i.e., when all five dice show the same number)?</li>
+<li><p>Consider a grain of pollen suspended in water, whose horizontal position can be modeled by
+Brownian motion <span class="math inline">\(\{B(t); t \geq 0\}\)</span> with parameter <span class="math inline">\(\alpha=4 \text{mm}^2/\text{s}\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>.
+Calculate the autocorrelation function of <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span>.</p></li>
+<li><p>Radioactive particles hit a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
+<p>Define the new process <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> by
+<span class="math display">\[ D(t) = N(t) - N(t - 3). \]</span>
+This process represents the number of particles that hit the Geiger counter in the
+last 3 seconds. Calculate the autocorrelation function of <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span>.</p></li>
+<li><p>Consider the moving average process <span class="math inline">\(\{ X[n] \}\)</span> of Example <a href="random-process-examples.html#exm:ma1">48.2</a>, defined by
+<span class="math display">\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]</span>
+where <span class="math inline">\(\{ Z[n] \}\)</span> is a sequence of i.i.d. standard normal random variables.
+Calculate the autocorrelation function of <span class="math inline">\(\{ X[n] \}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\Theta\)</span> be a <span class="math inline">\(\text{Uniform}(a=-\pi, b=\pi)\)</span> random variable, and let <span class="math inline">\(f\)</span> be a constant. Define the random phase process <span class="math inline">\(\{ X(t) \}\)</span> by
+<span class="math display">\[ X(t) = \cos(2\pi f t + \Theta). \]</span>
+Calculate the autocorrelation function of <span class="math inline">\(\{ X(t) \}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\{ X(t) \}\)</span> be a random process with mean function
+<span class="math inline">\(\mu_X(t) = -1\)</span> and autocovariance function <span class="math inline">\(C_X(s, t) = 2e^{-|s - t|/3}\)</span>.
+Calculate the autocorrelation function of <span class="math inline">\(\{ X(t) \}\)</span>.</p></li>
 </ol>
-</div>
-<div id="additional-exercises-3" class="section level2 unnumbered">
-<h2>Additional Exercises</h2>
 
 </div>
 </div>
@@ -582,8 +593,8 @@ What is the probability of rolling a “Yahtzee” (i.e., when all five dice sho
           </div>
         </div>
       </div>
-<a href="conditional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ltp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="stationary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="power.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -614,7 +625,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/independence.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/autocorrelation.Rmd",
 "text": "Edit"
 },
 "history": {

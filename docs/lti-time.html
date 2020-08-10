@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 7 Independence | Introduction to Probability</title>
+  <title>Lesson 57 LTI Filters in the Time Domain | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 7 Independence | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 57 LTI Filters in the Time Domain | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 7 Independence | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 57 LTI Filters in the Time Domain | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="conditional.html"/>
-<link rel="next" href="ltp.html"/>
+<link rel="prev" href="psd.html"/>
+<link rel="next" href="distribution-table.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -469,121 +469,228 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="independence" class="section level1">
-<h1><span class="header-section-number">Lesson 7</span> Independence</h1>
-<div id="motivating-example-6" class="section level2 unnumbered">
-<h2>Motivating Example</h2>
-<p>Many gamblers believe that after a string of losses, they are “due”
-for a win. Consider a gambler who repeatedly bets on reds in
-roulette, an event with probability <span class="math inline">\(18 / 38 \approx 0.474\)</span>. The ball has
-not landed in a red pocket on any of the last 4 spins of the wheel.
-Does this make it more likely that he will win on the next spin?</p>
-<p>This is really a conditional probability question in disguise.
-We want to know the probability that the ball will land in a
-red pocket on the 5th spin, <em>given</em> that it did not land in a
-red pocket on any of the first 4 spins:
-<span class="math display">\[ P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}). \]</span></p>
+<div id="lti-time" class="section level1">
+<h1><span class="header-section-number">Lesson 57</span> LTI Filters in the Time Domain</h1>
+<div id="motivation-7" class="section level2 unnumbered">
+<h2>Motivation</h2>
+<p>What happens when we pass a stationary random signal <span class="math inline">\(\{ X(t) \}\)</span> into a
+filter <span class="math inline">\(\mathcal{L}\)</span>? This lesson studies the properties of the output signal
+<span class="math inline">\(\{ Y(t) \}\)</span>, which is also a random process.</p>
+<div class="figure" style="text-align: center"><span id="fig:filter"></span>
+<img src="bookdown-demo_files/figure-html/filter-1.png" alt="Filtering a Signal" width="60%" />
+<p class="caption">
+Figure 57.1: Filtering a Signal
+</p>
 </div>
-<div id="theory-5" class="section level2 unnumbered">
-<h2>Theory</h2>
-<p>To verify that the two probabilities are <em>exactly</em> the same, we
-do the calculation:</p>
-<p><span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= \frac{P(\text{not red on first 4 spins} \textbf{ and } \text{red on 5th spin}) }{P(\text{not red on first 4 spins})} \\
-&amp;= \frac{ 20^4 \cdot 18 \big/ 38^5 }{20^4 \big/ 38^4} \\
-&amp;= \frac{18}{38}.
-\end{align*}\]</span></p>
-<p>We see that the conditional probability is <span class="math inline">\(18 / 38\)</span>, which is the same as the probability that the 5th
-spin is red if we did not know the outcome of the first 4 spins. In mathematical notation,
-<span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= P(\text{red on 5th spin})
-\end{align*}\]</span>
-When conditioning on one event (e.g., “not red on first 4 spins”) does not change the probability
-of another event (e.g., “red on 5th spin”), we say that the two
-events are <strong>independent</strong>. In this case, whether the gambler wins on the 5th spin is
-independent of the fact that he has lost each of the last 4 spins. The folk belief that one is
-“due” for a win after a series of losses is plain wrong and is known as the <strong>gambler’s fallacy</strong>.</p>
+</div>
+<div id="review" class="section level2 unnumbered">
+<h2>Review</h2>
+<p>We begin this lesson by recalling a few basic facts about linear time-invariant
+filters. This material can be found in any signals and systems textbook.</p>
 
 <div class="definition">
-<span id="def:independence" class="definition"><strong>Definition 7.1  (Independence)  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be <strong>independent</strong> if the
-<span class="math display" id="eq:independence">\[\begin{equation}
-P(B | A) = P(B).
-\tag{7.1}
-\end{equation}\]</span>
+<span id="def:lti" class="definition"><strong>Definition 57.1  (Linear Time-Invariant Filter)  </strong></span>A <strong>filter</strong> <span class="math inline">\(\mathcal{L}\)</span> takes an input signal <span class="math inline">\(x(t)\)</span> and produces an
+output signal <span class="math inline">\(y(t)\)</span>.
 </div>
 
-The next result follows by applying the Multiplication Rule (<a href="conditional.html#thm:multiplication-rule">6.1</a>) to
-the definition of independence.
+<p>In general, a filter can do anything to a signal. We will restrict
+our attention to a specific class of filters called
+<strong>linear time-invariant</strong> (or LTI, for short) filters. An LTI
+filter satisfies the following properties:</p>
+<ol style="list-style-type: decimal">
+<li>linearity: <span class="math inline">\(\mathcal{L}[a_1x_1 + a_2x_2] = a_1\mathcal{L}[x_1] + a_2\mathcal{L}[x_2]\)</span>
+for any constants <span class="math inline">\(a_1, a_2\)</span> and signals <span class="math inline">\(x_1, x_2\)</span>.</li>
+<li>time-invariance: <span class="math inline">\(\mathcal{L}[x(t - \tau)](t) = \mathcal{L}[x](t - \tau)\)</span> for any
+shift <span class="math inline">\(\tau\)</span>. In other words, if the input signal <span class="math inline">\(x(t)\)</span> is delayed by <span class="math inline">\(\tau\)</span> seconds,
+then the output signal <span class="math inline">\(y(t)\)</span> is also delayed by <span class="math inline">\(\tau\)</span> seconds, without any other
+modifications.</li>
+</ol>
 
 <div class="theorem">
-<span id="thm:independence-mult" class="theorem"><strong>Theorem 7.1  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if their probabilities multiply:
-<span class="math display" id="eq:independence-mult">\[\begin{equation}
-P(A \textbf{ and } B) = P(A) P(B).
-\tag{7.2}
-\end{equation}\]</span>
+<p><span id="thm:impulse-response" class="theorem"><strong>Theorem 57.1  (Impulse Response)  </strong></span>Let <span class="math inline">\(h(t)\)</span> denote the <strong>impulse response</strong> of an LTI filter <span class="math inline">\(\mathcal{L}\)</span>. That is,
+<span class="math inline">\(h \overset{\text{def}}{=} \mathcal{L}[\delta]\)</span> is the output signal when
+the input signal is an impulse <span class="math inline">\(\delta(t)\)</span>.</p>
+Then, <span class="math inline">\(\mathcal{L}\)</span> acts by convolving <span class="math inline">\(h\)</span> with the input signal <span class="math inline">\(x\)</span>. That is,
+<span class="math display">\[ y(t) = (h * x)(t). \]</span>
 </div>
 
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> First, we assume <a href="independence.html#eq:independence">(7.1)</a> and show that <a href="independence.html#eq:independence-mult">(7.2)</a> holds:
+<p> <span class="proof"><em>Proof. </em></span> We will prove this result for discrete-time signals, although the proof for
+continuous-time signals is similar.</p>
+<p>First, write <span class="math inline">\(x = x * \delta\)</span>. Any signal convolved with a delta function is itself.
+This is called the <em>sifting property</em> of the delta function.
+To see why this is true, write out the definition of convolution:
+<span class="math display">\[ x[n] = \sum_{m=-\infty}^\infty x[m] \delta[n-m]. \]</span>
+All terms in this sum will be zero, except when <span class="math inline">\(m=n\)</span>, when the term is <span class="math inline">\(x[n] \delta[0] = x[n]\)</span>.</p>
+From here, we just apply linearity and time-invariance.
 <span class="math display">\[\begin{align*}
-P(A \textbf{ and } B) &amp;= P(A) P(B | A) &amp; \text{by the Multiplication Rule} \\
-&amp;= P(A) P(B) &amp; \text{by assumption}.
-\end{align*}\]</span></p>
-Conversely, we assume <a href="independence.html#eq:independence-mult">(7.2)</a> and show that <a href="independence.html#eq:independence">(7.1)</a> holds:
-<span class="math display">\[\begin{align*}
-P(B | A) &amp;= \frac{P(A \textbf{ and } B)}{P(A)} &amp; \text{by the definition of conditional probability}  \\
-&amp;= \frac{P(A) P(B)}{P(A)} &amp; \text{by assumption} \\
-&amp;= P(B).
-\end{align*}\]</span>
+    y[n] = \mathcal{L}\big[x[n]\big][n] &amp;= \mathcal{L}\Big[\sum_{m=-\infty}^\infty x[m] \delta[n - m]\Big][n] &amp; \text{(sifting property)} \\
+    &amp;= \sum_{m=-\infty}^\infty x[m] \mathcal{L}\big[\delta[n-m]\big][n] &amp; \text{(linearity)} \\
+    &amp;= \sum_{m=-\infty}^\infty x[m] h[n-m] &amp; \text{(time-invariance)}.
+    \end{align*}\]</span>
+This is just the definition of convolution: <span class="math inline">\(h * x\)</span>.
 </div>
 
-<p>Here is an example that combines several concepts from the past few lessons.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Kgudt4PXs28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+<p>Because the impulse response uniquely describes any LTI filter, it is common
+to redraw Figure <a href="lti-time.html#fig:filter">57.1</a>, using <span class="math inline">\(h\)</span> to symbolize the filter.</p>
+<div class="figure" style="text-align: center"><span id="fig:lti-filter"></span>
+<img src="bookdown-demo_files/figure-html/lti-filter-1.png" alt="Linear Time-Invariant Filter, represented by its impulse response $h$" width="60%" />
+<p class="caption">
+Figure 57.2: Linear Time-Invariant Filter, represented by its impulse response <span class="math inline">\(h\)</span>
+</p>
+</div>
 
 <div class="example">
-<span id="exm:unnamed-chunk-11" class="example"><strong>Example 7.1  </strong></span>You and a fellow castaway are stranded on a desert island, playing dice for the last banana. Two dice will be rolled.
-If the biggest number is 1, 2, 3, or 4, then Player 1 wins. If the biggest number is 5 or 6, then Player 2 wins.
-Would you rather be Player 1 or Player 2?
+<span id="exm:iir-filter" class="example"><strong>Example 57.1  (Infinite Impulse Response (IIR) Filter)  </strong></span>Consider the discrete-time filter defined by
+<span class="math display">\[ y[n] = a_1 y[n-1] + x[n]. \]</span>
+Find the impulse response of this filter.
 </div>
 
 
 <div class="solution">
- <span class="solution"><em>Solution. </em></span> Player 2 has a <span class="math inline">\(20/36 = 0.5556\)</span> chance of winning. Here’s why:
-<span class="math display">\[\begin{align*} 
-P(\text{biggest number is 5, 6}) &amp;= 1 - P(\text{biggest number is 1, 2, 3, 4}) \\
-&amp;= 1 - P(\text{1st die is 1, 2, 3, 4} \textbf{ and } \text{2nd die is 1, 2, 3, 4}) \\
-&amp;= 1 - \frac{4}{6} \cdot \frac{4}{6}\ \ \text{(by independence)} \\
-&amp;= 1 - \frac{16}{36} \\
-&amp;= \frac{20}{36}
+<p> <span class="solution"><em>Solution. </em></span> The impulse response <span class="math inline">\(h[n]\)</span> is defined to be the output signal <span class="math inline">\(y[n]\)</span>
+when the input signal <span class="math inline">\(x[n]\)</span> is the unit impulse <span class="math inline">\(\delta[n]\)</span>. Therefore,
+we have the relation:
+<span class="math display">\[ h[n] = a_1 h[n-1] + \delta[n] \]</span>
+for all <span class="math inline">\(n\)</span>.</p>
+First, we observe that <span class="math inline">\(h[n] = 0\)</span> for all <span class="math inline">\(n &lt; 0\)</span>. For <span class="math inline">\(n \geq 0\)</span>, we
+can calculate <span class="math inline">\(h[n]\)</span> recursively:
+<span class="math display">\[\begin{align*}
+h[0] &amp;= a_1 h[-1] + \delta[0] = a_1 \cdot 0 + 1 = 1 \\
+h[1] &amp;= a_1 h[0] + \delta[1] = a_1 \cdot 1 + 0 = a_1 \\
+h[2] &amp;= a_1 h[1] + \delta[2] = a_1 \cdot a_1 + 0 = a_1^2 \\
+h[3] &amp;= a_1 h[2] + \delta[3] = a_1 \cdot a_1^2 + 0 = a_1^3 \\
+&amp;\vdots
 \end{align*}\]</span>
+At this point, the pattern is hopefully clear. We can write the
+impulse response as
+<span class="math display">\[ h[n] = \begin{cases} a_1^n &amp; n \geq 0 \\ 0 &amp; n &lt; 0 \end{cases} = a_1^n u[n], \]</span>
+where <span class="math inline">\(u[n]\)</span> is the unit step function, defined to be 1 when <span class="math inline">\(n \geq 0\)</span> and 0
+otherwise. This impulse response is graphed below for <span class="math inline">\(a_1 = 0.7\)</span>.
+</div>
+
+<p><img src="bookdown-demo_files/figure-html/iir-1.png" width="672" /></p>
+</div>
+<div id="theory-51" class="section level2 unnumbered">
+<h2>Theory</h2>
+<p>We are now ready to apply linear filters to stationary random processes.</p>
+
+<div class="theorem">
+<p><span id="thm:filter-stationary" class="theorem"><strong>Theorem 57.2  (Filtering Stationary Processes)  </strong></span>Let <span class="math inline">\(\{ X(t) \}\)</span> be a stationary random process and <span class="math inline">\(h(t)\)</span> be the
+impulse response of a linear time-invariant filter. If <span class="math inline">\(\{ X(t) \}\)</span> is passed into a
+linear time-invariant filter with impulse response <span class="math inline">\(h(t)\)</span>, then the output
+process <span class="math inline">\(\{ Y(t) \}\)</span> is also stationary, with</p>
+<ul>
+<li>mean function <span class="math inline">\(\mu_Y = \mu_X \cdot \int_{-\infty}^\infty h(t)\,dt\)</span>, and</li>
+<li>autocovariance function <span class="math inline">\(C_Y(\tau) = (h(-\cdot) * h * C_X)(\tau)\)</span>.</li>
+</ul>
+<p>For discrete-time signals, we have:</p>
+<ul>
+<li>mean function <span class="math inline">\(\mu_Y = \mu_X \cdot \sum_{k=-\infty}^\infty h[k]\)</span>, and</li>
+<li>autocovariance function <span class="math inline">\(C_Y[k] = (h[-\cdot] * h * C_X)[k]\)</span>.
+</div></li>
+</ul>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> We will prove the theorem for discrete-time signal, but the proof for
+continuous-time signals is similar.</p>
+<p>The mean function is
+<span class="math display">\[\begin{align*}
+\mu_Y[n] = E[Y[n]] &amp;= E\left[\sum_{k=-\infty}^\infty h[k] X[n-k] \right] \\
+&amp;= \sum_{k=-\infty}^\infty h[k] \underbrace{E[X[n-k]]}_{\mu_X} \\
+&amp;= \mu_X \sum_{k=-\infty}^\infty h[k].
+\end{align*}\]</span></p>
+<p>The autocovariance function is
+<span class="math display">\[\begin{align*}
+C_Y[m, n] = \text{Cov}[Y[m], Y[n]] &amp;= \text{Cov}\left[\sum_{k=-\infty}^\infty h[k] X[m-k], \sum_{\ell=-\infty}^\infty h[\ell] X[n - \ell] \right] \\
+&amp;= \sum_{k=-\infty}^\infty \sum_{\ell=-\infty}^\infty h[k] h[\ell] \text{Cov}[X[m-k], X[n-\ell]] \\
+&amp;= \sum_{\ell=-\infty}^\infty h[\ell] \sum_{k=-\infty}^\infty h[k] C_X[(m-n) + \ell - k] \\
+&amp;= \sum_{\ell=-\infty}^\infty h[\ell] (h * C_X)[(m-n) + \ell] \\
+&amp;= \sum_{\ell=-\infty}^\infty h[-\ell] (h * C_X)[(m-n) - \ell] \\
+&amp;= (h[-n] * h * C_X)[m-n]
+\end{align*}\]</span></p>
+Since the mean function is constant and the autocovariance function only depends on
+<span class="math inline">\(m-n\)</span>, <span class="math inline">\(\{ Y[n]\}\)</span> is also stationary.
+</div>
+
+
+<div class="example">
+<p><span id="exm:ar-process" class="example"><strong>Example 57.2  (Autoregressive Process)  </strong></span>Let <span class="math inline">\(\{ Z[n] \}\)</span> be white noise, consisting of i.i.d. random variables
+with mean <span class="math inline">\(0\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then, the process
+<span class="math display">\[ X[n] = a_1 X[n-1] + Z[n] \]</span>
+is called an <strong>autoregressive process</strong> (of order 1). We will derive the
+autocovariance function of <span class="math inline">\(\{ X[n] \}\)</span> using Theorem <a href="lti-time.html#thm:filter-stationary">57.2</a>.</p>
+<p>Notice that <span class="math inline">\(\{ X[n] \}\)</span> is the output signal when white noise <span class="math inline">\(\{ Z[n] \}\)</span> is
+passed into the LTI filter from Example <a href="lti-time.html#exm:iir-filter">57.1</a>. That is, <span class="math inline">\(\{ X[n] \}\)</span>
+is the output when a stationary process is passed into a filter with impulse response
+<span class="math display">\[ h[n] = (0.8)^n u[n]. \]</span>
+Therefore, we know that <span class="math inline">\(\{ X[n] \}\)</span> is also stationary.</p>
+<p>Its mean function is <span class="math inline">\(\displaystyle \mu_X = \mu_Z \sum_k h[k] = 0\)</span>,
+since we assumed that <span class="math inline">\(\{ Z[n] \}\)</span> was mean 0.</p>
+<p>Its autocovariance function, as a function of the difference <span class="math inline">\(k=m-n\)</span>, is
+<span class="math display">\[ C_X = h[-n] * h * C_Z. \]</span>
+We calculated the autocovariance function of white noise in
+Example <a href="cov-function.html#exm:white-noise-cov">52.3</a>:
+<span class="math display">\[ C_Z[k] = \sigma^2 \delta[k]. \]</span>
+Now, applying the sifting property of the delta function, we see that
+<span class="math display">\[ C_X = h[-n] * h * C_Z = \sigma^2 (h[-n] * h). \]</span>
+So we just need to convolve the impulse response <span class="math inline">\(h[n]\)</span> with a time-reversed
+version <span class="math inline">\(h[-n]\)</span>.
+<span class="math display">\[\begin{align*}
+(h[-n] * h)[k] &amp;= \sum_{m=-\infty}^\infty h[m] h[-(k-m)] &amp; \text{(definition of convolution)} \\
+&amp;= \sum_{m=-\infty}^\infty a_1^{m} u[m] a_1^{m-k} u[m-k] &amp; \text{(definition of $h$)} \\
+&amp;= \sum_{m=-\infty}^\infty a_1^{2m-k} u[m] u[m-k] &amp; \text{(combining terms)}
+\end{align*}\]</span>
+Notice that the unit step function <span class="math inline">\(u\)</span> will be zero unless
+both <span class="math inline">\(m \geq 0\)</span> and <span class="math inline">\(m \geq k\)</span>. If <span class="math inline">\(k\)</span> is non-negative,
+then the second condition implies the first. So <span class="math inline">\(u[m] u[m-k]\)</span> has the effect of
+changing the limits of the sum:
+<span class="math display">\[\begin{align*}
+&amp;= \sum_{m=k}^\infty a_1^{2m-k}; k \geq 0 \\
+&amp;= \frac{a_1^k}{1 - a_1^2}; k \geq 0 &amp; \text{(infinite geometric series)}
+\end{align*}\]</span></p>
+<p>Putting it all together, when <span class="math inline">\(k\)</span> is non-negative, the autocovariance function of
+<span class="math inline">\(\{ X[n] \}\)</span> is
+<span class="math display">\[ C_X[k] =  \sigma^2 \frac{a_1^k}{1 - a_1^2}; k \geq 0.  \]</span>
+But covariance is symmetric, so <span class="math inline">\(C_X[k] = C_X[-k]\)</span>. Therefore, we can say in general
+that
+<span class="math display">\[ C_X[k] = \sigma^2 \frac{a_1^{|k|}}{1 - a_1^2}. \]</span></p>
+This example illustrates the power of Theorem <a href="lti-time.html#thm:filter-stationary">57.2</a>.
+Although the derivation of the autocovariance function was quite involved,
+this derivation is still more straightforward than any of the alternatives.
 </div>
 
 </div>
-<div id="examples-5" class="section level2 unnumbered">
-<h2>Examples</h2>
+<div id="essential-practice-45" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
-<li>One card is dealt off the top of a well-shuffled deck of cards. Is the event that the card is a
-heart independent of the event that the card is an ace?</li>
-<li>Two cards are dealt off the top of a well-shuffled deck of cards. Is the event that the
-first card is a heart independent of the event that the second card is a heart?</li>
-<li>In the dice game Yahtzee, five dice are rolled. The outcomes of the five dice are independent.
-What is the probability of rolling a “Yahtzee” (i.e., when all five dice show the same number)?</li>
+<li><p>Find the power spectral density of the autoregressive process, in terms of
+<span class="math inline">\(a_1\)</span> and <span class="math inline">\(\sigma\)</span>. (<em>Hint:</em> Use the mean function and autocovariance function
+that we derived in Example <a href="lti-time.html#exm:ar-process">57.2</a>.) Graph the power spectral
+density for <span class="math inline">\(a_1 = 0.8\)</span> and <span class="math inline">\(\sigma = 2\)</span>.</p></li>
+<li><p>Consider the moving average process <span class="math inline">\(\{ X[n] \}\)</span> of Example <a href="random-process-examples.html#exm:ma1">48.2</a>, defined by
+<span class="math display">\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]</span>
+where <span class="math inline">\(\{ Z[n] \}\)</span> is a sequence of i.i.d. standard normal random variables.</p>
+<p>Express <span class="math inline">\(\{ X[n] \}\)</span> as white noise passed through an LTI filter. What is the
+impulse response of this filter? Then, use Theorem <a href="lti-time.html#thm:filter-stationary">57.2</a>
+to calculate the mean and autocovariance functions of <span class="math inline">\(\{ X[n] \}\)</span>. Check
+that your answers agree with the ones you obtained in Lessons
+<a href="mean-function.html#mean-function">50</a> and <a href="cov-function.html#cov-function">52</a>.</p></li>
 </ol>
-</div>
-<div id="additional-exercises-3" class="section level2 unnumbered">
-<h2>Additional Exercises</h2>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="conditional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ltp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="psd.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distribution-table.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -614,7 +721,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/independence.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/lti-time.Rmd",
 "text": "Edit"
 },
 "history": {

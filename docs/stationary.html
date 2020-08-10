@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-06" />
+<meta name="date" content="2020-08-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="cov-function.html"/>
-
+<link rel="next" href="autocorrelation.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -419,6 +419,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="stationary.html"><a href="stationary.html#theory-47"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="stationary.html"><a href="stationary.html#essential-practice-41"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="54" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>54</b> Autocorrelation Function</a><ul>
+<li class="chapter" data-level="" data-path="autocorrelation.html"><a href="autocorrelation.html#theory-48"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="autocorrelation.html"><a href="autocorrelation.html#essential-practice-42"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="55" data-path="power.html"><a href="power.html"><i class="fa fa-check"></i><b>55</b> Power of a Stationary Process</a><ul>
+<li class="chapter" data-level="" data-path="power.html"><a href="power.html#motivation-5"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="power.html"><a href="power.html#theory-49"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="power.html"><a href="power.html#essential-practice-43"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="56" data-path="psd.html"><a href="psd.html"><i class="fa fa-check"></i><b>56</b> Power Spectral Density</a><ul>
+<li class="chapter" data-level="" data-path="psd.html"><a href="psd.html#motivation-6"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="psd.html"><a href="psd.html#theory-50"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="psd.html"><a href="psd.html#essential-practice-44"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="57" data-path="lti-time.html"><a href="lti-time.html"><i class="fa fa-check"></i><b>57</b> LTI Filters in the Time Domain</a><ul>
+<li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#motivation-7"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#review"><i class="fa fa-check"></i>Review</a></li>
+<li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#theory-51"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#essential-practice-45"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="distribution-table.html"><a href="distribution-table.html"><i class="fa fa-check"></i><b>A</b> Distribution Tables</a><ul>
+<li class="chapter" data-level="A.1" data-path="distribution-table.html"><a href="distribution-table.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete Distributions</a></li>
+<li class="chapter" data-level="A.2" data-path="distribution-table.html"><a href="distribution-table.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="fourier-table.html"><a href="fourier-table.html"><i class="fa fa-check"></i><b>B</b> Fourier Tables</a><ul>
+<li class="chapter" data-level="B.1" data-path="fourier-table.html"><a href="fourier-table.html#ctft"><i class="fa fa-check"></i><b>B.1</b> Continuous-Time Fourier Transforms</a></li>
+<li class="chapter" data-level="B.2" data-path="fourier-table.html"><a href="fourier-table.html#dtft"><i class="fa fa-check"></i><b>B.2</b> Discrete-Time Fourier Transforms</a></li>
+<li class="chapter" data-level="B.3" data-path="fourier-table.html"><a href="fourier-table.html#fourier-properties"><i class="fa fa-check"></i><b>B.3</b> Fourier Properties</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -474,7 +504,7 @@ and we write <span class="math inline">\(C_X[m, n] = C_X[m - n]\)</span>.)
 <p><span id="exm:random-amplitude-stationary" class="example"><strong>Example 53.1  (Random Amplitude Process)  </strong></span>Consider the random amplitude process
 <span class="math display" id="eq:random-amplitude">\[\begin{equation}
 X(t) = A\cos(2\pi  f t)
-\tag{50.1}
+\tag{50.2}
 \end{equation}\]</span>
 introduced in Example <a href="random-process-examples.html#exm:random-amplitude">48.1</a>.</p>
 <p>In Example <a href="mean-function.html#exm:random-amplitude-mean">50.1</a>, we
@@ -549,14 +579,29 @@ separated in time by <span class="math inline">\(m - n = 1\)</span> samples. If 
 However, they are not equal: <span class="math inline">\(C[3, 2] = 2 \text{Var}[Z[1]]\)</span>, while <span class="math inline">\(C[6, 5] = 5 \text{Var}[Z[1]]\)</span>.
 </div>
 
+
+<div class="example">
+<p><span id="exm:gaussian-process" class="example"><strong>Example 53.5  </strong></span>Let <span class="math inline">\(\{ X(t) \}\)</span> be a continuous-time random process with</p>
+<ul>
+<li><span class="math inline">\(E[X(t)] = 2\)</span> for all <span class="math inline">\(t\)</span>, and</li>
+<li><span class="math inline">\(\text{Cov}[X(s), X(t)] = 5e^{-3(s - t)^2}\)</span> for all <span class="math inline">\(s\)</span> and <span class="math inline">\(t\)</span>.</li>
+</ul>
+The mean function <span class="math inline">\(\mu_X(t) = E[X(t)]\)</span> is constant and
+the autocovariance function <span class="math inline">\(C_X(s, t) = 5e^{-3(s - t)^2}\)</span>
+is a function of <span class="math inline">\(\tau = s - t\)</span> only.
+We can write the autocovariance function as
+<span class="math display">\[ C_X(\tau) = 5e^{-3\tau^2}. \]</span>
+</div>
+
 </div>
 <div id="essential-practice-41" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <p>For these practice questions, you may want to refer to the mean and autocovariance functions you
 calculated in Lessons <a href="mean-function.html#mean-function">50</a> and <a href="cov-function.html#cov-function">52</a>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Consider a grain of pollen suspended in water, whose horizontal position can be modeled by
-Brownian motion <span class="math inline">\(\{B(t); t \geq 0\}\)</span> with parameter <span class="math inline">\(\alpha=4 \text{mm}^2/\text{s}\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>.
+<li><p>Consider a grain of pollen suspended in water, whose horizontal position can be
+modeled by Brownian motion <span class="math inline">\(\{B(t); t \geq 0\}\)</span> with parameter
+<span class="math inline">\(\alpha=4 \text{mm}^2/\text{s}\)</span>, as in Example <a href="brownian-motion.html#exm:pollen">49.1</a>.
 Is <span class="math inline">\(\{ B(t); t \geq 0 \}\)</span> wide-sense stationary?</p></li>
 <li><p>Radioactive particles hit a Geiger counter according to a Poisson process
 at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
@@ -568,7 +613,7 @@ Is <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> wide-sense stationa
 <span class="math display">\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]</span>
 where <span class="math inline">\(\{ Z[n] \}\)</span> is a sequence of i.i.d. standard normal random variables.
 Is <span class="math inline">\(\{ X[n] \}\)</span> wide-sense stationary?</p>
-<p>(<em>Hint:</em> Consider the following cases: (1) <span class="math inline">\(m = n\)</span>, (2) <span class="math inline">\(m = n+1\)</span>, (3) <span class="math inline">\(m = n-1\)</span>, (4) <span class="math inline">\(m &gt; n+1\)</span>, (5) <span class="math inline">\(m &lt; n-1\)</span>.)</p></li>
+<p>(<em>Hint:</em> You can write <span class="math inline">\(m = n + 1\)</span> as <span class="math inline">\(m - n = 1\)</span>.)</p></li>
 <li><p>Let <span class="math inline">\(\Theta\)</span> be a <span class="math inline">\(\text{Uniform}(a=-\pi, b=\pi)\)</span> random variable, and let <span class="math inline">\(f\)</span> be a constant.
 Define the random phase process <span class="math inline">\(\{ X(t) \}\)</span> by
 <span class="math display">\[ X(t) = \cos(2\pi f t + \Theta). \]</span>
@@ -582,8 +627,8 @@ Is <span class="math inline">\(\{ X(t) \}\)</span> wide-sense stationary?</p></l
           </div>
         </div>
       </div>
-<a href="cov-function.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="cov-function.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="autocorrelation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 7 Independence | Introduction to Probability</title>
+  <title>A Distribution Tables | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 7 Independence | Introduction to Probability" />
+  <meta property="og:title" content="A Distribution Tables | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 7 Independence | Introduction to Probability" />
+  <meta name="twitter:title" content="A Distribution Tables | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="conditional.html"/>
-<link rel="next" href="ltp.html"/>
+<link rel="prev" href="lti-time.html"/>
+<link rel="next" href="fourier-table.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -469,111 +469,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="independence" class="section level1">
-<h1><span class="header-section-number">Lesson 7</span> Independence</h1>
-<div id="motivating-example-6" class="section level2 unnumbered">
-<h2>Motivating Example</h2>
-<p>Many gamblers believe that after a string of losses, they are “due”
-for a win. Consider a gambler who repeatedly bets on reds in
-roulette, an event with probability <span class="math inline">\(18 / 38 \approx 0.474\)</span>. The ball has
-not landed in a red pocket on any of the last 4 spins of the wheel.
-Does this make it more likely that he will win on the next spin?</p>
-<p>This is really a conditional probability question in disguise.
-We want to know the probability that the ball will land in a
-red pocket on the 5th spin, <em>given</em> that it did not land in a
-red pocket on any of the first 4 spins:
-<span class="math display">\[ P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}). \]</span></p>
+<div id="distribution-table" class="section level1">
+<h1><span class="header-section-number">A</span> Distribution Tables</h1>
+<div id="discrete-distributions" class="section level2">
+<h2><span class="header-section-number">A.1</span> Discrete Distributions</h2>
+<table>
+<colgroup>
+<col width="30%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Distribution of <span class="math inline">\(X\)</span></th>
+<th align="left"><span class="math inline">\(f(x)\)</span></th>
+<th align="left">Support</th>
+<th align="center"><span class="math inline">\(E[X]\)</span></th>
+<th align="center"><span class="math inline">\(\text{Var}[X]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{Hypergeometric}(n, N_1, N_0)\)</span></td>
+<td align="left"><span class="math inline">\(\displaystyle \frac{\binom{N_1}{x} \binom{N_0}{n-x}}{\binom{N}{n}}\)</span></td>
+<td align="left"><span class="math inline">\(x=0, 1, \ldots, n\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N_1}{N}\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N_1}{N} \frac{N_0}{N} \left(1 - \frac{n-1}{N-1}\right)\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span></td>
+<td align="left"><span class="math inline">\(\displaystyle \frac{\binom{n}{x} N_1^x N_0^{n-x}}{N^n}\)</span></td>
+<td align="left"><span class="math inline">\(x=0, 1, \ldots, n\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N_1}{N}\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N_1}{N} \frac{N_0}{N}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{Binomial}(n, p)\)</span></td>
+<td align="left"><span class="math inline">\(\binom{n}{x} p^x (1-p)^{n-x}\)</span></td>
+<td align="left"><span class="math inline">\(x=0, 1, \ldots, n\)</span></td>
+<td align="center"><span class="math inline">\(np\)</span></td>
+<td align="center"><span class="math inline">\(np(1-p)\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\text{Geometric}(p)\)</span></td>
+<td align="left"><span class="math inline">\((1-p)^{x-1} p\)</span></td>
+<td align="left"><span class="math inline">\(x=1, 2, \ldots\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{p}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1-p}{p^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{NegativeBinomial}(r, p)\)</span></td>
+<td align="left"><span class="math inline">\(\binom{x-1}{r-1} (1-p)^{x-r} p^r\)</span></td>
+<td align="left"><span class="math inline">\(x=r, r+1, \ldots\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r}{p}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\text{Poisson}(\mu)\)</span></td>
+<td align="left"><span class="math inline">\(e^{-\mu} \frac{\mu^x}{x!}\)</span></td>
+<td align="left"><span class="math inline">\(x=0, 1, 2, \ldots\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="theory-5" class="section level2 unnumbered">
-<h2>Theory</h2>
-<p>To verify that the two probabilities are <em>exactly</em> the same, we
-do the calculation:</p>
-<p><span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= \frac{P(\text{not red on first 4 spins} \textbf{ and } \text{red on 5th spin}) }{P(\text{not red on first 4 spins})} \\
-&amp;= \frac{ 20^4 \cdot 18 \big/ 38^5 }{20^4 \big/ 38^4} \\
-&amp;= \frac{18}{38}.
-\end{align*}\]</span></p>
-<p>We see that the conditional probability is <span class="math inline">\(18 / 38\)</span>, which is the same as the probability that the 5th
-spin is red if we did not know the outcome of the first 4 spins. In mathematical notation,
-<span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= P(\text{red on 5th spin})
-\end{align*}\]</span>
-When conditioning on one event (e.g., “not red on first 4 spins”) does not change the probability
-of another event (e.g., “red on 5th spin”), we say that the two
-events are <strong>independent</strong>. In this case, whether the gambler wins on the 5th spin is
-independent of the fact that he has lost each of the last 4 spins. The folk belief that one is
-“due” for a win after a series of losses is plain wrong and is known as the <strong>gambler’s fallacy</strong>.</p>
-
-<div class="definition">
-<span id="def:independence" class="definition"><strong>Definition 7.1  (Independence)  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be <strong>independent</strong> if the
-<span class="math display" id="eq:independence">\[\begin{equation}
-P(B | A) = P(B).
-\tag{7.1}
-\end{equation}\]</span>
-</div>
-
-The next result follows by applying the Multiplication Rule (<a href="conditional.html#thm:multiplication-rule">6.1</a>) to
-the definition of independence.
-
-<div class="theorem">
-<span id="thm:independence-mult" class="theorem"><strong>Theorem 7.1  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if their probabilities multiply:
-<span class="math display" id="eq:independence-mult">\[\begin{equation}
-P(A \textbf{ and } B) = P(A) P(B).
-\tag{7.2}
-\end{equation}\]</span>
-</div>
-
-
-<div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> First, we assume <a href="independence.html#eq:independence">(7.1)</a> and show that <a href="independence.html#eq:independence-mult">(7.2)</a> holds:
-<span class="math display">\[\begin{align*}
-P(A \textbf{ and } B) &amp;= P(A) P(B | A) &amp; \text{by the Multiplication Rule} \\
-&amp;= P(A) P(B) &amp; \text{by assumption}.
-\end{align*}\]</span></p>
-Conversely, we assume <a href="independence.html#eq:independence-mult">(7.2)</a> and show that <a href="independence.html#eq:independence">(7.1)</a> holds:
-<span class="math display">\[\begin{align*}
-P(B | A) &amp;= \frac{P(A \textbf{ and } B)}{P(A)} &amp; \text{by the definition of conditional probability}  \\
-&amp;= \frac{P(A) P(B)}{P(A)} &amp; \text{by assumption} \\
-&amp;= P(B).
-\end{align*}\]</span>
-</div>
-
-<p>Here is an example that combines several concepts from the past few lessons.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Kgudt4PXs28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-
-<div class="example">
-<span id="exm:unnamed-chunk-11" class="example"><strong>Example 7.1  </strong></span>You and a fellow castaway are stranded on a desert island, playing dice for the last banana. Two dice will be rolled.
-If the biggest number is 1, 2, 3, or 4, then Player 1 wins. If the biggest number is 5 or 6, then Player 2 wins.
-Would you rather be Player 1 or Player 2?
-</div>
-
-
-<div class="solution">
- <span class="solution"><em>Solution. </em></span> Player 2 has a <span class="math inline">\(20/36 = 0.5556\)</span> chance of winning. Here’s why:
-<span class="math display">\[\begin{align*} 
-P(\text{biggest number is 5, 6}) &amp;= 1 - P(\text{biggest number is 1, 2, 3, 4}) \\
-&amp;= 1 - P(\text{1st die is 1, 2, 3, 4} \textbf{ and } \text{2nd die is 1, 2, 3, 4}) \\
-&amp;= 1 - \frac{4}{6} \cdot \frac{4}{6}\ \ \text{(by independence)} \\
-&amp;= 1 - \frac{16}{36} \\
-&amp;= \frac{20}{36}
-\end{align*}\]</span>
-</div>
-
-</div>
-<div id="examples-5" class="section level2 unnumbered">
-<h2>Examples</h2>
-<ol style="list-style-type: decimal">
-<li>One card is dealt off the top of a well-shuffled deck of cards. Is the event that the card is a
-heart independent of the event that the card is an ace?</li>
-<li>Two cards are dealt off the top of a well-shuffled deck of cards. Is the event that the
-first card is a heart independent of the event that the second card is a heart?</li>
-<li>In the dice game Yahtzee, five dice are rolled. The outcomes of the five dice are independent.
-What is the probability of rolling a “Yahtzee” (i.e., when all five dice show the same number)?</li>
-</ol>
-</div>
-<div id="additional-exercises-3" class="section level2 unnumbered">
-<h2>Additional Exercises</h2>
+<div id="continuous-distributions" class="section level2">
+<h2><span class="header-section-number">A.2</span> Continuous Distributions</h2>
+<table>
+<colgroup>
+<col width="30%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Distribution of <span class="math inline">\(X\)</span></th>
+<th align="left"><span class="math inline">\(f(x)\)</span></th>
+<th align="left">Support</th>
+<th align="center"><span class="math inline">\(E[X]\)</span></th>
+<th align="center"><span class="math inline">\(\text{Var}[X]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{Uniform}(a, b)\)</span></td>
+<td align="left"><span class="math inline">\(\frac{1}{b-a}\)</span></td>
+<td align="left"><span class="math inline">\(a &lt; x &lt; b\)</span></td>
+<td align="center"><span class="math inline">\(\frac{a+b}{2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{(b-a)^2}{12}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\text{Exponential}(\lambda)\)</span></td>
+<td align="left"><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
+<td align="left"><span class="math inline">\(0 &lt; x &lt; \infty\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{Gamma}(r, \lambda)\)</span></td>
+<td align="left"><span class="math inline">\(\frac{\lambda^r}{(r-1)!}x^{r-1} e^{-\lambda x}\)</span></td>
+<td align="left"><span class="math inline">\(0 &lt; x &lt; \infty\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r}{\lambda}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r}{\lambda^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\text{Normal}(\mu, \sigma)\)</span></td>
+<td align="left"><span class="math inline">\(\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\)</span></td>
+<td align="left"><span class="math inline">\(-\infty &lt; x &lt; \infty\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -582,8 +594,8 @@ What is the probability of rolling a “Yahtzee” (i.e., when all five dice sho
           </div>
         </div>
       </div>
-<a href="conditional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ltp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lti-time.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fourier-table.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -614,7 +626,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/independence.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/distribution-table.Rmd",
 "text": "Edit"
 },
 "history": {

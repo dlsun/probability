@@ -1,0 +1,82 @@
+# Power of a Stationary Process {#power}
+
+## Motivation {-}
+
+This lesson is the first in a series of lessons about the processing 
+of _random signals_. The two most common kinds of random signals that 
+are studied in electrical engineering are voltage signals $\{ V(t) \}$ 
+and current signals $I(t)$. These signals are often modulated while 
+the other aspects of the circuit (e.g., the resistance) are held constant. 
+The (instantaneous) power dissipated by the circuit is then 
+\[ \text{Power}(t) = I(t)^2 R = \frac{V(t)^2}{R}. \]
+In other words, the power is proportional to the _square_ of the signal. 
+
+## Theory {-}
+
+For this reason, the (instantaneous) power of a general signal $\{ X(t) \}$ is defined as 
+\[ \text{Power}_X(t) = X(t)^2. \]
+When the signal is random, it makes sense to report its expected value, rather 
+than its 
+
+```{definition power, name="Expected Power"}
+The **expected power** of a random process $\{ X(t) \}$ is defined as 
+\[ E[X(t)^2]. \]
+
+Notice that the expected power is related to the autocorrelation function 
+\@ref(eq:autocorrelation) by 
+\[ E[X(t)^2] = R_X(t, t). \]
+
+For a stationary process, the autocorrelation function only depends on the 
+difference between the times, $R_X(\tau)$, so the expected power of a 
+_stationary_ process is 
+\[ E[X(t)^2] = R_X(0). \]
+```
+
+Since most noise signals are stationary, we will only calculate expected 
+power for stationary signals.
+
+```{example white-noise-power, name="White Noise"}
+Consider the white noise process $\{ Z[n] \}$ defined in Example \@ref(exm:white-noise), 
+which consists of i.i.d. random variables with mean $\mu = E[Z[n]]$ and 
+variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. 
+
+This process is stationary, with autocorrelation function 
+\[ R_X[k] = \sigma^2\delta[k] + \mu^2, \]
+so its expected power is 
+\[ R_X[0] = \sigma^2\delta[0] + \mu^2 = \sigma^2 + \mu^2. \]
+```
+
+```{example gaussian-process-power}
+Consider the process $\{X(t)\}$ from Example \@ref(exm:gaussian-process). 
+This process is stationary, with autocorrelation function
+\[ R_X(\tau) = 5 e^{-3\tau^2} + 4, \]
+so its expected power is 
+\[ R_X(0) = 5 e^{-3 \cdot 0^2} + 4 = 9. \]
+```
+
+
+## Essential Practice {-}
+
+For these questions, you may want to refer to the autocorrelation function 
+you calculated in Lesson \@ref(autocorrelation).
+
+1. Radioactive particles hit a Geiger counter according to a Poisson process 
+at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
+
+    Define the new process $\{ D(t); t \geq 3 \}$ by 
+    \[ D(t) = N(t) - N(t - 3). \]
+    This process represents the number of particles that hit the Geiger counter in the 
+    last 3 seconds. Calculate the expected power in $\{ D(t); t \geq 3 \}$.
+ 
+2. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 
+\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]
+where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables. 
+Calculate the expected power in $\{ X[n] \}$.
+    
+3. Let $\Theta$ be a $\text{Uniform}(a=-\pi, b=\pi)$ random variable, and let $f$ be a constant. Define the random phase process $\{ X(t) \}$ by
+\[ X(t) = \cos(2\pi f t + \Theta). \]
+Calculate the expected power in $\{ X(t) \}$.
+
+4. Let $\{ X(t) \}$ be a random process with mean function 
+$\mu_X(t) = -2$ and autocovariance function $C_X(s, t) = 5 e^{-0.4|s - t|}$. 
+Calculate the expected power of $\{ X(t) \}$.

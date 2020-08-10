@@ -1,0 +1,124 @@
+# Autocorrelation Function {#autocorrelation}
+
+
+## Theory {-}
+
+In this lesson, we introduce a summary of a random process that is closely 
+related to the mean and autocovariance functions. This function plays a 
+crucial role in signal processing.
+
+```{definition autocorrelation, name="Autocorrelation Function"}
+The **autocorrelation function** $R_X(s, t)$ of a random process $\{ X(t) \}$ 
+  is a function of _two_ times $s$ and $t$. It specifies 
+\begin{equation}
+R_X(s, t) \overset{\text{def}}{=} E[X(s)X(t)]. 
+(\#eq:autocorrelation)
+\end{equation}
+
+By the shortcut formula for covariance \@ref(eq:cov-shortcut), 
+$E[X(s) X(t)] = \text{Cov}[X(s), X(t)] + E[X(s)] E[X(t)]$, so the autocorrelation 
+function can be related to the mean function \@ref(eq:mean-function) 
+and autocovariance function 
+\[ R_X(s, t) = C_X(s, t) + \mu_X(s) \mu_X(t). \]
+
+For a stationary process (Definition \@ref(stationary)), the autocorrelation 
+function only depends on the difference between the times $\tau = s - t$:
+\[ R_X(\tau) = C_X(\tau) + \mu_X^2 \]
+
+For a discrete-time process, we notate the autocorrelation function as 
+\[ R_X[m, n] \overset{\text{def}}{=} C_X[m, n] + \mu_X[m] \mu_X[n]. \]
+```
+
+Let's calculate the autocorrelation function of some random processes.
+
+```{example random-amplitude-autocorrelation, name="Random Amplitude Process"}
+Consider the random amplitude process 
+\begin{equation}
+X(t) = A\cos(2\pi  f t)
+(\#eq:random-amplitude)
+\end{equation}
+introduced in Example \@ref(exm:random-amplitude). 
+
+Its autocorrelation function is 
+\begin{equation} 
+R_X(s, t) = C_X(s, t) + \mu_X(s) \mu_X(t) = (1.25 + 2.5^2) \cos(2\pi f s) \cos(2\pi f t).
+(\#eq:random-amplitude-autocorrelation)
+\end{equation}
+```
+
+```{example poisson-process-autocorrelation, name="Poisson Process"}
+Consider the Poisson process 
+$\{ N(t); t \geq 0 \}$ of rate $\lambda$, 
+defined in Example \@ref(exm:poisson-process-as-process).
+
+Its autocorrelation function is 
+\begin{equation} 
+R_X(s, t) = C_X(s, t) + \mu_X(s) \mu_X(t) = \lambda\min(s, t) + \lambda^2 s t.
+(\#eq:poisson-process-autocorrelation)
+\end{equation}
+```
+
+```{example white-noise-autocorrelation, name="White Noise"}
+Consider the white noise process $\{ Z[n] \}$ defined in Example \@ref(exm:white-noise), 
+which consists of i.i.d. random variables with mean $\mu = E[Z[n]]$ and 
+variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. 
+
+We showed in Example \@ref(exm:white-noise-stationary) that this process is stationary,
+so its autocorrelation function depends only on $k = m - n$:
+\begin{equation} 
+R_X[k] = C_X[k] + \mu_X^2 = \sigma^2\delta[k] + \mu^2.
+(\#eq:white-noise-autocorrelation)
+\end{equation}
+```
+
+```{example random-walk-autocorrelation, name="Random Walk"}
+Consider the random walk process $\{ X[n]; n\geq 0 \}$ from 
+Example \@ref(exm:random-walk-process). 
+
+Its autocorrelation function is:
+\begin{equation} 
+R_X[m, n] = C_X[m, n] + \underbrace{\mu_X[m]}_{0} \mu_Y[n] = \sigma^2 \min(m, n).
+(\#eq:random-walk-autocorrelation)
+\end{equation}
+```
+
+```{example gaussian-process-autocorrelation}
+Consider the process $\{X(t)\}$ from Example \@ref(exm:gaussian-process). 
+It is stationary, so its autocorrelation function depends on $\tau = s - t$ only:
+\begin{equation} 
+R_X(\tau) = C_X(\tau) + \mu_X^2 = 5 e^{-3\tau^2} + 4.
+(\#eq:gaussian-process-autocorrelation)
+\end{equation}
+```
+
+
+## Essential Practice {-}
+
+For these questions, you may want to refer to the mean and 
+autocovariance functions you calculated in Lessons \@ref(mean-function) 
+and \@ref(cov-function).
+
+1. Consider a grain of pollen suspended in water, whose horizontal position can be modeled by 
+Brownian motion $\{B(t); t \geq 0\}$ with parameter $\alpha=4 \text{mm}^2/\text{s}$, as in Example \@ref(exm:pollen).
+Calculate the autocorrelation function of $\{ B(t); t \geq 0 \}$.
+
+2. Radioactive particles hit a Geiger counter according to a Poisson process 
+at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
+
+    Define the new process $\{ D(t); t \geq 3 \}$ by 
+    \[ D(t) = N(t) - N(t - 3). \]
+    This process represents the number of particles that hit the Geiger counter in the 
+    last 3 seconds. Calculate the autocorrelation function of $\{ D(t); t \geq 3 \}$.
+ 
+3. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 
+\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]
+where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables. 
+Calculate the autocorrelation function of $\{ X[n] \}$.
+    
+4. Let $\Theta$ be a $\text{Uniform}(a=-\pi, b=\pi)$ random variable, and let $f$ be a constant. Define the random phase process $\{ X(t) \}$ by
+\[ X(t) = \cos(2\pi f t + \Theta). \]
+Calculate the autocorrelation function of $\{ X(t) \}$.
+
+5. Let $\{ X(t) \}$ be a random process with mean function 
+$\mu_X(t) = -1$ and autocovariance function $C_X(s, t) = 2e^{-|s - t|/3}$. 
+Calculate the autocorrelation function of $\{ X(t) \}$.

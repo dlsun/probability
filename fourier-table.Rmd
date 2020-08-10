@@ -1,0 +1,44 @@
+# Fourier Tables {#fourier-table}
+
+## Continuous-Time Fourier Transforms {#ctft}
+
+\[ X(f) = \int_{-\infty}^\infty x(t) e^{-j2\pi f t}\,dt,\ \ -\infty < f < \infty \]
+
+| Time-Domain $x(t)$ | Frequency-Domain $X(f) = \mathscr{F}[x(t)]$ | 
+|:---|:---|
+$1$ | $\delta(f)$ |
+$u(t) \overset{\text{def}}{=} \begin{cases} 1 & t \geq 0 \\ 0 & t < 0 \end{cases}$ | $\displaystyle\frac{1}{2}\delta(f) + \frac{1}{j2\pi f}$ |
+$\cos(2\pi f_0 t)$ | $\frac{1}{2}(\delta(f - f_0) + \delta(f + f_0))$  |
+$\sin(2\pi f_0 t)$ | $\frac{1}{2j}(\delta(f - f_0) - \delta(f + f_0))$  |
+$e^{-t}u(t)$ | $\displaystyle\frac{1}{1 + j2\pi f}$ |
+$e^{-|t|}$ | $\displaystyle\frac{2}{1 + (2\pi f)^2}$ |
+$e^{-\pi t^2}$ | $e^{-\pi f^2}$ |
+$\text{rect}(t) \overset{\text{def}}{=} \begin{cases} 1 & |t| \leq 0.5 \\ 0 & |t| > 0.5 \end{cases}$ | $\displaystyle\text{sinc}(f) \overset{\text{def}}{=} \frac{\sin(\pi f)}{\pi f}$ |
+$\text{tri}(t) \overset{\text{def}}{=} \begin{cases} 1 - |t| & |t| \leq 1 \\ 0 & |t| > 1 \end{cases}$ | $\text{sinc}^2(f)$ | 
+
+
+## Discrete-Time Fourier Transforms {#dtft}
+
+Note that $f$ here denotes _normalized frequency_ (cycles/sample).
+\[ X(f) = \sum_{n=-\infty}^\infty x[n] e^{-j2\pi f n},\ \ -\frac{1}{2} < f < \frac{1}{2} \]
+
+| Time-Domain $x[n]$ | Frequency-Domain $X(f) = \mathscr{F}[x[n]]$ | Restrictions |
+|:--|:---|:--|
+| $1$ | $\delta(f)$ |
+| $\delta[n]$ | $1$ |
+| $\cos(2\pi f_0 n)$ | $\frac{1}{2}(\delta(f - f_0) + \delta(f + f_0))$ | $-\frac{1}{2} < f_0 < \frac{1}{2}$ | 
+| $\sin(2\pi f_0 n)$ | $\frac{1}{2j}(\delta(f - f_0) - \delta(f + f_0))$ | $-\frac{1}{2} < f_0 < \frac{1}{2}$ | 
+| $\alpha^{|n|}$ |$\displaystyle\frac{1 - \alpha^{2}}{1 + \alpha^{2} - 2\alpha \cos(2\pi f)}$ | $|\alpha| < 1$ |
+| $\alpha^{n} u[n]$ | $\displaystyle\frac{1}{1 - \alpha e^{-j2\pi f}}$ | $|\alpha| < 1$ |
+
+
+## Fourier Properties {#fourier-properties}
+
+Property | When It Applies | Time-Domain | | Frequency-Domain |
+|:---|:---:|----:|:-:|:----|
+Linearity | continuous-time, discrete-time | $a x(t) + b y(t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $a X(f) + b Y(f)$ |
+Scaling | continuous-time only | $x(at)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $\frac{1}{a} X\left(\frac{f}{a}\right)$ |
+Shifting | continuous-time, discrete-time  | $x(t + b)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $X(f) e^{j2\pi b f}$ |
+Convolution | continuous-time, discrete-time | $(x * y)(t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $X(f) \cdot Y(f)$ |
+Reversal | continuous-time, discrete-time | $x(-t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $X(-f)$ |
+DC Offset | continuous-time, discrete-time | $\int_{-\infty}^\infty x(t)\,dt$ | $\overset{\mathscr{F}}{\longleftrightarrow}$  | $X(0)$ |

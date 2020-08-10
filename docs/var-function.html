@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-06" />
+<meta name="date" content="2020-08-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -419,6 +419,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="stationary.html"><a href="stationary.html#theory-47"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="stationary.html"><a href="stationary.html#essential-practice-41"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="54" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>54</b> Autocorrelation Function</a><ul>
+<li class="chapter" data-level="" data-path="autocorrelation.html"><a href="autocorrelation.html#theory-48"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="autocorrelation.html"><a href="autocorrelation.html#essential-practice-42"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="55" data-path="power.html"><a href="power.html"><i class="fa fa-check"></i><b>55</b> Power of a Stationary Process</a><ul>
+<li class="chapter" data-level="" data-path="power.html"><a href="power.html#motivation-5"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="power.html"><a href="power.html#theory-49"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="power.html"><a href="power.html#essential-practice-43"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="56" data-path="psd.html"><a href="psd.html"><i class="fa fa-check"></i><b>56</b> Power Spectral Density</a><ul>
+<li class="chapter" data-level="" data-path="psd.html"><a href="psd.html#motivation-6"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="psd.html"><a href="psd.html#theory-50"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="psd.html"><a href="psd.html#essential-practice-44"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="57" data-path="lti-time.html"><a href="lti-time.html"><i class="fa fa-check"></i><b>57</b> LTI Filters in the Time Domain</a><ul>
+<li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#motivation-7"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#review"><i class="fa fa-check"></i>Review</a></li>
+<li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#theory-51"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#essential-practice-45"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="distribution-table.html"><a href="distribution-table.html"><i class="fa fa-check"></i><b>A</b> Distribution Tables</a><ul>
+<li class="chapter" data-level="A.1" data-path="distribution-table.html"><a href="distribution-table.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete Distributions</a></li>
+<li class="chapter" data-level="A.2" data-path="distribution-table.html"><a href="distribution-table.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="fourier-table.html"><a href="fourier-table.html"><i class="fa fa-check"></i><b>B</b> Fourier Tables</a><ul>
+<li class="chapter" data-level="B.1" data-path="fourier-table.html"><a href="fourier-table.html#ctft"><i class="fa fa-check"></i><b>B.1</b> Continuous-Time Fourier Transforms</a></li>
+<li class="chapter" data-level="B.2" data-path="fourier-table.html"><a href="fourier-table.html#dtft"><i class="fa fa-check"></i><b>B.2</b> Discrete-Time Fourier Transforms</a></li>
+<li class="chapter" data-level="B.3" data-path="fourier-table.html"><a href="fourier-table.html#fourier-properties"><i class="fa fa-check"></i><b>B.3</b> Fourier Properties</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -462,12 +492,12 @@ For a discrete-time process, we notate the variance function as
 <p><span id="exm:random-amplitude-var" class="example"><strong>Example 51.1  (Random Amplitude Process)  </strong></span>Consider the random amplitude process
 <span class="math display" id="eq:random-amplitude">\[\begin{equation}
 X(t) = A\cos(2\pi  f t)
-\tag{50.1}
+\tag{50.2}
 \end{equation}\]</span>
 introduced in Example <a href="random-process-examples.html#exm:random-amplitude">48.1</a>.</p>
 To be concrete, suppose <span class="math inline">\(A\)</span> is a <span class="math inline">\(\text{Binomial}(n=5, p=0.5)\)</span> random variable
 and <span class="math inline">\(f = 1\)</span>. To calculate the variance function, observe that the only thing that is
-random in <a href="mean-function.html#eq:random-amplitude">(50.1)</a> is <span class="math inline">\(A\)</span>. Everything else is a constant,
+random in <a href="mean-function.html#eq:random-amplitude">(50.2)</a> is <span class="math inline">\(A\)</span>. Everything else is a constant,
 so they can be pulled outside the variance. (However, we have to remember to
 square anything we pull outside the variance.)
 <span class="math display">\[\begin{align*}

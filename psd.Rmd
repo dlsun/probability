@@ -1,0 +1,149 @@
+# Power Spectral Density {#psd}
+
+## Motivation {-}
+
+In Lesson \@ref(power), we saw that the expected power of a stationary 
+random signal $\{ X(t) \}$ could be calculated by evaluating the autocorrelation 
+function $R_X(\tau)$ at a difference of $\tau = 0$. But how is this expected power 
+distributed across different frequencies? The answer also involves the 
+autocorrelation function.
+
+## Theory {-}
+
+```{definition psd, name="Power Spectral Density"}
+The **power spectral density** (or PSD, for short) $S_X(f)$ of a stationary 
+random process $\{ X(t) \}$ is the Fourier transform of the autocorrelation function 
+$R_X(\tau)$. (Note: Because the process is stationary, the autocorrelation  
+              only depends on the difference $\tau = s - t$.)
+
+That is, the autocorrelation function and the power spectral density are Fourier pairs.
+\begin{equation} 
+R_X(\tau) \overset{\mathscr{F}}{\longleftrightarrow} S_X(f). 
+(\#eq:autocorrelation-psd)
+\end{equation}
+```
+
+In Lesson \@ref(lti-frequency), we will motivate why it makes 
+sense to interpret the Fourier transform of the autocorrelation 
+function as the distribution of power over frequency. For now, 
+we take \@ref(eq:autocorrelation-psd) to be the 
+_definition_ of the power spectral density.
+
+```{example white-noise-psd, name="White Noise"}
+Consider the white noise process $\{ Z[n] \}$ defined in Example \@ref(exm:white-noise), 
+which consists of i.i.d. random variables with mean $\mu = E[Z[n]]$ and 
+variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. 
+
+This process is stationary, with autocorrelation function 
+\[ R_X[k] = \sigma^2\delta[k] + \mu^2. \]
+The power spectral density is its Fourier transform. Using 
+linearity and 
+the Discrete-Time Fourier Transform table in Appendix \@ref(dtft), we see that 
+\[ S_X(f) = \sigma^2 + \mu^2 \delta(f). \]
+
+This PSD is graphed below for $\mu=-1.5$ and 
+$\sigma^2 = 1.7$. Note that this power spectral density is only defined 
+for frequencies below the Nyquist limit: $|f| < 0.5$. We see that 
+white noise has equal power at all frequencies, except at 0 Hz (DC).
+```
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(0, 1.5^2,
+     xaxt="n", yaxt="n", bty="n",
+     col="red", pch=19,
+     xlim=c(-0.5, 0.5), ylim=c(0, 2.5),
+     xlab="Frequency (cycles/sample)", 
+     ylab="Power Spectral Density")
+axis(1, pos=0, at=(-5:5) / 10)
+axis(2, pos=0, at=(1:5) / 2)
+lines(c(-0.5, 0.5), c(1.7, 1.7), type="l", col="red")
+lines(c(0, 0), c(0, 1.5^2), lwd=2, col="red")
+```
+
+One way to check that we calculated the PSD correctly is to integrate 
+it over "all" frequencies and making sure it matches the expected power 
+we calculated in Lesson \@ref(power). Because this is a discrete-time signal, 
+we only integrate over frequencies below the Nyquist limit, $|f| < 0.5$.
+\[ \int_{-0.5}^{0.5} S_X(f)\,df = \int_{-0.5}^{0.5} \sigma^2\,df + \mu^2 \int_{-0.5}^{0.5} \delta(f)\,df = \sigma^2 + \mu^2  \]
+
+The power in this signal below 0.2 cycles/sample can be calculated 
+by integrating the PSD, 
+remembering to include both positive _and_ negative frequencies.
+
+\[ \int_{-0.2}^{0.2} S_X(f)\,df = \int_{-0.2}^{0.2} \sigma^2\,df + \mu^2 \int_{-0.2}^{0.2} \delta(f)\,df = 0.4\sigma^2 + \mu^2. \]
+
+```{example gaussian-process-psd}
+Consider the process $\{X(t)\}$ from Example \@ref(exm:gaussian-process). 
+This process is stationary, with autocorrelation function
+\[ R_X(\tau) = 5 e^{-\tau^2 / 3} + 4. \]
+The power spectral density is its Fourier transform. Using linearity, scaling, and 
+the Continuous-Time Fourier Transform table in Appendix \@ref(ctft), we see that 
+\begin{align*}
+S_X(f) &= \mathscr{F}[5 e^{-3 \tau^2} + 4] \\
+&= 5 \mathscr{F}[\underbrace{e^{-3 \tau^2}}_{e^{-\pi \left(\sqrt{\frac{3}{\pi}}\tau\right)^2}}] + 4 \mathscr{F}[1] & \text{(linearity)} \\
+&= 5 \sqrt{\frac{\pi}{3}} e^{-\pi (\sqrt{\frac{\pi}{3}} f)^2}  + 4 \delta(f) & \text{(scaling by $a = \sqrt{\frac{3}{\pi}}$)}
+\end{align*}
+Notice how we massaged $e^{-3\tau^2}$ into the form 
+$e^{-\pi (a\tau)^2}$, which is just a scale transform of one of the 
+transforms in Appendix \@ref(ctft).
+
+This power spectral density is graphed below. We see that this process has 
+more power at the lower frequencies than at the higher frequencies.
+```
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+plot(0, 4,
+     xaxt="n", yaxt="n", bty="n",
+     col="red", pch=19,
+     xlim=c(-2, 2), ylim=c(0, 5),
+     xlab="Frequency (Hz)", 
+     ylab="Power Spectral Density")
+axis(1, pos=0, at=(-2:2))
+axis(2, pos=0, at=(1:5))
+
+fs <- seq(-2, 2, 0.01)
+lines(fs, 5 * sqrt(pi / 3) * exp(-pi^2 * fs^2 / 3), type="l", col="red")
+lines(c(0, 0), c(0, 4), lwd=2, col="red")
+```
+
+One way to check that we calculated the PSD correctly is to integrate 
+it over all frequencies and making sure it matches the expected power 
+we calculated in Lesson \@ref(power).
+\[ \int_{-\infty}^{\infty} S_X(f)\,df = \int_{-\infty}^{\infty} 5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}\,df + 4 \int_{-\infty}^{\infty} \delta(f)\,df = 5 + 4 = 9. \]
+
+The power in this signal below above 1 Hz can be calculated 
+by integrating the PSD, 
+remembering to include both positive _and_ negative frequencies. Since the 
+PSD is symmetric, the easiest way to do this is to double the integral over 
+$1 < f < \infty$.
+
+\[ 2 \int_{1}^{\infty} S_X(f)\,df = 2  \int_1^{\infty} 5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}\,df = .0515. \]
+
+
+## Essential Practice {-}
+
+For these questions, you may want to refer to the autocorrelation function 
+you calculated in Lesson \@ref(autocorrelation).
+
+1. Radioactive particles hit a Geiger counter according to a Poisson process 
+at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ represent this Poisson process.
+
+    Define the new process $\{ D(t); t \geq 3 \}$ by 
+    \[ D(t) = N(t) - N(t - 3). \]
+    This process represents the number of particles that hit the Geiger counter in the 
+    last 3 seconds. Calculate the PSD of $\{ D(t); t \geq 3 \}$. What is the 
+    expected power above 1 Hz?
+ 
+2. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 
+\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]
+where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables. 
+Calculate the PSD of $\{ X[n] \}$. What is the expected power below 0.1 cycles per 
+sample?
+    
+3. Let $\Theta$ be a $\text{Uniform}(a=-\pi, b=\pi)$ random variable, and let $f$ be a constant. Define the random phase process $\{ X(t) \}$ by
+\[ X(t) = \cos(2\pi f t + \Theta). \]
+Calculate the PSD of $\{ X(t) \}$.
+
+4. Let $\{ X(t) \}$ be a random process with mean function 
+$\mu_X(t) = -2$ and autocovariance function $C_X(s, t) = 5 e^{-0.4|s - t|}$. 
+Calculate the PSD of $\{ X(t) \}$. What is the expected power below 3 Hz?

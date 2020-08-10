@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 7 Independence | Introduction to Probability</title>
+  <title>Lesson 55 Power of a Stationary Process | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 7 Independence | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 55 Power of a Stationary Process | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 7 Independence | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 55 Power of a Stationary Process | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="conditional.html"/>
-<link rel="next" href="ltp.html"/>
+<link rel="prev" href="autocorrelation.html"/>
+<link rel="next" href="psd.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -469,111 +469,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="independence" class="section level1">
-<h1><span class="header-section-number">Lesson 7</span> Independence</h1>
-<div id="motivating-example-6" class="section level2 unnumbered">
-<h2>Motivating Example</h2>
-<p>Many gamblers believe that after a string of losses, they are “due”
-for a win. Consider a gambler who repeatedly bets on reds in
-roulette, an event with probability <span class="math inline">\(18 / 38 \approx 0.474\)</span>. The ball has
-not landed in a red pocket on any of the last 4 spins of the wheel.
-Does this make it more likely that he will win on the next spin?</p>
-<p>This is really a conditional probability question in disguise.
-We want to know the probability that the ball will land in a
-red pocket on the 5th spin, <em>given</em> that it did not land in a
-red pocket on any of the first 4 spins:
-<span class="math display">\[ P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}). \]</span></p>
+<div id="power" class="section level1">
+<h1><span class="header-section-number">Lesson 55</span> Power of a Stationary Process</h1>
+<div id="motivation-5" class="section level2 unnumbered">
+<h2>Motivation</h2>
+<p>This lesson is the first in a series of lessons about the processing
+of <em>random signals</em>. The two most common kinds of random signals that
+are studied in electrical engineering are voltage signals <span class="math inline">\(\{ V(t) \}\)</span>
+and current signals <span class="math inline">\(I(t)\)</span>. These signals are often modulated while
+the other aspects of the circuit (e.g., the resistance) are held constant.
+The (instantaneous) power dissipated by the circuit is then
+<span class="math display">\[ \text{Power}(t) = I(t)^2 R = \frac{V(t)^2}{R}. \]</span>
+In other words, the power is proportional to the <em>square</em> of the signal.</p>
 </div>
-<div id="theory-5" class="section level2 unnumbered">
+<div id="theory-49" class="section level2 unnumbered">
 <h2>Theory</h2>
-<p>To verify that the two probabilities are <em>exactly</em> the same, we
-do the calculation:</p>
-<p><span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= \frac{P(\text{not red on first 4 spins} \textbf{ and } \text{red on 5th spin}) }{P(\text{not red on first 4 spins})} \\
-&amp;= \frac{ 20^4 \cdot 18 \big/ 38^5 }{20^4 \big/ 38^4} \\
-&amp;= \frac{18}{38}.
-\end{align*}\]</span></p>
-<p>We see that the conditional probability is <span class="math inline">\(18 / 38\)</span>, which is the same as the probability that the 5th
-spin is red if we did not know the outcome of the first 4 spins. In mathematical notation,
-<span class="math display">\[\begin{align*}
-P(\text{red on 5th spin}\ |\ \text{not red on first 4 spins}) &amp;= P(\text{red on 5th spin})
-\end{align*}\]</span>
-When conditioning on one event (e.g., “not red on first 4 spins”) does not change the probability
-of another event (e.g., “red on 5th spin”), we say that the two
-events are <strong>independent</strong>. In this case, whether the gambler wins on the 5th spin is
-independent of the fact that he has lost each of the last 4 spins. The folk belief that one is
-“due” for a win after a series of losses is plain wrong and is known as the <strong>gambler’s fallacy</strong>.</p>
+<p>For this reason, the (instantaneous) power of a general signal <span class="math inline">\(\{ X(t) \}\)</span> is defined as
+<span class="math display">\[ \text{Power}_X(t) = X(t)^2. \]</span>
+When the signal is random, it makes sense to report its expected value, rather
+than its</p>
 
 <div class="definition">
-<span id="def:independence" class="definition"><strong>Definition 7.1  (Independence)  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be <strong>independent</strong> if the
-<span class="math display" id="eq:independence">\[\begin{equation}
-P(B | A) = P(B).
-\tag{7.1}
-\end{equation}\]</span>
+<p><span id="def:power" class="definition"><strong>Definition 55.1  (Expected Power)  </strong></span>The <strong>expected power</strong> of a random process <span class="math inline">\(\{ X(t) \}\)</span> is defined as
+<span class="math display">\[ E[X(t)^2]. \]</span></p>
+<p>Notice that the expected power is related to the autocorrelation function
+<a href="autocorrelation.html#eq:autocorrelation">(54.1)</a> by
+<span class="math display">\[ E[X(t)^2] = R_X(t, t). \]</span></p>
+For a stationary process, the autocorrelation function only depends on the
+difference between the times, <span class="math inline">\(R_X(\tau)\)</span>, so the expected power of a
+<em>stationary</em> process is
+<span class="math display">\[ E[X(t)^2] = R_X(0). \]</span>
 </div>
 
-The next result follows by applying the Multiplication Rule (<a href="conditional.html#thm:multiplication-rule">6.1</a>) to
-the definition of independence.
-
-<div class="theorem">
-<span id="thm:independence-mult" class="theorem"><strong>Theorem 7.1  </strong></span>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if their probabilities multiply:
-<span class="math display" id="eq:independence-mult">\[\begin{equation}
-P(A \textbf{ and } B) = P(A) P(B).
-\tag{7.2}
-\end{equation}\]</span>
-</div>
-
-
-<div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> First, we assume <a href="independence.html#eq:independence">(7.1)</a> and show that <a href="independence.html#eq:independence-mult">(7.2)</a> holds:
-<span class="math display">\[\begin{align*}
-P(A \textbf{ and } B) &amp;= P(A) P(B | A) &amp; \text{by the Multiplication Rule} \\
-&amp;= P(A) P(B) &amp; \text{by assumption}.
-\end{align*}\]</span></p>
-Conversely, we assume <a href="independence.html#eq:independence-mult">(7.2)</a> and show that <a href="independence.html#eq:independence">(7.1)</a> holds:
-<span class="math display">\[\begin{align*}
-P(B | A) &amp;= \frac{P(A \textbf{ and } B)}{P(A)} &amp; \text{by the definition of conditional probability}  \\
-&amp;= \frac{P(A) P(B)}{P(A)} &amp; \text{by assumption} \\
-&amp;= P(B).
-\end{align*}\]</span>
-</div>
-
-<p>Here is an example that combines several concepts from the past few lessons.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Kgudt4PXs28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+<p>Since most noise signals are stationary, we will only calculate expected
+power for stationary signals.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-11" class="example"><strong>Example 7.1  </strong></span>You and a fellow castaway are stranded on a desert island, playing dice for the last banana. Two dice will be rolled.
-If the biggest number is 1, 2, 3, or 4, then Player 1 wins. If the biggest number is 5 or 6, then Player 2 wins.
-Would you rather be Player 1 or Player 2?
+<p><span id="exm:white-noise-power" class="example"><strong>Example 55.1  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in Example <a href="random-process.html#exm:white-noise">47.2</a>,
+which consists of i.i.d. random variables with mean <span class="math inline">\(\mu = E[Z[n]]\)</span> and
+variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]\)</span>.</p>
+This process is stationary, with autocorrelation function
+<span class="math display">\[ R_X[k] = \sigma^2\delta[k] + \mu^2, \]</span>
+so its expected power is
+<span class="math display">\[ R_X[0] = \sigma^2\delta[0] + \mu^2 = \sigma^2 + \mu^2. \]</span>
 </div>
 
 
-<div class="solution">
- <span class="solution"><em>Solution. </em></span> Player 2 has a <span class="math inline">\(20/36 = 0.5556\)</span> chance of winning. Here’s why:
-<span class="math display">\[\begin{align*} 
-P(\text{biggest number is 5, 6}) &amp;= 1 - P(\text{biggest number is 1, 2, 3, 4}) \\
-&amp;= 1 - P(\text{1st die is 1, 2, 3, 4} \textbf{ and } \text{2nd die is 1, 2, 3, 4}) \\
-&amp;= 1 - \frac{4}{6} \cdot \frac{4}{6}\ \ \text{(by independence)} \\
-&amp;= 1 - \frac{16}{36} \\
-&amp;= \frac{20}{36}
-\end{align*}\]</span>
+<div class="example">
+<span id="exm:gaussian-process-power" class="example"><strong>Example 55.2  </strong></span>Consider the process <span class="math inline">\(\{X(t)\}\)</span> from Example <a href="stationary.html#exm:gaussian-process">53.5</a>.
+This process is stationary, with autocorrelation function
+<span class="math display">\[ R_X(\tau) = 5 e^{-3\tau^2} + 4, \]</span>
+so its expected power is
+<span class="math display">\[ R_X(0) = 5 e^{-3 \cdot 0^2} + 4 = 9. \]</span>
 </div>
 
 </div>
-<div id="examples-5" class="section level2 unnumbered">
-<h2>Examples</h2>
+<div id="essential-practice-43" class="section level2 unnumbered">
+<h2>Essential Practice</h2>
+<p>For these questions, you may want to refer to the autocorrelation function
+you calculated in Lesson <a href="autocorrelation.html#autocorrelation">54</a>.</p>
 <ol style="list-style-type: decimal">
-<li>One card is dealt off the top of a well-shuffled deck of cards. Is the event that the card is a
-heart independent of the event that the card is an ace?</li>
-<li>Two cards are dealt off the top of a well-shuffled deck of cards. Is the event that the
-first card is a heart independent of the event that the second card is a heart?</li>
-<li>In the dice game Yahtzee, five dice are rolled. The outcomes of the five dice are independent.
-What is the probability of rolling a “Yahtzee” (i.e., when all five dice show the same number)?</li>
+<li><p>Radioactive particles hit a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
+<p>Define the new process <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> by
+<span class="math display">\[ D(t) = N(t) - N(t - 3). \]</span>
+This process represents the number of particles that hit the Geiger counter in the
+last 3 seconds. Calculate the expected power in <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span>.</p></li>
+<li><p>Consider the moving average process <span class="math inline">\(\{ X[n] \}\)</span> of Example <a href="random-process-examples.html#exm:ma1">48.2</a>, defined by
+<span class="math display">\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]</span>
+where <span class="math inline">\(\{ Z[n] \}\)</span> is a sequence of i.i.d. standard normal random variables.
+Calculate the expected power in <span class="math inline">\(\{ X[n] \}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\Theta\)</span> be a <span class="math inline">\(\text{Uniform}(a=-\pi, b=\pi)\)</span> random variable, and let <span class="math inline">\(f\)</span> be a constant. Define the random phase process <span class="math inline">\(\{ X(t) \}\)</span> by
+<span class="math display">\[ X(t) = \cos(2\pi f t + \Theta). \]</span>
+Calculate the expected power in <span class="math inline">\(\{ X(t) \}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\{ X(t) \}\)</span> be a random process with mean function
+<span class="math inline">\(\mu_X(t) = -2\)</span> and autocovariance function <span class="math inline">\(C_X(s, t) = 5 e^{-0.4|s - t|}\)</span>.
+Calculate the expected power of <span class="math inline">\(\{ X(t) \}\)</span>.</p></li>
 </ol>
-</div>
-<div id="additional-exercises-3" class="section level2 unnumbered">
-<h2>Additional Exercises</h2>
 
 </div>
 </div>
@@ -582,8 +554,8 @@ What is the probability of rolling a “Yahtzee” (i.e., when all five dice sho
           </div>
         </div>
       </div>
-<a href="conditional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ltp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="autocorrelation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="psd.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -614,7 +586,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/independence.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/power.Rmd",
 "text": "Edit"
 },
 "history": {
