@@ -1,0 +1,83 @@
+# Complex Numbers {#complex}
+
+## Motivation {-}
+
+The following videos explain why imaginary numbers are _necessary_ in mathematics.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T647CGsuOVU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2HrSG0fdxLY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N9QOLrfcKNc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DThAoT3q2V4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Theory {-}
+
+The following videos explain the core concepts: the complex plane and the geometric interpretations of 
+complex addition and multiplication.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/65wYmy8Pf-Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/z5IG_6_zPDo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Be sure to try the calculations suggested at the end of the previous video before moving on to the next video:
+
+- $(4 + 3i) \cdot i$
+- $(4 + 3i) \cdot 2i$
+- $(4 + 3i) \cdot (4 + 3i)$
+- $(2 + i) \cdot (1 + 2i)$
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YHvR8siIiD0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+```{definition magnitude, name="Magnitude of a Complex Number"}
+The **magnitude** of a complex number $z = a + jb$ is 
+\[ |z| \overset{\text{def}}{=} \sqrt{a^2 + b^2}. \]
+This follows from the Pythagorean Theorem.
+```
+
+```{definition complex-conjugate, name="Complex Conjugate"}
+The **complex conjugate** of a complex number $z = a + jb$ is 
+\[ z^* \overset{\text{def}}{=} a - jb. \]
+```
+
+To conjugate a complex number, we simply flip the sign in front of any $j$s in the expression. For example:
+\[ \left(\frac{1 + 2j}{2 - j} \right)^* = \frac{1 - 2j}{2 + j}.  \]
+
+Because it is so easy to calculate the complex conjugate, conjugation is often the preferred way to 
+calculate magnitudes.
+
+```{theorem calculating-magnitude, name="Calculating Magnitude"}
+The _squared_ magnitude of a complex number $z$ is the product of the number and its complex conjugate:
+\[ |z|^2 = z z^*. \]
+This means that the magnitude of a complex number can be calculated as 
+\[ |z| = \sqrt{z z^*}. \]
+```
+
+```{proof}
+If $z = a + jb$, then $z^* = a - jb$, and 
+\[ z z^* = (a + jb)(a - jb) = a^2 - j^2 b^2 = a^2 + b^2 = |z|^2. \]
+```
+
+For example, the magnitude of the number above is:
+\[ \left|\frac{1 + 2j}{2 - j} \right| = \sqrt{\frac{1 + 2j}{2 - j} \cdot \frac{1 - 2j}{2 + j}} = \sqrt{\frac{1 + 4}{4 + 1}} = 1. \]
+It would have been much more tedious to calculate this magnitude by finding $a$ and $b$ such that 
+$\frac{1 + 2j}{2 - j} = a + jb$ and using Definition \@ref(def:magnitude).
+
+```{theorem euler, name="Euler's Identity"}
+Euler's identity relates the complex exponential $e^{j\theta}$ to the trigonometric functions:
+\[ e^{j\theta} = \cos \theta + j \sin\theta \]
+Two immediate corollaries of Euler's identity are:
+\begin{align*}
+\cos\theta &= \frac{e^{j\theta} + e^{-j\theta}}{2} \\
+\sin\theta &= \frac{e^{j\theta} - e^{-j\theta}}{2j}.
+\end{align*}
+```
+
+## Essential Practice {-}
+
+1. Express the complex number $\frac{1 - j}{1 + j}$ in $a + jb$ form, where $a$ and $b$ are real numbers.
+2. Calculate $e^{j\pi/4} + e^{-j\pi/4}$. Your answer should be a real number.
+3. Calculate $\left| \frac{1 - j}{1 + e^{j\pi/4}} \right|$.
+
+    

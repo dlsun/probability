@@ -1,3 +1,5 @@
+# (PART) Discrete Probability {-}
+
 # Random Variables {#rv}
 
 ## Motivating Example {-}

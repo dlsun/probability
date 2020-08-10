@@ -6,18 +6,18 @@
 
 | Distribution of $X$  | $f(x)$ | Support | $E[X]$  | $\text{Var}[X]$ |
 |:------|:---|:---|:--:|:--:|
-| $\text{Hypergeometric}(n, N_1, N_0)$ | $\displaystyle \frac{\binom{N_1}{x} \binom{N_0}{n-x}}{\binom{N}{n}}$ | $x=0, 1, \ldots, n$ | $n \frac{N_1}{N}$ | $n \frac{N_1}{N} \frac{N_0}{N} \left(1 - \frac{n-1}{N-1}\right)$ |
-| $\text{Binomial}(n, N_1, N_0)$ | $\displaystyle \frac{\binom{n}{x} N_1^x N_0^{n-x}}{N^n}$ | $x=0, 1, \ldots, n$ | $n \frac{N_1}{N}$ | $n \frac{N_1}{N} \frac{N_0}{N}$ |
-| $\text{Binomial}(n, p)$ | $\binom{n}{x} p^x (1-p)^{n-x}$ | $x=0, 1, \ldots, n$ | $np$ | $np(1-p)$ |
-| $\text{Geometric}(p)$ | $(1-p)^{x-1} p$ | $x=1, 2, \ldots$ | $\frac{1}{p}$ | $\frac{1-p}{p^2}$ |
-| $\text{NegativeBinomial}(r, p)$ | $\binom{x-1}{r-1} (1-p)^{x-r} p^r$ | $x=r, r+1, \ldots$ | $\frac{r}{p}$ | $\frac{r(1-p)}{p^2}$ |
-| $\text{Poisson}(\mu)$ | $e^{-\mu} \frac{\mu^x}{x!}$ | $x=0, 1, 2, \ldots$ | $\mu$ | $\mu$ |
+| [Hypergeometric](#hypergeometric)$(n, N_1, N_0)$ | $\displaystyle \frac{\binom{N_1}{x} \binom{N_0}{n-x}}{\binom{N}{n}}$ | $x=0, 1, \ldots, n$ | $n \frac{N_1}{N}$ | $n \frac{N_1}{N} \frac{N_0}{N} \left(1 - \frac{n-1}{N-1}\right)$ |
+| [Binomial](#binomial)$(n, N_1, N_0)$ | $\displaystyle \frac{\binom{n}{x} N_1^x N_0^{n-x}}{N^n}$ | $x=0, 1, \ldots, n$ | $n \frac{N_1}{N}$ | $n \frac{N_1}{N} \frac{N_0}{N}$ |
+| [Binomial](#binomial)$(n, p)$ | $\binom{n}{x} p^x (1-p)^{n-x}$ | $x=0, 1, \ldots, n$ | $np$ | $np(1-p)$ |
+| [Geometric](#geometric)$(p)$ | $(1-p)^{x-1} p$ | $x=1, 2, \ldots$ | $\frac{1}{p}$ | $\frac{1-p}{p^2}$ |
+| [NegativeBinomial](#negative-binomial)$(r, p)$ | $\binom{x-1}{r-1} (1-p)^{x-r} p^r$ | $x=r, r+1, \ldots$ | $\frac{r}{p}$ | $\frac{r(1-p)}{p^2}$ |
+| [Poisson](#poisson)$(\mu)$ | $e^{-\mu} \frac{\mu^x}{x!}$ | $x=0, 1, 2, \ldots$ | $\mu$ | $\mu$ |
 
 ## Continuous Distributions {#continuous-distributions}
 
 | Distribution of $X$  | $f(x)$ | Support | $E[X]$  | $\text{Var}[X]$ |
 |:------|:---|:---|:--:|:--:|
-| $\text{Uniform}(a, b)$ | $\frac{1}{b-a}$ | $a < x < b$ | $\frac{a+b}{2}$ | $\frac{(b-a)^2}{12}$ |
-| $\text{Exponential}(\lambda)$ | $\lambda e^{-\lambda x}$ | $0 < x < \infty$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ |
-| $\text{Gamma}(r, \lambda)$ | $\frac{\lambda^r}{(r-1)!}x^{r-1} e^{-\lambda x}$ | $0 < x < \infty$ | $\frac{r}{\lambda}$ | $\frac{r}{\lambda^2}$ |
-| $\text{Normal}(\mu, \sigma)$ | $\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}$ | $-\infty < x < \infty$ | $\mu$ | $\sigma^2$ |
+| [Uniform](#uniform)$(a, b)$ | $\frac{1}{b-a}$ | $a < x < b$ | $\frac{a+b}{2}$ | $\frac{(b-a)^2}{12}$ |
+| [Exponential](#exponential)$(\lambda)$ | $\lambda e^{-\lambda x}$ | $0 < x < \infty$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ |
+| [Gamma](#sums-continuous)$(r, \lambda)$ | $\frac{\lambda^r}{(r-1)!}x^{r-1} e^{-\lambda x}$ | $0 < x < \infty$ | $\frac{r}{\lambda}$ | $\frac{r}{\lambda^2}$ |
+| [Normal](#normal)$(\mu, \sigma)$ | $\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}$ | $-\infty < x < \infty$ | $\mu$ | $\sigma^2$ |

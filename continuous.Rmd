@@ -1,3 +1,5 @@
+# (PART) Continuous Probability {-}
+
 # Continuous Random Variables {#continuous}
 
 ## Motivating Example {-}

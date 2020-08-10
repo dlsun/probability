@@ -1,3 +1,5 @@
+# (PART) Basics of Probability {-}
+
 # Probability and Counting {#counting}
 
 ## Motivating Example {-}

@@ -1,5 +1,6 @@
-# Autocorrelation Function {#autocorrelation}
+# (PART) Random Signal Processing {-}
 
+# Autocorrelation Function {#autocorrelation}
 
 ## Theory {-}
 

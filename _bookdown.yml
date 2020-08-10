@@ -17,6 +17,6 @@ rmd_files: [
   "sums-continuous.Rmd", "clt.Rmd", "random-process.Rmd", "random-process-examples.Rmd",
   "brownian-motion.Rmd", "mean-function.Rmd", "var-function.Rmd", "cov-function.Rmd", "stationary.Rmd",
   "autocorrelation.Rmd", "power.Rmd", "psd.Rmd", "lti-time.Rmd", #"lti-frequency.Rmd",
-  "distribution-table.Rmd", "fourier-table.Rmd"
+  "distribution-table.Rmd", "complex.Rmd", "fourier.Rmd", "fourier-table.Rmd"
 ]
 output_dir: "docs"

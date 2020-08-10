@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-09" />
+<meta name="date" content="2020-08-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="lti-time.html"/>
-<link rel="next" href="fourier-table.html"/>
+<link rel="next" href="complex.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -132,6 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Basics of Probability</b></span></li>
 <li class="chapter" data-level="1" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>1</b> Probability and Counting</a><ul>
 <li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#motivating-example"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="counting.html"><a href="counting.html#theory"><i class="fa fa-check"></i>Theory</a></li>
@@ -183,6 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="bayes.html"><a href="bayes.html#theory-7"><i class="fa fa-check"></i><b>9.2</b> Theory</a></li>
 <li class="chapter" data-level="9.3" data-path="bayes.html"><a href="bayes.html#examples-7"><i class="fa fa-check"></i><b>9.3</b> Examples</a></li>
 </ul></li>
+<li class="part"><span><b>II Discrete Probability</b></span></li>
 <li class="chapter" data-level="10" data-path="rv.html"><a href="rv.html"><i class="fa fa-check"></i><b>10</b> Random Variables</a><ul>
 <li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#motivating-example-9"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="rv.html"><a href="rv.html#theory-8"><i class="fa fa-check"></i>Theory</a></li>
@@ -321,6 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lln.html"><a href="lln.html#theory-29"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="lln.html"><a href="lln.html#essential-practice-21"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="part"><span><b>III Continuous Probability</b></span></li>
 <li class="chapter" data-level="33" data-path="continuous.html"><a href="continuous.html"><i class="fa fa-check"></i><b>33</b> Continuous Random Variables</a><ul>
 <li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#motivating-example-23"><i class="fa fa-check"></i>Motivating Example</a></li>
 <li class="chapter" data-level="" data-path="continuous.html"><a href="continuous.html#theory-30"><i class="fa fa-check"></i>Theory</a></li>
@@ -392,6 +395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#essential-practice-35"><i class="fa fa-check"></i>Essential Practice</a></li>
 <li class="chapter" data-level="" data-path="clt.html"><a href="clt.html#additional-practice-8"><i class="fa fa-check"></i>Additional Practice</a></li>
 </ul></li>
+<li class="part"><span><b>IV Random Processes</b></span></li>
 <li class="chapter" data-level="47" data-path="random-process.html"><a href="random-process.html"><i class="fa fa-check"></i><b>47</b> Random Processes</a><ul>
 <li class="chapter" data-level="" data-path="random-process.html"><a href="random-process.html#motivation-3"><i class="fa fa-check"></i>Motivation</a></li>
 <li class="chapter" data-level="" data-path="random-process.html"><a href="random-process.html#theory-43"><i class="fa fa-check"></i>Theory</a></li>
@@ -419,6 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="stationary.html"><a href="stationary.html#theory-47"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="stationary.html"><a href="stationary.html#essential-practice-41"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="part"><span><b>V Random Signal Processing</b></span></li>
 <li class="chapter" data-level="54" data-path="autocorrelation.html"><a href="autocorrelation.html"><i class="fa fa-check"></i><b>54</b> Autocorrelation Function</a><ul>
 <li class="chapter" data-level="" data-path="autocorrelation.html"><a href="autocorrelation.html#theory-48"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="autocorrelation.html"><a href="autocorrelation.html#essential-practice-42"><i class="fa fa-check"></i>Essential Practice</a></li>
@@ -444,10 +449,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="distribution-table.html"><a href="distribution-table.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete Distributions</a></li>
 <li class="chapter" data-level="A.2" data-path="distribution-table.html"><a href="distribution-table.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous Distributions</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="fourier-table.html"><a href="fourier-table.html"><i class="fa fa-check"></i><b>B</b> Fourier Tables</a><ul>
-<li class="chapter" data-level="B.1" data-path="fourier-table.html"><a href="fourier-table.html#ctft"><i class="fa fa-check"></i><b>B.1</b> Continuous-Time Fourier Transforms</a></li>
-<li class="chapter" data-level="B.2" data-path="fourier-table.html"><a href="fourier-table.html#dtft"><i class="fa fa-check"></i><b>B.2</b> Discrete-Time Fourier Transforms</a></li>
-<li class="chapter" data-level="B.3" data-path="fourier-table.html"><a href="fourier-table.html#fourier-properties"><i class="fa fa-check"></i><b>B.3</b> Fourier Properties</a></li>
+<li class="chapter" data-level="B" data-path="complex.html"><a href="complex.html"><i class="fa fa-check"></i><b>B</b> Complex Numbers</a><ul>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#motivation-8"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#theory-52"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#essential-practice-46"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="fourier.html"><a href="fourier.html"><i class="fa fa-check"></i><b>C</b> Fourier Transforms</a><ul>
+<li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#continuous-time-fourier-transforms"><i class="fa fa-check"></i>Continuous-Time Fourier Transforms</a></li>
+<li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#discrete-time-fourier-transforms"><i class="fa fa-check"></i>Discrete-Time Fourier Transforms</a></li>
+<li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#essential-practice-47"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="fourier-table.html"><a href="fourier-table.html"><i class="fa fa-check"></i><b>D</b> Fourier Tables</a><ul>
+<li class="chapter" data-level="D.1" data-path="fourier-table.html"><a href="fourier-table.html#ctft"><i class="fa fa-check"></i><b>D.1</b> Continuous-Time Fourier Transforms</a></li>
+<li class="chapter" data-level="D.2" data-path="fourier-table.html"><a href="fourier-table.html#dtft"><i class="fa fa-check"></i><b>D.2</b> Discrete-Time Fourier Transforms</a></li>
+<li class="chapter" data-level="D.3" data-path="fourier-table.html"><a href="fourier-table.html#fourier-properties"><i class="fa fa-check"></i><b>D.3</b> Fourier Properties</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -492,42 +507,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><span class="math inline">\(\text{Hypergeometric}(n, N_1, N_0)\)</span></td>
+<td align="left"><a href="hypergeometric.html#hypergeometric">Hypergeometric</a><span class="math inline">\((n, N_1, N_0)\)</span></td>
 <td align="left"><span class="math inline">\(\displaystyle \frac{\binom{N_1}{x} \binom{N_0}{n-x}}{\binom{N}{n}}\)</span></td>
 <td align="left"><span class="math inline">\(x=0, 1, \ldots, n\)</span></td>
 <td align="center"><span class="math inline">\(n \frac{N_1}{N}\)</span></td>
 <td align="center"><span class="math inline">\(n \frac{N_1}{N} \frac{N_0}{N} \left(1 - \frac{n-1}{N-1}\right)\)</span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(\text{Binomial}(n, N_1, N_0)\)</span></td>
+<td align="left"><a href="binomial.html#binomial">Binomial</a><span class="math inline">\((n, N_1, N_0)\)</span></td>
 <td align="left"><span class="math inline">\(\displaystyle \frac{\binom{n}{x} N_1^x N_0^{n-x}}{N^n}\)</span></td>
 <td align="left"><span class="math inline">\(x=0, 1, \ldots, n\)</span></td>
 <td align="center"><span class="math inline">\(n \frac{N_1}{N}\)</span></td>
 <td align="center"><span class="math inline">\(n \frac{N_1}{N} \frac{N_0}{N}\)</span></td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(\text{Binomial}(n, p)\)</span></td>
+<td align="left"><a href="binomial.html#binomial">Binomial</a><span class="math inline">\((n, p)\)</span></td>
 <td align="left"><span class="math inline">\(\binom{n}{x} p^x (1-p)^{n-x}\)</span></td>
 <td align="left"><span class="math inline">\(x=0, 1, \ldots, n\)</span></td>
 <td align="center"><span class="math inline">\(np\)</span></td>
 <td align="center"><span class="math inline">\(np(1-p)\)</span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(\text{Geometric}(p)\)</span></td>
+<td align="left"><a href="geometric.html#geometric">Geometric</a><span class="math inline">\((p)\)</span></td>
 <td align="left"><span class="math inline">\((1-p)^{x-1} p\)</span></td>
 <td align="left"><span class="math inline">\(x=1, 2, \ldots\)</span></td>
 <td align="center"><span class="math inline">\(\frac{1}{p}\)</span></td>
 <td align="center"><span class="math inline">\(\frac{1-p}{p^2}\)</span></td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(\text{NegativeBinomial}(r, p)\)</span></td>
+<td align="left"><a href="negative-binomial.html#negative-binomial">NegativeBinomial</a><span class="math inline">\((r, p)\)</span></td>
 <td align="left"><span class="math inline">\(\binom{x-1}{r-1} (1-p)^{x-r} p^r\)</span></td>
 <td align="left"><span class="math inline">\(x=r, r+1, \ldots\)</span></td>
 <td align="center"><span class="math inline">\(\frac{r}{p}\)</span></td>
 <td align="center"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(\text{Poisson}(\mu)\)</span></td>
+<td align="left"><a href="poisson.html#poisson">Poisson</a><span class="math inline">\((\mu)\)</span></td>
 <td align="left"><span class="math inline">\(e^{-\mu} \frac{\mu^x}{x!}\)</span></td>
 <td align="left"><span class="math inline">\(x=0, 1, 2, \ldots\)</span></td>
 <td align="center"><span class="math inline">\(\mu\)</span></td>
@@ -557,28 +572,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><span class="math inline">\(\text{Uniform}(a, b)\)</span></td>
+<td align="left"><a href="uniform.html#uniform">Uniform</a><span class="math inline">\((a, b)\)</span></td>
 <td align="left"><span class="math inline">\(\frac{1}{b-a}\)</span></td>
 <td align="left"><span class="math inline">\(a &lt; x &lt; b\)</span></td>
 <td align="center"><span class="math inline">\(\frac{a+b}{2}\)</span></td>
 <td align="center"><span class="math inline">\(\frac{(b-a)^2}{12}\)</span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(\text{Exponential}(\lambda)\)</span></td>
+<td align="left"><a href="exponential.html#exponential">Exponential</a><span class="math inline">\((\lambda)\)</span></td>
 <td align="left"><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
 <td align="left"><span class="math inline">\(0 &lt; x &lt; \infty\)</span></td>
 <td align="center"><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
 <td align="center"><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(\text{Gamma}(r, \lambda)\)</span></td>
+<td align="left"><a href="sums-continuous.html#sums-continuous">Gamma</a><span class="math inline">\((r, \lambda)\)</span></td>
 <td align="left"><span class="math inline">\(\frac{\lambda^r}{(r-1)!}x^{r-1} e^{-\lambda x}\)</span></td>
 <td align="left"><span class="math inline">\(0 &lt; x &lt; \infty\)</span></td>
 <td align="center"><span class="math inline">\(\frac{r}{\lambda}\)</span></td>
 <td align="center"><span class="math inline">\(\frac{r}{\lambda^2}\)</span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(\text{Normal}(\mu, \sigma)\)</span></td>
+<td align="left"><a href="normal.html#normal">Normal</a><span class="math inline">\((\mu, \sigma)\)</span></td>
 <td align="left"><span class="math inline">\(\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\)</span></td>
 <td align="left"><span class="math inline">\(-\infty &lt; x &lt; \infty\)</span></td>
 <td align="center"><span class="math inline">\(\mu\)</span></td>
@@ -595,7 +610,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="lti-time.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fourier-table.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="complex.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

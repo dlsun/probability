@@ -2,9 +2,9 @@
 
 ## Continuous-Time Fourier Transforms {#ctft}
 
-\[ X(f) = \int_{-\infty}^\infty x(t) e^{-j2\pi f t}\,dt,\ \ -\infty < f < \infty \]
+\[ G(f) = \int_{-\infty}^\infty g(t) e^{-j2\pi f t}\,dt,\ \ -\infty < f < \infty \]
 
-| Time-Domain $x(t)$ | Frequency-Domain $X(f) = \mathscr{F}[x(t)]$ | 
+| Time-Domain $g(t)$ | Frequency-Domain $G(f) = \mathscr{F}[g(t)]$ | 
 |:---|:---|
 $1$ | $\delta(f)$ |
 $u(t) \overset{\text{def}}{=} \begin{cases} 1 & t \geq 0 \\ 0 & t < 0 \end{cases}$ | $\displaystyle\frac{1}{2}\delta(f) + \frac{1}{j2\pi f}$ |
@@ -20,9 +20,9 @@ $\text{tri}(t) \overset{\text{def}}{=} \begin{cases} 1 - |t| & |t| \leq 1 \\ 0 &
 ## Discrete-Time Fourier Transforms {#dtft}
 
 Note that $f$ here denotes _normalized frequency_ (cycles/sample).
-\[ X(f) = \sum_{n=-\infty}^\infty x[n] e^{-j2\pi f n},\ \ -\frac{1}{2} < f < \frac{1}{2} \]
+\[ G(f) = \sum_{n=-\infty}^\infty g[n] e^{-j2\pi f n},\ \ -\frac{1}{2} < f < \frac{1}{2} \]
 
-| Time-Domain $x[n]$ | Frequency-Domain $X(f) = \mathscr{F}[x[n]]$ | Restrictions |
+| Time-Domain $g[n]$ | Frequency-Domain $G(f) = \mathscr{F}[g[n]]$ | Restrictions |
 |:--|:---|:--|
 | $1$ | $\delta(f)$ |
 | $\delta[n]$ | $1$ |
@@ -34,11 +34,13 @@ Note that $f$ here denotes _normalized frequency_ (cycles/sample).
 
 ## Fourier Properties {#fourier-properties}
 
+Suppose $g$, $g_1$, and $g_2$ are time-domain signals with Fourier transforms $G$, $G_1$, and $G_2$, respectively.
+
 Property | When It Applies | Time-Domain | | Frequency-Domain |
 |:---|:---:|----:|:-:|:----|
-Linearity | continuous-time, discrete-time | $a x(t) + b y(t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $a X(f) + b Y(f)$ |
-Scaling | continuous-time only | $x(at)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $\frac{1}{a} X\left(\frac{f}{a}\right)$ |
-Shifting | continuous-time, discrete-time  | $x(t + b)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $X(f) e^{j2\pi b f}$ |
-Convolution | continuous-time, discrete-time | $(x * y)(t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $X(f) \cdot Y(f)$ |
-Reversal | continuous-time, discrete-time | $x(-t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $X(-f)$ |
-DC Offset | continuous-time, discrete-time | $\int_{-\infty}^\infty x(t)\,dt$ | $\overset{\mathscr{F}}{\longleftrightarrow}$  | $X(0)$ |
+Linearity | continuous-time, discrete-time | $a g_1(t) + b g_2(t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $a G_1(f) + b G_2(f)$ |
+Scaling | continuous-time only | $g(at)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $\frac{1}{a} G\left(\frac{f}{a}\right)$ |
+Shifting | continuous-time, discrete-time  | $g(t + b)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $G(f) e^{j2\pi b f}$ |
+Convolution | continuous-time, discrete-time | $(g_1 * g_2)(t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $G_1(f) \cdot G_2(f)$ |
+Reversal | continuous-time, discrete-time | $g(-t)$ | $\overset{\mathscr{F}}{\longleftrightarrow}$ | $G(-f)$ |
+DC Offset | continuous-time, discrete-time | $\int_{-\infty}^\infty g(t)\,dt$ | $\overset{\mathscr{F}}{\longleftrightarrow}$  | $G(0)$ |

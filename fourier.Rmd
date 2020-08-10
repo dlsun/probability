@@ -1,0 +1,87 @@
+# Fourier Transforms {#fourier}
+
+## Continuous-Time Fourier Transforms {-}
+
+The Fourier transform is an alternative representation of a signal. It describes the frequency content 
+of the signal. It is defined as 
+\begin{equation}
+G(f) \overset{\text{def}}{=} \int_{-\infty}^\infty g(t)e^{-j2\pi f t}\,dt.
+(\#eq:fourier)
+\end{equation}
+Notice that it is a function of frequency $f$, rather than time $t$. Notice also that it is complex-valued, 
+since its definition involves the imaginary number $j \overset{\text{def}}{=} \sqrt{-1}$.
+
+The following video explains the visual intuition behind the Fourier transform.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/spUNpyF58BY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+To calculate the Fourier transform of a signal, we will rarely use \@ref(eq:fourier). Instead, we will 
+look up the Fourier transform of the signal in a table like Appendix \@ref(ctft) and use properties of the 
+Fourier transform (as shown in Appendix \@ref(fourier-properties)).
+
+```{example}
+Calculate the Fourier transform of $g(t) = 80e^{-20t} u(t)$. 
+```
+
+```{solution}
+This signal is most similar to $e^{-t} u(t)$ in Appendix \@ref(ctft), whose Fourier transform is 
+$\frac{1}{1 + j2\pi f}$. The only differences are:
+  
+- Our signal has an extra factor of 80 in front. This factor comes along for the ride by linearity of the Fourier transform.
+- Our signal is time-scaled by a factor of 20, so we have to apply the scaling property. 
+Since we _multiplied_ by 20 in the time domain, we have to _divide_ by 20 in the 
+frequency domain, on both the _inside_ and the _outside_.
+
+Putting everything together, we see that the Fourier transform is:
+\[ G(f) = 80 \frac{1}{20} \frac{1}{1 + j 2\pi \frac{f}{20}}. \]
+
+This is a complex-valued function. That is, at each frequency $f$, $G(f)$ is a complex number, with a 
+real and an imaginary component. To make it easier to visualize, we calculate its magnitude 
+using Theorem \@ref(thm:calculating-magnitude). 
+\begin{align*}
+|G(f)| = \sqrt{|G(f)|^2} &= \sqrt{G(f) \cdot G^*(f)} \\
+&= \sqrt{\frac{4}{1 + j2\pi \frac{f}{20}} \cdot \frac{4}{1 - j2\pi \frac{f}{20}}} \\
+&= \sqrt{\frac{4}{1 + (2\pi \frac{f}{20})^2}}
+\end{align*}
+
+Now, the _magnitude_ of the Fourier transform is a function we can easily visualize. This signal 
+has more low-frequency content than high-frequency content.
+```
+
+```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
+fs <- seq(-50, 50, by=.1)
+plot(fs, sqrt(4 / (1 + (2*pi*fs/20)^2)), col="orange", type="l", lwd=2,
+     xaxt="n", yaxt="n", bty="n",
+     xlab="Frequency (f)", ylab="Fourier Transform Magnitude |G(f)|")
+axis(1, pos=0)
+axis(2, pos=0, at=(0:4) / 2)
+```
+
+## Discrete-Time Fourier Transforms {-}
+
+- Aliasing, Nyquist limit
+- Discrete-Time Fourier Transform
+
+
+## Essential Practice {-}
+
+1. Which of the following terms fill in the blank? The Fourier transform $G(f)$ of a real-valued time signal $g(t)$ 
+is necessarily ....
+
+    a. real-valued: $G(f) \in \mathbb{R}$
+    b. positive-valued: $G(f) > 0$
+    c. symmetric: $G(-f) = G(f)$
+    d. conjugate symmetric: $G(-f) = G^*(f)$
+    
+    (Hint: If you are not sure, write out the definition of $G(-f)$, 
+    use Euler's formula, and simplify. Use the fact that 
+    $\cos(-\theta) = \cos(\theta)$ and $\sin(-\theta) = -\sin(\theta)$.)
+
+2. Which of the following terms fill in the blank? The Fourier transform $G(f)$ of a real-valued and symmetric 
+time signal $g(t)$ is necessarily ....
+
+    a. real-valued: $G(f) \in \mathbb{R}$
+    b. positive-valued: $G(f) > 0$
+    c. symmetric: $G(f) = G(-f)$
+    d. conjugate symmetric: $G(-f) = G^*(f)$
+    
