@@ -151,18 +151,10 @@ Now, if we know that a random variable $X$ has a binomial distribution, we can u
 \[ \text{Var}[X] = n\frac{N_1}{N} \frac{N_0}{N} \]
 instead of calculating it from scratch. We can 
 derive formulas for the variances of all of the named distributions in a similar way. 
-The formulas are provided in the table below.
-
-| Distribution of $X$  | $\text{Var}[X]$  |
-|:------|:--:|
-| $\text{Binomial}(n, N_1, N_0)$ | $n \frac{N_1}{N} \frac{N_0}{N}$ |
-| $\text{Hypergeometric}(n, N_1, N_0)$ | $n \frac{N_1}{N} \frac{N_0}{N} \frac{N-n}{N-1}$ |
-| $\text{Geometric}(p)$ | $\frac{1-p}{p^2}$ |
-| $\text{NegativeBinomial}(r, p)$ | $\frac{r(1-p)}{p^2}$ |
-| $\text{Poisson}(\mu)$ | $\mu$ |
+The formulas are provided in Appendix \@ref(discrete-distributions).
 
 If your random variable follows one of these named distributions, 
-then you can just look up its variance in the table above. This is another 
+then you can just look up its variance in Appendix \@ref(discrete-distributions). This is another 
 benefit of learning these named distributions!
 
 ## Essential Practice {-}

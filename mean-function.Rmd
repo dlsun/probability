@@ -10,7 +10,10 @@ the variance function, and the autocovariance function.
 The **mean function** $\mu_X(t)$ of a random process $\{ X(t) \}$ 
   is a function that specifies the expected value at each time $t$. 
 That is,
-\[ \mu_X(t) \overset{\text{def}}{=} E[X(t)]. \]
+\begin{equation} 
+\mu_X(t) \overset{\text{def}}{=} E[X(t)].
+(\#eq:mean-function)
+\end{equation}
 
 For a discrete-time process, we notate the mean function as 
 \[ \mu_X[n] \overset{\text{def}}{=} E[X[n]]. \]

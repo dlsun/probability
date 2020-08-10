@@ -136,18 +136,11 @@ Now, if we know that a random variable $X$ has a binomial distribution, we can u
 \[ E[X] = n\frac{N_1}{N} \]
 instead of calculating it from scratch using \@ref(eq:ev) and the p.m.f. We can 
 derive formulas for the expected values of all of the named distributions in a similar way. 
-The formulas are provided in the table below.
-
-| Distribution of $X$  | $E[X]$  |
-|:------|:--:|
-| $\text{Binomial}(n, N_1, N_0)$ | $n \frac{N_1}{N}$ |
-| $\text{Hypergeometric}(n, N_1, N_0)$ | $n \frac{N_1}{N}$ |
-| $\text{Geometric}(p)$ | $\frac{1}{p}$ |
-| $\text{NegativeBinomial}(r, p)$ | $\frac{r}{p}$ |
-| $\text{Poisson}(\mu)$ | $\mu$ |
+The formulas are provided in Appendix \@ref(discrete-distributions).
 
 If your random variable follows one of these named distributions, 
-then you can just look up its expected value in the table above. This is another 
+then you can just look up its expected value in Appendix \@ref(discrete-distributions). 
+This is another 
 benefit of learning these named distributions!
 
 ## Essential Practice {-}

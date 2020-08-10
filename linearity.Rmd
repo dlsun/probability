@@ -103,7 +103,7 @@ $X$ and $Y$ are definitely not independent, since three of Yolanda's bets are id
 But linearity of expectation says that to calculate $E[Y - X]$, it does not matter how $X$ and $Y$ are 
 related to each other; we only need their marginal distributions. 
 
-From Lesson \@ref(expected-value), we know the expected value of a binomial random variable is $n\frac{N_1}{N}$, so 
+From Appendix \@ref(discrete-distributions) (and Lesson \@ref(expected-value)), we know the expected value of a binomial random variable is $n\frac{N_1}{N}$, so 
 \[ E[Y - X] = E[Y] - E[X] = 5\frac{18}{38} - 3\frac{18}{38} = 2\frac{18}{38} \approx .947, \]
 which matches the answer we got in Lesson \@ref(lotus2d) by applying 2D LOTUS.
 ```

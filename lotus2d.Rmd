@@ -53,7 +53,7 @@ E[Y - X] &= \sum_x \sum_y (y - x) f(x, y) \\
 
 Of course, there is an easier to calculate this particular expected value. $Y - X$ is just the number of 
 wins in the last two bets, which follows a $\text{Binomial}(n=2, p=18/38)$ distribution. 
-From Lesson \@ref(expected-value), we know that the expected value of a binomial is 
+From Appendix \@ref(discrete-distributions), we know that the expected value of a binomial is 
 $np = 2 (18/38) \approx .947$, which matches the answer above.
 
 We can calculate $E[XY]$ in the same way, by applying 2D LOTUS to the function $g(x, y) = xy$.

@@ -9,7 +9,10 @@ The **autocovariance function** $C_X(s, t)$ of a random process $\{ X(t) \}$
 
 It specifies the covariance between the value of the process at time $s$ and 
 the value at time $t$. That is,
-\[ C_X(s, t) \overset{\text{def}}{=} \text{Cov}[X(s), X(t)]. \]
+\begin{equation}
+C_X(s, t) \overset{\text{def}}{=} \text{Cov}[X(s), X(t)]. 
+(\#eq:cov-function)
+\end{equation}
 
 For a discrete-time process, we notate the autocovariance function as 
 \[ C_X[m, n] \overset{\text{def}}{=} \text{Cov}[X[m], X[n]]. \]
@@ -138,7 +141,7 @@ at a rate of $\lambda=0.8$ particles per second. Let $\{ N(t); t \geq 0 \}$ repr
     agrees with the variance function you derived in Lesson \@ref(var-function).
     
     (_Hint:_ Start by calculating $\text{Cov}[D(s), D(t)]$ when $s > t$. What happens when $s > t + 3$? 
-    What happens when t < s < t + 3? Once you've worked this out, it should be straightforward to 
+    What happens when $t < s < t + 3$? Once you've worked this out, it should be straightforward to 
     extend this to the case $s < t$.)
  
 3. Consider the moving average process $\{ X[n] \}$ of Example \@ref(exm:ma1), defined by 

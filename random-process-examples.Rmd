@@ -37,7 +37,7 @@ Here is a video that animates the random amplitude process.
 Let $\{ Z[n] \}$ be a white noise process. Then, a **moving average process** (of order 1) $\{ X[n] \}$ 
 is a discrete-time process defined by 
 \begin{equation}
-X[n] = \theta_0 Z[n] + \theta_1 Z[n-1].
+X[n] = b_0 Z[n] + b_1 Z[n-1].
 (\#eq:ma1)
 \end{equation}
 
