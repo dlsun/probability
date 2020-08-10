@@ -83,8 +83,13 @@ R_X[m, n] = C_X[m, n] + \underbrace{\mu_X[m]}_{0} \mu_Y[n] = \sigma^2 \min(m, n)
 ```
 
 ```{example gaussian-process-autocorrelation}
-Consider the process $\{X(t)\}$ from Example \@ref(exm:gaussian-process). 
-It is stationary, so its autocorrelation function depends on $\tau = s - t$ only:
+Consider the stationary process $\{X(t)\}$ from Example \@ref(exm:gaussian-process), 
+whose mean and autocovariance functions are 
+\begin{align*}
+\mu_X &= 2 & C_X(\tau) &= 5e^{-3\tau^2}.
+\end{align*}
+
+Its autocorrelation function likewise depends on $\tau = s - t$ only:
 \begin{equation} 
 R_X(\tau) = C_X(\tau) + \mu_X^2 = 5 e^{-3\tau^2} + 4.
 (\#eq:gaussian-process-autocorrelation)

@@ -84,8 +84,8 @@ S_X(f) &= \mathscr{F}[5 e^{-3 \tau^2} + 4] \\
 &= 5 \sqrt{\frac{\pi}{3}} e^{-\pi (\sqrt{\frac{\pi}{3}} f)^2}  + 4 \delta(f) & \text{(scaling by $a = \sqrt{\frac{3}{\pi}}$)}
 \end{align*}
 Notice how we massaged $e^{-3\tau^2}$ into the form 
-$e^{-\pi (a\tau)^2}$, which is just a scale transform of one of the 
-transforms in Appendix \@ref(ctft).
+$e^{-\pi (a\tau)^2}$, which is a scale transform of one of the 
+functions in Appendix \@ref(ctft).
 
 This power spectral density is graphed below. We see that this process has 
 more power at the lower frequencies than at the higher frequencies.
@@ -145,5 +145,5 @@ sample?
 Calculate the PSD of $\{ X(t) \}$.
 
 4. Let $\{ X(t) \}$ be a random process with mean function 
-$\mu_X(t) = -2$ and autocovariance function $C_X(s, t) = 5 e^{-0.4|s - t|}$. 
+$\mu_X(t) = -1$ and autocovariance function $C_X(s, t) = 2e^{-|s - t|/3}$. 
 Calculate the PSD of $\{ X(t) \}$. What is the expected power below 3 Hz?

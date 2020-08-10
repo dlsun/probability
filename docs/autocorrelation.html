@@ -550,8 +550,12 @@ R_X[m, n] = C_X[m, n] + \underbrace{\mu_X[m]}_{0} \mu_Y[n] = \sigma^2 \min(m, n)
 
 
 <div class="example">
-<span id="exm:gaussian-process-autocorrelation" class="example"><strong>Example 54.5  </strong></span>Consider the process <span class="math inline">\(\{X(t)\}\)</span> from Example <a href="stationary.html#exm:gaussian-process">53.5</a>.
-It is stationary, so its autocorrelation function depends on <span class="math inline">\(\tau = s - t\)</span> only:
+<p><span id="exm:gaussian-process-autocorrelation" class="example"><strong>Example 54.5  </strong></span>Consider the stationary process <span class="math inline">\(\{X(t)\}\)</span> from Example <a href="stationary.html#exm:gaussian-process">53.5</a>,
+whose mean and autocovariance functions are
+<span class="math display">\[\begin{align*}
+\mu_X &amp;= 2 &amp; C_X(\tau) &amp;= 5e^{-3\tau^2}.
+\end{align*}\]</span></p>
+Its autocorrelation function likewise depends on <span class="math inline">\(\tau = s - t\)</span> only:
 <span class="math display" id="eq:gaussian-process-autocorrelation">\[\begin{equation} 
 R_X(\tau) = C_X(\tau) + \mu_X^2 = 5 e^{-3\tau^2} + 4.
 \tag{54.6}

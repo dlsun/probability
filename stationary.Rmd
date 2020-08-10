@@ -181,9 +181,14 @@ Let $\{ X(t) \}$ be a continuous-time random process with
 
 The mean function $\mu_X(t) = E[X(t)]$ is constant and 
 the autocovariance function $C_X(s, t) = 5e^{-3(s - t)^2}$ 
-is a function of $\tau = s - t$ only. 
-We can write the autocovariance function as 
-\[ C_X(\tau) = 5e^{-3\tau^2}. \]
+is a function of $\tau = s - t$ only, so the process 
+is stationary. 
+
+Since the process is stationary, we can 
+write the mean and autocovariance functions as 
+\begin{align*} 
+\mu_X &= 2 & C_X(\tau) &= 5e^{-3\tau^2}.
+\end{align*}
 ```
 
 

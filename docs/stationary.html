@@ -586,11 +586,15 @@ However, they are not equal: <span class="math inline">\(C[3, 2] = 2 \text{Var}[
 <li><span class="math inline">\(E[X(t)] = 2\)</span> for all <span class="math inline">\(t\)</span>, and</li>
 <li><span class="math inline">\(\text{Cov}[X(s), X(t)] = 5e^{-3(s - t)^2}\)</span> for all <span class="math inline">\(s\)</span> and <span class="math inline">\(t\)</span>.</li>
 </ul>
-The mean function <span class="math inline">\(\mu_X(t) = E[X(t)]\)</span> is constant and
+<p>The mean function <span class="math inline">\(\mu_X(t) = E[X(t)]\)</span> is constant and
 the autocovariance function <span class="math inline">\(C_X(s, t) = 5e^{-3(s - t)^2}\)</span>
-is a function of <span class="math inline">\(\tau = s - t\)</span> only.
-We can write the autocovariance function as
-<span class="math display">\[ C_X(\tau) = 5e^{-3\tau^2}. \]</span>
+is a function of <span class="math inline">\(\tau = s - t\)</span> only, so the process
+is stationary.</p>
+Since the process is stationary, we can
+write the mean and autocovariance functions as
+<span class="math display">\[\begin{align*} 
+\mu_X &amp;= 2 &amp; C_X(\tau) &amp;= 5e^{-3\tau^2}.
+\end{align*}\]</span>
 </div>
 
 </div>
