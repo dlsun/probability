@@ -103,6 +103,11 @@ Therefore, the Fourier transform of a discrete-time signal is effectively only
 	defined for frequencies from $-f_s/2$ to $f_s/2$. Contrast this with the Fourier transform of a 
 	continuous-time signal, which is defined on all frequencies from $-\infty$ to $\infty$.
 	
+Aliasing is not just a theoretical problem. For example, if helicopter blades are spinning 
+too fast for the frame rate of a video, then they can look like they are not spinning at all!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AYQAKwCxScc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	
 When calculating the Fourier transform of a discrete-time signal, we typically work with 
 _normalized_ frequencies. That is, the frequencies are in units of "cycles per _sample_" instead of 
 "cycles per _second_". (Another way to think about this is that we assume all discrete-time signals are 
