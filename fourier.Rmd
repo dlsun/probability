@@ -142,15 +142,16 @@ is necessarily ....
     c. symmetric: $G(-f) = G(f)$
     d. conjugate symmetric: $G(-f) = G^*(f)$
     
-    (Hint: If you are not sure, write out the definition of $G(-f)$, 
-    use Euler's formula, and simplify. Use the fact that 
+    (_Hint:_ Write out $G(f)$ and $G(-f)$ according to the definition \@ref(eq:fourier), and 
+    use Euler's identity (Theorem \@ref(thm:euler)). Simplify as much as possible, using the facts that 
     $\cos(-\theta) = \cos(\theta)$ and $\sin(-\theta) = -\sin(\theta)$.)
 
-4. Which of the following terms fill in the blank? The Fourier transform $G(f)$ of a real-valued and symmetric 
+4. Which of the following terms fill in the blank? The Fourier transform $G(f)$ of a real-valued and _symmetric_ 
 time signal $g(t)$ is necessarily ....
 
     a. real-valued: $G(f) \in \mathbb{R}$
     b. positive-valued: $G(f) > 0$
-    c. symmetric: $G(f) = G(-f)$
+    c. symmetric: $G(-f) = G(f)$
     d. conjugate symmetric: $G(-f) = G^*(f)$
+    
     

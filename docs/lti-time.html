@@ -598,12 +598,12 @@ linear time-invariant filter with impulse response <span class="math inline">\(h
 process <span class="math inline">\(\{ Y(t) \}\)</span> is also stationary, with</p>
 <ul>
 <li>mean function <span class="math inline">\(\mu_Y = \mu_X \cdot \int_{-\infty}^\infty h(t)\,dt\)</span>, and</li>
-<li>autocovariance function <span class="math inline">\(C_Y(\tau) = (h(-\cdot) * h * C_X)(\tau)\)</span>.</li>
+<li>autocovariance function <span class="math inline">\(C_Y(\tau) = (h(-t) * h * C_X)(\tau)\)</span>.</li>
 </ul>
 <p>For discrete-time signals, we have:</p>
 <ul>
 <li>mean function <span class="math inline">\(\mu_Y = \mu_X \cdot \sum_{k=-\infty}^\infty h[k]\)</span>, and</li>
-<li>autocovariance function <span class="math inline">\(C_Y[k] = (h[-\cdot] * h * C_X)[k]\)</span>.
+<li>autocovariance function <span class="math inline">\(C_Y[k] = (h[-n] * h * C_X)[k]\)</span>.
 </div></li>
 </ul>
 

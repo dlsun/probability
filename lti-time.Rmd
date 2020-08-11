@@ -134,12 +134,12 @@ linear time-invariant filter with impulse response $h(t)$, then the output
 process $\{ Y(t) \}$ is also stationary, with 
 
 - mean function $\mu_Y = \mu_X \cdot \int_{-\infty}^\infty h(t)\,dt$, and
-- autocovariance function $C_Y(\tau) = (h(-\cdot) * h * C_X)(\tau)$.
+- autocovariance function $C_Y(\tau) = (h(-t) * h * C_X)(\tau)$.
 
 For discrete-time signals, we have:
 
 - mean function $\mu_Y = \mu_X \cdot \sum_{k=-\infty}^\infty h[k]$, and
-- autocovariance function $C_Y[k] = (h[-\cdot] * h * C_X)[k]$.
+- autocovariance function $C_Y[k] = (h[-n] * h * C_X)[k]$.
 ```
 
 ```{proof}
