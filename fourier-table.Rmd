@@ -20,14 +20,14 @@ $\text{tri}(t) \overset{\text{def}}{=} \begin{cases} 1 - |t| & |t| \leq 1 \\ 0 &
 ## Discrete-Time Fourier Transforms {#dtft}
 
 Note that $f$ here denotes _normalized frequency_ (cycles/sample).
-\[ G(f) = \sum_{n=-\infty}^\infty g[n] e^{-j2\pi f n},\ \ -\frac{1}{2} < f < \frac{1}{2} \]
+\[ G(f) = \sum_{n=-\infty}^\infty g[n] e^{-j2\pi f n},\ \ -0.5 < f < 0.5 \]
 
 | Time-Domain $g[n]$ | Frequency-Domain $G(f) = \mathscr{F}[g[n]]$ | Restrictions |
 |:--|:---|:--|
 | $1$ | $\delta(f)$ |
 | $\delta[n]$ | $1$ |
-| $\cos(2\pi f_0 n)$ | $\frac{1}{2}(\delta(f - f_0) + \delta(f + f_0))$ | $-\frac{1}{2} < f_0 < \frac{1}{2}$ | 
-| $\sin(2\pi f_0 n)$ | $\frac{1}{2j}(\delta(f - f_0) - \delta(f + f_0))$ | $-\frac{1}{2} < f_0 < \frac{1}{2}$ | 
+| $\cos(2\pi f_0 n)$ | $\frac{1}{2}(\delta(f - f_0) + \delta(f + f_0))$ | $-0.5 < f < 0.5$ | 
+| $\sin(2\pi f_0 n)$ | $\frac{1}{2j}(\delta(f - f_0) - \delta(f + f_0))$ | $-0.5 < f < 0.5$ | 
 | $\alpha^{|n|}$ |$\displaystyle\frac{1 - \alpha^{2}}{1 + \alpha^{2} - 2\alpha \cos(2\pi f)}$ | $|\alpha| < 1$ |
 | $\alpha^{n} u[n]$ | $\displaystyle\frac{1}{1 - \alpha e^{-j2\pi f}}$ | $|\alpha| < 1$ |
 
