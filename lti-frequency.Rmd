@@ -2,9 +2,9 @@
 
 ## Motivation {-}
 
-In Lesson \@ref(lti-time), we looked at what LTI filters do to stationary signals in the time 
-domain. However, it is usually much easier to analyze and understand LTI filters in the frequency 
-domain. 
+In Lesson \@ref(lti-time), we studied what LTI filters do to stationary signals in the time 
+domain. However, it is usually easier to analyze and understand LTI filters in the frequency 
+domain, as we explore in this lesson.
 
 ## Theory {-}
 
@@ -171,7 +171,7 @@ lines(c(-2, -.6, -.6, .6, .6, 2), c(0, 0, 1.5^2, 1.5^2, 0, 0), lwd=2, col="blue"
 By the Filter Theorem (Theorem \@ref(thm:filter-theorem)), the PSD of the output is 
 \[ S_Y(f) = |H(f)|^2 \cdot S_X(f) = \begin{cases} 1.5^2 \cdot 5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}  + 1.5^2 \cdot 4 \delta(f) & |f| < 0.6 \\ 0 & \text{otherwise} \end{cases} \]
 Although the formula for $S_Y(f)$ is messy, it is quite straightforward to understand what is going on if we just 
-draw a picture.
+graph it.
 
 ```{r, echo=FALSE, fig.show = "hold", fig.align = "default"}
 plot(0, 1.5^2 * 4,
@@ -190,8 +190,8 @@ lines(c(2, 0.6, 0.6), c(0, 0, 1.5^2 * 5 * sqrt(pi / 3) * exp(-pi^2 * 0.6^2 / 3))
 lines(c(0, 0), c(0, 1.5^2 * 4), lwd=2, col="orange")
 ```
 
-Frequencies below 0.6 Hz are passed (by a factor of $1.5^2 = 2.25$), while 
-frequencies above 0.6 Hz are rejected.
+Frequencies below 0.6 Hz are passed (with a gain of $1.5^2 = 2.25$), while 
+frequencies above 0.6 Hz are rejected completely.
 
 The Filter Theorem allows us to prove a fact about power spectral densities that we have 
 assumed until now.
@@ -201,27 +201,16 @@ The integral of the PSD $S_X(f)$ over any frequency band $a < |f| < b$ equals th
 in that frequency band.
 ```
 
-```{proof}
-To calculate the expected power in a signal $\{ X(t) \}$ over the frequency band $a < |f| < b$, 
-we imagine passing $\{ X(t) \}$ through the ideal bandpass filter 
-\[ H(f) = \begin{cases} 1 & a < |f| < b \\ 0 & \text{otherwise} \end{cases}. \]
-
-We can then integrate the PSD $S_Y(f)$ of the output to obtain the expected power 
-in this frequency band. But by the Filter Theorem (Theorem \@ref(thm:filter-theorem)), we have 
-\[ \int_{-\infty}^\infty S_Y(f)\,df = \int_{-\infty}^\infty |H(f)|^2 S_X(f)\,df = \int_{a < |f| < b} S_X(f)\,df, \]
-since $|H(f)|^2$ is 0 outside $a < |f| < b$.
-```
-
 ```{r, echo=FALSE, engine='tikz', out.width='70%', fig.ext='png', fig.align='center', engine.opts = list(template = "tikz_template.tex")}
 	\begin{tikzpicture}
 	
-	\node (x) at (0, 0) {$X(t)$};
-	\node[draw,blue] (h) at (2, 0) {$H$};
-	\node (y) at (4, 0) {$Y(t)$};
+	\node (x) at (0, -0.1) {$X(t)$};
+	\node[draw,blue] (h) at (2, -0.1) {$H(f)$};
+	\node (y) at (4, -0.1) {$Y(t)$};
 
   \draw[->,gray] (1.0, 0.5) -- (3.0, 0.5);
   \draw[->,gray] (2, 0.4) -- (2, 1.2);
-  \node[anchor=west] at (3.0, 0.5) {{\small $f$}};
+  \node[anchor=west] at (2.95, 0.5) {{\tiny $f$}};
 
   \draw[blue,thick] (1.0, 0.5) -- (1.4, 0.5) -- (1.4, 0.8) -- (1.8, 0.8) -- (1.8, 0.5) -- (2.2, 0.5) -- (2.2, 0.8) -- (2.6, 0.8) -- (2.6, 0.5) -- (2.95, 0.5);
 
@@ -234,6 +223,24 @@ since $|H(f)|^2$ is 0 outside $a < |f| < b$.
 	\draw[->] (h) -- (y);	
 	
 	\end{tikzpicture}
+```
+
+```{proof}
+To calculate the expected power in a signal $\{ X(t) \}$ over the frequency band $a < |f| < b$, 
+we imagine passing $\{ X(t) \}$ through the ideal bandpass filter 
+\[ H(f) = \begin{cases} 1 & a < |f| < b \\ 0 & \text{otherwise} \end{cases}. \]
+The output signal $\{ Y(t) \}$ is then just a version of $\{ X(t) \}$, with all frequency content 
+outside $a < |f| < b$ removed.
+
+To obtain the expected power in this frequency band, we integrate the PSD $S_Y(f)$ of the output over all frequencies. 
+For continuous-time signals, this looks like  
+\[ \text{Expected power between $a$ and $b$} = \int_{-\infty}^\infty S_Y(f)\,df. \]
+(For discrete-time signals, the limits of the integral are $-0.5$ and $0.5$.)
+
+But by the Filter Theorem (Theorem \@ref(thm:filter-theorem)), we have 
+\[ \int_{-\infty}^\infty S_Y(f)\,df = \int_{-\infty}^\infty |H(f)|^2 S_X(f)\,df = \int_{a < |f| < b} S_X(f)\,df, \]
+since $|H(f)|^2$ is 0 outside $a < |f| < b$. This shows that we can obtain the expected power over any frequency 
+band by integrating the PSD over the appropriate frequencies.
 ```
 
 ## Essential Practice {-}

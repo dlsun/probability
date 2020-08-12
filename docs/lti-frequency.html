@@ -493,9 +493,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Lesson 58</span> LTI Filters in the Frequency Domain</h1>
 <div id="motivation-8" class="section level2 unnumbered">
 <h2>Motivation</h2>
-<p>In Lesson <a href="lti-time.html#lti-time">57</a>, we looked at what LTI filters do to stationary signals in the time
-domain. However, it is usually much easier to analyze and understand LTI filters in the frequency
-domain.</p>
+<p>In Lesson <a href="lti-time.html#lti-time">57</a>, we studied what LTI filters do to stationary signals in the time
+domain. However, it is usually easier to analyze and understand LTI filters in the frequency
+domain, as we explore in this lesson.</p>
 </div>
 <div id="theory-52" class="section level2 unnumbered">
 <h2>Theory</h2>
@@ -613,10 +613,10 @@ not implementable.</p>
 <p>By the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), the PSD of the output is
 <span class="math display">\[ S_Y(f) = |H(f)|^2 \cdot S_X(f) = \begin{cases} 1.5^2 \cdot 5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}  + 1.5^2 \cdot 4 \delta(f) &amp; |f| &lt; 0.6 \\ 0 &amp; \text{otherwise} \end{cases} \]</span>
 Although the formula for <span class="math inline">\(S_Y(f)\)</span> is messy, it is quite straightforward to understand what is going on if we just
-draw a picture.</p>
+graph it.</p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
-<p>Frequencies below 0.6 Hz are passed (by a factor of <span class="math inline">\(1.5^2 = 2.25\)</span>), while
-frequencies above 0.6 Hz are rejected.</p>
+<p>Frequencies below 0.6 Hz are passed (with a gain of <span class="math inline">\(1.5^2 = 2.25\)</span>), while
+frequencies above 0.6 Hz are rejected completely.</p>
 <p>The Filter Theorem allows us to prove a fact about power spectral densities that we have
 assumed until now.</p>
 
@@ -625,18 +625,24 @@ assumed until now.</p>
 in that frequency band.
 </div>
 
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-201-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
 <div class="proof">
 <p> <span class="proof"><em>Proof. </em></span> To calculate the expected power in a signal <span class="math inline">\(\{ X(t) \}\)</span> over the frequency band <span class="math inline">\(a &lt; |f| &lt; b\)</span>,
 we imagine passing <span class="math inline">\(\{ X(t) \}\)</span> through the ideal bandpass filter
-<span class="math display">\[ H(f) = \begin{cases} 1 &amp; a &lt; |f| &lt; b \\ 0 &amp; \text{otherwise} \end{cases}. \]</span></p>
-We can then integrate the PSD <span class="math inline">\(S_Y(f)\)</span> of the output to obtain the expected power
-in this frequency band. But by the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), we have
+<span class="math display">\[ H(f) = \begin{cases} 1 &amp; a &lt; |f| &lt; b \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
+The output signal <span class="math inline">\(\{ Y(t) \}\)</span> is then just a version of <span class="math inline">\(\{ X(t) \}\)</span>, with all frequency content
+outside <span class="math inline">\(a &lt; |f| &lt; b\)</span> removed.</p>
+<p>To obtain the expected power in this frequency band, we integrate the PSD <span class="math inline">\(S_Y(f)\)</span> of the output over all frequencies.
+For continuous-time signals, this looks like<br />
+<span class="math display">\[ \text{Expected power between $a$ and $b$} = \int_{-\infty}^\infty S_Y(f)\,df. \]</span>
+(For discrete-time signals, the limits of the integral are <span class="math inline">\(-0.5\)</span> and <span class="math inline">\(0.5\)</span>.)</p>
+But by the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), we have
 <span class="math display">\[ \int_{-\infty}^\infty S_Y(f)\,df = \int_{-\infty}^\infty |H(f)|^2 S_X(f)\,df = \int_{a &lt; |f| &lt; b} S_X(f)\,df, \]</span>
-since <span class="math inline">\(|H(f)|^2\)</span> is 0 outside <span class="math inline">\(a &lt; |f| &lt; b\)</span>.
+since <span class="math inline">\(|H(f)|^2\)</span> is 0 outside <span class="math inline">\(a &lt; |f| &lt; b\)</span>. This shows that we can obtain the expected power over any frequency
+band by integrating the PSD over the appropriate frequencies.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-202-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="essential-practice-46" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
