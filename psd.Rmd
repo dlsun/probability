@@ -21,13 +21,46 @@ That is, the autocorrelation function and the power spectral density are Fourier
 R_X(\tau) \overset{\mathscr{F}}{\longleftrightarrow} S_X(f). 
 (\#eq:autocorrelation-psd)
 \end{equation}
+  
+Because the autocorrelation function $R_X(\tau)$ is symmetric and real-valued, 
+its Fourier transform is guaranteed to also be symmetric and real-valued. 
+See the Essential Practice exercise in Appendix \@ref(fourier).
 ```
 
-In Lesson \@ref(lti-frequency), we will motivate why it makes 
-sense to interpret the Fourier transform of the autocorrelation 
-function as the distribution of power over frequency. For now, 
-we take \@ref(eq:autocorrelation-psd) to be the 
-_definition_ of the power spectral density.
+The term "power spectral density" suggests that $S_X(f)$ satisfies two properties:
+
+1. the integral of $S_X(f)$ over all frequencies equals the expected power
+2. the integral of $S_X(f)$ over any frequency band equals the expected power in that frequency band.
+
+For now, we will only prove the first property, deferring the proof of the second property to 
+Lesson \@ref(lti-frequency).
+
+```{theorem psd-integral, name="Power Spectral Density and Expected Power"}
+The integral of the PSD $S_X(f)$ over "all" frequencies equals the expected power in $\{ X(t) \}$.
+
+For continuous-time processes, this result can be stated as:
+\begin{equation} 
+\int_{-\infty}^\infty S_X(f)\,df = R_X(0) = E[X(t)^2].
+\end{equation}
+
+For discrete-time processes, this result can be stated as:
+\begin{equation} 
+\int_{-0.5}^{0.5} S_X(f)\,df = R_X[0] = E[X[n]^2].
+\end{equation}
+```
+
+```{proof}
+We will prove the result for continuous-time processes. The proof for discrete-time processes is similar.
+
+By the "DC offset" property of Fourier transforms (Appendix \@ref(fourier-properties)), 
+the total integral of a signal in the time domain equals the value of the signal at 0 in the frequency domain, and 
+vice versa. To prove this, observe that 
+\[ G(0) \overset{\text{def}}{=} \int_{-\infty}^\infty g(t) e^{-j2\pi \cdot 0 t}\,dt = \int_{-\infty}^\infty g(t)\,dt. \]
+
+Since $S_X$ and $R_X$ are Fourier pairs, we have
+\[ \int_{-\infty}^\infty S_X(f)\,df = R_X(0), \]
+as we wanted to show.
+```
 
 ```{example white-noise-psd, name="White Noise"}
 Consider the white noise process $\{ Z[n] \}$ defined in Example \@ref(exm:white-noise), 
@@ -60,15 +93,16 @@ lines(c(-0.5, 0.5), c(1.7, 1.7), type="l", col="red")
 lines(c(0, 0), c(0, 1.5^2), lwd=2, col="red")
 ```
 
-One way to check that we calculated the PSD correctly is to integrate 
-it over "all" frequencies and making sure it matches the expected power 
-we calculated in Lesson \@ref(power). Because this is a discrete-time signal, 
+To check that we calculated the PSD correctly, we can integrate 
+it over "all" frequencies and make sure that it matches the expected power 
+that we obtain by evaluating the autocorrelation function at 0 (see Lesson \@ref(power)). Because this is a discrete-time signal, 
 we only integrate over frequencies below the Nyquist limit, $|f| < 0.5$.
 \[ \int_{-0.5}^{0.5} S_X(f)\,df = \int_{-0.5}^{0.5} \sigma^2\,df + \mu^2 \int_{-0.5}^{0.5} \delta(f)\,df = \sigma^2 + \mu^2  \]
+This matches $R_X[0] = \sigma^2 \delta[0] + \mu^2 = \sigma^2 + \mu^2$.
 
 The power in this signal below 0.2 cycles/sample can be calculated 
-by integrating the PSD, 
-remembering to include both positive _and_ negative frequencies.
+by integrating the PSD over that frequency range, remembering to include both 
+positive _and_ negative frequencies.
 
 \[ \int_{-0.2}^{0.2} S_X(f)\,df = \int_{-0.2}^{0.2} \sigma^2\,df + \mu^2 \int_{-0.2}^{0.2} \delta(f)\,df = 0.4\sigma^2 + \mu^2. \]
 

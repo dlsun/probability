@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-10" />
+<meta name="date" content="2020-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -444,20 +444,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#theory-51"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#essential-practice-45"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="58" data-path="lti-frequency.html"><a href="lti-frequency.html"><i class="fa fa-check"></i><b>58</b> LTI Filters in the Frequency Domain</a><ul>
+<li class="chapter" data-level="" data-path="lti-frequency.html"><a href="lti-frequency.html#motivation-8"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="lti-frequency.html"><a href="lti-frequency.html#theory-52"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lti-frequency.html"><a href="lti-frequency.html#essential-practice-46"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="distribution-table.html"><a href="distribution-table.html"><i class="fa fa-check"></i><b>A</b> Distribution Tables</a><ul>
 <li class="chapter" data-level="A.1" data-path="distribution-table.html"><a href="distribution-table.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete Distributions</a></li>
 <li class="chapter" data-level="A.2" data-path="distribution-table.html"><a href="distribution-table.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous Distributions</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="complex.html"><a href="complex.html"><i class="fa fa-check"></i><b>B</b> Complex Numbers</a><ul>
-<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#motivation-8"><i class="fa fa-check"></i>Motivation</a></li>
-<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#theory-52"><i class="fa fa-check"></i>Theory</a></li>
-<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#essential-practice-46"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#motivation-9"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#theory-53"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#essential-practice-47"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="fourier.html"><a href="fourier.html"><i class="fa fa-check"></i><b>C</b> Fourier Transforms</a><ul>
 <li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#continuous-time-fourier-transforms"><i class="fa fa-check"></i>Continuous-Time Fourier Transforms</a></li>
 <li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#discrete-time-fourier-transforms"><i class="fa fa-check"></i>Discrete-Time Fourier Transforms</a></li>
-<li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#essential-practice-47"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#essential-practice-48"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="D" data-path="fourier-table.html"><a href="fourier-table.html"><i class="fa fa-check"></i><b>D</b> Fourier Tables</a><ul>
 <li class="chapter" data-level="D.1" data-path="fourier-table.html"><a href="fourier-table.html#ctft"><i class="fa fa-check"></i><b>D.1</b> Continuous-Time Fourier Transforms</a></li>
@@ -502,18 +507,48 @@ autocorrelation function.</p>
 random process <span class="math inline">\(\{ X(t) \}\)</span> is the Fourier transform of the autocorrelation function
 <span class="math inline">\(R_X(\tau)\)</span>. (Note: Because the process is stationary, the autocorrelation<br />
 only depends on the difference <span class="math inline">\(\tau = s - t\)</span>.)</p>
-That is, the autocorrelation function and the power spectral density are Fourier pairs.
+<p>That is, the autocorrelation function and the power spectral density are Fourier pairs.
 <span class="math display" id="eq:autocorrelation-psd">\[\begin{equation} 
 R_X(\tau) \overset{\mathscr{F}}{\longleftrightarrow} S_X(f). 
 \tag{56.1}
+\end{equation}\]</span></p>
+Because the autocorrelation function <span class="math inline">\(R_X(\tau)\)</span> is symmetric and real-valued,
+its Fourier transform is guaranteed to also be symmetric and real-valued.
+See the Essential Practice exercise in Appendix <a href="fourier.html#fourier">C</a>.
+</div>
+
+<p>The term “power spectral density” suggests that <span class="math inline">\(S_X(f)\)</span> satisfies two properties:</p>
+<ol style="list-style-type: decimal">
+<li>the integral of <span class="math inline">\(S_X(f)\)</span> over all frequencies equals the expected power</li>
+<li>the integral of <span class="math inline">\(S_X(f)\)</span> over any frequency band equals the expected power in that frequency band.</li>
+</ol>
+<p>For now, we will only prove the first property, deferring the proof of the second property to
+Lesson <a href="lti-frequency.html#lti-frequency">58</a>.</p>
+
+<div class="theorem">
+<p><span id="thm:psd-integral" class="theorem"><strong>Theorem 56.1  (Power Spectral Density and Expected Power)  </strong></span>The integral of the PSD <span class="math inline">\(S_X(f)\)</span> over “all” frequencies equals the expected power in <span class="math inline">\(\{ X(t) \}\)</span>.</p>
+<p>For continuous-time processes, this result can be stated as:
+<span class="math display">\[\begin{equation} 
+\int_{-\infty}^\infty S_X(f)\,df = R_X(0) = E[X(t)^2].
+\end{equation}\]</span></p>
+For discrete-time processes, this result can be stated as:
+<span class="math display">\[\begin{equation} 
+\int_{-0.5}^{0.5} S_X(f)\,df = R_X[0] = E[X[n]^2].
 \end{equation}\]</span>
 </div>
 
-<p>In Lesson <a href="#lti-frequency"><strong>??</strong></a>, we will motivate why it makes
-sense to interpret the Fourier transform of the autocorrelation
-function as the distribution of power over frequency. For now,
-we take <a href="psd.html#eq:autocorrelation-psd">(56.1)</a> to be the
-<em>definition</em> of the power spectral density.</p>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> We will prove the result for continuous-time processes. The proof for discrete-time processes is similar.</p>
+<p>By the “DC offset” property of Fourier transforms (Appendix <a href="fourier-table.html#fourier-properties">D.3</a>),
+the total integral of a signal in the time domain equals the value of the signal at 0 in the frequency domain, and
+vice versa. To prove this, observe that
+<span class="math display">\[ G(0) \overset{\text{def}}{=} \int_{-\infty}^\infty g(t) e^{-j2\pi \cdot 0 t}\,dt = \int_{-\infty}^\infty g(t)\,dt. \]</span></p>
+Since <span class="math inline">\(S_X\)</span> and <span class="math inline">\(R_X\)</span> are Fourier pairs, we have
+<span class="math display">\[ \int_{-\infty}^\infty S_X(f)\,df = R_X(0), \]</span>
+as we wanted to show.
+</div>
+
 
 <div class="example">
 <p><span id="exm:white-noise-psd" class="example"><strong>Example 56.1  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in Example <a href="random-process.html#exm:white-noise">47.2</a>,
@@ -531,15 +566,16 @@ for frequencies below the Nyquist limit: <span class="math inline">\(|f| &lt; 0.
 white noise has equal power at all frequencies, except at 0 Hz (DC).
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
-<p>One way to check that we calculated the PSD correctly is to integrate
-it over “all” frequencies and making sure it matches the expected power
-we calculated in Lesson <a href="power.html#power">55</a>. Because this is a discrete-time signal,
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<p>To check that we calculated the PSD correctly, we can integrate
+it over “all” frequencies and make sure that it matches the expected power
+that we obtain by evaluating the autocorrelation function at 0 (see Lesson <a href="power.html#power">55</a>). Because this is a discrete-time signal,
 we only integrate over frequencies below the Nyquist limit, <span class="math inline">\(|f| &lt; 0.5\)</span>.
-<span class="math display">\[ \int_{-0.5}^{0.5} S_X(f)\,df = \int_{-0.5}^{0.5} \sigma^2\,df + \mu^2 \int_{-0.5}^{0.5} \delta(f)\,df = \sigma^2 + \mu^2  \]</span></p>
+<span class="math display">\[ \int_{-0.5}^{0.5} S_X(f)\,df = \int_{-0.5}^{0.5} \sigma^2\,df + \mu^2 \int_{-0.5}^{0.5} \delta(f)\,df = \sigma^2 + \mu^2  \]</span>
+This matches <span class="math inline">\(R_X[0] = \sigma^2 \delta[0] + \mu^2 = \sigma^2 + \mu^2\)</span>.</p>
 <p>The power in this signal below 0.2 cycles/sample can be calculated
-by integrating the PSD,
-remembering to include both positive <em>and</em> negative frequencies.</p>
+by integrating the PSD over that frequency range, remembering to include both
+positive <em>and</em> negative frequencies.</p>
 <p><span class="math display">\[ \int_{-0.2}^{0.2} S_X(f)\,df = \int_{-0.2}^{0.2} \sigma^2\,df + \mu^2 \int_{-0.2}^{0.2} \delta(f)\,df = 0.4\sigma^2 + \mu^2. \]</span></p>
 
 <div class="example">
@@ -560,7 +596,7 @@ This power spectral density is graphed below. We see that this process has
 more power at the lower frequencies than at the higher frequencies.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>One way to check that we calculated the PSD correctly is to integrate
 it over all frequencies and making sure it matches the expected power
 we calculated in Lesson <a href="power.html#power">55</a>.

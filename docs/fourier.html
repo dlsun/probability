@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-10" />
+<meta name="date" content="2020-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -444,20 +444,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#theory-51"><i class="fa fa-check"></i>Theory</a></li>
 <li class="chapter" data-level="" data-path="lti-time.html"><a href="lti-time.html#essential-practice-45"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
+<li class="chapter" data-level="58" data-path="lti-frequency.html"><a href="lti-frequency.html"><i class="fa fa-check"></i><b>58</b> LTI Filters in the Frequency Domain</a><ul>
+<li class="chapter" data-level="" data-path="lti-frequency.html"><a href="lti-frequency.html#motivation-8"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="lti-frequency.html"><a href="lti-frequency.html#theory-52"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="lti-frequency.html"><a href="lti-frequency.html#essential-practice-46"><i class="fa fa-check"></i>Essential Practice</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="distribution-table.html"><a href="distribution-table.html"><i class="fa fa-check"></i><b>A</b> Distribution Tables</a><ul>
 <li class="chapter" data-level="A.1" data-path="distribution-table.html"><a href="distribution-table.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete Distributions</a></li>
 <li class="chapter" data-level="A.2" data-path="distribution-table.html"><a href="distribution-table.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous Distributions</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="complex.html"><a href="complex.html"><i class="fa fa-check"></i><b>B</b> Complex Numbers</a><ul>
-<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#motivation-8"><i class="fa fa-check"></i>Motivation</a></li>
-<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#theory-52"><i class="fa fa-check"></i>Theory</a></li>
-<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#essential-practice-46"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#motivation-9"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#theory-53"><i class="fa fa-check"></i>Theory</a></li>
+<li class="chapter" data-level="" data-path="complex.html"><a href="complex.html#essential-practice-47"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="fourier.html"><a href="fourier.html"><i class="fa fa-check"></i><b>C</b> Fourier Transforms</a><ul>
 <li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#continuous-time-fourier-transforms"><i class="fa fa-check"></i>Continuous-Time Fourier Transforms</a></li>
 <li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#discrete-time-fourier-transforms"><i class="fa fa-check"></i>Discrete-Time Fourier Transforms</a></li>
-<li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#essential-practice-47"><i class="fa fa-check"></i>Essential Practice</a></li>
+<li class="chapter" data-level="" data-path="fourier.html"><a href="fourier.html#essential-practice-48"><i class="fa fa-check"></i>Essential Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="D" data-path="fourier-table.html"><a href="fourier-table.html"><i class="fa fa-check"></i><b>D</b> Fourier Tables</a><ul>
 <li class="chapter" data-level="D.1" data-path="fourier-table.html"><a href="fourier-table.html#ctft"><i class="fa fa-check"></i><b>D.1</b> Continuous-Time Fourier Transforms</a></li>
@@ -506,7 +511,7 @@ look up the Fourier transform of the signal in a table like Appendix <a href="fo
 Fourier transform (as shown in Appendix <a href="fourier-table.html#fourier-properties">D.3</a>).</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-197" class="example"><strong>Example C.1  </strong></span>Calculate the Fourier transform of <span class="math inline">\(g(t) = 80e^{-20t} u(t)\)</span>.
+<span id="exm:unnamed-chunk-204" class="example"><strong>Example C.1  </strong></span>Calculate the Fourier transform of <span class="math inline">\(g(t) = 80e^{-20t} u(t)\)</span>.
 </div>
 
 
@@ -533,7 +538,7 @@ Now, the <em>magnitude</em> of the Fourier transform is a function we can easily
 From the graph, we see that the signal has more low-frequency content than high-frequency content.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
 </div>
 <div id="discrete-time-fourier-transforms" class="section level2 unnumbered">
 <h2>Discrete-Time Fourier Transforms</h2>
@@ -541,13 +546,13 @@ From the graph, we see that the signal has more low-frequency content than high-
 at regular time intervals. The sampling rate <span class="math inline">\(f_s\)</span> (in Hz) specifies the
 number of samples per second. The signal below is sampled at a rate of
 <span class="math inline">\(f_s = 16\)</span> Hz.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
 <p>We write <span class="math inline">\(x[n] = x(t_n)\)</span> for the <span class="math inline">\(n\)</span>th time sample, where <span class="math inline">\(t_n = \frac{n}{f_s}\)</span>.</p>
 <p>It’s possible to choose a sampling rate <span class="math inline">\(f_s\)</span> that is too low. In the graph below,
 the underlying continuous-time signal (in black) is a sinusoid with a frequency of 14 Hz.
 However, because the discrete-time signal (in red) was sampled at a rate of 16 Hz, the
 sinusoid appears to have a frequency of 2 Hz.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 <p>We say that the higher frequency is <strong>aliased</strong> by the lower one.</p>
 <p>At a sampling rate of <span class="math inline">\(f_s\)</span>, any frequencies outside the range
 <span class="math display">\[ (-f_s / 2, f_s / 2) \]</span>
@@ -573,7 +578,7 @@ G(f) &amp;\overset{\text{def}}{=} \sum_{n=-\infty}^\infty g[n] e^{-j2\pi f t}\,d
 look up the Fourier transform of the signal in a table like Appendix <a href="fourier-table.html#dtft">D.2</a> and use properties of the
 Fourier transform (as shown in Appendix <a href="fourier-table.html#fourier-properties">D.3</a>).</p>
 </div>
-<div id="essential-practice-47" class="section level2 unnumbered">
+<div id="essential-practice-48" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
 <ol style="list-style-type: decimal">
 <li><p>Calculate the Fourier transform <span class="math inline">\(G(f)\)</span> of the continuous-time signal

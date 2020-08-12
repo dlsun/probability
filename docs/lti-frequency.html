@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 10 Random Variables | Introduction to Probability</title>
+  <title>Lesson 58 LTI Filters in the Frequency Domain | Introduction to Probability</title>
   <meta name="description" content="Introduction to probability textbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 10 Random Variables | Introduction to Probability" />
+  <meta property="og:title" content="Lesson 58 LTI Filters in the Frequency Domain | Introduction to Probability" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="dlsun/probability" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 10 Random Variables | Introduction to Probability" />
+  <meta name="twitter:title" content="Lesson 58 LTI Filters in the Frequency Domain | Introduction to Probability" />
   
   <meta name="twitter:description" content="Introduction to probability textbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bayes.html"/>
-<link rel="next" href="cdf.html"/>
+<link rel="prev" href="lti-time.html"/>
+<link rel="next" href="distribution-table.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -489,212 +489,195 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rv" class="section level1">
-<h1><span class="header-section-number">Lesson 10</span> Random Variables</h1>
-<div id="motivating-example-9" class="section level2 unnumbered">
-<h2>Motivating Example</h2>
-<p>Texas hold ’em is a popular variant of poker. In Texas hold’em, each
-player starts with 2 cards (called “hole cards”) that are only known to them.
-In addition, there are 5 cards in the center (called “community cards”) that
-are shared by all the players. The player that wins is the one with the
-best five-card poker hand among the 7 cards (i.e., the 2 hole cards unique to them,
-plus the 5 community cards).</p>
-<p>Alice and Bob are playing Texas hold’em using a single deck of cards. The
-5 community cards have not been revealed yet.</p>
-<p>Alice is looking at her 2 hole cards, which are</p>
-<p><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/queen_of_diamonds.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/3_of_diamonds.png" width="20%" /></p>
-<p>Because she already has two diamonds, she wonders how many more diamonds
-there are in the community cards. If there are 3 or more, then she has a flush.</p>
-<p>Bob, on the other hand, has the following hole cards</p>
-<p><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_clubs.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_hearts.png" width="20%" /></p>
-<p>Because he has two jacks of different suits, he is less interested
-in the suit than in the number of jacks among the community cards. If there are 2,
-then he has a four-of-a-kind. If there are 0, then he just has a lowly
-pair.</p>
-<p>Both Alice and Bob are interested in the same random phenomenon:
-the 5 community cards with their
-<span class="math inline">\(\binom{48}{5} \approx 1,712,304\)</span> possible outcomes.
-However, their attention is drawn to different quantities:</p>
-<ul>
-<li>Alice to the <em>number of diamonds</em></li>
-<li>Bob to the <em>number of jacks</em></li>
-</ul>
-<p>The <em>number of diamonds</em> and the <em>number of jacks</em> are two examples of <strong>random variables</strong> associated
-with this phenomenon. A random variable is simply a way of assigning a number to every
-possible outcome in a probability experiment. As we have seen,
-depending on the quantity of interest, there may be many random variables associated with the same
-probability experiment.</p>
-<p>To appreciate that Alice and Bob are interested in different random variables, suppose the
-5 community cards are revealed to be</p>
-<p><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/4_of_hearts.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/jack_of_diamonds.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/4_of_clubs.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/ace_of_spades.png" width="20%" /><img src="https://raw.githubusercontent.com/hayeah/playing-cards-assets/master/png/8_of_diamonds.png" width="20%" /></p>
-<p>Alice’s random variable (the <em>number of diamonds</em>) is 2,
-while Bob’s (the <em>number of jacks</em>) is 1. To help them decide how much to bet,
-Alice and Bob need to know the <em>probabilities</em>, such as</p>
-<ul>
-<li>the probability that the number of diamonds is at least 3.</li>
-<li>the probability that the number of jacks equals 2.</li>
-</ul>
-<!-- We can simulate the values that a random variable will take. -->
-<!-- ```{r} -->
-<!-- # define a standard deck of cards (A=1, J=11, Q=12, K=13) -->
-<!-- cards <- data.frame( -->
-<!--   rank=rep(1:13, 4), -->
-<!--   suit=rep(c("C", "D", "H", "S"), each=13) -->
-<!-- ) -->
-<!-- # remove the 4 cards that Alice and Bob already have -->
-<!-- remaining_cards <- cards[-c(11, 16, 25, 37), ] -->
-<!-- # initialize vectors for storing the numbers of diamonds -->
-<!-- numbers_of_diamonds <- c() -->
-<!-- # repeat 10000 times -->
-<!-- for (i in 1:10000) { -->
-<!--   # simulate 5 community cards -->
-<!--   samp <- sample(nrow(remaining_cards), size=5, replace=FALSE) -->
-<!--   comm <- remaining_cards[samp, ] -->
-<!--   # count up how many diamonds there are, add to the vector -->
-<!--   numbers_of_diamonds <- c(numbers_of_diamonds, sum(comm$suit == "D")) -->
-<!-- } -->
-<!-- # tabulate the simulations -->
-<!-- table(numbers_of_diamonds) -->
-<!-- ``` -->
-<!-- Probabilities such as these are how we ultimately describe random variables. -->
+<div id="lti-frequency" class="section level1">
+<h1><span class="header-section-number">Lesson 58</span> LTI Filters in the Frequency Domain</h1>
+<div id="motivation-8" class="section level2 unnumbered">
+<h2>Motivation</h2>
+<p>In Lesson <a href="lti-time.html#lti-time">57</a>, we looked at what LTI filters do to stationary signals in the time
+domain. However, it is usually much easier to analyze and understand LTI filters in the frequency
+domain.</p>
 </div>
-<div id="theory-8" class="section level2 unnumbered">
+<div id="theory-52" class="section level2 unnumbered">
 <h2>Theory</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Gm-6ccZ7OvM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-<p>We describe random variables (such as the number of diamonds or the number of jacks) by the
-probabilities of their possible values. This is summarized by a function called the
-<strong>probability mass function</strong>.</p>
 
-<div class="definition">
-<span id="def:pmf-function" class="definition"><strong>Definition 10.1  (Probability Mass Function)  </strong></span>The <strong>probability mass function</strong> (p.m.f.) of a random variable <span class="math inline">\(X\)</span> is a function that
-specifies the probability of different outcomes:
-<span class="math display">\[ f(x) = P(X = x). \]</span>
+<div class="theorem">
+<span id="thm:filter-theorem" class="theorem"><strong>Theorem 58.1  (Filter Theorem)  </strong></span>Let <span class="math inline">\(\{ X(t) \}\)</span> be a stationary random process with power spectral density <span class="math inline">\(S_X(f)\)</span>.
+If <span class="math inline">\(\{ X(t) \}\)</span> is passed into a
+linear time-invariant filter with impulse response <span class="math inline">\(h(t)\)</span>, then the output
+process <span class="math inline">\(\{ Y(t) \}\)</span> has power spectral density
+<span class="math display" id="eq:filter-theorem">\[\begin{equation}
+S_Y(f) = |H(f)|^2 \cdot S_X(f),
+\tag{58.1}
+\end{equation}\]</span>
+where <span class="math inline">\(H(f)\)</span> is the frequency response of the filter (i.e., the Fourier transform of the
+impulse response).
 </div>
 
-<p>Informally, the information contained in the p.m.f. is called the <strong>distribution</strong> of the
-random variable.</p>
 
-<div class="example">
-<p><span id="exm:unnamed-chunk-17" class="example"><strong>Example 10.1  (Calculating the P.M.F.)  </strong></span>Let’s calculate the p.m.f. of the number of diamonds, <span class="math inline">\(X\)</span>, among the community cards. We deal
-5 cards from a deck of cards that has had 4 cards removed (because they have already been
-dealt to Alice and Bob). Furthermore, we know that 2 of these cards were diamonds.
-So the deck has 48 cards left, of which 11 are diamonds.</p>
-<p>First, we calculate <span class="math inline">\(f(0)\)</span>, the probability that <span class="math inline">\(X = 0\)</span>. In order for there to be no
-diamonds, all 5 cards must be selected from the <span class="math inline">\(48 - 11 = 37\)</span> non-diamonds. So the probabiilty is
-<span class="math display">\[ f(0) = P(X = 0) = \frac{\binom{37}{5}}{\binom{48}{5}} = .2546. \]</span></p>
-<p>Next, we calculate <span class="math inline">\(f(1)\)</span>, the probability that <span class="math inline">\(X = 1\)</span>. We can choose any one of the 11 diamonds
-and pair it with any of the <span class="math inline">\(\binom{37}{4}\)</span> ways to choose 4 cards from the non-diamonds.
-<span class="math display">\[ f(1) = P(X = 1) = \frac{11 \cdot \binom{37}{4}}{\binom{48}{5}} = .4243. \]</span></p>
-<p>Now, we calculate <span class="math inline">\(f(2)\)</span>, the probability that <span class="math inline">\(X = 2\)</span>. We can match any one of the
-<span class="math inline">\(\binom{11}{2}\)</span> ways to choose 2 diamonds with the <span class="math inline">\(\binom{37}{3}\)</span> ways to choose
-3 non-diamonds:
-<span class="math display">\[ f(2) = P(X = 2) = \frac{\binom{11}{2} \cdot \binom{37}{3}}{\binom{48}{5}} = .2496. \]</span></p>
-<p>Continuing in this way, we can calculate <span class="math inline">\(f(3)\)</span>, <span class="math inline">\(f(4)\)</span>, and <span class="math inline">\(f(5)\)</span>. (Try these yourself!)</p>
-<p>When the random variable only takes on a handful of possible values, we can write out
-the probabilities in a table.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="right"></th>
-<th align="center">0</th>
-<th align="center">1</th>
-<th align="center">2</th>
-<th align="center">3</th>
-<th align="center">4</th>
-<th align="center">5</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right"><span class="math inline">\(f(x)\)</span></td>
-<td align="center">.2546</td>
-<td align="center">.4243</td>
-<td align="center">.2496</td>
-<td align="center">.0642</td>
-<td align="center">.0071</td>
-<td align="center">.0002</td>
-</tr>
-</tbody>
-</table>
-For random variables that take on many possible values, it is usually more convenient
-to specify the p.m.f. as a formula. In this example, the formula below produces the
-same probabilities as the table above, when you plug in the right value of <span class="math inline">\(x\)</span>:
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> Theorem <a href="lti-time.html#thm:filter-stationary">57.2</a> provides the mean and autocovariance functions of <span class="math inline">\(\{ Y(t) \}\)</span>. We can use these
+to obtain the autocorrelation function of <span class="math inline">\(\{ Y(t) \}\)</span>:
 <span class="math display">\[\begin{align*}
-f(x) &amp;= \frac{\binom{11}{x} \binom{37}{5-x}}{\binom{48}{5}} &amp; x &amp;= 0, 1, 2, 3, 4, 5. 
+R_Y(\tau) &amp;= C_Y(\tau) + \mu_Y^2 \\
+&amp;= (h(-t) * h * C_X)(\tau) + \left(\mu_X \int_{-\infty}^\infty h(t)\,dt\right)^2 \\
+&amp;= (h(-t) * h * C_X)(\tau) + (h(-t) * h * \mu_X^2) \\
+&amp;= (h(-t) * h * R_X)(\tau).
 \end{align*}\]</span>
-Try plugging different values of <span class="math inline">\(x\)</span> into this formula and verifying that you get
-the probabilities in the table above.
+The second-to-last equality follows from the fact that the convolution of any function with a constant function
+(<span class="math inline">\(\mu_X^2\)</span>) is itself a constant function. So <span class="math inline">\(h * \mu_X^2\)</span> is the constant <span class="math inline">\(\int_{-\infty}^\infty h(t)\,dt \mu_X^2\)</span>,
+and convolving this constant function with <span class="math inline">\(h(-t)\)</span> gives another factor of <span class="math inline">\(\int_{-\infty}^\infty h(t)\,dt\)</span>.</p>
+Now, we know that <span class="math inline">\(S_Y\)</span>, the power spectral density of <span class="math inline">\(\{ Y(t) \}\)</span>, is just the Fourier transform of the
+autocorrelation function <span class="math inline">\(R_Y\)</span>. Combining the representation of <span class="math inline">\(R_Y\)</span> above, with the Fourier properties from
+Appendix <a href="fourier-table.html#fourier-properties">D.3</a>, we obtain:
+<span class="math display">\[\begin{align*}
+S_Y(f) &amp;= \mathscr{F}[R_Y](f) \\
+&amp;= \mathscr{F}[h(-t) * h * R_X](f) \\
+&amp;= \mathscr{F}[h(-t)](f) \cdot \mathscr{F}[h](f) \cdot \mathscr{F}[R_X](f) &amp; \text{(convolution property)} \\
+&amp;= H(-f) \cdot H(f) \cdot S_Y(f) &amp; \text{(definitions of $H$ and $S_Y$, reversal property)} \\
+&amp;= H^*(f) \cdot H(f) \cdot S_X(f) &amp; \text{($h$ is real, so $H$ is conjugate symmetric)} \\
+&amp;= |H(f)|^2 \cdot S_X(f),
+\end{align*}\]</span>
+as we wanted to show.
 </div>
 
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-18" class="example"><strong>Example 10.2  (Using the P.M.F.)  </strong></span>In order for Alice to have a flush, there must be at least 3 diamonds among the community cards.
-Let’s see how she can easily calculate this probability, once she has the p.m.f. <span class="math inline">\(f(x)\)</span>.</p>
-<p>In terms of the random variable <span class="math inline">\(X\)</span>, the probability that there are at least 3 diamonds is
-<span class="math inline">\(P(X \geq 3)\)</span>, which is
-<span class="math display">\[\begin{align*} 
-P(X \geq 3) &amp;= f(3) + f(4) + f(5) \\
-&amp;= .0642 + .0071 + .0002 \\
-&amp;= .0715.
+<p><span id="exm:white-noise-lti-frequency" class="example"><strong>Example 58.1  (White Noise)  </strong></span>Consider the white noise process <span class="math inline">\(\{ Z[n] \}\)</span> defined in Example <a href="random-process.html#exm:white-noise">47.2</a>,
+which consists of i.i.d. random variables with mean <span class="math inline">\(\mu = E[Z[n]]\)</span> and
+variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]\)</span>.</p>
+<p>We showed in Example <a href="psd.html#exm:white-noise-psd">56.1</a> that its PSD is
+<span class="math display">\[ S_X(f) = \sigma^2 + \mu^2 \delta(f). \]</span></p>
+<p>Let’s pass <span class="math inline">\(\{ X(t) \}\)</span> through a filter with impulse response
+<span class="math display">\[ h[n] = (-0.4)^n u[n]. \]</span>
+What is the PSD of the output <span class="math inline">\(\{ Y(t) \}\)</span>?</p>
+<p>By the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), we know that
+<span class="math display">\[ S_Y(f) = |H(f)|^2 \cdot S_X(f). \]</span>
+So all we need to do is find <span class="math inline">\(|H(f)|^2\)</span>.</p>
+<p>By Table <a href="fourier-table.html#dtft">D.2</a>, the frequency response of the filter is
+<span class="math display">\[ H(f) = \frac{1}{1 + 0.4e^{-j2\pi f}} \]</span>
+so
+<span class="math display">\[\begin{align*}
+|H(f)|^2 &amp;= H(f) \cdot H^*(f) \\
+&amp;= \frac{1}{1 + 0.4e^{-j2\pi f}} \cdot \frac{1}{1 + 0.4e^{j2\pi f}} \\
+&amp;= \frac{1}{1 + 0.4 (e^{j2\pi f} + e^{-j2\pi f}) + (0.4)^2} \\
+&amp;= \frac{1}{1.16 + 0.8\cos(2\pi f)}.
 \end{align*}\]</span></p>
-The complement rule (<a href="double-counting.html#thm:complement">5.2</a>) can sometimes save time. Although it would not helped in this example,
-we could have also calculated the probability as follows:
-<span class="math display">\[\begin{align*}
-P(X \geq 3) &amp;= 1 - P(X &lt; 3) \\
-&amp;= 1 - (f(0) + f(1) + f(2)) \\
-&amp;= 1 - (.2546 + .4243 + .2496) \\
-&amp;= .0715.
+<p>Now, <span class="math inline">\(S_Y(f)\)</span> is just the product of this and <span class="math inline">\(S_X(f)\)</span>.
+<span class="math display">\[\begin{align*} 
+S_Y(f) &amp;= \frac{1}{1.16 + 0.8\cos(2\pi f)} \cdot (\sigma^2 + \mu^2 \delta(f)) \\
+&amp;= \frac{\sigma^2}{1.16 + 0.8\cos(2\pi f)} + \frac{\mu^2}{1.16 + 0.8\cos(2\pi \cdot 0)} \delta(f).
 \end{align*}\]</span>
+The last equality follows from the fact that <span class="math inline">\(\delta(f) = 0\)</span> everywhere except <span class="math inline">\(f=0\)</span>,
+so we can substitute <span class="math inline">\(f=0\)</span> into the coefficient.</p>
+<p>The graphs below show:</p>
+<ul>
+<li>the PSD of the input <span class="math inline">\(S_X(f)\)</span> (in red),</li>
+<li>the squared magnitude of the frequency response <span class="math inline">\(|H(f)|^2\)</span> (in blue), and</li>
+<li>the PSD of the output <span class="math inline">\(S_Y(f)\)</span> (in orange),</li>
+</ul>
+for <span class="math inline">\(\mu=-1.5\)</span> and <span class="math inline">\(\sigma^2 = 1.7\)</span>. Notice that the filter <span class="math inline">\(h\)</span> is a highpass filter, passing
+high frequencies (i.e., near the Nyquist limit of 0.5) and attenuating low frequencies.
 </div>
 
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p>We can calculate the expected power in the output signal <span class="math inline">\(\{ Y[n] \}\)</span> by integrating
+the PSD over “all” frequencies. (This is the easiest way, since
+the autocorrelation function <span class="math inline">\(R_Y(\tau)\)</span> is not available.) Because this is a discrete-time
+signal, we only integrate over frequencies below the Nyquist limit, <span class="math inline">\(|f| &lt; 0.5\)</span>.
+<span class="math display">\[\begin{align*}
+\int_{-0.5}^{0.5} S_Y(f)\,df &amp;= \int_{-0.5}^{0.5} \frac{\sigma^2}{1.16 + 0.8\cos(2\pi f)} \,df + \int_{-0.5}^{0.5} \frac{\mu^2}{1.96} \delta(f)\,df \\
+&amp;\approx 1.1905 \sigma^2 + \frac{\mu^2}{1.96}.
+\end{align*}\]</span></p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-19" class="example"><strong>Example 10.3  (Graphing the P.M.F.)  </strong></span>A graph of the p.m.f. is the best way to understand the distribution of a
-random variable over its possible values.
-On the graph below, the <span class="math inline">\(x\)</span>-axis represents the
-possible values of the random variable. Each impulse represents the
-probability of a possible value.
+<p><span id="exm:gaussian-process-lti" class="example"><strong>Example 58.2  </strong></span>Consider the process <span class="math inline">\(\{X(t)\}\)</span> from Example <a href="stationary.html#exm:gaussian-process">53.5</a> with
+autocorrelation function
+<span class="math display">\[ R_X(\tau) = 5 e^{-\tau^2 / 3} + 4. \]</span>
+We showed in Example <a href="psd.html#exm:gaussian-process-psd">56.2</a> that its power spectral density is
+<span class="math display">\[\begin{align*}
+S_X(f) &amp;=  5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}  + 4 \delta(f)
+\end{align*}\]</span>
+Now, suppose we pass <span class="math inline">\(\{ X(t) \}\)</span> through an LTI filter with impulse response
+<span class="math display">\[ h(t) = 1.8\text{sinc}(1.2f). \]</span>
+Using the table in Appendix <a href="fourier-table.html#ctft">D.1</a>, along with the scaling property, we see that the frequency response is
+<span class="math display">\[ H(f) = 1.8\frac{1}{1.2} \text{rect}(\frac{f}{1.2}) = \begin{cases} 1.5 &amp; |f| &lt; 0.6 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
+The filter <span class="math inline">\(h\)</span> is a ideal lowpass filter because it perfectly preserves frequencies below <span class="math inline">\(0.6\)</span> Hz and
+perfectly removes frequencies above <span class="math inline">\(0.6\)</span> Hz. It is “ideal” because the impulse response <span class="math inline">\(h(t)\)</span> is
+not implementable.</p>
+<p>Now, we have to calculate the <em>squared</em> magnitude of the impulse response for the filter theorem:
+<span class="math display">\[ |H(f)|^2 = \begin{cases} 1.5^2 &amp; |f| &lt; 0.6 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span></p>
+<span class="math inline">\(S_X(f)\)</span> and <span class="math inline">\(|H(f)|^2\)</span> are graphed below.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/pmf-graph-1.png" width="672" /></p>
-<p>From the graph, it is immediately clear that 1 diamond is most probable.
-Unfortunately for Alice, it does not seem promising that she will get the
-3 or more diamonds she needs to secure a flush.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p>By the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), the PSD of the output is
+<span class="math display">\[ S_Y(f) = |H(f)|^2 \cdot S_X(f) = \begin{cases} 1.5^2 \cdot 5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}  + 1.5^2 \cdot 4 \delta(f) &amp; |f| &lt; 0.6 \\ 0 &amp; \text{otherwise} \end{cases} \]</span>
+Although the formula for <span class="math inline">\(S_Y(f)\)</span> is messy, it is quite straightforward to understand what is going on if we just
+draw a picture.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+<p>Frequencies below 0.6 Hz are passed (by a factor of <span class="math inline">\(1.5^2 = 2.25\)</span>), while
+frequencies above 0.6 Hz are rejected.</p>
+<p>The Filter Theorem allows us to prove a fact about power spectral densities that we have
+assumed until now.</p>
+
+<div class="theorem">
+<span id="thm:psd-band-integral" class="theorem"><strong>Theorem 58.2  (Expected Power in a Frequency Band)  </strong></span>The integral of the PSD <span class="math inline">\(S_X(f)\)</span> over any frequency band <span class="math inline">\(a &lt; |f| &lt; b\)</span> equals the expected power
+in that frequency band.
 </div>
-<div id="essential-practice-1" class="section level2 unnumbered">
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> To calculate the expected power in a signal <span class="math inline">\(\{ X(t) \}\)</span> over the frequency band <span class="math inline">\(a &lt; |f| &lt; b\)</span>,
+we imagine passing <span class="math inline">\(\{ X(t) \}\)</span> through the ideal bandpass filter
+<span class="math display">\[ H(f) = \begin{cases} 1 &amp; a &lt; |f| &lt; b \\ 0 &amp; \text{otherwise} \end{cases}. \]</span></p>
+We can then integrate the PSD <span class="math inline">\(S_Y(f)\)</span> of the output to obtain the expected power
+in this frequency band. But by the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), we have
+<span class="math display">\[ \int_{-\infty}^\infty S_Y(f)\,df = \int_{-\infty}^\infty |H(f)|^2 S_X(f)\,df = \int_{a &lt; |f| &lt; b} S_X(f)\,df, \]</span>
+since <span class="math inline">\(|H(f)|^2\)</span> is 0 outside <span class="math inline">\(a &lt; |f| &lt; b\)</span>.
+</div>
+
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-202-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="essential-practice-46" class="section level2 unnumbered">
 <h2>Essential Practice</h2>
+<p>For these questions, you may want to refer to the power spectral densities that
+you calculated in Lesson <a href="psd.html#psd">56</a>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Continuing with the example from the lesson, let <span class="math inline">\(Y\)</span> be the number of Jacks in the community cards. Calculate and graph the p.m.f. of <span class="math inline">\(Y\)</span>.</p></li>
-<li><p>Two fair, six-sided dice are rolled.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Let <span class="math inline">\(S\)</span> be the sum of the two numbers. Calculate and graph the p.m.f. of <span class="math inline">\(S\)</span>.</li>
-<li>Let <span class="math inline">\(D\)</span> be the absolute difference between the two numbers.
-(That is, <span class="math inline">\(D\)</span> is always a positive number.) Calculate and graph the p.m.f. of <span class="math inline">\(D\)</span>.</li>
-</ol></li>
-<li><p>A fair coin is tossed 5 times. Let <span class="math inline">\(Z\)</span> be the number of heads. Calculate and graph the p.m.f. of <span class="math inline">\(Z\)</span>.
-Use the p.m.f. to calculate the probability of getting at least 2 heads.</p></li>
-</ol>
-</div>
-<div id="additional-exercises-4" class="section level2 unnumbered">
-<h2>Additional Exercises</h2>
-<ol style="list-style-type: decimal">
-<li>In college basketball, when a player is fouled while not in the act of shooting and the opposing team is
-“in the penalty,” the player is awarded a “1 and 1.” In the 1 and 1, the player is awarded one free throw,
-and if that free throw goes in, the player is awarded a second free throw. Find the p.m.f. of <span class="math inline">\(Y\)</span>, the
-number of points scored in a 1 and 1 given that any free throw goes in with probability <span class="math inline">\(0.7\)</span>, independent of any
-other free throw.</li>
+<li><p>Radioactive particles hit a Geiger counter according to a Poisson process
+at a rate of <span class="math inline">\(\lambda=0.8\)</span> particles per second. Let <span class="math inline">\(\{ N(t); t \geq 0 \}\)</span> represent this Poisson process.</p>
+<p>Define the new process <span class="math inline">\(\{ D(t); t \geq 3 \}\)</span> by
+<span class="math display">\[ D(t) = N(t) - N(t - 3). \]</span>
+This process represents the number of particles that hit the Geiger counter in the
+last 3 seconds.</p>
+<p>Suppose <span class="math inline">\(\{ D(t) \}\)</span> is passed through an LTI filter with impulse response
+<span class="math display">\[ h(t) = 3\text{sinc}(2t). \]</span></p>
+<p>What is the power spectral density of the output? What is the expected power in the output?</p></li>
+<li><p>Consider the moving average process <span class="math inline">\(\{ X[n] \}\)</span> of Example <a href="random-process-examples.html#exm:ma1">48.2</a>, defined by
+<span class="math display">\[ X[n] = 0.5 Z[n] + 0.5 Z[n-1], \]</span>
+where <span class="math inline">\(\{ Z[n] \}\)</span> is a sequence of i.i.d. standard normal random variables.</p>
+<p>In Lesson <a href="lti-time.html#lti-time">57</a>, you expressed <span class="math inline">\(\{ X[n] \}\)</span> as white noise passed through an LTI filter
+and calculated the impulse response of this filter. Use this impulse response and the
+PSD of white noise to calculate the PSD of this moving average process. Check
+that your answer agrees with the one you obtained in Lesson <a href="psd.html#psd">56</a>.</p></li>
+<li><p>Let <span class="math inline">\(\{ X(t) \}\)</span> be a random process with mean function
+<span class="math inline">\(\mu_X(t) = -2\)</span> and autocovariance function <span class="math inline">\(C_X(s, t) = 5 e^{-0.4|s - t|}\)</span>.</p>
+<p>If <span class="math inline">\(\{X(t)\}\)</span> is passed through an LTI filter with impulse response
+<span class="math display">\[ h(t) = \begin{cases} 4e^{-2t} &amp; t \geq 0 \\ 0 &amp; \text{otherwise} \end{cases}, \]</span>
+what is the expected power in the output?</p></li>
 </ol>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="bayes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="cdf.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lti-time.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distribution-table.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -725,7 +708,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/dlsun/probability/edit/master/random-variables.Rmd",
+"link": "https://github.com/dlsun/probability/edit/master/lti-frequency.Rmd",
 "text": "Edit"
 },
 "history": {
