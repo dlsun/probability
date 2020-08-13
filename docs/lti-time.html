@@ -569,9 +569,10 @@ Find the impulse response of this filter.
 
 
 <div class="solution">
-<p> <span class="solution"><em>Solution. </em></span> The impulse response <span class="math inline">\(h[n]\)</span> is defined to be the output signal <span class="math inline">\(y[n]\)</span>
-when the input signal <span class="math inline">\(x[n]\)</span> is the unit impulse <span class="math inline">\(\delta[n]\)</span>. Therefore,
-we have the relation:
+<p> <span class="solution"><em>Solution. </em></span> The impulse response <span class="math inline">\(h[n]\)</span> is the output of the filter
+when the input is the unit impulse <span class="math inline">\(\delta[n]\)</span>.
+That is, if <span class="math inline">\(x[n] = \delta[n]\)</span>, then <span class="math inline">\(y[n] = h[n]\)</span>.</p>
+<p>Therefore, we have the relation
 <span class="math display">\[ h[n] = a_1 h[n-1] + \delta[n] \]</span>
 for all <span class="math inline">\(n\)</span>.</p>
 First, we observe that <span class="math inline">\(h[n] = 0\)</span> for all <span class="math inline">\(n &lt; 0\)</span>. For <span class="math inline">\(n \geq 0\)</span>, we

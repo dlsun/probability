@@ -125,6 +125,6 @@ Calculate the autocorrelation function of $\{ X[n] \}$.
 \[ X(t) = \cos(2\pi f t + \Theta). \]
 Calculate the autocorrelation function of $\{ X(t) \}$.
 
-5. Let $\{ X(t) \}$ be a random process with mean function 
+5. Let $\{ X(t) \}$ be a continuous-time random process with mean function 
 $\mu_X(t) = -1$ and autocovariance function $C_X(s, t) = 2e^{-|s - t|/3}$. 
 Calculate the autocorrelation function of $\{ X(t) \}$.

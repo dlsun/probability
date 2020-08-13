@@ -92,9 +92,11 @@ Find the impulse response of this filter.
 ```
 
 ```{solution}
-The impulse response $h[n]$ is defined to be the output signal $y[n]$ 
-  when the input signal $x[n]$ is the unit impulse $\delta[n]$. Therefore, 
-we have the relation:
+The impulse response $h[n]$ is the output of the filter 
+when the input is the unit impulse $\delta[n]$. 
+That is, if $x[n] = \delta[n]$, then $y[n] = h[n]$. 
+
+Therefore, we have the relation
 \[ h[n] = a_1 h[n-1] + \delta[n] \]
 for all $n$.
 
@@ -125,7 +127,6 @@ for(x in 0:5) {
 ## Theory {-}
 
 We are now ready to apply linear filters to stationary random processes.
-
 
 ```{theorem filter-stationary, name="Filtering Stationary Processes"}
 Let $\{ X(t) \}$ be a stationary random process and $h(t)$ be the 

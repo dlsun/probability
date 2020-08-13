@@ -221,3 +221,4 @@ Is $\{ X[n] \}$ wide-sense stationary?
 Define the random phase process $\{ X(t) \}$ by
 \[ X(t) = \cos(2\pi f t + \Theta). \]
 Is $\{ X(t) \}$ wide-sense stationary?
+

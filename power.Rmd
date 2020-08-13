@@ -77,6 +77,6 @@ Calculate the expected power in $\{ X[n] \}$.
 \[ X(t) = \cos(2\pi f t + \Theta). \]
 Calculate the expected power in $\{ X(t) \}$.
 
-4. Let $\{ X(t) \}$ be a random process with mean function 
+4. Let $\{ X(t) \}$ be a continuous-time random process with mean function 
 $\mu_X(t) = -1$ and autocovariance function $C_X(s, t) = 2e^{-|s - t|/3}$. 
 Calculate the expected power of $\{ X(t) \}$.

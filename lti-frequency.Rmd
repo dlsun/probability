@@ -270,7 +270,7 @@ where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables.
     PSD of white noise to calculate the PSD of this moving average process. Check 
     that your answer agrees with the one you obtained in Lesson \@ref(psd).
 
-3. Let $\{ X(t) \}$ be a random process with mean function 
+3. Let $\{ X(t) \}$ be a continuous-time random process with mean function 
 $\mu_X(t) = -2$ and autocovariance function $C_X(s, t) = 5 e^{-0.4|s - t|}$. 
 
     If $\{X(t)\}$ is passed through an LTI filter with impulse response 
