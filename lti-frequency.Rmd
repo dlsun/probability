@@ -197,7 +197,7 @@ Frequencies below 0.6 Hz are passed (with a gain of $1.5^2 = 2.25$), while
 frequencies above 0.6 Hz are rejected.
 
 The Filter Theorem allows us to prove a fact about power spectral densities that we have 
-assumed in many of our calculations. Combined with Theorem \@ref(thm:psd-power), the next 
+assumed in many of our calculations. Combined with Theorem \@ref(thm:psd-integral), the next 
 theorem justifies the name "power spectral density" for $S_X(f)$.
 
 ```{theorem psd-band-integral, name="Expected Power in a Frequency Band"}
