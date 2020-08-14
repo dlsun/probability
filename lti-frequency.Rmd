@@ -21,6 +21,9 @@ where $H(f)$ is the frequency response of the filter (i.e., the Fourier transfor
                                         impulse response).
 ```
 
+<div style="padding:0.5em;">
+<details>
+<summary style="color:Gray;">Show/Hide Proof</summary>
 ```{proof}
 Theorem \@ref(thm:filter-stationary) provides the mean and autocovariance functions of $\{ Y(t) \}$. We can use these 
 to obtain the autocorrelation function of $\{ Y(t) \}$:
@@ -47,6 +50,8 @@ S_Y(f) &= \mathscr{F}[R_Y](f) \\
 \end{align*}
 as we wanted to show.
 ```
+</details>
+</div>
 
 ```{example white-noise-lti-frequency, name="White Noise"}
 Consider the white noise process $\{ Z[n] \}$ defined in Example \@ref(exm:white-noise), 
