@@ -271,7 +271,7 @@ where $\{ Z[n] \}$ is a sequence of i.i.d. standard normal random variables.
     that your answer agrees with the one you obtained in Lesson \@ref(psd).
 
 3. Let $\{ X(t) \}$ be a continuous-time random process with mean function 
-$\mu_X(t) = -2$ and autocovariance function $C_X(s, t) = 5 e^{-0.4|s - t|}$. 
+$\mu_X(t) = -1$ and autocovariance function $C_X(s, t) = 2e^{-|s - t|/3}$.  
 
     If $\{X(t)\}$ is passed through an LTI filter with impulse response 
     \[ h(t) = \begin{cases} 4e^{-2t} & t \geq 0 \\ 0 & \text{otherwise} \end{cases}, \]
