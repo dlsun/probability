@@ -54,14 +54,14 @@ which consists of i.i.d. random variables with mean $\mu = E[Z[n]]$ and
 variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. 
 
 We showed in Example \@ref(exm:white-noise-psd) that its PSD is
-\[ S_X(f) = \sigma^2 + \mu^2 \delta(f). \]
+\[ S_Z(f) = \sigma^2 + \mu^2 \delta(f). \]
 
-Let's pass $\{ X(t) \}$ through a filter with impulse response 
+Let's pass $\{ Z[n] \}$ through a filter with impulse response 
 \[ h[n] = (-0.4)^n u[n]. \]
-What is the PSD of the output $\{ Y(t) \}$?
+What is the PSD of the output $\{ Y[n] \}$?
 
 By the Filter Theorem (Theorem \@ref(thm:filter-theorem)), we know that 
-\[ S_Y(f) = |H(f)|^2 \cdot S_X(f). \]
+\[ S_Y(f) = |H(f)|^2 \cdot S_Z(f). \]
 So all we need to do is find $|H(f)|^2$.
 
 By Table \@ref(dtft), the frequency response of the filter is 
@@ -74,7 +74,7 @@ so
 &= \frac{1}{1.16 + 0.8\cos(2\pi f)}.
 \end{align*}
 
-Now, $S_Y(f)$ is just the product of this and $S_X(f)$.
+Now, $S_Y(f)$ is just the product of this and $S_Z(f)$.
 \begin{align*} 
 S_Y(f) &= \frac{1}{1.16 + 0.8\cos(2\pi f)} \cdot (\sigma^2 + \mu^2 \delta(f)) \\
 &= \frac{\sigma^2}{1.16 + 0.8\cos(2\pi f)} + \frac{\mu^2}{1.16 + 0.8\cos(2\pi \cdot 0)} \delta(f).
@@ -84,7 +84,7 @@ so we can substitute $f=0$ into the coefficient.
 
 The graphs below show:
 
-- the PSD of the input $S_X(f)$ (in red), 
+- the PSD of the input $S_Z(f)$ (in red), 
 - the squared magnitude of the frequency response $|H(f)|^2$ (in blue), and 
 - the PSD of the output $S_Y(f)$ (in orange), 
 
@@ -123,7 +123,7 @@ lines(fs, 1.7 / (1.16 + 0.8 * cos(2 * pi * fs)), col="orange")
 
 We can calculate the expected power in the output signal $\{ Y[n] \}$ by integrating 
 the PSD over "all" frequencies. (This is the easiest way, since 
-the autocorrelation function $R_Y(\tau)$ is not available.) Because this is a discrete-time 
+the autocorrelation function $R_Y[k]$ is not available.) Because this is a discrete-time 
 signal, we only integrate over frequencies below the Nyquist limit, $|f| < 0.5$.
 \begin{align*}
 \int_{-0.5}^{0.5} S_Y(f)\,df &= \int_{-0.5}^{0.5} \frac{\sigma^2}{1.16 + 0.8\cos(2\pi f)} \,df + \int_{-0.5}^{0.5} \frac{\mu^2}{1.96} \delta(f)\,df \\

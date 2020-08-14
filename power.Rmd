@@ -41,9 +41,9 @@ which consists of i.i.d. random variables with mean $\mu = E[Z[n]]$ and
 variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. 
 
 This process is stationary, with autocorrelation function 
-\[ R_X[k] = \sigma^2\delta[k] + \mu^2, \]
+\[ R_Z[k] = \sigma^2\delta[k] + \mu^2, \]
 so its expected power is 
-\[ R_X[0] = \sigma^2\delta[0] + \mu^2 = \sigma^2 + \mu^2. \]
+\[ R_Z[0] = \sigma^2\delta[0] + \mu^2 = \sigma^2 + \mu^2. \]
 ```
 
 ```{example gaussian-process-power}

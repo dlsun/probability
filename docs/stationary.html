@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-13" />
+<meta name="date" content="2020-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -567,13 +567,13 @@ variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}
 which is constant, so the process could be wide-sense stationary. We need to check its
 autocovariance function.</p>
 <p>In Example <a href="cov-function.html#exm:white-noise-cov">52.3</a>, we showed that its autocovariance function is
-<span class="math display">\[ C[m, n] = \begin{cases} \sigma^2 &amp; m = n \\ 0 &amp; m \neq n \end{cases}. \]</span></p>
+<span class="math display">\[ C_Z[m, n] = \begin{cases} \sigma^2 &amp; m = n \\ 0 &amp; m \neq n \end{cases}. \]</span></p>
 <p>To see that this is a function of <span class="math inline">\(m - n\)</span>, we rewrite <span class="math inline">\(m = n\)</span> as <span class="math inline">\(m - n = 0\)</span>:
-<span class="math display">\[ C[m, n] = \begin{cases} \sigma^2 &amp; m - n = 0 \\ 0 &amp; m - n \neq 0 \end{cases}. \]</span></p>
+<span class="math display">\[ C_Z[m, n] = \begin{cases} \sigma^2 &amp; m - n = 0 \\ 0 &amp; m - n \neq 0 \end{cases}. \]</span></p>
 <p>This can be written more compactly using the discrete delta function <span class="math inline">\(\delta[k]\)</span>, defined as
 <span class="math display">\[ \delta[k] \overset{def}{=} \begin{cases} 1 &amp; k=0 \\ 0 &amp; k \neq 0 \end{cases}. \]</span>
 In terms of <span class="math inline">\(\delta[k]\)</span>, the autocovariance function is simply
-<span class="math display">\[ C[m, n] = \sigma^2 \delta[m - n]. \]</span></p>
+<span class="math display">\[ C_Z[m, n] = \sigma^2 \delta[m - n]. \]</span></p>
 The graph below shows white noise <span class="math inline">\(\{ Z[n] \}\)</span> in blue and time-shifted white noise <span class="math inline">\(\{ Z[n-1] \}\)</span> in
 red. Visually, it is hard to tell the difference between the two, which is intutively why the
 process is stationary.

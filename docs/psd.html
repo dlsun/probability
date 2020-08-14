@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-13" />
+<meta name="date" content="2020-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -555,11 +555,11 @@ as we wanted to show.
 which consists of i.i.d. random variables with mean <span class="math inline">\(\mu = E[Z[n]]\)</span> and
 variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]\)</span>.</p>
 <p>This process is stationary, with autocorrelation function
-<span class="math display">\[ R_X[k] = \sigma^2\delta[k] + \mu^2. \]</span>
+<span class="math display">\[ R_Z[k] = \sigma^2\delta[k] + \mu^2. \]</span>
 The power spectral density is its Fourier transform. Using
 linearity and
 the Discrete-Time Fourier Transform table in Appendix <a href="fourier-table.html#dtft">D.2</a>, we see that
-<span class="math display">\[ S_X(f) = \sigma^2 + \mu^2 \delta(f). \]</span></p>
+<span class="math display">\[ S_Z(f) = \sigma^2 + \mu^2 \delta(f). \]</span></p>
 This PSD is graphed below for <span class="math inline">\(\mu=-1.5\)</span> and
 <span class="math inline">\(\sigma^2 = 1.7\)</span>. Note that this power spectral density is only defined
 for frequencies below the Nyquist limit: <span class="math inline">\(|f| &lt; 0.5\)</span>. We see that
@@ -571,12 +571,12 @@ white noise has equal power at all frequencies, except at 0 Hz (DC).
 it over “all” frequencies and make sure that it matches the expected power
 that we obtain by evaluating the autocorrelation function at 0 (see Lesson <a href="power.html#power">55</a>). Because this is a discrete-time signal,
 we only integrate over frequencies below the Nyquist limit, <span class="math inline">\(|f| &lt; 0.5\)</span>.
-<span class="math display">\[ \int_{-0.5}^{0.5} S_X(f)\,df = \int_{-0.5}^{0.5} \sigma^2\,df + \mu^2 \int_{-0.5}^{0.5} \delta(f)\,df = \sigma^2 + \mu^2  \]</span>
-This matches <span class="math inline">\(R_X[0] = \sigma^2 \delta[0] + \mu^2 = \sigma^2 + \mu^2\)</span>.</p>
+<span class="math display">\[ \int_{-0.5}^{0.5} S_Z(f)\,df = \int_{-0.5}^{0.5} \sigma^2\,df + \mu^2 \int_{-0.5}^{0.5} \delta(f)\,df = \sigma^2 + \mu^2  \]</span>
+This matches <span class="math inline">\(R_Z[0] = \sigma^2 \delta[0] + \mu^2 = \sigma^2 + \mu^2\)</span>.</p>
 <p>The power in this signal below 0.2 cycles/sample can be calculated
 by integrating the PSD over that frequency range, remembering to include both
 positive <em>and</em> negative frequencies.</p>
-<p><span class="math display">\[ \int_{-0.2}^{0.2} S_X(f)\,df = \int_{-0.2}^{0.2} \sigma^2\,df + \mu^2 \int_{-0.2}^{0.2} \delta(f)\,df = 0.4\sigma^2 + \mu^2. \]</span></p>
+<p><span class="math display">\[ \int_{-0.2}^{0.2} S_Z(f)\,df = \int_{-0.2}^{0.2} \sigma^2\,df + \mu^2 \int_{-0.2}^{0.2} \delta(f)\,df = 0.4\sigma^2 + \mu^2. \]</span></p>
 
 <div class="example">
 <p><span id="exm:gaussian-process-psd" class="example"><strong>Example 56.2  </strong></span>Consider the process <span class="math inline">\(\{X(t)\}\)</span> from Example <a href="stationary.html#exm:gaussian-process">53.5</a>.

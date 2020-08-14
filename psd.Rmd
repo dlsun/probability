@@ -68,11 +68,11 @@ which consists of i.i.d. random variables with mean $\mu = E[Z[n]]$ and
 variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$. 
 
 This process is stationary, with autocorrelation function 
-\[ R_X[k] = \sigma^2\delta[k] + \mu^2. \]
+\[ R_Z[k] = \sigma^2\delta[k] + \mu^2. \]
 The power spectral density is its Fourier transform. Using 
 linearity and 
 the Discrete-Time Fourier Transform table in Appendix \@ref(dtft), we see that 
-\[ S_X(f) = \sigma^2 + \mu^2 \delta(f). \]
+\[ S_Z(f) = \sigma^2 + \mu^2 \delta(f). \]
 
 This PSD is graphed below for $\mu=-1.5$ and 
 $\sigma^2 = 1.7$. Note that this power spectral density is only defined 
@@ -97,14 +97,14 @@ To check that we calculated the PSD correctly, we can integrate
 it over "all" frequencies and make sure that it matches the expected power 
 that we obtain by evaluating the autocorrelation function at 0 (see Lesson \@ref(power)). Because this is a discrete-time signal, 
 we only integrate over frequencies below the Nyquist limit, $|f| < 0.5$.
-\[ \int_{-0.5}^{0.5} S_X(f)\,df = \int_{-0.5}^{0.5} \sigma^2\,df + \mu^2 \int_{-0.5}^{0.5} \delta(f)\,df = \sigma^2 + \mu^2  \]
-This matches $R_X[0] = \sigma^2 \delta[0] + \mu^2 = \sigma^2 + \mu^2$.
+\[ \int_{-0.5}^{0.5} S_Z(f)\,df = \int_{-0.5}^{0.5} \sigma^2\,df + \mu^2 \int_{-0.5}^{0.5} \delta(f)\,df = \sigma^2 + \mu^2  \]
+This matches $R_Z[0] = \sigma^2 \delta[0] + \mu^2 = \sigma^2 + \mu^2$.
 
 The power in this signal below 0.2 cycles/sample can be calculated 
 by integrating the PSD over that frequency range, remembering to include both 
 positive _and_ negative frequencies.
 
-\[ \int_{-0.2}^{0.2} S_X(f)\,df = \int_{-0.2}^{0.2} \sigma^2\,df + \mu^2 \int_{-0.2}^{0.2} \delta(f)\,df = 0.4\sigma^2 + \mu^2. \]
+\[ \int_{-0.2}^{0.2} S_Z(f)\,df = \int_{-0.2}^{0.2} \sigma^2\,df + \mu^2 \int_{-0.2}^{0.2} \delta(f)\,df = 0.4\sigma^2 + \mu^2. \]
 
 ```{example gaussian-process-psd}
 Consider the process $\{X(t)\}$ from Example \@ref(exm:gaussian-process). 

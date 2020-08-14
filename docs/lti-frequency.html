@@ -24,7 +24,7 @@
 <meta name="author" content="Dennis Sun" />
 
 
-<meta name="date" content="2020-08-13" />
+<meta name="date" content="2020-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -546,12 +546,12 @@ as we wanted to show.
 which consists of i.i.d. random variables with mean <span class="math inline">\(\mu = E[Z[n]]\)</span> and
 variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]\)</span>.</p>
 <p>We showed in Example <a href="psd.html#exm:white-noise-psd">56.1</a> that its PSD is
-<span class="math display">\[ S_X(f) = \sigma^2 + \mu^2 \delta(f). \]</span></p>
-<p>Let’s pass <span class="math inline">\(\{ X(t) \}\)</span> through a filter with impulse response
+<span class="math display">\[ S_Z(f) = \sigma^2 + \mu^2 \delta(f). \]</span></p>
+<p>Let’s pass <span class="math inline">\(\{ Z[n] \}\)</span> through a filter with impulse response
 <span class="math display">\[ h[n] = (-0.4)^n u[n]. \]</span>
-What is the PSD of the output <span class="math inline">\(\{ Y(t) \}\)</span>?</p>
+What is the PSD of the output <span class="math inline">\(\{ Y[n] \}\)</span>?</p>
 <p>By the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), we know that
-<span class="math display">\[ S_Y(f) = |H(f)|^2 \cdot S_X(f). \]</span>
+<span class="math display">\[ S_Y(f) = |H(f)|^2 \cdot S_Z(f). \]</span>
 So all we need to do is find <span class="math inline">\(|H(f)|^2\)</span>.</p>
 <p>By Table <a href="fourier-table.html#dtft">D.2</a>, the frequency response of the filter is
 <span class="math display">\[ H(f) = \frac{1}{1 + 0.4e^{-j2\pi f}} \]</span>
@@ -562,7 +562,7 @@ so
 &amp;= \frac{1}{1 + 0.4 (e^{j2\pi f} + e^{-j2\pi f}) + (0.4)^2} \\
 &amp;= \frac{1}{1.16 + 0.8\cos(2\pi f)}.
 \end{align*}\]</span></p>
-<p>Now, <span class="math inline">\(S_Y(f)\)</span> is just the product of this and <span class="math inline">\(S_X(f)\)</span>.
+<p>Now, <span class="math inline">\(S_Y(f)\)</span> is just the product of this and <span class="math inline">\(S_Z(f)\)</span>.
 <span class="math display">\[\begin{align*} 
 S_Y(f) &amp;= \frac{1}{1.16 + 0.8\cos(2\pi f)} \cdot (\sigma^2 + \mu^2 \delta(f)) \\
 &amp;= \frac{\sigma^2}{1.16 + 0.8\cos(2\pi f)} + \frac{\mu^2}{1.16 + 0.8\cos(2\pi \cdot 0)} \delta(f).
@@ -571,7 +571,7 @@ The last equality follows from the fact that <span class="math inline">\(\delta(
 so we can substitute <span class="math inline">\(f=0\)</span> into the coefficient.</p>
 <p>The graphs below show:</p>
 <ul>
-<li>the PSD of the input <span class="math inline">\(S_X(f)\)</span> (in red),</li>
+<li>the PSD of the input <span class="math inline">\(S_Z(f)\)</span> (in red),</li>
 <li>the squared magnitude of the frequency response <span class="math inline">\(|H(f)|^2\)</span> (in blue), and</li>
 <li>the PSD of the output <span class="math inline">\(S_Y(f)\)</span> (in orange),</li>
 </ul>
@@ -582,7 +582,7 @@ high frequencies (i.e., near the Nyquist limit of 0.5) and attenuating low frequ
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <p>We can calculate the expected power in the output signal <span class="math inline">\(\{ Y[n] \}\)</span> by integrating
 the PSD over “all” frequencies. (This is the easiest way, since
-the autocorrelation function <span class="math inline">\(R_Y(\tau)\)</span> is not available.) Because this is a discrete-time
+the autocorrelation function <span class="math inline">\(R_Y[k]\)</span> is not available.) Because this is a discrete-time
 signal, we only integrate over frequencies below the Nyquist limit, <span class="math inline">\(|f| &lt; 0.5\)</span>.
 <span class="math display">\[\begin{align*}
 \int_{-0.5}^{0.5} S_Y(f)\,df &amp;= \int_{-0.5}^{0.5} \frac{\sigma^2}{1.16 + 0.8\cos(2\pi f)} \,df + \int_{-0.5}^{0.5} \frac{\mu^2}{1.96} \delta(f)\,df \\

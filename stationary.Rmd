@@ -117,15 +117,15 @@ which is constant, so the process could be wide-sense stationary. We need to che
 autocovariance function.
 
 In Example \@ref(exm:white-noise-cov), we showed that its autocovariance function is 
-\[ C[m, n] = \begin{cases} \sigma^2 & m = n \\ 0 & m \neq n \end{cases}. \]
+\[ C_Z[m, n] = \begin{cases} \sigma^2 & m = n \\ 0 & m \neq n \end{cases}. \]
 
 To see that this is a function of $m - n$, we rewrite $m = n$ as $m - n = 0$:
-  \[ C[m, n] = \begin{cases} \sigma^2 & m - n = 0 \\ 0 & m - n \neq 0 \end{cases}. \]
+  \[ C_Z[m, n] = \begin{cases} \sigma^2 & m - n = 0 \\ 0 & m - n \neq 0 \end{cases}. \]
 
 This can be written more compactly using the discrete delta function $\delta[k]$, defined as 
 \[ \delta[k] \overset{def}{=} \begin{cases} 1 & k=0 \\ 0 & k \neq 0 \end{cases}. \]
 In terms of $\delta[k]$, the autocovariance function is simply 
-\[ C[m, n] = \sigma^2 \delta[m - n]. \]
+\[ C_Z[m, n] = \sigma^2 \delta[m - n]. \]
 
 The graph below shows white noise $\{ Z[n] \}$ in blue and time-shifted white noise $\{ Z[n-1] \}$ in 
 red. Visually, it is hard to tell the difference between the two, which is intutively why the 

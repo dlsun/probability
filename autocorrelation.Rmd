@@ -67,7 +67,7 @@ variance $\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]$.
 We showed in Example \@ref(exm:white-noise-stationary) that this process is stationary,
 so its autocorrelation function depends only on $k = m - n$:
 \begin{equation} 
-R_X[k] = C_X[k] + \mu_X^2 = \sigma^2\delta[k] + \mu^2.
+R_Z[k] = C_Z[k] + \mu_Z^2 = \sigma^2\delta[k] + \mu^2.
 (\#eq:white-noise-autocorrelation)
 \end{equation}
 ```
