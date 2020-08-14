@@ -527,7 +527,7 @@ The second-to-last equality follows from the fact that the convolution of any fu
 (<span class="math inline">\(\mu_X^2\)</span>) is itself a constant function. So <span class="math inline">\(h * \mu_X^2\)</span> is the constant <span class="math inline">\(\int_{-\infty}^\infty h(t)\,dt \mu_X^2\)</span>,
 and convolving this constant function with <span class="math inline">\(h(-t)\)</span> gives another factor of <span class="math inline">\(\int_{-\infty}^\infty h(t)\,dt\)</span>.</p>
 Now, we know that <span class="math inline">\(S_Y\)</span>, the power spectral density of <span class="math inline">\(\{ Y(t) \}\)</span>, is just the Fourier transform of the
-autocorrelation function <span class="math inline">\(R_Y\)</span>. Combining the representation of <span class="math inline">\(R_Y\)</span> above, with the Fourier properties from
+autocorrelation function <span class="math inline">\(R_Y\)</span>. Combining the representation of <span class="math inline">\(R_Y\)</span> above with the Fourier properties from
 Appendix <a href="fourier-table.html#fourier-properties">D.3</a>, we obtain:
 <span class="math display">\[\begin{align*}
 S_Y(f) &amp;= \mathscr{F}[R_Y](f) \\
@@ -547,10 +547,14 @@ which consists of i.i.d. random variables with mean <span class="math inline">\(
 variance <span class="math inline">\(\sigma^2 \overset{\text{def}}{=} \text{Var}[Z[n]]\)</span>.</p>
 <p>We showed in Example <a href="psd.html#exm:white-noise-psd">56.1</a> that its PSD is
 <span class="math display">\[ S_Z(f) = \sigma^2 + \mu^2 \delta(f). \]</span></p>
-<p>Let’s pass <span class="math inline">\(\{ Z[n] \}\)</span> through a filter with impulse response
+Let’s pass <span class="math inline">\(\{ Z[n] \}\)</span> through a filter with impulse response
 <span class="math display">\[ h[n] = (-0.4)^n u[n]. \]</span>
-What is the PSD of the output <span class="math inline">\(\{ Y[n] \}\)</span>?</p>
-<p>By the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), we know that
+What is the PSD of the output <span class="math inline">\(\{ Y[n] \}\)</span>?
+</div>
+
+
+<div class="solution">
+<p> <span class="solution"><em>Solution. </em></span> By the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), we know that
 <span class="math display">\[ S_Y(f) = |H(f)|^2 \cdot S_Z(f). \]</span>
 So all we need to do is find <span class="math inline">\(|H(f)|^2\)</span>.</p>
 <p>By Table <a href="fourier-table.html#dtft">D.2</a>, the frequency response of the filter is
@@ -579,7 +583,7 @@ for <span class="math inline">\(\mu=-1.5\)</span> and <span class="math inline">
 high frequencies (i.e., near the Nyquist limit of 0.5) and attenuating low frequencies.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
 <p>We can calculate the expected power in the output signal <span class="math inline">\(\{ Y[n] \}\)</span> by integrating
 the PSD over “all” frequencies. (This is the easiest way, since
 the autocorrelation function <span class="math inline">\(R_Y[k]\)</span> is not available.) Because this is a discrete-time
@@ -601,46 +605,49 @@ Now, suppose we pass <span class="math inline">\(\{ X(t) \}\)</span> through an 
 <span class="math display">\[ h(t) = 1.8\text{sinc}(1.2t). \]</span>
 Using the table in Appendix <a href="fourier-table.html#ctft">D.1</a>, along with the scaling property, we see that the frequency response is
 <span class="math display">\[ H(f) = 1.8\frac{1}{1.2} \text{rect}(\frac{f}{1.2}) = \begin{cases} 1.5 &amp; |f| &lt; 0.6 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
-The filter <span class="math inline">\(h\)</span> is a ideal lowpass filter because it perfectly preserves frequencies below <span class="math inline">\(0.6\)</span> Hz and
-perfectly removes frequencies above <span class="math inline">\(0.6\)</span> Hz. It is “ideal” because the impulse response <span class="math inline">\(h(t)\)</span> is
-not implementable.</p>
+The filter <span class="math inline">\(h\)</span> is an ideal lowpass filter because it perfectly passes frequencies below <span class="math inline">\(0.6\)</span> Hz and
+perfectly rejects frequencies above <span class="math inline">\(0.6\)</span> Hz. It is “ideal” because the impulse response <span class="math inline">\(h(t)\)</span> is
+not implementable in practice. (The <span class="math inline">\(\text{sinc}\)</span> function extends
+infinitely far into the past and into the future.)</p>
 <p>Now, we have to calculate the <em>squared</em> magnitude of the impulse response for the filter theorem:
 <span class="math display">\[ |H(f)|^2 = \begin{cases} 1.5^2 &amp; |f| &lt; 0.6 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span></p>
 <span class="math inline">\(S_X(f)\)</span> and <span class="math inline">\(|H(f)|^2\)</span> are graphed below.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <p>By the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), the PSD of the output is
 <span class="math display">\[ S_Y(f) = |H(f)|^2 \cdot S_X(f) = \begin{cases} 1.5^2 \cdot 5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}  + 1.5^2 \cdot 4 \delta(f) &amp; |f| &lt; 0.6 \\ 0 &amp; \text{otherwise} \end{cases} \]</span>
-Although the formula for <span class="math inline">\(S_Y(f)\)</span> is messy, it is quite straightforward to understand what is going on if we just
-graph it.</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+The formula for <span class="math inline">\(S_Y(f)\)</span> is quite messy; it is easier to understand what is going on by just graphing
+the function.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 <p>Frequencies below 0.6 Hz are passed (with a gain of <span class="math inline">\(1.5^2 = 2.25\)</span>), while
-frequencies above 0.6 Hz are rejected completely.</p>
+frequencies above 0.6 Hz are rejected.</p>
 <p>The Filter Theorem allows us to prove a fact about power spectral densities that we have
-assumed until now.</p>
+assumed in many of our calculations. Combined with Theorem <a href="#thm:psd-power"><strong>??</strong></a>, the next
+theorem justifies the name “power spectral density” for <span class="math inline">\(S_X(f)\)</span>.</p>
 
 <div class="theorem">
 <span id="thm:psd-band-integral" class="theorem"><strong>Theorem 58.2  (Expected Power in a Frequency Band)  </strong></span>The integral of the PSD <span class="math inline">\(S_X(f)\)</span> over any frequency band <span class="math inline">\(a &lt; |f| &lt; b\)</span> equals the expected power
 in that frequency band.
 </div>
 
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-201-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-202-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> To calculate the expected power in a signal <span class="math inline">\(\{ X(t) \}\)</span> over the frequency band <span class="math inline">\(a &lt; |f| &lt; b\)</span>,
+<p> <span class="proof"><em>Proof. </em></span> To measure the expected power in a signal <span class="math inline">\(\{ X(t) \}\)</span> over the frequency band <span class="math inline">\(a &lt; |f| &lt; b\)</span>,
 we imagine passing <span class="math inline">\(\{ X(t) \}\)</span> through the ideal bandpass filter
 <span class="math display">\[ H(f) = \begin{cases} 1 &amp; a &lt; |f| &lt; b \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
-The output signal <span class="math inline">\(\{ Y(t) \}\)</span> is then just a version of <span class="math inline">\(\{ X(t) \}\)</span>, with all frequency content
+The output signal <span class="math inline">\(\{ Y(t) \}\)</span> is then just <span class="math inline">\(\{ X(t) \}\)</span> with frequency content
 outside <span class="math inline">\(a &lt; |f| &lt; b\)</span> removed.</p>
-<p>To obtain the expected power in this frequency band, we integrate the PSD <span class="math inline">\(S_Y(f)\)</span> of the output over all frequencies.
-For continuous-time signals, this looks like<br />
+<p>Now, to obtain the expected power in <span class="math inline">\(\{ X(t) \}\)</span> this frequency band, we can integrate the PSD of
+<span class="math inline">\(\{ Y(t) \}\)</span> over all frequencies (by Theorem <a href="psd.html#thm:psd-integral">56.1</a>):
 <span class="math display">\[ \text{Expected power between $a$ and $b$} = \int_{-\infty}^\infty S_Y(f)\,df. \]</span>
-(For discrete-time signals, the limits of the integral are <span class="math inline">\(-0.5\)</span> and <span class="math inline">\(0.5\)</span>.)</p>
+(This is for a continuous-time process. For a discrete-time process,
+the limits of the integral would be <span class="math inline">\(-0.5\)</span> to <span class="math inline">\(0.5\)</span>.)</p>
 But by the Filter Theorem (Theorem <a href="lti-frequency.html#thm:filter-theorem">58.1</a>), we have
 <span class="math display">\[ \int_{-\infty}^\infty S_Y(f)\,df = \int_{-\infty}^\infty |H(f)|^2 S_X(f)\,df = \int_{a &lt; |f| &lt; b} S_X(f)\,df, \]</span>
-since <span class="math inline">\(|H(f)|^2\)</span> is 0 outside <span class="math inline">\(a &lt; |f| &lt; b\)</span>. This shows that we can obtain the expected power over any frequency
-band by integrating the PSD over the appropriate frequencies.
+since <span class="math inline">\(|H(f)|^2\)</span> is 0 outside <span class="math inline">\(a &lt; |f| &lt; b\)</span>. This shows that we can obtain the expected power in ${X(t)}
+over any frequency band by integrating its PSD <span class="math inline">\(S_X(f)\)</span> over the appropriate frequencies.
 </div>
 
 </div>
