@@ -139,7 +139,7 @@ We showed in Example \@ref(exm:gaussian-process-psd) that its power spectral den
 S_X(f) &=  5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}  + 4 \delta(f)
 \end{align*}
 Now, suppose we pass $\{ X(t) \}$ through an LTI filter with impulse response 
-\[ h(t) = 1.8\text{sinc}(1.2f). \]
+\[ h(t) = 1.8\text{sinc}(1.2t). \]
 Using the table in Appendix \@ref(ctft), along with the scaling property, we see that the frequency response is 
 \[ H(f) = 1.8\frac{1}{1.2} \text{rect}(\frac{f}{1.2}) = \begin{cases} 1.5 & |f| < 0.6 \\ 0 & \text{otherwise} \end{cases}. \]
 The filter $h$ is a ideal lowpass filter because it perfectly preserves frequencies below $0.6$ Hz and 

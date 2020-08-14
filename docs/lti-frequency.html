@@ -598,7 +598,7 @@ We showed in Example <a href="psd.html#exm:gaussian-process-psd">56.2</a> that i
 S_X(f) &amp;=  5 \sqrt{\frac{\pi}{3}} e^{-\pi^2 f^2 / 3}  + 4 \delta(f)
 \end{align*}\]</span>
 Now, suppose we pass <span class="math inline">\(\{ X(t) \}\)</span> through an LTI filter with impulse response
-<span class="math display">\[ h(t) = 1.8\text{sinc}(1.2f). \]</span>
+<span class="math display">\[ h(t) = 1.8\text{sinc}(1.2t). \]</span>
 Using the table in Appendix <a href="fourier-table.html#ctft">D.1</a>, along with the scaling property, we see that the frequency response is
 <span class="math display">\[ H(f) = 1.8\frac{1}{1.2} \text{rect}(\frac{f}{1.2}) = \begin{cases} 1.5 &amp; |f| &lt; 0.6 \\ 0 &amp; \text{otherwise} \end{cases}. \]</span>
 The filter <span class="math inline">\(h\)</span> is a ideal lowpass filter because it perfectly preserves frequencies below <span class="math inline">\(0.6\)</span> Hz and
