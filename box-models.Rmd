@@ -128,7 +128,7 @@ ways to do this. (Note that we only care about who is on the committee, not the 
                   be on the committee, so for the purposes of this problem, order does not matter.)
 
 Another way to form the chaired committee is to first choose one of the $m$ people to be chair, and then choose 
-the $k-1$ other members from the remaining $n-1$ people. There are 
+the $k-1$ other members from the remaining $m-1$ people. There are 
 \[ m \cdot \binom{m-1}{k-1} \]
 ways to do this.
 
